@@ -60,6 +60,15 @@ function normalizaLoja(s) {
     .trim();
 }
 
+// Ordem de exibicao dos chamados em qualquer lista/modal (pedido do
+// Christian, 09/09/2026): SOS primeiro, depois Alta, depois Normal; dentro
+// de cada prioridade, mais dias em aberto primeiro.
+const RANK_PRIORIDADE = { SOS: 0, Alta: 1, Normal: 2 };
+function comparaChamados(a, b) {
+  const r = (RANK_PRIORIDADE[a.prioridade] ?? 9) - (RANK_PRIORIDADE[b.prioridade] ?? 9);
+  return r !== 0 ? r : b.dias - a.dias;
+}
+
 function parseCSV(texto) {
   const linhas = [];
   let campo = '', linha = [], dentroAspas = false;
@@ -271,8 +280,8 @@ function processar(csvTexto, disponibilidadeBI) {
       alta: g.alta,
       sos: g.sos,
       tempoMedioDias: g.chamados ? Math.round(g.somaDias / g.chamados) : 0,
-      chamadosSOS: g.itensSOS.sort((a, b) => b.dias - a.dias).slice(0, 5),
-      chamadosDetalhe: g.itensTodos.sort((a, b) => b.dias - a.dias),
+      chamadosSOS: g.itensSOS.sort(comparaChamados).slice(0, 5),
+      chamadosDetalhe: g.itensTodos.sort(comparaChamados),
     };
   });
 
@@ -293,7 +302,7 @@ function processar(csvTexto, disponibilidadeBI) {
 // rua, acento, numero do endereco), entao o casamento e' por normalizacao +
 // contencao de palavras, nao igualdade exata.
 function calcularSupervisores(equipamentos) {
-  const todos = equipamentos.flatMap(e => e.chamadosDetalhe);
+  const todos = equipamentos.flatMap(e => e.chamadosDetalhe.map(c => ({ ...c, equipamento: e.nome })));
   const lojasComChamado = [...new Set(todos.map(c => c.loja).filter(Boolean))];
   const lojasNorm = lojasComChamado.map(l => ({ original: l, norm: normalizaLoja(l) }));
 
@@ -331,6 +340,7 @@ function calcularSupervisores(equipamentos) {
 
   return SUPERVISORES.map(sup => {
     let chamados = 0, alta = 0, sos = 0, somaDias = 0, lojasComChamadoCount = 0;
+    const chamadosDetalhe = [];
     for (const loja of sup.lojas) {
       const achado = acharLoja(loja);
       if (!achado) continue;
@@ -340,7 +350,9 @@ function calcularSupervisores(equipamentos) {
       alta += itens.filter(c => c.prioridade === 'Alta').length;
       sos += itens.filter(c => c.prioridade === 'SOS').length;
       somaDias += itens.reduce((s, c) => s + c.dias, 0);
+      chamadosDetalhe.push(...itens);
     }
+    chamadosDetalhe.sort(comparaChamados);
     return {
       nome: sup.nome,
       setores: sup.setores,
@@ -350,6 +362,7 @@ function calcularSupervisores(equipamentos) {
       alta,
       sos,
       tempoMedioDias: chamados ? Math.round(somaDias / chamados) : 0,
+      chamadosDetalhe,
     };
   });
 }

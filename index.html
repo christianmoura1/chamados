@@ -175,10 +175,13 @@
   @media (max-width: 1180px) { .gauge-grid { grid-template-columns: repeat(3,1fr); } }
   @media (max-width: 860px) { .gauge-grid { grid-template-columns: repeat(2,1fr); } }
   @media (max-width: 520px) { .gauge-grid { grid-template-columns: 1fr; } }
-  .gcard { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 16px 16px 14px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 6px; }
-  .ghead { display: flex; flex-direction: column; gap: 1px; margin-bottom: 2px; }
-  .gname { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 13.5px; }
-  .gsetor { font-family: "IBM Plex Mono", monospace; font-size: 9.5px; color: var(--faint); text-transform: uppercase; letter-spacing: .04em; }
+  .gcard { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 16px 16px 14px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 6px; cursor: pointer; transition: transform .12s ease, box-shadow .12s ease; text-align: left; }
+  .gcard:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(33,29,61,.08), 0 18px 34px rgba(33,29,61,.10); }
+  .gcard:focus-visible { outline: 2px solid var(--violet); outline-offset: 2px; }
+  .ghead { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 2px; }
+  .gname { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 13.5px; display: block; }
+  .gsetor { font-family: "IBM Plex Mono", monospace; font-size: 9.5px; color: var(--faint); text-transform: uppercase; letter-spacing: .04em; display: block; margin-top: 1px; }
+  .gdetalhe { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--faint); white-space: nowrap; flex: none; }
   .ggauge { margin: 0 -4px; }
   .gval { display: flex; flex-direction: column; align-items: center; margin-top: -34px; }
   .gnum { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 26px; }
@@ -301,7 +304,7 @@
     <div class="modal-sub" id="modalSub"></div>
     <div class="modal-body">
       <table class="detail-table">
-        <thead><tr><th>Número</th><th>Loja</th><th>Estado</th><th>Prioridade</th><th>Dias</th><th>Técnico</th></tr></thead>
+        <thead id="modalThead"><tr><th>Número</th><th>Loja</th><th>Estado</th><th>Prioridade</th><th>Dias</th><th>Técnico</th></tr></thead>
         <tbody id="modalTbody"></tbody>
       </table>
     </div>
@@ -368,26 +371,63 @@ function gaugeSVG(valor, max, zonas) {
   return `<svg viewBox="0 0 200 112" style="width:100%;height:auto;display:block;">${zonasSvg}${agulha}</svg>`;
 }
 
+// ordem de exibicao nos modais: SOS primeiro, depois Alta, depois Normal;
+// dentro de cada prioridade, mais dias em aberto primeiro (os itens ja vem
+// assim do backend, isso aqui e' so garantia caso a origem mude)
+const RANK_PRIORIDADE = { SOS: 0, Alta: 1, Normal: 2 };
+function ordenaChamados(itens) {
+  return [...itens].sort((a, b) => {
+    const r = (RANK_PRIORIDADE[a.prioridade] ?? 9) - (RANK_PRIORIDADE[b.prioridade] ?? 9);
+    return r !== 0 ? r : b.dias - a.dias;
+  });
+}
+const tagClsPrioridade = p => p === 'SOS' ? 'tag-sos' : (p === 'Alta' ? 'tag-alta' : 'tag-normal');
+
+function abrirModalGenerico(titulo, subtitulo, itens, { mostrarEquipamento } = {}) {
+  document.getElementById('modalTitle').textContent = titulo;
+  document.getElementById('modalSub').textContent = subtitulo;
+  const colEquip = mostrarEquipamento ? '<th>Equipamento</th>' : '';
+  document.getElementById('modalThead').innerHTML =
+    `<tr><th>Número</th>${colEquip}<th>Loja</th><th>Estado</th><th>Prioridade</th><th>Dias</th><th>Técnico</th></tr>`;
+  const itensOrdenados = ordenaChamados(itens);
+  const colspan = mostrarEquipamento ? 7 : 6;
+  document.getElementById('modalTbody').innerHTML = itensOrdenados.length
+    ? itensOrdenados.map(c => `<tr>
+        <td class="mono">${escapeHtml(c.numero)}</td>
+        ${mostrarEquipamento ? `<td>${escapeHtml(c.equipamento)}</td>` : ''}
+        <td>${escapeHtml(c.loja)}</td>
+        <td>${escapeHtml(c.estado)}</td>
+        <td><span class="tag ${tagClsPrioridade(c.prioridade)}">${escapeHtml(c.prioridade)}</span></td>
+        <td class="num">${c.dias}d</td>
+        <td>${escapeHtml(c.tecnico) || '—'}</td>
+      </tr>`).join('')
+    : `<tr><td colspan="${colspan}" class="esos-empty">Nenhum chamado em aberto.</td></tr>`;
+  document.getElementById('modalOverlay').hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+
 function abrirModal(chave) {
   const e = DADOS_ATUAIS?.equipamentos.find(x => x.chave === chave);
   if (!e) return;
   const itens = e.chamadosDetalhe || [];
-  document.getElementById('modalTitle').textContent = e.nome;
-  document.getElementById('modalSub').textContent =
-    `${itens.length} chamado(s) em aberto · ${e.pdvsEmFalha} lojas afetadas · ${e.alta} Alta · ${e.sos} SOS`;
-  const linhaTagCls = p => p === 'SOS' ? 'tag-sos' : (p === 'Alta' ? 'tag-alta' : 'tag-normal');
-  document.getElementById('modalTbody').innerHTML = itens.length
-    ? itens.map(c => `<tr>
-        <td class="mono">${escapeHtml(c.numero)}</td>
-        <td>${escapeHtml(c.loja)}</td>
-        <td>${escapeHtml(c.estado)}</td>
-        <td><span class="tag ${linhaTagCls(c.prioridade)}">${escapeHtml(c.prioridade)}</span></td>
-        <td class="num">${c.dias}d</td>
-        <td>${escapeHtml(c.tecnico) || '—'}</td>
-      </tr>`).join('')
-    : `<tr><td colspan="6" class="esos-empty">Nenhum chamado em aberto nessa categoria.</td></tr>`;
-  document.getElementById('modalOverlay').hidden = false;
-  document.body.style.overflow = 'hidden';
+  abrirModalGenerico(
+    e.nome,
+    `${itens.length} chamado(s) em aberto · ${e.pdvsEmFalha} lojas afetadas · ${e.alta} Alta · ${e.sos} SOS`,
+    itens,
+    { mostrarEquipamento: false }
+  );
+}
+
+function abrirModalSupervisor(nome) {
+  const s = DADOS_ATUAIS?.supervisores?.find(x => x.nome === nome);
+  if (!s) return;
+  const itens = s.chamadosDetalhe || [];
+  abrirModalGenerico(
+    s.nome,
+    `${itens.length} chamado(s) em aberto · ${s.lojasComChamado}/${s.totalLojas} lojas afetadas · ${s.alta} Alta · ${s.sos} SOS`,
+    itens,
+    { mostrarEquipamento: true }
+  );
 }
 
 function fecharModal() {
@@ -541,8 +581,12 @@ async function iniciar() {
   const supOrdenados = [...(D.supervisores || [])].sort((a, b) => b.chamados - a.chamados);
   const gaugeCards = supOrdenados.map(s => {
     const cor = corDoFarol(s.chamados);
-    return `<div class="gcard">
-      <div class="ghead"><span class="gname">${escapeHtml(s.nome)}</span><span class="gsetor">${escapeHtml((s.setores || []).join(' · '))}</span></div>
+    return `<div class="gcard" role="button" tabindex="0" aria-label="Ver detalhe de ${escapeHtml(s.nome)}"
+        onclick="abrirModalSupervisor('${s.nome}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirModalSupervisor('${s.nome}');}">
+      <div class="ghead">
+        <div><span class="gname">${escapeHtml(s.nome)}</span><span class="gsetor">${escapeHtml((s.setores || []).join(' · '))}</span></div>
+        <span class="gdetalhe">detalhe →</span>
+      </div>
       <div class="ggauge">${gaugeSVG(s.chamados, FAROL_MAX, FAROL_ZONAS)}</div>
       <div class="gval"><span class="gnum num" style="color:${cor}">${s.chamados}</span><span class="glabel">chamados</span></div>
       <div class="gstats">
@@ -640,13 +684,11 @@ function montarBuscaChamados(D) {
   popular(selLoja, lojas);
   popular(selResp, responsaveis);
 
-  const tagCls = p => p === 'SOS' ? 'tag-sos' : (p === 'Alta' ? 'tag-alta' : 'tag-normal');
-
   function renderizar() {
     const fs = selSetor.value, fl = selLoja.value, fr = selResp.value;
-    const filtrados = todos
-      .filter(c => (!fs || c.equipamento === fs) && (!fl || c.loja === fl) && (!fr || c.tecnico === fr))
-      .sort((a, b) => b.dias - a.dias);
+    const filtrados = ordenaChamados(
+      todos.filter(c => (!fs || c.equipamento === fs) && (!fl || c.loja === fl) && (!fr || c.tecnico === fr))
+    );
 
     contagem.textContent = `${filtrados.length} de ${todos.length} chamados`;
     tbody.innerHTML = filtrados.length
@@ -655,7 +697,7 @@ function montarBuscaChamados(D) {
           <td>${escapeHtml(c.equipamento)}</td>
           <td>${escapeHtml(c.loja)}</td>
           <td>${escapeHtml(c.estado)}</td>
-          <td><span class="tag ${tagCls(c.prioridade)}">${escapeHtml(c.prioridade)}</span></td>
+          <td><span class="tag ${tagClsPrioridade(c.prioridade)}">${escapeHtml(c.prioridade)}</span></td>
           <td class="num">${c.dias}d</td>
           <td>${escapeHtml(c.tecnico) || '—'}</td>
         </tr>`).join('')
