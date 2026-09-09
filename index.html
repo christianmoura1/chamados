@@ -335,13 +335,15 @@ function donutSVG(pct, cor) {
 }
 
 // faixas do farol por supervisor: vermelho = mais chamados, verde = menos
-// (pedido do Christian, 09/09/2026) -- escala fixa 0-60 (o maior valor
-// observado foi 53), faixas em 25 e 40.
-const FAROL_MAX = 60;
+// (pedido do Christian, 09/09/2026) -- corrigido em 09/09/2026 p/ os 4
+// supervisores reais (Marcel/Rafael/Gustavo/Carlos Magno, cada um cobrindo
+// varios setores/lojas). Escala fixa 0-120 (o maior valor observado foi
+// 108), faixas em 60 e 90.
+const FAROL_MAX = 120;
 const FAROL_ZONAS = [
-  { de: 0, ate: 25, cor: 'var(--ok)' },
-  { de: 25, ate: 40, cor: 'var(--alta)' },
-  { de: 40, ate: FAROL_MAX, cor: 'var(--sos)' },
+  { de: 0, ate: 60, cor: 'var(--ok)' },
+  { de: 60, ate: 90, cor: 'var(--alta)' },
+  { de: 90, ate: FAROL_MAX, cor: 'var(--sos)' },
 ];
 function corDoFarol(valor) {
   const z = FAROL_ZONAS.find(z => valor < z.ate) || FAROL_ZONAS[FAROL_ZONAS.length - 1];
@@ -540,7 +542,7 @@ async function iniciar() {
   const gaugeCards = supOrdenados.map(s => {
     const cor = corDoFarol(s.chamados);
     return `<div class="gcard">
-      <div class="ghead"><span class="gname">${escapeHtml(s.nome)}</span><span class="gsetor">${escapeHtml(s.setor)}</span></div>
+      <div class="ghead"><span class="gname">${escapeHtml(s.nome)}</span><span class="gsetor">${escapeHtml((s.setores || []).join(' · '))}</span></div>
       <div class="ggauge">${gaugeSVG(s.chamados, FAROL_MAX, FAROL_ZONAS)}</div>
       <div class="gval"><span class="gnum num" style="color:${cor}">${s.chamados}</span><span class="glabel">chamados</span></div>
       <div class="gstats">
