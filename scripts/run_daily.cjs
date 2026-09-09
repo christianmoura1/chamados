@@ -19,8 +19,22 @@ const CDP = 'http://127.0.0.1:9222';
 const QUERY = 'opened_for.u_bk_divisionIN1512,2311,1667,1300,1439,1494,1700,1444,1604,1466,1453,1382,1450,1176,1436,1480,1730,1741,2439,1314,2222,2225,1996,2224,1989,1990,1419,1456,1332,1994,2443,1992,1993,1743,1564,1484,1842,2425,1320,1354,1322,1448,1550,1462,1338,1321,1264,1442,2139,2427,1438,1277,1367,1606,2404,1869,1865,1956,1600,2240,2337,1991,1727,2154,1892,1774,2369,2181,2141,2172,1768,1898';
 
 const agora = () => new Date().toISOString();
-const logInfo = (msg, extra) => console.log(JSON.stringify({ ts: agora(), level: 'info', msg, ...extra }));
-const logErro = (msg, extra) => console.error(JSON.stringify({ ts: agora(), level: 'error', msg, ...extra }));
+
+// Grava o log direto em UTF-8 pelo proprio Node (fs.appendFileSync), em vez
+// de depender de redirecionamento do shell -- o PowerShell 5.1 grava os
+// operadores de redirecionamento (>>, *>>) sempre em UTF-16, nao da pra
+// mudar isso por configuracao, e corrompia acento no arquivo. Tambem evita
+// o problema de "git escreve no stderr mesmo com sucesso -> PowerShell
+// enxerga como erro -> tarefa agendada marca falha" (descoberto 09/09/2026
+// ao migrar essa tarefa pra rodar a cada 2h): como o log agora e' escrito
+// pelo Node, a tarefa so' precisa do exit code do proprio node.exe.
+const LOG_PATH = path.join(ROOT, 'logs', 'run_daily.log');
+function escreveLog(linha) {
+  try { fs.mkdirSync(path.dirname(LOG_PATH), { recursive: true }); } catch (e) {}
+  fs.appendFileSync(LOG_PATH, linha + '\n', 'utf8');
+}
+const logInfo = (msg, extra) => { const l = JSON.stringify({ ts: agora(), level: 'info', msg, ...extra }); console.log(l); escreveLog(l); };
+const logErro = (msg, extra) => { const l = JSON.stringify({ ts: agora(), level: 'error', msg, ...extra }); console.error(l); escreveLog(l); };
 
 const ABERTOS = new Set(['Atribuído', 'Expedição pendente', 'Trabalho em andamento', 'Aceito']);
 
@@ -467,6 +481,9 @@ function rodar(rotulo, cmd, args) {
     rodar('git push', GIT, ['push', 'origin', 'main']);
 
     logInfo('pipeline chamados concluido com sucesso', { seg: Math.round((Date.now() - inicio) / 1000) });
+    process.exit(0); // sem isso o processo fica pendurado (conexao CDP do Playwright
+    // nao solta o event loop sozinha) e a tarefa agendada nunca marca "concluida" --
+    // critico agora que roda a cada 2h: uma instancia pendurada bloqueia a proxima.
   } catch (e) {
     logErro('pipeline falhou', { erro: e.message.slice(0, 500), seg: Math.round((Date.now() - inicio) / 1000) });
     process.exit(1);
