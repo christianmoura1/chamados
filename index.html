@@ -58,15 +58,36 @@
   .num { font-variant-numeric: tabular-nums; }
   .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
 
-  .shell { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
-  @media (max-width: 860px) { .shell { grid-template-columns: 1fr; } .side { display: none; } }
+  .shell { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; transition: grid-template-columns .22s ease; }
+  .shell.sb-collapsed { grid-template-columns: 0 1fr; }
+  @media (max-width: 860px) { .shell:not(.sb-expanded) { grid-template-columns: 0 1fr; } }
 
   /* ---------- sidebar ---------- */
   .side {
     background: linear-gradient(180deg, var(--sidebar), var(--sidebar-2));
     padding: 26px 20px; display: flex; flex-direction: column; gap: 30px; color: #EDEAFF;
+    position: relative; overflow: hidden; white-space: nowrap; min-width: 0;
+    transition: opacity .18s ease;
   }
-  .brand { display: flex; align-items: center; gap: 11px; }
+  .shell.sb-collapsed .side { opacity: 0; padding-left: 0; padding-right: 0; }
+
+  .side-toggle {
+    position: absolute; top: 22px; right: 14px; width: 26px; height: 26px; border-radius: 999px;
+    background: rgba(255,255,255,0.08); border: none; color: #C6C0EE; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; font-size: 14px; line-height: 1; flex: none;
+  }
+  .side-toggle:hover { background: rgba(255,255,255,0.16); color: #FFFFFF; }
+
+  .side-reopen {
+    display: none; position: fixed; top: 22px; left: 18px; z-index: 40;
+    width: 32px; height: 32px; border-radius: 999px; border: 1px solid var(--line);
+    background: var(--surface); color: var(--muted); box-shadow: var(--shadow); cursor: pointer;
+    align-items: center; justify-content: center; font-size: 15px; line-height: 1;
+  }
+  .side-reopen:hover { color: var(--violet); }
+  .shell.sb-collapsed .side-reopen { display: flex; }
+
+  .brand { display: flex; align-items: center; gap: 11px; padding-right: 24px; }
   .brand .mark {
     width: 34px; height: 34px; border-radius: 10px;
     background: linear-gradient(135deg, var(--violet), var(--pink));
@@ -205,6 +226,7 @@
 <body>
 <div class="shell">
   <aside class="side">
+    <button class="side-toggle" id="sideToggle" type="button" aria-label="Recolher menu">‹</button>
     <div class="brand">
       <div class="mark">Z</div>
       <div><div class="name">Manutenção Sul</div><div class="sub">Zamp · BK Brasil</div></div>
@@ -219,6 +241,7 @@
     </div>
     <div class="side-foot">Atualização automática diária</div>
   </aside>
+  <button class="side-reopen" id="sideReopen" type="button" aria-label="Abrir menu">›</button>
 
   <main class="main">
     <div class="topbar">
@@ -474,6 +497,31 @@ async function iniciar() {
   carregarHistorico();
 }
 iniciar();
+
+// menu lateral recolhivel -- lembra a preferencia do usuario
+(function () {
+  const shell = document.querySelector('.shell');
+  const CHAVE = 'chamados_sidebar_collapsed';
+  function aplicar(colapsado) {
+    shell.classList.toggle('sb-collapsed', colapsado);
+    shell.classList.toggle('sb-expanded', !colapsado);
+  }
+  let salvo = null;
+  try { salvo = localStorage.getItem(CHAVE); } catch (e) {}
+  // sem preferencia salva ainda: comeca recolhido em telas estreitas (a aba
+  // de 240px nao cabe num celular), expandido em telas largas
+  const colapsado = salvo === null ? window.innerWidth <= 860 : salvo === '1';
+  aplicar(colapsado);
+
+  document.getElementById('sideToggle').addEventListener('click', () => {
+    aplicar(true);
+    try { localStorage.setItem(CHAVE, '1'); } catch (e) {}
+  });
+  document.getElementById('sideReopen').addEventListener('click', () => {
+    aplicar(false);
+    try { localStorage.setItem(CHAVE, '0'); } catch (e) {}
+  });
+})();
 </script>
 </body>
 </html>
