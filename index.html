@@ -250,11 +250,18 @@
 
 <script>
 const brl0 = n => n.toLocaleString('pt-BR');
-const CORES = ['#7C5CFC', '#F472B6', '#38BDF8', '#22C08D', '#F5A623', '#A78BFA'];
 let DADOS_ATUAIS = null;
 
 function escapeHtml(s) {
   return String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+}
+
+// semaforo por severidade do % de indisponibilidade: vermelho = pior,
+// laranja = medio, verde = bom (pedido do Christian, 09/09/2026)
+function corPorIndisponibilidade(pct) {
+  if (pct >= 50) return 'var(--sos)';
+  if (pct >= 25) return 'var(--alta)';
+  return 'var(--ok)';
 }
 
 function donutSVG(pct, cor) {
@@ -393,8 +400,9 @@ async function iniciar() {
     { label: 'Tempo Médio (dias)', val: brl0(tempoMedioGeral), cls: 'k-violet' },
   ].map(k => `<div class="kpi ${k.cls}"><span class="label">${k.label}</span><div class="val num">${k.val}</div></div>`).join('');
 
-  const equipCards = D.equipamentos.map((e, i) => {
-    const cor = CORES[i % CORES.length];
+  const equipOrdenados = [...D.equipamentos].sort((a, b) => b.pctIndisponibilidade - a.pctIndisponibilidade);
+  const equipCards = equipOrdenados.map((e) => {
+    const cor = corPorIndisponibilidade(e.pctIndisponibilidade);
     const sosHtml = e.chamadosSOS.length
       ? e.chamadosSOS.map(s => `<div class="esos-item"><span class="loja">${s.loja}</span><span class="dias">${s.dias}d</span></div>`).join('')
       : '<div class="esos-empty">Nenhum chamado SOS em aberto.</div>';
