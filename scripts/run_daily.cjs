@@ -57,9 +57,18 @@ function parseCSV(texto) {
 
 async function buscarCSV() {
   const browser = await chromium.connectOverCDP(CDP, { timeout: 15000 });
-  let page = null;
-  for (const c of browser.contexts()) for (const p of c.pages()) if (/soma\.zamp\.com\.br/.test(p.url())) page = p;
-  if (!page) throw new Error('aba do SOMA nao encontrada no Chrome (precisa estar aberta e logada)');
+  const ctx = browser.contexts()[0];
+
+  // A aba do SOMA degrada com o tempo (ja travou o fetch duas vezes em
+  // 09/09/2026 apos algumas horas de uso) -- renovar sempre, em vez de
+  // reaproveitar uma aba que pode estar zumbi. O login sobrevive porque
+  // vive no cookie/perfil, nao na aba em si.
+  for (const p of ctx.pages()) {
+    if (/soma\.zamp\.com\.br/.test(p.url())) await p.close().catch(() => {});
+  }
+  const page = await ctx.newPage();
+  await page.goto('https://soma.zamp.com.br/wm_task_list.do', { waitUntil: 'domcontentloaded', timeout: 30000 });
+  await page.waitForTimeout(1500);
   if (/login\.microsoftonline|Conta\/LogOn/i.test(page.url())) throw new Error('a aba do SOMA esta em tela de login');
   page.setDefaultTimeout(110000);
 

@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<title>Chamados em Falha — Sul</title>
+<title>Backlog — Sul</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -170,7 +170,7 @@
       <div><div class="name">Manutenção Sul</div><div class="sub">Zamp · BK Brasil</div></div>
     </div>
     <div class="navgroup">
-      <div class="navitem active"><span class="dot"></span>Chamados em Falha</div>
+      <div class="navitem active"><span class="dot"></span>Backlog</div>
       <div class="navlabel">Painéis</div>
       <div class="navitem"><span class="dot"></span>Perda de Receita</div>
       <div class="navitem"><span class="dot"></span>Gestão de Risco</div>
@@ -184,7 +184,7 @@
     <div class="topbar">
       <div>
         <p class="eyebrow">Regional Sul · Equipamentos</p>
-        <h1>Chamados em falha</h1>
+        <h1>Backlog</h1>
       </div>
       <div class="stamp-pill" id="stamp">carregando…</div>
     </div>
@@ -228,7 +228,7 @@ async function iniciar() {
 
   const kpisHtml = [
     { label: 'Chamados (Alta+SOS)', val: brl0(totalAlta+totalSOS), cls: 'k-sos' },
-    { label: 'PDVs c/ Chamado Aberto', val: brl0(D.totalLojas), cls: 'k-violet' },
+    { label: 'Lojas c/ Chamado Aberto', val: brl0(D.totalLojas), cls: 'k-violet' },
     { label: 'Chamados SOS', val: brl0(totalSOS), cls: 'k-sos' },
     { label: 'Chamados Alta', val: brl0(totalAlta), cls: 'k-alta' },
     { label: 'Tempo Médio (dias)', val: brl0(tempoMedioGeral), cls: 'k-violet' },
@@ -246,7 +246,7 @@ async function iniciar() {
           <div class="center"><span class="pctv num" style="color:${cor}">${e.pctEmFalha}%</span><span class="pctl">em falha</span></div>
         </div>
         <div class="estats">
-          <div class="estat"><div class="n num">${e.pdvsEmFalha}</div><div class="l">PDVs</div></div>
+          <div class="estat"><div class="n num">${e.pdvsEmFalha}</div><div class="l">Lojas</div></div>
           <div class="estat"><div class="n num">${e.chamados}</div><div class="l">Chamados</div></div>
           <div class="estat alta"><div class="n num">${e.alta}</div><div class="l">Alta</div></div>
           <div class="estat crit"><div class="n num">${e.sos}</div><div class="l">SOS</div></div>
@@ -280,14 +280,14 @@ async function iniciar() {
     <div class="kpis">${kpisHtml}</div>
 
     <section>
-      <div class="sec-head"><h2>Equipamentos em falha</h2><span class="sec-note">% em falha = PDVs afetados / ${D.totalLojas} lojas Sul</span></div>
+      <div class="sec-head"><h2>Equipamentos em falha</h2><span class="sec-note">% em falha = Lojas afetadas / ${D.totalLojas} lojas Sul</span></div>
       <div class="equip-grid">${equipCards}</div>
     </section>
 
     <section>
       <div class="sec-head"><h2>Visão consolidada</h2></div>
       <div class="cons-grid">
-        <div class="card"><h3>PDVs com chamado aberto</h3>${barsPdvs}</div>
+        <div class="card"><h3>Lojas com chamado aberto</h3>${barsPdvs}</div>
         <div class="card"><h3>Tempo médio (dias)</h3>${barsTempo}</div>
       </div>
     </section>
