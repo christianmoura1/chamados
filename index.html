@@ -487,7 +487,7 @@ async function iniciar() {
   const tempoMedioGeral = Math.round(D.equipamentos.reduce((s,e)=>s+e.tempoMedioDias*e.chamados,0) / (totalChamadosEquip||1));
 
   const kpisHtml = [
-    { label: 'Chamados (Alta+SOS)', val: brl0(totalAlta+totalSOS), cls: 'k-sos' },
+    { label: 'Total de Chamados', val: brl0(totalChamadosEquip), cls: 'k-violet' },
     { label: 'Lojas c/ Chamado Aberto', val: brl0(D.totalLojas), cls: 'k-violet' },
     { label: 'Chamados SOS', val: brl0(totalSOS), cls: 'k-sos' },
     { label: 'Chamados Alta', val: brl0(totalAlta), cls: 'k-alta' },
