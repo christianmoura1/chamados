@@ -55,7 +55,7 @@ function parseCSV(texto) {
   return linhas;
 }
 
-async function buscarCSV() {
+async function buscarCSVUmaVez() {
   const browser = await chromium.connectOverCDP(CDP, { timeout: 15000 });
   const ctx = browser.contexts()[0];
 
@@ -97,6 +97,74 @@ async function buscarCSV() {
   return Buffer.from(resultado.b64, 'base64').toString('latin1');
 }
 
+async function buscarCSV() {
+  try {
+    return await buscarCSVUmaVez();
+  } catch (e) {
+    logInfo('primeira tentativa falhou, tentando de novo com aba nova', { erro: e.message.slice(0, 200) });
+    return await buscarCSVUmaVez();
+  }
+}
+
+// O "% em falha" precisa bater com o indicador oficial de Disponibilidade
+// que a area de Manutencao ja acompanha no Power BI (pedido do Christian,
+// 09/09/2026) -- NUNCA recalcular essa % aqui, sempre ler da tela do BI
+// (mesma regra do pbi_to_dados.py p/ Gestao de Risco). A pagina "12.
+// Disponibilidade Book" ja tem os cards por equipamento pre-filtrados p/
+// REGIONAL = SUL (confirmado pelo Christian clicando no card Broiler e
+// conferindo o painel de Filters do proprio Power BI).
+const URL_DISPONIBILIDADE_BI = 'https://app.powerbi.com/groups/me/apps/38828dac-b7dc-46e0-a737-57db66b372de/reports/e07d5c63-3ebb-4102-95bf-98a5eac89373/250d750ebb9a588058a3?ctid=64587785-97bc-48f0-83e2-1e7a6597212e&experience=power-bi';
+const MAPA_LABEL_BI = {
+  sorvete: 'MÁQUINA DE SORVETE',
+  fritadeira: 'FRITADEIRA',
+  microondas: 'MICROONDAS',
+  phu: 'PHU',
+  broiler: 'BROILER',
+  tostadeira: 'TOSTADEIRA',
+};
+
+async function buscarDisponibilidadeBI() {
+  const browser = await chromium.connectOverCDP(CDP, { timeout: 15000 });
+  const ctx = browser.contexts()[0];
+  let page = null;
+  for (const p of ctx.pages()) {
+    if (/e07d5c63-3ebb-4102-95bf-98a5eac89373\/250d750ebb9a588058a3/.test(p.url())) { page = p; break; }
+  }
+  const abriuNova = !page;
+  if (!page) page = await ctx.newPage();
+  await page.bringToFront();
+  if (abriuNova) {
+    await page.goto(URL_DISPONIBILIDADE_BI, { waitUntil: 'domcontentloaded', timeout: 30000 });
+  }
+  await page.waitForTimeout(3000);
+
+  const texto = await page.evaluate(() => document.body.innerText);
+  await browser.close().catch(() => {});
+
+  const carimboMatch = texto.match(/Última Atualização\s*\n?\s*([\d/: AMP]+)/i);
+  const carimbo = carimboMatch ? carimboMatch[1].trim() : null;
+  if (!carimbo) throw new Error('nao encontrei o carimbo "Última Atualização" na pagina do BI');
+
+  const dataCarimbo = new Date(carimbo);
+  if (isNaN(dataCarimbo)) throw new Error(`carimbo do BI ilegivel: "${carimbo}"`);
+  const diasDeAtraso = (Date.now() - dataCarimbo.getTime()) / 86400000;
+  if (diasDeAtraso > 5) throw new Error(`disponibilidade BI desatualizada ha ${diasDeAtraso.toFixed(1)} dias (carimbo: ${carimbo})`);
+
+  const disponibilidade = {};
+  for (const [chave, label] of Object.entries(MAPA_LABEL_BI)) {
+    const idx = texto.indexOf(label);
+    if (idx < 0) { disponibilidade[chave] = null; continue; }
+    const resto = texto.slice(idx + label.length, idx + label.length + 20);
+    const m = resto.match(/(\d{1,3})%/);
+    disponibilidade[chave] = m ? Number(m[1]) : null;
+  }
+
+  const faltando = Object.entries(disponibilidade).filter(([, v]) => v === null).map(([k]) => k);
+  if (faltando.length) throw new Error(`disponibilidade BI incompleta, faltando: ${faltando.join(', ')}`);
+
+  return { carimbo, disponibilidade };
+}
+
 function classificar(desc) {
   const d = (desc || '').toUpperCase();
   for (const cat of CATEGORIAS) if (cat.re.test(d)) return cat.chave;
@@ -111,7 +179,7 @@ function parseDataBR(s) {
   return new Date(Number(yyyy), Number(mm) - 1, Number(dd), Number(hh), Number(mi), Number(ss));
 }
 
-function processar(csvTexto) {
+function processar(csvTexto, disponibilidadeBI) {
   const linhas = parseCSV(csvTexto);
   const header = linhas[0];
   const dados = linhas.slice(1).filter(l => l.length === header.length);
@@ -130,7 +198,7 @@ function processar(csvTexto) {
 
   const porCategoria = {};
   for (const cat of CATEGORIAS) {
-    porCategoria[cat.chave] = { nome: cat.nome, chamados: 0, alta: 0, sos: 0, lojasEmFalha: new Set(), somaDias: 0, itensSOS: [] };
+    porCategoria[cat.chave] = { nome: cat.nome, chamados: 0, alta: 0, sos: 0, lojasEmFalha: new Set(), somaDias: 0, itensSOS: [], itensTodos: [] };
   }
 
   let totalAbertos = 0, totalFechados = 0;
@@ -146,6 +214,7 @@ function processar(csvTexto) {
     const prior = l[iPrior] || '';
     const critica = /cr[íi]tica/i.test(prior);
     const alta = /^2\s*-\s*alta/i.test(prior);
+    const prioridade = critica ? 'SOS' : (alta ? 'Alta' : 'Normal');
 
     g.chamados++;
     if (loja) g.lojasEmFalha.add(loja);
@@ -156,9 +225,9 @@ function processar(csvTexto) {
     const dias = dt ? Math.max(0, Math.round((agora - dt) / 86400000)) : 0;
     g.somaDias += dias;
 
-    if (critica) {
-      g.itensSOS.push({ numero: l[iNum], loja, dias, tecnico: l[iTec] || '' });
-    }
+    const item = { numero: l[iNum], loja, estado: l[iEstado] || '', prioridade, dias, tecnico: l[iTec] || '' };
+    g.itensTodos.push(item);
+    if (critica) g.itensSOS.push(item);
   }
 
   const equipamentos = CATEGORIAS.map(cat => {
@@ -167,13 +236,17 @@ function processar(csvTexto) {
     return {
       chave: cat.chave,
       nome: cat.nome,
-      pctEmFalha: totalLojas ? Math.round((pdvsEmFalha / totalLojas) * 1000) / 10 : 0,
+      // Indisponibilidade = 100 - Disponibilidade, LIDA da tela do Power BI
+      // (pagina 12. Disponibilidade Book, ja filtrada p/ Regional Sul) --
+      // nunca recalculada a partir do CSV do SOMA.
+      pctIndisponibilidade: Math.round((100 - disponibilidadeBI[cat.chave]) * 10) / 10,
       pdvsEmFalha,
       chamados: g.chamados,
       alta: g.alta,
       sos: g.sos,
       tempoMedioDias: g.chamados ? Math.round(g.somaDias / g.chamados) : 0,
       chamadosSOS: g.itensSOS.sort((a, b) => b.dias - a.dias).slice(0, 5),
+      chamadosDetalhe: g.itensTodos.sort((a, b) => b.dias - a.dias),
     };
   });
 
@@ -185,6 +258,43 @@ function processar(csvTexto) {
     totalLojas,
     equipamentos,
   };
+}
+
+// Guarda 1 ponto por dia (America/Sao_Paulo) com o retrato do backlog, pra
+// alimentar o grafico de evolucao da tratativa. Reruns no mesmo dia
+// substituem o ponto do dia (nao duplicam). Mantem so os ultimos 180 dias.
+function atualizarHistorico(dadosProcessados) {
+  const caminho = path.join(ROOT, 'data', 'historico.json');
+  let historico = [];
+  try {
+    historico = JSON.parse(fs.readFileSync(caminho, 'utf8'));
+    if (!Array.isArray(historico)) historico = [];
+  } catch (e) {
+    historico = [];
+  }
+
+  const dataHoje = dadosProcessados.atualizadoEm.slice(0, 10);
+  const porCategoria = {};
+  for (const e of dadosProcessados.equipamentos) {
+    porCategoria[e.chave] = { chamados: e.chamados, alta: e.alta, sos: e.sos };
+  }
+  const ponto = {
+    data: dataHoje,
+    totalRegistros: dadosProcessados.totalRegistros,
+    totalAbertos: dadosProcessados.totalAbertos,
+    totalFechados: dadosProcessados.totalFechados,
+    porCategoria,
+  };
+
+  const idxExistente = historico.findIndex(p => p.data === dataHoje);
+  if (idxExistente >= 0) historico[idxExistente] = ponto;
+  else historico.push(ponto);
+
+  historico.sort((a, b) => a.data.localeCompare(b.data));
+  if (historico.length > 180) historico = historico.slice(-180);
+
+  fs.writeFileSync(caminho, JSON.stringify(historico, null, 2), 'utf8');
+  return historico.length;
 }
 
 function rodar(rotulo, cmd, args) {
@@ -207,7 +317,12 @@ function rodar(rotulo, cmd, args) {
     const csv = await buscarCSV();
     logInfo('etapa concluida', { etapa: 'buscar_csv', bytes: csv.length });
 
-    const dadosProcessados = processar(csv);
+    logInfo('etapa iniciada', { etapa: 'buscar_disponibilidade_bi' });
+    const { carimbo: carimboBI, disponibilidade: disponibilidadeBI } = await buscarDisponibilidadeBI();
+    logInfo('etapa concluida', { etapa: 'buscar_disponibilidade_bi', carimbo: carimboBI, disponibilidade: disponibilidadeBI });
+
+    const dadosProcessados = processar(csv, disponibilidadeBI);
+    dadosProcessados.disponibilidadeBIAtualizadaEm = carimboBI;
     fs.mkdirSync(path.join(ROOT, 'data'), { recursive: true });
     fs.writeFileSync(path.join(ROOT, 'data', 'dados.json'), JSON.stringify(dadosProcessados, null, 2), 'utf8');
     logInfo('dados processados', {
@@ -215,6 +330,9 @@ function rodar(rotulo, cmd, args) {
       totalAbertos: dadosProcessados.totalAbertos,
       equipamentos: dadosProcessados.equipamentos.map(e => `${e.nome}=${e.chamados}`).join(', '),
     });
+
+    const pontosHistorico = atualizarHistorico(dadosProcessados);
+    logInfo('historico atualizado', { pontos: pontosHistorico });
 
     rodar('git add', GIT, ['add', 'data']);
     const hoje = new Date().toISOString().slice(0, 10);
