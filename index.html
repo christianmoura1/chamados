@@ -493,9 +493,12 @@ async function carregarHistorico() {
     return;
   }
 
+  // rastreia so o escopo dos 6 equipamentos do dashboard (o "345"), nao o
+  // SOMA inteiro -- pedido do Christian, 09/09/2026.
+  H.forEach(p => { p.totalAltaSOS = (p.totalAlta || 0) + (p.totalSOS || 0); });
   const series = [
-    { key: 'totalAbertos', label: 'Abertos', color: 'var(--violet)' },
-    { key: 'totalFechados', label: 'Fechados', color: 'var(--blue)' },
+    { key: 'totalChamadosEquip', label: 'Total de Chamados', color: 'var(--violet)' },
+    { key: 'totalAltaSOS', label: 'Alta + SOS', color: 'var(--sos)' },
   ];
   const legenda = series.map(s => `<div class="li"><span class="sw" style="background:${s.color}"></span>${s.label}</div>`).join('');
   const nota = H.length < 5

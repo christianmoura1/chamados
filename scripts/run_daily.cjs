@@ -382,14 +382,24 @@ function atualizarHistorico(dadosProcessados) {
 
   const dataHoje = dadosProcessados.atualizadoEm.slice(0, 10);
   const porCategoria = {};
+  let totalChamadosEquip = 0, totalAlta = 0, totalSOS = 0;
   for (const e of dadosProcessados.equipamentos) {
     porCategoria[e.chave] = { chamados: e.chamados, alta: e.alta, sos: e.sos };
+    totalChamadosEquip += e.chamados;
+    totalAlta += e.alta;
+    totalSOS += e.sos;
   }
   const ponto = {
     data: dataHoje,
     totalRegistros: dadosProcessados.totalRegistros,
     totalAbertos: dadosProcessados.totalAbertos,
     totalFechados: dadosProcessados.totalFechados,
+    // escopo dos 6 equipamentos do dashboard (o "345" que o Christian
+    // acompanha), diferente do totalAbertos/totalFechados acima que e' o
+    // SOMA inteiro (todas as categorias, nao so as 6 monitoradas aqui).
+    totalChamadosEquip,
+    totalAlta,
+    totalSOS,
     porCategoria,
   };
 
