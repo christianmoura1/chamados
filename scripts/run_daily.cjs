@@ -34,6 +34,34 @@ const CATEGORIAS = [
   { chave: 'tostadeira', nome: 'Tostadeira', re: /TOSTADEIRA|TOSTADORA|\bTST\b/ },
 ];
 
+// Mapa Supervisor -> Setor -> Lojas, extraido da planilha "Equipe Sul" do
+// Christian (SharePoint, aba Planilha1: COORDENADOR/SETOR/RESTAURANTE) em
+// 09/09/2026, a pedido dele para o "farol por supervisor". E' uma lista
+// organizacional que muda pouco -- fixa aqui, igual as CATEGORIAS, em vez
+// de reabrir a planilha (que exige sessao logada) toda vez que o pipeline
+// roda. Se a escala mudar, atualizar esta lista manualmente.
+const SUPERVISORES = [
+  { nome: 'ARUANA SANTOS', setor: 'CAPITAL CENTRO RS', lojas: ['SHOP BELLA CITTA', 'SHOP DO VALE', 'FS PORTO ALEGRE - AV IPIRANGA 1600', 'BOURBON SHOP PORTO ALEGRE', 'FS CACHOEIRINHA - AV FLORES DA CUNHA', 'PASSO FUNDO SHOP', 'SHOP TOTAL POA', 'FS CANOAS - AV DR SEZ AZAMBUJA VIEIRA'] },
+  { nome: 'RAFAEL AVILA', setor: 'CAPITAL NORTE RS', lojas: ['SHOP IGUATEMI PORTO ALEGRE', 'BOURBON SHOP WALLIG', 'SHOP ROYAL PLAZA SANTA MARIA', 'SHOP PRACA NOVA SANTA MARIA', 'FS POA - AV CAVALHADA', 'FS POA - AV DR NILO PECANHA 1715'] },
+  { nome: 'PAULA MELO', setor: 'CAPITAL SUL RS', lojas: ['SHOP PRAIA DE BELAS', 'CANOAS SHOP', 'BARRA SHOP SUL', 'SHOP GRAVATAI', 'PARK SHOP CANOAS', 'FS CANOAS - AV GETULIO VARGAS 3800'] },
+  { nome: 'ROGER PEREIRA', setor: 'CURITIBA NORTE', lojas: ['SHOP MUELLER CURITIBA', 'FS CURITIBA - LINHA VERDE', 'SHOP CIDADE CURITIBA', 'FS CURITIBA - AV FLORIANO PEIXOTO 5952', 'COLOMBO PARK SHOP', 'JOCKEY PLAZA SHOP', 'FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL 13185'] },
+  { nome: 'LEANDRO PAZ', setor: 'CURITIBA OESTE/SC', lojas: ['FS CURITIBA - R BISPO DOM JOSE 2348', 'SHOP ESTACAO', 'ILR FLORIANÓPOLIS - R. JERÔNIMO COELHO, 215', 'FS CURITIBA - R MARTIN AFONSO', 'ATLANTICO SHOP', 'PARK EUROPEU BLUMENAU', 'PORTO BELO OUTLET', 'FS CURITIBA   CARLOS KLEMTZ 1994'] },
+  { nome: 'FABIO MENDONCA', setor: 'CURITIBA SUL', lojas: ['SHOP CURITIBA', 'PARK SHOP BARIGUI', 'WALMART BIG TORRES', 'SHOP JARDIM DAS AMERICAS', 'ANGELONI AGUA VERDE', 'FS CURITIBA - RUA DOMINGOS STRAPASSON', 'FS CURITIBA   AV SILVA JARDIM 566'] },
+  { nome: 'ELENICE ASSIS', setor: 'GRANDE CURITIBA', lojas: ['SHOP PALLADIUM CURITIBA', 'SHOP PALLADIUM PONTA GROSSA', 'SHOP SAO JOSE DOS PINHAIS', 'SHOP TOTAL PONTA GROSSA', 'FS SJP - AV DAS TORRES', 'FS CURITIBA   FRANCISCO FRISHMANN 3151', 'FS PONTA GROSSA - BALD TAQUES 1530'] },
+  { nome: 'GABRIEL NEVES', setor: 'OESTE PR', lojas: ['CATARATAS JL SHOP', 'SHOP PALLADIUM FOZ DO IGUACU', 'SHOP JL CASCAVEL', 'SHOP GUARAPUAVA', 'FS FOZ DO IGUACU   AV JORGE SCHIMMELPFENG 50', 'FS CASCAVEL - AV BRASIL 1580', 'FC - CATUAI CASCAVEL - AV BRASIL 3561'] },
+  { nome: 'LUIZ SOUZA', setor: 'SUDOESTE RS', lojas: ['SHOP CENTER LAR', 'SHOP PRACA RIO GRANDE', "CARREFOUR PASSO D'AREIA", 'SHOP PELOTAS', 'PARTAGE SHOP RIO GRANDE', 'CARREFOUR PARTENON', 'ILR PORTO ALEGRE - R ANDRADAS 1664', 'FS PELOTAS - AV FERREIRA VIANA'] },
+  { nome: 'JOICE OLIVEIRA', setor: 'VALE DOS SINOS', lojas: ['BOURBON SHOP NOVO HAMBURGO', 'BOURBON SHOP SAO LEOPOLDO', 'SHOP LAJEADO', 'SHOP SAN PELEGRINO', 'OUTLET NOVO HAMBURGO', 'FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382', 'FS CAXIAS DO SUL - R JOAO NICHELE 2227', 'FC CAXIAS DO SUL - VILLAGIO CAXIAS'] },
+];
+
+function normalizaLoja(s) {
+  return (s || '')
+    .toUpperCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^A-Z0-9 ]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 function parseCSV(texto) {
   const linhas = [];
   let campo = '', linha = [], dentroAspas = false;
@@ -257,7 +285,57 @@ function processar(csvTexto, disponibilidadeBI) {
     totalFechados,
     totalLojas,
     equipamentos,
+    supervisores: calcularSupervisores(equipamentos),
   };
+}
+
+// Farol por supervisor (pedido do Christian, 09/09/2026): rollup de
+// chamados por SUPERVISORES, casando o nome da loja da planilha com o nome
+// que vem do SOMA -- a grafia varia um pouco entre as duas fontes (abrevia
+// rua, acento, numero do endereco), entao o casamento e' por normalizacao +
+// contencao de palavras, nao igualdade exata.
+function calcularSupervisores(equipamentos) {
+  const todos = equipamentos.flatMap(e => e.chamadosDetalhe);
+  const lojasComChamado = [...new Set(todos.map(c => c.loja).filter(Boolean))];
+  const lojasNorm = lojasComChamado.map(l => ({ original: l, norm: normalizaLoja(l) }));
+
+  function acharLoja(lojaPlanilha) {
+    const alvo = normalizaLoja(lojaPlanilha);
+    let m = lojasNorm.find(x => x.norm === alvo);
+    if (m) return m.original;
+    const palavrasAlvo = alvo.split(' ').filter(w => w.length >= 3);
+    m = lojasNorm.find(x => palavrasAlvo.length && palavrasAlvo.every(w => x.norm.includes(w)));
+    if (m) return m.original;
+    m = lojasNorm.find(x => {
+      const palavrasCand = x.norm.split(' ').filter(w => w.length >= 3);
+      return palavrasCand.length && palavrasCand.every(w => alvo.includes(w));
+    });
+    return m ? m.original : null;
+  }
+
+  return SUPERVISORES.map(sup => {
+    let chamados = 0, alta = 0, sos = 0, somaDias = 0, lojasComChamadoCount = 0;
+    for (const loja of sup.lojas) {
+      const achado = acharLoja(loja);
+      if (!achado) continue;
+      const itens = todos.filter(c => c.loja === achado);
+      if (itens.length) lojasComChamadoCount++;
+      chamados += itens.length;
+      alta += itens.filter(c => c.prioridade === 'Alta').length;
+      sos += itens.filter(c => c.prioridade === 'SOS').length;
+      somaDias += itens.reduce((s, c) => s + c.dias, 0);
+    }
+    return {
+      nome: sup.nome,
+      setor: sup.setor,
+      totalLojas: sup.lojas.length,
+      lojasComChamado: lojasComChamadoCount,
+      chamados,
+      alta,
+      sos,
+      tempoMedioDias: chamados ? Math.round(somaDias / chamados) : 0,
+    };
+  });
 }
 
 // Guarda 1 ponto por dia (America/Sao_Paulo) com o retrato do backlog, pra
