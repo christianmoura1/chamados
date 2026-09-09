@@ -388,14 +388,15 @@ function abrirModalGenerico(titulo, subtitulo, itens, { mostrarEquipamento } = {
   document.getElementById('modalSub').textContent = subtitulo;
   const colEquip = mostrarEquipamento ? '<th>Equipamento</th>' : '';
   document.getElementById('modalThead').innerHTML =
-    `<tr><th>Número</th>${colEquip}<th>Loja</th><th>Estado</th><th>Prioridade</th><th>Dias</th><th>Técnico</th></tr>`;
+    `<tr><th>Número</th>${colEquip}<th>Loja</th><th>Problema</th><th>Estado</th><th>Prioridade</th><th>Dias</th><th>Técnico</th></tr>`;
   const itensOrdenados = ordenaChamados(itens);
-  const colspan = mostrarEquipamento ? 7 : 6;
+  const colspan = mostrarEquipamento ? 8 : 7;
   document.getElementById('modalTbody').innerHTML = itensOrdenados.length
     ? itensOrdenados.map(c => `<tr>
         <td class="mono">${escapeHtml(c.numero)}</td>
         ${mostrarEquipamento ? `<td>${escapeHtml(c.equipamento)}</td>` : ''}
         <td>${escapeHtml(c.loja)}</td>
+        <td>${escapeHtml(c.problema) || '—'}</td>
         <td>${escapeHtml(c.estado)}</td>
         <td><span class="tag ${tagClsPrioridade(c.prioridade)}">${escapeHtml(c.prioridade)}</span></td>
         <td class="num">${c.dias}d</td>
@@ -635,7 +636,7 @@ async function iniciar() {
         <div class="filter-count" id="filtroContagem"></div>
         <div class="filter-table-wrap">
           <table class="detail-table">
-            <thead><tr><th>Número</th><th>Setor</th><th>Loja</th><th>Estado</th><th>Prioridade</th><th>Dias</th><th>Responsável</th></tr></thead>
+            <thead><tr><th>Número</th><th>Setor</th><th>Loja</th><th>Problema</th><th>Estado</th><th>Prioridade</th><th>Dias</th><th>Responsável</th></tr></thead>
             <tbody id="filtroTbody"></tbody>
           </table>
         </div>
@@ -699,12 +700,13 @@ function montarBuscaChamados(D) {
           <td class="mono">${escapeHtml(c.numero)}</td>
           <td>${escapeHtml(c.equipamento)}</td>
           <td>${escapeHtml(c.loja)}</td>
+          <td>${escapeHtml(c.problema) || '—'}</td>
           <td>${escapeHtml(c.estado)}</td>
           <td><span class="tag ${tagClsPrioridade(c.prioridade)}">${escapeHtml(c.prioridade)}</span></td>
           <td class="num">${c.dias}d</td>
           <td>${escapeHtml(c.tecnico) || '—'}</td>
         </tr>`).join('')
-      : `<tr><td colspan="7"><div class="filter-empty">Nenhum chamado com esses filtros.</div></td></tr>`;
+      : `<tr><td colspan="8"><div class="filter-empty">Nenhum chamado com esses filtros.</div></td></tr>`;
   }
 
   [selSetor, selLoja, selResp].forEach(sel => sel.addEventListener('change', renderizar));

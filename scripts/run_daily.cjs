@@ -260,7 +260,7 @@ function processar(csvTexto, disponibilidadeBI) {
     const dias = dt ? Math.max(0, Math.round((agora - dt) / 86400000)) : 0;
     g.somaDias += dias;
 
-    const item = { numero: l[iNum], loja, estado: l[iEstado] || '', prioridade, dias, tecnico: l[iTec] || '' };
+    const item = { numero: l[iNum], loja, estado: l[iEstado] || '', prioridade, dias, tecnico: l[iTec] || '', problema: (l[iDesc] || '').trim() };
     g.itensTodos.push(item);
     if (critica) g.itensSOS.push(item);
   }
