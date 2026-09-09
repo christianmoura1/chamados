@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-09-09T18:28:34",
+  "atualizadoEm": "2026-09-09T18:39:51",
   "totalRegistros": 2780,
-  "totalAbertos": 1964,
-  "totalFechados": 816,
+  "totalAbertos": 1958,
+  "totalFechados": 822,
   "totalLojas": 71,
   "equipamentos": [
     {
@@ -10,8 +10,8 @@
       "nome": "Máquina de Sorvete",
       "pctIndisponibilidade": 49,
       "pdvsEmFalha": 52,
-      "chamados": 116,
-      "alta": 61,
+      "chamados": 115,
+      "alta": 60,
       "sos": 9,
       "tempoMedioDias": 19,
       "chamadosSOS": [
@@ -818,14 +818,6 @@
           "tecnico": "Rafael Wagner Barbosa de Jesus"
         },
         {
-          "numero": "WOT0044098",
-          "loja": "BOURBON SHOP NOVO HAMBURGO",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 5,
-          "tecnico": "Rafael Wagner Barbosa de Jesus"
-        },
-        {
           "numero": "WOT0044100",
           "loja": "JOCKEY PLAZA SHOP",
           "estado": "Atribuído",
@@ -992,10 +984,10 @@
       "nome": "Fritadeira",
       "pctIndisponibilidade": 60,
       "pdvsEmFalha": 38,
-      "chamados": 50,
+      "chamados": 49,
       "alta": 21,
-      "sos": 14,
-      "tempoMedioDias": 21,
+      "sos": 13,
+      "tempoMedioDias": 20,
       "chamadosSOS": [
         {
           "numero": "WOT0019985",
@@ -1004,14 +996,6 @@
           "prioridade": "SOS",
           "dias": 29,
           "tecnico": "Carlos Magno da Silva Lira"
-        },
-        {
-          "numero": "WOT0020952",
-          "loja": "SHOP PALLADIUM FOZ DO IGUACU",
-          "estado": "Trabalho em andamento",
-          "prioridade": "SOS",
-          "dias": 28,
-          "tecnico": "Cristppher Alencar Pacheco Cruz"
         },
         {
           "numero": "WOT0021782",
@@ -1032,6 +1016,14 @@
         {
           "numero": "WOT0032424",
           "loja": "BOURBON SHOP WALLIG",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 23,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0032468",
+          "loja": "OUTLET NOVO HAMBURGO",
           "estado": "Atribuído",
           "prioridade": "SOS",
           "dias": 23,
@@ -1134,14 +1126,6 @@
           "prioridade": "SOS",
           "dias": 29,
           "tecnico": "Carlos Magno da Silva Lira"
-        },
-        {
-          "numero": "WOT0020952",
-          "loja": "SHOP PALLADIUM FOZ DO IGUACU",
-          "estado": "Trabalho em andamento",
-          "prioridade": "SOS",
-          "dias": 28,
-          "tecnico": "Cristppher Alencar Pacheco Cruz"
         },
         {
           "numero": "WOT0021782",
@@ -1434,7 +1418,7 @@
         {
           "numero": "WOT0048466",
           "loja": "FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
-          "estado": "Aceito",
+          "estado": "Trabalho em andamento",
           "prioridade": "SOS",
           "dias": 0,
           "tecnico": "Marcel Vinicios Rocha Agradem"
@@ -1446,20 +1430,11 @@
       "nome": "Micro-ondas",
       "pctIndisponibilidade": 55,
       "pdvsEmFalha": 28,
-      "chamados": 41,
+      "chamados": 39,
       "alta": 33,
-      "sos": 1,
+      "sos": 0,
       "tempoMedioDias": 18,
-      "chamadosSOS": [
-        {
-          "numero": "WOT0041880",
-          "loja": "SHOP PALLADIUM FOZ DO IGUACU",
-          "estado": "Atribuído",
-          "prioridade": "SOS",
-          "dias": 10,
-          "tecnico": "Carlos Magno da Silva Lira"
-        }
-      ],
+      "chamadosSOS": [],
       "chamadosDetalhe": [
         {
           "numero": "WOT0014298",
@@ -1532,14 +1507,6 @@
           "prioridade": "Alta",
           "dias": 25,
           "tecnico": "Marcelo Banak"
-        },
-        {
-          "numero": "WOT0031667",
-          "loja": "SHOP PALLADIUM FOZ DO IGUACU",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 25,
-          "tecnico": "Gustavo de Godoy Matheus"
         },
         {
           "numero": "WOT0032357",
@@ -1740,14 +1707,6 @@
           "prioridade": "Normal",
           "dias": 11,
           "tecnico": "Gustavo de Godoy Matheus"
-        },
-        {
-          "numero": "WOT0041880",
-          "loja": "SHOP PALLADIUM FOZ DO IGUACU",
-          "estado": "Atribuído",
-          "prioridade": "SOS",
-          "dias": 10,
-          "tecnico": "Carlos Magno da Silva Lira"
         },
         {
           "numero": "WOT0041938",
@@ -3068,103 +3027,58 @@
   ],
   "supervisores": [
     {
-      "nome": "ARUANA SANTOS",
-      "setor": "CAPITAL CENTRO RS",
-      "totalLojas": 8,
-      "lojasComChamado": 8,
-      "chamados": 45,
-      "alta": 20,
-      "sos": 4,
+      "nome": "MARCEL",
+      "setores": [
+        "VALE DOS SINOS",
+        "CAPITAL NORTE RS",
+        "SUDOESTE RS"
+      ],
+      "totalLojas": 22,
+      "lojasComChamado": 22,
+      "chamados": 107,
+      "alta": 45,
+      "sos": 18,
       "tempoMedioDias": 19
     },
     {
-      "nome": "RAFAEL AVILA",
-      "setor": "CAPITAL NORTE RS",
-      "totalLojas": 6,
-      "lojasComChamado": 6,
-      "chamados": 35,
-      "alta": 19,
-      "sos": 7,
-      "tempoMedioDias": 21
-    },
-    {
-      "nome": "PAULA MELO",
-      "setor": "CAPITAL SUL RS",
-      "totalLojas": 6,
-      "lojasComChamado": 5,
-      "chamados": 35,
-      "alta": 20,
-      "sos": 4,
+      "nome": "RAFAEL",
+      "setores": [
+        "CAPITAL CENTRO RS",
+        "CAPITAL SUL RS"
+      ],
+      "totalLojas": 13,
+      "lojasComChamado": 13,
+      "chamados": 80,
+      "alta": 40,
+      "sos": 8,
       "tempoMedioDias": 19
     },
     {
-      "nome": "ROGER PEREIRA",
-      "setor": "CURITIBA NORTE",
-      "totalLojas": 7,
-      "lojasComChamado": 7,
-      "chamados": 53,
-      "alta": 29,
-      "sos": 6,
-      "tempoMedioDias": 24
+      "nome": "GUSTAVO",
+      "setores": [
+        "OESTE PR",
+        "GRANDE CURITIBA",
+        "CURITIBA NORTE"
+      ],
+      "totalLojas": 18,
+      "lojasComChamado": 14,
+      "chamados": 85,
+      "alta": 44,
+      "sos": 10,
+      "tempoMedioDias": 23
     },
     {
-      "nome": "LEANDRO PAZ",
-      "setor": "CURITIBA OESTE/SC",
-      "totalLojas": 8,
-      "lojasComChamado": 6,
-      "chamados": 16,
-      "alta": 10,
-      "sos": 0,
-      "tempoMedioDias": 18
-    },
-    {
-      "nome": "FABIO MENDONCA",
-      "setor": "CURITIBA SUL",
-      "totalLojas": 7,
-      "lojasComChamado": 6,
-      "chamados": 23,
-      "alta": 11,
-      "sos": 2,
-      "tempoMedioDias": 19
-    },
-    {
-      "nome": "ELENICE ASSIS",
-      "setor": "GRANDE CURITIBA",
-      "totalLojas": 7,
-      "lojasComChamado": 6,
-      "chamados": 25,
-      "alta": 11,
-      "sos": 2,
-      "tempoMedioDias": 19
-    },
-    {
-      "nome": "GABRIEL NEVES",
-      "setor": "OESTE PR",
-      "totalLojas": 7,
-      "lojasComChamado": 5,
-      "chamados": 26,
-      "alta": 10,
-      "sos": 5,
-      "tempoMedioDias": 19
-    },
-    {
-      "nome": "LUIZ SOUZA",
-      "setor": "SUDOESTE RS",
-      "totalLojas": 8,
-      "lojasComChamado": 8,
-      "chamados": 27,
-      "alta": 9,
-      "sos": 2,
-      "tempoMedioDias": 19
-    },
-    {
-      "nome": "JOICE OLIVEIRA",
-      "setor": "VALE DOS SINOS",
-      "totalLojas": 8,
-      "lojasComChamado": 8,
-      "chamados": 46,
-      "alta": 18,
-      "sos": 9,
+      "nome": "CARLOS MAGNO",
+      "setores": [
+        "CURITIBA SUL",
+        "CURITIBA OESTE/SC",
+        "GRANDE CURITIBA"
+      ],
+      "totalLojas": 18,
+      "lojasComChamado": 16,
+      "chamados": 55,
+      "alta": 27,
+      "sos": 3,
       "tempoMedioDias": 18
     }
   ],
