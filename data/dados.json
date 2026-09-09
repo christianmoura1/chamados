@@ -1,16 +1,16 @@
 {
-  "atualizadoEm": "2026-09-09T09:43:10",
-  "totalRegistros": 2757,
-  "totalAbertos": 1982,
-  "totalFechados": 775,
+  "atualizadoEm": "2026-09-09T15:38:32",
+  "totalRegistros": 2775,
+  "totalAbertos": 1961,
+  "totalFechados": 814,
   "totalLojas": 71,
   "equipamentos": [
     {
       "chave": "sorvete",
       "nome": "Máquina de Sorvete",
-      "pctEmFalha": 74.6,
-      "pdvsEmFalha": 53,
-      "chamados": 114,
+      "pctEmFalha": 71.8,
+      "pdvsEmFalha": 51,
+      "chamados": 115,
       "alta": 61,
       "sos": 9,
       "tempoMedioDias": 19,
@@ -18,32 +18,964 @@
         {
           "numero": "WOT0014583",
           "loja": "COLOMBO PARK SHOP",
+          "estado": "Aceito",
+          "prioridade": "SOS",
           "dias": 41,
           "tecnico": "Renato Carlos Santa Rosa"
         },
         {
           "numero": "WOT0015874",
           "loja": "BOURBON SHOP WALLIG",
+          "estado": "Expedição pendente",
+          "prioridade": "SOS",
           "dias": 36,
           "tecnico": ""
         },
         {
           "numero": "WOT0015957",
           "loja": "FS PORTO ALEGRE - AV IPIRANGA 1600",
+          "estado": "Expedição pendente",
+          "prioridade": "SOS",
           "dias": 36,
           "tecnico": ""
         },
         {
           "numero": "WOT0018579",
           "loja": "SHOP PELOTAS",
+          "estado": "Aceito",
+          "prioridade": "SOS",
           "dias": 32,
           "tecnico": "Thiago da Silva Gonzalez"
         },
         {
           "numero": "WOT0020457",
           "loja": "SHOP GRAVATAI",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
           "dias": 29,
           "tecnico": "Rafael Wagner Barbosa de Jesus"
+        }
+      ],
+      "chamadosDetalhe": [
+        {
+          "numero": "WOT0014580",
+          "loja": "COLOMBO PARK SHOP",
+          "estado": "Expedição pendente",
+          "prioridade": "Alta",
+          "dias": 41,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0014583",
+          "loja": "COLOMBO PARK SHOP",
+          "estado": "Aceito",
+          "prioridade": "SOS",
+          "dias": 41,
+          "tecnico": "Renato Carlos Santa Rosa"
+        },
+        {
+          "numero": "WOT0014663",
+          "loja": "JOCKEY PLAZA SHOP",
+          "estado": "Expedição pendente",
+          "prioridade": "Normal",
+          "dias": 41,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0014817",
+          "loja": "FS CURITIBA - LINHA VERDE",
+          "estado": "Expedição pendente",
+          "prioridade": "Alta",
+          "dias": 41,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0014983",
+          "loja": "WALMART BIG TORRES",
+          "estado": "Expedição pendente",
+          "prioridade": "Normal",
+          "dias": 40,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0015127",
+          "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
+          "estado": "Expedição pendente",
+          "prioridade": "Normal",
+          "dias": 39,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0015188",
+          "loja": "SHOP PRAIA DE BELAS",
+          "estado": "Expedição pendente",
+          "prioridade": "Normal",
+          "dias": 39,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0015502",
+          "loja": "SHOP PRAIA DE BELAS",
+          "estado": "Expedição pendente",
+          "prioridade": "Normal",
+          "dias": 37,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0015874",
+          "loja": "BOURBON SHOP WALLIG",
+          "estado": "Expedição pendente",
+          "prioridade": "SOS",
+          "dias": 36,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0015954",
+          "loja": "FS PORTO ALEGRE - AV IPIRANGA 1600",
+          "estado": "Expedição pendente",
+          "prioridade": "Normal",
+          "dias": 36,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0015957",
+          "loja": "FS PORTO ALEGRE - AV IPIRANGA 1600",
+          "estado": "Expedição pendente",
+          "prioridade": "SOS",
+          "dias": 36,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0016184",
+          "loja": "FS CANOAS - AV DR SEZEFREDO AZAMBUJA VIEIRA 1033",
+          "estado": "Expedição pendente",
+          "prioridade": "Normal",
+          "dias": 36,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0016263",
+          "loja": "SHOP ROYAL PLAZA SANTA MARIA",
+          "estado": "Expedição pendente",
+          "prioridade": "Alta",
+          "dias": 36,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0016300",
+          "loja": "SHOP TOTAL POA",
+          "estado": "Expedição pendente",
+          "prioridade": "Alta",
+          "dias": 36,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0016427",
+          "loja": "BOURBON SHOP SAO LEOPOLDO",
+          "estado": "Expedição pendente",
+          "prioridade": "Normal",
+          "dias": 35,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0016790",
+          "loja": "SHOP ESTACAO",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 35,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0017598",
+          "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 33,
+          "tecnico": "Emanuel dos Santos Silva"
+        },
+        {
+          "numero": "WOT0017765",
+          "loja": "SHOP PELOTAS",
+          "estado": "Aceito",
+          "prioridade": "Normal",
+          "dias": 33,
+          "tecnico": "Thiago da Silva Gonzalez"
+        },
+        {
+          "numero": "WOT0017906",
+          "loja": "BOURBON SHOP PORTO ALEGRE",
+          "estado": "Expedição pendente",
+          "prioridade": "Normal",
+          "dias": 33,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0018253",
+          "loja": "FS CANOAS - AV GETULIO VARGAS 3800",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 32,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0018579",
+          "loja": "SHOP PELOTAS",
+          "estado": "Aceito",
+          "prioridade": "SOS",
+          "dias": 32,
+          "tecnico": "Thiago da Silva Gonzalez"
+        },
+        {
+          "numero": "WOT0018673",
+          "loja": "PARK SHOP CANOAS",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 32,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0018953",
+          "loja": "SHOP PRAIA DE BELAS",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 31,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0018990",
+          "loja": "FS CANOAS - AV GETULIO VARGAS 3800",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 31,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0019010",
+          "loja": "SHOP ROYAL PLAZA SANTA MARIA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 31,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0019366",
+          "loja": "SHOP LAJEADO",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 30,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0020457",
+          "loja": "SHOP GRAVATAI",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 29,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0020544",
+          "loja": "SHOP PALLADIUM FOZ DO IGUACU",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 29,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0020577",
+          "loja": "BOURBON SHOP WALLIG",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 29,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0020935",
+          "loja": "SHOP SAN PELEGRINO",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 28,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0021754",
+          "loja": "CARREFOUR PASSO D'AREIA",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 28,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0021789",
+          "loja": "SHOP PRACA NOVA SANTA MARIA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 28,
+          "tecnico": "Marcel Vinicios Rocha Agradem"
+        },
+        {
+          "numero": "WOT0021824",
+          "loja": "BOURBON SHOP SAO LEOPOLDO",
+          "estado": "Trabalho em andamento",
+          "prioridade": "SOS",
+          "dias": 28,
+          "tecnico": "Cristppher Alencar Pacheco Cruz"
+        },
+        {
+          "numero": "WOT0021826",
+          "loja": "BOURBON SHOP SAO LEOPOLDO",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 28,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0022947",
+          "loja": "SHOP SÃO JOSE DOS PINHAIS",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 27,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0030753",
+          "loja": "FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 26,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0031851",
+          "loja": "SHOP LAJEADO",
+          "estado": "Trabalho em andamento",
+          "prioridade": "SOS",
+          "dias": 25,
+          "tecnico": "Cristppher Alencar Pacheco Cruz"
+        },
+        {
+          "numero": "WOT0034331",
+          "loja": "FS CURITIBA - AV SILVA JARDIM",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 22,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0034431",
+          "loja": "FS CANOAS - AV DR SEZEFREDO AZAMBUJA VIEIRA 1033",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 22,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0034508",
+          "loja": "COLOMBO PARK SHOP",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 22,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0034533",
+          "loja": "BOURBON SHOP SAO LEOPOLDO",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 22,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0034552",
+          "loja": "OUTLET NOVO HAMBURGO",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 22,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0035022",
+          "loja": "SHOP CIDADE CURITIBA",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 21,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0035434",
+          "loja": "CARREFOUR PASSO D'AREIA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 20,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0035482",
+          "loja": "FS PORTO ALEGRE - AV IPIRANGA 1600",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 20,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0035508",
+          "loja": "SHOP TOTAL POA",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 20,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0035628",
+          "loja": "SHOP BELLA CITTA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 20,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0035683",
+          "loja": "ANGELONI AGUA VERDE",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 20,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0035763",
+          "loja": "SHOP CENTER LAR",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 20,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0035808",
+          "loja": "SHOP BELLA CITTA",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 20,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0036089",
+          "loja": "SHOP BELLA CITTA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 20,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0036151",
+          "loja": "PARK SHOP CANOAS",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 20,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0036314",
+          "loja": "SHOP DO VALE",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 19,
+          "tecnico": "Emanuel dos Santos Silva"
+        },
+        {
+          "numero": "WOT0036368",
+          "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 19,
+          "tecnico": "Emanuel dos Santos Silva"
+        },
+        {
+          "numero": "WOT0036460",
+          "loja": "FS POA - AV DA CAVALHADA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 19,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0036637",
+          "loja": "",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 19,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0037090",
+          "loja": "SHOP CENTER LAR",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 18,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0037163",
+          "loja": "ATLANTICO SHOP",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 18,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0037390",
+          "loja": "SHOP PARK EUROPEU",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 17,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0037409",
+          "loja": "FS POA - AV DR NILO PECANHA 1715",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 17,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0037440",
+          "loja": "FS CURITIBA - AV SILVA JARDIM",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 17,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0037610",
+          "loja": "SHOP PRAIA DE BELAS",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 16,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0037822",
+          "loja": "BOURBON SHOP SAO LEOPOLDO",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 16,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0037823",
+          "loja": "SHOP PRAIA DE BELAS",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 16,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0037826",
+          "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 16,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0037928",
+          "loja": "SHOP PRAIA DE BELAS",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 16,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0038600",
+          "loja": "SHOP PALLADIUM FOZ DO IGUACU",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 15,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0038643",
+          "loja": "SHOP MUELLER CURITIBA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 15,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0039022",
+          "loja": "SHOP GRAVATAI",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 15,
+          "tecnico": "Emanuel dos Santos Silva"
+        },
+        {
+          "numero": "WOT0039195",
+          "loja": "FC CAXIAS DO SUL - VILLAGIO CAXIAS",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 14,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0039424",
+          "loja": "ILR PORTO ALEGRE - R ANDRADAS 1664",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 14,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0039449",
+          "loja": "BOURBON SHOP SAO LEOPOLDO",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 14,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0039584",
+          "loja": "SHOP JARDIM DAS AMERICAS",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 14,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0039945",
+          "loja": "FC CAXIAS DO SUL - VILLAGIO CAXIAS",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 13,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0040279",
+          "loja": "BOURBON SHOP SAO LEOPOLDO",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 12,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0040373",
+          "loja": "PORTO BELO OUTLET",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 12,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0040381",
+          "loja": "FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 12,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0040383",
+          "loja": "COLOMBO PARK SHOP",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 12,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0040418",
+          "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 12,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0040891",
+          "loja": "",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 12,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0041114",
+          "loja": "FS PORTO ALEGRE - AV IPIRANGA 1600",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 11,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0041213",
+          "loja": "SHOP ROYAL PLAZA SANTA MARIA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 11,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0041292",
+          "loja": "FS CURITIBA - R MARTIN AFONSO",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 11,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0041346",
+          "loja": "FS CANOAS - AV DR SEZEFREDO AZAMBUJA VIEIRA 1033",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 11,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0041385",
+          "loja": "SHOP CENTER LAR",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 11,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0041437",
+          "loja": "SHOP SAN PELEGRINO",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 11,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0041479",
+          "loja": "SHOP PRAIA DE BELAS",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 11,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0041628",
+          "loja": "SHOP SÃO JOSE DOS PINHAIS",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 10,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0041819",
+          "loja": "BOURBON SHOP NOVO HAMBURGO",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 10,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0041837",
+          "loja": "FS POA - AV DR NILO PECANHA 1715",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 10,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0042749",
+          "loja": "FS CURITIBA - R BISPO DOM JOSE 2348",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 8,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0043337",
+          "loja": "SHOP GRAVATAI",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 7,
+          "tecnico": "Emanuel dos Santos Silva"
+        },
+        {
+          "numero": "WOT0043708",
+          "loja": "FS CURITIBA - RUA DOMINGOS STRAPASSON",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 6,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0043777",
+          "loja": "FS CASCAVEL - AV BRASIL 1580",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 6,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0044096",
+          "loja": "SHOP DO VALE",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 5,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0044098",
+          "loja": "BOURBON SHOP NOVO HAMBURGO",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 5,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0044100",
+          "loja": "JOCKEY PLAZA SHOP",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 5,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0044136",
+          "loja": "FS CURITIBA - LINHA VERDE",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 5,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0044792",
+          "loja": "",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 4,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0044898",
+          "loja": "SHOP PALLADIUM FOZ DO IGUACU",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 4,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0044900",
+          "loja": "SHOP PRACA RIO GRANDE",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 4,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0044902",
+          "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 4,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0044958",
+          "loja": "ATLANTICO SHOP",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 4,
+          "tecnico": "Solano Silva do Amaral"
+        },
+        {
+          "numero": "WOT0045052",
+          "loja": "FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 4,
+          "tecnico": "Thiago Dos Santos Coelho"
+        },
+        {
+          "numero": "WOT0045057",
+          "loja": "OUTLET NOVO HAMBURGO",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 4,
+          "tecnico": "Thiago Dos Santos Coelho"
+        },
+        {
+          "numero": "WOT0045060",
+          "loja": "FC CAXIAS DO SUL - VILLAGIO CAXIAS",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 4,
+          "tecnico": "Marcel Vinicios Rocha Agradem"
+        },
+        {
+          "numero": "WOT0045530",
+          "loja": "SHOP DO VALE",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 2,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0045947",
+          "loja": "PARTAGE SHOP RIO GRANDE",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 1,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0046537",
+          "loja": "SHOP IGUATEMI PORTO ALEGRE",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 1,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0046551",
+          "loja": "BOURBON SHOP SAO LEOPOLDO",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 1,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0047286",
+          "loja": "PORTO BELO OUTLET",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 1,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0048047",
+          "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 0,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0048196",
+          "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 0,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0048482",
+          "loja": "SHOP GRAVATAI",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 0,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0048489",
+          "loja": "JOCKEY PLAZA SHOP",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 0,
+          "tecnico": "Carlos Magno da Silva Lira"
         }
       ]
     },
@@ -52,39 +984,459 @@
       "nome": "Fritadeira",
       "pctEmFalha": 53.5,
       "pdvsEmFalha": 38,
-      "chamados": 53,
-      "alta": 25,
-      "sos": 13,
+      "chamados": 51,
+      "alta": 22,
+      "sos": 14,
       "tempoMedioDias": 21,
       "chamadosSOS": [
         {
           "numero": "WOT0019985",
           "loja": "FC CATUAÍ CASCAVEL",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
           "dias": 29,
           "tecnico": "Carlos Magno da Silva Lira"
         },
         {
           "numero": "WOT0020952",
           "loja": "SHOP PALLADIUM FOZ DO IGUACU",
+          "estado": "Trabalho em andamento",
+          "prioridade": "SOS",
           "dias": 28,
           "tecnico": "Gustavo de Godoy Matheus"
         },
         {
           "numero": "WOT0021782",
           "loja": "SHOP PRACA NOVA SANTA MARIA",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
           "dias": 28,
           "tecnico": "Rafael Wagner Barbosa de Jesus"
         },
         {
           "numero": "WOT0026543",
           "loja": "SHOP ROYAL PLAZA SANTA MARIA",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
           "dias": 27,
           "tecnico": "Rafael Wagner Barbosa de Jesus"
         },
         {
           "numero": "WOT0032424",
           "loja": "BOURBON SHOP WALLIG",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
           "dias": 23,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        }
+      ],
+      "chamadosDetalhe": [
+        {
+          "numero": "WOT0014446",
+          "loja": "BOURBON SHOP SAO LEOPOLDO",
+          "estado": "Expedição pendente",
+          "prioridade": "Alta",
+          "dias": 42,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0014587",
+          "loja": "COLOMBO PARK SHOP",
+          "estado": "Expedição pendente",
+          "prioridade": "Alta",
+          "dias": 41,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0014986",
+          "loja": "WALMART BIG TORRES",
+          "estado": "Expedição pendente",
+          "prioridade": "Alta",
+          "dias": 40,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0015050",
+          "loja": "FS PELOTAS - AV FERREIRA VIANA 540",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 40,
+          "tecnico": "Thiago da Silva Gonzalez"
+        },
+        {
+          "numero": "WOT0015066",
+          "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
+          "estado": "Aceito",
+          "prioridade": "Alta",
+          "dias": 40,
+          "tecnico": "Gustavo de Godoy Matheus"
+        },
+        {
+          "numero": "WOT0015524",
+          "loja": "SHOP CIDADE DOS LAGOS",
+          "estado": "Aceito",
+          "prioridade": "Normal",
+          "dias": 37,
+          "tecnico": "Gustavo de Godoy Matheus"
+        },
+        {
+          "numero": "WOT0015531",
+          "loja": "SHOP PALLADIUM FOZ DO IGUACU",
+          "estado": "Expedição pendente",
+          "prioridade": "Normal",
+          "dias": 37,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0015866",
+          "loja": "ATLANTICO SHOP",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 36,
+          "tecnico": "Solano Silva do Amaral"
+        },
+        {
+          "numero": "WOT0016030",
+          "loja": "SHOP BELLA CITTA",
+          "estado": "Expedição pendente",
+          "prioridade": "Alta",
+          "dias": 36,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0017328",
+          "loja": "FS PONTA GROSSA - RUA BALDUINO TAQUES 1530",
+          "estado": "Expedição pendente",
+          "prioridade": "Normal",
+          "dias": 34,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0018831",
+          "loja": "OUTLET NOVO HAMBURGO",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 31,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0019985",
+          "loja": "FC CATUAÍ CASCAVEL",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 29,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0020952",
+          "loja": "SHOP PALLADIUM FOZ DO IGUACU",
+          "estado": "Trabalho em andamento",
+          "prioridade": "SOS",
+          "dias": 28,
+          "tecnico": "Gustavo de Godoy Matheus"
+        },
+        {
+          "numero": "WOT0021782",
+          "loja": "SHOP PRACA NOVA SANTA MARIA",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 28,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0022954",
+          "loja": "SHOP PALLADIUM PONTA GROSSA",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 27,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0023882",
+          "loja": "FS CANOAS - AV DR SEZEFREDO AZAMBUJA VIEIRA 1033",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 27,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0023887",
+          "loja": "FS CANOAS - AV DR SEZEFREDO AZAMBUJA VIEIRA 1033",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 27,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0026543",
+          "loja": "SHOP ROYAL PLAZA SANTA MARIA",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 27,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0029699",
+          "loja": "FS POA - AV DA CAVALHADA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 26,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0032424",
+          "loja": "BOURBON SHOP WALLIG",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 23,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0032468",
+          "loja": "OUTLET NOVO HAMBURGO",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 23,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0034323",
+          "loja": "CARREFOUR PASSO D'AREIA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 22,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0034660",
+          "loja": "FC CAXIAS DO SUL - VILLAGIO CAXIAS",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 22,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0035077",
+          "loja": "SHOP JL CASCAVEL",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 21,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0035103",
+          "loja": "ANGELONI AGUA VERDE",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 21,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0036056",
+          "loja": "FS CURITIBA - FRANCISCO FRISHMANN 3151",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 20,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0036639",
+          "loja": "JOCKEY PLAZA SHOP",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 19,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0036642",
+          "loja": "SHOP PARK EUROPEU",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 19,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0037437",
+          "loja": "SHOP MUELLER CURITIBA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 17,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0037802",
+          "loja": "FS CURITIBA - R MARTIN AFONSO",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 16,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0037810",
+          "loja": "PORTO BELO OUTLET",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 16,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0037846",
+          "loja": "SHOP DO VALE",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 16,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0037902",
+          "loja": "FS CURITIBA - R CARLOS KLEMTZ 1994",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 16,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0037903",
+          "loja": "SHOP PARK EUROPEU",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 16,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0037949",
+          "loja": "PASSO FUNDO SHOP",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 16,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0038633",
+          "loja": "SHOP DO VALE",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 15,
+          "tecnico": "Emanuel dos Santos Silva"
+        },
+        {
+          "numero": "WOT0039062",
+          "loja": "FS CAXIAS DO SUL - R JOÃO NICHELE 2227",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 15,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0039603",
+          "loja": "CARREFOUR PASSO D'AREIA",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 14,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0039967",
+          "loja": "ANGELONI AGUA VERDE",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 13,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0041006",
+          "loja": "FS CURITIBA - AV SILVA JARDIM",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 11,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0041007",
+          "loja": "FS CURITIBA - AV SILVA JARDIM",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 11,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0042283",
+          "loja": "SHOP CIDADE DOS LAGOS",
+          "estado": "Aceito",
+          "prioridade": "Normal",
+          "dias": 9,
+          "tecnico": "Gustavo de Godoy Matheus"
+        },
+        {
+          "numero": "WOT0042793",
+          "loja": "BOURBON SHOP WALLIG",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 8,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0044049",
+          "loja": "FS CURITIBA - LINHA VERDE",
+          "estado": "Trabalho em andamento",
+          "prioridade": "SOS",
+          "dias": 5,
+          "tecnico": "Wilson Charles Philistin"
+        },
+        {
+          "numero": "WOT0044885",
+          "loja": "SHOP JARDIM DAS AMERICAS",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 4,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0045010",
+          "loja": "BOURBON SHOP WALLIG",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 4,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0045082",
+          "loja": "SHOP MUELLER CURITIBA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 4,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0045411",
+          "loja": "SHOP PRAIA DE BELAS",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 3,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0047293",
+          "loja": "SHOP DO VALE",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 1,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0048065",
+          "loja": "CATARATAS JL SHOP",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 0,
+          "tecnico": "Cristppher Alencar Pacheco Cruz"
+        },
+        {
+          "numero": "WOT0048466",
+          "loja": "FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 0,
           "tecnico": "Rafael Wagner Barbosa de Jesus"
         }
       ]
@@ -92,17 +1444,349 @@
     {
       "chave": "microondas",
       "nome": "Micro-ondas",
-      "pctEmFalha": 40.8,
-      "pdvsEmFalha": 29,
-      "chamados": 42,
-      "alta": 35,
+      "pctEmFalha": 39.4,
+      "pdvsEmFalha": 28,
+      "chamados": 41,
+      "alta": 33,
       "sos": 1,
-      "tempoMedioDias": 19,
+      "tempoMedioDias": 18,
       "chamadosSOS": [
         {
           "numero": "WOT0041880",
           "loja": "SHOP PALLADIUM FOZ DO IGUACU",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
           "dias": 10,
+          "tecnico": "Carlos Magno da Silva Lira"
+        }
+      ],
+      "chamadosDetalhe": [
+        {
+          "numero": "WOT0014298",
+          "loja": "SHOP ROYAL PLAZA SANTA MARIA",
+          "estado": "Expedição pendente",
+          "prioridade": "Alta",
+          "dias": 43,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0014584",
+          "loja": "COLOMBO PARK SHOP",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 41,
+          "tecnico": "Gustavo de Godoy Matheus"
+        },
+        {
+          "numero": "WOT0015175",
+          "loja": "ATLANTICO SHOP",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 39,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0018568",
+          "loja": "FS CASCAVEL - AV BRASIL 1580",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 32,
+          "tecnico": "Gustavo de Godoy Matheus"
+        },
+        {
+          "numero": "WOT0018706",
+          "loja": "BOURBON SHOP WALLIG",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 32,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0021461",
+          "loja": "SHOP MUELLER CURITIBA",
+          "estado": "Aceito",
+          "prioridade": "Alta",
+          "dias": 28,
+          "tecnico": "Marcelo Banak"
+        },
+        {
+          "numero": "WOT0021780",
+          "loja": "SHOP PRACA NOVA SANTA MARIA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 28,
+          "tecnico": "Marcel Vinicios Rocha Agradem"
+        },
+        {
+          "numero": "WOT0022784",
+          "loja": "SHOP ROYAL PLAZA SANTA MARIA",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 28,
+          "tecnico": "Cristppher Alencar Pacheco Cruz"
+        },
+        {
+          "numero": "WOT0031605",
+          "loja": "SHOP PALLADIUM CURITIBA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 25,
+          "tecnico": "Marcelo Banak"
+        },
+        {
+          "numero": "WOT0031667",
+          "loja": "SHOP PALLADIUM FOZ DO IGUACU",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 25,
+          "tecnico": "Gustavo de Godoy Matheus"
+        },
+        {
+          "numero": "WOT0032357",
+          "loja": "COLOMBO PARK SHOP",
+          "estado": "Expedição pendente",
+          "prioridade": "Alta",
+          "dias": 24,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0032439",
+          "loja": "FS CANOAS - AV GETULIO VARGAS 3800",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 23,
+          "tecnico": "Cristppher Alencar Pacheco Cruz"
+        },
+        {
+          "numero": "WOT0032445",
+          "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 23,
+          "tecnico": "Cristppher Alencar Pacheco Cruz"
+        },
+        {
+          "numero": "WOT0036645",
+          "loja": "SHOP PARK EUROPEU",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 19,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0037069",
+          "loja": "PARK SHOP CANOAS",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 18,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0038009",
+          "loja": "FS CURITIBA - RUA DOMINGOS STRAPASSON",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 16,
+          "tecnico": "Marcelo Banak"
+        },
+        {
+          "numero": "WOT0038168",
+          "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 16,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0038235",
+          "loja": "SHOP IGUATEMI PORTO ALEGRE",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 16,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0039347",
+          "loja": "JOCKEY PLAZA SHOP",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 14,
+          "tecnico": "Maykon Silva Dos Santos"
+        },
+        {
+          "numero": "WOT0040065",
+          "loja": "FS CAXIAS DO SUL - R JOÃO NICHELE 2227",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 13,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0040387",
+          "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
+          "estado": "Expedição pendente",
+          "prioridade": "Alta",
+          "dias": 12,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0040390",
+          "loja": "SHOP PARK EUROPEU",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 12,
+          "tecnico": "Solano Silva do Amaral"
+        },
+        {
+          "numero": "WOT0040391",
+          "loja": "FS CANOAS - AV GETULIO VARGAS 3800",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 12,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0040399",
+          "loja": "BOURBON SHOP WALLIG",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 12,
+          "tecnico": "Cristppher Alencar Pacheco Cruz"
+        },
+        {
+          "numero": "WOT0040400",
+          "loja": "FS SJP - AV DAS TORRES",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 12,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0040408",
+          "loja": "SHOP PRAIA DE BELAS",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 12,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0040409",
+          "loja": "SHOP JARDIM DAS AMERICAS",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 12,
+          "tecnico": "Luiz Henrique da Rocha"
+        },
+        {
+          "numero": "WOT0040415",
+          "loja": "FS POA - AV DA CAVALHADA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 12,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0040473",
+          "loja": "CARREFOUR PARTENON",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 12,
+          "tecnico": "Cristppher Alencar Pacheco Cruz"
+        },
+        {
+          "numero": "WOT0040477",
+          "loja": "FS CAXIAS DO SUL - R JOÃO NICHELE 2227",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 12,
+          "tecnico": "Cristppher Alencar Pacheco Cruz"
+        },
+        {
+          "numero": "WOT0040491",
+          "loja": "FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 12,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0040492",
+          "loja": "OUTLET NOVO HAMBURGO",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 12,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0040499",
+          "loja": "ILR FLORIPA - R JERONIMO COELHO 215",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 12,
+          "tecnico": "Solano Silva do Amaral"
+        },
+        {
+          "numero": "WOT0040846",
+          "loja": "FS SJP - AV DAS TORRES",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 12,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0041375",
+          "loja": "SHOP PALLADIUM FOZ DO IGUACU",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 11,
+          "tecnico": "Gustavo de Godoy Matheus"
+        },
+        {
+          "numero": "WOT0041880",
+          "loja": "SHOP PALLADIUM FOZ DO IGUACU",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 10,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0041938",
+          "loja": "FS PORTO ALEGRE - AV IPIRANGA 1600",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 9,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0042234",
+          "loja": "ILR FLORIPA - R JERONIMO COELHO 215",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 9,
+          "tecnico": "Solano Silva do Amaral"
+        },
+        {
+          "numero": "WOT0043303",
+          "loja": "ILR PORTO ALEGRE - R ANDRADAS 1664",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 7,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0043343",
+          "loja": "FS CAXIAS DO SUL - R JOÃO NICHELE 2227",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 7,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0048111",
+          "loja": "SHOP PARK EUROPEU",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 0,
           "tecnico": "Carlos Magno da Silva Lira"
         }
       ]
@@ -110,96 +1794,1258 @@
     {
       "chave": "phu",
       "nome": "PHU",
-      "pctEmFalha": 38,
-      "pdvsEmFalha": 27,
+      "pctEmFalha": 39.4,
+      "pdvsEmFalha": 28,
       "chamados": 41,
-      "alta": 30,
+      "alta": 29,
       "sos": 3,
-      "tempoMedioDias": 23,
+      "tempoMedioDias": 22,
       "chamadosSOS": [
         {
           "numero": "WOT0038311",
           "loja": "FS PONTA GROSSA - RUA BALDUINO TAQUES 1530",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
           "dias": 16,
           "tecnico": "Carlos Magno da Silva Lira"
         },
         {
           "numero": "WOT0041471",
           "loja": "FS PORTO ALEGRE - AV IPIRANGA 1600",
+          "estado": "Expedição pendente",
+          "prioridade": "SOS",
           "dias": 11,
           "tecnico": ""
         },
         {
           "numero": "WOT0045301",
           "loja": "SHOP IGUATEMI PORTO ALEGRE",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
           "dias": 3,
           "tecnico": "Rafael Wagner Barbosa de Jesus"
+        }
+      ],
+      "chamadosDetalhe": [
+        {
+          "numero": "WOT0014369",
+          "loja": "FS CURITIBA - LINHA VERDE",
+          "estado": "Expedição pendente",
+          "prioridade": "Alta",
+          "dias": 42,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0014373",
+          "loja": "FS PONTA GROSSA - RUA BALDUINO TAQUES 1530",
+          "estado": "Expedição pendente",
+          "prioridade": "Alta",
+          "dias": 42,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0014617",
+          "loja": "FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 41,
+          "tecnico": "Marcelo Banak"
+        },
+        {
+          "numero": "WOT0014972",
+          "loja": "WALMART BIG TORRES",
+          "estado": "Expedição pendente",
+          "prioridade": "Alta",
+          "dias": 40,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0015089",
+          "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
+          "estado": "Expedição pendente",
+          "prioridade": "Alta",
+          "dias": 40,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0016045",
+          "loja": "PARTAGE SHOP RIO GRANDE",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 36,
+          "tecnico": "Thiago da Silva Gonzalez"
+        },
+        {
+          "numero": "WOT0017865",
+          "loja": "FS PORTO ALEGRE - AV IPIRANGA 1600",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 33,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0019317",
+          "loja": "SHOP JL CASCAVEL",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 30,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0019321",
+          "loja": "SHOP JL CASCAVEL",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 30,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0019796",
+          "loja": "FS CURITIBA - R CARLOS KLEMTZ 1994",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 29,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0020446",
+          "loja": "CANOAS SHOP",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 29,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0020495",
+          "loja": "SHOP MUELLER CURITIBA",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 29,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0021820",
+          "loja": "BOURBON SHOP SAO LEOPOLDO",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 28,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0026532",
+          "loja": "SHOP ROYAL PLAZA SANTA MARIA",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 27,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0027760",
+          "loja": "FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 27,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0028703",
+          "loja": "COLOMBO PARK SHOP",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 26,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0031535",
+          "loja": "FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 26,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0034481",
+          "loja": "FC CATUAÍ CASCAVEL",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 22,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0034934",
+          "loja": "SHOP PALLADIUM PONTA GROSSA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 21,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0035715",
+          "loja": "BOURBON SHOP NOVO HAMBURGO",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 20,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0036104",
+          "loja": "JOCKEY PLAZA SHOP",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 20,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0036106",
+          "loja": "JOCKEY PLAZA SHOP",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 20,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0037153",
+          "loja": "PARK SHOP CANOAS",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 18,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0037677",
+          "loja": "FS CURITIBA - FRANCISCO FRISHMANN 3151",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 16,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0037686",
+          "loja": "WALMART BIG TORRES",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 16,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0037691",
+          "loja": "FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 16,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0037837",
+          "loja": "SHOP PRACA NOVA SANTA MARIA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 16,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0037892",
+          "loja": "SHOP JL CASCAVEL",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 16,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0037941",
+          "loja": "JOCKEY PLAZA SHOP",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 16,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0037946",
+          "loja": "PASSO FUNDO SHOP",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 16,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0037962",
+          "loja": "SHOP MUELLER CURITIBA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 16,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0038311",
+          "loja": "FS PONTA GROSSA - RUA BALDUINO TAQUES 1530",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 16,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0038586",
+          "loja": "FS CURITIBA - AV SILVA JARDIM",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 15,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0038788",
+          "loja": "ILR FLORIPA - R JERONIMO COELHO 215",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 15,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0039073",
+          "loja": "FS CAXIAS DO SUL - R JOÃO NICHELE 2227",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 15,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0039761",
+          "loja": "WALMART BIG TORRES",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 13,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0039891",
+          "loja": "PARTAGE SHOP RIO GRANDE",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 13,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0041471",
+          "loja": "FS PORTO ALEGRE - AV IPIRANGA 1600",
+          "estado": "Expedição pendente",
+          "prioridade": "SOS",
+          "dias": 11,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0045301",
+          "loja": "SHOP IGUATEMI PORTO ALEGRE",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 3,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0045608",
+          "loja": "SHOP PRAIA DE BELAS",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 2,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0048142",
+          "loja": "CATARATAS JL SHOP",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 0,
+          "tecnico": "Cristppher Alencar Pacheco Cruz"
         }
       ]
     },
     {
       "chave": "broiler",
       "nome": "Broiler",
-      "pctEmFalha": 57.7,
-      "pdvsEmFalha": 41,
-      "chamados": 67,
-      "alta": 17,
-      "sos": 16,
+      "pctEmFalha": 59.2,
+      "pdvsEmFalha": 42,
+      "chamados": 62,
+      "alta": 15,
+      "sos": 14,
       "tempoMedioDias": 20,
       "chamadosSOS": [
         {
           "numero": "WOT0018633",
           "loja": "OUTLET NOVO HAMBURGO",
+          "estado": "Trabalho em andamento",
+          "prioridade": "SOS",
           "dias": 32,
           "tecnico": "Cristppher Alencar Pacheco Cruz"
         },
         {
           "numero": "WOT0031693",
           "loja": "SHOP PARK EUROPEU",
+          "estado": "Trabalho em andamento",
+          "prioridade": "SOS",
           "dias": 25,
           "tecnico": "Solano Silva do Amaral"
         },
         {
           "numero": "WOT0031977",
           "loja": "SHOP SAN PELEGRINO",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
           "dias": 25,
           "tecnico": "Marcel Vinicios Rocha Agradem"
         },
         {
-          "numero": "WOT0032433",
-          "loja": "FS CURITIBA - FRANCISCO FRISHMANN 3151",
+          "numero": "WOT0034167",
+          "loja": "SHOP GRAVATAI",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
           "dias": 23,
-          "tecnico": "Wilson Charles Philistin"
+          "tecnico": "Emanuel dos Santos Silva"
+        },
+        {
+          "numero": "WOT0034425",
+          "loja": "FS CURITIBA - FRANCISCO FRISHMANN 3151",
+          "estado": "Trabalho em andamento",
+          "prioridade": "SOS",
+          "dias": 22,
+          "tecnico": "Gustavo de Godoy Matheus"
+        }
+      ],
+      "chamadosDetalhe": [
+        {
+          "numero": "WOT0014443",
+          "loja": "ILR FLORIPA - R JERONIMO COELHO 215",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 42,
+          "tecnico": "Solano Silva do Amaral"
+        },
+        {
+          "numero": "WOT0014629",
+          "loja": "FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 41,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0014799",
+          "loja": "SHOP PRAIA DE BELAS",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 41,
+          "tecnico": "Marcel Vinicios Rocha Agradem"
+        },
+        {
+          "numero": "WOT0015064",
+          "loja": "SHOP IGUATEMI PORTO ALEGRE",
+          "estado": "Expedição pendente",
+          "prioridade": "Normal",
+          "dias": 40,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0015413",
+          "loja": "SHOP MUELLER CURITIBA",
+          "estado": "Expedição pendente",
+          "prioridade": "Normal",
+          "dias": 38,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0017796",
+          "loja": "FS POA - AV DR NILO PECANHA 1715",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 33,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0018180",
+          "loja": "FS SJP - AV DAS TORRES",
+          "estado": "Expedição pendente",
+          "prioridade": "Normal",
+          "dias": 33,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0018633",
+          "loja": "OUTLET NOVO HAMBURGO",
+          "estado": "Trabalho em andamento",
+          "prioridade": "SOS",
+          "dias": 32,
+          "tecnico": "Cristppher Alencar Pacheco Cruz"
+        },
+        {
+          "numero": "WOT0018973",
+          "loja": "FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 31,
+          "tecnico": "Gustavo de Godoy Matheus"
+        },
+        {
+          "numero": "WOT0019208",
+          "loja": "SHOP PARK EUROPEU",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 30,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0019705",
+          "loja": "FC CATUAÍ CASCAVEL",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 30,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0019797",
+          "loja": "FS CURITIBA - R CARLOS KLEMTZ 1994",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 29,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0020801",
+          "loja": "SHOP PALLADIUM FOZ DO IGUACU",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 28,
+          "tecnico": "Gustavo de Godoy Matheus"
+        },
+        {
+          "numero": "WOT0021785",
+          "loja": "SHOP PRACA NOVA SANTA MARIA",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 28,
+          "tecnico": "Marcel Vinicios Rocha Agradem"
+        },
+        {
+          "numero": "WOT0027877",
+          "loja": "SHOP SAN PELEGRINO",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 26,
+          "tecnico": "Marcel Vinicios Rocha Agradem"
+        },
+        {
+          "numero": "WOT0031693",
+          "loja": "SHOP PARK EUROPEU",
+          "estado": "Trabalho em andamento",
+          "prioridade": "SOS",
+          "dias": 25,
+          "tecnico": "Solano Silva do Amaral"
+        },
+        {
+          "numero": "WOT0031977",
+          "loja": "SHOP SAN PELEGRINO",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 25,
+          "tecnico": "Marcel Vinicios Rocha Agradem"
+        },
+        {
+          "numero": "WOT0032293",
+          "loja": "SHOP PALLADIUM FOZ DO IGUACU",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 24,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0032464",
+          "loja": "FS CANOAS - AV GETULIO VARGAS 3800",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 23,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
         },
         {
           "numero": "WOT0034167",
           "loja": "SHOP GRAVATAI",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
           "dias": 23,
           "tecnico": "Emanuel dos Santos Silva"
+        },
+        {
+          "numero": "WOT0034311",
+          "loja": "CARREFOUR PASSO D'AREIA",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 22,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0034315",
+          "loja": "CARREFOUR PASSO D'AREIA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 22,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0034425",
+          "loja": "FS CURITIBA - FRANCISCO FRISHMANN 3151",
+          "estado": "Trabalho em andamento",
+          "prioridade": "SOS",
+          "dias": 22,
+          "tecnico": "Gustavo de Godoy Matheus"
+        },
+        {
+          "numero": "WOT0034572",
+          "loja": "FS CURITIBA - LINHA VERDE",
+          "estado": "Expedição pendente",
+          "prioridade": "Alta",
+          "dias": 22,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0035067",
+          "loja": "SHOP JL CASCAVEL",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 21,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0035150",
+          "loja": "CARREFOUR PARTENON",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 21,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0035199",
+          "loja": "FS CURITIBA - LINHA VERDE",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 21,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0035202",
+          "loja": "SHOP MUELLER CURITIBA",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 21,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0035649",
+          "loja": "FS CURITIBA - R MARTIN AFONSO",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 20,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0035833",
+          "loja": "PARTAGE SHOP RIO GRANDE",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 20,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0035936",
+          "loja": "FS PELOTAS - AV FERREIRA VIANA 540",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 20,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0035949",
+          "loja": "PASSO FUNDO SHOP",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 20,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0035950",
+          "loja": "PARK SHOP CANOAS",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 20,
+          "tecnico": "Ruan Carlos da Silva"
+        },
+        {
+          "numero": "WOT0035951",
+          "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 20,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0035953",
+          "loja": "SHOP DO VALE",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 20,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0035954",
+          "loja": "SHOP ROYAL PLAZA SANTA MARIA",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 20,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0035955",
+          "loja": "BOURBON SHOP WALLIG",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 20,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0035957",
+          "loja": "SHOP GRAVATAI",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 20,
+          "tecnico": "Emanuel dos Santos Silva"
+        },
+        {
+          "numero": "WOT0036034",
+          "loja": "FS CURITIBA - FRANCISCO FRISHMANN 3151",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 20,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0036077",
+          "loja": "CANOAS SHOP",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 20,
+          "tecnico": "Marcel Vinicios Rocha Agradem"
+        },
+        {
+          "numero": "WOT0036235",
+          "loja": "CARREFOUR PARTENON",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 19,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0036429",
+          "loja": "FS POA - AV DR NILO PECANHA 1715",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 19,
+          "tecnico": "Marcel Vinicios Rocha Agradem"
+        },
+        {
+          "numero": "WOT0036623",
+          "loja": "SHOP PARK EUROPEU",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 19,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0036766",
+          "loja": "COLOMBO PARK SHOP",
+          "estado": "Expedição pendente",
+          "prioridade": "SOS",
+          "dias": 19,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0038184",
+          "loja": "SHOP LAJEADO",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 16,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0038531",
+          "loja": "ILR FLORIPA - R JERONIMO COELHO 215",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 15,
+          "tecnico": "Solano Silva do Amaral"
+        },
+        {
+          "numero": "WOT0039007",
+          "loja": "SHOP ROYAL PLAZA SANTA MARIA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 15,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0039459",
+          "loja": "FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
+          "estado": "Trabalho em andamento",
+          "prioridade": "SOS",
+          "dias": 14,
+          "tecnico": "Thiago Dos Santos Coelho"
+        },
+        {
+          "numero": "WOT0040659",
+          "loja": "FS CANOAS - AV GETULIO VARGAS 3800",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 12,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0040915",
+          "loja": "SHOP BELLA CITTA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 12,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0041665",
+          "loja": "FS CANOAS - AV DR SEZEFREDO AZAMBUJA VIEIRA 1033",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 10,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0042025",
+          "loja": "BOURBON SHOP NOVO HAMBURGO",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 9,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0043354",
+          "loja": "CANOAS SHOP",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 7,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0043454",
+          "loja": "PARK SHOP CANOAS",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 6,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0044009",
+          "loja": "ILR PORTO ALEGRE - R ANDRADAS 1664",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 5,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0044223",
+          "loja": "",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 5,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0044806",
+          "loja": "SHOP PALLADIUM PONTA GROSSA",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 4,
+          "tecnico": "Lucas Gabryel Dreunicki"
+        },
+        {
+          "numero": "WOT0045755",
+          "loja": "SHOP JARDIM DAS AMERICAS",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 2,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0047472",
+          "loja": "CANOAS SHOP",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 1,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0047486",
+          "loja": "FS PELOTAS - AV FERREIRA VIANA 540",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 0,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0047533",
+          "loja": "CATARATAS JL SHOP",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 0,
+          "tecnico": "Cristppher Alencar Pacheco Cruz"
+        },
+        {
+          "numero": "WOT0047607",
+          "loja": "JOCKEY PLAZA SHOP",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 0,
+          "tecnico": "Carlos Magno da Silva Lira"
         }
       ]
     },
     {
       "chave": "tostadeira",
       "nome": "Tostadeira",
-      "pctEmFalha": 43.7,
-      "pdvsEmFalha": 31,
-      "chamados": 40,
-      "alta": 7,
+      "pctEmFalha": 42.3,
+      "pdvsEmFalha": 30,
+      "chamados": 39,
+      "alta": 6,
       "sos": 2,
       "tempoMedioDias": 21,
       "chamadosSOS": [
         {
           "numero": "WOT0020478",
           "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
           "dias": 29,
           "tecnico": "Rafael Wagner Barbosa de Jesus"
         },
         {
           "numero": "WOT0039228",
           "loja": "SHOP PALLADIUM FOZ DO IGUACU",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
           "dias": 14,
           "tecnico": "Carlos Magno da Silva Lira"
+        }
+      ],
+      "chamadosDetalhe": [
+        {
+          "numero": "WOT0014382",
+          "loja": "BOURBON SHOP PORTO ALEGRE",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 42,
+          "tecnico": "Ruan Carlos da Silva"
+        },
+        {
+          "numero": "WOT0014502",
+          "loja": "FS PELOTAS - AV FERREIRA VIANA 540",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 42,
+          "tecnico": "Thiago da Silva Gonzalez"
+        },
+        {
+          "numero": "WOT0014614",
+          "loja": "FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL",
+          "estado": "Aceito",
+          "prioridade": "Normal",
+          "dias": 41,
+          "tecnico": "Renato Carlos Santa Rosa"
+        },
+        {
+          "numero": "WOT0015249",
+          "loja": "SHOP JARDIM DAS AMERICAS",
+          "estado": "Expedição pendente",
+          "prioridade": "Normal",
+          "dias": 39,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0015499",
+          "loja": "BOURBON SHOP SAO LEOPOLDO",
+          "estado": "Expedição pendente",
+          "prioridade": "Normal",
+          "dias": 37,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0015880",
+          "loja": "SHOP MUELLER CURITIBA",
+          "estado": "Expedição pendente",
+          "prioridade": "Normal",
+          "dias": 36,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0016505",
+          "loja": "COLOMBO PARK SHOP",
+          "estado": "Expedição pendente",
+          "prioridade": "Alta",
+          "dias": 35,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0016721",
+          "loja": "FS CURITIBA - FRANCISCO FRISHMANN 3151",
+          "estado": "Expedição pendente",
+          "prioridade": "Normal",
+          "dias": 35,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0017183",
+          "loja": "SHOP DO VALE",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 34,
+          "tecnico": "Emanuel dos Santos Silva"
+        },
+        {
+          "numero": "WOT0017807",
+          "loja": "FS PONTA GROSSA - RUA BALDUINO TAQUES 1530",
+          "estado": "Expedição pendente",
+          "prioridade": "Normal",
+          "dias": 33,
+          "tecnico": ""
+        },
+        {
+          "numero": "WOT0018259",
+          "loja": "FS CANOAS - AV GETULIO VARGAS 3800",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 32,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0020478",
+          "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 29,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0020513",
+          "loja": "FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 29,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0023828",
+          "loja": "ANGELONI AGUA VERDE",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 27,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0026550",
+          "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 27,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0027822",
+          "loja": "FS CURITIBA - LINHA VERDE",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 27,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0032025",
+          "loja": "FS PONTA GROSSA - RUA BALDUINO TAQUES 1530",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 25,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0032440",
+          "loja": "FS CANOAS - AV GETULIO VARGAS 3800",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 23,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0035797",
+          "loja": "ILR FLORIPA - R JERONIMO COELHO 215",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 20,
+          "tecnico": "Solano Silva do Amaral"
+        },
+        {
+          "numero": "WOT0036108",
+          "loja": "FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 20,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0036284",
+          "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 19,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0036720",
+          "loja": "OUTLET NOVO HAMBURGO",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 19,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0037465",
+          "loja": "SHOP PALLADIUM PONTA GROSSA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 17,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0039071",
+          "loja": "FS CAXIAS DO SUL - R JOÃO NICHELE 2227",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 15,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0039228",
+          "loja": "SHOP PALLADIUM FOZ DO IGUACU",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 14,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0040254",
+          "loja": "FS CASCAVEL - AV BRASIL 1580",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 13,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0040529",
+          "loja": "SHOP SÃO JOSE DOS PINHAIS",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 12,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0040630",
+          "loja": "FS CURITIBA - LINHA VERDE",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 12,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0041464",
+          "loja": "FS PORTO ALEGRE - AV IPIRANGA 1600",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 11,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0041861",
+          "loja": "FS POA - AV DA CAVALHADA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 10,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0041881",
+          "loja": "SHOP PALLADIUM FOZ DO IGUACU",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 10,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0041926",
+          "loja": "FC CAXIAS DO SUL - VILLAGIO CAXIAS",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 9,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0042312",
+          "loja": "FS SJP - AV DAS TORRES",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 9,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0042678",
+          "loja": "FS CURITIBA - LINHA VERDE",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 8,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0042927",
+          "loja": "SHOP CENTER LAR",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 7,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0043986",
+          "loja": "FS CURITIBA - AV SILVA JARDIM",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 5,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0044010",
+          "loja": "SHOP ESTACAO",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 5,
+          "tecnico": "Carlos Magno da Silva Lira"
+        },
+        {
+          "numero": "WOT0044956",
+          "loja": "FS PORTO ALEGRE - AV IPIRANGA 1600",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 4,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
+        },
+        {
+          "numero": "WOT0045582",
+          "loja": "FS POA - AV DR NILO PECANHA 1715",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 2,
+          "tecnico": "Rafael Wagner Barbosa de Jesus"
         }
       ]
     }
