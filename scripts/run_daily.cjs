@@ -219,7 +219,7 @@ function rodar(rotulo, cmd, args) {
       if (/nothing to commit/i.test(e.message)) { logInfo('sem mudancas para commitar'); }
       else throw e;
     }
-    process.env.GIT_SSH_COMMAND = 'ssh -i C:/Users/csmoura1/.ssh/deploy_chamados_sul -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new';
+    process.env.GIT_SSH_COMMAND = 'ssh -i C:/Users/csmoura1/.ssh/deploy_chamados_pessoal -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new';
     rodar('git push', GIT, ['push', 'origin', 'main']);
 
     logInfo('pipeline chamados concluido com sucesso', { seg: Math.round((Date.now() - inicio) / 1000) });
