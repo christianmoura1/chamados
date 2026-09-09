@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-09-09T15:38:32",
+  "atualizadoEm": "2026-09-09T15:59:59",
   "totalRegistros": 2775,
   "totalAbertos": 1961,
   "totalFechados": 814,
@@ -8,7 +8,7 @@
     {
       "chave": "sorvete",
       "nome": "Máquina de Sorvete",
-      "pctEmFalha": 71.8,
+      "pctIndisponibilidade": 49,
       "pdvsEmFalha": 51,
       "chamados": 115,
       "alta": 61,
@@ -982,7 +982,7 @@
     {
       "chave": "fritadeira",
       "nome": "Fritadeira",
-      "pctEmFalha": 53.5,
+      "pctIndisponibilidade": 60,
       "pdvsEmFalha": 38,
       "chamados": 51,
       "alta": 22,
@@ -1444,7 +1444,7 @@
     {
       "chave": "microondas",
       "nome": "Micro-ondas",
-      "pctEmFalha": 39.4,
+      "pctIndisponibilidade": 55,
       "pdvsEmFalha": 28,
       "chamados": 41,
       "alta": 33,
@@ -1794,7 +1794,7 @@
     {
       "chave": "phu",
       "nome": "PHU",
-      "pctEmFalha": 39.4,
+      "pctIndisponibilidade": 71,
       "pdvsEmFalha": 28,
       "chamados": 41,
       "alta": 29,
@@ -2160,7 +2160,7 @@
     {
       "chave": "broiler",
       "nome": "Broiler",
-      "pctEmFalha": 59.2,
+      "pctIndisponibilidade": 58,
       "pdvsEmFalha": 42,
       "chamados": 62,
       "alta": 15,
@@ -2710,7 +2710,7 @@
     {
       "chave": "tostadeira",
       "nome": "Tostadeira",
-      "pctEmFalha": 42.3,
+      "pctIndisponibilidade": 69,
       "pdvsEmFalha": 30,
       "chamados": 39,
       "alta": 6,
@@ -3049,5 +3049,6 @@
         }
       ]
     }
-  ]
+  ],
+  "disponibilidadeBIAtualizadaEm": "9/9/2026 2:11:10 PM"
 }
