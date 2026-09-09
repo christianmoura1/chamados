@@ -297,10 +297,28 @@ function calcularSupervisores(equipamentos) {
   const lojasComChamado = [...new Set(todos.map(c => c.loja).filter(Boolean))];
   const lojasNorm = lojasComChamado.map(l => ({ original: l, norm: normalizaLoja(l) }));
 
+  // Casos onde a grafia da planilha e' longe demais da grafia do SOMA p/ o
+  // casamento por palavra dar conta sozinho (abreviacao de cidade, "SHOP X"
+  // vs "X CIDADE"), mas que sao seguramente a mesma loja -- curado a mao em
+  // vez de tentar generalizar por pontuacao de palavra, porque uma tentativa
+  // de pontuacao automatica (09/09/2026) colidiu lojas DIFERENTES da mesma
+  // cidade (ex.: "SHOP CURITIBA" ficou casando com "SHOP CIDADE CURITIBA").
+  // chave = grafia EXATA como esta em SUPERVISORES.lojas (a planilha);
+  // valor = a grafia que aparece no SOMA (o que precisa achar em lojasNorm).
+  const ALIASES_LOJA = {
+    'PARK EUROPEU BLUMENAU': 'SHOP PARK EUROPEU',
+    'ILR FLORIANÓPOLIS - R. JERÔNIMO COELHO, 215': 'ILR FLORIPA - R JERONIMO COELHO 215',
+  };
+
   function acharLoja(lojaPlanilha) {
     const alvo = normalizaLoja(lojaPlanilha);
     let m = lojasNorm.find(x => x.norm === alvo);
     if (m) return m.original;
+    if (ALIASES_LOJA[lojaPlanilha]) {
+      const aliasNorm = normalizaLoja(ALIASES_LOJA[lojaPlanilha]);
+      m = lojasNorm.find(x => x.norm === aliasNorm);
+      if (m) return m.original;
+    }
     const palavrasAlvo = alvo.split(' ').filter(w => w.length >= 3);
     m = lojasNorm.find(x => palavrasAlvo.length && palavrasAlvo.every(w => x.norm.includes(w)));
     if (m) return m.original;
