@@ -515,24 +515,26 @@ async function carregarHistorico() {
     alvo.innerHTML = `<div class="chart-note">Histórico vazio.</div>`;
     return;
   }
-  // pontos gravados antes de 10/09/2026 nao tem totalFechadosEquip -- sem
-  // isso o Math.max(...) do grafico vira NaN e quebra as 4 linhas inteiras.
+  // pontos gravados antes de 10/09/2026 nao tem esses campos -- sem isso o
+  // Math.max(...) do grafico vira NaN e quebra as 4 linhas inteiras.
   H.forEach(p => {
-    p.totalChamadosEquip ??= 0;
-    p.totalFechadosEquip ??= 0;
     p.totalAlta ??= 0;
     p.totalSOS ??= 0;
+    p.totalAbertosHoje ??= 0;
+    p.totalFechadosHoje ??= 0;
   });
 
-  // acompanhamento e' SOS, Alta, Abertos e Fechados (pedido do Christian,
-  // 09-10/09/2026) -- Normal isolado fica de fora, nao move a linha.
-  // Abertos/Fechados aqui sao contagem ATUAL (nao delta), no mesmo escopo
-  // dos 6 equipamentos do dashboard.
+  // acompanhamento e' SOS, Alta (estoque atual) e Abertos/Fechados DO DIA
+  // (pedido do Christian, 10/09/2026 -- "a quantidade aberta e fechada deve
+  // ser do dia e nao total"). Abertos hoje = contagem exata pela data de
+  // abertura do chamado; Fechados hoje = estimativa pela diferenca do
+  // estoque de fechados desde a 1a execucao do dia (o SOMA nao tem data de
+  // fechamento no CSV). Os dois reiniciam perto de 0 a cada novo dia.
   const series = [
     { key: 'totalSOS', label: 'SOS', color: 'var(--sos)' },
     { key: 'totalAlta', label: 'Alta', color: 'var(--alta)' },
-    { key: 'totalChamadosEquip', label: 'Abertos', color: 'var(--violet)' },
-    { key: 'totalFechadosEquip', label: 'Fechados', color: 'var(--blue)' },
+    { key: 'totalAbertosHoje', label: 'Abertos hoje', color: 'var(--violet)' },
+    { key: 'totalFechadosHoje', label: 'Fechados hoje', color: 'var(--blue)' },
   ];
 
   const ultimo = H[H.length - 1];

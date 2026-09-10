@@ -244,10 +244,15 @@ function processar(csvTexto, disponibilidadeBI) {
 
   const totalLojas = new Set(dados.map(l => (l[iLocal] || '').trim()).filter(Boolean)).size;
   const agora = new Date();
+  // 'YYYY-MM-DD' local (a VM roda em America/Sao_Paulo) -- usado pra contar
+  // quantos chamados abriram HOJE de verdade (data de abertura == hoje),
+  // nao o total acumulado. Pedido do Christian, 10/09/2026: o grafico de
+  // evolucao tem que mostrar abertos/fechados DO DIA, nao o estoque total.
+  const hojeYmd = `${agora.getFullYear()}-${String(agora.getMonth() + 1).padStart(2, '0')}-${String(agora.getDate()).padStart(2, '0')}`;
 
   const porCategoria = {};
   for (const cat of CATEGORIAS) {
-    porCategoria[cat.chave] = { nome: cat.nome, chamados: 0, alta: 0, sos: 0, fechados: 0, lojasEmFalha: new Set(), somaDias: 0, itensSOS: [], itensTodos: [] };
+    porCategoria[cat.chave] = { nome: cat.nome, chamados: 0, alta: 0, sos: 0, fechados: 0, abertosHoje: 0, lojasEmFalha: new Set(), somaDias: 0, itensSOS: [], itensTodos: [] };
   }
 
   let totalAbertos = 0, totalFechados = 0;
@@ -255,11 +260,19 @@ function processar(csvTexto, disponibilidadeBI) {
     const aberto = ABERTOS.has(l[iEstado]);
     if (aberto) totalAbertos++; else totalFechados++;
 
-    // conta fechados por categoria tambem (p/ o grafico de evolucao
-    // Abertos x Fechados, pedido do Christian 10/09/2026) -- nao entra nos
-    // cards/detalhe, que continuam mostrando so' o que esta ATIVO.
-    const chaveFechado = !aberto ? classificar(l[iDesc]) : null;
-    if (chaveFechado) porCategoria[chaveFechado].fechados++;
+    // conta fechados (estoque) e abertos-hoje por categoria mesmo p/ quem
+    // esta FECHADO -- um chamado aberto e fechado no mesmo dia ainda conta
+    // como "aberto hoje". Nao entra nos cards/detalhe, que continuam
+    // mostrando so' o que esta ATIVO.
+    const chaveQualquer = classificar(l[iDesc]);
+    if (chaveQualquer) {
+      if (!aberto) porCategoria[chaveQualquer].fechados++;
+      const dtAbertura = parseDataBR(l[iAberto]);
+      if (dtAbertura) {
+        const ymd = `${dtAbertura.getFullYear()}-${String(dtAbertura.getMonth() + 1).padStart(2, '0')}-${String(dtAbertura.getDate()).padStart(2, '0')}`;
+        if (ymd === hojeYmd) porCategoria[chaveQualquer].abertosHoje++;
+      }
+    }
     if (!aberto) continue;
 
     const chave = classificar(l[iDesc]);
@@ -300,6 +313,7 @@ function processar(csvTexto, disponibilidadeBI) {
       alta: g.alta,
       sos: g.sos,
       fechados: g.fechados,
+      abertosHoje: g.abertosHoje,
       tempoMedioDias: g.chamados ? Math.round(g.somaDias / g.chamados) : 0,
       chamadosSOS: g.itensSOS.sort(comparaChamados).slice(0, 5),
       chamadosDetalhe: g.itensTodos.sort(comparaChamados),
@@ -395,7 +409,11 @@ function atualizarHistorico(dadosProcessados) {
   const caminho = path.join(ROOT, 'data', 'historico.json');
   let historico = [];
   try {
-    historico = JSON.parse(fs.readFileSync(caminho, 'utf8'));
+    // remove BOM se o arquivo foi salvo por algo tipo PowerShell (Set-Content
+    // -Encoding UTF8 grava com BOM, e isso quebra o JSON.parse silenciosamente
+    // -- ja aconteceu uma vez, 10/09/2026, ao limpar o arquivo na mao).
+    const bruto = fs.readFileSync(caminho, 'utf8').replace(/^﻿/, '');
+    historico = JSON.parse(bruto);
     if (!Array.isArray(historico)) historico = [];
   } catch (e) {
     historico = [];
@@ -409,14 +427,27 @@ function atualizarHistorico(dadosProcessados) {
   const quando = dadosProcessados.atualizadoEm; // 'YYYY-MM-DDTHH:mm:ss', hora local Sul
   const dataHoje = quando.slice(0, 10);
   const porCategoria = {};
-  let totalChamadosEquip = 0, totalAlta = 0, totalSOS = 0, totalFechadosEquip = 0;
+  let totalChamadosEquip = 0, totalAlta = 0, totalSOS = 0, totalFechadosEquip = 0, totalAbertosHoje = 0;
   for (const e of dadosProcessados.equipamentos) {
-    porCategoria[e.chave] = { chamados: e.chamados, alta: e.alta, sos: e.sos, fechados: e.fechados || 0 };
+    porCategoria[e.chave] = { chamados: e.chamados, alta: e.alta, sos: e.sos, fechados: e.fechados || 0, abertosHoje: e.abertosHoje || 0 };
     totalChamadosEquip += e.chamados;
     totalAlta += e.alta;
     totalSOS += e.sos;
     totalFechadosEquip += (e.fechados || 0);
+    totalAbertosHoje += (e.abertosHoje || 0);
   }
+
+  // "fechados HOJE" e' uma estimativa: o SOMA nao tem data de fechamento no
+  // CSV, so' data de abertura -- entao contamos pela DIFERENCA do estoque
+  // de fechados (totalFechadosEquip) desde a primeira execucao de hoje ja
+  // registrada. Assume que chamado fechado nao reabre (razoavel pra
+  // manutencao). Na primeira execucao do dia, fica 0 (nao tem base ainda).
+  const pontosHoje = historico.filter(p => p.data === dataHoje);
+  const baseline = pontosHoje.length
+    ? pontosHoje.reduce((min, p) => (p.quando < min.quando ? p : min))
+    : null;
+  const totalFechadosHoje = baseline ? Math.max(0, totalFechadosEquip - baseline.totalFechadosEquip) : 0;
+
   const ponto = {
     quando,
     data: dataHoje,
@@ -430,6 +461,9 @@ function atualizarHistorico(dadosProcessados) {
     totalFechadosEquip,
     totalAlta,
     totalSOS,
+    // metricas DO DIA (nao estoque total) -- pedido do Christian, 10/09/2026
+    totalAbertosHoje,
+    totalFechadosHoje,
     porCategoria,
   };
 
