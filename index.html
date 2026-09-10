@@ -467,11 +467,15 @@ function lineChartSVG(pontos, series) {
     return `<polyline points="${pts}" fill="none" stroke="${s.color}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>${dots}`;
   }).join('');
 
+  // rotulo com dia + hora (ex.: "09/09 22h") pra dar pra comparar o mesmo
+  // horario entre dias, agora que cada execucao (a cada 2h) vira um ponto
   const passo = Math.max(1, Math.ceil(n / 7));
   const labels = pontos.map((p, i) => {
     if (i % passo !== 0 && i !== n - 1) return '';
-    const d = new Date(p.data + 'T00:00:00');
-    return `<text x="${x(i).toFixed(1)}" y="${H - 8}" font-size="9" text-anchor="middle" fill="var(--faint)" font-family="IBM Plex Mono, monospace">${d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })}</text>`;
+    const d = new Date(p.quando || (p.data + 'T00:00:00'));
+    const dataLbl = d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+    const horaLbl = d.toLocaleTimeString('pt-BR', { hour: '2-digit' });
+    return `<text x="${x(i).toFixed(1)}" y="${H - 8}" font-size="9" text-anchor="middle" fill="var(--faint)" font-family="IBM Plex Mono, monospace">${dataLbl} ${horaLbl}</text>`;
   }).join('');
 
   return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block;">${grid}${seriesSvg}${labels}</svg>`;
@@ -493,16 +497,28 @@ async function carregarHistorico() {
     alvo.innerHTML = `<div class="chart-note">Histórico vazio.</div>`;
     return;
   }
+  // pontos gravados antes de 10/09/2026 nao tem totalFechadosEquip -- sem
+  // isso o Math.max(...) do grafico vira NaN e quebra as 4 linhas inteiras.
+  H.forEach(p => {
+    p.totalChamadosEquip ??= 0;
+    p.totalFechadosEquip ??= 0;
+    p.totalAlta ??= 0;
+    p.totalSOS ??= 0;
+  });
 
-  // acompanhamento diario e' so' SOS e Alta (pedido do Christian,
-  // 10/09/2026) -- Normal fica de fora, nao move a linha.
+  // acompanhamento e' SOS, Alta, Abertos e Fechados (pedido do Christian,
+  // 09-10/09/2026) -- Normal isolado fica de fora, nao move a linha.
+  // Abertos/Fechados aqui sao contagem ATUAL (nao delta), no mesmo escopo
+  // dos 6 equipamentos do dashboard.
   const series = [
     { key: 'totalSOS', label: 'SOS', color: 'var(--sos)' },
     { key: 'totalAlta', label: 'Alta', color: 'var(--alta)' },
+    { key: 'totalChamadosEquip', label: 'Abertos', color: 'var(--violet)' },
+    { key: 'totalFechadosEquip', label: 'Fechados', color: 'var(--blue)' },
   ];
   const legenda = series.map(s => `<div class="li"><span class="sw" style="background:${s.color}"></span>${s.label}</div>`).join('');
   const nota = H.length < 5
-    ? `<div class="chart-note">${H.length} dia(s) de histórico registrado — a tendência fica mais clara conforme a execução automática diária acumula pontos.</div>`
+    ? `<div class="chart-note">${H.length} execução(ões) registrada(s) — a tendência fica mais clara conforme o pipeline (a cada 2h) acumula pontos.</div>`
     : '';
 
   alvo.innerHTML = `<div class="chart-legend">${legenda}</div>${lineChartSVG(H, series)}${nota}`;
@@ -651,7 +667,7 @@ async function iniciar() {
     </section>
 
     <section>
-      <div class="sec-head"><h2>Evolução da tratativa de chamados</h2><span class="sec-note">Histórico diário · SOS e Alta · Visão Sul</span></div>
+      <div class="sec-head"><h2>Evolução da tratativa de chamados</h2><span class="sec-note">A cada execução (2h) · Visão Sul</span></div>
       <div class="card" id="chartCard"><div class="chart-note">carregando histórico…</div></div>
     </section>
 
