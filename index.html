@@ -258,10 +258,19 @@
   .filter-field label {
     font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--faint);
   }
-  .filter-field select {
+  .filter-field select, .filter-field input[type="text"] {
     font-family: "IBM Plex Sans", sans-serif; font-size: 13px; color: var(--ink); background: var(--surface2);
-    border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; appearance: none;
+    border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; appearance: none; width: 100%;
   }
+  .filter-field input[type="text"]:focus { outline: 2px solid var(--violet); outline-offset: -1px; }
+  .filter-combo { position: relative; }
+  .filter-combo-lista {
+    position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 30; max-height: 240px; overflow: auto;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); padding: 4px;
+  }
+  .filter-combo-item { padding: 7px 10px; border-radius: 7px; font-size: 13px; color: var(--ink); cursor: pointer; }
+  .filter-combo-item:hover, .filter-combo-item.ativo { background: var(--surface2); }
+  .filter-combo-vazio { padding: 7px 10px; font-size: 12.5px; color: var(--faint); }
   .filter-clear {
     font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--violet); background: none; border: none;
     cursor: pointer; padding: 8px 4px; white-space: nowrap; align-self: flex-end;
@@ -685,9 +694,10 @@ async function iniciar() {
             <label for="filtroSetor">Setor</label>
             <select id="filtroSetor"><option value="">Todos</option></select>
           </div>
-          <div class="filter-field">
+          <div class="filter-field filter-combo">
             <label for="filtroLoja">Loja</label>
-            <select id="filtroLoja"><option value="">Todas</option></select>
+            <input type="text" id="filtroLoja" placeholder="Todas" autocomplete="off">
+            <div class="filter-combo-lista" id="filtroLojaLista" hidden></div>
           </div>
           <div class="filter-field">
             <label for="filtroResp">Responsável</label>
@@ -736,7 +746,8 @@ function montarBuscaChamados(D) {
   const responsaveis = [...new Set(todos.map(c => c.tecnico).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
 
   const selSetor = document.getElementById('filtroSetor');
-  const selLoja = document.getElementById('filtroLoja');
+  const inLoja = document.getElementById('filtroLoja');
+  const listaLoja = document.getElementById('filtroLojaLista');
   const selResp = document.getElementById('filtroResp');
   const tbody = document.getElementById('filtroTbody');
   const contagem = document.getElementById('filtroContagem');
@@ -747,13 +758,14 @@ function montarBuscaChamados(D) {
     sel.appendChild(opt);
   });
   popular(selSetor, setores);
-  popular(selLoja, lojas);
   popular(selResp, responsaveis);
 
+  const semAcento = s => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+
   function renderizar() {
-    const fs = selSetor.value, fl = selLoja.value, fr = selResp.value;
+    const fs = selSetor.value, flBusca = semAcento(inLoja.value.trim()), fr = selResp.value;
     const filtrados = ordenaChamados(
-      todos.filter(c => (!fs || c.equipamento === fs) && (!fl || c.loja === fl) && (!fr || c.tecnico === fr))
+      todos.filter(c => (!fs || c.equipamento === fs) && (!flBusca || semAcento(c.loja).includes(flBusca)) && (!fr || c.tecnico === fr))
     );
 
     contagem.textContent = `${filtrados.length} de ${todos.length} chamados`;
@@ -771,9 +783,35 @@ function montarBuscaChamados(D) {
       : `<tr><td colspan="8"><div class="filter-empty">Nenhum chamado com esses filtros.</div></td></tr>`;
   }
 
-  [selSetor, selLoja, selResp].forEach(sel => sel.addEventListener('change', renderizar));
+  // combobox de loja: digita e filtra a lista; clicar numa opcao preenche
+  // o campo. O filtro da tabela ja' e' por trecho (nao precisa clicar pra
+  // filtrar, so' ajuda a achar o nome certo).
+  function mostrarListaLoja() {
+    const busca = semAcento(inLoja.value.trim());
+    const opcoes = (busca ? lojas.filter(l => semAcento(l).includes(busca)) : lojas).slice(0, 40);
+    listaLoja.innerHTML = opcoes.length
+      ? opcoes.map(l => `<div class="filter-combo-item">${escapeHtml(l)}</div>`).join('')
+      : `<div class="filter-combo-vazio">Nenhuma loja encontrada</div>`;
+    listaLoja.hidden = false;
+  }
+  inLoja.addEventListener('input', () => { mostrarListaLoja(); renderizar(); });
+  inLoja.addEventListener('focus', mostrarListaLoja);
+  listaLoja.addEventListener('mousedown', (ev) => {
+    const item = ev.target.closest('.filter-combo-item');
+    if (!item) return;
+    ev.preventDefault();
+    inLoja.value = item.textContent;
+    listaLoja.hidden = true;
+    renderizar();
+  });
+  document.addEventListener('click', (ev) => {
+    if (ev.target !== inLoja && !listaLoja.contains(ev.target)) listaLoja.hidden = true;
+  });
+
+  [selSetor, selResp].forEach(sel => sel.addEventListener('change', renderizar));
   document.getElementById('filtroLimpar').addEventListener('click', () => {
-    selSetor.value = ''; selLoja.value = ''; selResp.value = '';
+    selSetor.value = ''; inLoja.value = ''; selResp.value = '';
+    listaLoja.hidden = true;
     renderizar();
   });
 
