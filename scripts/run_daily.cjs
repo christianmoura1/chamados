@@ -247,14 +247,20 @@ function processar(csvTexto, disponibilidadeBI) {
 
   const porCategoria = {};
   for (const cat of CATEGORIAS) {
-    porCategoria[cat.chave] = { nome: cat.nome, chamados: 0, alta: 0, sos: 0, lojasEmFalha: new Set(), somaDias: 0, itensSOS: [], itensTodos: [] };
+    porCategoria[cat.chave] = { nome: cat.nome, chamados: 0, alta: 0, sos: 0, fechados: 0, lojasEmFalha: new Set(), somaDias: 0, itensSOS: [], itensTodos: [] };
   }
 
   let totalAbertos = 0, totalFechados = 0;
   for (const l of dados) {
     const aberto = ABERTOS.has(l[iEstado]);
     if (aberto) totalAbertos++; else totalFechados++;
-    if (!aberto) continue; // so' entra nos cards de equipamento o que esta ATIVO
+
+    // conta fechados por categoria tambem (p/ o grafico de evolucao
+    // Abertos x Fechados, pedido do Christian 10/09/2026) -- nao entra nos
+    // cards/detalhe, que continuam mostrando so' o que esta ATIVO.
+    const chaveFechado = !aberto ? classificar(l[iDesc]) : null;
+    if (chaveFechado) porCategoria[chaveFechado].fechados++;
+    if (!aberto) continue;
 
     const chave = classificar(l[iDesc]);
     if (!chave) continue;
@@ -293,6 +299,7 @@ function processar(csvTexto, disponibilidadeBI) {
       chamados: g.chamados,
       alta: g.alta,
       sos: g.sos,
+      fechados: g.fechados,
       tempoMedioDias: g.chamados ? Math.round(g.somaDias / g.chamados) : 0,
       chamadosSOS: g.itensSOS.sort(comparaChamados).slice(0, 5),
       chamadosDetalhe: g.itensTodos.sort(comparaChamados),
@@ -393,17 +400,25 @@ function atualizarHistorico(dadosProcessados) {
   } catch (e) {
     historico = [];
   }
+  // migra pontos do formato antigo (1/dia, sem 'quando') pra nao quebrar o sort
+  historico.forEach(p => { if (!p.quando) p.quando = p.data + 'T00:00:00'; });
 
-  const dataHoje = dadosProcessados.atualizadoEm.slice(0, 10);
+  // um ponto por EXECUCAO (nao mais 1/dia) -- pedido do Christian
+  // (10/09/2026), pra poder comparar o mesmo horario entre dias (ex.: "dia
+  // 09 as 6h" vs "dia 10 as 6h"), agora que o pipeline roda a cada 2h.
+  const quando = dadosProcessados.atualizadoEm; // 'YYYY-MM-DDTHH:mm:ss', hora local Sul
+  const dataHoje = quando.slice(0, 10);
   const porCategoria = {};
-  let totalChamadosEquip = 0, totalAlta = 0, totalSOS = 0;
+  let totalChamadosEquip = 0, totalAlta = 0, totalSOS = 0, totalFechadosEquip = 0;
   for (const e of dadosProcessados.equipamentos) {
-    porCategoria[e.chave] = { chamados: e.chamados, alta: e.alta, sos: e.sos };
+    porCategoria[e.chave] = { chamados: e.chamados, alta: e.alta, sos: e.sos, fechados: e.fechados || 0 };
     totalChamadosEquip += e.chamados;
     totalAlta += e.alta;
     totalSOS += e.sos;
+    totalFechadosEquip += (e.fechados || 0);
   }
   const ponto = {
+    quando,
     data: dataHoje,
     totalRegistros: dadosProcessados.totalRegistros,
     totalAbertos: dadosProcessados.totalAbertos,
@@ -412,17 +427,20 @@ function atualizarHistorico(dadosProcessados) {
     // acompanha), diferente do totalAbertos/totalFechados acima que e' o
     // SOMA inteiro (todas as categorias, nao so as 6 monitoradas aqui).
     totalChamadosEquip,
+    totalFechadosEquip,
     totalAlta,
     totalSOS,
     porCategoria,
   };
 
-  const idxExistente = historico.findIndex(p => p.data === dataHoje);
+  const idxExistente = historico.findIndex(p => p.quando === quando);
   if (idxExistente >= 0) historico[idxExistente] = ponto;
   else historico.push(ponto);
 
-  historico.sort((a, b) => a.data.localeCompare(b.data));
-  if (historico.length > 180) historico = historico.slice(-180);
+  historico.sort((a, b) => a.quando.localeCompare(b.quando));
+  // 400 pontos ~ 44 dias rodando a cada 2h (9/dia) -- bem mais que os
+  // antigos 180 dias porque agora e' por execucao, nao por dia.
+  if (historico.length > 400) historico = historico.slice(-400);
 
   fs.writeFileSync(caminho, JSON.stringify(historico, null, 2), 'utf8');
   return historico.length;
