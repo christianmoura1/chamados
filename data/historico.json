@@ -1,100 +1,59 @@
-﻿[
-    {
-        "quando":  "2026-09-10T07:44:51",
-        "data":  "2026-09-10",
-        "totalRegistros":  2786,
-        "totalAbertos":  1937,
-        "totalFechados":  849,
-        "totalChamadosEquip":  335,
-        "totalFechadosEquip":  306,
-        "totalAlta":  158,
-        "totalSOS":  37,
-        "porCategoria":  {
-                             "sorvete":  {
-                                             "chamados":  109,
-                                             "alta":  55,
-                                             "sos":  8,
-                                             "fechados":  61
-                                         },
-                             "fritadeira":  {
-                                                "chamados":  47,
-                                                "alta":  20,
-                                                "sos":  12,
-                                                "fechados":  60
-                                            },
-                             "microondas":  {
-                                                "chamados":  38,
-                                                "alta":  33,
-                                                "sos":  0,
-                                                "fechados":  26
-                                            },
-                             "phu":  {
-                                         "chamados":  42,
-                                         "alta":  29,
-                                         "sos":  3,
-                                         "fechados":  20
-                                     },
-                             "broiler":  {
-                                             "chamados":  61,
-                                             "alta":  15,
-                                             "sos":  13,
-                                             "fechados":  102
-                                         },
-                             "tostadeira":  {
-                                                "chamados":  38,
-                                                "alta":  6,
-                                                "sos":  1,
-                                                "fechados":  37
-                                            }
-                         }
-    },
-    {
-        "quando":  "2026-09-10T08:00:32",
-        "data":  "2026-09-10",
-        "totalRegistros":  2786,
-        "totalAbertos":  1937,
-        "totalFechados":  849,
-        "totalChamadosEquip":  335,
-        "totalFechadosEquip":  306,
-        "totalAlta":  158,
-        "totalSOS":  37,
-        "porCategoria":  {
-                             "sorvete":  {
-                                             "chamados":  109,
-                                             "alta":  55,
-                                             "sos":  8,
-                                             "fechados":  61
-                                         },
-                             "fritadeira":  {
-                                                "chamados":  47,
-                                                "alta":  20,
-                                                "sos":  12,
-                                                "fechados":  60
-                                            },
-                             "microondas":  {
-                                                "chamados":  38,
-                                                "alta":  33,
-                                                "sos":  0,
-                                                "fechados":  26
-                                            },
-                             "phu":  {
-                                         "chamados":  42,
-                                         "alta":  29,
-                                         "sos":  3,
-                                         "fechados":  20
-                                     },
-                             "broiler":  {
-                                             "chamados":  61,
-                                             "alta":  15,
-                                             "sos":  13,
-                                             "fechados":  102
-                                         },
-                             "tostadeira":  {
-                                                "chamados":  38,
-                                                "alta":  6,
-                                                "sos":  1,
-                                                "fechados":  37
-                                            }
-                         }
+[
+  {
+    "quando": "2026-09-10T08:21:10",
+    "data": "2026-09-10",
+    "totalRegistros": 2786,
+    "totalAbertos": 1937,
+    "totalFechados": 849,
+    "totalChamadosEquip": 335,
+    "totalFechadosEquip": 306,
+    "totalAlta": 158,
+    "totalSOS": 37,
+    "totalAbertosHoje": 0,
+    "totalFechadosHoje": 0,
+    "porCategoria": {
+      "sorvete": {
+        "chamados": 109,
+        "alta": 55,
+        "sos": 8,
+        "fechados": 61,
+        "abertosHoje": 0
+      },
+      "fritadeira": {
+        "chamados": 47,
+        "alta": 20,
+        "sos": 12,
+        "fechados": 60,
+        "abertosHoje": 0
+      },
+      "microondas": {
+        "chamados": 38,
+        "alta": 33,
+        "sos": 0,
+        "fechados": 26,
+        "abertosHoje": 0
+      },
+      "phu": {
+        "chamados": 42,
+        "alta": 29,
+        "sos": 3,
+        "fechados": 20,
+        "abertosHoje": 0
+      },
+      "broiler": {
+        "chamados": 61,
+        "alta": 15,
+        "sos": 13,
+        "fechados": 102,
+        "abertosHoje": 0
+      },
+      "tostadeira": {
+        "chamados": 38,
+        "alta": 6,
+        "sos": 1,
+        "fechados": 37,
+        "abertosHoje": 0
+      }
     }
+  }
 ]
