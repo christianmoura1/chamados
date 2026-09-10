@@ -212,6 +212,15 @@
   .chart-legend .sw { width: 10px; height: 10px; border-radius: 3px; flex: none; }
   .chart-note { font-size: 12px; color: var(--faint); font-family: "IBM Plex Mono", monospace; margin-top: 10px; }
 
+  .hist-stamp { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--faint); margin-bottom: 12px; }
+  .hist-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 20px; }
+  @media (max-width: 780px) { .hist-stats { grid-template-columns: repeat(2,1fr); } }
+  .hstat { background: var(--surface2); border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 3px; }
+  .hstat-lbl { display: flex; align-items: center; gap: 6px; font-family: "IBM Plex Mono", monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+  .hstat-dot { width: 8px; height: 8px; border-radius: 999px; flex: none; }
+  .hstat-val { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -0.01em; }
+  .hstat-delta { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--faint); }
+
   /* ---------- modal de detalhe ---------- */
   .modal-overlay {
     position: fixed; inset: 0; background: rgba(16,14,34,0.55); backdrop-filter: blur(2px);
@@ -445,7 +454,7 @@ document.addEventListener('keydown', (ev) => {
 });
 
 function lineChartSVG(pontos, series) {
-  const W = 760, H = 220, padL = 34, padR = 12, padT = 14, padB = 26;
+  const W = 800, H = 220, padL = 34, padR = 34, padT = 14, padB = 26;
   const innerW = W - padL - padR, innerH = H - padT - padB;
   const n = pontos.length;
   const maxV = Math.max(...series.flatMap(s => pontos.map(p => p[s.key])), 1);
@@ -458,13 +467,22 @@ function lineChartSVG(pontos, series) {
       <text x="${padL - 6}" y="${(yy + 3).toFixed(1)}" font-size="9" text-anchor="end" fill="var(--faint)" font-family="IBM Plex Mono, monospace">${Math.round(maxV * f)}</text>`;
   }).join('');
 
+  // rotulo do valor atual (ponta da linha) -- espalha verticalmente quando
+  // duas series terminam perto uma da outra, pra nao sobrepor o numero
+  const finais = series.map(s => ({ s, v: pontos[n - 1][s.key] })).sort((a, b) => b.v - a.v);
+  const minGap = 11;
+  finais.forEach((f, i) => { f.yLabel = i === 0 ? y(f.v) : Math.max(y(f.v), finais[i - 1].yLabel + minGap); });
+  const yLabelPorChave = Object.fromEntries(finais.map(f => [f.s.key, f.yLabel]));
+
   const seriesSvg = series.map(s => {
+    const valorFinal = pontos[n - 1][s.key];
+    const rotuloFinal = `<text x="${(x(n - 1) + 8).toFixed(1)}" y="${(yLabelPorChave[s.key] + 3).toFixed(1)}" font-size="11" font-weight="700" fill="${s.color}" font-family="IBM Plex Mono, monospace">${valorFinal}</text>`;
     if (n === 1) {
-      return `<circle cx="${x(0).toFixed(1)}" cy="${y(pontos[0][s.key]).toFixed(1)}" r="4" fill="${s.color}"/>`;
+      return `<circle cx="${x(0).toFixed(1)}" cy="${y(pontos[0][s.key]).toFixed(1)}" r="4" fill="${s.color}"/>${rotuloFinal}`;
     }
     const pts = pontos.map((p, i) => `${x(i).toFixed(1)},${y(p[s.key]).toFixed(1)}`).join(' ');
     const dots = pontos.map((p, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(p[s.key]).toFixed(1)}" r="3" fill="${s.color}"/>`).join('');
-    return `<polyline points="${pts}" fill="none" stroke="${s.color}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>${dots}`;
+    return `<polyline points="${pts}" fill="none" stroke="${s.color}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>${dots}${rotuloFinal}`;
   }).join('');
 
   // rotulo com dia + hora (ex.: "09/09 22h") pra dar pra comparar o mesmo
@@ -516,12 +534,39 @@ async function carregarHistorico() {
     { key: 'totalChamadosEquip', label: 'Abertos', color: 'var(--violet)' },
     { key: 'totalFechadosEquip', label: 'Fechados', color: 'var(--blue)' },
   ];
-  const legenda = series.map(s => `<div class="li"><span class="sw" style="background:${s.color}"></span>${s.label}</div>`).join('');
+
+  const ultimo = H[H.length - 1];
+  const anterior = H.length > 1 ? H[H.length - 2] : null;
+  const horaUltimo = new Date(ultimo.quando || ultimo.data).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+  const horaAnterior = anterior ? new Date(anterior.quando || anterior.data).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) : null;
+
+  const statsHtml = series.map(s => {
+    const valor = ultimo[s.key];
+    let deltaHtml;
+    if (!anterior) {
+      deltaHtml = `<span class="hstat-delta">primeira execução registrada</span>`;
+    } else {
+      const delta = valor - anterior[s.key];
+      const sinal = delta > 0 ? '+' + delta : delta < 0 ? String(delta) : '=';
+      const seta = delta > 0 ? '▲' : delta < 0 ? '▼' : '';
+      deltaHtml = `<span class="hstat-delta">${seta} ${sinal} desde ${horaAnterior}</span>`;
+    }
+    return `<div class="hstat">
+      <span class="hstat-lbl"><span class="hstat-dot" style="background:${s.color}"></span>${s.label}</span>
+      <span class="hstat-val" style="color:${s.color}">${valor}</span>
+      ${deltaHtml}
+    </div>`;
+  }).join('');
+
   const nota = H.length < 5
     ? `<div class="chart-note">${H.length} execução(ões) registrada(s) — a tendência fica mais clara conforme o pipeline (a cada 2h) acumula pontos.</div>`
     : '';
 
-  alvo.innerHTML = `<div class="chart-legend">${legenda}</div>${lineChartSVG(H, series)}${nota}`;
+  alvo.innerHTML = `
+    <div class="hist-stamp">Instantâneo de ${horaUltimo}</div>
+    <div class="hist-stats">${statsHtml}</div>
+    ${lineChartSVG(H, series)}
+    ${nota}`;
 }
 
 async function iniciar() {
