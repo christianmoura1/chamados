@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-09-11T12:00:27",
-  "totalRegistros": 2844,
-  "totalAbertos": 1939,
-  "totalFechados": 905,
+  "atualizadoEm": "2026-09-11T14:00:29",
+  "totalRegistros": 2850,
+  "totalAbertos": 1930,
+  "totalFechados": 920,
   "totalLojas": 71,
   "equipamentos": [
     {
@@ -1516,7 +1516,7 @@
           "loja": "FS CAXIAS DO SUL - R JOÃO NICHELE 2227",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 16,
+          "dias": 17,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "BK087698 - FRITADEIRA | FRI - FPLK - SOMENTE 1 OU 2 CUBAS FUNCIONANDO"
         },
@@ -2213,7 +2213,7 @@
           "loja": "FS CAXIAS DO SUL - R JOÃO NICHELE 2227",
           "estado": "Atribuído",
           "prioridade": "Alta",
-          "dias": 16,
+          "dias": 17,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "PHU | PHU - NÃO LIGA"
         },
@@ -2377,11 +2377,11 @@
       "nome": "Broiler",
       "pctIndisponibilidade": 58,
       "pdvsEmFalha": 41,
-      "chamados": 61,
+      "chamados": 62,
       "alta": 14,
-      "sos": 13,
+      "sos": 14,
       "fechados": 105,
-      "abertosHoje": 1,
+      "abertosHoje": 2,
       "tempoMedioDias": 21,
       "chamadosSOS": [
         {
@@ -2547,6 +2547,15 @@
           "dias": 1,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK088222 - BROILER | BRO - SUPERAQUECENDO"
+        },
+        {
+          "numero": "WOT0050331",
+          "loja": "FS CURITIBA - FRANCISCO FRISHMANN 3151",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 0,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BK088222 - BROILER | BRO - NÃO ATINGE TEMPERATURA"
         },
         {
           "numero": "WOT0014799",
@@ -2986,13 +2995,13 @@
       "chave": "tostadeira",
       "nome": "Tostadeira",
       "pctIndisponibilidade": 69,
-      "pdvsEmFalha": 32,
-      "chamados": 40,
+      "pdvsEmFalha": 31,
+      "chamados": 39,
       "alta": 7,
       "sos": 2,
-      "fechados": 39,
+      "fechados": 40,
       "abertosHoje": 2,
-      "tempoMedioDias": 21,
+      "tempoMedioDias": 22,
       "chamadosSOS": [
         {
           "numero": "WOT0020478",
@@ -3262,7 +3271,7 @@
           "loja": "FS CAXIAS DO SUL - R JOÃO NICHELE 2227",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 16,
+          "dias": 17,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "TOSTADORA VERTICAL - EF | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA"
         },
@@ -3364,15 +3373,6 @@
           "dias": 4,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "BK077554 - TOSTADORA VERTICAL - EF | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA"
-        },
-        {
-          "numero": "WOT0050240",
-          "loja": "PARTAGE SHOP RIO GRANDE",
-          "estado": "Aceito",
-          "prioridade": "Normal",
-          "dias": 0,
-          "tecnico": "Thiago da Silva Gonzalez",
-          "problema": "TOSTADEIRA 220V 3290W 66A71GRC | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA"
         }
       ]
     }
@@ -3387,7 +3387,7 @@
       ],
       "totalLojas": 22,
       "lojasComChamado": 21,
-      "chamados": 104,
+      "chamados": 103,
       "alta": 42,
       "sos": 17,
       "tempoMedioDias": 21,
@@ -3753,6 +3753,16 @@
           "equipamento": "PHU"
         },
         {
+          "numero": "WOT0039073",
+          "loja": "FS CAXIAS DO SUL - R JOÃO NICHELE 2227",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 17,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "PHU | PHU - NÃO LIGA",
+          "equipamento": "PHU"
+        },
+        {
           "numero": "WOT0039007",
           "loja": "SHOP ROYAL PLAZA SANTA MARIA",
           "estado": "Atribuído",
@@ -3761,16 +3771,6 @@
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "BK036566 - BROILER | BRO - NÃO LIGA ELETRICAMENTE",
           "equipamento": "Broiler"
-        },
-        {
-          "numero": "WOT0039073",
-          "loja": "FS CAXIAS DO SUL - R JOÃO NICHELE 2227",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 16,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "PHU | PHU - NÃO LIGA",
-          "equipamento": "PHU"
         },
         {
           "numero": "WOT0039195",
@@ -4263,21 +4263,11 @@
           "equipamento": "Broiler"
         },
         {
-          "numero": "WOT0039449",
-          "loja": "BOURBON SHOP SAO LEOPOLDO",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 16,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "BK078907 - MAQUINA DE SORVETE; TAYLOR; C712N-33 | MDS - SORVETE MOLE",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
           "numero": "WOT0039062",
           "loja": "FS CAXIAS DO SUL - R JOÃO NICHELE 2227",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 16,
+          "dias": 17,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "BK087698 - FRITADEIRA | FRI - FPLK - SOMENTE 1 OU 2 CUBAS FUNCIONANDO",
           "equipamento": "Fritadeira"
@@ -4287,10 +4277,20 @@
           "loja": "FS CAXIAS DO SUL - R JOÃO NICHELE 2227",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 16,
+          "dias": 17,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "TOSTADORA VERTICAL - EF | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "equipamento": "Tostadeira"
+        },
+        {
+          "numero": "WOT0039449",
+          "loja": "BOURBON SHOP SAO LEOPOLDO",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 16,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "BK078907 - MAQUINA DE SORVETE; TAYLOR; C712N-33 | MDS - SORVETE MOLE",
+          "equipamento": "Máquina de Sorvete"
         },
         {
           "numero": "WOT0039603",
@@ -4421,16 +4421,6 @@
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "BK066333 - PHU; DUKE; FWM3-24SB2-230; 94AAAJ0121 | PHU - NÃO ACENDE LUZES",
           "equipamento": "PHU"
-        },
-        {
-          "numero": "WOT0050240",
-          "loja": "PARTAGE SHOP RIO GRANDE",
-          "estado": "Aceito",
-          "prioridade": "Normal",
-          "dias": 0,
-          "tecnico": "Thiago da Silva Gonzalez",
-          "problema": "TOSTADEIRA 220V 3290W 66A71GRC | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "equipamento": "Tostadeira"
         }
       ]
     },
@@ -6084,10 +6074,10 @@
       ],
       "totalLojas": 18,
       "lojasComChamado": 18,
-      "chamados": 70,
+      "chamados": 71,
       "alta": 35,
-      "sos": 4,
-      "tempoMedioDias": 19,
+      "sos": 5,
+      "tempoMedioDias": 18,
       "chamadosDetalhe": [
         {
           "numero": "WOT0031693",
@@ -6127,6 +6117,16 @@
           "dias": 1,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK088222 - BROILER | BRO - SUPERAQUECENDO",
+          "equipamento": "Broiler"
+        },
+        {
+          "numero": "WOT0050331",
+          "loja": "FS CURITIBA - FRANCISCO FRISHMANN 3151",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 0,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BK088222 - BROILER | BRO - NÃO ATINGE TEMPERATURA",
           "equipamento": "Broiler"
         },
         {
