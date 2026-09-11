@@ -271,6 +271,13 @@
   .filter-combo-item { padding: 7px 10px; border-radius: 7px; font-size: 13px; color: var(--ink); cursor: pointer; }
   .filter-combo-item:hover, .filter-combo-item.ativo { background: var(--surface2); }
   .filter-combo-vazio { padding: 7px 10px; font-size: 12.5px; color: var(--faint); }
+  .filter-field-datas { min-width: 240px; }
+  .filter-datas { display: flex; align-items: center; gap: 6px; }
+  .filter-datas input[type="date"] {
+    font-family: "IBM Plex Sans", sans-serif; font-size: 12.5px; color: var(--ink); background: var(--surface2);
+    border: 1px solid var(--line); border-radius: 10px; padding: 7px 8px; flex: 1; min-width: 0;
+  }
+  .filter-datas span { font-size: 11.5px; color: var(--faint); flex: none; }
   .filter-clear {
     font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--violet); background: none; border: none;
     cursor: pointer; padding: 8px 4px; white-space: nowrap; align-self: flex-end;
@@ -687,7 +694,7 @@ async function iniciar() {
     </section>
 
     <section>
-      <div class="sec-head"><h2>Buscar chamados</h2><span class="sec-note">Filtre por setor, loja ou responsável</span></div>
+      <div class="sec-head"><h2>Buscar chamados</h2><span class="sec-note">Filtre por setor, loja, problema, data ou responsável</span></div>
       <div class="card">
         <div class="filter-bar">
           <div class="filter-field">
@@ -700,8 +707,20 @@ async function iniciar() {
             <div class="filter-combo-lista" id="filtroLojaLista" hidden></div>
           </div>
           <div class="filter-field">
+            <label for="filtroProblema">Problema</label>
+            <input type="text" id="filtroProblema" placeholder="Buscar palavra..." autocomplete="off">
+          </div>
+          <div class="filter-field">
             <label for="filtroResp">Responsável</label>
             <select id="filtroResp"><option value="">Todos</option></select>
+          </div>
+          <div class="filter-field filter-field-datas">
+            <label>Abertura</label>
+            <div class="filter-datas">
+              <input type="date" id="filtroDataDe" title="De">
+              <span>até</span>
+              <input type="date" id="filtroDataAte" title="Até">
+            </div>
           </div>
           <button class="filter-clear" id="filtroLimpar" type="button">Limpar filtros</button>
         </div>
@@ -748,7 +767,10 @@ function montarBuscaChamados(D) {
   const selSetor = document.getElementById('filtroSetor');
   const inLoja = document.getElementById('filtroLoja');
   const listaLoja = document.getElementById('filtroLojaLista');
+  const inProblema = document.getElementById('filtroProblema');
   const selResp = document.getElementById('filtroResp');
+  const inDataDe = document.getElementById('filtroDataDe');
+  const inDataAte = document.getElementById('filtroDataAte');
   const tbody = document.getElementById('filtroTbody');
   const contagem = document.getElementById('filtroContagem');
 
@@ -764,8 +786,17 @@ function montarBuscaChamados(D) {
 
   function renderizar() {
     const fs = selSetor.value, flBusca = semAcento(inLoja.value.trim()), fr = selResp.value;
+    const fpBusca = semAcento(inProblema.value.trim());
+    const dataDe = inDataDe.value, dataAte = inDataAte.value;
     const filtrados = ordenaChamados(
-      todos.filter(c => (!fs || c.equipamento === fs) && (!flBusca || semAcento(c.loja).includes(flBusca)) && (!fr || c.tecnico === fr))
+      todos.filter(c =>
+        (!fs || c.equipamento === fs)
+        && (!flBusca || semAcento(c.loja).includes(flBusca))
+        && (!fpBusca || semAcento(c.problema).includes(fpBusca))
+        && (!fr || c.tecnico === fr)
+        && (!dataDe || (c.abertura && c.abertura >= dataDe))
+        && (!dataAte || (c.abertura && c.abertura <= dataAte))
+      )
     );
 
     contagem.textContent = `${filtrados.length} de ${todos.length} chamados`;
@@ -809,8 +840,11 @@ function montarBuscaChamados(D) {
   });
 
   [selSetor, selResp].forEach(sel => sel.addEventListener('change', renderizar));
+  inProblema.addEventListener('input', renderizar);
+  [inDataDe, inDataAte].forEach(el => el.addEventListener('change', renderizar));
   document.getElementById('filtroLimpar').addEventListener('click', () => {
-    selSetor.value = ''; inLoja.value = ''; selResp.value = '';
+    selSetor.value = ''; inLoja.value = ''; inProblema.value = ''; selResp.value = '';
+    inDataDe.value = ''; inDataAte.value = '';
     listaLoja.hidden = true;
     renderizar();
   });

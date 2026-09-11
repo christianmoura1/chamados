@@ -293,7 +293,10 @@ function processar(csvTexto, disponibilidadeBI) {
     const dias = dt ? Math.max(0, Math.round((agora - dt) / 86400000)) : 0;
     g.somaDias += dias;
 
-    const item = { numero: l[iNum], loja, estado: l[iEstado] || '', prioridade, dias, tecnico: l[iTec] || '', problema: (l[iDesc] || '').trim() };
+    // 'YYYY-MM-DD' p/ filtro de data no front (input type=date usa esse
+    // formato) -- pedido do Christian, 11/09/2026.
+    const abertura = dt ? `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, '0')}-${String(dt.getDate()).padStart(2, '0')}` : null;
+    const item = { numero: l[iNum], loja, estado: l[iEstado] || '', prioridade, dias, tecnico: l[iTec] || '', problema: (l[iDesc] || '').trim(), abertura };
     g.itensTodos.push(item);
     if (critica) g.itensSOS.push(item);
   }
