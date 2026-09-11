@@ -239,6 +239,9 @@
   }
   .modal-close:hover { color: var(--ink); }
   .modal-sub { padding: 12px 22px 0; font-size: 12px; color: var(--faint); font-family: "IBM Plex Mono", monospace; flex: none; }
+  .modal-filtros { display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-end; padding: 12px 22px 0; flex: none; }
+  .modal-filtros .filter-field { min-width: 130px; }
+  .modal-filtro-contagem { padding: 8px 22px 0; font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--faint); flex: none; }
   .modal-body { overflow: auto; padding: 14px 22px 20px; }
   .detail-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
   .detail-table th {
@@ -327,6 +330,31 @@
       <button class="modal-close" id="modalClose" aria-label="Fechar" type="button">&times;</button>
     </div>
     <div class="modal-sub" id="modalSub"></div>
+    <div class="modal-filtros">
+      <div class="filter-field filter-combo">
+        <label for="modalFiltroLoja">Loja</label>
+        <input type="text" id="modalFiltroLoja" placeholder="Todas" autocomplete="off">
+        <div class="filter-combo-lista" id="modalFiltroLojaLista" hidden></div>
+      </div>
+      <div class="filter-field">
+        <label for="modalFiltroProblema">Problema</label>
+        <input type="text" id="modalFiltroProblema" placeholder="Buscar palavra..." autocomplete="off">
+      </div>
+      <div class="filter-field">
+        <label for="modalFiltroResp">Responsável</label>
+        <select id="modalFiltroResp"><option value="">Todos</option></select>
+      </div>
+      <div class="filter-field filter-field-datas">
+        <label>Abertura</label>
+        <div class="filter-datas">
+          <input type="date" id="modalFiltroDataDe" title="De">
+          <span>até</span>
+          <input type="date" id="modalFiltroDataAte" title="Até">
+        </div>
+      </div>
+      <button class="filter-clear" id="modalFiltroLimpar" type="button">Limpar</button>
+    </div>
+    <div class="modal-filtro-contagem" id="modalFiltroContagem"></div>
     <div class="modal-body">
       <table class="detail-table">
         <thead id="modalThead"><tr><th>Número</th><th>Loja</th><th>Estado</th><th>Prioridade</th><th>Dias</th><th>Técnico</th></tr></thead>
@@ -408,18 +436,34 @@ function ordenaChamados(itens) {
 }
 const tagClsPrioridade = p => p === 'SOS' ? 'tag-sos' : (p === 'Alta' ? 'tag-alta' : 'tag-normal');
 
-function abrirModalGenerico(titulo, subtitulo, itens, { mostrarEquipamento } = {}) {
-  document.getElementById('modalTitle').textContent = titulo;
-  document.getElementById('modalSub').textContent = subtitulo;
-  const colEquip = mostrarEquipamento ? '<th>Equipamento</th>' : '';
-  document.getElementById('modalThead').innerHTML =
-    `<tr><th>Número</th>${colEquip}<th>Loja</th><th>Problema</th><th>Estado</th><th>Prioridade</th><th>Dias</th><th>Técnico</th></tr>`;
-  const itensOrdenados = ordenaChamados(itens);
-  const colspan = mostrarEquipamento ? 8 : 7;
-  document.getElementById('modalTbody').innerHTML = itensOrdenados.length
-    ? itensOrdenados.map(c => `<tr>
+let MODAL_ITENS = [];
+let MODAL_MOSTRA_EQUIP = false;
+
+function semAcentoModal(s) {
+  return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+}
+
+function renderizarModalTabela() {
+  const flBusca = semAcentoModal(document.getElementById('modalFiltroLoja').value.trim());
+  const fpBusca = semAcentoModal(document.getElementById('modalFiltroProblema').value.trim());
+  const fr = document.getElementById('modalFiltroResp').value;
+  const dataDe = document.getElementById('modalFiltroDataDe').value;
+  const dataAte = document.getElementById('modalFiltroDataAte').value;
+
+  const filtrados = ordenaChamados(MODAL_ITENS.filter(c =>
+    (!flBusca || semAcentoModal(c.loja).includes(flBusca))
+    && (!fpBusca || semAcentoModal(c.problema).includes(fpBusca))
+    && (!fr || c.tecnico === fr)
+    && (!dataDe || (c.abertura && c.abertura >= dataDe))
+    && (!dataAte || (c.abertura && c.abertura <= dataAte))
+  ));
+
+  document.getElementById('modalFiltroContagem').textContent = `${filtrados.length} de ${MODAL_ITENS.length} chamados`;
+  const colspan = MODAL_MOSTRA_EQUIP ? 8 : 7;
+  document.getElementById('modalTbody').innerHTML = filtrados.length
+    ? filtrados.map(c => `<tr>
         <td class="mono">${escapeHtml(c.numero)}</td>
-        ${mostrarEquipamento ? `<td>${escapeHtml(c.equipamento)}</td>` : ''}
+        ${MODAL_MOSTRA_EQUIP ? `<td>${escapeHtml(c.equipamento)}</td>` : ''}
         <td>${escapeHtml(c.loja)}</td>
         <td>${escapeHtml(c.problema) || '—'}</td>
         <td>${escapeHtml(c.estado)}</td>
@@ -427,10 +471,78 @@ function abrirModalGenerico(titulo, subtitulo, itens, { mostrarEquipamento } = {
         <td class="num">${c.dias}d</td>
         <td>${escapeHtml(c.tecnico) || '—'}</td>
       </tr>`).join('')
-    : `<tr><td colspan="${colspan}" class="esos-empty">Nenhum chamado em aberto.</td></tr>`;
+    : `<tr><td colspan="${colspan}" class="esos-empty">Nenhum chamado com esses filtros.</td></tr>`;
+}
+
+function abrirModalGenerico(titulo, subtitulo, itens, { mostrarEquipamento } = {}) {
+  document.getElementById('modalTitle').textContent = titulo;
+  document.getElementById('modalSub').textContent = subtitulo;
+  const colEquip = mostrarEquipamento ? '<th>Equipamento</th>' : '';
+  document.getElementById('modalThead').innerHTML =
+    `<tr><th>Número</th>${colEquip}<th>Loja</th><th>Problema</th><th>Estado</th><th>Prioridade</th><th>Dias</th><th>Técnico</th></tr>`;
+
+  MODAL_ITENS = itens;
+  MODAL_MOSTRA_EQUIP = !!mostrarEquipamento;
+
+  // reseta os filtros e repopula as opcoes com base nos itens deste modal
+  const inLoja = document.getElementById('modalFiltroLoja');
+  const inProblema = document.getElementById('modalFiltroProblema');
+  const selResp = document.getElementById('modalFiltroResp');
+  inLoja.value = ''; inProblema.value = '';
+  document.getElementById('modalFiltroDataDe').value = '';
+  document.getElementById('modalFiltroDataAte').value = '';
+  document.getElementById('modalFiltroLojaLista').hidden = true;
+  const responsaveis = [...new Set(itens.map(c => c.tecnico).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+  selResp.innerHTML = '<option value="">Todos</option>' + responsaveis.map(r => `<option value="${escapeHtml(r)}">${escapeHtml(r)}</option>`).join('');
+
+  renderizarModalTabela();
   document.getElementById('modalOverlay').hidden = false;
   document.body.style.overflow = 'hidden';
 }
+
+// filtros do modal -- os elementos sao fixos no HTML (o modal e' reaproveitado
+// a cada abertura), entao os listeners so' precisam ser ligados uma vez
+(function () {
+  const inLoja = document.getElementById('modalFiltroLoja');
+  const listaLoja = document.getElementById('modalFiltroLojaLista');
+  const inProblema = document.getElementById('modalFiltroProblema');
+  const selResp = document.getElementById('modalFiltroResp');
+  const inDataDe = document.getElementById('modalFiltroDataDe');
+  const inDataAte = document.getElementById('modalFiltroDataAte');
+
+  function mostrarListaLojaModal() {
+    const busca = semAcentoModal(inLoja.value.trim());
+    const lojas = [...new Set(MODAL_ITENS.map(c => c.loja).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+    const opcoes = (busca ? lojas.filter(l => semAcentoModal(l).includes(busca)) : lojas).slice(0, 40);
+    listaLoja.innerHTML = opcoes.length
+      ? opcoes.map(l => `<div class="filter-combo-item">${escapeHtml(l)}</div>`).join('')
+      : `<div class="filter-combo-vazio">Nenhuma loja encontrada</div>`;
+    listaLoja.hidden = false;
+  }
+  inLoja.addEventListener('input', () => { mostrarListaLojaModal(); renderizarModalTabela(); });
+  inLoja.addEventListener('focus', mostrarListaLojaModal);
+  listaLoja.addEventListener('mousedown', (ev) => {
+    const item = ev.target.closest('.filter-combo-item');
+    if (!item) return;
+    ev.preventDefault();
+    inLoja.value = item.textContent;
+    listaLoja.hidden = true;
+    renderizarModalTabela();
+  });
+  document.addEventListener('click', (ev) => {
+    if (ev.target !== inLoja && !listaLoja.contains(ev.target)) listaLoja.hidden = true;
+  });
+
+  inProblema.addEventListener('input', renderizarModalTabela);
+  selResp.addEventListener('change', renderizarModalTabela);
+  [inDataDe, inDataAte].forEach(el => el.addEventListener('change', renderizarModalTabela));
+  document.getElementById('modalFiltroLimpar').addEventListener('click', () => {
+    inLoja.value = ''; inProblema.value = ''; selResp.value = '';
+    inDataDe.value = ''; inDataAte.value = '';
+    listaLoja.hidden = true;
+    renderizarModalTabela();
+  });
+})();
 
 function abrirModal(chave) {
   const e = DADOS_ATUAIS?.equipamentos.find(x => x.chave === chave);
