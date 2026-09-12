@@ -412,7 +412,14 @@ function gaugeSVG(valor, max, zonas) {
   const zonasSvg = zonas.map(z => arco(z.de, z.ate, z.cor)).join('');
   const pontaAgulha = ponto(angulo(valor), r - sw / 2 - 8);
   const agulha = `<line x1="${cx}" y1="${cy}" x2="${pontaAgulha.x.toFixed(1)}" y2="${pontaAgulha.y.toFixed(1)}" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="6" fill="var(--ink)"/>`;
-  return `<svg viewBox="0 0 200 112" style="width:100%;height:auto;display:block;">${zonasSvg}${agulha}</svg>`;
+  // width/height explicitos (alem do viewBox) sao obrigatorios aqui: sem
+  // eles, "height:auto" so' funciona de forma confiavel no Chrome -- no
+  // Edge do Christian (12/09/2026, confirmado ate' em janela InPrivate,
+  // entao nao e' cache/extensao) o SVG colapsava pra quase zero de altura,
+  // sobrando so' a agulha flutuando sobre o numero. Com width/height fixos
+  // casando a proporcao do viewBox, o navegador tem uma base de escala
+  // sem ambiguidade e o "width:100%;height:auto" do CSS escala certo.
+  return `<svg viewBox="0 0 200 112" width="200" height="112" style="width:100%;height:auto;display:block;">${zonasSvg}${agulha}</svg>`;
 }
 
 const RANK_PRIORIDADE = { SOS: 0, Alta: 1, Normal: 2 };
@@ -594,11 +601,6 @@ function cardTecnico(t) {
   </div>`;
 }
 
-// separa a fila dos supervisores (chamados ainda sem tecnico de campo
-// assinalado, mas que o SOMA grava com o nome do proprio supervisor) dos
-// tecnicos de campo de verdade -- pedido do Christian, 12/09/2026:
-// "os supervisores estao juntos com os tecnicos". Flag "ehSupervisor" vem
-// pronta do backend (calcularTecnicos em run_daily.cjs).
 function renderizarTecnicos(D) {
   const dt = new Date(D.atualizadoEm);
   document.getElementById('stamp').textContent = 'Atualizado ' + dt.toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });

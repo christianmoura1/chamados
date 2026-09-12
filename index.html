@@ -433,7 +433,14 @@ function gaugeSVG(valor, max, zonas) {
   const zonasSvg = zonas.map(z => arco(z.de, z.ate, z.cor)).join('');
   const pontaAgulha = ponto(angulo(valor), r - sw / 2 - 8);
   const agulha = `<line x1="${cx}" y1="${cy}" x2="${pontaAgulha.x.toFixed(1)}" y2="${pontaAgulha.y.toFixed(1)}" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="6" fill="var(--ink)"/>`;
-  return `<svg viewBox="0 0 200 112" style="width:100%;height:auto;display:block;">${zonasSvg}${agulha}</svg>`;
+  // width/height explicitos (alem do viewBox) sao obrigatorios aqui: sem
+  // eles, "height:auto" so' funciona de forma confiavel no Chrome -- no
+  // Edge do Christian (12/09/2026, confirmado ate' em janela InPrivate,
+  // entao nao e' cache/extensao) o SVG colapsava pra quase zero de altura,
+  // sobrando so' a agulha flutuando sobre o numero. Com width/height fixos
+  // casando a proporcao do viewBox, o navegador tem uma base de escala
+  // sem ambiguidade e o "width:100%;height:auto" do CSS escala certo.
+  return `<svg viewBox="0 0 200 112" width="200" height="112" style="width:100%;height:auto;display:block;">${zonasSvg}${agulha}</svg>`;
 }
 
 // ordem de exibicao nos modais: SOS primeiro, depois Alta, depois Normal;
@@ -662,7 +669,9 @@ function lineChartSVG(pontos, series) {
     return `<text x="${x(i).toFixed(1)}" y="${H - 8}" font-size="9" text-anchor="middle" fill="var(--faint)" font-family="IBM Plex Mono, monospace">${dataLbl} ${horaLbl}</text>`;
   }).join('');
 
-  return `<div class="chart-svg-wrap"><svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block;">${grid}${seriesSvg}${labels}</svg><div class="chart-tooltip" id="chartTooltip" hidden></div></div>`;
+  // width/height explicitos junto do viewBox: mesmo fix do gaugeSVG (ver
+  // comentario la') pro "height:auto" escalar certo em qualquer navegador.
+  return `<div class="chart-svg-wrap"><svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="width:100%;height:auto;display:block;">${grid}${seriesSvg}${labels}</svg><div class="chart-tooltip" id="chartTooltip" hidden></div></div>`;
 }
 
 async function carregarHistorico() {
