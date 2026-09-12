@@ -2,11 +2,12 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<title>Backlog — Sul</title>
+<title>Técnicos — Sul</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
 <style>
   :root {
     --sidebar:   #1E1B3A;
@@ -101,9 +102,8 @@
   .navlabel { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #7A72B8; padding: 0 12px; margin: 14px 0 6px; }
   .navitem {
     display: flex; align-items: center; gap: 11px; padding: 9px 12px; border-radius: 10px;
-    color: #C6C0EE; font-size: 13.5px; font-weight: 500; text-decoration: none;
+    color: #C6C0EE; font-size: 13.5px; font-weight: 500;
   }
-  a.navitem:hover { background: rgba(255,255,255,0.06); color: #FFFFFF; }
   .navitem .dot { width: 7px; height: 7px; border-radius: 999px; background: currentColor; opacity: .55; flex: none; }
   .navitem.active { background: rgba(255,255,255,0.08); color: #FFFFFF; }
   .navitem.active .dot { background: var(--pink); opacity: 1; }
@@ -171,6 +171,10 @@
   .esos-empty { font-size: 11.5px; color: var(--faint); }
 
   /* ---------- farol por supervisor (velocimetro) ---------- */
+  .farol-tabs { display: flex; gap: 6px; margin-bottom: 14px; }
+  .farol-tab { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; font-weight: 600; letter-spacing: .02em; text-transform: uppercase; color: var(--muted); background: var(--surface2); border: 1px solid var(--line); border-radius: 999px; padding: 7px 16px; cursor: pointer; transition: background .12s ease, color .12s ease; }
+  .farol-tab:hover { color: var(--ink); }
+  .farol-tab.active { background: var(--violet); border-color: var(--violet); color: #fff; }
   .gauge-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; align-items: start; }
   @media (max-width: 1180px) { .gauge-grid { grid-template-columns: repeat(3,1fr); } }
   @media (max-width: 860px) { .gauge-grid { grid-template-columns: repeat(2,1fr); } }
@@ -300,7 +304,8 @@
   .filter-table-wrap { max-height: 520px; overflow: auto; border-radius: 12px; }
   .filter-empty { padding: 30px 0; text-align: center; color: var(--faint); font-size: 12.5px; }
 </style>
-</head>
+</style>
+
 <body>
 <div class="shell">
   <aside class="side">
@@ -310,8 +315,8 @@
       <div><div class="name">Manutenção Sul</div><div class="sub">Zamp · BK Brasil</div></div>
     </div>
     <div class="navgroup">
-      <div class="navitem active"><span class="dot"></span>Backlog</div>
-      <a class="navitem" href="tecnicos.html"><span class="dot"></span>Técnicos</a>
+      <a class="navitem" href="index.html"><span class="dot"></span>Backlog</a>
+      <div class="navitem active"><span class="dot"></span>Técnicos</div>
       <div class="navlabel">Painéis</div>
       <div class="navitem"><span class="dot"></span>Perda de Receita</div>
       <div class="navitem"><span class="dot"></span>Gestão de Risco</div>
@@ -325,8 +330,8 @@
   <main class="main">
     <div class="topbar">
       <div>
-        <p class="eyebrow">Regional Sul · Equipamentos</p>
-        <h1>Backlog</h1>
+        <p class="eyebrow">Regional Sul · Farol</p>
+        <h1>Técnicos</h1>
       </div>
       <div class="stamp-pill" id="stamp">carregando…</div>
     </div>
@@ -383,29 +388,6 @@ function escapeHtml(s) {
   return String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
 }
 
-// semaforo por severidade do % de indisponibilidade: vermelho = pior,
-// laranja = medio, verde = bom (pedido do Christian, 09/09/2026)
-function corPorIndisponibilidade(pct) {
-  if (pct >= 50) return 'var(--sos)';
-  if (pct >= 25) return 'var(--alta)';
-  return 'var(--ok)';
-}
-
-function donutSVG(pct, cor) {
-  const r = 38, c = 2 * Math.PI * r;
-  const dash = (Math.min(pct, 100) / 100) * c;
-  return `<svg viewBox="0 0 92 92">
-    <circle cx="46" cy="46" r="${r}" fill="none" stroke="var(--surface2)" stroke-width="9"/>
-    <circle cx="46" cy="46" r="${r}" fill="none" stroke="${cor}" stroke-width="9"
-      stroke-dasharray="${dash.toFixed(1)} ${c.toFixed(1)}" stroke-linecap="round"/>
-  </svg>`;
-}
-
-// faixas do farol por supervisor: vermelho = mais chamados, verde = menos
-// (pedido do Christian, 09/09/2026) -- corrigido em 09/09/2026 p/ os 4
-// supervisores reais (Marcel/Rafael/Gustavo/Carlos Magno, cada um cobrindo
-// varios setores/lojas). Escala fixa 0-120 (o maior valor observado foi
-// 108), faixas em 60 e 90.
 const FAROL_MAX = 120;
 const FAROL_ZONAS = [
   { de: 0, ate: 60, cor: 'var(--ok)' },
@@ -435,9 +417,6 @@ function gaugeSVG(valor, max, zonas) {
   return `<svg viewBox="0 0 200 112" style="width:100%;height:auto;display:block;">${zonasSvg}${agulha}</svg>`;
 }
 
-// ordem de exibicao nos modais: SOS primeiro, depois Alta, depois Normal;
-// dentro de cada prioridade, mais dias em aberto primeiro (os itens ja vem
-// assim do backend, isso aqui e' so garantia caso a origem mude)
 const RANK_PRIORIDADE = { SOS: 0, Alta: 1, Normal: 2 };
 function ordenaChamados(itens) {
   return [...itens].sort((a, b) => {
@@ -571,25 +550,13 @@ function abrirModalGenerico(titulo, subtitulo, itens, { mostrarEquipamento } = {
   });
 })();
 
-function abrirModal(chave) {
-  const e = DADOS_ATUAIS?.equipamentos.find(x => x.chave === chave);
-  if (!e) return;
-  const itens = e.chamadosDetalhe || [];
+function abrirModalTecnico(nome) {
+  const t = DADOS_ATUAIS?.tecnicos?.find(x => x.nome === nome);
+  if (!t) return;
+  const itens = t.chamadosDetalhe || [];
   abrirModalGenerico(
-    e.nome,
-    `${itens.length} chamado(s) em aberto · ${e.pdvsEmFalha} lojas afetadas · ${e.alta} Alta · ${e.sos} SOS`,
-    itens,
-    { mostrarEquipamento: false }
-  );
-}
-
-function abrirModalSupervisor(nome) {
-  const s = DADOS_ATUAIS?.supervisores?.find(x => x.nome === nome);
-  if (!s) return;
-  const itens = s.chamadosDetalhe || [];
-  abrirModalGenerico(
-    s.nome,
-    `${itens.length} chamado(s) em aberto · ${s.lojasComChamado}/${s.totalLojas} lojas afetadas · ${s.alta} Alta · ${s.sos} SOS`,
+    t.nome,
+    `${itens.length} chamado(s) em aberto · ${t.lojasAtendidas} loja(s) atendidas · ${t.alta} Alta · ${t.sos} SOS`,
     itens,
     { mostrarEquipamento: true }
   );
@@ -608,423 +575,55 @@ document.addEventListener('keydown', (ev) => {
   if (ev.key === 'Escape' && !document.getElementById('modalOverlay').hidden) fecharModal();
 });
 
-function lineChartSVG(pontos, series) {
-  const W = 800, H = 220, padL = 34, padR = 34, padT = 14, padB = 26;
-  const innerW = W - padL - padR, innerH = H - padT - padB;
-  const n = pontos.length;
-  const maxV = Math.max(...series.flatMap(s => pontos.map(p => p[s.key])), 1);
-  const x = i => n <= 1 ? padL + innerW / 2 : padL + (i / (n - 1)) * innerW;
-  const y = v => padT + innerH - (v / maxV) * innerH;
 
-  const grid = [0, 0.25, 0.5, 0.75, 1].map(f => {
-    const yy = padT + innerH * (1 - f);
-    return `<line x1="${padL}" y1="${yy.toFixed(1)}" x2="${W - padR}" y2="${yy.toFixed(1)}" stroke="var(--grid)" stroke-width="1"/>
-      <text x="${padL - 6}" y="${(yy + 3).toFixed(1)}" font-size="9" text-anchor="end" fill="var(--faint)" font-family="IBM Plex Mono, monospace">${Math.round(maxV * f)}</text>`;
-  }).join('');
+function renderizarTecnicos(D) {
+  const dt = new Date(D.atualizadoEm);
+  document.getElementById('stamp').textContent = 'Atualizado ' + dt.toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
 
-  // rotulo do valor atual (ponta da linha) -- espalha verticalmente quando
-  // duas series terminam perto uma da outra, pra nao sobrepor o numero
-  const finais = series.map(s => ({ s, v: pontos[n - 1][s.key] })).sort((a, b) => b.v - a.v);
-  const minGap = 11;
-  finais.forEach((f, i) => { f.yLabel = i === 0 ? y(f.v) : Math.max(y(f.v), finais[i - 1].yLabel + minGap); });
-  const yLabelPorChave = Object.fromEntries(finais.map(f => [f.s.key, f.yLabel]));
-
-  // dado de cada bolinha guardado em atributos data-* pra o tooltip (caixa
-  // com o valor exato) ler no hover, sem precisar recalcular nada -- pedido
-  // do Christian, 12/09/2026.
-  const dotAttrs = (p, i, s) => {
-    const d = new Date(p.quando || (p.data + 'T00:00:00'));
-    const quandoFmt = d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' }) + ' ' + d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-    return `class="chart-dot" data-valor="${p[s.key]}" data-label="${escapeHtml(s.label)}" data-cor="${s.color}" data-quando="${quandoFmt}"`;
-  };
-
-  const seriesSvg = series.map(s => {
-    const valorFinal = pontos[n - 1][s.key];
-    const rotuloFinal = `<text x="${(x(n - 1) + 8).toFixed(1)}" y="${(yLabelPorChave[s.key] + 3).toFixed(1)}" font-size="11" font-weight="700" fill="${s.color}" font-family="IBM Plex Mono, monospace">${valorFinal}</text>`;
-    if (n === 1) {
-      return `<circle cx="${x(0).toFixed(1)}" cy="${y(pontos[0][s.key]).toFixed(1)}" r="5" fill="${s.color}" ${dotAttrs(pontos[0], 0, s)}/>${rotuloFinal}`;
-    }
-    const pts = pontos.map((p, i) => `${x(i).toFixed(1)},${y(p[s.key]).toFixed(1)}`).join(' ');
-    const dots = pontos.map((p, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(p[s.key]).toFixed(1)}" r="5" fill="${s.color}" fill-opacity="0" stroke="${s.color}" stroke-width="0" ${dotAttrs(p, i, s)}/>`).join('');
-    const dotsVisiveis = pontos.map((p, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(p[s.key]).toFixed(1)}" r="3" fill="${s.color}" style="pointer-events:none"/>`).join('');
-    return `<polyline points="${pts}" fill="none" stroke="${s.color}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" style="pointer-events:none"/>${dotsVisiveis}${dots}${rotuloFinal}`;
-  }).join('');
-
-  // rotulo com dia + hora (ex.: "09/09 22h") pra dar pra comparar o mesmo
-  // horario entre dias, agora que cada execucao (a cada 2h) vira um ponto
-  const passo = Math.max(1, Math.ceil(n / 7));
-  const labels = pontos.map((p, i) => {
-    if (i % passo !== 0 && i !== n - 1) return '';
-    const d = new Date(p.quando || (p.data + 'T00:00:00'));
-    const dataLbl = d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
-    const horaLbl = d.toLocaleTimeString('pt-BR', { hour: '2-digit' });
-    return `<text x="${x(i).toFixed(1)}" y="${H - 8}" font-size="9" text-anchor="middle" fill="var(--faint)" font-family="IBM Plex Mono, monospace">${dataLbl} ${horaLbl}</text>`;
-  }).join('');
-
-  return `<div class="chart-svg-wrap"><svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block;">${grid}${seriesSvg}${labels}</svg><div class="chart-tooltip" id="chartTooltip" hidden></div></div>`;
-}
-
-async function carregarHistorico() {
-  const alvo = document.getElementById('chartCard');
-  if (!alvo) return;
-  let H;
-  try {
-    const r = await fetch('data/historico.json', { cache: 'no-store' });
-    if (!r.ok) throw new Error('HTTP ' + r.status);
-    H = await r.json();
-  } catch (e) {
-    alvo.innerHTML = `<div class="chart-note">Histórico ainda não disponível.</div>`;
-    return;
-  }
-  if (!Array.isArray(H) || !H.length) {
-    alvo.innerHTML = `<div class="chart-note">Histórico vazio.</div>`;
-    return;
-  }
-  // pontos gravados antes de 10/09/2026 nao tem esses campos -- sem isso o
-  // Math.max(...) do grafico vira NaN e quebra as 4 linhas inteiras.
-  H.forEach(p => {
-    p.totalAlta ??= 0;
-    p.totalSOS ??= 0;
-    p.totalAbertosHoje ??= 0;
-    p.totalFechadosHoje ??= 0;
-  });
-
-  // acompanhamento e' SOS, Alta (estoque atual) e Abertos/Fechados DO DIA
-  // (pedido do Christian, 10/09/2026 -- "a quantidade aberta e fechada deve
-  // ser do dia e nao total"). Abertos hoje = contagem exata pela data de
-  // abertura do chamado; Fechados hoje = estimativa pela diferenca do
-  // estoque de fechados desde a 1a execucao do dia (o SOMA nao tem data de
-  // fechamento no CSV). Os dois reiniciam perto de 0 a cada novo dia.
-  const series = [
-    { key: 'totalSOS', label: 'SOS', color: 'var(--sos)' },
-    { key: 'totalAlta', label: 'Alta', color: 'var(--alta)' },
-    { key: 'totalAbertosHoje', label: 'Abertos hoje', color: 'var(--violet)' },
-    { key: 'totalFechadosHoje', label: 'Fechados hoje', color: 'var(--blue)' },
-  ];
-
-  const ultimo = H[H.length - 1];
-  const anterior = H.length > 1 ? H[H.length - 2] : null;
-  const horaUltimo = new Date(ultimo.quando || ultimo.data).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
-  const horaAnterior = anterior ? new Date(anterior.quando || anterior.data).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) : null;
-
-  const statsHtml = series.map(s => {
-    const valor = ultimo[s.key];
-    let deltaHtml;
-    if (!anterior) {
-      deltaHtml = `<span class="hstat-delta">primeira execução registrada</span>`;
-    } else {
-      const delta = valor - anterior[s.key];
-      const sinal = delta > 0 ? '+' + delta : delta < 0 ? String(delta) : '=';
-      const seta = delta > 0 ? '▲' : delta < 0 ? '▼' : '';
-      deltaHtml = `<span class="hstat-delta">${seta} ${sinal} desde ${horaAnterior}</span>`;
-    }
-    return `<div class="hstat">
-      <span class="hstat-lbl"><span class="hstat-dot" style="background:${s.color}"></span>${s.label}</span>
-      <span class="hstat-val" style="color:${s.color}">${valor}</span>
-      ${deltaHtml}
+  const tecOrdenados = [...(D.tecnicos || [])].sort((a, b) => b.chamados - a.chamados);
+  const cards = tecOrdenados.map(t => {
+    const cor = corDoFarol(t.chamados);
+    return `<div class="gcard" role="button" tabindex="0" aria-label="Ver detalhe de ${escapeHtml(t.nome)}"
+        onclick="abrirModalTecnico('${escapeHtml(t.nome)}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirModalTecnico('${escapeHtml(t.nome)}');}">
+      <div class="ghead">
+        <div><span class="gname">${escapeHtml(t.nome)}</span><span class="gsetor">${t.lojasAtendidas} loja(s) atendidas</span></div>
+        <span class="gdetalhe">detalhe →</span>
+      </div>
+      <div class="ggauge">${gaugeSVG(t.chamados, FAROL_MAX, FAROL_ZONAS)}</div>
+      <div class="gval"><span class="gnum num" style="color:${cor}">${t.chamados}</span><span class="glabel">chamados</span></div>
+      <div class="gstats">
+        <div class="estat"><div class="n num">${t.lojasAtendidas}</div><div class="l">Lojas</div></div>
+        <div class="estat alta"><div class="n num">${t.alta}</div><div class="l">Alta</div></div>
+        <div class="estat crit"><div class="n num">${t.sos}</div><div class="l">SOS</div></div>
+      </div>
+      <div class="etime"><span>Tempo médio em aberto</span><b>${t.tempoMedioDias}d</b></div>
+      ${blocoMaisUrgentes(t.chamadosDetalhe)}
     </div>`;
   }).join('');
 
-  const nota = H.length < 5
-    ? `<div class="chart-note">${H.length} execução(ões) registrada(s) — a tendência fica mais clara conforme o pipeline (a cada 2h) acumula pontos.</div>`
-    : '';
-
-  alvo.innerHTML = `
-    <div class="hist-stamp">Instantâneo de ${horaUltimo}</div>
-    <div class="hist-stats">${statsHtml}</div>
-    ${lineChartSVG(H, series)}
-    ${nota}`;
+  document.getElementById('conteudo').innerHTML = `
+    <section>
+      <div class="sec-head"><h2>Farol por técnico</h2><span class="sec-note">Quantidade de chamados em aberto atribuídos a cada técnico · ${tecOrdenados.length} técnicos</span></div>
+      <div class="gauge-grid">${cards}</div>
+    </section>
+  `;
 }
 
-// tooltip do grafico: delegado no `document` (nao no #chartCard) porque o
-// #chartCard so' existe depois que iniciar() monta o conteudo de forma
-// assincrona -- ligar o listener direto nele nesse ponto do script (que
-// roda antes do fetch terminar) achava null e saia em silencio, sem erro
-// nenhum no console. `document` ja existe desde sempre, entao a delegacao
-// funciona nao importa quando o grafico aparece. Pedido do Christian,
-// 12/09/2026: uma caixa com o valor exato ao passar o mouse na bolinha.
-(function () {
-  document.addEventListener('mouseover', (ev) => {
-    const dot = ev.target.closest('.chart-dot');
-    if (!dot) return;
-    const wrap = dot.closest('.chart-svg-wrap');
-    const tooltip = wrap?.querySelector('#chartTooltip');
-    if (!tooltip) return;
-    tooltip.innerHTML = `<span class="ctt-quando">${escapeHtml(dot.dataset.quando)}</span><span class="ctt-valor" style="color:${dot.dataset.cor}">${escapeHtml(dot.dataset.label)}: ${dot.dataset.valor}</span>`;
-    const rectDot = dot.getBoundingClientRect();
-    const rectWrap = wrap.getBoundingClientRect();
-    tooltip.style.left = (rectDot.left - rectWrap.left + rectDot.width / 2) + 'px';
-    tooltip.style.top = (rectDot.top - rectWrap.top - 6) + 'px';
-    tooltip.hidden = false;
-  });
-  document.addEventListener('mouseout', (ev) => {
-    const dot = ev.target.closest('.chart-dot');
-    if (!dot) return;
-    const tooltip = dot.closest('.chart-svg-wrap')?.querySelector('#chartTooltip');
-    if (tooltip) tooltip.hidden = true;
-  });
-})();
-
 async function iniciar() {
-  const el = document.getElementById('conteudo');
   let D;
   try {
     const r = await fetch('data/dados.json', { cache: 'no-store' });
     if (!r.ok) throw new Error('HTTP ' + r.status);
     D = await r.json();
   } catch (e) {
-    el.innerHTML = `<div class="msg-erro">Não consegui carregar os dados (${e.message}).</div>`;
+    document.getElementById('conteudo').innerHTML = `<div class="msg-erro">Não consegui carregar os dados (${e.message}).</div>`;
     return;
   }
-
   DADOS_ATUAIS = D;
-  const dt = new Date(D.atualizadoEm);
-  document.getElementById('stamp').textContent = 'Atualizado ' + dt.toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
-
-  const totalChamadosEquip = D.equipamentos.reduce((s,e)=>s+e.chamados,0);
-  const totalAlta = D.equipamentos.reduce((s,e)=>s+e.alta,0);
-  const totalSOS = D.equipamentos.reduce((s,e)=>s+e.sos,0);
-  const tempoMedioGeral = Math.round(D.equipamentos.reduce((s,e)=>s+e.tempoMedioDias*e.chamados,0) / (totalChamadosEquip||1));
-
-  const kpisHtml = [
-    { label: 'Total de Chamados', val: brl0(totalChamadosEquip), cls: 'k-violet' },
-    { label: 'Lojas c/ Chamado Aberto', val: brl0(D.totalLojas), cls: 'k-violet' },
-    { label: 'Chamados SOS', val: brl0(totalSOS), cls: 'k-sos' },
-    { label: 'Chamados Alta', val: brl0(totalAlta), cls: 'k-alta' },
-    { label: 'Tempo Médio (dias)', val: brl0(tempoMedioGeral), cls: 'k-violet' },
-  ].map(k => `<div class="kpi ${k.cls}"><span class="label">${k.label}</span><div class="val num">${k.val}</div></div>`).join('');
-
-  const equipOrdenados = [...D.equipamentos].sort((a, b) => b.pctIndisponibilidade - a.pctIndisponibilidade);
-  const equipCards = equipOrdenados.map((e) => {
-    const cor = corPorIndisponibilidade(e.pctIndisponibilidade);
-    return `<div class="ecard" role="button" tabindex="0" aria-label="Ver detalhe de ${escapeHtml(e.nome)}"
-        onclick="abrirModal('${e.chave}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirModal('${e.chave}');}">
-      <div class="ehead"><span class="etitle">${e.nome}</span><span class="eopen">detalhe →</span></div>
-      <div class="donut-row">
-        <div class="donut-wrap">${donutSVG(e.pctIndisponibilidade, cor)}
-          <div class="center"><span class="pctv num" style="color:${cor}">${e.pctIndisponibilidade}%</span><span class="pctl">indispon.</span></div>
-        </div>
-        <div class="estats">
-          <div class="estat"><div class="n num">${e.pdvsEmFalha}</div><div class="l">Lojas</div></div>
-          <div class="estat"><div class="n num">${e.chamados}</div><div class="l">Chamados</div></div>
-          <div class="estat alta"><div class="n num">${e.alta}</div><div class="l">Alta</div></div>
-          <div class="estat crit"><div class="n num">${e.sos}</div><div class="l">SOS</div></div>
-        </div>
-      </div>
-      <div class="etime"><span>Tempo médio em aberto</span><b>${e.tempoMedioDias}d</b></div>
-      ${blocoMaisUrgentes(e.chamadosMaisUrgentes)}
-    </div>`;
-  }).join('');
-
-  const maxChamados = Math.max(...D.equipamentos.map(e=>e.pdvsEmFalha),1);
-  const maxTempo = Math.max(...D.equipamentos.map(e=>e.tempoMedioDias),1);
-  const ordPdvs = [...D.equipamentos].sort((a,b)=>b.pdvsEmFalha-a.pdvsEmFalha);
-  const ordTempo = [...D.equipamentos].sort((a,b)=>b.tempoMedioDias-a.tempoMedioDias);
-
-  const barsPdvs = ordPdvs.map(e => `<div class="hbar-row">
-      <span class="lbl">${e.nome}</span>
-      <div class="hbar-track"><div class="hbar-fill" style="width:${(e.pdvsEmFalha/maxChamados*100).toFixed(0)}%;background:linear-gradient(90deg,var(--violet-2),var(--violet))"></div></div>
-      <span class="v num">${e.pdvsEmFalha}</span>
-    </div>`).join('');
-  const barsTempo = ordTempo.map(e => `<div class="hbar-row">
-      <span class="lbl">${e.nome}</span>
-      <div class="hbar-track"><div class="hbar-fill" style="width:${(e.tempoMedioDias/maxTempo*100).toFixed(0)}%;background:linear-gradient(90deg,var(--pink),var(--sos))"></div></div>
-      <span class="v num">${e.tempoMedioDias}d</span>
-    </div>`).join('');
-
-  const supOrdenados = [...(D.supervisores || [])].sort((a, b) => b.chamados - a.chamados);
-  const gaugeCards = supOrdenados.map(s => {
-    const cor = corDoFarol(s.chamados);
-    return `<div class="gcard" role="button" tabindex="0" aria-label="Ver detalhe de ${escapeHtml(s.nome)}"
-        onclick="abrirModalSupervisor('${s.nome}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirModalSupervisor('${s.nome}');}">
-      <div class="ghead">
-        <div><span class="gname">${escapeHtml(s.nome)}</span><span class="gsetor">${escapeHtml((s.setores || []).join(' · '))}</span></div>
-        <span class="gdetalhe">detalhe →</span>
-      </div>
-      <div class="ggauge">${gaugeSVG(s.chamados, FAROL_MAX, FAROL_ZONAS)}</div>
-      <div class="gval"><span class="gnum num" style="color:${cor}">${s.chamados}</span><span class="glabel">chamados</span></div>
-      <div class="gstats">
-        <div class="estat"><div class="n num">${s.lojasComChamado}/${s.totalLojas}</div><div class="l">Lojas</div></div>
-        <div class="estat alta"><div class="n num">${s.alta}</div><div class="l">Alta</div></div>
-        <div class="estat crit"><div class="n num">${s.sos}</div><div class="l">SOS</div></div>
-      </div>
-      <div class="etime"><span>Tempo médio em aberto</span><b>${s.tempoMedioDias}d</b></div>
-      ${blocoMaisUrgentes(s.chamadosDetalhe)}
-    </div>`;
-  }).join('');
-
-  el.innerHTML = `
-    <div class="kpis">${kpisHtml}</div>
-
-    <section>
-      <div class="sec-head"><h2>Equipamentos em falha</h2><span class="sec-note">% indisponibilidade · fonte: Power BI (Disponibilidade Book · Sul)</span></div>
-      <div class="equip-grid">${equipCards}</div>
-    </section>
-
-    <section>
-      <div class="sec-head"><h2>Farol por supervisor</h2><span class="sec-note">Quantidade de chamados nas lojas de cada supervisor</span></div>
-      <div class="gauge-grid">${gaugeCards}</div>
-    </section>
-
-    <section>
-      <div class="sec-head"><h2>Buscar chamados</h2><span class="sec-note">Filtre por equipamento, loja, problema, data ou responsável</span></div>
-      <div class="card">
-        <div class="filter-bar">
-          <div class="filter-field">
-            <label for="filtroSetor">Equipamento</label>
-            <select id="filtroSetor"><option value="">Todos</option></select>
-          </div>
-          <div class="filter-field filter-combo">
-            <label for="filtroLoja">Loja</label>
-            <input type="text" id="filtroLoja" placeholder="Todas" autocomplete="off">
-            <div class="filter-combo-lista" id="filtroLojaLista" hidden></div>
-          </div>
-          <div class="filter-field">
-            <label for="filtroProblema">Problema</label>
-            <input type="text" id="filtroProblema" placeholder="Buscar palavra..." autocomplete="off">
-          </div>
-          <div class="filter-field">
-            <label for="filtroResp">Responsável</label>
-            <select id="filtroResp"><option value="">Todos</option></select>
-          </div>
-          <div class="filter-field filter-field-datas">
-            <label>Abertura</label>
-            <div class="filter-datas">
-              <input type="date" id="filtroDataDe" title="De">
-              <span>até</span>
-              <input type="date" id="filtroDataAte" title="Até">
-            </div>
-          </div>
-          <button class="filter-clear" id="filtroLimpar" type="button">Limpar filtros</button>
-        </div>
-        <div class="filter-count" id="filtroContagem"></div>
-        <div class="filter-table-wrap">
-          <table class="detail-table">
-            <thead><tr><th>Número</th><th>Equipamento</th><th>Loja</th><th>Problema</th><th>Estado</th><th>Prioridade</th><th>Dias</th><th>Responsável</th></tr></thead>
-            <tbody id="filtroTbody"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="sec-head"><h2>Visão consolidada</h2></div>
-      <div class="cons-grid">
-        <div class="card"><h3>Lojas com chamado aberto</h3>${barsPdvs}</div>
-        <div class="card"><h3>Tempo médio (dias)</h3>${barsTempo}</div>
-      </div>
-    </section>
-
-    <section>
-      <div class="sec-head"><h2>Evolução da tratativa de chamados</h2><span class="sec-note">A cada execução (2h) · Visão Sul</span></div>
-      <div class="card" id="chartCard"><div class="chart-note">carregando histórico…</div></div>
-    </section>
-
-    <footer>
-      <span>Fonte: SOMA (ServiceNow) · Power BI (Disponibilidade) · Visão Sul${D.disponibilidadeBIAtualizadaEm ? ' · BI atualizado ' + escapeHtml(D.disponibilidadeBIAtualizadaEm) : ''}</span>
-      <span class="mono">${brl0(D.totalRegistros)} registros · ${brl0(D.totalAbertos)} abertos</span>
-    </footer>
-  `;
-
-  montarBuscaChamados(D);
-  carregarHistorico();
-}
-
-function montarBuscaChamados(D) {
-  const todos = D.equipamentos.flatMap(e => (e.chamadosDetalhe || []).map(c => ({ ...c, equipamento: e.nome })));
-
-  const setores = D.equipamentos.map(e => e.nome);
-  const lojas = [...new Set(todos.map(c => c.loja).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
-  const responsaveis = [...new Set(todos.map(c => c.tecnico).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
-
-  const selSetor = document.getElementById('filtroSetor');
-  const inLoja = document.getElementById('filtroLoja');
-  const listaLoja = document.getElementById('filtroLojaLista');
-  const inProblema = document.getElementById('filtroProblema');
-  const selResp = document.getElementById('filtroResp');
-  const inDataDe = document.getElementById('filtroDataDe');
-  const inDataAte = document.getElementById('filtroDataAte');
-  const tbody = document.getElementById('filtroTbody');
-  const contagem = document.getElementById('filtroContagem');
-
-  const popular = (sel, valores) => valores.forEach(v => {
-    const opt = document.createElement('option');
-    opt.value = v; opt.textContent = v;
-    sel.appendChild(opt);
-  });
-  popular(selSetor, setores);
-  popular(selResp, responsaveis);
-
-  const semAcento = s => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
-
-  function renderizar() {
-    const fs = selSetor.value, flBusca = semAcento(inLoja.value.trim()), fr = selResp.value;
-    const fpBusca = semAcento(inProblema.value.trim());
-    const dataDe = inDataDe.value, dataAte = inDataAte.value;
-    const filtrados = ordenaChamados(
-      todos.filter(c =>
-        (!fs || c.equipamento === fs)
-        && (!flBusca || semAcento(c.loja).includes(flBusca))
-        && (!fpBusca || semAcento(c.problema).includes(fpBusca))
-        && (!fr || c.tecnico === fr)
-        && (!dataDe || (c.abertura && c.abertura >= dataDe))
-        && (!dataAte || (c.abertura && c.abertura <= dataAte))
-      )
-    );
-
-    contagem.textContent = `${filtrados.length} de ${todos.length} chamados`;
-    tbody.innerHTML = filtrados.length
-      ? filtrados.map(c => `<tr>
-          <td class="mono">${escapeHtml(c.numero)}</td>
-          <td>${escapeHtml(c.equipamento)}</td>
-          <td>${escapeHtml(c.loja)}</td>
-          <td>${escapeHtml(c.problema) || '—'}</td>
-          <td>${escapeHtml(c.estado)}</td>
-          <td><span class="tag ${tagClsPrioridade(c.prioridade)}">${escapeHtml(c.prioridade)}</span></td>
-          <td class="num">${c.dias}d</td>
-          <td>${escapeHtml(c.tecnico) || '—'}</td>
-        </tr>`).join('')
-      : `<tr><td colspan="8"><div class="filter-empty">Nenhum chamado com esses filtros.</div></td></tr>`;
-  }
-
-  // combobox de loja: digita e filtra a lista; clicar numa opcao preenche
-  // o campo. O filtro da tabela ja' e' por trecho (nao precisa clicar pra
-  // filtrar, so' ajuda a achar o nome certo).
-  function mostrarListaLoja() {
-    const busca = semAcento(inLoja.value.trim());
-    const opcoes = (busca ? lojas.filter(l => semAcento(l).includes(busca)) : lojas).slice(0, 40);
-    listaLoja.innerHTML = opcoes.length
-      ? opcoes.map(l => `<div class="filter-combo-item">${escapeHtml(l)}</div>`).join('')
-      : `<div class="filter-combo-vazio">Nenhuma loja encontrada</div>`;
-    listaLoja.hidden = false;
-  }
-  inLoja.addEventListener('input', () => { mostrarListaLoja(); renderizar(); });
-  inLoja.addEventListener('focus', mostrarListaLoja);
-  listaLoja.addEventListener('mousedown', (ev) => {
-    const item = ev.target.closest('.filter-combo-item');
-    if (!item) return;
-    ev.preventDefault();
-    inLoja.value = item.textContent;
-    listaLoja.hidden = true;
-    renderizar();
-  });
-  document.addEventListener('click', (ev) => {
-    if (ev.target !== inLoja && !listaLoja.contains(ev.target)) listaLoja.hidden = true;
-  });
-
-  [selSetor, selResp].forEach(sel => sel.addEventListener('change', renderizar));
-  inProblema.addEventListener('input', renderizar);
-  [inDataDe, inDataAte].forEach(el => el.addEventListener('change', renderizar));
-  document.getElementById('filtroLimpar').addEventListener('click', () => {
-    selSetor.value = ''; inLoja.value = ''; inProblema.value = ''; selResp.value = '';
-    inDataDe.value = ''; inDataAte.value = '';
-    listaLoja.hidden = true;
-    renderizar();
-  });
-
-  renderizar();
+  renderizarTecnicos(D);
 }
 iniciar();
+
 
 // menu lateral recolhivel -- lembra a preferencia do usuario
 (function () {
