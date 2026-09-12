@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-09-12T14:24:17",
+  "atualizadoEm": "2026-09-12T14:34:50",
   "totalRegistros": 2916,
-  "totalAbertos": 1972,
-  "totalFechados": 944,
+  "totalAbertos": 1971,
+  "totalFechados": 945,
   "totalLojas": 71,
   "equipamentos": [
     {
@@ -16,7 +16,7 @@
       "fechados": 63,
       "abertosHoje": 5,
       "tempoMedioDias": 20,
-      "chamadosSOS": [
+      "chamadosMaisUrgentes": [
         {
           "numero": "WOT0014583",
           "loja": "COLOMBO PARK SHOP",
@@ -1282,7 +1282,7 @@
       "fechados": 65,
       "abertosHoje": 0,
       "tempoMedioDias": 21,
-      "chamadosSOS": [
+      "chamadosMaisUrgentes": [
         {
           "numero": "WOT0021782",
           "loja": "SHOP PRACA NOVA SANTA MARIA",
@@ -1828,7 +1828,58 @@
       "fechados": 29,
       "abertosHoje": 1,
       "tempoMedioDias": 20,
-      "chamadosSOS": [],
+      "chamadosMaisUrgentes": [
+        {
+          "numero": "WOT0014298",
+          "loja": "SHOP ROYAL PLAZA SANTA MARIA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 46,
+          "tecnico": "Diego Bachmann Druziam",
+          "problema": "MICROONDAS | MCR - NÃO LIGA",
+          "abertura": "2026-07-28"
+        },
+        {
+          "numero": "WOT0014584",
+          "loja": "COLOMBO PARK SHOP",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 44,
+          "tecnico": "Gustavo de Godoy Matheus",
+          "problema": "MICROONDAS | MCR - NÃO AQUECE",
+          "abertura": "2026-07-30"
+        },
+        {
+          "numero": "WOT0015175",
+          "loja": "ATLANTICO SHOP",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 42,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BK079225 - FORNO MICROONDAS | MCR - NÃO AQUECE",
+          "abertura": "2026-08-01"
+        },
+        {
+          "numero": "WOT0018706",
+          "loja": "BOURBON SHOP WALLIG",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 35,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "MICROONDAS | MCR - NÃO LIGA",
+          "abertura": "2026-08-08"
+        },
+        {
+          "numero": "WOT0021461",
+          "loja": "SHOP MUELLER CURITIBA",
+          "estado": "Aceito",
+          "prioridade": "Alta",
+          "dias": 31,
+          "tecnico": "Marcelo Banak",
+          "problema": "BK069175 - MICROONDAS; MENUMASTER; MOC24B; 14061003 | MCR - NÃO LIGA",
+          "abertura": "2026-08-12"
+        }
+      ],
       "chamadosDetalhe": [
         {
           "numero": "WOT0014298",
@@ -2213,7 +2264,7 @@
       "fechados": 23,
       "abertosHoje": 0,
       "tempoMedioDias": 22,
-      "chamadosSOS": [
+      "chamadosMaisUrgentes": [
         {
           "numero": "WOT0038311",
           "loja": "FS PONTA GROSSA - RUA BALDUINO TAQUES 1530",
@@ -2243,6 +2294,26 @@
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "BK063527 - PHU; PRINCE CASTLE; EHB34A-BR; LMGK22745 | PHU - LOJA SEM NENHUMA PHU FUNCIONANDO",
           "abertura": "2026-09-06"
+        },
+        {
+          "numero": "WOT0014369",
+          "loja": "FS CURITIBA - LINHA VERDE",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 45,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BK034346 - PHU; DUKE; FWM334MB1230BR; 11140136 | PHU - NÃO LIGA",
+          "abertura": "2026-07-29"
+        },
+        {
+          "numero": "WOT0014373",
+          "loja": "FS PONTA GROSSA - RUA BALDUINO TAQUES 1530",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 45,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BK048300 - PHU; PRINCE CASTLE; EHB34A-BR; GNGK26390 | PHU - NÃO ATINGE TEMPERATURA",
+          "abertura": "2026-07-29"
         }
       ],
       "chamadosDetalhe": [
@@ -2699,7 +2770,7 @@
       "fechados": 113,
       "abertosHoje": 2,
       "tempoMedioDias": 23,
-      "chamadosSOS": [
+      "chamadosMaisUrgentes": [
         {
           "numero": "WOT0018633",
           "loja": "OUTLET NOVO HAMBURGO",
@@ -3325,7 +3396,7 @@
       "fechados": 40,
       "abertosHoje": 1,
       "tempoMedioDias": 22,
-      "chamadosSOS": [
+      "chamadosMaisUrgentes": [
         {
           "numero": "WOT0020478",
           "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
@@ -3345,6 +3416,36 @@
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "TOSTADEIRA 220V 3290W 66A71GRC | TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
           "abertura": "2026-09-11"
+        },
+        {
+          "numero": "WOT0016505",
+          "loja": "COLOMBO PARK SHOP",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 38,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BK058159 - TOSTADORA VERTICAL; AJ ANTUNES; VCT-2000 | TST - NÃO TOSTA",
+          "abertura": "2026-08-05"
+        },
+        {
+          "numero": "WOT0036284",
+          "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 22,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "BK052645 - TOSTADORA VERTICAL; AJ ANTUNES; VCT-2000 | TST - NÃO TOSTA",
+          "abertura": "2026-08-21"
+        },
+        {
+          "numero": "WOT0037465",
+          "loja": "SHOP PALLADIUM PONTA GROSSA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 20,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BK066088 - TOSTADEIRA | TST - NÃO TOSTA",
+          "abertura": "2026-08-23"
         }
       ],
       "chamadosDetalhe": [
