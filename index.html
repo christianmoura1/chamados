@@ -162,12 +162,11 @@
   .etime { display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 10px; }
   .etime b { color: var(--ink); font-family: "IBM Plex Mono", monospace; }
 
-  .esos-label { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--sos); display: flex; align-items: center; gap: 6px; }
+  .esos-label { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); display: flex; align-items: center; gap: 6px; }
   .esos-label::before { content: "●"; font-size: 8px; }
   .esos-list { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
   .esos-item { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 11.5px; }
   .esos-item .loja { color: var(--ink); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .esos-item .dias { font-family: "IBM Plex Mono", monospace; background: var(--sos-soft); color: var(--sos); border-radius: 999px; padding: 1px 8px; font-weight: 600; white-space: nowrap; flex: none; }
   .esos-empty { font-size: 11.5px; color: var(--faint); }
 
   /* ---------- farol por supervisor (velocimetro) ---------- */
@@ -213,6 +212,16 @@
   .chart-note { font-size: 12px; color: var(--faint); font-family: "IBM Plex Mono", monospace; margin-top: 10px; }
 
   .hist-stamp { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--faint); margin-bottom: 12px; }
+  .chart-svg-wrap { position: relative; }
+  .chart-dot { cursor: pointer; }
+  .chart-tooltip {
+    position: absolute; z-index: 20; pointer-events: none; transform: translate(-50%, -100%);
+    background: var(--ink); color: var(--surface); border-radius: 10px; padding: 7px 10px;
+    font-family: "IBM Plex Mono", monospace; font-size: 11px; white-space: nowrap; box-shadow: var(--shadow);
+    display: flex; flex-direction: column; gap: 2px; align-items: flex-start;
+  }
+  .chart-tooltip .ctt-quando { font-size: 9.5px; opacity: .75; }
+  .chart-tooltip .ctt-valor { font-weight: 700; font-size: 13px; }
   .hist-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 20px; }
   @media (max-width: 780px) { .hist-stats { grid-template-columns: repeat(2,1fr); } }
   .hstat { background: var(--surface2); border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 3px; }
@@ -602,15 +611,25 @@ function lineChartSVG(pontos, series) {
   finais.forEach((f, i) => { f.yLabel = i === 0 ? y(f.v) : Math.max(y(f.v), finais[i - 1].yLabel + minGap); });
   const yLabelPorChave = Object.fromEntries(finais.map(f => [f.s.key, f.yLabel]));
 
+  // dado de cada bolinha guardado em atributos data-* pra o tooltip (caixa
+  // com o valor exato) ler no hover, sem precisar recalcular nada -- pedido
+  // do Christian, 12/09/2026.
+  const dotAttrs = (p, i, s) => {
+    const d = new Date(p.quando || (p.data + 'T00:00:00'));
+    const quandoFmt = d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' }) + ' ' + d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+    return `class="chart-dot" data-valor="${p[s.key]}" data-label="${escapeHtml(s.label)}" data-cor="${s.color}" data-quando="${quandoFmt}"`;
+  };
+
   const seriesSvg = series.map(s => {
     const valorFinal = pontos[n - 1][s.key];
     const rotuloFinal = `<text x="${(x(n - 1) + 8).toFixed(1)}" y="${(yLabelPorChave[s.key] + 3).toFixed(1)}" font-size="11" font-weight="700" fill="${s.color}" font-family="IBM Plex Mono, monospace">${valorFinal}</text>`;
     if (n === 1) {
-      return `<circle cx="${x(0).toFixed(1)}" cy="${y(pontos[0][s.key]).toFixed(1)}" r="4" fill="${s.color}"/>${rotuloFinal}`;
+      return `<circle cx="${x(0).toFixed(1)}" cy="${y(pontos[0][s.key]).toFixed(1)}" r="5" fill="${s.color}" ${dotAttrs(pontos[0], 0, s)}/>${rotuloFinal}`;
     }
     const pts = pontos.map((p, i) => `${x(i).toFixed(1)},${y(p[s.key]).toFixed(1)}`).join(' ');
-    const dots = pontos.map((p, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(p[s.key]).toFixed(1)}" r="3" fill="${s.color}"/>`).join('');
-    return `<polyline points="${pts}" fill="none" stroke="${s.color}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>${dots}${rotuloFinal}`;
+    const dots = pontos.map((p, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(p[s.key]).toFixed(1)}" r="5" fill="${s.color}" fill-opacity="0" stroke="${s.color}" stroke-width="0" ${dotAttrs(p, i, s)}/>`).join('');
+    const dotsVisiveis = pontos.map((p, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(p[s.key]).toFixed(1)}" r="3" fill="${s.color}" style="pointer-events:none"/>`).join('');
+    return `<polyline points="${pts}" fill="none" stroke="${s.color}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" style="pointer-events:none"/>${dotsVisiveis}${dots}${rotuloFinal}`;
   }).join('');
 
   // rotulo com dia + hora (ex.: "09/09 22h") pra dar pra comparar o mesmo
@@ -624,7 +643,7 @@ function lineChartSVG(pontos, series) {
     return `<text x="${x(i).toFixed(1)}" y="${H - 8}" font-size="9" text-anchor="middle" fill="var(--faint)" font-family="IBM Plex Mono, monospace">${dataLbl} ${horaLbl}</text>`;
   }).join('');
 
-  return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block;">${grid}${seriesSvg}${labels}</svg>`;
+  return `<div class="chart-svg-wrap"><svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block;">${grid}${seriesSvg}${labels}</svg><div class="chart-tooltip" id="chartTooltip" hidden></div></div>`;
 }
 
 async function carregarHistorico() {
@@ -699,6 +718,35 @@ async function carregarHistorico() {
     ${nota}`;
 }
 
+// tooltip do grafico: delegado no `document` (nao no #chartCard) porque o
+// #chartCard so' existe depois que iniciar() monta o conteudo de forma
+// assincrona -- ligar o listener direto nele nesse ponto do script (que
+// roda antes do fetch terminar) achava null e saia em silencio, sem erro
+// nenhum no console. `document` ja existe desde sempre, entao a delegacao
+// funciona nao importa quando o grafico aparece. Pedido do Christian,
+// 12/09/2026: uma caixa com o valor exato ao passar o mouse na bolinha.
+(function () {
+  document.addEventListener('mouseover', (ev) => {
+    const dot = ev.target.closest('.chart-dot');
+    if (!dot) return;
+    const wrap = dot.closest('.chart-svg-wrap');
+    const tooltip = wrap?.querySelector('#chartTooltip');
+    if (!tooltip) return;
+    tooltip.innerHTML = `<span class="ctt-quando">${escapeHtml(dot.dataset.quando)}</span><span class="ctt-valor" style="color:${dot.dataset.cor}">${escapeHtml(dot.dataset.label)}: ${dot.dataset.valor}</span>`;
+    const rectDot = dot.getBoundingClientRect();
+    const rectWrap = wrap.getBoundingClientRect();
+    tooltip.style.left = (rectDot.left - rectWrap.left + rectDot.width / 2) + 'px';
+    tooltip.style.top = (rectDot.top - rectWrap.top - 6) + 'px';
+    tooltip.hidden = false;
+  });
+  document.addEventListener('mouseout', (ev) => {
+    const dot = ev.target.closest('.chart-dot');
+    if (!dot) return;
+    const tooltip = dot.closest('.chart-svg-wrap')?.querySelector('#chartTooltip');
+    if (tooltip) tooltip.hidden = true;
+  });
+})();
+
 async function iniciar() {
   const el = document.getElementById('conteudo');
   let D;
@@ -731,9 +779,12 @@ async function iniciar() {
   const equipOrdenados = [...D.equipamentos].sort((a, b) => b.pctIndisponibilidade - a.pctIndisponibilidade);
   const equipCards = equipOrdenados.map((e) => {
     const cor = corPorIndisponibilidade(e.pctIndisponibilidade);
-    const sosHtml = e.chamadosSOS.length
-      ? e.chamadosSOS.map(s => `<div class="esos-item"><span class="loja">${s.loja}</span><span class="dias">${s.dias}d</span></div>`).join('')
-      : '<div class="esos-empty">Nenhum chamado SOS em aberto.</div>';
+    // sempre ate' 5 linhas (SOS primeiro, completa com Alta/Normal se
+    // faltar) pra manter a altura do card visualmente consistente entre
+    // equipamentos -- pedido do Christian, 12/09/2026.
+    const urgentesHtml = e.chamadosMaisUrgentes.length
+      ? e.chamadosMaisUrgentes.map(s => `<div class="esos-item"><span class="loja">${escapeHtml(s.loja)}</span><span class="tag ${tagClsPrioridade(s.prioridade)}">${s.dias}d</span></div>`).join('')
+      : '<div class="esos-empty">Nenhum chamado em aberto.</div>';
     return `<div class="ecard" role="button" tabindex="0" aria-label="Ver detalhe de ${escapeHtml(e.nome)}"
         onclick="abrirModal('${e.chave}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirModal('${e.chave}');}">
       <div class="ehead"><span class="etitle">${e.nome}</span><span class="eopen">detalhe →</span></div>
@@ -750,8 +801,8 @@ async function iniciar() {
       </div>
       <div class="etime"><span>Tempo médio em aberto</span><b>${e.tempoMedioDias}d</b></div>
       <div>
-        <div class="esos-label">Chamados SOS (${e.sos})</div>
-        <div class="esos-list">${sosHtml}</div>
+        <div class="esos-label">Mais urgentes (${e.chamadosMaisUrgentes.length})</div>
+        <div class="esos-list">${urgentesHtml}</div>
       </div>
     </div>`;
   }).join('');
@@ -806,11 +857,11 @@ async function iniciar() {
     </section>
 
     <section>
-      <div class="sec-head"><h2>Buscar chamados</h2><span class="sec-note">Filtre por setor, loja, problema, data ou responsável</span></div>
+      <div class="sec-head"><h2>Buscar chamados</h2><span class="sec-note">Filtre por equipamento, loja, problema, data ou responsável</span></div>
       <div class="card">
         <div class="filter-bar">
           <div class="filter-field">
-            <label for="filtroSetor">Setor</label>
+            <label for="filtroSetor">Equipamento</label>
             <select id="filtroSetor"><option value="">Todos</option></select>
           </div>
           <div class="filter-field filter-combo">
@@ -839,7 +890,7 @@ async function iniciar() {
         <div class="filter-count" id="filtroContagem"></div>
         <div class="filter-table-wrap">
           <table class="detail-table">
-            <thead><tr><th>Número</th><th>Setor</th><th>Loja</th><th>Problema</th><th>Estado</th><th>Prioridade</th><th>Dias</th><th>Responsável</th></tr></thead>
+            <thead><tr><th>Número</th><th>Equipamento</th><th>Loja</th><th>Problema</th><th>Estado</th><th>Prioridade</th><th>Dias</th><th>Responsável</th></tr></thead>
             <tbody id="filtroTbody"></tbody>
           </table>
         </div>

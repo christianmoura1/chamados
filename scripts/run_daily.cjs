@@ -252,7 +252,7 @@ function processar(csvTexto, disponibilidadeBI) {
 
   const porCategoria = {};
   for (const cat of CATEGORIAS) {
-    porCategoria[cat.chave] = { nome: cat.nome, chamados: 0, alta: 0, sos: 0, fechados: 0, abertosHoje: 0, lojasEmFalha: new Set(), somaDias: 0, itensSOS: [], itensTodos: [] };
+    porCategoria[cat.chave] = { nome: cat.nome, chamados: 0, alta: 0, sos: 0, fechados: 0, abertosHoje: 0, lojasEmFalha: new Set(), somaDias: 0, itensTodos: [] };
   }
 
   let totalAbertos = 0, totalFechados = 0;
@@ -298,12 +298,18 @@ function processar(csvTexto, disponibilidadeBI) {
     const abertura = dt ? `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, '0')}-${String(dt.getDate()).padStart(2, '0')}` : null;
     const item = { numero: l[iNum], loja, estado: l[iEstado] || '', prioridade, dias, tecnico: l[iTec] || '', problema: (l[iDesc] || '').trim(), abertura };
     g.itensTodos.push(item);
-    if (critica) g.itensSOS.push(item);
   }
 
   const equipamentos = CATEGORIAS.map(cat => {
     const g = porCategoria[cat.chave];
     const pdvsEmFalha = g.lojasEmFalha.size;
+    // ordena uma vez so' (mutation) e reaproveita: os "mais urgentes" sao os
+    // 5 primeiros da lista JA ordenada por prioridade (SOS > Alta > Normal,
+    // dias desc) -- completa com Alta/Normal quando tem menos de 5 SOS, pra
+    // o card sempre mostrar 5 linhas (visual consistente entre cards, so'
+    // fica com menos se o equipamento tiver menos de 5 chamados no total).
+    // Pedido do Christian, 12/09/2026.
+    const ordenados = g.itensTodos.sort(comparaChamados);
     return {
       chave: cat.chave,
       nome: cat.nome,
@@ -318,8 +324,8 @@ function processar(csvTexto, disponibilidadeBI) {
       fechados: g.fechados,
       abertosHoje: g.abertosHoje,
       tempoMedioDias: g.chamados ? Math.round(g.somaDias / g.chamados) : 0,
-      chamadosSOS: g.itensSOS.sort(comparaChamados).slice(0, 5),
-      chamadosDetalhe: g.itensTodos.sort(comparaChamados),
+      chamadosMaisUrgentes: ordenados.slice(0, 5),
+      chamadosDetalhe: ordenados,
     };
   });
 
