@@ -170,6 +170,10 @@
   .esos-empty { font-size: 11.5px; color: var(--faint); }
 
   /* ---------- farol por supervisor (velocimetro) ---------- */
+  .farol-tabs { display: flex; gap: 6px; margin-bottom: 14px; }
+  .farol-tab { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; font-weight: 600; letter-spacing: .02em; text-transform: uppercase; color: var(--muted); background: var(--surface2); border: 1px solid var(--line); border-radius: 999px; padding: 7px 16px; cursor: pointer; transition: background .12s ease, color .12s ease; }
+  .farol-tab:hover { color: var(--ink); }
+  .farol-tab.active { background: var(--violet); border-color: var(--violet); color: #fff; }
   .gauge-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; align-items: start; }
   @media (max-width: 1180px) { .gauge-grid { grid-template-columns: repeat(3,1fr); } }
   @media (max-width: 860px) { .gauge-grid { grid-template-columns: repeat(2,1fr); } }
@@ -445,6 +449,22 @@ function ordenaChamados(itens) {
 }
 const tagClsPrioridade = p => p === 'SOS' ? 'tag-sos' : (p === 'Alta' ? 'tag-alta' : 'tag-normal');
 
+// bloco "Mais urgentes" reaproveitado nos cards de equipamento, supervisor e
+// tecnico -- pedido do Christian, 12/09/2026: mostrar os 5 chamados mais
+// urgentes (ja vem ordenado por prioridade+dias do backend) tambem nos
+// faroles de supervisor/tecnico, do mesmo jeito que ja existia no card de
+// equipamento.
+function blocoMaisUrgentes(itens) {
+  const top5 = (itens || []).slice(0, 5);
+  const html = top5.length
+    ? top5.map(c => `<div class="esos-item"><span class="loja">${escapeHtml(c.loja)}</span><span class="tag ${tagClsPrioridade(c.prioridade)}">${c.dias}d</span></div>`).join('')
+    : '<div class="esos-empty">Nenhum chamado em aberto.</div>';
+  return `<div>
+      <div class="esos-label">Mais urgentes (${top5.length})</div>
+      <div class="esos-list">${html}</div>
+    </div>`;
+}
+
 let MODAL_ITENS = [];
 let MODAL_MOSTRA_EQUIP = false;
 
@@ -572,6 +592,18 @@ function abrirModalSupervisor(nome) {
   abrirModalGenerico(
     s.nome,
     `${itens.length} chamado(s) em aberto · ${s.lojasComChamado}/${s.totalLojas} lojas afetadas · ${s.alta} Alta · ${s.sos} SOS`,
+    itens,
+    { mostrarEquipamento: true }
+  );
+}
+
+function abrirModalTecnico(nome) {
+  const t = DADOS_ATUAIS?.tecnicos?.find(x => x.nome === nome);
+  if (!t) return;
+  const itens = t.chamadosDetalhe || [];
+  abrirModalGenerico(
+    t.nome,
+    `${itens.length} chamado(s) em aberto · ${t.lojasAtendidas} loja(s) atendidas · ${t.alta} Alta · ${t.sos} SOS`,
     itens,
     { mostrarEquipamento: true }
   );
@@ -779,12 +811,6 @@ async function iniciar() {
   const equipOrdenados = [...D.equipamentos].sort((a, b) => b.pctIndisponibilidade - a.pctIndisponibilidade);
   const equipCards = equipOrdenados.map((e) => {
     const cor = corPorIndisponibilidade(e.pctIndisponibilidade);
-    // sempre ate' 5 linhas (SOS primeiro, completa com Alta/Normal se
-    // faltar) pra manter a altura do card visualmente consistente entre
-    // equipamentos -- pedido do Christian, 12/09/2026.
-    const urgentesHtml = e.chamadosMaisUrgentes.length
-      ? e.chamadosMaisUrgentes.map(s => `<div class="esos-item"><span class="loja">${escapeHtml(s.loja)}</span><span class="tag ${tagClsPrioridade(s.prioridade)}">${s.dias}d</span></div>`).join('')
-      : '<div class="esos-empty">Nenhum chamado em aberto.</div>';
     return `<div class="ecard" role="button" tabindex="0" aria-label="Ver detalhe de ${escapeHtml(e.nome)}"
         onclick="abrirModal('${e.chave}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirModal('${e.chave}');}">
       <div class="ehead"><span class="etitle">${e.nome}</span><span class="eopen">detalhe →</span></div>
@@ -800,10 +826,7 @@ async function iniciar() {
         </div>
       </div>
       <div class="etime"><span>Tempo médio em aberto</span><b>${e.tempoMedioDias}d</b></div>
-      <div>
-        <div class="esos-label">Mais urgentes (${e.chamadosMaisUrgentes.length})</div>
-        <div class="esos-list">${urgentesHtml}</div>
-      </div>
+      ${blocoMaisUrgentes(e.chamadosMaisUrgentes)}
     </div>`;
   }).join('');
 
@@ -840,6 +863,28 @@ async function iniciar() {
         <div class="estat crit"><div class="n num">${s.sos}</div><div class="l">SOS</div></div>
       </div>
       <div class="etime"><span>Tempo médio em aberto</span><b>${s.tempoMedioDias}d</b></div>
+      ${blocoMaisUrgentes(s.chamadosDetalhe)}
+    </div>`;
+  }).join('');
+
+  const tecOrdenados = [...(D.tecnicos || [])].sort((a, b) => b.chamados - a.chamados);
+  const gaugeCardsTecnico = tecOrdenados.map(t => {
+    const cor = corDoFarol(t.chamados);
+    return `<div class="gcard" role="button" tabindex="0" aria-label="Ver detalhe de ${escapeHtml(t.nome)}"
+        onclick="abrirModalTecnico('${escapeHtml(t.nome)}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirModalTecnico('${escapeHtml(t.nome)}');}">
+      <div class="ghead">
+        <div><span class="gname">${escapeHtml(t.nome)}</span><span class="gsetor">${t.lojasAtendidas} loja(s) atendidas</span></div>
+        <span class="gdetalhe">detalhe →</span>
+      </div>
+      <div class="ggauge">${gaugeSVG(t.chamados, FAROL_MAX, FAROL_ZONAS)}</div>
+      <div class="gval"><span class="gnum num" style="color:${cor}">${t.chamados}</span><span class="glabel">chamados</span></div>
+      <div class="gstats">
+        <div class="estat"><div class="n num">${t.lojasAtendidas}</div><div class="l">Lojas</div></div>
+        <div class="estat alta"><div class="n num">${t.alta}</div><div class="l">Alta</div></div>
+        <div class="estat crit"><div class="n num">${t.sos}</div><div class="l">SOS</div></div>
+      </div>
+      <div class="etime"><span>Tempo médio em aberto</span><b>${t.tempoMedioDias}d</b></div>
+      ${blocoMaisUrgentes(t.chamadosDetalhe)}
     </div>`;
   }).join('');
 
@@ -852,8 +897,13 @@ async function iniciar() {
     </section>
 
     <section>
-      <div class="sec-head"><h2>Farol por supervisor</h2><span class="sec-note">Quantidade de chamados nas lojas de cada supervisor</span></div>
-      <div class="gauge-grid">${gaugeCards}</div>
+      <div class="sec-head"><h2>Farol</h2><span class="sec-note" id="farolNote">Quantidade de chamados nas lojas de cada supervisor</span></div>
+      <div class="farol-tabs">
+        <button type="button" class="farol-tab active" data-farol="supervisor">Por supervisor</button>
+        <button type="button" class="farol-tab" data-farol="tecnico">Por técnico</button>
+      </div>
+      <div class="gauge-grid" id="gaugeGridSupervisor">${gaugeCards}</div>
+      <div class="gauge-grid" id="gaugeGridTecnico" hidden>${gaugeCardsTecnico}</div>
     </section>
 
     <section>
@@ -918,6 +968,29 @@ async function iniciar() {
 
   montarBuscaChamados(D);
   carregarHistorico();
+  montarAbasFarol();
+}
+
+// abas do farol (supervisor / tecnico) -- pedido do Christian, 12/09/2026.
+// iniciar() so' roda uma vez (sem polling client-side), entao nao precisa
+// se preocupar em re-ligar isso a cada refresh.
+function montarAbasFarol() {
+  const NOTAS = {
+    supervisor: 'Quantidade de chamados nas lojas de cada supervisor',
+    tecnico: 'Quantidade de chamados em aberto atribuídos a cada técnico',
+  };
+  const abas = document.querySelectorAll('.farol-tab');
+  const grids = {
+    supervisor: document.getElementById('gaugeGridSupervisor'),
+    tecnico: document.getElementById('gaugeGridTecnico'),
+  };
+  const nota = document.getElementById('farolNote');
+  abas.forEach(btn => btn.addEventListener('click', () => {
+    const aba = btn.dataset.farol;
+    abas.forEach(b => b.classList.toggle('active', b === btn));
+    Object.entries(grids).forEach(([k, el]) => { el.hidden = k !== aba; });
+    if (nota && NOTAS[aba]) nota.textContent = NOTAS[aba];
+  }));
 }
 
 function montarBuscaChamados(D) {

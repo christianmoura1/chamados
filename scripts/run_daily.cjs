@@ -337,6 +337,7 @@ function processar(csvTexto, disponibilidadeBI) {
     totalLojas,
     equipamentos,
     supervisores: calcularSupervisores(equipamentos),
+    tecnicos: calcularTecnicos(equipamentos),
   };
 }
 
@@ -409,6 +410,40 @@ function calcularSupervisores(equipamentos) {
       chamadosDetalhe,
     };
   });
+}
+
+// Farol por tecnico (pedido do Christian, 12/09/2026): mesmo farol do
+// supervisor, mas agrupado direto pelo campo "tecnico" que ja vem em cada
+// chamado -- sem casamento de nome de loja, e' so' agrupar. ATENCAO: quando
+// um chamado ainda nao foi delegado a um tecnico de campo, o SOMA deixa o
+// campo "tecnico" com o nome do proprio SUPERVISOR da fila -- por isso
+// "Rafael Wagner..." e "Carlos Magno..." aparecem com dezenas de chamados a
+// mais que os demais (fila grande ainda sem tecnico assinalado, nao e' bug).
+function calcularTecnicos(equipamentos) {
+  const todos = equipamentos.flatMap(e => e.chamadosDetalhe.map(c => ({ ...c, equipamento: e.nome })));
+  const porTecnico = new Map();
+  for (const c of todos) {
+    const nome = (c.tecnico || '').trim() || 'Sem técnico atribuído';
+    if (!porTecnico.has(nome)) {
+      porTecnico.set(nome, { chamados: 0, alta: 0, sos: 0, somaDias: 0, lojas: new Set(), chamadosDetalhe: [] });
+    }
+    const g = porTecnico.get(nome);
+    g.chamados++;
+    if (c.prioridade === 'Alta') g.alta++;
+    if (c.prioridade === 'SOS') g.sos++;
+    g.somaDias += c.dias;
+    g.lojas.add(c.loja);
+    g.chamadosDetalhe.push(c);
+  }
+  return [...porTecnico.entries()].map(([nome, g]) => ({
+    nome,
+    lojasAtendidas: g.lojas.size,
+    chamados: g.chamados,
+    alta: g.alta,
+    sos: g.sos,
+    tempoMedioDias: g.chamados ? Math.round(g.somaDias / g.chamados) : 0,
+    chamadosDetalhe: g.chamadosDetalhe.sort(comparaChamados),
+  }));
 }
 
 // Guarda 1 ponto por dia (America/Sao_Paulo) com o retrato do backlog, pra
