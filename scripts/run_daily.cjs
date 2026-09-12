@@ -427,8 +427,23 @@ function calcularSupervisores(equipamentos) {
 // chamado -- sem casamento de nome de loja, e' so' agrupar. ATENCAO: quando
 // um chamado ainda nao foi delegado a um tecnico de campo, o SOMA deixa o
 // campo "tecnico" com o nome do proprio SUPERVISOR da fila -- por isso
-// "Rafael Wagner..." e "Carlos Magno..." aparecem com dezenas de chamados a
-// mais que os demais (fila grande ainda sem tecnico assinalado, nao e' bug).
+// "Rafael Wagner...", "Carlos Magno...", "Marcel..." e "Gustavo..." aparecem
+// misturados com os tecnicos de campo de verdade (fila do supervisor ainda
+// sem tecnico assinalado, nao e' bug, mas precisa ficar visualmente
+// separado -- pedido do Christian, 12/09/2026, "supervisores estao juntos
+// com os tecnicos"). Deteccao: as PRIMEIRAS palavras do nome do "tecnico"
+// batem EXATAMENTE (palavra a palavra) com o nome de algum dos 4
+// supervisores -- comparacao por PREFIXO DE STRING pura (ex.: "MARCEL"
+// dentro de "MARCELO Banak") daria falso positivo, por isso o corte e'
+// sempre em fronteira de palavra.
+const PALAVRAS_SUPERVISORES = SUPERVISORES.map(s => normalizaLoja(s.nome).split(' '));
+function ehNomeDeSupervisor(nomeTecnico) {
+  const palavrasTecnico = normalizaLoja(nomeTecnico).split(' ');
+  return PALAVRAS_SUPERVISORES.some(palavrasSup =>
+    palavrasSup.every((p, i) => palavrasTecnico[i] === p)
+  );
+}
+
 function calcularTecnicos(equipamentos) {
   const todos = equipamentos.flatMap(e => e.chamadosDetalhe.map(c => ({ ...c, equipamento: e.nome })));
   const porTecnico = new Map();
@@ -447,6 +462,7 @@ function calcularTecnicos(equipamentos) {
   }
   return [...porTecnico.entries()].map(([nome, g]) => ({
     nome,
+    ehSupervisor: ehNomeDeSupervisor(nome),
     lojasAtendidas: g.lojas.size,
     chamados: g.chamados,
     alta: g.alta,

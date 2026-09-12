@@ -59,9 +59,9 @@
   .num { font-variant-numeric: tabular-nums; }
   .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
 
-  .shell { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; transition: grid-template-columns .22s ease; }
-  .shell.sb-collapsed { grid-template-columns: 0 1fr; }
-  @media (max-width: 860px) { .shell:not(.sb-expanded) { grid-template-columns: 0 1fr; } }
+  .shell { display: grid; grid-template-columns: 240px minmax(0,1fr); min-height: 100vh; transition: grid-template-columns .22s ease; }
+  .shell.sb-collapsed { grid-template-columns: 0 minmax(0,1fr); }
+  @media (max-width: 860px) { .shell:not(.sb-expanded) { grid-template-columns: 0 minmax(0,1fr); } }
 
   /* ---------- sidebar ---------- */
   .side {
@@ -102,8 +102,9 @@
   .navlabel { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #7A72B8; padding: 0 12px; margin: 14px 0 6px; }
   .navitem {
     display: flex; align-items: center; gap: 11px; padding: 9px 12px; border-radius: 10px;
-    color: #C6C0EE; font-size: 13.5px; font-weight: 500;
+    color: #C6C0EE; font-size: 13.5px; font-weight: 500; text-decoration: none;
   }
+  a.navitem:hover { background: rgba(255,255,255,0.06); color: #FFFFFF; }
   .navitem .dot { width: 7px; height: 7px; border-radius: 999px; background: currentColor; opacity: .55; flex: none; }
   .navitem.active { background: rgba(255,255,255,0.08); color: #FFFFFF; }
   .navitem.active .dot { background: var(--pink); opacity: 1; }
@@ -135,9 +136,9 @@
   h2 { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 17px; letter-spacing: -0.01em; margin: 0; }
   .sec-note { font-size: 12px; color: var(--faint); font-family: "IBM Plex Mono", monospace; }
 
-  .equip-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; align-items: start; }
-  @media (max-width: 980px) { .equip-grid { grid-template-columns: repeat(2,1fr); } }
-  @media (max-width: 640px) { .equip-grid { grid-template-columns: 1fr; } }
+  .equip-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; align-items: start; }
+  @media (max-width: 980px) { .equip-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+  @media (max-width: 640px) { .equip-grid { grid-template-columns: minmax(0,1fr); } }
 
   .ecard { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 18px 18px 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 14px; cursor: pointer; transition: transform .12s ease, box-shadow .12s ease; text-align: left; }
   .ecard:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(33,29,61,.08), 0 18px 34px rgba(33,29,61,.10); }
@@ -167,22 +168,19 @@
   .esos-label::before { content: "●"; font-size: 8px; }
   .esos-list { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
   .esos-item { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 11.5px; }
-  .esos-item .loja { color: var(--ink); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .esos-item .loja { color: var(--ink); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
   .esos-empty { font-size: 11.5px; color: var(--faint); }
 
   /* ---------- farol por supervisor (velocimetro) ---------- */
-  .farol-tabs { display: flex; gap: 6px; margin-bottom: 14px; }
-  .farol-tab { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; font-weight: 600; letter-spacing: .02em; text-transform: uppercase; color: var(--muted); background: var(--surface2); border: 1px solid var(--line); border-radius: 999px; padding: 7px 16px; cursor: pointer; transition: background .12s ease, color .12s ease; }
-  .farol-tab:hover { color: var(--ink); }
-  .farol-tab.active { background: var(--violet); border-color: var(--violet); color: #fff; }
-  .gauge-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; align-items: start; }
-  @media (max-width: 1180px) { .gauge-grid { grid-template-columns: repeat(3,1fr); } }
-  @media (max-width: 860px) { .gauge-grid { grid-template-columns: repeat(2,1fr); } }
-  @media (max-width: 520px) { .gauge-grid { grid-template-columns: 1fr; } }
+  .gauge-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; align-items: start; }
+  @media (max-width: 1180px) { .gauge-grid { grid-template-columns: repeat(3,minmax(0,1fr)); } }
+  @media (max-width: 860px) { .gauge-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+  @media (max-width: 520px) { .gauge-grid { grid-template-columns: minmax(0,1fr); } }
   .gcard { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 16px 16px 14px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 6px; cursor: pointer; transition: transform .12s ease, box-shadow .12s ease; text-align: left; }
   .gcard:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(33,29,61,.08), 0 18px 34px rgba(33,29,61,.10); }
   .gcard:focus-visible { outline: 2px solid var(--violet); outline-offset: 2px; }
   .ghead { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 2px; }
+  .ghead > div { min-width: 0; }
   .gname { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 13.5px; display: block; }
   .gsetor { font-family: "IBM Plex Mono", monospace; font-size: 9.5px; color: var(--faint); text-transform: uppercase; letter-spacing: .04em; display: block; margin-top: 1px; }
   .gdetalhe { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--faint); white-space: nowrap; flex: none; }
@@ -550,18 +548,6 @@ function abrirModalGenerico(titulo, subtitulo, itens, { mostrarEquipamento } = {
   });
 })();
 
-function abrirModalTecnico(nome) {
-  const t = DADOS_ATUAIS?.tecnicos?.find(x => x.nome === nome);
-  if (!t) return;
-  const itens = t.chamadosDetalhe || [];
-  abrirModalGenerico(
-    t.nome,
-    `${itens.length} chamado(s) em aberto · ${t.lojasAtendidas} loja(s) atendidas · ${t.alta} Alta · ${t.sos} SOS`,
-    itens,
-    { mostrarEquipamento: true }
-  );
-}
-
 function fecharModal() {
   document.getElementById('modalOverlay').hidden = true;
   document.body.style.overflow = '';
@@ -576,35 +562,63 @@ document.addEventListener('keydown', (ev) => {
 });
 
 
+function abrirModalTecnico(nome) {
+  const t = DADOS_ATUAIS?.tecnicos?.find(x => x.nome === nome);
+  if (!t) return;
+  const itens = t.chamadosDetalhe || [];
+  abrirModalGenerico(
+    t.nome,
+    `${itens.length} chamado(s) em aberto · ${t.lojasAtendidas} loja(s) atendidas · ${t.alta} Alta · ${t.sos} SOS`,
+    itens,
+    { mostrarEquipamento: true }
+  );
+}
+
+function cardTecnico(t) {
+  const cor = corDoFarol(t.chamados);
+  return `<div class="gcard" role="button" tabindex="0" aria-label="Ver detalhe de ${escapeHtml(t.nome)}"
+      onclick="abrirModalTecnico('${escapeHtml(t.nome)}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirModalTecnico('${escapeHtml(t.nome)}');}">
+    <div class="ghead">
+      <div><span class="gname">${escapeHtml(t.nome)}</span><span class="gsetor">${t.lojasAtendidas} loja(s) atendidas</span></div>
+      <span class="gdetalhe">detalhe →</span>
+    </div>
+    <div class="ggauge">${gaugeSVG(t.chamados, FAROL_MAX, FAROL_ZONAS)}</div>
+    <div class="gval"><span class="gnum num" style="color:${cor}">${t.chamados}</span><span class="glabel">chamados</span></div>
+    <div class="gstats">
+      <div class="estat"><div class="n num">${t.lojasAtendidas}</div><div class="l">Lojas</div></div>
+      <div class="estat alta"><div class="n num">${t.alta}</div><div class="l">Alta</div></div>
+      <div class="estat crit"><div class="n num">${t.sos}</div><div class="l">SOS</div></div>
+    </div>
+    <div class="etime"><span>Tempo médio em aberto</span><b>${t.tempoMedioDias}d</b></div>
+    ${blocoMaisUrgentes(t.chamadosDetalhe)}
+  </div>`;
+}
+
+// separa a fila dos supervisores (chamados ainda sem tecnico de campo
+// assinalado, mas que o SOMA grava com o nome do proprio supervisor) dos
+// tecnicos de campo de verdade -- pedido do Christian, 12/09/2026:
+// "os supervisores estao juntos com os tecnicos". Flag "ehSupervisor" vem
+// pronta do backend (calcularTecnicos em run_daily.cjs).
 function renderizarTecnicos(D) {
   const dt = new Date(D.atualizadoEm);
   document.getElementById('stamp').textContent = 'Atualizado ' + dt.toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
 
-  const tecOrdenados = [...(D.tecnicos || [])].sort((a, b) => b.chamados - a.chamados);
-  const cards = tecOrdenados.map(t => {
-    const cor = corDoFarol(t.chamados);
-    return `<div class="gcard" role="button" tabindex="0" aria-label="Ver detalhe de ${escapeHtml(t.nome)}"
-        onclick="abrirModalTecnico('${escapeHtml(t.nome)}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirModalTecnico('${escapeHtml(t.nome)}');}">
-      <div class="ghead">
-        <div><span class="gname">${escapeHtml(t.nome)}</span><span class="gsetor">${t.lojasAtendidas} loja(s) atendidas</span></div>
-        <span class="gdetalhe">detalhe →</span>
-      </div>
-      <div class="ggauge">${gaugeSVG(t.chamados, FAROL_MAX, FAROL_ZONAS)}</div>
-      <div class="gval"><span class="gnum num" style="color:${cor}">${t.chamados}</span><span class="glabel">chamados</span></div>
-      <div class="gstats">
-        <div class="estat"><div class="n num">${t.lojasAtendidas}</div><div class="l">Lojas</div></div>
-        <div class="estat alta"><div class="n num">${t.alta}</div><div class="l">Alta</div></div>
-        <div class="estat crit"><div class="n num">${t.sos}</div><div class="l">SOS</div></div>
-      </div>
-      <div class="etime"><span>Tempo médio em aberto</span><b>${t.tempoMedioDias}d</b></div>
-      ${blocoMaisUrgentes(t.chamadosDetalhe)}
-    </div>`;
-  }).join('');
+  const todos = [...(D.tecnicos || [])].sort((a, b) => b.chamados - a.chamados);
+  const filaSupervisores = todos.filter(t => t.ehSupervisor);
+  const tecnicosCampo = todos.filter(t => !t.ehSupervisor);
+
+  const blocoFila = filaSupervisores.length ? `
+    <section>
+      <div class="sec-head"><h2>Fila sem técnico atribuído</h2><span class="sec-note">Chamados ainda na fila do supervisor, sem um técnico de campo assinalado no SOMA</span></div>
+      <div class="gauge-grid">${filaSupervisores.map(cardTecnico).join('')}</div>
+    </section>
+  ` : '';
 
   document.getElementById('conteudo').innerHTML = `
+    ${blocoFila}
     <section>
-      <div class="sec-head"><h2>Farol por técnico</h2><span class="sec-note">Quantidade de chamados em aberto atribuídos a cada técnico · ${tecOrdenados.length} técnicos</span></div>
-      <div class="gauge-grid">${cards}</div>
+      <div class="sec-head"><h2>Farol por técnico</h2><span class="sec-note">Quantidade de chamados em aberto atribuídos a cada técnico de campo · ${tecnicosCampo.length} técnicos</span></div>
+      <div class="gauge-grid">${tecnicosCampo.map(cardTecnico).join('')}</div>
     </section>
   `;
 }
