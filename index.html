@@ -385,10 +385,14 @@ function escapeHtml(s) {
 }
 
 // semaforo por severidade do % de indisponibilidade: vermelho = pior,
-// laranja = medio, verde = bom (pedido do Christian, 09/09/2026)
+// laranja = medio, verde = bom (pedido do Christian, 09/09/2026) --
+// cortes ajustados em 12/09/2026 (verde <15, laranja 15-29, vermelho >=30)
+// depois da correcao do calculo de indisponibilidade (antes disso os
+// valores eram os invertidos "100 - x", entao os cortes antigos de 25/50
+// nao faziam mais sentido pra escala real dos numeros do BI).
 function corPorIndisponibilidade(pct) {
-  if (pct >= 50) return 'var(--sos)';
-  if (pct >= 25) return 'var(--alta)';
+  if (pct >= 30) return 'var(--sos)';
+  if (pct >= 15) return 'var(--alta)';
   return 'var(--ok)';
 }
 
