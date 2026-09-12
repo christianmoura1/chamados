@@ -592,15 +592,32 @@ function abrirModalTecnico(nome) {
   );
 }
 
+// escala do farol do TECNICO e' diferente da do supervisor (FAROL_MAX/
+// FAROL_ZONAS, la' em cima, calibrada pra dezenas de chamados) -- um
+// tecnico de campo individual trabalha numa escala bem menor. Pedido do
+// Christian, 12/09/2026: verde ate' 2, laranja ate' 5, vermelho acima
+// disso. Max do mostrador em 15 (maior valor observado num tecnico de
+// campo real nesta leva de dados).
+const FAROL_TECNICO_MAX = 15;
+const FAROL_TECNICO_ZONAS = [
+  { de: 0, ate: 2, cor: 'var(--ok)' },
+  { de: 2, ate: 5, cor: 'var(--alta)' },
+  { de: 5, ate: FAROL_TECNICO_MAX, cor: 'var(--sos)' },
+];
+function corDoFarolTecnico(valor) {
+  const z = FAROL_TECNICO_ZONAS.find(z => valor < z.ate) || FAROL_TECNICO_ZONAS[FAROL_TECNICO_ZONAS.length - 1];
+  return z.cor;
+}
+
 function cardTecnico(t) {
-  const cor = corDoFarol(t.chamados);
+  const cor = corDoFarolTecnico(t.chamados);
   return `<div class="gcard" role="button" tabindex="0" aria-label="Ver detalhe de ${escapeHtml(t.nome)}"
       onclick="abrirModalTecnico('${escapeHtml(t.nome)}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirModalTecnico('${escapeHtml(t.nome)}');}">
     <div class="ghead">
       <div><span class="gname">${escapeHtml(t.nome)}</span><span class="gsetor">${t.lojasAtendidas} loja(s) atendidas</span></div>
       <span class="gdetalhe">detalhe →</span>
     </div>
-    <div class="ggauge">${gaugeSVG(t.chamados, FAROL_MAX, FAROL_ZONAS)}</div>
+    <div class="ggauge">${gaugeSVG(t.chamados, FAROL_TECNICO_MAX, FAROL_TECNICO_ZONAS)}</div>
     <div class="gval"><span class="gnum num" style="color:${cor}">${t.chamados}</span><span class="glabel">chamados</span></div>
     <div class="gstats">
       <div class="estat"><div class="n num">${t.lojasAtendidas}</div><div class="l">Lojas</div></div>
