@@ -8,7 +8,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
-<style>
   :root {
     --sidebar:   #1E1B3A;
     --sidebar-2: #2A2555;
@@ -386,6 +385,11 @@ function escapeHtml(s) {
   return String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
 }
 
+// faixas do farol por supervisor: vermelho = mais chamados, verde = menos
+// (pedido do Christian, 09/09/2026) -- corrigido em 09/09/2026 p/ os 4
+// supervisores reais (Marcel/Rafael/Gustavo/Carlos Magno, cada um cobrindo
+// varios setores/lojas). Escala fixa 0-120 (o maior valor observado foi
+// 108), faixas em 60 e 90.
 const FAROL_MAX = 120;
 const FAROL_ZONAS = [
   { de: 0, ate: 60, cor: 'var(--ok)' },
@@ -407,21 +411,31 @@ function gaugeSVG(valor, max, zonas) {
   };
   const arco = (v0, v1, cor) => {
     const p0 = ponto(angulo(v0), r), p1 = ponto(angulo(v1), r);
-    return `<path d="M ${p0.x.toFixed(1)} ${p0.y.toFixed(1)} A ${r} ${r} 0 0 1 ${p1.x.toFixed(1)} ${p1.y.toFixed(1)}" fill="none" stroke="${cor}" stroke-width="${sw}"/>`;
+    return `<path d="M ${p0.x.toFixed(1)} ${p0.y.toFixed(1)} A ${r} ${r} 0 0 1 ${p1.x.toFixed(1)} ${p1.y.toFixed(1)}" style="fill:none;stroke:${cor}" stroke-width="${sw}"/>`;
   };
   const zonasSvg = zonas.map(z => arco(z.de, z.ate, z.cor)).join('');
   const pontaAgulha = ponto(angulo(valor), r - sw / 2 - 8);
-  const agulha = `<line x1="${cx}" y1="${cy}" x2="${pontaAgulha.x.toFixed(1)}" y2="${pontaAgulha.y.toFixed(1)}" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="6" fill="var(--ink)"/>`;
-  // width/height explicitos (alem do viewBox) sao obrigatorios aqui: sem
+  // fill/stroke em style="", nao em atributo de apresentacao puro
+  // (stroke="var(--x)"/fill="var(--x)") -- CORRIGIDO em 12/09/2026: no
+  // navegador do Christian (Edge, reproduzido ate' em InPrivate -- nao era
+  // cache/extensao), var() dentro de um atributo de apresentacao SVG nao
+  // resolvia: os arcos (fill="none" + stroke que falhava) ficavam
+  // INVISIVEIS, e o pivo da agulha (fill que falhava) caia no preto padrao
+  // do SVG -- exatamente o "so' um pontinho preto sem cor" que ele via.
+  // style="" passa pelo pipeline normal de CSS, que resolve var() sempre.
+  const agulha = `<line x1="${cx}" y1="${cy}" x2="${pontaAgulha.x.toFixed(1)}" y2="${pontaAgulha.y.toFixed(1)}" style="stroke:var(--ink)" stroke-width="3" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="6" style="fill:var(--ink)"/>`;
+  // width/height explicitos (alem do viewBox) tambem sao necessarios: sem
   // eles, "height:auto" so' funciona de forma confiavel no Chrome -- no
-  // Edge do Christian (12/09/2026, confirmado ate' em janela InPrivate,
-  // entao nao e' cache/extensao) o SVG colapsava pra quase zero de altura,
+  // Edge do Christian o SVG colapsava pra quase zero de altura,
   // sobrando so' a agulha flutuando sobre o numero. Com width/height fixos
   // casando a proporcao do viewBox, o navegador tem uma base de escala
   // sem ambiguidade e o "width:100%;height:auto" do CSS escala certo.
   return `<svg viewBox="0 0 200 112" width="200" height="112" style="width:100%;height:auto;display:block;">${zonasSvg}${agulha}</svg>`;
 }
 
+// ordem de exibicao nos modais: SOS primeiro, depois Alta, depois Normal;
+// dentro de cada prioridade, mais dias em aberto primeiro (os itens ja vem
+// assim do backend, isso aqui e' so garantia caso a origem mude)
 const RANK_PRIORIDADE = { SOS: 0, Alta: 1, Normal: 2 };
 function ordenaChamados(itens) {
   return [...itens].sort((a, b) => {
@@ -563,9 +577,6 @@ function fecharModal() {
 document.getElementById('modalClose').addEventListener('click', fecharModal);
 document.getElementById('modalOverlay').addEventListener('click', (ev) => {
   if (ev.target.id === 'modalOverlay') fecharModal();
-});
-document.addEventListener('keydown', (ev) => {
-  if (ev.key === 'Escape' && !document.getElementById('modalOverlay').hidden) fecharModal();
 });
 
 

@@ -399,9 +399,11 @@ function corPorIndisponibilidade(pct) {
 function donutSVG(pct, cor) {
   const r = 38, c = 2 * Math.PI * r;
   const dash = (Math.min(pct, 100) / 100) * c;
-  return `<svg viewBox="0 0 92 92">
-    <circle cx="46" cy="46" r="${r}" fill="none" stroke="var(--surface2)" stroke-width="9"/>
-    <circle cx="46" cy="46" r="${r}" fill="none" stroke="${cor}" stroke-width="9"
+  // fill/stroke vao em style="", nao como atributo de apresentacao puro
+  // (ver comentario grande em gaugeSVG, mesma causa raiz).
+  return `<svg viewBox="0 0 92 92" width="92" height="92">
+    <circle cx="46" cy="46" r="${r}" style="fill:none;stroke:var(--surface2)" stroke-width="9"/>
+    <circle cx="46" cy="46" r="${r}" style="fill:none;stroke:${cor}" stroke-width="9"
       stroke-dasharray="${dash.toFixed(1)} ${c.toFixed(1)}" stroke-linecap="round"/>
   </svg>`;
 }
@@ -432,15 +434,22 @@ function gaugeSVG(valor, max, zonas) {
   };
   const arco = (v0, v1, cor) => {
     const p0 = ponto(angulo(v0), r), p1 = ponto(angulo(v1), r);
-    return `<path d="M ${p0.x.toFixed(1)} ${p0.y.toFixed(1)} A ${r} ${r} 0 0 1 ${p1.x.toFixed(1)} ${p1.y.toFixed(1)}" fill="none" stroke="${cor}" stroke-width="${sw}"/>`;
+    return `<path d="M ${p0.x.toFixed(1)} ${p0.y.toFixed(1)} A ${r} ${r} 0 0 1 ${p1.x.toFixed(1)} ${p1.y.toFixed(1)}" style="fill:none;stroke:${cor}" stroke-width="${sw}"/>`;
   };
   const zonasSvg = zonas.map(z => arco(z.de, z.ate, z.cor)).join('');
   const pontaAgulha = ponto(angulo(valor), r - sw / 2 - 8);
-  const agulha = `<line x1="${cx}" y1="${cy}" x2="${pontaAgulha.x.toFixed(1)}" y2="${pontaAgulha.y.toFixed(1)}" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="6" fill="var(--ink)"/>`;
-  // width/height explicitos (alem do viewBox) sao obrigatorios aqui: sem
+  // fill/stroke em style="", nao em atributo de apresentacao puro
+  // (stroke="var(--x)"/fill="var(--x)") -- CORRIGIDO em 12/09/2026: no
+  // navegador do Christian (Edge, reproduzido ate' em InPrivate -- nao era
+  // cache/extensao), var() dentro de um atributo de apresentacao SVG nao
+  // resolvia: os arcos (fill="none" + stroke que falhava) ficavam
+  // INVISIVEIS, e o pivo da agulha (fill que falhava) caia no preto padrao
+  // do SVG -- exatamente o "so' um pontinho preto sem cor" que ele via.
+  // style="" passa pelo pipeline normal de CSS, que resolve var() sempre.
+  const agulha = `<line x1="${cx}" y1="${cy}" x2="${pontaAgulha.x.toFixed(1)}" y2="${pontaAgulha.y.toFixed(1)}" style="stroke:var(--ink)" stroke-width="3" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="6" style="fill:var(--ink)"/>`;
+  // width/height explicitos (alem do viewBox) tambem sao necessarios: sem
   // eles, "height:auto" so' funciona de forma confiavel no Chrome -- no
-  // Edge do Christian (12/09/2026, confirmado ate' em janela InPrivate,
-  // entao nao e' cache/extensao) o SVG colapsava pra quase zero de altura,
+  // Edge do Christian o SVG colapsava pra quase zero de altura,
   // sobrando so' a agulha flutuando sobre o numero. Com width/height fixos
   // casando a proporcao do viewBox, o navegador tem uma base de escala
   // sem ambiguidade e o "width:100%;height:auto" do CSS escala certo.
@@ -630,8 +639,8 @@ function lineChartSVG(pontos, series) {
 
   const grid = [0, 0.25, 0.5, 0.75, 1].map(f => {
     const yy = padT + innerH * (1 - f);
-    return `<line x1="${padL}" y1="${yy.toFixed(1)}" x2="${W - padR}" y2="${yy.toFixed(1)}" stroke="var(--grid)" stroke-width="1"/>
-      <text x="${padL - 6}" y="${(yy + 3).toFixed(1)}" font-size="9" text-anchor="end" fill="var(--faint)" font-family="IBM Plex Mono, monospace">${Math.round(maxV * f)}</text>`;
+    return `<line x1="${padL}" y1="${yy.toFixed(1)}" x2="${W - padR}" y2="${yy.toFixed(1)}" style="stroke:var(--grid)" stroke-width="1"/>
+      <text x="${padL - 6}" y="${(yy + 3).toFixed(1)}" font-size="9" text-anchor="end" style="fill:var(--faint)" font-family="IBM Plex Mono, monospace">${Math.round(maxV * f)}</text>`;
   }).join('');
 
   // rotulo do valor atual (ponta da linha) -- espalha verticalmente quando
@@ -652,14 +661,14 @@ function lineChartSVG(pontos, series) {
 
   const seriesSvg = series.map(s => {
     const valorFinal = pontos[n - 1][s.key];
-    const rotuloFinal = `<text x="${(x(n - 1) + 8).toFixed(1)}" y="${(yLabelPorChave[s.key] + 3).toFixed(1)}" font-size="11" font-weight="700" fill="${s.color}" font-family="IBM Plex Mono, monospace">${valorFinal}</text>`;
+    const rotuloFinal = `<text x="${(x(n - 1) + 8).toFixed(1)}" y="${(yLabelPorChave[s.key] + 3).toFixed(1)}" font-size="11" font-weight="700" style="fill:${s.color}" font-family="IBM Plex Mono, monospace">${valorFinal}</text>`;
     if (n === 1) {
-      return `<circle cx="${x(0).toFixed(1)}" cy="${y(pontos[0][s.key]).toFixed(1)}" r="5" fill="${s.color}" ${dotAttrs(pontos[0], 0, s)}/>${rotuloFinal}`;
+      return `<circle cx="${x(0).toFixed(1)}" cy="${y(pontos[0][s.key]).toFixed(1)}" r="5" style="fill:${s.color}" ${dotAttrs(pontos[0], 0, s)}/>${rotuloFinal}`;
     }
     const pts = pontos.map((p, i) => `${x(i).toFixed(1)},${y(p[s.key]).toFixed(1)}`).join(' ');
-    const dots = pontos.map((p, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(p[s.key]).toFixed(1)}" r="5" fill="${s.color}" fill-opacity="0" stroke="${s.color}" stroke-width="0" ${dotAttrs(p, i, s)}/>`).join('');
-    const dotsVisiveis = pontos.map((p, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(p[s.key]).toFixed(1)}" r="3" fill="${s.color}" style="pointer-events:none"/>`).join('');
-    return `<polyline points="${pts}" fill="none" stroke="${s.color}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" style="pointer-events:none"/>${dotsVisiveis}${dots}${rotuloFinal}`;
+    const dots = pontos.map((p, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(p[s.key]).toFixed(1)}" r="5" style="fill:${s.color};stroke:${s.color}" fill-opacity="0" stroke-width="0" ${dotAttrs(p, i, s)}/>`).join('');
+    const dotsVisiveis = pontos.map((p, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(p[s.key]).toFixed(1)}" r="3" style="fill:${s.color};pointer-events:none"/>`).join('');
+    return `<polyline points="${pts}" style="fill:none;stroke:${s.color};pointer-events:none" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>${dotsVisiveis}${dots}${rotuloFinal}`;
   }).join('');
 
   // rotulo com dia + hora (ex.: "09/09 22h") pra dar pra comparar o mesmo
@@ -670,7 +679,7 @@ function lineChartSVG(pontos, series) {
     const d = new Date(p.quando || (p.data + 'T00:00:00'));
     const dataLbl = d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
     const horaLbl = d.toLocaleTimeString('pt-BR', { hour: '2-digit' });
-    return `<text x="${x(i).toFixed(1)}" y="${H - 8}" font-size="9" text-anchor="middle" fill="var(--faint)" font-family="IBM Plex Mono, monospace">${dataLbl} ${horaLbl}</text>`;
+    return `<text x="${x(i).toFixed(1)}" y="${H - 8}" font-size="9" text-anchor="middle" style="fill:var(--faint)" font-family="IBM Plex Mono, monospace">${dataLbl} ${horaLbl}</text>`;
   }).join('');
 
   // width/height explicitos junto do viewBox: mesmo fix do gaugeSVG (ver
