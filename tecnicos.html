@@ -616,19 +616,15 @@ function renderizarTecnicos(D) {
   const dt = new Date(D.atualizadoEm);
   document.getElementById('stamp').textContent = 'Atualizado ' + dt.toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
 
+  // fila do supervisor (ehSupervisor=true) fica de fora desta pagina --
+  // pedido do Christian, 12/09/2026: "esses sao supervisores, tiram eles
+  // da aba de tecnicos". A pagina de Tecnicos mostra so' tecnico de campo
+  // de verdade; a fila do supervisor continua disponivel no farol por
+  // supervisor da pagina Backlog.
   const todos = [...(D.tecnicos || [])].sort((a, b) => b.chamados - a.chamados);
-  const filaSupervisores = todos.filter(t => t.ehSupervisor);
   const tecnicosCampo = todos.filter(t => !t.ehSupervisor);
 
-  const blocoFila = filaSupervisores.length ? `
-    <section>
-      <div class="sec-head"><h2>Fila sem técnico atribuído</h2><span class="sec-note">Chamados ainda na fila do supervisor, sem um técnico de campo assinalado no SOMA</span></div>
-      <div class="gauge-grid">${filaSupervisores.map(cardTecnico).join('')}</div>
-    </section>
-  ` : '';
-
   document.getElementById('conteudo').innerHTML = `
-    ${blocoFila}
     <section>
       <div class="sec-head"><h2>Farol por técnico</h2><span class="sec-note">Quantidade de chamados em aberto atribuídos a cada técnico de campo · ${tecnicosCampo.length} técnicos</span></div>
       <div class="gauge-grid">${tecnicosCampo.map(cardTecnico).join('')}</div>
