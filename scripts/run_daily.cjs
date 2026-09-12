@@ -313,10 +313,20 @@ function processar(csvTexto, disponibilidadeBI) {
     return {
       chave: cat.chave,
       nome: cat.nome,
-      // Indisponibilidade = 100 - Disponibilidade, LIDA da tela do Power BI
-      // (pagina 12. Disponibilidade Book, ja filtrada p/ Regional Sul) --
-      // nunca recalculada a partir do CSV do SOMA.
-      pctIndisponibilidade: Math.round((100 - disponibilidadeBI[cat.chave]) * 10) / 10,
+      // Indisponibilidade LIDA direto da tela do Power BI (pagina 12.
+      // Disponibilidade Book, ja filtrada p/ Regional Sul) -- nunca
+      // recalculada a partir do CSV do SOMA. CORRIGIDO em 12/09/2026: o
+      // numero exibido em cada card do BI (variavel/funcao ainda chamada
+      // "disponibilidadeBI" por heranca do nome da pagina, mas o valor em si
+      // JA E' a indisponibilidade) estava sendo invertido com "100 - x" por
+      // engano desde a implementacao original de 09/09/2026. Confirmado
+      // batendo a ordem contra o volume real de chamados abertos por
+      // equipamento: com a formula antiga, Sorvete (120 chamados, de longe
+      // o maior volume) aparecia com a MENOR indisponibilidade (55%) e
+      // Tostadeira (40 chamados, um dos menores) com a MAIOR (88%) --
+      // invertido. Sem o "100 -", a ordem bate: Sorvete fica com a maior
+      // (45%) e Tostadeira com a menor (12%), condizente com o volume real.
+      pctIndisponibilidade: disponibilidadeBI[cat.chave],
       pdvsEmFalha,
       chamados: g.chamados,
       alta: g.alta,
