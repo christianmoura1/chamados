@@ -206,6 +206,13 @@
   .detail-table tr:hover td { background: var(--surface2); }
   .tag { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; font-weight: 600; border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
   .tag-sos { background: var(--sos-soft); color: var(--sos); }
+  .tag-normal { background: var(--surface2); color: var(--muted); }
+  .filter-table-wrap { max-height: 420px; overflow: auto; border-radius: 12px; }
+  .filter-empty { padding: 24px 0; text-align: center; color: var(--faint); font-size: 12.5px; }
+  .risco-subhead { display: flex; align-items: center; gap: 10px; margin: 22px 0 10px; font-family: "Archivo", sans-serif; font-weight: 700; font-size: 14px; }
+  .risco-subhead .cnt { font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 600; border-radius: 999px; padding: 2px 10px; }
+  .risco-subhead .cnt.vencido { background: var(--sos-soft); color: var(--sos); }
+  .risco-subhead .cnt.avencer { background: var(--ok); color: white; }
 </style>
 </head>
 <body>
@@ -293,6 +300,24 @@ function blocoMaisUrgentes(itens) {
       <div class="esos-label">Mais críticas (${top5.length}${itens && itens.length > 5 ? ' de ' + itens.length : ''})</div>
       <div class="esos-list">${html}</div>
     </div>`;
+}
+
+const statusRiscoTagCls = s => /atrasad/i.test(s) ? 'tag-sos' : 'tag-normal';
+function tabelaChamadosRisco(itens) {
+  if (!itens || !itens.length) return `<div class="filter-empty">Nenhum chamado nesse grupo.</div>`;
+  return `<div class="filter-table-wrap"><table class="detail-table">
+    <thead><tr><th>Número</th><th>Item</th><th>Assunto</th><th>Loja</th><th>Setor</th><th>Status</th><th>Abertura</th><th>Técnico</th></tr></thead>
+    <tbody>${itens.map(c => `<tr>
+        <td class="mono">${escapeHtml(c.numero)}</td>
+        <td>${escapeHtml(c.item)}</td>
+        <td>${escapeHtml(c.assuntoSecundario || c.assuntoPrincipal)}</td>
+        <td>${escapeHtml(c.loja)}</td>
+        <td>${escapeHtml(c.setor)}</td>
+        <td><span class="tag ${statusRiscoTagCls(c.statusRisco)}">${escapeHtml(c.status)}</span></td>
+        <td class="num">${escapeHtml(c.dtAbertura)}</td>
+        <td>${escapeHtml(c.tecnico) || '—'}</td>
+      </tr>`).join('')}</tbody>
+  </table></div>`;
 }
 
 function abrirModalCategoria(chave) {
@@ -390,6 +415,16 @@ async function iniciar() {
       <div class="cons-grid">
         <div class="card"><h3>% vencido por categoria</h3>${barsCategoria}</div>
         <div class="card"><h3>Chamados atrasados por item</h3>${barsItem}</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head"><h2>Chamados de Gestão de Risco</h2><span class="sec-note">Coifa, Broiler, Exaustor, Sensor de gás, Quadro Elétrico · fonte: Power BI (Gestão de Risco · Sul)</span></div>
+      <div class="card">
+        <div class="risco-subhead"><span>Risco Vencido</span><span class="cnt vencido">${(D.chamadosRisco?.vencidos || []).length}</span></div>
+        ${tabelaChamadosRisco(D.chamadosRisco?.vencidos)}
+        <div class="risco-subhead"><span>Risco a Vencer</span><span class="cnt avencer">${(D.chamadosRisco?.aVencer || []).length}</span></div>
+        ${tabelaChamadosRisco(D.chamadosRisco?.aVencer)}
       </div>
     </section>
 
