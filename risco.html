@@ -276,7 +276,7 @@
     <div class="modal-sub" id="modalSub"></div>
     <div class="modal-body">
       <table class="detail-table">
-        <thead><tr><th>Loja</th><th>Score</th></tr></thead>
+        <thead><tr><th>Loja</th><th>Dias em Atraso</th></tr></thead>
         <tbody id="modalTbody"></tbody>
       </table>
     </div>
@@ -313,7 +313,7 @@ function donutSVG(pct, cor) {
 function blocoMaisUrgentes(itens) {
   const top5 = (itens || []).slice(0, 5);
   const html = top5.length
-    ? top5.map(l => `<div class="esos-item"><span class="loja">${escapeHtml(l.nome)}</span><span class="tag tag-sos">${l.score ?? '—'}</span></div>`).join('')
+    ? top5.map(l => `<div class="esos-item"><span class="loja">${escapeHtml(l.nome)}</span><span class="tag tag-sos">${l.diasAtraso != null ? l.diasAtraso + 'd' : '—'}</span></div>`).join('')
     : '<div class="esos-empty">Nenhuma loja vencida nessa categoria.</div>';
   return `<div>
       <div class="esos-label">Mais críticas (${top5.length}${itens && itens.length > 5 ? ' de ' + itens.length : ''})</div>
@@ -415,7 +415,7 @@ function abrirModalCategoria(chave) {
   document.getElementById('modalTitle').textContent = c.nome;
   document.getElementById('modalSub').textContent = `${c.vencido} de ${c.total} lojas com item vencido (${c.pctVencido}%)`;
   document.getElementById('modalTbody').innerHTML = c.lojasVencidas.length
-    ? c.lojasVencidas.map(l => `<tr><td>${escapeHtml(l.nome)}</td><td class="num">${l.score ?? '—'}</td></tr>`).join('')
+    ? c.lojasVencidas.map(l => `<tr><td>${escapeHtml(l.nome)}</td><td class="num">${l.diasAtraso != null ? l.diasAtraso + 'd' : '—'}</td></tr>`).join('')
     : `<tr><td colspan="2" class="esos-empty">Nenhuma loja vencida nessa categoria.</td></tr>`;
   document.getElementById('modalOverlay').hidden = false;
   document.body.style.overflow = 'hidden';
