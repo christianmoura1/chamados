@@ -303,18 +303,32 @@ function blocoMaisUrgentes(itens) {
 }
 
 const statusRiscoTagCls = s => /atrasad/i.test(s) ? 'tag-sos' : 'tag-normal';
-function tabelaChamadosRisco(itens) {
+
+function parseDataBR(s) {
+  const m = String(s || '').match(/^(\d{2})\/(\d{2})\/(\d{4})/);
+  if (!m) return null;
+  return new Date(Number(m[3]), Number(m[2]) - 1, Number(m[1]));
+}
+function diasVencido(dtAbertura, refDate) {
+  const d = parseDataBR(dtAbertura);
+  if (!d || !refDate) return null;
+  return Math.max(0, Math.round((refDate - d) / 86400000));
+}
+
+function tabelaChamadosRisco(itens, refDate) {
   if (!itens || !itens.length) return `<div class="filter-empty">Nenhum chamado nesse grupo.</div>`;
+  const comDias = itens.map(c => ({ ...c, dias: diasVencido(c.dtAbertura, refDate) }))
+    .sort((a, b) => (b.dias ?? -1) - (a.dias ?? -1));
   return `<div class="filter-table-wrap"><table class="detail-table">
-    <thead><tr><th>Número</th><th>Item</th><th>Assunto</th><th>Loja</th><th>Setor</th><th>Status</th><th>Abertura</th><th>Técnico</th></tr></thead>
-    <tbody>${itens.map(c => `<tr>
+    <thead><tr><th>Número</th><th>Item</th><th>Assunto</th><th>Loja</th><th>Setor</th><th>Status</th><th>Vencido há</th><th>Técnico</th></tr></thead>
+    <tbody>${comDias.map(c => `<tr>
         <td class="mono">${escapeHtml(c.numero)}</td>
         <td>${escapeHtml(c.item)}</td>
         <td>${escapeHtml(c.assuntoSecundario || c.assuntoPrincipal)}</td>
         <td>${escapeHtml(c.loja)}</td>
         <td>${escapeHtml(c.setor)}</td>
         <td><span class="tag ${statusRiscoTagCls(c.statusRisco)}">${escapeHtml(c.status)}</span></td>
-        <td class="num">${escapeHtml(c.dtAbertura)}</td>
+        <td class="num">${c.dias != null ? c.dias + 'd' : '—'}</td>
         <td>${escapeHtml(c.tecnico) || '—'}</td>
       </tr>`).join('')}</tbody>
   </table></div>`;
@@ -353,15 +367,16 @@ async function iniciar() {
 
   DADOS_ATUAIS = D;
   document.getElementById('stamp').textContent = 'Atualizado ' + escapeHtml(D.atualizadoEm || '—');
+  const refDate = parseDataBR(D.atualizadoEm) || new Date();
 
   const totalVencido = D.categorias.reduce((s, c) => s + c.vencido, 0);
   const piorCategoria = [...D.categorias].sort((a, b) => b.pctVencido - a.pctVencido)[0];
 
   const kpisHtml = [
-    { label: 'Chamados Vencidos', val: brl0((D.chamadosRisco?.vencidos || []).length), cls: 'k-sos' },
     { label: 'Score Médio', val: D.scoreMedio != null ? D.scoreMedio.toLocaleString('pt-BR') : '—', cls: 'k-violet' },
     { label: 'Itens Vencidos', val: brl0(totalVencido), cls: 'k-sos' },
     { label: 'Categoria Mais Crítica', val: piorCategoria ? `${piorCategoria.nome} · ${piorCategoria.pctVencido}%` : '—', cls: 'k-alta' },
+    { label: 'Chamados Vencidos', val: brl0((D.chamadosRisco?.vencidos || []).length), cls: 'k-sos' },
   ].map(k => `<div class="kpi ${k.cls}"><span class="label">${k.label}</span><div class="val num">${k.val}</div></div>`).join('');
 
   const catOrdenadas = [...D.categorias].sort((a, b) => b.pctVencido - a.pctVencido);
@@ -422,9 +437,9 @@ async function iniciar() {
       <div class="sec-head"><h2>Chamados de Gestão de Risco</h2><span class="sec-note">Coifa, Broiler, Exaustor, Sensor de gás, Quadro Elétrico · fonte: Power BI (Gestão de Risco · Sul)</span></div>
       <div class="card">
         <div class="risco-subhead"><span>Risco Vencido</span><span class="cnt vencido">${(D.chamadosRisco?.vencidos || []).length}</span></div>
-        ${tabelaChamadosRisco(D.chamadosRisco?.vencidos)}
+        ${tabelaChamadosRisco(D.chamadosRisco?.vencidos, refDate)}
         <div class="risco-subhead"><span>Risco a Vencer</span><span class="cnt avencer">${(D.chamadosRisco?.aVencer || []).length}</span></div>
-        ${tabelaChamadosRisco(D.chamadosRisco?.aVencer)}
+        ${tabelaChamadosRisco(D.chamadosRisco?.aVencer, refDate)}
       </div>
     </section>
 
