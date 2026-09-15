@@ -213,6 +213,25 @@
   .risco-subhead .cnt { font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 600; border-radius: 999px; padding: 2px 10px; }
   .risco-subhead .cnt.vencido { background: var(--sos-soft); color: var(--sos); }
   .risco-subhead .cnt.avencer { background: var(--ok); color: white; }
+  .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 16px; }
+  .filter-field { display: flex; flex-direction: column; gap: 4px; min-width: 168px; }
+  .filter-field label {
+    font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--faint);
+  }
+  .filter-field select {
+    font-family: "IBM Plex Sans", sans-serif; font-size: 13px; color: var(--ink); background: var(--surface2);
+    border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; appearance: none; width: 100%;
+  }
+  .resp-select {
+    font-family: "IBM Plex Sans", sans-serif; font-size: 12.5px; color: var(--ink); background: var(--surface2);
+    border: 1px solid var(--line); border-radius: 8px; padding: 4px 7px; min-width: 118px; cursor: pointer;
+  }
+  .resp-select:focus { outline: 2px solid var(--violet); outline-offset: -1px; }
+  .prev-date {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink); background: var(--surface2);
+    border: 1px solid var(--line); border-radius: 8px; padding: 4px 7px; min-width: 128px; cursor: pointer;
+  }
+  .prev-date:focus { outline: 2px solid var(--violet); outline-offset: -1px; }
 </style>
 </head>
 <body>
@@ -310,6 +329,34 @@ function responsavelDoTecnico(tecnico) {
   return RESPONSAVEIS.find(r => t.includes(r.toUpperCase())) || null;
 }
 
+// atribuicao manual por chamado (responsavel + previsao de termino), guardada
+// num banco compartilhado (nao localStorage -- varias pessoas abrem esse
+// painel e precisam ver a mesma coisa). API roda na propria VPS atras do
+// Caddy (154-64-32-227.sslip.io), pedido do Christian, 15/09/2026.
+const API_ATRIBUICOES = 'https://154-64-32-227.sslip.io/v1/risco-atribuicoes';
+let ATRIBUICOES = {};
+async function carregarAtribuicoes() {
+  try {
+    const r = await fetch(API_ATRIBUICOES, { cache: 'no-store' });
+    ATRIBUICOES = await r.json();
+  } catch (e) { ATRIBUICOES = {}; }
+}
+async function salvarCampoAtribuicao(numero, campo, valor) {
+  ATRIBUICOES[numero] = { ...ATRIBUICOES[numero], [campo]: valor };
+  try {
+    await fetch(API_ATRIBUICOES, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ numero, [campo]: valor }),
+    });
+  } catch (e) { /* falha de rede -- fica so' no cache local ate' proxima carga */ }
+}
+function responsavelAtual(c) {
+  return ATRIBUICOES[c.numero]?.responsavel || responsavelDoTecnico(c.tecnico) || '';
+}
+function previsaoAtual(c) {
+  return ATRIBUICOES[c.numero]?.previsaoTermino || '';
+}
+
 function parseDataBR(s) {
   const m = String(s || '').match(/^(\d{2})\/(\d{2})\/(\d{4})/);
   if (!m) return null;
@@ -322,13 +369,17 @@ function diasVencido(dtAbertura, refDate) {
 }
 
 function tabelaChamadosRisco(itens, refDate, filtroResp) {
-  const filtrados = filtroResp ? (itens || []).filter(c => responsavelDoTecnico(c.tecnico) === filtroResp) : (itens || []);
+  const filtrados = filtroResp ? (itens || []).filter(c => responsavelAtual(c) === filtroResp) : (itens || []);
   if (!filtrados.length) return `<div class="filter-empty">Nenhum chamado nesse grupo${filtroResp ? ' para ' + escapeHtml(filtroResp) : ''}.</div>`;
   const comDias = filtrados.map(c => ({ ...c, dias: diasVencido(c.dtAbertura, refDate) }))
     .sort((a, b) => (b.dias ?? -1) - (a.dias ?? -1));
   return `<div class="filter-table-wrap"><table class="detail-table">
-    <thead><tr><th>Número</th><th>Item</th><th>Assunto</th><th>Loja</th><th>Setor</th><th>Status</th><th>Vencido há</th><th>Responsável</th></tr></thead>
-    <tbody>${comDias.map(c => `<tr>
+    <thead><tr><th>Número</th><th>Item</th><th>Assunto</th><th>Loja</th><th>Setor</th><th>Status</th><th>Vencido há</th><th>Responsável</th><th>Previsão de Término</th></tr></thead>
+    <tbody>${comDias.map(c => {
+      const atual = responsavelAtual(c);
+      const opcoes = ['', ...RESPONSAVEIS].map(r => `<option value="${escapeHtml(r)}" ${r === atual ? 'selected' : ''}>${r ? escapeHtml(r) : '—'}</option>`).join('');
+      const previsao = previsaoAtual(c);
+      return `<tr>
         <td class="mono">${escapeHtml(c.numero)}</td>
         <td>${escapeHtml(c.item)}</td>
         <td>${escapeHtml(c.assuntoSecundario || c.assuntoPrincipal)}</td>
@@ -336,8 +387,10 @@ function tabelaChamadosRisco(itens, refDate, filtroResp) {
         <td>${escapeHtml(c.setor)}</td>
         <td><span class="tag ${statusRiscoTagCls(c.statusRisco)}">${escapeHtml(c.status)}</span></td>
         <td class="num">${c.dias != null ? c.dias + 'd' : '—'}</td>
-        <td>${escapeHtml(responsavelDoTecnico(c.tecnico)) || '—'}</td>
-      </tr>`).join('')}</tbody>
+        <td><select class="resp-select" data-wo="${escapeHtml(c.numero)}">${opcoes}</select></td>
+        <td><input type="date" class="prev-date" data-wo="${escapeHtml(c.numero)}" value="${escapeHtml(previsao)}"></td>
+      </tr>`;
+    }).join('')}</tbody>
   </table></div>`;
 }
 
@@ -348,8 +401,8 @@ function renderizarChamadosRisco() {
   const filtroResp = document.getElementById('filtroResponsavelRisco')?.value || '';
   const vencidos = (D.chamadosRisco?.vencidos || []);
   const aVencer = (D.chamadosRisco?.aVencer || []);
-  const vencidosVisiveis = filtroResp ? vencidos.filter(c => responsavelDoTecnico(c.tecnico) === filtroResp) : vencidos;
-  const aVencerVisiveis = filtroResp ? aVencer.filter(c => responsavelDoTecnico(c.tecnico) === filtroResp) : aVencer;
+  const vencidosVisiveis = filtroResp ? vencidos.filter(c => responsavelAtual(c) === filtroResp) : vencidos;
+  const aVencerVisiveis = filtroResp ? aVencer.filter(c => responsavelAtual(c) === filtroResp) : aVencer;
   document.getElementById('cntVencido').textContent = vencidosVisiveis.length;
   document.getElementById('cntAVencer').textContent = aVencerVisiveis.length;
   document.getElementById('tabelaVencido').innerHTML = tabelaChamadosRisco(vencidos, refDate, filtroResp);
@@ -379,9 +432,12 @@ async function iniciar() {
   const el = document.getElementById('conteudo');
   let D;
   try {
-    const r = await fetch('data/risco.json', { cache: 'no-store' });
-    if (!r.ok) throw new Error('HTTP ' + r.status);
-    D = await r.json();
+    const [rDados] = await Promise.all([
+      fetch('data/risco.json', { cache: 'no-store' }),
+      carregarAtribuicoes(),
+    ]);
+    if (!rDados.ok) throw new Error('HTTP ' + rDados.status);
+    D = await rDados.json();
   } catch (e) {
     el.innerHTML = `<div class="msg-erro">Não consegui carregar os dados (${e.message}).</div>`;
     return;
@@ -480,6 +536,16 @@ async function iniciar() {
   document.getElementById('filtroResponsavelRisco').addEventListener('change', renderizarChamadosRisco);
 }
 iniciar();
+
+// delegado no document (as linhas da tabela sao recriadas a cada filtro),
+// pra caixa de selecao/data de cada chamado gravar a escolha no banco
+// compartilhado e atualizar contagens
+document.addEventListener('change', async (ev) => {
+  const sel = ev.target.closest('.resp-select');
+  if (sel) { await salvarCampoAtribuicao(sel.dataset.wo, 'responsavel', sel.value); renderizarChamadosRisco(); return; }
+  const dt = ev.target.closest('.prev-date');
+  if (dt) { await salvarCampoAtribuicao(dt.dataset.wo, 'previsaoTermino', dt.value); return; }
+});
 
 (function () {
   const shell = document.querySelector('.shell');
