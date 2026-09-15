@@ -304,6 +304,12 @@ function blocoMaisUrgentes(itens) {
 
 const statusRiscoTagCls = s => /atrasad/i.test(s) ? 'tag-sos' : 'tag-normal';
 
+const RESPONSAVEIS = ['Christian', 'Carlos Magno', 'Marcel', 'Gustavo', 'Rafael'];
+function responsavelDoTecnico(tecnico) {
+  const t = (tecnico || '').toUpperCase();
+  return RESPONSAVEIS.find(r => t.includes(r.toUpperCase())) || null;
+}
+
 function parseDataBR(s) {
   const m = String(s || '').match(/^(\d{2})\/(\d{2})\/(\d{4})/);
   if (!m) return null;
@@ -315,12 +321,13 @@ function diasVencido(dtAbertura, refDate) {
   return Math.max(0, Math.round((refDate - d) / 86400000));
 }
 
-function tabelaChamadosRisco(itens, refDate) {
-  if (!itens || !itens.length) return `<div class="filter-empty">Nenhum chamado nesse grupo.</div>`;
-  const comDias = itens.map(c => ({ ...c, dias: diasVencido(c.dtAbertura, refDate) }))
+function tabelaChamadosRisco(itens, refDate, filtroResp) {
+  const filtrados = filtroResp ? (itens || []).filter(c => responsavelDoTecnico(c.tecnico) === filtroResp) : (itens || []);
+  if (!filtrados.length) return `<div class="filter-empty">Nenhum chamado nesse grupo${filtroResp ? ' para ' + escapeHtml(filtroResp) : ''}.</div>`;
+  const comDias = filtrados.map(c => ({ ...c, dias: diasVencido(c.dtAbertura, refDate) }))
     .sort((a, b) => (b.dias ?? -1) - (a.dias ?? -1));
   return `<div class="filter-table-wrap"><table class="detail-table">
-    <thead><tr><th>Número</th><th>Item</th><th>Assunto</th><th>Loja</th><th>Setor</th><th>Status</th><th>Vencido há</th><th>Técnico</th></tr></thead>
+    <thead><tr><th>Número</th><th>Item</th><th>Assunto</th><th>Loja</th><th>Setor</th><th>Status</th><th>Vencido há</th><th>Responsável</th></tr></thead>
     <tbody>${comDias.map(c => `<tr>
         <td class="mono">${escapeHtml(c.numero)}</td>
         <td>${escapeHtml(c.item)}</td>
@@ -329,9 +336,24 @@ function tabelaChamadosRisco(itens, refDate) {
         <td>${escapeHtml(c.setor)}</td>
         <td><span class="tag ${statusRiscoTagCls(c.statusRisco)}">${escapeHtml(c.status)}</span></td>
         <td class="num">${c.dias != null ? c.dias + 'd' : '—'}</td>
-        <td>${escapeHtml(c.tecnico) || '—'}</td>
+        <td>${escapeHtml(responsavelDoTecnico(c.tecnico)) || '—'}</td>
       </tr>`).join('')}</tbody>
   </table></div>`;
+}
+
+function renderizarChamadosRisco() {
+  const D = DADOS_ATUAIS;
+  if (!D) return;
+  const refDate = parseDataBR(D.atualizadoEm) || new Date();
+  const filtroResp = document.getElementById('filtroResponsavelRisco')?.value || '';
+  const vencidos = (D.chamadosRisco?.vencidos || []);
+  const aVencer = (D.chamadosRisco?.aVencer || []);
+  const vencidosVisiveis = filtroResp ? vencidos.filter(c => responsavelDoTecnico(c.tecnico) === filtroResp) : vencidos;
+  const aVencerVisiveis = filtroResp ? aVencer.filter(c => responsavelDoTecnico(c.tecnico) === filtroResp) : aVencer;
+  document.getElementById('cntVencido').textContent = vencidosVisiveis.length;
+  document.getElementById('cntAVencer').textContent = aVencerVisiveis.length;
+  document.getElementById('tabelaVencido').innerHTML = tabelaChamadosRisco(vencidos, refDate, filtroResp);
+  document.getElementById('tabelaAVencer').innerHTML = tabelaChamadosRisco(aVencer, refDate, filtroResp);
 }
 
 function abrirModalCategoria(chave) {
@@ -436,10 +458,16 @@ async function iniciar() {
     <section>
       <div class="sec-head"><h2>Chamados de Gestão de Risco</h2><span class="sec-note">Coifa, Broiler, Exaustor, Sensor de gás, Quadro Elétrico · fonte: Power BI (Gestão de Risco · Sul)</span></div>
       <div class="card">
-        <div class="risco-subhead"><span>Risco Vencido</span><span class="cnt vencido">${(D.chamadosRisco?.vencidos || []).length}</span></div>
-        ${tabelaChamadosRisco(D.chamadosRisco?.vencidos, refDate)}
-        <div class="risco-subhead"><span>Risco a Vencer</span><span class="cnt avencer">${(D.chamadosRisco?.aVencer || []).length}</span></div>
-        ${tabelaChamadosRisco(D.chamadosRisco?.aVencer, refDate)}
+        <div class="filter-bar">
+          <div class="filter-field">
+            <label for="filtroResponsavelRisco">Responsável</label>
+            <select id="filtroResponsavelRisco"><option value="">Todos</option>${RESPONSAVEIS.map(r => `<option value="${escapeHtml(r)}">${escapeHtml(r)}</option>`).join('')}</select>
+          </div>
+        </div>
+        <div class="risco-subhead"><span>Risco Vencido</span><span class="cnt vencido" id="cntVencido">${(D.chamadosRisco?.vencidos || []).length}</span></div>
+        <div id="tabelaVencido">${tabelaChamadosRisco(D.chamadosRisco?.vencidos, refDate)}</div>
+        <div class="risco-subhead"><span>Risco a Vencer</span><span class="cnt avencer" id="cntAVencer">${(D.chamadosRisco?.aVencer || []).length}</span></div>
+        <div id="tabelaAVencer">${tabelaChamadosRisco(D.chamadosRisco?.aVencer, refDate)}</div>
       </div>
     </section>
 
@@ -448,6 +476,8 @@ async function iniciar() {
       <span class="mono">${brl0(D.totalLojasAvaliadas)} lojas avaliadas</span>
     </footer>
   `;
+
+  document.getElementById('filtroResponsavelRisco').addEventListener('change', renderizarChamadosRisco);
 }
 iniciar();
 

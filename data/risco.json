@@ -1,41 +1,33 @@
 {
  "atualizadoEm": "15/09/2026 07:11:03",
- "geradoEm": "2026-09-15T12:04:29.088Z",
- "totalLojasAvaliadas": 82,
- "scoreMedio": 10.51,
+ "geradoEm": "2026-09-15T12:16:47.826Z",
+ "totalLojasAvaliadas": 71,
+ "scoreMedio": 10.37,
  "categorias": [
   {
    "chave": "sci",
    "nome": "SCI",
    "vencido": 1,
-   "emDia": 81,
-   "total": 82,
+   "emDia": 70,
+   "total": 71,
    "pctVencido": 1,
-   "lojasVencidas": [],
-   "lojasVencidasParcial": true
+   "lojasVencidas": [
+    {
+     "nome": "33312 - FC PONTA GROSSA - SHOPPING PLAZA CAMPOS GERAIS",
+     "score": 14
+    }
+   ]
   },
   {
    "chave": "dutos",
    "nome": "Dutos",
-   "vencido": 34,
-   "emDia": 48,
-   "total": 82,
-   "pctVencido": 41,
+   "vencido": 30,
+   "emDia": 41,
+   "total": 71,
+   "pctVencido": 42,
    "lojasVencidas": [
     {
-     "nome": "21791 - SHOP CIDADE CURITIBA",
-     "score": 15
-    },
-    {
      "nome": "16619 - SHOP PRAIA DE BELAS",
-     "score": 15
-    },
-    {
-     "nome": "26828 - FS CURITIBA FRANCISCO FRISHMANN 3151",
-     "score": 15
-    },
-    {
-     "nome": "20215 - CARREFOUR PASSO D'AREIA",
      "score": 15
     },
     {
@@ -43,23 +35,35 @@
      "score": 15
     },
     {
-     "nome": "16988 - SHOP ESTACAO",
-     "score": 15
-    },
-    {
      "nome": "20047 - FS CURITIBA - LINHA VERDE",
      "score": 15
     },
     {
-     "nome": "21475 - SHOP JARDIM DAS AMERICAS",
-     "score": 14
+     "nome": "20215 - CARREFOUR PASSO D'AREIA",
+     "score": 15
     },
     {
-     "nome": "23725 - SHOP PRACA NOVA SANTA MARIA",
-     "score": 14
+     "nome": "21702 - CATARATAS JL SHOP",
+     "score": 15
+    },
+    {
+     "nome": "21791 - SHOP CIDADE CURITIBA",
+     "score": 15
+    },
+    {
+     "nome": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
+     "score": 15
+    },
+    {
+     "nome": "26828 - FS CURITIBA FRANCISCO FRISHMANN 3151",
+     "score": 15
     },
     {
      "nome": "15893 - SHOP IGUATEMI PORTO ALEGRE",
+     "score": 14
+    },
+    {
+     "nome": "15903 - SHOP CURITIBA",
      "score": 14
     },
     {
@@ -67,7 +71,27 @@
      "score": 14
     },
     {
+     "nome": "21475 - SHOP JARDIM DAS AMERICAS",
+     "score": 14
+    },
+    {
+     "nome": "23699 - COLOMBO PARK SHOP",
+     "score": 14
+    },
+    {
+     "nome": "23725 - SHOP PRACA NOVA SANTA MARIA",
+     "score": 14
+    },
+    {
+     "nome": "25676 - FS CURITIBA - RUA DOMINGOS STRAPASSON",
+     "score": 14
+    },
+    {
      "nome": "26839 - FS CURITIBA AV SILVA JARDIM 566",
+     "score": 14
+    },
+    {
+     "nome": "33312 - FC PONTA GROSSA - SHOPPING PLAZA CAMPOS GERAIS",
      "score": 14
     },
     {
@@ -75,8 +99,8 @@
      "score": 11
     },
     {
-     "nome": "21529 - PARTAGE SHOP RIO GRANDE",
-     "score": 10
+     "nome": "20621 - SHOP PELOTAS",
+     "score": 11
     },
     {
      "nome": "15875 - SHOP MUELLER CURITIBA",
@@ -87,30 +111,61 @@
      "score": 10
     },
     {
-     "nome": "23584 - ILR FLORIANÓPOLIS - R. JERÔNIMO COELHO, 215",
-     "score": 10
-    },
-    {
      "nome": "17223 - CANOAS SHOP",
      "score": 10
     },
     {
      "nome": "18625 - BOURBON SHOP WALLIG",
      "score": 10
+    },
+    {
+     "nome": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
+     "score": 10
+    },
+    {
+     "nome": "21529 - PARTAGE SHOP RIO GRANDE",
+     "score": 10
+    },
+    {
+     "nome": "22536 - SHOP PALLADIUM FOZ DO IGUACU",
+     "score": 10
+    },
+    {
+     "nome": "23584 - ILR FLORIANÓPOLIS - R. JERÔNIMO COELHO, 215",
+     "score": 10
+    },
+    {
+     "nome": "23736 - FS CURITIBA - R MARTIN AFONSO",
+     "score": 10
+    },
+    {
+     "nome": "24741 - FS PELOTAS - AV FERREIRA VIANA",
+     "score": 10
+    },
+    {
+     "nome": "33697 - FS COLOMBO - ESTRADA RIBEIRA 3700",
+     "score": 10
     }
-   ],
-   "lojasVencidasParcial": true
+   ]
   },
   {
    "chave": "rotaSeguranca",
    "nome": "Rota Segurança",
-   "vencido": 13,
-   "emDia": 69,
-   "total": 82,
-   "pctVencido": 16,
+   "vencido": 15,
+   "emDia": 56,
+   "total": 71,
+   "pctVencido": 21,
    "lojasVencidas": [
     {
-     "nome": "19618 - SHOP GRAVATAI",
+     "nome": "16988 - SHOP ESTACAO",
+     "score": 15
+    },
+    {
+     "nome": "21787 - CARREFOUR PARTENON",
+     "score": 15
+    },
+    {
+     "nome": "26806 - JOCKEY PLAZA SHOP",
      "score": 15
     },
     {
@@ -118,7 +173,19 @@
      "score": 14
     },
     {
+     "nome": "15903 - SHOP CURITIBA",
+     "score": 14
+    },
+    {
      "nome": "16626 - SHOP PALLADIUM CURITIBA",
+     "score": 14
+    },
+    {
+     "nome": "23699 - COLOMBO PARK SHOP",
+     "score": 14
+    },
+    {
+     "nome": "25676 - FS CURITIBA - RUA DOMINGOS STRAPASSON",
      "score": 14
     },
     {
@@ -126,22 +193,45 @@
      "score": 14
     },
     {
+     "nome": "21535 - ANGELONI AGUA VERDE",
+     "score": 10
+    },
+    {
+     "nome": "23989 - SHOP JL CASCAVEL",
+     "score": 10
+    },
+    {
+     "nome": "24362 - FS SJP - AV DAS TORRES",
+     "score": 10
+    },
+    {
+     "nome": "25455 - FS POA - AV DR NILO PECANHA 1715",
+     "score": 10
+    },
+    {
      "nome": "29084 - FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL 13185",
      "score": 10
+    },
+    {
+     "nome": "29095 - FS CURITIBA CARLOS KLEMTZ 1994",
+     "score": 10
     }
-   ],
-   "lojasVencidasParcial": true
+   ]
   },
   {
    "chave": "rotaPadroes",
    "nome": "Rota Padrões",
    "vencido": 5,
-   "emDia": 77,
-   "total": 82,
-   "pctVencido": 6,
+   "emDia": 66,
+   "total": 71,
+   "pctVencido": 7,
    "lojasVencidas": [
     {
      "nome": "21475 - SHOP JARDIM DAS AMERICAS",
+     "score": 14
+    },
+    {
+     "nome": "23725 - SHOP PRACA NOVA SANTA MARIA",
      "score": 14
     },
     {
@@ -156,8 +246,7 @@
      "nome": "23726 - PASSO FUNDO SHOP",
      "score": 10
     }
-   ],
-   "lojasVencidasParcial": true
+   ]
   }
  ],
  "abertoPorItemBruto": [
@@ -172,10 +261,7 @@
   "2",
   "2",
   "1",
-  "1",
-  "7",
-  "Atrasado",
-  "No Prazo"
+  "1"
  ],
  "chamadosRisco": {
   "vencidos": [
