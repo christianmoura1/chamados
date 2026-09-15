@@ -514,12 +514,6 @@ async function iniciar() {
     <section>
       <div class="sec-head"><h2>Chamados de Gestão de Risco</h2><span class="sec-note">Coifa, Broiler, Exaustor, Sensor de gás, Quadro Elétrico · fonte: Power BI (Gestão de Risco · Sul)</span></div>
       <div class="card">
-        <div class="filter-bar">
-          <div class="filter-field">
-            <label for="filtroResponsavelRisco">Responsável</label>
-            <select id="filtroResponsavelRisco"><option value="">Todos</option>${RESPONSAVEIS.map(r => `<option value="${escapeHtml(r)}">${escapeHtml(r)}</option>`).join('')}</select>
-          </div>
-        </div>
         <div class="risco-subhead"><span>Risco Vencido</span><span class="cnt vencido" id="cntVencido">${(D.chamadosRisco?.vencidos || []).length}</span></div>
         <div id="tabelaVencido">${tabelaChamadosRisco(D.chamadosRisco?.vencidos, refDate)}</div>
         <div class="risco-subhead"><span>Risco a Vencer</span><span class="cnt avencer" id="cntAVencer">${(D.chamadosRisco?.aVencer || []).length}</span></div>
@@ -532,8 +526,6 @@ async function iniciar() {
       <span class="mono">${brl0(D.totalLojasAvaliadas)} lojas avaliadas</span>
     </footer>
   `;
-
-  document.getElementById('filtroResponsavelRisco').addEventListener('change', renderizarChamadosRisco);
 }
 iniciar();
 
