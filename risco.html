@@ -358,7 +358,7 @@ async function iniciar() {
   const piorCategoria = [...D.categorias].sort((a, b) => b.pctVencido - a.pctVencido)[0];
 
   const kpisHtml = [
-    { label: 'Lojas Avaliadas', val: brl0(D.totalLojasAvaliadas), cls: 'k-violet' },
+    { label: 'Chamados Vencidos', val: brl0((D.chamadosRisco?.vencidos || []).length), cls: 'k-sos' },
     { label: 'Score Médio', val: D.scoreMedio != null ? D.scoreMedio.toLocaleString('pt-BR') : '—', cls: 'k-violet' },
     { label: 'Itens Vencidos', val: brl0(totalVencido), cls: 'k-sos' },
     { label: 'Categoria Mais Crítica', val: piorCategoria ? `${piorCategoria.nome} · ${piorCategoria.pctVencido}%` : '—', cls: 'k-alta' },
