@@ -270,6 +270,7 @@
   .fbtn { border: 1px solid #E0DCF2; background: #fff; border-radius: 999px; padding: 7px 15px; font-size: 12.5px;
           font-weight: 600; color: #4a4770; cursor: pointer; font-family: inherit; }
   .fbtn.on { background: #4b31c9; border-color: #4b31c9; color: #fff; }
+  td.t-velho { color: #B22119; font-weight: 700; }
   .aviso { background: #FFF8E6; border: 1px solid #F3E2B0; border-radius: 12px; padding: 12px 14px;
            font-size: 12.5px; color: #6b5412; margin-bottom: 20px; line-height: 1.5; }
 </style>
@@ -318,11 +319,24 @@ function dataCurta(s) {
   const m = String(s).match(/^(\d{2})\/(\d{2})\/(\d{4})\s+(\d{2}:\d{2})/);
   return m ? `${m[1]}/${m[2]} ${m[4]}` : String(s);
 }
-function diasDesde(s) {
-  const m = String(s || '').match(/^(\d{2})\/(\d{2})\/(\d{4})/);
+// tempo em aberto contado de verdade (minuto a minuto), nao em dias corridos
+function tempoAberto(s) {
+  const m = String(s || '').match(/^(\d{2})\/(\d{2})\/(\d{4})\s+(\d{2}):(\d{2})/);
   if (!m) return null;
-  const d = new Date(Number(m[3]), Number(m[2]) - 1, Number(m[1]));
-  return Math.floor((Date.now() - d.getTime()) / 86400000);
+  const d = new Date(Number(m[3]), Number(m[2]) - 1, Number(m[1]), Number(m[4]), Number(m[5]));
+  const min = Math.max(0, Math.floor((Date.now() - d.getTime()) / 60000));
+  if (min < 60) return min + 'min';
+  const h = Math.floor(min / 60), r = min % 60;
+  if (h < 24) return r ? h + 'h ' + r + 'min' : h + 'h';
+  const dias = Math.floor(h / 24), hr = h % 24;
+  return hr ? dias + 'd ' + hr + 'h' : dias + 'd';
+}
+// acima de 24h o chamado ja passou do dia: destaca
+function classeTempo(s) {
+  const m = String(s || '').match(/^(\d{2})\/(\d{2})\/(\d{4})\s+(\d{2}):(\d{2})/);
+  if (!m) return '';
+  const d = new Date(Number(m[3]), Number(m[2]) - 1, Number(m[1]), Number(m[4]), Number(m[5]));
+  return (Date.now() - d.getTime()) >= 86400000 ? ' t-velho' : '';
 }
 function pillStatus(status, grupo) {
   const cls = grupo === 'executado' ? 'p-feito' : grupo === 'cancelado' ? 'p-canc'
@@ -349,11 +363,10 @@ function linhas(itens) {
   return `<div class="tbl-wrap"><table class="campo">
     <thead><tr>
       <th>Número</th><th>Marca</th><th>Regional</th><th>Setor</th><th>Loja</th>
-      <th>Status</th><th>Fase</th><th>Abertura</th><th>Dias</th><th>Fechamento</th>
+      <th>Status</th><th>Fase</th><th>Abertura</th><th>Em aberto</th><th>Fechamento</th>
       <th>Principal</th><th>Secundário</th><th>Tarefa</th>
     </tr></thead><tbody>
     ${itens.map((i) => {
-      const d = diasDesde(i.abertura);
       return `<tr>
         <td class="wo">${esc(i.numero)}</td>
         <td>${esc(i.marca)}</td>
@@ -363,7 +376,7 @@ function linhas(itens) {
         <td>${pillStatus(i.status, i.grupo)}</td>
         <td>${esc(i.fase || '—')}</td>
         <td class="mono">${dataCurta(i.abertura)}</td>
-        <td class="mono">${d == null ? '—' : d + 'd'}</td>
+        <td class="mono${classeTempo(i.abertura)}">${tempoAberto(i.abertura) || '—'}</td>
         <td class="mono">${dataCurta(i.fechamento)}</td>
         <td>${esc(i.principal)}</td>
         <td>${esc(i.secundario)}</td>

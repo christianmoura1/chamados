@@ -156,19 +156,97 @@ if (fs.existsSync(DESTINO)) {
     anterior = JSON.stringify({ resumo: j.resumo, itens: j.itens });
   } catch (e) { log('campo.json anterior ilegivel, vou regravar: ' + e.message); }
 }
-if (anterior === miolo) {
-  log('sem mudanca nos chamados -- nao gravei e nao vou publicar');
-  await browser.close().catch(() => {});
-  process.exit(9);
+// Nada mudou = nao publica. Mas o WhatsApp roda mesmo assim, porque a primeira
+// carga precisa sair mesmo que o JSON ja esteja igual ao da execucao anterior.
+const semMudanca = (anterior === miolo);
+if (semMudanca) log('sem mudanca nos chamados -- nao vou publicar (o aviso de WhatsApp ainda e avaliado)');
+
+if (!semMudanca) {
+  fs.writeFileSync(DESTINO, JSON.stringify({
+    atualizadoEm: new Date().toISOString(),
+    janelaDias: 3,
+    resumo,
+    itens: abertos,
+  }, null, 1), 'utf8');
+  log('campo.json gravado com ' + abertos.length + ' chamados em aberto (houve mudanca)');
 }
 
-fs.writeFileSync(DESTINO, JSON.stringify({
-  atualizadoEm: new Date().toISOString(),
-  janelaDias: 3,
-  resumo,
-  itens: abertos,
-}, null, 1), 'utf8');
-log('campo.json gravado com ' + abertos.length + ' chamados em aberto (houve mudanca)');
+// ---------- WhatsApp: primeira vez a lista toda, depois so' os novos ----------
+// O estado fica FORA do repo, para nao virar commit a cada 20 min.
+const ESTADO = 'C:/projetos/climapro-bot/campo_notificados.json';
+const UAZAPI_URL = process.env.UAZAPI_URL;
+const UAZAPI_TOKEN = process.env.UAZAPI_TOKEN;
+const DEST = process.env.CAMPO_DEST_NUMBER || process.env.MORDOMO_OWNER_NUMBER || '5541992572743';
+
+function tempoAberto(s) {
+  const m = String(s || '').match(/^(\d{2})\/(\d{2})\/(\d{4})\s+(\d{2}):(\d{2})/);
+  if (!m) return '';
+  const d = new Date(Number(m[3]), Number(m[2]) - 1, Number(m[1]), Number(m[4]), Number(m[5]));
+  const min = Math.max(0, Math.floor((Date.now() - d.getTime()) / 60000));
+  if (min < 60) return min + 'min';
+  const h = Math.floor(min / 60), r = min % 60;
+  if (h < 24) return r ? h + 'h' + r : h + 'h';
+  return Math.floor(h / 24) + 'd' + (h % 24) + 'h';
+}
+
+let jaAvisados = null;
+if (fs.existsSync(ESTADO)) {
+  try { jaAvisados = JSON.parse(fs.readFileSync(ESTADO, 'utf8')); }
+  catch (e) { log('estado de notificacao ilegivel: ' + e.message); }
+}
+const primeiraVez = !jaAvisados || !Array.isArray(jaAvisados.numeros);
+const conhecidos = new Set(primeiraVez ? [] : jaAvisados.numeros.map((x) => x.numero));
+const novos = abertos.filter((i) => !conhecidos.has(i.numero));
+
+function monta(lista, ehPrimeira) {
+  const cab = ehPrimeira
+    ? '*CHAMADOS CRITICOS - SUL*\n_lista inicial - ' + lista.length + ' em aberto_\n'
+    : '*NOVO CHAMADO CRITICO - SUL*' + (lista.length > 1 ? ' (' + lista.length + ')' : '') + '\n';
+  const corpo = lista.map((i) => {
+    const desc = (i.secundario || i.descricao || '').trim();
+    return '\n*' + i.numero + '* - ' + i.loja
+      + '\n' + (i.principal || '-') + ' | ' + desc
+      + '\n_' + i.setor + ' - aberto ha ' + tempoAberto(i.abertura) + '_\n';
+  }).join('');
+  return cab + corpo;
+}
+
+async function enviar(texto) {
+  if (!UAZAPI_URL || !UAZAPI_TOKEN) { log('UAZAPI nao configurada -- pulei o WhatsApp'); return false; }
+  try {
+    const r = await fetch(UAZAPI_URL + '/send/text', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', token: UAZAPI_TOKEN },
+      body: JSON.stringify({ number: DEST, text: texto }),
+    });
+    log('WhatsApp status ' + r.status + ' para ' + DEST);
+    return r.ok;
+  } catch (e) { log('WhatsApp falhou: ' + e.message); return false; }
+}
+
+if (novos.length === 0) {
+  log('nenhum chamado novo -- nao mandei WhatsApp');
+} else {
+  // Em lotes de 8 para a mensagem nao ficar gigante na primeira carga.
+  let enviouTudo = true;
+  for (let i = 0; i < novos.length; i += 8) {
+    const lote = novos.slice(i, i + 8);
+    const ok = await enviar(monta(lote, primeiraVez));
+    if (!ok) { enviouTudo = false; break; }
+  }
+  if (enviouTudo) {
+    // So' marca como avisado o que realmente saiu, para nao perder chamado.
+    const agora = new Date().toISOString();
+    const lista = (primeiraVez ? [] : jaAvisados.numeros).concat(novos.map((i) => ({ numero: i.numero, em: agora })));
+    // poda o que ja passou de 10 dias, para o arquivo nao crescer para sempre
+    const corte = Date.now() - 10 * 86400000;
+    const podada = lista.filter((x) => new Date(x.em).getTime() >= corte);
+    fs.writeFileSync(ESTADO, JSON.stringify({ atualizadoEm: agora, numeros: podada }, null, 1), 'utf8');
+    log('avisados ' + novos.length + ' chamado(s) novo(s); estado com ' + podada.length + ' numeros');
+  } else {
+    log('envio falhou -- NAO marquei como avisado, tenta de novo no proximo ciclo');
+  }
+}
 
 const est = {};
 for (const i of abertos) est[i.status] = (est[i.status] || 0) + 1;
@@ -178,4 +256,5 @@ for (const i of abertos) if (i.fase) fss[i.fase] = (fss[i.fase] || 0) + 1;
 log('fases: ' + JSON.stringify(fss));
 
 await browser.close().catch(() => {});
-process.exit(0);
+// 9 = nada novo para publicar; a tarefa agendada so' commita quando o codigo e' 0
+process.exit(semMudanca ? 9 : 0);
