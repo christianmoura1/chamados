@@ -271,6 +271,16 @@
           font-weight: 600; color: #4a4770; cursor: pointer; font-family: inherit; }
   .fbtn.on { background: #4b31c9; border-color: #4b31c9; color: #fff; }
   td.t-velho { color: #B22119; font-weight: 700; }
+  /* ---------- evolucao: abertos x fechados ---------- */
+  .evo { background:#fff; border-radius:16px; padding:18px 20px 12px;
+         box-shadow:0 1px 2px rgba(20,16,60,.06), 0 8px 24px rgba(20,16,60,.05); margin-bottom:26px; }
+  .evo-top { display:flex; justify-content:space-between; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:12px; }
+  .evo-leg { display:flex; gap:16px; font-size:12px; color:#4a4770; font-weight:600; }
+  .evo-leg i { display:inline-block; width:10px; height:10px; border-radius:3px; margin-right:6px; vertical-align:-1px; }
+  .evo-saldo { font-family:"IBM Plex Mono",monospace; font-size:12px; color:#63617a; }
+  .evo-saldo b { font-family:"Archivo",sans-serif; font-size:15px; }
+  .evo-pos { color:#B22119; }
+  .evo-neg { color:#14713E; }
   .aviso { background: #FFF8E6; border: 1px solid #F3E2B0; border-radius: 12px; padding: 12px 14px;
            font-size: 12.5px; color: #6b5412; margin-bottom: 20px; line-height: 1.5; }
 </style>
@@ -358,6 +368,57 @@ function cards(r) {
     `<div class="statcard ${k}"><span class="cap">${rot}</span><span class="val">${v}</span></div>`).join('')}</div>`;
 }
 
+function grafEvolucao(serie) {
+  if (!Array.isArray(serie) || !serie.length) return '';
+  const W = 900, H = 210, padL = 34, padB = 34, padT = 12;
+  const n = serie.length;
+  const maxV = Math.max(1, ...serie.map((d) => Math.max(d.abertos, d.fechados)));
+  const faixa = (W - padL - 10) / n;
+  const larg = Math.min(16, faixa / 2.6);
+  const alt = (v) => (H - padT - padB) * (v / maxV);
+  const base = H - padB;
+
+  const barras = serie.map((d, i) => {
+    const x = padL + faixa * i + faixa / 2;
+    const ha = alt(d.abertos), hf = alt(d.fechados);
+    const dia = d.data.slice(8, 10) + '/' + d.data.slice(5, 7);
+    return `
+      <g>
+        <rect x="${(x - larg - 1.5).toFixed(1)}" y="${(base - ha).toFixed(1)}" width="${larg}" height="${ha.toFixed(1)}" rx="3" fill="#E5352B"></rect>
+        <rect x="${(x + 1.5).toFixed(1)}" y="${(base - hf).toFixed(1)}" width="${larg}" height="${hf.toFixed(1)}" rx="3" fill="#22A15B"></rect>
+        ${d.abertos ? `<text x="${(x - larg / 2 - 1.5).toFixed(1)}" y="${(base - ha - 4).toFixed(1)}" text-anchor="middle" font-size="10" font-weight="700" fill="#B22119">${d.abertos}</text>` : ''}
+        ${d.fechados ? `<text x="${(x + larg / 2 + 1.5).toFixed(1)}" y="${(base - hf - 4).toFixed(1)}" text-anchor="middle" font-size="10" font-weight="700" fill="#14713E">${d.fechados}</text>` : ''}
+        <text x="${x.toFixed(1)}" y="${base + 15}" text-anchor="middle" font-size="9.5" fill="#8d8ba6" font-family="IBM Plex Mono, monospace">${dia}</text>
+      </g>`;
+  }).join('');
+
+  const grade = [0, 0.5, 1].map((f) => {
+    const y = base - (H - padT - padB) * f;
+    return `<line x1="${padL}" y1="${y.toFixed(1)}" x2="${W - 6}" y2="${y.toFixed(1)}" stroke="#EFEDF8"></line>
+            <text x="${padL - 6}" y="${(y + 3).toFixed(1)}" text-anchor="end" font-size="9.5" fill="#a7a5bb" font-family="IBM Plex Mono, monospace">${Math.round(maxV * f)}</text>`;
+  }).join('');
+
+  const somaA = serie.reduce((t, d) => t + d.abertos, 0);
+  const somaF = serie.reduce((t, d) => t + d.fechados, 0);
+  const saldo = somaA - somaF;
+  const cls = saldo > 0 ? 'evo-pos' : 'evo-neg';
+  const txt = saldo > 0 ? 'acumulando ' + saldo : saldo < 0 ? 'reduzindo ' + Math.abs(saldo) : 'empatado';
+
+  return `<div class="evo">
+    <div class="evo-top">
+      <div class="evo-leg">
+        <span><i style="background:#E5352B"></i>Abertos</span>
+        <span><i style="background:#22A15B"></i>Fechados</span>
+      </div>
+      <div class="evo-saldo">${somaA} abertos &middot; ${somaF} fechados &middot; saldo <b class="${cls}">${txt}</b></div>
+    </div>
+    <svg viewBox="0 0 ${W} ${H}" width="100%" height="210" role="img" aria-label="Abertos por dia contra fechados por dia">
+      ${grade}${barras}
+      <line x1="${padL}" y1="${base}" x2="${W - 6}" y2="${base}" stroke="#DCD8EE"></line>
+    </svg>
+  </div>`;
+}
+
 function linhas(itens) {
   if (!itens.length) return `<div class="filter-empty">Nenhum chamado crítico nesse recorte.</div>`;
   return `<div class="tbl-wrap"><table class="campo">
@@ -395,6 +456,10 @@ function render() {
     <div class="aviso"><strong>Colunas ainda não mapeadas:</strong> Impacto, Abertura Impacto e Solicitação Token
     não existem na ordem de serviço do SOMA — precisam ser localizadas na origem da sua planilha de campo.
     O card “Chamados com Impacto” fica em “—” até lá, em vez de mostrar um número inventado.</div>
+    ${Array.isArray(D.serie) && D.serie.length ? `
+    <div class="sec-head"><h2>Abertos &times; Fechados &middot; últimos 14 dias</h2>
+      <span class="sec-note">Chamados críticos &middot; Regional SUL &middot; fonte: ServiceNow SOMA</span></div>
+    ${grafEvolucao(D.serie)}` : ''}
     <div class="sec-head"><h2>Chamados críticos em aberto · últimos ${D.janelaDias} dias</h2>
       <span class="sec-note">Prioridade 1 · Crítica · fonte: ServiceNow SOMA (wm_order · Regional SUL)</span></div>
     ${linhas(abertos)}

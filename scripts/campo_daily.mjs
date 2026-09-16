@@ -84,6 +84,41 @@ const nums = ordens.map((o) => o.number).filter(Boolean);
 const tarefas = objetos(await baixaCSV('wm_task', CAMPOS_WT, 'parent.numberIN' + nums.join(',')));
 log('tarefas filhas: ' + tarefas.length);
 
+// ---------- historico de 14 dias: abertos x fechados ----------
+// Duas consultas separadas de proposito: um chamado aberto ha 8 dias e fechado
+// hoje precisa contar no FECHADO de hoje, e ele nao aparece na janela de abertura.
+// Buscar os 14 dias inteiros (em vez de ir acumulando um ponto por dia) faz o
+// grafico ja nascer completo e se auto-corrigir a cada ciclo.
+const BASE_SUL = 'opened_for.u_bk_work_center=CSUL^priority=1';
+const JANELA_HIST = 13; // 13 dias atras + hoje = 14 dias
+const soData = (s) => {
+  const m = String(s || '').match(/^(\d{2})\/(\d{2})\/(\d{4})/);
+  return m ? m[3] + '-' + m[2] + '-' + m[1] : null;
+};
+
+const histAbertos = objetos(await baixaCSV('wm_order', 'number,opened_at',
+  BASE_SUL + '^opened_at>=javascript:gs.daysAgoStart(' + JANELA_HIST + ')'));
+const histFechados = objetos(await baixaCSV('wm_order', 'number,closed_at',
+  BASE_SUL + '^closed_at>=javascript:gs.daysAgoStart(' + JANELA_HIST + ')'));
+log('historico: ' + histAbertos.length + ' aberturas e ' + histFechados.length + ' fechamentos em 14 dias');
+
+const porDia = {};
+const garante = (d) => { if (!porDia[d]) porDia[d] = { data: d, abertos: 0, fechados: 0 }; return porDia[d]; };
+for (const r of histAbertos) { const d = soData(r.opened_at); if (d) garante(d).abertos++; }
+for (const r of histFechados) { const d = soData(r.closed_at); if (d) garante(d).fechados++; }
+
+// preenche os dias sem movimento, senao o grafico fica com buracos
+const hoje = new Date();
+const serie = [];
+for (let k = JANELA_HIST; k >= 0; k--) {
+  const d = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate() - k);
+  const chave = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  serie.push(porDia[chave] || { data: chave, abertos: 0, fechados: 0 });
+}
+const somaAb = serie.reduce((s, x) => s + x.abertos, 0);
+const somaFe = serie.reduce((s, x) => s + x.fechados, 0);
+log('serie de 14 dias: ' + somaAb + ' abertos x ' + somaFe + ' fechados (saldo ' + (somaAb - somaFe) + ')');
+
 const porOrdem = {};
 for (const t of tarefas) {
   const k = t['parent.number'];
@@ -148,12 +183,12 @@ log('resumo: ' + JSON.stringify(resumo));
 // um limite de 100). Entao so' grava quando os chamados de fato mudam; o codigo
 // de saida 9 avisa a tarefa que nao ha nada para publicar.
 const DESTINO = REPO + '/data/campo.json';
-const miolo = JSON.stringify({ resumo, itens: abertos });
+const miolo = JSON.stringify({ resumo, itens: abertos, serie });
 let anterior = null;
 if (fs.existsSync(DESTINO)) {
   try {
     const j = JSON.parse(fs.readFileSync(DESTINO, 'utf8'));
-    anterior = JSON.stringify({ resumo: j.resumo, itens: j.itens });
+    anterior = JSON.stringify({ resumo: j.resumo, itens: j.itens, serie: j.serie });
   } catch (e) { log('campo.json anterior ilegivel, vou regravar: ' + e.message); }
 }
 // Nada mudou = nao publica. Mas o WhatsApp roda mesmo assim, porque a primeira
@@ -166,6 +201,7 @@ if (!semMudanca) {
     atualizadoEm: new Date().toISOString(),
     janelaDias: 3,
     resumo,
+    serie,
     itens: abertos,
   }, null, 1), 'utf8');
   log('campo.json gravado com ' + abertos.length + ' chamados em aberto (houve mudanca)');
