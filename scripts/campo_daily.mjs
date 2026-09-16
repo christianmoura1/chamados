@@ -233,6 +233,9 @@ if (fs.existsSync(ESTADO)) {
 }
 const primeiraVez = !jaAvisados || !Array.isArray(jaAvisados.numeros);
 const conhecidos = new Set(primeiraVez ? [] : jaAvisados.numeros.map((x) => x.numero));
+// So' avisa chamado NOVO e AINDA EM ABERTO -- decisao do Christian em 16/09.
+// Efeito colateral aceito por ele: critico que abre e fecha entre dois ciclos
+// nao gera aviso (ja nao exige acao quando a mensagem chegaria).
 const novos = abertos.filter((i) => !conhecidos.has(i.numero));
 
 function monta(lista, ehPrimeira) {
