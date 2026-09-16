@@ -72,7 +72,10 @@ async function baixaCSV(tabela, campos, query) {
   return Buffer.from(r.b64, 'base64').toString('latin1');
 }
 
-const qWO = 'opened_for.u_bk_work_center=CSUL^priority=1^opened_at>=javascript:gs.daysAgoStart(3)^ORDERBYDESCopened_at';
+// daysAgoStart(N) volta ate a MEIA-NOITE de N dias atras. Com N=3 vinham 4 dias
+// corridos (13,14,15,16) e a lista ficava maior que a tela de campo do Christian.
+// N=2 = hoje + os 2 dias anteriores = a janela de 3 dias que ele usa.
+const qWO = 'opened_for.u_bk_work_center=CSUL^priority=1^opened_at>=javascript:gs.daysAgoStart(2)^ORDERBYDESCopened_at';
 const ordens = objetos(await baixaCSV('wm_order', CAMPOS_WO, qWO));
 log('ordens criticas (3 dias, SUL): ' + ordens.length);
 if (!ordens.length) fatal('nenhuma ordem retornada -- filtro ou sessao suspeitos');
