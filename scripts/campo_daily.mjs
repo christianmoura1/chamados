@@ -225,6 +225,7 @@ function tempoAberto(s) {
   return Math.floor(h / 24) + 'd' + (h % 24) + 'h';
 }
 
+log('WhatsApp: destino=' + DEST + ' | uazapi=' + (UAZAPI_URL && UAZAPI_TOKEN ? 'ok' : 'NAO CONFIGURADA'));
 let jaAvisados = null;
 if (fs.existsSync(ESTADO)) {
   try { jaAvisados = JSON.parse(fs.readFileSync(ESTADO, 'utf8')); }
