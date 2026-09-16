@@ -271,6 +271,28 @@
           font-weight: 600; color: #4a4770; cursor: pointer; font-family: inherit; }
   .fbtn.on { background: #4b31c9; border-color: #4b31c9; color: #fff; }
   td.t-velho { color: #B22119; font-weight: 700; }
+  /* ---------- historico (mesmo formato do Backlog) ---------- */
+  .chart-legend { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 10px; }
+  .chart-legend .li { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--muted); }
+  .chart-legend .sw { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+  .chart-note { font-size: 12px; color: var(--faint); font-family: "IBM Plex Mono", monospace; margin-top: 10px; }
+  .hist-stamp { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--faint); margin-bottom: 12px; }
+  .chart-svg-wrap { position: relative; }
+  .chart-dot { cursor: pointer; }
+  .chart-tooltip .ctt-quando { font-size: 9.5px; opacity: .75; }
+  .chart-tooltip .ctt-valor { font-weight: 700; font-size: 13px; }
+  .hist-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 20px; }
+  .hstat { background: var(--surface2); border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 3px; }
+  .hstat-lbl { display: flex; align-items: center; gap: 6px; font-family: "IBM Plex Mono", monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+  .hstat-dot { width: 8px; height: 8px; border-radius: 999px; flex: none; }
+  .hstat-val { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -0.01em; }
+  .hstat-delta { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--faint); }
+    position: absolute; z-index: 20; pointer-events: none; transform: translate(-50%, -100%);
+    background: var(--ink); color: var(--surface); border-radius: 10px; padding: 7px 10px;
+    font-family: "IBM Plex Mono", monospace; font-size: 11px; white-space: nowrap; box-shadow: var(--shadow);
+    display: flex; flex-direction: column; gap: 2px; align-items: flex-start;
+  }
+  td.t-velho { color: #B22119; font-weight: 700; }
   /* ---------- evolucao: abertos x fechados ---------- */
   .evo { background:#fff; border-radius:16px; padding:18px 20px 12px;
          box-shadow:0 1px 2px rgba(20,16,60,.06), 0 8px 24px rgba(20,16,60,.05); margin-bottom:26px; }
@@ -368,55 +390,116 @@ function cards(r) {
     `<div class="statcard ${k}"><span class="cap">${rot}</span><span class="val">${v}</span></div>`).join('')}</div>`;
 }
 
-function grafEvolucao(serie) {
+const escapeHtml = esc;
+
+function lineChartSVG(pontos, series) {
+  const W = 800, H = 220, padL = 34, padR = 34, padT = 14, padB = 26;
+  const innerW = W - padL - padR, innerH = H - padT - padB;
+  const n = pontos.length;
+  const maxV = Math.max(...series.flatMap(s => pontos.map(p => p[s.key])), 1);
+  const x = i => n <= 1 ? padL + innerW / 2 : padL + (i / (n - 1)) * innerW;
+  const y = v => padT + innerH - (v / maxV) * innerH;
+
+  const grid = [0, 0.25, 0.5, 0.75, 1].map(f => {
+    const yy = padT + innerH * (1 - f);
+    return `<line x1="${padL}" y1="${yy.toFixed(1)}" x2="${W - padR}" y2="${yy.toFixed(1)}" style="stroke:var(--grid)" stroke-width="1"/>
+      <text x="${padL - 6}" y="${(yy + 3).toFixed(1)}" font-size="9" text-anchor="end" style="fill:var(--faint)" font-family="IBM Plex Mono, monospace">${Math.round(maxV * f)}</text>`;
+  }).join('');
+
+  // rotulo do valor atual (ponta da linha) -- espalha verticalmente quando
+  // duas series terminam perto uma da outra, pra nao sobrepor o numero
+  const finais = series.map(s => ({ s, v: pontos[n - 1][s.key] })).sort((a, b) => b.v - a.v);
+  const minGap = 11;
+  finais.forEach((f, i) => { f.yLabel = i === 0 ? y(f.v) : Math.max(y(f.v), finais[i - 1].yLabel + minGap); });
+  const yLabelPorChave = Object.fromEntries(finais.map(f => [f.s.key, f.yLabel]));
+
+  // dado de cada bolinha guardado em atributos data-* pra o tooltip (caixa
+  // com o valor exato) ler no hover, sem precisar recalcular nada -- pedido
+  // do Christian, 12/09/2026.
+  const dotAttrs = (p, i, s) => {
+    const d = new Date(p.quando || (p.data + 'T00:00:00'));
+    const quandoFmt = d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' }) + ' ' + d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+    return `class="chart-dot" data-valor="${p[s.key]}" data-label="${escapeHtml(s.label)}" data-cor="${s.color}" data-quando="${quandoFmt}"`;
+  };
+
+  const seriesSvg = series.map(s => {
+    const valorFinal = pontos[n - 1][s.key];
+    const rotuloFinal = `<text x="${(x(n - 1) + 8).toFixed(1)}" y="${(yLabelPorChave[s.key] + 3).toFixed(1)}" font-size="11" font-weight="700" style="fill:${s.color}" font-family="IBM Plex Mono, monospace">${valorFinal}</text>`;
+    if (n === 1) {
+      return `<circle cx="${x(0).toFixed(1)}" cy="${y(pontos[0][s.key]).toFixed(1)}" r="5" style="fill:${s.color}" ${dotAttrs(pontos[0], 0, s)}/>${rotuloFinal}`;
+    }
+    const pts = pontos.map((p, i) => `${x(i).toFixed(1)},${y(p[s.key]).toFixed(1)}`).join(' ');
+    const dots = pontos.map((p, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(p[s.key]).toFixed(1)}" r="5" style="fill:${s.color};stroke:${s.color}" fill-opacity="0" stroke-width="0" ${dotAttrs(p, i, s)}/>`).join('');
+    const dotsVisiveis = pontos.map((p, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(p[s.key]).toFixed(1)}" r="3" style="fill:${s.color};pointer-events:none"/>`).join('');
+    return `<polyline points="${pts}" style="fill:none;stroke:${s.color};pointer-events:none" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>${dotsVisiveis}${dots}${rotuloFinal}`;
+  }).join('');
+
+  // rotulo com dia + hora (ex.: "09/09 22h") pra dar pra comparar o mesmo
+  // horario entre dias, agora que cada execucao (a cada 2h) vira um ponto
+  const passo = Math.max(1, Math.ceil(n / 7));
+  const labels = pontos.map((p, i) => {
+    if (i % passo !== 0 && i !== n - 1) return '';
+    const d = new Date(p.quando || (p.data + 'T00:00:00'));
+    const dataLbl = d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+    const horaLbl = d.toLocaleTimeString('pt-BR', { hour: '2-digit' });
+    return `<text x="${x(i).toFixed(1)}" y="${H - 8}" font-size="9" text-anchor="middle" style="fill:var(--faint)" font-family="IBM Plex Mono, monospace">${dataLbl} ${horaLbl}</text>`;
+  }).join('');
+
+  // width/height explicitos junto do viewBox: mesmo fix do gaugeSVG (ver
+  // comentario la') pro "height:auto" escalar certo em qualquer navegador.
+  return `<div class="chart-svg-wrap"><svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="width:100%;height:auto;display:block;">${grid}${seriesSvg}${labels}</svg><div class="chart-tooltip" id="chartTooltip" hidden></div></div>`;
+}
+
+// monta o bloco de historico no formato do Backlog: carimbo, 4 cartoes com
+// delta em relacao ao dia anterior, e o grafico de linhas com tooltip.
+function blocoHistorico(serie) {
   if (!Array.isArray(serie) || !serie.length) return '';
-  const W = 900, H = 210, padL = 34, padB = 34, padT = 12;
-  const n = serie.length;
-  const maxV = Math.max(1, ...serie.map((d) => Math.max(d.abertos, d.fechados)));
-  const faixa = (W - padL - 10) / n;
-  const larg = Math.min(16, faixa / 2.6);
-  const alt = (v) => (H - padT - padB) * (v / maxV);
-  const base = H - padB;
+  const pontos = serie.map((d) => ({
+    data: d.data,
+    quando: d.data + 'T12:00:00',
+    abertos: d.abertos,
+    fechados: d.fechados,
+    saldo: d.abertos - d.fechados,
+  }));
+  const series = [
+    { key: 'abertos', label: 'Abertos', color: 'var(--violet)' },
+    { key: 'fechados', label: 'Fechados', color: 'var(--blue)' },
+  ];
+  const ultimo = pontos[pontos.length - 1];
+  const anterior = pontos.length > 1 ? pontos[pontos.length - 2] : null;
+  const fmtDia = (iso) => iso.slice(8, 10) + '/' + iso.slice(5, 7);
+  const somaA = pontos.reduce((t, d) => t + d.abertos, 0);
+  const somaF = pontos.reduce((t, d) => t + d.fechados, 0);
 
-  const barras = serie.map((d, i) => {
-    const x = padL + faixa * i + faixa / 2;
-    const ha = alt(d.abertos), hf = alt(d.fechados);
-    const dia = d.data.slice(8, 10) + '/' + d.data.slice(5, 7);
-    return `
-      <g>
-        <rect x="${(x - larg - 1.5).toFixed(1)}" y="${(base - ha).toFixed(1)}" width="${larg}" height="${ha.toFixed(1)}" rx="3" fill="#E5352B"></rect>
-        <rect x="${(x + 1.5).toFixed(1)}" y="${(base - hf).toFixed(1)}" width="${larg}" height="${hf.toFixed(1)}" rx="3" fill="#22A15B"></rect>
-        ${d.abertos ? `<text x="${(x - larg / 2 - 1.5).toFixed(1)}" y="${(base - ha - 4).toFixed(1)}" text-anchor="middle" font-size="10" font-weight="700" fill="#B22119">${d.abertos}</text>` : ''}
-        ${d.fechados ? `<text x="${(x + larg / 2 + 1.5).toFixed(1)}" y="${(base - hf - 4).toFixed(1)}" text-anchor="middle" font-size="10" font-weight="700" fill="#14713E">${d.fechados}</text>` : ''}
-        <text x="${x.toFixed(1)}" y="${base + 15}" text-anchor="middle" font-size="9.5" fill="#8d8ba6" font-family="IBM Plex Mono, monospace">${dia}</text>
-      </g>`;
+  const cartoes = [
+    { lbl: 'Abertos hoje', v: ultimo.abertos, ant: anterior && anterior.abertos, cor: 'var(--violet)' },
+    { lbl: 'Fechados hoje', v: ultimo.fechados, ant: anterior && anterior.fechados, cor: 'var(--blue)' },
+    { lbl: 'Abertos 14 dias', v: somaA, ant: null, cor: 'var(--violet)' },
+    { lbl: 'Fechados 14 dias', v: somaF, ant: null, cor: 'var(--blue)' },
+  ].map((c) => {
+    let delta;
+    if (c.ant === null || c.ant === undefined) {
+      delta = '<span class="hstat-delta">acumulado do periodo</span>';
+    } else {
+      const d = c.v - c.ant;
+      const seta = d > 0 ? '&#9650;' : d < 0 ? '&#9660;' : '';
+      const sinal = d > 0 ? '+' + d : d < 0 ? String(d) : '=';
+      delta = `<span class="hstat-delta">${seta} ${sinal} vs ${fmtDia(anterior.data)}</span>`;
+    }
+    return `<div class="hstat">
+      <span class="hstat-lbl"><span class="hstat-dot" style="background:${c.cor}"></span>${c.lbl}</span>
+      <span class="hstat-val" style="color:${c.cor}">${c.v}</span>
+      ${delta}
+    </div>`;
   }).join('');
 
-  const grade = [0, 0.5, 1].map((f) => {
-    const y = base - (H - padT - padB) * f;
-    return `<line x1="${padL}" y1="${y.toFixed(1)}" x2="${W - 6}" y2="${y.toFixed(1)}" stroke="#EFEDF8"></line>
-            <text x="${padL - 6}" y="${(y + 3).toFixed(1)}" text-anchor="end" font-size="9.5" fill="#a7a5bb" font-family="IBM Plex Mono, monospace">${Math.round(maxV * f)}</text>`;
-  }).join('');
-
-  const somaA = serie.reduce((t, d) => t + d.abertos, 0);
-  const somaF = serie.reduce((t, d) => t + d.fechados, 0);
   const saldo = somaA - somaF;
-  const cls = saldo > 0 ? 'evo-pos' : 'evo-neg';
-  const txt = saldo > 0 ? 'acumulando ' + saldo : saldo < 0 ? 'reduzindo ' + Math.abs(saldo) : 'empatado';
+  const nota = `<div class="chart-note">Saldo de 14 dias: ${saldo > 0 ? 'acumulando ' + saldo : saldo < 0 ? 'reduzindo ' + Math.abs(saldo) : 'empatado'} &middot; um ponto por dia.</div>`;
 
-  return `<div class="evo">
-    <div class="evo-top">
-      <div class="evo-leg">
-        <span><i style="background:#E5352B"></i>Abertos</span>
-        <span><i style="background:#22A15B"></i>Fechados</span>
-      </div>
-      <div class="evo-saldo">${somaA} abertos &middot; ${somaF} fechados &middot; saldo <b class="${cls}">${txt}</b></div>
-    </div>
-    <svg viewBox="0 0 ${W} ${H}" width="100%" height="210" role="img" aria-label="Abertos por dia contra fechados por dia">
-      ${grade}${barras}
-      <line x1="${padL}" y1="${base}" x2="${W - 6}" y2="${base}" stroke="#DCD8EE"></line>
-    </svg>
-  </div>`;
+  return `<div class="hist-stamp">Instant&acirc;neo de ${fmtDia(ultimo.data)}</div>
+    <div class="hist-stats">${cartoes}</div>
+    ${lineChartSVG(pontos, series)}
+    ${nota}`;
 }
 
 function linhas(itens) {
@@ -456,13 +539,13 @@ function render() {
     <div class="aviso"><strong>Colunas ainda não mapeadas:</strong> Impacto, Abertura Impacto e Solicitação Token
     não existem na ordem de serviço do SOMA — precisam ser localizadas na origem da sua planilha de campo.
     O card “Chamados com Impacto” fica em “—” até lá, em vez de mostrar um número inventado.</div>
-    ${Array.isArray(D.serie) && D.serie.length ? `
-    <div class="sec-head"><h2>Abertos &times; Fechados &middot; últimos 14 dias</h2>
-      <span class="sec-note">Chamados críticos &middot; Regional SUL &middot; fonte: ServiceNow SOMA</span></div>
-    ${grafEvolucao(D.serie)}` : ''}
     <div class="sec-head"><h2>Chamados críticos em aberto · últimos ${D.janelaDias} dias</h2>
       <span class="sec-note">Prioridade 1 · Crítica · fonte: ServiceNow SOMA (wm_order · Regional SUL)</span></div>
     ${linhas(abertos)}
+    ${Array.isArray(D.serie) && D.serie.length ? `
+    <div class="sec-head" style="margin-top:34px"><h2>Abertos &times; Fechados</h2>
+      <span class="sec-note">&uacute;ltimos 14 dias &middot; cr&iacute;ticos &middot; fonte: ServiceNow SOMA</span></div>
+    <div class="card" style="padding:18px 20px">${blocoHistorico(D.serie)}</div>` : ''}
     <footer>
       <span>Fonte: ServiceNow · SOMA (wm_order, prioridade 1 - Crítica, work center CSUL)</span>
       <span class="mono">${abertos.length} chamados críticos em aberto</span>
@@ -484,6 +567,35 @@ async function iniciar() {
   }
 }
 iniciar();
+
+// tooltip do grafico: delegado no `document` (nao no #chartCard) porque o
+// #chartCard so' existe depois que iniciar() monta o conteudo de forma
+// assincrona -- ligar o listener direto nele nesse ponto do script (que
+// roda antes do fetch terminar) achava null e saia em silencio, sem erro
+// nenhum no console. `document` ja existe desde sempre, entao a delegacao
+// funciona nao importa quando o grafico aparece. Pedido do Christian,
+// 12/09/2026: uma caixa com o valor exato ao passar o mouse na bolinha.
+(function () {
+  document.addEventListener('mouseover', (ev) => {
+    const dot = ev.target.closest('.chart-dot');
+    if (!dot) return;
+    const wrap = dot.closest('.chart-svg-wrap');
+    const tooltip = wrap?.querySelector('#chartTooltip');
+    if (!tooltip) return;
+    tooltip.innerHTML = `<span class="ctt-quando">${escapeHtml(dot.dataset.quando)}</span><span class="ctt-valor" style="color:${dot.dataset.cor}">${escapeHtml(dot.dataset.label)}: ${dot.dataset.valor}</span>`;
+    const rectDot = dot.getBoundingClientRect();
+    const rectWrap = wrap.getBoundingClientRect();
+    tooltip.style.left = (rectDot.left - rectWrap.left + rectDot.width / 2) + 'px';
+    tooltip.style.top = (rectDot.top - rectWrap.top - 6) + 'px';
+    tooltip.hidden = false;
+  });
+  document.addEventListener('mouseout', (ev) => {
+    const dot = ev.target.closest('.chart-dot');
+    if (!dot) return;
+    const tooltip = dot.closest('.chart-svg-wrap')?.querySelector('#chartTooltip');
+    if (tooltip) tooltip.hidden = true;
+  });
+})();
 
 
 (function () {
