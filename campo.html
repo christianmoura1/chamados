@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<title>Gestão de Risco — Sul</title>
+<title>Acompanhamento Diário Campo — Sul</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -233,11 +233,51 @@
   }
   .prev-date:focus { outline: 2px solid var(--violet); outline-offset: -1px; }
 </style>
+<style>
+  /* ---------- cards de status do Acompanhamento Diario Campo ---------- */
+  .statcards { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 26px; }
+  @media (max-width: 1100px) { .statcards { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 680px)  { .statcards { grid-template-columns: repeat(2, 1fr); } }
+  .statcard { background: var(--card, #fff); border-radius: 16px; padding: 0 0 18px; overflow: hidden;
+              box-shadow: 0 1px 2px rgba(20,16,60,.06), 0 8px 24px rgba(20,16,60,.05); text-align: center; }
+  .statcard .cap { display: block; font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .09em;
+                   text-transform: uppercase; color: #fff; padding: 9px 10px; font-weight: 600; }
+  .statcard .val { display: block; font-family: "Archivo", sans-serif; font-weight: 800; font-size: 40px;
+                   line-height: 1; padding-top: 18px; color: var(--ink, #1a1836); }
+  .sc-exec .cap { background: #E5352B; }
+  .sc-token .cap { background: #F0A31B; }
+  .sc-feito .cap { background: #22A15B; }
+  .sc-canc .cap { background: #8C8AA3; }
+  .sc-imp .cap { background: #151329; }
+
+  .tbl-wrap { overflow-x: auto; border-radius: 14px; box-shadow: 0 1px 2px rgba(20,16,60,.06), 0 8px 24px rgba(20,16,60,.05); background: #fff; }
+  table.campo { border-collapse: collapse; width: 100%; font-size: 12.5px; min-width: 1180px; }
+  table.campo th { background: #F6F5FC; color: #4a4770; text-align: left; font-weight: 600; white-space: nowrap;
+                   font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .05em; text-transform: uppercase;
+                   padding: 11px 12px; border-bottom: 1px solid #E7E4F5; position: sticky; top: 0; }
+  table.campo td { padding: 10px 12px; border-bottom: 1px solid #F0EEF9; vertical-align: top; }
+  table.campo tbody tr:hover { background: #FAF9FE; }
+  table.campo tr.tem-impacto { background: #FFF5F4; }
+  table.campo tr.tem-impacto:hover { background: #FFECEA; }
+  table.campo tr.encerrado td { color: #8d8ba6; }
+  .pill { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+  .p-exec { background: #FDECEB; color: #B22119; }
+  .p-and  { background: #FFF3DF; color: #9A6407; }
+  .p-feito{ background: #E6F6ED; color: #14713E; }
+  .p-canc { background: #EFEFF4; color: #63617a; }
+  .wo { font-family: "IBM Plex Mono", monospace; font-weight: 600; color: #4b31c9; white-space: nowrap; }
+  .filtros { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 14px; }
+  .fbtn { border: 1px solid #E0DCF2; background: #fff; border-radius: 999px; padding: 7px 15px; font-size: 12.5px;
+          font-weight: 600; color: #4a4770; cursor: pointer; font-family: inherit; }
+  .fbtn.on { background: #4b31c9; border-color: #4b31c9; color: #fff; }
+  .aviso { background: #FFF8E6; border: 1px solid #F3E2B0; border-radius: 12px; padding: 12px 14px;
+           font-size: 12.5px; color: #6b5412; margin-bottom: 20px; line-height: 1.5; }
+</style>
 </head>
 <body>
 <div class="shell">
   <aside class="side">
-    <button class="side-toggle" id="sideToggle" type="button" aria-label="Recolher menu">‹</button>
+    <button class="side-toggle" id="sideToggle" type="button" aria-label="Recolher menu">&lsaquo;</button>
     <div class="brand">
       <div class="mark">Z</div>
       <div><div class="name">Manutenção Sul</div><div class="sub">Zamp · BK Brasil</div></div>
@@ -247,298 +287,141 @@
       <a class="navitem" href="tecnicos.html"><span class="dot"></span>Técnicos</a>
       <div class="navlabel">Painéis</div>
       <div class="navitem"><span class="dot"></span>Perda de Receita</div>
-      <a class="navitem active" href="risco.html"><span class="dot"></span>Gestão de Risco</a>
-      <a class="navitem" href="campo.html"><span class="dot"></span>Acompanhamento Campo</a>
+      <a class="navitem" href="risco.html"><span class="dot"></span>Gestão de Risco</a>
+      <a class="navitem active" href="campo.html"><span class="dot"></span>Acompanhamento Campo</a>
       <div class="navlabel">Fonte</div>
       <div class="navitem"><span class="dot"></span>ServiceNow · SOMA</div>
     </div>
-    <div class="side-foot">Atualização diária · fonte Power BI</div>
+    <div class="side-foot">Atualização diária · fonte SOMA</div>
   </aside>
-  <button class="side-reopen" id="sideReopen" type="button" aria-label="Abrir menu">›</button>
+  <button class="side-reopen" id="sideReopen" type="button" aria-label="Abrir menu">&rsaquo;</button>
 
   <main class="main">
     <div class="topbar">
       <div>
-        <p class="eyebrow">Regional Sul · Gestão de Risco</p>
-        <h1>Gestão de Risco</h1>
+        <p class="eyebrow">Regional Sul · Chamados Críticos</p>
+        <h1>Acompanhamento Diário Campo</h1>
       </div>
       <div class="stamp-pill" id="stamp">carregando…</div>
     </div>
-    <div id="conteudo"><div class="msg-carregando">carregando data/risco.json…</div></div>
+    <div id="conteudo"><div class="msg-carregando">carregando data/campo.json…</div></div>
   </main>
 </div>
 
-<div class="modal-overlay" id="modalOverlay" hidden>
-  <div class="modal-panel">
-    <div class="modal-head">
-      <h3 id="modalTitle"></h3>
-      <button class="modal-close" id="modalClose" aria-label="Fechar" type="button">&times;</button>
-    </div>
-    <div class="modal-sub" id="modalSub"></div>
-    <div class="modal-body">
-      <table class="detail-table">
-        <thead><tr><th>Loja</th><th>Dias em Atraso</th></tr></thead>
-        <tbody id="modalTbody"></tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
 <script>
-const brl0 = n => n.toLocaleString('pt-BR');
-let DADOS_ATUAIS = null;
+const esc = (s) => String(s == null ? '' : s)
+  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-function escapeHtml(s) {
-  return String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+// datas do SOMA chegam como "16/09/2026 12:08:15"
+function dataCurta(s) {
+  if (!s) return '—';
+  const m = String(s).match(/^(\d{2})\/(\d{2})\/(\d{4})\s+(\d{2}:\d{2})/);
+  return m ? `${m[1]}/${m[2]} ${m[4]}` : String(s);
 }
-
-// mesmo esquema de cores do painel de Backlog: vermelho = pior, laranja =
-// medio, verde = bom (consistencia visual entre os paineis, pedido do
-// Christian, 15/09/2026)
-function corPorPctVencido(pct) {
-  if (pct >= 30) return 'var(--sos)';
-  if (pct >= 15) return 'var(--alta)';
-  return 'var(--ok)';
-}
-
-function donutSVG(pct, cor) {
-  const r = 38, c = 2 * Math.PI * r;
-  const dash = (Math.min(pct, 100) / 100) * c;
-  return `<svg viewBox="0 0 92 92" width="92" height="92">
-    <circle cx="46" cy="46" r="${r}" style="fill:none;stroke:var(--surface2)" stroke-width="9"/>
-    <circle cx="46" cy="46" r="${r}" style="fill:none;stroke:${cor}" stroke-width="9"
-      stroke-dasharray="${dash.toFixed(1)} ${c.toFixed(1)}" stroke-linecap="round"/>
-  </svg>`;
-}
-
-function blocoMaisUrgentes(itens) {
-  const top5 = (itens || []).slice(0, 5);
-  const html = top5.length
-    ? top5.map(l => `<div class="esos-item"><span class="loja">${escapeHtml(l.nome)}</span><span class="tag tag-sos">${l.diasAtraso != null ? l.diasAtraso + 'd' : '—'}</span></div>`).join('')
-    : '<div class="esos-empty">Nenhuma loja vencida nessa categoria.</div>';
-  return `<div>
-      <div class="esos-label">Mais críticas (${top5.length}${itens && itens.length > 5 ? ' de ' + itens.length : ''})</div>
-      <div class="esos-list">${html}</div>
-    </div>`;
-}
-
-const statusRiscoTagCls = s => /atrasad/i.test(s) ? 'tag-sos' : 'tag-normal';
-
-const RESPONSAVEIS = ['Christian', 'Carlos Magno', 'Marcel', 'Gustavo', 'Rafael'];
-function responsavelDoTecnico(tecnico) {
-  const t = (tecnico || '').toUpperCase();
-  return RESPONSAVEIS.find(r => t.includes(r.toUpperCase())) || null;
-}
-
-// atribuicao manual por chamado (responsavel + previsao de termino), guardada
-// num banco compartilhado (nao localStorage -- varias pessoas abrem esse
-// painel e precisam ver a mesma coisa). API roda na propria VPS atras do
-// Caddy (154-64-32-227.sslip.io), pedido do Christian, 15/09/2026.
-const API_ATRIBUICOES = 'https://154-64-32-227.sslip.io/v1/risco-atribuicoes';
-let ATRIBUICOES = {};
-async function carregarAtribuicoes() {
-  try {
-    const r = await fetch(API_ATRIBUICOES, { cache: 'no-store' });
-    ATRIBUICOES = await r.json();
-  } catch (e) { ATRIBUICOES = {}; }
-}
-async function salvarCampoAtribuicao(numero, campo, valor) {
-  ATRIBUICOES[numero] = { ...ATRIBUICOES[numero], [campo]: valor };
-  try {
-    await fetch(API_ATRIBUICOES, {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ numero, [campo]: valor }),
-    });
-  } catch (e) { /* falha de rede -- fica so' no cache local ate' proxima carga */ }
-}
-function responsavelAtual(c) {
-  return ATRIBUICOES[c.numero]?.responsavel || responsavelDoTecnico(c.tecnico) || '';
-}
-function previsaoAtual(c) {
-  return ATRIBUICOES[c.numero]?.previsaoTermino || '';
-}
-
-function parseDataBR(s) {
+function diasDesde(s) {
   const m = String(s || '').match(/^(\d{2})\/(\d{2})\/(\d{4})/);
   if (!m) return null;
-  return new Date(Number(m[3]), Number(m[2]) - 1, Number(m[1]));
+  const d = new Date(Number(m[3]), Number(m[2]) - 1, Number(m[1]));
+  return Math.floor((Date.now() - d.getTime()) / 86400000);
 }
-function diasVencido(dtAbertura, refDate) {
-  const d = parseDataBR(dtAbertura);
-  if (!d || !refDate) return null;
-  return Math.max(0, Math.round((refDate - d) / 86400000));
+function pillStatus(status, grupo) {
+  const cls = grupo === 'executado' ? 'p-feito' : grupo === 'cancelado' ? 'p-canc'
+            : /andamento/i.test(status) ? 'p-and' : 'p-exec';
+  return `<span class="pill ${cls}">${esc(status || '—')}</span>`;
 }
 
-function tabelaChamadosRisco(itens, refDate, filtroResp) {
-  const filtrados = filtroResp ? (itens || []).filter(c => responsavelAtual(c) === filtroResp) : (itens || []);
-  if (!filtrados.length) return `<div class="filter-empty">Nenhum chamado nesse grupo${filtroResp ? ' para ' + escapeHtml(filtroResp) : ''}.</div>`;
-  const comDias = filtrados.map(c => ({ ...c, dias: diasVencido(c.dtAbertura, refDate) }))
-    .sort((a, b) => (b.dias ?? -1) - (a.dias ?? -1));
-  return `<div class="filter-table-wrap"><table class="detail-table">
-    <thead><tr><th>Número</th><th>Item</th><th>Assunto</th><th>Loja</th><th>Setor</th><th>Status</th><th>Vencido há</th><th>Responsável</th><th>Previsão de Término</th></tr></thead>
-    <tbody>${comDias.map(c => {
-      const atual = responsavelAtual(c);
-      const opcoes = ['', ...RESPONSAVEIS].map(r => `<option value="${escapeHtml(r)}" ${r === atual ? 'selected' : ''}>${r ? escapeHtml(r) : '—'}</option>`).join('');
-      const previsao = previsaoAtual(c);
-      return `<tr>
-        <td class="mono">${escapeHtml(c.numero)}</td>
-        <td>${escapeHtml(c.item)}</td>
-        <td>${escapeHtml(c.assuntoSecundario || c.assuntoPrincipal)}</td>
-        <td>${escapeHtml(c.loja)}</td>
-        <td>${escapeHtml(c.setor)}</td>
-        <td><span class="tag ${statusRiscoTagCls(c.statusRisco)}">${escapeHtml(c.status)}</span></td>
-        <td class="num">${c.dias != null ? c.dias + 'd' : '—'}</td>
-        <td><select class="resp-select" data-wo="${escapeHtml(c.numero)}">${opcoes}</select></td>
-        <td><input type="date" class="prev-date" data-wo="${escapeHtml(c.numero)}" value="${escapeHtml(previsao)}"></td>
+let DADOS = null;
+let FILTRO = 'todos';
+
+function cards(r) {
+  const c = [
+    ['sc-exec',  'Em Execução',           r.emExecucao],
+    ['sc-token', 'Aguardando Token',      r.aguardandoToken],
+    ['sc-feito', 'Executados',            r.executados],
+    ['sc-canc',  'Cancelados',            r.cancelados],
+    ['sc-imp',   'Chamados com Impacto',  r.comImpacto == null ? '—' : r.comImpacto],
+  ];
+  return `<div class="statcards">${c.map(([k, rot, v]) =>
+    `<div class="statcard ${k}"><span class="cap">${rot}</span><span class="val">${v}</span></div>`).join('')}</div>`;
+}
+
+function linhas(itens) {
+  if (!itens.length) return `<div class="filter-empty">Nenhum chamado crítico nesse recorte.</div>`;
+  return `<div class="tbl-wrap"><table class="campo">
+    <thead><tr>
+      <th>Número</th><th>Marca</th><th>Regional</th><th>Setor</th><th>Loja</th>
+      <th>Status</th><th>Fase</th><th>Abertura</th><th>Dias</th><th>Fechamento</th>
+      <th>Principal</th><th>Secundário</th><th>Tarefa</th>
+    </tr></thead><tbody>
+    ${itens.map((i) => {
+      const d = diasDesde(i.abertura);
+      return `<tr class="${i.grupo === 'executado' ? 'encerrado' : ''}">
+        <td class="wo">${esc(i.numero)}</td>
+        <td>${esc(i.marca)}</td>
+        <td>${esc(i.regional)}</td>
+        <td>${esc(i.setor)}</td>
+        <td>${esc(i.loja)}</td>
+        <td>${pillStatus(i.status, i.grupo)}</td>
+        <td>${esc(i.fase || '—')}</td>
+        <td class="mono">${dataCurta(i.abertura)}</td>
+        <td class="mono">${d == null ? '—' : d + 'd'}</td>
+        <td class="mono">${dataCurta(i.fechamento)}</td>
+        <td>${esc(i.principal)}</td>
+        <td>${esc(i.secundario)}</td>
+        <td class="mono">${esc((i.tarefas || []).join(', ') || '—')}</td>
       </tr>`;
-    }).join('')}</tbody>
-  </table></div>`;
+    }).join('')}
+    </tbody></table></div>`;
 }
 
-function renderizarChamadosRisco() {
-  const D = DADOS_ATUAIS;
-  if (!D) return;
-  const refDate = parseDataBR(D.atualizadoEm) || new Date();
-  const filtroResp = document.getElementById('filtroResponsavelRisco')?.value || '';
-  const vencidos = (D.chamadosRisco?.vencidos || []);
-  const aVencer = (D.chamadosRisco?.aVencer || []);
-  const vencidosVisiveis = filtroResp ? vencidos.filter(c => responsavelAtual(c) === filtroResp) : vencidos;
-  const aVencerVisiveis = filtroResp ? aVencer.filter(c => responsavelAtual(c) === filtroResp) : aVencer;
-  document.getElementById('cntVencido').textContent = vencidosVisiveis.length;
-  document.getElementById('cntAVencer').textContent = aVencerVisiveis.length;
-  document.getElementById('tabelaVencido').innerHTML = tabelaChamadosRisco(vencidos, refDate, filtroResp);
-  document.getElementById('tabelaAVencer').innerHTML = tabelaChamadosRisco(aVencer, refDate, filtroResp);
+function render() {
+  const D = DADOS;
+  const filtrados = FILTRO === 'todos' ? D.itens
+    : D.itens.filter((i) => i.grupo === FILTRO);
+  const botoes = [
+    ['todos', 'Todos (' + D.itens.length + ')'],
+    ['execucao', 'Em execução (' + D.resumo.emExecucao + ')'],
+    ['executado', 'Executados (' + D.resumo.executados + ')'],
+  ];
+  document.getElementById('conteudo').innerHTML = `
+    ${cards(D.resumo)}
+    <div class="aviso"><strong>Colunas ainda não mapeadas:</strong> Impacto, Abertura Impacto e Solicitação Token
+    não existem na ordem de serviço do SOMA — precisam ser localizadas na origem da sua planilha de campo.
+    O card “Chamados com Impacto” fica em “—” até lá, em vez de mostrar um número inventado.</div>
+    <div class="sec-head"><h2>Chamados críticos · últimos ${D.janelaDias} dias</h2>
+      <span class="sec-note">Prioridade 1 · Crítica · fonte: ServiceNow SOMA (wm_order · Regional SUL)</span></div>
+    <div class="filtros">${botoes.map(([k, r]) =>
+      `<button class="fbtn ${FILTRO === k ? 'on' : ''}" data-f="${k}">${r}</button>`).join('')}</div>
+    ${linhas(filtrados)}
+    <footer>
+      <span>Fonte: ServiceNow · SOMA (wm_order, prioridade 1 - Crítica, work center CSUL)</span>
+      <span class="mono">${D.itens.length} chamados na janela</span>
+    </footer>`;
 }
 
-function abrirModalCategoria(chave) {
-  const c = DADOS_ATUAIS?.categorias.find(x => x.chave === chave);
-  if (!c) return;
-  document.getElementById('modalTitle').textContent = c.nome;
-  document.getElementById('modalSub').textContent = `${c.vencido} de ${c.total} lojas com item vencido (${c.pctVencido}%)`;
-  document.getElementById('modalTbody').innerHTML = c.lojasVencidas.length
-    ? c.lojasVencidas.map(l => `<tr><td>${escapeHtml(l.nome)}</td><td class="num">${l.diasAtraso != null ? l.diasAtraso + 'd' : '—'}</td></tr>`).join('')
-    : `<tr><td colspan="2" class="esos-empty">Nenhuma loja vencida nessa categoria.</td></tr>`;
-  document.getElementById('modalOverlay').hidden = false;
-  document.body.style.overflow = 'hidden';
-}
-function fecharModal() {
-  document.getElementById('modalOverlay').hidden = true;
-  document.body.style.overflow = '';
-}
-document.getElementById('modalClose').addEventListener('click', fecharModal);
-document.getElementById('modalOverlay').addEventListener('click', (ev) => { if (ev.target.id === 'modalOverlay') fecharModal(); });
-document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape' && !document.getElementById('modalOverlay').hidden) fecharModal(); });
+document.addEventListener('click', (ev) => {
+  const b = ev.target.closest('.fbtn');
+  if (!b) return;
+  FILTRO = b.dataset.f;
+  render();
+});
 
 async function iniciar() {
-  const el = document.getElementById('conteudo');
-  let D;
   try {
-    const [rDados] = await Promise.all([
-      fetch('data/risco.json', { cache: 'no-store' }),
-      carregarAtribuicoes(),
-    ]);
-    if (!rDados.ok) throw new Error('HTTP ' + rDados.status);
-    D = await rDados.json();
+    const r = await fetch('data/campo.json?cb=' + Date.now());
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    DADOS = await r.json();
+    const dt = new Date(DADOS.atualizadoEm);
+    document.getElementById('stamp').textContent = 'Atualizado ' + dt.toLocaleString('pt-BR');
+    render();
   } catch (e) {
-    el.innerHTML = `<div class="msg-erro">Não consegui carregar os dados (${e.message}).</div>`;
-    return;
+    document.getElementById('conteudo').innerHTML =
+      `<div class="msg-erro">Não consegui carregar data/campo.json — ${esc(e.message)}</div>`;
+    document.getElementById('stamp').textContent = 'erro';
   }
-
-  DADOS_ATUAIS = D;
-  document.getElementById('stamp').textContent = 'Atualizado ' + escapeHtml(D.atualizadoEm || '—');
-  const refDate = parseDataBR(D.atualizadoEm) || new Date();
-
-  const totalVencido = D.categorias.reduce((s, c) => s + c.vencido, 0);
-  const piorCategoria = [...D.categorias].sort((a, b) => b.pctVencido - a.pctVencido)[0];
-
-  const kpisHtml = [
-    { label: 'Score Médio', val: D.scoreMedio != null ? D.scoreMedio.toLocaleString('pt-BR') : '—', cls: 'k-violet' },
-    { label: 'Itens Vencidos', val: brl0(totalVencido), cls: 'k-sos' },
-    { label: 'Categoria Mais Crítica', val: piorCategoria ? `${piorCategoria.nome} · ${piorCategoria.pctVencido}%` : '—', cls: 'k-alta' },
-    { label: 'Chamados Vencidos', val: brl0((D.chamadosRisco?.vencidos || []).length), cls: 'k-sos' },
-  ].map(k => `<div class="kpi ${k.cls}"><span class="label">${k.label}</span><div class="val num">${k.val}</div></div>`).join('');
-
-  const catOrdenadas = [...D.categorias].sort((a, b) => b.pctVencido - a.pctVencido);
-  const catCards = catOrdenadas.map((c) => {
-    const cor = corPorPctVencido(c.pctVencido);
-    return `<div class="ecard" role="button" tabindex="0" aria-label="Ver lojas vencidas em ${escapeHtml(c.nome)}"
-        onclick="abrirModalCategoria('${c.chave}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirModalCategoria('${c.chave}');}">
-      <div class="ehead"><span class="etitle">${escapeHtml(c.nome)}</span><span class="eopen">detalhe →</span></div>
-      <div class="donut-row">
-        <div class="donut-wrap">${donutSVG(c.pctVencido, cor)}
-          <div class="center"><span class="pctv num" style="color:${cor}">${c.pctVencido}%</span><span class="pctl">vencido</span></div>
-        </div>
-        <div class="estats">
-          <div class="estat crit"><div class="n num">${c.vencido}</div><div class="l">Vencidas</div></div>
-          <div class="estat ok"><div class="n num">${c.emDia}</div><div class="l">Em dia</div></div>
-        </div>
-      </div>
-      ${blocoMaisUrgentes(c.lojasVencidas)}
-    </div>`;
-  }).join('');
-
-  // "Em Aberto por Item" -- vem como bruto (nomes seguidos dos numeros de
-  // atrasado) direto da leitura do Power BI; time seguro = so' os 6 itens
-  // conhecidos do grafico, na ordem em que aparecem.
-  const itens = (D.abertoPorItemBruto || []).slice(0, 6);
-  const numeros = (D.abertoPorItemBruto || []).slice(6, 6 + itens.length).map(Number);
-  const paresItem = itens.map((nome, i) => ({ nome, atrasado: numeros[i] || 0 })).sort((a, b) => b.atrasado - a.atrasado);
-  const maxItem = Math.max(...paresItem.map(p => p.atrasado), 1);
-  const barsItem = paresItem.map(p => `<div class="hbar-row">
-      <span class="lbl">${escapeHtml(p.nome)}</span>
-      <div class="hbar-track"><div class="hbar-fill" style="width:${(p.atrasado/maxItem*100).toFixed(0)}%;background:linear-gradient(90deg,var(--pink),var(--sos))"></div></div>
-      <span class="v num">${p.atrasado}</span>
-    </div>`).join('');
-
-  const barsCategoria = catOrdenadas.map(c => `<div class="hbar-row">
-      <span class="lbl">${escapeHtml(c.nome)}</span>
-      <div class="hbar-track"><div class="hbar-fill" style="width:${c.pctVencido}%;background:linear-gradient(90deg,var(--violet-2),var(--violet))"></div></div>
-      <span class="v num">${c.pctVencido}%</span>
-    </div>`).join('');
-
-  el.innerHTML = `
-    <div class="kpis">${kpisHtml}</div>
-
-    <section>
-      <div class="sec-head"><h2>Itens em risco por categoria</h2><span class="sec-note">Matriz de Risco · fonte: Power BI (Gestão de Risco · Sul)</span></div>
-      <div class="equip-grid">${catCards}</div>
-    </section>
-
-    <section>
-      <div class="sec-head"><h2>Visão consolidada</h2></div>
-      <div class="cons-grid">
-        <div class="card"><h3>% vencido por categoria</h3>${barsCategoria}</div>
-        <div class="card"><h3>Chamados atrasados por item</h3>${barsItem}</div>
-      </div>
-    </section>
-
-    <section>
-      <div class="sec-head"><h2>Chamados de Gestão de Risco</h2><span class="sec-note">Coifa, Broiler, Exaustor, Sensor de gás, Quadro Elétrico · fonte: Power BI (Gestão de Risco · Sul)</span></div>
-      <div class="card">
-        <div class="risco-subhead"><span>Risco Vencido</span><span class="cnt vencido" id="cntVencido">${(D.chamadosRisco?.vencidos || []).length}</span></div>
-        <div id="tabelaVencido">${tabelaChamadosRisco(D.chamadosRisco?.vencidos, refDate)}</div>
-        <div class="risco-subhead"><span>Risco a Vencer</span><span class="cnt avencer" id="cntAVencer">${(D.chamadosRisco?.aVencer || []).length}</span></div>
-        <div id="tabelaAVencer">${tabelaChamadosRisco(D.chamadosRisco?.aVencer, refDate)}</div>
-      </div>
-    </section>
-
-    <footer>
-      <span>Fonte: Power BI (Gestão de Risco / Rota de Segurança · Visão Sul)</span>
-      <span class="mono">${brl0(D.totalLojasAvaliadas)} lojas avaliadas</span>
-    </footer>
-  `;
 }
 iniciar();
 
-// delegado no document (as linhas da tabela sao recriadas a cada filtro),
-// pra caixa de selecao/data de cada chamado gravar a escolha no banco
-// compartilhado e atualizar contagens
-document.addEventListener('change', async (ev) => {
-  const sel = ev.target.closest('.resp-select');
-  if (sel) { await salvarCampoAtribuicao(sel.dataset.wo, 'responsavel', sel.value); renderizarChamadosRisco(); return; }
-  const dt = ev.target.closest('.prev-date');
-  if (dt) { await salvarCampoAtribuicao(dt.dataset.wo, 'previsaoTermino', dt.value); return; }
-});
 
 (function () {
   const shell = document.querySelector('.shell');
