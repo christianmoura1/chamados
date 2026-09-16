@@ -125,28 +125,53 @@ const itens = ordens.map((o) => {
   };
 });
 
+// O Christian nao quer concluidos em lugar nenhum -- nem na tabela, nem contados
+// nos cards. Saem aqui, na origem, para que o painel reflita so' o que esta vivo.
+const encerrados = itens.filter((i) => i.grupo !== 'execucao').length;
+const abertos = itens.filter((i) => i.grupo === 'execucao');
+log('descartados por ja estarem encerrados/cancelados: ' + encerrados);
+
 const resumo = {
-  emExecucao: itens.filter((i) => i.grupo === 'execucao').length,
-  executados: itens.filter((i) => i.grupo === 'executado').length,
-  cancelados: itens.filter((i) => i.grupo === 'cancelado').length,
-  aguardandoToken: itens.filter((i) => i.aguardandoToken).length,
-  total: itens.length,
+  emExecucao: abertos.length,
+  executados: 0,
+  cancelados: 0,
+  aguardandoToken: abertos.filter((i) => i.aguardandoToken).length,
+  total: abertos.length,
 };
 log('resumo: ' + JSON.stringify(resumo));
 
-fs.writeFileSync(REPO + '/data/campo.json', JSON.stringify({
+// Roda a cada 20 min. Se eu gravasse sempre, o `atualizadoEm` mudaria em toda
+// execucao e cada ciclo viraria um commit + um deploy na Vercel (72/dia, contra
+// um limite de 100). Entao so' grava quando os chamados de fato mudam; o codigo
+// de saida 9 avisa a tarefa que nao ha nada para publicar.
+const DESTINO = REPO + '/data/campo.json';
+const miolo = JSON.stringify({ resumo, itens: abertos });
+let anterior = null;
+if (fs.existsSync(DESTINO)) {
+  try {
+    const j = JSON.parse(fs.readFileSync(DESTINO, 'utf8'));
+    anterior = JSON.stringify({ resumo: j.resumo, itens: j.itens });
+  } catch (e) { log('campo.json anterior ilegivel, vou regravar: ' + e.message); }
+}
+if (anterior === miolo) {
+  log('sem mudanca nos chamados -- nao gravei e nao vou publicar');
+  await browser.close().catch(() => {});
+  process.exit(9);
+}
+
+fs.writeFileSync(DESTINO, JSON.stringify({
   atualizadoEm: new Date().toISOString(),
   janelaDias: 3,
   resumo,
-  itens,
+  itens: abertos,
 }, null, 1), 'utf8');
-log('campo.json gravado com ' + itens.length + ' itens');
+log('campo.json gravado com ' + abertos.length + ' chamados em aberto (houve mudanca)');
 
 const est = {};
-for (const i of itens) est[i.status] = (est[i.status] || 0) + 1;
+for (const i of abertos) est[i.status] = (est[i.status] || 0) + 1;
 log('estados: ' + JSON.stringify(est));
 const fss = {};
-for (const i of itens) if (i.fase) fss[i.fase] = (fss[i.fase] || 0) + 1;
+for (const i of abertos) if (i.fase) fss[i.fase] = (fss[i.fase] || 0) + 1;
 log('fases: ' + JSON.stringify(fss));
 
 await browser.close().catch(() => {});

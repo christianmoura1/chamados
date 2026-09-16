@@ -331,7 +331,6 @@ function pillStatus(status, grupo) {
 }
 
 let DADOS = null;
-let FILTRO = 'todos';
 
 function cards(r) {
   const c = [
@@ -355,7 +354,7 @@ function linhas(itens) {
     </tr></thead><tbody>
     ${itens.map((i) => {
       const d = diasDesde(i.abertura);
-      return `<tr class="${i.grupo === 'executado' ? 'encerrado' : ''}">
+      return `<tr>
         <td class="wo">${esc(i.numero)}</td>
         <td>${esc(i.marca)}</td>
         <td>${esc(i.regional)}</td>
@@ -376,35 +375,21 @@ function linhas(itens) {
 
 function render() {
   const D = DADOS;
-  const filtrados = FILTRO === 'todos' ? D.itens
-    : D.itens.filter((i) => i.grupo === FILTRO);
-  const botoes = [
-    ['todos', 'Todos (' + D.itens.length + ')'],
-    ['execucao', 'Em execução (' + D.resumo.emExecucao + ')'],
-    ['executado', 'Executados (' + D.resumo.executados + ')'],
-  ];
+  // concluidos ja saem no extrator; aqui e' so' uma rede de seguranca
+  const abertos = D.itens.filter((i) => i.grupo === 'execucao');
   document.getElementById('conteudo').innerHTML = `
     ${cards(D.resumo)}
     <div class="aviso"><strong>Colunas ainda não mapeadas:</strong> Impacto, Abertura Impacto e Solicitação Token
     não existem na ordem de serviço do SOMA — precisam ser localizadas na origem da sua planilha de campo.
     O card “Chamados com Impacto” fica em “—” até lá, em vez de mostrar um número inventado.</div>
-    <div class="sec-head"><h2>Chamados críticos · últimos ${D.janelaDias} dias</h2>
+    <div class="sec-head"><h2>Chamados críticos em aberto · últimos ${D.janelaDias} dias</h2>
       <span class="sec-note">Prioridade 1 · Crítica · fonte: ServiceNow SOMA (wm_order · Regional SUL)</span></div>
-    <div class="filtros">${botoes.map(([k, r]) =>
-      `<button class="fbtn ${FILTRO === k ? 'on' : ''}" data-f="${k}">${r}</button>`).join('')}</div>
-    ${linhas(filtrados)}
+    ${linhas(abertos)}
     <footer>
       <span>Fonte: ServiceNow · SOMA (wm_order, prioridade 1 - Crítica, work center CSUL)</span>
-      <span class="mono">${D.itens.length} chamados na janela</span>
+      <span class="mono">${abertos.length} chamados críticos em aberto</span>
     </footer>`;
 }
-
-document.addEventListener('click', (ev) => {
-  const b = ev.target.closest('.fbtn');
-  if (!b) return;
-  FILTRO = b.dataset.f;
-  render();
-});
 
 async function iniciar() {
   try {

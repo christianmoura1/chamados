@@ -1,14 +1,37 @@
 {
- "atualizadoEm": "2026-09-16T16:35:35.071Z",
+ "atualizadoEm": "2026-09-16T16:58:39.799Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 22,
-  "executados": 21,
+  "emExecucao": 23,
+  "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 43
+  "total": 23
  },
  "itens": [
+  {
+   "numero": "WO0052281",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "26839 FS CURITIBA - AV SILVA JARDIM",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "16/09/2026 13:40:01",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - CABINE PRIMÁRIA - NÃO LIGA ELETRICAMENTE",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - CABINE PRIMÁRIA - NÃO LIGA ELETRICAMENTE",
+   "tarefas": [
+    "WOT0052744"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0052218",
    "marca": "BKB",
@@ -171,29 +194,6 @@
    "grupo": "execucao"
   },
   {
-   "numero": "WO0051910",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "24741 - FS PELOTAS - AV FERREIRA VIANA",
-   "status": "Encerrado concluído",
-   "fase": "Requisição Completa",
-   "abertura": "15/09/2026 17:57:44",
-   "fechamento": "16/09/2026 12:18:15",
-   "principal": "BK071402 - FRITADEIRA; PITCO; SSHLV14; G18GD037571",
-   "secundario": "FRI - SUPERAQUECENDO",
-   "sigla": "FRI",
-   "tecnico": "",
-   "descricao": "BK071402 - FRITADEIRA; PITCO; SSHLV14; G18GD037571 | FRI - SUPERAQUECENDO",
-   "tarefas": [
-    "WOT0052369"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "16/09/2026 11:45:44",
-   "contato": "",
-   "grupo": "executado"
-  },
-  {
    "numero": "WO0051891",
    "marca": "BKB",
    "regional": "SUL",
@@ -215,29 +215,6 @@
    "fechadoSemToken": "",
    "contato": "",
    "grupo": "execucao"
-  },
-  {
-   "numero": "WO0051858",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "26828 - FS CURITIBA - FRANCISCO FRISHMANN 3151",
-   "status": "Encerrado concluído",
-   "fase": "Requisição Completa",
-   "abertura": "15/09/2026 16:08:35",
-   "fechamento": "15/09/2026 18:37:28",
-   "principal": "BK088212 - MICROONDAS",
-   "secundario": "MCR - LOJA SEM NENHUM MICROONDAS FUNCIONANDO",
-   "sigla": "MCR",
-   "tecnico": "",
-   "descricao": "BK088212 - MICROONDAS | MCR - LOJA SEM NENHUM MICROONDAS FUNCIONANDO",
-   "tarefas": [
-    "WOT0052316"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "15/09/2026 18:22:23",
-   "contato": "",
-   "grupo": "executado"
   },
   {
    "numero": "WO0051855",
@@ -309,29 +286,6 @@
    "grupo": "execucao"
   },
   {
-   "numero": "WO0051600",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "16988 - SHOP ESTACAO",
-   "status": "Encerrado concluído",
-   "fase": "Requisição Completa",
-   "abertura": "15/09/2026 11:28:37",
-   "fechamento": "15/09/2026 13:33:11",
-   "principal": "BK085994 - FRITADEIRA; FRYMASTER; 11814CSE; 1506PN0",
-   "secundario": "FRI - VAZAMENTO DE GÁS",
-   "sigla": "FRI",
-   "tecnico": "",
-   "descricao": "BK085994 - FRITADEIRA; FRYMASTER; 11814CSE; 1506PN0 | FRI - VAZAMENTO DE GÁS",
-   "tarefas": [
-    "WOT0052054"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "15/09/2026 13:31:51",
-   "contato": "",
-   "grupo": "executado"
-  },
-  {
    "numero": "WO0051585",
    "marca": "BKB",
    "regional": "SUL",
@@ -353,190 +307,6 @@
    "fechadoSemToken": "",
    "contato": "",
    "grupo": "execucao"
-  },
-  {
-   "numero": "WO0051550",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "16988 - SHOP ESTACAO",
-   "status": "Encerrado concluído",
-   "fase": "Requisição Completa",
-   "abertura": "15/09/2026 10:13:09",
-   "fechamento": "15/09/2026 13:31:15",
-   "principal": "BK085994 - FRITADEIRA; FRYMASTER; 11814CSE; 1506PN0",
-   "secundario": "FRI - NENHUMA DAS CUBAS ATINGE TEMPERATURA",
-   "sigla": "FRI",
-   "tecnico": "",
-   "descricao": "BK085994 - FRITADEIRA; FRYMASTER; 11814CSE; 1506PN0 | FRI - NENHUMA DAS CUBAS ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0052001"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "15/09/2026 13:30:03",
-   "contato": "",
-   "grupo": "executado"
-  },
-  {
-   "numero": "WO0051512",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "18443 - SHOP CENTER LAR",
-   "status": "Encerrado concluído",
-   "fase": "Requisição Completa",
-   "abertura": "15/09/2026 09:32:42",
-   "fechamento": "15/09/2026 13:11:31",
-   "principal": "BROILER",
-   "secundario": "BRO - NÃO MANTÉM A CHAMA",
-   "sigla": "BRO",
-   "tecnico": "",
-   "descricao": "BROILER | BRO - NÃO MANTÉM A CHAMA",
-   "tarefas": [
-    "WOT0051963"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "15/09/2026 13:09:58",
-   "contato": "",
-   "grupo": "executado"
-  },
-  {
-   "numero": "WO0051510",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "18443 - SHOP CENTER LAR",
-   "status": "Encerrado concluído",
-   "fase": "Requisição Completa",
-   "abertura": "15/09/2026 09:30:00",
-   "fechamento": "15/09/2026 13:08:04",
-   "principal": "BROILER",
-   "secundario": "BRO - NÃO ACENDE",
-   "sigla": "BRO",
-   "tecnico": "",
-   "descricao": "BROILER | BRO - NÃO ACENDE",
-   "tarefas": [
-    "WOT0051961"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "15/09/2026 13:04:10",
-   "contato": "",
-   "grupo": "executado"
-  },
-  {
-   "numero": "WO0051462",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL NORTE RS",
-   "loja": "25455 - FS POA - AV DR NILO PECANHA 1715",
-   "status": "Encerrado concluído",
-   "fase": "Requisição Completa",
-   "abertura": "15/09/2026 08:11:18",
-   "fechamento": "15/09/2026 10:59:42",
-   "principal": "BK077548 - BROILER GLP ALTA PERFORMANCE",
-   "secundario": "BRO - NÃO ACENDE",
-   "sigla": "BRO",
-   "tecnico": "",
-   "descricao": "BK077548 - BROILER GLP ALTA PERFORMANCE | BRO - NÃO ACENDE",
-   "tarefas": [
-    "WOT0051912"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "15/09/2026 10:54:09",
-   "contato": "",
-   "grupo": "executado"
-  },
-  {
-   "numero": "WO0051362",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "24362 - FS SJP - AV DAS TORRES",
-   "status": "Encerrado concluído",
-   "fase": "Requisição Completa",
-   "abertura": "14/09/2026 19:22:03",
-   "fechamento": "15/09/2026 12:05:46",
-   "principal": "BK069912 - EXAUSTOR",
-   "secundario": "EXA - NÃO LIGA",
-   "sigla": "EXA",
-   "tecnico": "",
-   "descricao": "BK069912 - EXAUSTOR | EXA - NÃO LIGA",
-   "tarefas": [
-    "WOT0051811"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "15/09/2026 11:59:11",
-   "contato": "",
-   "grupo": "executado"
-  },
-  {
-   "numero": "WO0051357",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "18443 - SHOP CENTER LAR",
-   "status": "Encerrado concluído",
-   "fase": "Requisição Completa",
-   "abertura": "14/09/2026 19:13:51",
-   "fechamento": "15/09/2026 13:15:19",
-   "principal": "BK034971 - ESTUFA DE RETENÇÃO DE LANCHES; TOPEMA",
-   "secundario": "ETR - PRINCÍPIO DE INCÊNDIO",
-   "sigla": "ETR",
-   "tecnico": "",
-   "descricao": "BK034971 - ESTUFA DE RETENÇÃO DE LANCHES; TOPEMA | ETR - PRINCÍPIO DE INCÊNDIO",
-   "tarefas": [
-    "WOT0051806"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "15/09/2026 13:12:49",
-   "contato": "",
-   "grupo": "executado"
-  },
-  {
-   "numero": "WO0051356",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "18443 - SHOP CENTER LAR",
-   "status": "Encerrado concluído",
-   "fase": "Requisição Completa",
-   "abertura": "14/09/2026 19:10:27",
-   "fechamento": "15/09/2026 13:21:06",
-   "principal": "TOSTADEIRA 220V 3290W 66A71GRC",
-   "secundario": "TST - PRINCÍPIO DE INCÊNDIO",
-   "sigla": "TST",
-   "tecnico": "",
-   "descricao": "TOSTADEIRA 220V 3290W 66A71GRC | TST - PRINCÍPIO DE INCÊNDIO",
-   "tarefas": [
-    "WOT0051805"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "15/09/2026 13:19:19",
-   "contato": "",
-   "grupo": "executado"
-  },
-  {
-   "numero": "WO0051347",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "18443 - SHOP CENTER LAR",
-   "status": "Encerrado concluído",
-   "fase": "Requisição Completa",
-   "abertura": "14/09/2026 19:00:27",
-   "fechamento": "15/09/2026 14:07:09",
-   "principal": "BK078980 - MEAT FREEZER",
-   "secundario": "MFR - PRINCÍPIO DE INCÊNDIO",
-   "sigla": "MFR",
-   "tecnico": "",
-   "descricao": "BK078980 - MEAT FREEZER | MFR - PRINCÍPIO DE INCÊNDIO",
-   "tarefas": [
-    "WOT0051796"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "15/09/2026 13:59:51",
-   "contato": "",
-   "grupo": "executado"
   },
   {
    "numero": "WO0051318",
@@ -583,29 +353,6 @@
    "fechadoSemToken": "",
    "contato": "",
    "grupo": "execucao"
-  },
-  {
-   "numero": "WO0051255",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "18450 - BOURBON SHOP SAO LEOPOLDO",
-   "status": "Encerrado concluído",
-   "fase": "Requisição Completa",
-   "abertura": "14/09/2026 15:41:22",
-   "fechamento": "14/09/2026 16:31:33",
-   "principal": "Area Externa",
-   "secundario": "AEX - FALTA DE ENERGIA - CORTE DE ENERGIA NA REGIÃO",
-   "sigla": "AEX",
-   "tecnico": "",
-   "descricao": "Area Externa | AEX - FALTA DE ENERGIA - CORTE DE ENERGIA NA REGIÃO",
-   "tarefas": [
-    "WOT0051703"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "14/09/2026 16:29:32",
-   "contato": "",
-   "grupo": "executado"
   },
   {
    "numero": "WO0051185",
@@ -677,29 +424,6 @@
    "grupo": "execucao"
   },
   {
-   "numero": "WO0050957",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "24362 - FS SJP - AV DAS TORRES",
-   "status": "Encerrado concluído",
-   "fase": "Requisição Completa",
-   "abertura": "14/09/2026 08:37:15",
-   "fechamento": "14/09/2026 10:43:09",
-   "principal": "BK069901 - FRITADEIRA; FRYMASTER; 11814CSE; 1504PN0",
-   "secundario": "FRI - NÃO LIGA",
-   "sigla": "FRI",
-   "tecnico": "",
-   "descricao": "BK069901 - FRITADEIRA; FRYMASTER; 11814CSE; 1504PN0 | FRI - NÃO LIGA",
-   "tarefas": [
-    "WOT0051402"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "14/09/2026 10:42:29",
-   "contato": "",
-   "grupo": "executado"
-  },
-  {
    "numero": "WO0050894",
    "marca": "BKB",
    "regional": "SUL",
@@ -721,29 +445,6 @@
    "fechadoSemToken": "",
    "contato": "",
    "grupo": "execucao"
-  },
-  {
-   "numero": "WO0050892",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL NORTE RS",
-   "loja": "21586 - SHOP ROYAL PLAZA SANTA MARIA",
-   "status": "Encerrado concluído",
-   "fase": "Requisição Completa",
-   "abertura": "13/09/2026 21:55:47",
-   "fechamento": "14/09/2026 15:37:25",
-   "principal": "BK036556 - MICROONDAS; MENUMASTER; MOC24B; 14101002",
-   "secundario": "MCR - LOJA SEM NENHUM MICROONDAS FUNCIONANDO",
-   "sigla": "MCR",
-   "tecnico": "",
-   "descricao": "BK036556 - MICROONDAS; MENUMASTER; MOC24B; 14101002 | MCR - LOJA SEM NENHUM MICROONDAS FUNCIONANDO",
-   "tarefas": [
-    "WOT0051337"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "14/09/2026 15:35:54",
-   "contato": "",
-   "grupo": "executado"
   },
   {
    "numero": "WO0050833",
@@ -792,75 +493,6 @@
    "grupo": "execucao"
   },
   {
-   "numero": "WO0050831",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "25677 - FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
-   "status": "Encerrado concluído",
-   "fase": "Requisição Completa",
-   "abertura": "13/09/2026 16:34:37",
-   "fechamento": "14/09/2026 10:27:12",
-   "principal": "BK068721 - BROILER",
-   "secundario": "BRO - NÃO ACENDE",
-   "sigla": "BRO",
-   "tecnico": "",
-   "descricao": "BK068721 - BROILER | BRO - NÃO ACENDE",
-   "tarefas": [
-    "WOT0051274"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "14/09/2026 10:25:50",
-   "contato": "",
-   "grupo": "executado"
-  },
-  {
-   "numero": "WO0050812",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
-   "status": "Encerrado concluído",
-   "fase": "Requisição Completa",
-   "abertura": "13/09/2026 15:26:09",
-   "fechamento": "14/09/2026 12:43:33",
-   "principal": "BK038151 - COIFA",
-   "secundario": "COI - COIFA NÃO FUNCIONA",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK038151 - COIFA | COI - COIFA NÃO FUNCIONA",
-   "tarefas": [
-    "WOT0051255"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "14/09/2026 12:41:28",
-   "contato": "",
-   "grupo": "executado"
-  },
-  {
-   "numero": "WO0050732",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "OESTE PR",
-   "loja": "22536 - Shopping Palladium Foz do Iguaçu ",
-   "status": "Encerrado concluído",
-   "fase": "Requisição Completa",
-   "abertura": "13/09/2026 11:32:08",
-   "fechamento": "13/09/2026 18:41:56",
-   "principal": "BROILER",
-   "secundario": "BRO - VAZAMENTO DE GÁS",
-   "sigla": "BRO",
-   "tecnico": "",
-   "descricao": "BROILER | BRO - VAZAMENTO DE GÁS",
-   "tarefas": [
-    "WOT0051174"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "13/09/2026 17:20:40",
-   "contato": "",
-   "grupo": "executado"
-  },
-  {
    "numero": "WO0050722",
    "marca": "BKB",
    "regional": "SUL",
@@ -884,29 +516,6 @@
    "grupo": "execucao"
   },
   {
-   "numero": "WO0050708",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "OESTE PR",
-   "loja": "26830 - FS FOZ DO IGUACU - AV JORGE S",
-   "status": "Encerrado concluído",
-   "fase": "Requisição Completa",
-   "abertura": "13/09/2026 10:56:59",
-   "fechamento": "13/09/2026 18:03:19",
-   "principal": "Area Interna",
-   "secundario": "AIN - QUADRO ELÉTRICO - PRINCÍPIO DE INCÊNDIO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - PRINCÍPIO DE INCÊNDIO",
-   "tarefas": [
-    "WOT0051149"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "13/09/2026 13:31:33",
-   "contato": "",
-   "grupo": "executado"
-  },
-  {
    "numero": "WO0050682",
    "marca": "BKB",
    "regional": "SUL",
@@ -928,75 +537,6 @@
    "fechadoSemToken": "",
    "contato": "",
    "grupo": "execucao"
-  },
-  {
-   "numero": "WO0050661",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
-   "status": "Encerrado concluído",
-   "fase": "Requisição Completa",
-   "abertura": "13/09/2026 09:13:01",
-   "fechamento": "13/09/2026 15:27:02",
-   "principal": "FRITADEIRA",
-   "secundario": "FRI - NÃO LIGA",
-   "sigla": "FRI",
-   "tecnico": "",
-   "descricao": "FRITADEIRA | FRI - NÃO LIGA",
-   "tarefas": [
-    "WOT0051097"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "13/09/2026 15:25:59",
-   "contato": "Tentativa de contato: 13/09/2026 09:14:36;\n",
-   "grupo": "executado"
-  },
-  {
-   "numero": "WO0050645",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "26839 FS CURITIBA - AV SILVA JARDIM",
-   "status": "Encerrado concluído",
-   "fase": "Requisição Completa",
-   "abertura": "13/09/2026 06:15:02",
-   "fechamento": "13/09/2026 14:26:05",
-   "principal": "Area Externa",
-   "secundario": "FALTA DE ÁGUA - CORTE DE ÁGUA NA REGIÃO",
-   "sigla": "AEX",
-   "tecnico": "",
-   "descricao": "Area Externa | FALTA DE ÁGUA - CORTE DE ÁGUA NA REGIÃO",
-   "tarefas": [
-    "WOT0051079"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "13/09/2026 14:23:19",
-   "contato": "",
-   "grupo": "executado"
-  },
-  {
-   "numero": "WO0050638",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "30086 FS PONTA GROSSA R BALDUINO",
-   "status": "Encerrado concluído",
-   "fase": "Requisição Completa",
-   "abertura": "13/09/2026 03:00:55",
-   "fechamento": "13/09/2026 14:08:16",
-   "principal": "MICROONDAS",
-   "secundario": "MCR - PRINCÍPIO DE INCÊNDIO",
-   "sigla": "MCR",
-   "tecnico": "",
-   "descricao": "MICROONDAS | MCR - PRINCÍPIO DE INCÊNDIO",
-   "tarefas": [
-    "WOT0051072"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "13/09/2026 14:06:14",
-   "contato": "",
-   "grupo": "executado"
   }
  ]
 }
