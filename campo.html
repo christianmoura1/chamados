@@ -474,8 +474,8 @@ function blocoHistorico(serie) {
   const cartoes = [
     { lbl: 'Abertos hoje', v: ultimo.abertos, ant: anterior && anterior.abertos, cor: 'var(--violet)' },
     { lbl: 'Fechados hoje', v: ultimo.fechados, ant: anterior && anterior.fechados, cor: 'var(--blue)' },
-    { lbl: 'Abertos 14 dias', v: somaA, ant: null, cor: 'var(--violet)' },
-    { lbl: 'Fechados 14 dias', v: somaF, ant: null, cor: 'var(--blue)' },
+    { lbl: 'Abertos ' + pontos.length + ' dias', v: somaA, ant: null, cor: 'var(--violet)' },
+    { lbl: 'Fechados ' + pontos.length + ' dias', v: somaF, ant: null, cor: 'var(--blue)' },
   ].map((c) => {
     let delta;
     if (c.ant === null || c.ant === undefined) {
@@ -494,7 +494,7 @@ function blocoHistorico(serie) {
   }).join('');
 
   const saldo = somaA - somaF;
-  const nota = `<div class="chart-note">Saldo de 14 dias: ${saldo > 0 ? 'acumulando ' + saldo : saldo < 0 ? 'reduzindo ' + Math.abs(saldo) : 'empatado'} &middot; um ponto por dia.</div>`;
+  const nota = `<div class="chart-note">Saldo de ${pontos.length} dias: ${saldo > 0 ? 'acumulando ' + saldo : saldo < 0 ? 'reduzindo ' + Math.abs(saldo) : 'empatado'} &middot; um ponto por dia.</div>`;
 
   return `<div class="hist-stamp">Instant&acirc;neo de ${fmtDia(ultimo.data)}</div>
     <div class="hist-stats">${cartoes}</div>
@@ -544,7 +544,7 @@ function render() {
     ${linhas(abertos)}
     ${Array.isArray(D.serie) && D.serie.length ? `
     <div class="sec-head" style="margin-top:34px"><h2>Abertos &times; Fechados</h2>
-      <span class="sec-note">&uacute;ltimos 14 dias &middot; cr&iacute;ticos &middot; fonte: ServiceNow SOMA</span></div>
+      <span class="sec-note">&uacute;ltimos ${D.serie.length} dias &middot; cr&iacute;ticos &middot; fonte: ServiceNow SOMA</span></div>
     <div class="card" style="padding:18px 20px">${blocoHistorico(D.serie)}</div>` : ''}
     <footer>
       <span>Fonte: ServiceNow · SOMA (wm_order, prioridade 1 - Crítica, work center CSUL)</span>

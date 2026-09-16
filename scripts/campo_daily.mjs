@@ -90,7 +90,7 @@ log('tarefas filhas: ' + tarefas.length);
 // Buscar os 14 dias inteiros (em vez de ir acumulando um ponto por dia) faz o
 // grafico ja nascer completo e se auto-corrigir a cada ciclo.
 const BASE_SUL = 'opened_for.u_bk_work_center=CSUL^priority=1';
-const JANELA_HIST = 13; // 13 dias atras + hoje = 14 dias
+const JANELA_HIST = 2; // 2 dias atras + hoje = 3 dias (mesma janela da tabela)
 const soData = (s) => {
   const m = String(s || '').match(/^(\d{2})\/(\d{2})\/(\d{4})/);
   return m ? m[3] + '-' + m[2] + '-' + m[1] : null;
@@ -100,7 +100,7 @@ const histAbertos = objetos(await baixaCSV('wm_order', 'number,opened_at',
   BASE_SUL + '^opened_at>=javascript:gs.daysAgoStart(' + JANELA_HIST + ')'));
 const histFechados = objetos(await baixaCSV('wm_order', 'number,closed_at',
   BASE_SUL + '^closed_at>=javascript:gs.daysAgoStart(' + JANELA_HIST + ')'));
-log('historico: ' + histAbertos.length + ' aberturas e ' + histFechados.length + ' fechamentos em 14 dias');
+log('historico: ' + histAbertos.length + ' aberturas e ' + histFechados.length + ' fechamentos em ' + (JANELA_HIST + 1) + ' dias');
 
 const porDia = {};
 const garante = (d) => { if (!porDia[d]) porDia[d] = { data: d, abertos: 0, fechados: 0 }; return porDia[d]; };
@@ -117,7 +117,7 @@ for (let k = JANELA_HIST; k >= 0; k--) {
 }
 const somaAb = serie.reduce((s, x) => s + x.abertos, 0);
 const somaFe = serie.reduce((s, x) => s + x.fechados, 0);
-log('serie de 14 dias: ' + somaAb + ' abertos x ' + somaFe + ' fechados (saldo ' + (somaAb - somaFe) + ')');
+log('serie de ' + serie.length + ' dias: ' + somaAb + ' abertos x ' + somaFe + ' fechados (saldo ' + (somaAb - somaFe) + ')');
 
 const porOrdem = {};
 for (const t of tarefas) {
