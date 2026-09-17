@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-17T12:00:11.500Z",
+ "atualizadoEm": "2026-09-17T12:20:11.581Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 15,
+  "emExecucao": 16,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 2,
-  "total": 15
+  "total": 16
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-09-17",
-   "abertos": 1,
-   "fechados": 0
+   "abertos": 3,
+   "fechados": 1
   }
  ],
  "itens": [
+  {
+   "numero": "WO0052557",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "24741 - FS PELOTAS - AV FERREIRA VIANA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "17/09/2026 09:18:56",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - COZINHA - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
+   "tarefas": [
+    "WOT0053028"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0052545",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "18443 - SHOP CENTER LAR",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "17/09/2026 09:07:58",
+   "fechamento": "",
+   "principal": "BK034925 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
+   "secundario": "CMR - NÃO LIGA",
+   "sigla": "CMR",
+   "tecnico": "",
+   "descricao": "BK034925 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO LIGA",
+   "tarefas": [
+    "WOT0053015"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0052539",
    "marca": "BKB",
@@ -227,29 +273,6 @@
    "descricao": "BK058143 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
    "tarefas": [
     "WOT0052444"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0051932",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "OESTE PR",
-   "loja": "23989 - SHOP JL CASCAVEL",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "15/09/2026 18:43:31",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - QUADRO ELÉTRICO - FALTA DE ACRÍLICO DE PROTEÇÃO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - FALTA DE ACRÍLICO DE PROTEÇÃO",
-   "tarefas": [
-    "WOT0052391"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
