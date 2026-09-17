@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-17T17:40:11.454Z",
+ "atualizadoEm": "2026-09-17T19:00:13.248Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 19,
+  "emExecucao": 20,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 3,
-  "total": 19
+  "total": 20
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-17",
-   "abertos": 9,
+   "abertos": 10,
    "fechados": 7
   }
  ],
  "itens": [
+  {
+   "numero": "WO0052900",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "16852 - SHOP SAO JOSE DOS PINHAIS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "17/09/2026 15:53:34",
+   "fechamento": "",
+   "principal": "BK066866 - CÂMARA DE RESFRIADOS",
+   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMR",
+   "tecnico": "",
+   "descricao": "BK066866 - CÂMARA DE RESFRIADOS | CMR - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0053375"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0052854",
    "marca": "BKB",
