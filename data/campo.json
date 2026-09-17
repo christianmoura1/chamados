@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-17T14:40:11.890Z",
+ "atualizadoEm": "2026-09-17T15:00:12.930Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 17,
+  "emExecucao": 18,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 2,
-  "total": 17
+  "total": 18
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-17",
-   "abertos": 7,
+   "abertos": 8,
    "fechados": 7
   }
  ],
  "itens": [
+  {
+   "numero": "WO0052693",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "20049 - SHOP PRACA RIO GRANDE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "17/09/2026 11:53:08",
+   "fechamento": "",
+   "principal": "CÂMARA DE RESFRIADOS",
+   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMR",
+   "tecnico": "",
+   "descricao": "CÂMARA DE RESFRIADOS | CMR - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0053165"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0052634",
    "marca": "BKB",
