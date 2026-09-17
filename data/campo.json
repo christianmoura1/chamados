@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-17T13:00:12.874Z",
+ "atualizadoEm": "2026-09-17T13:20:11.801Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 17,
+  "emExecucao": 19,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 2,
-  "total": 17
+  "total": 19
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-09-17",
-   "abertos": 4,
+   "abertos": 6,
    "fechados": 1
   }
  ],
  "itens": [
+  {
+   "numero": "WO0052600",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "26806 - JOCKEY PLAZA SHOP",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "17/09/2026 10:04:01",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
+   "tarefas": [
+    "WOT0053072"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0052595",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "17/09/2026 10:01:02",
+   "fechamento": "",
+   "principal": "BROILER",
+   "secundario": "BRO - NÃO ACENDE",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BROILER | BRO - NÃO ACENDE",
+   "tarefas": [
+    "WOT0053067"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0052585",
    "marca": "BKB",
