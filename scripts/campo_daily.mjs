@@ -196,6 +196,22 @@ if (fs.existsSync(DESTINO)) {
 const semMudanca = (anterior === miolo);
 if (semMudanca) log('sem mudanca nos chamados -- nao vou publicar (o aviso de WhatsApp ainda e avaliado)');
 
+// Copia AO VIVO, gravada em toda execucao (mude ou nao o dado), servida pela
+// propria VM em /v1/campo. A pagina le daqui, entao o carimbo reflete a ultima
+// VERIFICACAO e nao o ultimo deploy -- sem gastar deploy da Vercel a cada ciclo.
+try {
+  fs.writeFileSync('C:/projetos/climapro-bot/campo_live.json', JSON.stringify({
+    atualizadoEm: new Date().toISOString(),
+    verificadoEm: new Date().toISOString(),
+    houveMudanca: !semMudanca,
+    janelaDias: 3,
+    resumo,
+    serie,
+    itens: abertos,
+  }, null, 1), 'utf8');
+  log('campo_live.json gravado (copia ao vivo servida pela VM)');
+} catch (e) { log('nao consegui gravar campo_live.json: ' + e.message); }
+
 if (!semMudanca) {
   fs.writeFileSync(DESTINO, JSON.stringify({
     atualizadoEm: new Date().toISOString(),

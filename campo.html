@@ -601,13 +601,32 @@ document.addEventListener('click', (ev) => {
   if (ev.target.id === 'fLimpar') { FILTROS.loja = ''; FILTROS.problema = ''; render(); }
 });
 
+// A VM serve uma copia AO VIVO, regravada a cada ciclo de 20 min. A copia do
+// repositorio so' muda quando o dado muda (para nao gastar deploy da Vercel a
+// toa), entao usar so' ela fazia o carimbo congelar e parecer que a automacao
+// tinha parado. Tenta a VM primeiro; se ela estiver fora, cai no repositorio.
+const FONTE_VIVA = 'https://154-64-32-227.sslip.io/v1/campo';
+
+async function buscarDados() {
+  try {
+    const r = await fetch(FONTE_VIVA + '?cb=' + Date.now(), { cache: 'no-store' });
+    if (r.ok) {
+      const j = await r.json();
+      if (j && Array.isArray(j.itens)) return { dados: j, origem: 'vm' };
+    }
+  } catch (e) { /* VM fora do ar: segue para o repositorio */ }
+  const r2 = await fetch('data/campo.json?cb=' + Date.now(), { cache: 'no-store' });
+  if (!r2.ok) throw new Error('HTTP ' + r2.status);
+  return { dados: await r2.json(), origem: 'repo' };
+}
+
 async function iniciar() {
   try {
-    const r = await fetch('data/campo.json?cb=' + Date.now());
-    if (!r.ok) throw new Error('HTTP ' + r.status);
-    DADOS = await r.json();
-    const dt = new Date(DADOS.atualizadoEm);
-    document.getElementById('stamp').textContent = 'Atualizado ' + dt.toLocaleString('pt-BR');
+    const { dados, origem } = await buscarDados();
+    DADOS = dados;
+    const ref = new Date(DADOS.verificadoEm || DADOS.atualizadoEm);
+    const rot = origem === 'vm' && DADOS.verificadoEm ? 'Verificado ' : 'Atualizado ';
+    document.getElementById('stamp').textContent = rot + ref.toLocaleString('pt-BR');
     render();
   } catch (e) {
     document.getElementById('conteudo').innerHTML =
@@ -616,6 +635,10 @@ async function iniciar() {
   }
 }
 iniciar();
+
+// Quem deixa o painel aberto na parede nao deve precisar dar F5: revalida
+// sozinho a cada 2 min contra a fonte ao vivo da VM.
+setInterval(() => { iniciar(); }, 120000);
 
 // tooltip do grafico: delegado no `document` (nao no #chartCard) porque o
 // #chartCard so' existe depois que iniciar() monta o conteudo de forma
