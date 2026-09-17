@@ -213,6 +213,13 @@
   .risco-subhead .cnt { font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 600; border-radius: 999px; padding: 2px 10px; }
   .risco-subhead .cnt.vencido { background: var(--sos-soft); color: var(--sos); }
   .risco-subhead .cnt.avencer { background: var(--ok); color: white; }
+  .filter-limpar {
+    font-family: "IBM Plex Sans", sans-serif; font-size: 12.5px; font-weight: 600; color: var(--muted);
+    background: var(--surface2); border: 1px solid var(--line); border-radius: 10px;
+    padding: 9px 14px; cursor: pointer;
+  }
+  .filter-limpar:hover { color: var(--ink); }
+  .filter-conta { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--faint); padding-bottom: 10px; }
   .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 16px; }
   .filter-field { display: flex; flex-direction: column; gap: 4px; min-width: 168px; }
   .filter-field label {
@@ -377,6 +384,7 @@ function pillStatus(status, grupo) {
 }
 
 let DADOS = null;
+const FILTROS = { loja: '', problema: '' };
 
 function cards(r) {
   const c = [
@@ -502,8 +510,40 @@ function blocoHistorico(serie) {
     ${nota}`;
 }
 
+// Filtros por loja e por problema. Uso listas montadas a partir dos proprios
+// chamados em tela, entao nunca aparece opcao que nao tem resultado.
+function aplicaFiltros(itens) {
+  return itens.filter((i) =>
+    (!FILTROS.loja || i.loja === FILTROS.loja) &&
+    (!FILTROS.problema || (i.secundario || '') === FILTROS.problema));
+}
+
+function barraFiltros(itens) {
+  const unicos = (campo) => [...new Set(itens.map((i) => (i[campo] || '').trim()).filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b, 'pt-BR'));
+  const lojas = unicos('loja');
+  const problemas = unicos('secundario');
+  const filtrados = aplicaFiltros(itens).length;
+  const opcoes = (lista, sel, rotuloTodos) =>
+    `<option value="">${rotuloTodos}</option>` + lista.map((v) =>
+      `<option value="${esc(v)}"${v === sel ? ' selected' : ''}>${esc(v)}</option>`).join('');
+  const ativo = FILTROS.loja || FILTROS.problema;
+  return `<div class="filter-bar">
+    <div class="filter-field">
+      <label for="fLoja">Loja</label>
+      <select id="fLoja">${opcoes(lojas, FILTROS.loja, 'Todas as lojas (' + lojas.length + ')')}</select>
+    </div>
+    <div class="filter-field">
+      <label for="fProblema">Problema</label>
+      <select id="fProblema">${opcoes(problemas, FILTROS.problema, 'Todos os problemas (' + problemas.length + ')')}</select>
+    </div>
+    ${ativo ? '<button type="button" class="filter-limpar" id="fLimpar">limpar filtros</button>' : ''}
+    ${ativo ? `<span class="filter-conta">${filtrados} de ${itens.length} chamados</span>` : ''}
+  </div>`;
+}
+
 function linhas(itens) {
-  if (!itens.length) return `<div class="filter-empty">Nenhum chamado crítico nesse recorte.</div>`;
+  if (!itens.length) return `<div class="filter-empty">${FILTROS.loja || FILTROS.problema ? "Nenhum chamado bate com o filtro escolhido." : "Nenhum chamado crítico nesse recorte."}</div>`;
   return `<div class="tbl-wrap"><table class="campo">
     <thead><tr>
       <th>Número</th><th>Marca</th><th>Regional</th><th>Setor</th><th>Loja</th>
@@ -541,7 +581,8 @@ function render() {
     O card “Chamados com Impacto” fica em “—” até lá, em vez de mostrar um número inventado.</div>
     <div class="sec-head"><h2>Chamados críticos em aberto · últimos ${D.janelaDias} dias</h2>
       <span class="sec-note">Prioridade 1 · Crítica · fonte: ServiceNow SOMA (wm_order · Regional SUL)</span></div>
-    ${linhas(abertos)}
+    ${barraFiltros(abertos)}
+    ${linhas(aplicaFiltros(abertos))}
     ${Array.isArray(D.serie) && D.serie.length ? `
     <div class="sec-head" style="margin-top:34px"><h2>Abertos &times; Fechados</h2>
       <span class="sec-note">&uacute;ltimos ${D.serie.length} dias &middot; cr&iacute;ticos &middot; fonte: ServiceNow SOMA</span></div>
@@ -551,6 +592,14 @@ function render() {
       <span class="mono">${abertos.length} chamados críticos em aberto</span>
     </footer>`;
 }
+
+document.addEventListener('change', (ev) => {
+  if (ev.target.id === 'fLoja') { FILTROS.loja = ev.target.value; render(); }
+  if (ev.target.id === 'fProblema') { FILTROS.problema = ev.target.value; render(); }
+});
+document.addEventListener('click', (ev) => {
+  if (ev.target.id === 'fLimpar') { FILTROS.loja = ''; FILTROS.problema = ''; render(); }
+});
 
 async function iniciar() {
   try {
