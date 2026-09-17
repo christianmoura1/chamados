@@ -232,6 +232,17 @@
     border: 1px solid var(--line); border-radius: 8px; padding: 4px 7px; min-width: 128px; cursor: pointer;
   }
   .prev-date:focus { outline: 2px solid var(--violet); outline-offset: -1px; }
+  /* previsao de termino ja passou: precisa saltar aos olhos */
+  .prev-date.vencida {
+    border-color: #E5352B; background: #FDECEB; color: #B22119; font-weight: 700;
+  }
+  .prev-date.hoje { border-color: #F0A31B; background: #FFF6E6; color: #8A5B06; font-weight: 700; }
+  .filtro-limpar {
+    font-family: "IBM Plex Sans", sans-serif; font-size: 12.5px; font-weight: 600; color: var(--muted);
+    background: var(--surface2); border: 1px solid var(--line); border-radius: 10px; padding: 9px 14px; cursor: pointer;
+  }
+  .filtro-limpar:hover { color: var(--ink); }
+  .filtro-conta { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--faint); padding-bottom: 10px; }
 </style>
 </head>
 <body>
@@ -369,11 +380,69 @@ function diasVencido(dtAbertura, refDate) {
   return Math.max(0, Math.round((refDate - d) / 86400000));
 }
 
+const FILTROS_RISCO = { loja: '', assunto: '', resp: '', ordem: 'antigos' };
+
+const assuntoDe = (c) => (c.assuntoSecundario || c.assuntoPrincipal || '').trim();
+
+// Data de previsao vencida fica vermelha; a de hoje, laranja.
+function classePrevisao(previsao) {
+  if (!previsao) return '';
+  const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
+  const d = new Date(previsao + 'T00:00:00');
+  if (isNaN(d)) return '';
+  if (d < hoje) return ' vencida';
+  if (d.getTime() === hoje.getTime()) return ' hoje';
+  return '';
+}
+
+function aplicaFiltrosRisco(itens) {
+  return (itens || []).filter((c) =>
+    (!FILTROS_RISCO.loja || c.loja === FILTROS_RISCO.loja) &&
+    (!FILTROS_RISCO.assunto || assuntoDe(c) === FILTROS_RISCO.assunto) &&
+    (!FILTROS_RISCO.resp || responsavelAtual(c) === FILTROS_RISCO.resp));
+}
+
+function barraFiltrosRisco(todos) {
+  const unicos = (fn) => [...new Set((todos || []).map(fn).map((v) => (v || '').trim()).filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b, 'pt-BR'));
+  const lojas = unicos((c) => c.loja);
+  const assuntos = unicos(assuntoDe);
+  const visiveis = aplicaFiltrosRisco(todos).length;
+  const opc = (lista, sel, todosRot) => `<option value="">${todosRot}</option>` +
+    lista.map((v) => `<option value="${escapeHtml(v)}"${v === sel ? ' selected' : ''}>${escapeHtml(v)}</option>`).join('');
+  const ativo = FILTROS_RISCO.loja || FILTROS_RISCO.assunto || FILTROS_RISCO.resp;
+  return `<div class="filter-bar">
+    <div class="filter-field"><label for="fRiscoLoja">Loja</label>
+      <select id="fRiscoLoja">${opc(lojas, FILTROS_RISCO.loja, 'Todas as lojas (' + lojas.length + ')')}</select></div>
+    <div class="filter-field"><label for="fRiscoAssunto">Assunto</label>
+      <select id="fRiscoAssunto">${opc(assuntos, FILTROS_RISCO.assunto, 'Todos os assuntos (' + assuntos.length + ')')}</select></div>
+    <div class="filter-field"><label for="fRiscoResp">Responsável</label>
+      <select id="fRiscoResp">${opc(RESPONSAVEIS, FILTROS_RISCO.resp, 'Todos')}</select></div>
+    <div class="filter-field"><label for="fRiscoOrdem">Ordenar por</label>
+      <select id="fRiscoOrdem">
+        <option value="antigos"${FILTROS_RISCO.ordem === 'antigos' ? ' selected' : ''}>Abertura mais antiga</option>
+        <option value="recentes"${FILTROS_RISCO.ordem === 'recentes' ? ' selected' : ''}>Abertura mais recente</option>
+        <option value="previsao"${FILTROS_RISCO.ordem === 'previsao' ? ' selected' : ''}>Previsão mais próxima</option>
+      </select></div>
+    ${ativo ? '<button type="button" class="filtro-limpar" id="fRiscoLimpar">limpar filtros</button>' : ''}
+    ${ativo ? `<span class="filtro-conta">${visiveis} de ${(todos || []).length} chamados</span>` : ''}
+  </div>`;
+}
+
 function tabelaChamadosRisco(itens, refDate, filtroResp) {
-  const filtrados = filtroResp ? (itens || []).filter(c => responsavelAtual(c) === filtroResp) : (itens || []);
-  if (!filtrados.length) return `<div class="filter-empty">Nenhum chamado nesse grupo${filtroResp ? ' para ' + escapeHtml(filtroResp) : ''}.</div>`;
-  const comDias = filtrados.map(c => ({ ...c, dias: diasVencido(c.dtAbertura, refDate) }))
-    .sort((a, b) => (b.dias ?? -1) - (a.dias ?? -1));
+  const filtrados = aplicaFiltrosRisco(itens);
+  if (!filtrados.length) return `<div class="filter-empty">${FILTROS_RISCO.loja || FILTROS_RISCO.assunto || FILTROS_RISCO.resp ? 'Nenhum chamado bate com o filtro escolhido.' : 'Nenhum chamado nesse grupo.'}</div>`;
+  const comDias = filtrados.map(c => ({ ...c, dias: diasVencido(c.dtAbertura, refDate) }));
+  if (FILTROS_RISCO.ordem === 'recentes') {
+    // menos dias vencido = aberto mais recentemente
+    comDias.sort((a, b) => (a.dias ?? 1e9) - (b.dias ?? 1e9));
+  } else if (FILTROS_RISCO.ordem === 'previsao') {
+    // sem previsao vai para o fim, senao some da vista de quem cobra prazo
+    const p = (c) => previsaoAtual(c) || '9999-12-31';
+    comDias.sort((a, b) => p(a).localeCompare(p(b)));
+  } else {
+    comDias.sort((a, b) => (b.dias ?? -1) - (a.dias ?? -1));
+  }
   return `<div class="filter-table-wrap"><table class="detail-table">
     <thead><tr><th>Número</th><th>Item</th><th>Assunto</th><th>Loja</th><th>Setor</th><th>Status</th><th>Vencido há</th><th>Responsável</th><th>Previsão de Término</th></tr></thead>
     <tbody>${comDias.map(c => {
@@ -389,7 +458,7 @@ function tabelaChamadosRisco(itens, refDate, filtroResp) {
         <td><span class="tag ${statusRiscoTagCls(c.statusRisco)}">${escapeHtml(c.status)}</span></td>
         <td class="num">${c.dias != null ? c.dias + 'd' : '—'}</td>
         <td><select class="resp-select" data-wo="${escapeHtml(c.numero)}">${opcoes}</select></td>
-        <td><input type="date" class="prev-date" data-wo="${escapeHtml(c.numero)}" value="${escapeHtml(previsao)}"></td>
+        <td><input type="date" class="prev-date${classePrevisao(previsao)}" data-wo="${escapeHtml(c.numero)}" value="${escapeHtml(previsao)}"></td>
       </tr>`;
     }).join('')}</tbody>
   </table></div>`;
@@ -399,15 +468,16 @@ function renderizarChamadosRisco() {
   const D = DADOS_ATUAIS;
   if (!D) return;
   const refDate = parseDataBR(D.atualizadoEm) || new Date();
-  const filtroResp = document.getElementById('filtroResponsavelRisco')?.value || '';
   const vencidos = (D.chamadosRisco?.vencidos || []);
   const aVencer = (D.chamadosRisco?.aVencer || []);
-  const vencidosVisiveis = filtroResp ? vencidos.filter(c => responsavelAtual(c) === filtroResp) : vencidos;
-  const aVencerVisiveis = filtroResp ? aVencer.filter(c => responsavelAtual(c) === filtroResp) : aVencer;
-  document.getElementById('cntVencido').textContent = vencidosVisiveis.length;
-  document.getElementById('cntAVencer').textContent = aVencerVisiveis.length;
-  document.getElementById('tabelaVencido').innerHTML = tabelaChamadosRisco(vencidos, refDate, filtroResp);
-  document.getElementById('tabelaAVencer').innerHTML = tabelaChamadosRisco(aVencer, refDate, filtroResp);
+  // as listas dos filtros saem dos DOIS grupos juntos, senao um assunto que so'
+  // existe em "a vencer" sumiria da lista enquanto o outro grupo esta em tela
+  const barra = document.getElementById('barraFiltrosRisco');
+  if (barra) barra.innerHTML = barraFiltrosRisco([...vencidos, ...aVencer]);
+  document.getElementById('cntVencido').textContent = aplicaFiltrosRisco(vencidos).length;
+  document.getElementById('cntAVencer').textContent = aplicaFiltrosRisco(aVencer).length;
+  document.getElementById('tabelaVencido').innerHTML = tabelaChamadosRisco(vencidos, refDate);
+  document.getElementById('tabelaAVencer').innerHTML = tabelaChamadosRisco(aVencer, refDate);
 }
 
 function abrirModalCategoria(chave) {
@@ -515,6 +585,7 @@ async function iniciar() {
     <section>
       <div class="sec-head"><h2>Chamados de Gestão de Risco</h2><span class="sec-note">Coifa, Broiler, Exaustor, Sensor de gás, Quadro Elétrico · fonte: Power BI (Gestão de Risco · Sul)</span></div>
       <div class="card">
+        <div id="barraFiltrosRisco">${barraFiltrosRisco([...(D.chamadosRisco?.vencidos || []), ...(D.chamadosRisco?.aVencer || [])])}</div>
         <div class="risco-subhead"><span>Risco Vencido</span><span class="cnt vencido" id="cntVencido">${(D.chamadosRisco?.vencidos || []).length}</span></div>
         <div id="tabelaVencido">${tabelaChamadosRisco(D.chamadosRisco?.vencidos, refDate)}</div>
         <div class="risco-subhead"><span>Risco a Vencer</span><span class="cnt avencer" id="cntAVencer">${(D.chamadosRisco?.aVencer || []).length}</span></div>
@@ -533,6 +604,18 @@ iniciar();
 // delegado no document (as linhas da tabela sao recriadas a cada filtro),
 // pra caixa de selecao/data de cada chamado gravar a escolha no banco
 // compartilhado e atualizar contagens
+document.addEventListener('change', (ev) => {
+  const mapa = { fRiscoLoja: 'loja', fRiscoAssunto: 'assunto', fRiscoResp: 'resp', fRiscoOrdem: 'ordem' };
+  const chave = mapa[ev.target.id];
+  if (chave) { FILTROS_RISCO[chave] = ev.target.value; renderizarChamadosRisco(); }
+});
+document.addEventListener('click', (ev) => {
+  if (ev.target.id === 'fRiscoLimpar') {
+    FILTROS_RISCO.loja = ''; FILTROS_RISCO.assunto = ''; FILTROS_RISCO.resp = '';
+    renderizarChamadosRisco();
+  }
+});
+
 document.addEventListener('change', async (ev) => {
   const sel = ev.target.closest('.resp-select');
   if (sel) { await salvarCampoAtribuicao(sel.dataset.wo, 'responsavel', sel.value); renderizarChamadosRisco(); return; }
