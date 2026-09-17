@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-17T12:20:11.581Z",
+ "atualizadoEm": "2026-09-17T13:00:12.874Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 16,
+  "emExecucao": 17,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 2,
-  "total": 16
+  "total": 17
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-17",
-   "abertos": 3,
+   "abertos": 4,
    "fechados": 1
   }
  ],
  "itens": [
+  {
+   "numero": "WO0052585",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "17/09/2026 09:44:29",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - QUADRO ELÉTRICO - NÃO LIGA ELETRICAMENTE",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - NÃO LIGA ELETRICAMENTE",
+   "tarefas": [
+    "WOT0053056"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0052557",
    "marca": "BKB",
