@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-09-16T23:40:07.844Z",
+ "atualizadoEm": "2026-09-17T10:00:15.721Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 16,
+  "emExecucao": 14,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 16
+  "total": 14
  },
  "serie": [
-  {
-   "data": "2026-09-14",
-   "abertos": 11,
-   "fechados": 39
-  },
   {
    "data": "2026-09-15",
    "abertos": 15,
@@ -23,6 +18,11 @@
    "data": "2026-09-16",
    "abertos": 8,
    "fechados": 12
+  },
+  {
+   "data": "2026-09-17",
+   "abertos": 0,
+   "fechados": 0
   }
  ],
  "itens": [
@@ -345,52 +345,6 @@
    ],
    "aguardandoToken": 1,
    "fechadoSemToken": "16/09/2026 16:05:09",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0051257",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "23584 - ILR FLORIPA - R JERONIMO COELHO 215",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "14/09/2026 15:45:26",
-   "fechamento": "",
-   "principal": "AR CONDICIONADO",
-   "secundario": "ARC - ROUBO DE FIAÇÃO",
-   "sigla": "ARC",
-   "tecnico": "",
-   "descricao": "AR CONDICIONADO | ARC - ROUBO DE FIAÇÃO",
-   "tarefas": [
-    "WOT0051705"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0051075",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "21787 - CARREFOUR PARTENON",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "14/09/2026 11:10:27",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - COZINHA - REFLUXO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
-   "tarefas": [
-    "WOT0051520"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
    "contato": "",
    "grupo": "execucao"
   }
