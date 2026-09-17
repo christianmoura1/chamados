@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-17T19:20:12.487Z",
+ "atualizadoEm": "2026-09-17T20:00:11.752Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 21,
+  "emExecucao": 22,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 3,
-  "total": 21
+  "total": 22
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-17",
-   "abertos": 11,
+   "abertos": 12,
    "fechados": 7
   }
  ],
  "itens": [
+  {
+   "numero": "WO0052935",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "21475 - SHOP JARDIM DAS AMERICAS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "17/09/2026 16:47:32",
+   "fechamento": "",
+   "principal": "BK066039 - CÂMARA DE CONGELADOS",
+   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMG",
+   "tecnico": "",
+   "descricao": "BK066039 - CÂMARA DE CONGELADOS | CMG - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0053409"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0052909",
    "marca": "BKB",
