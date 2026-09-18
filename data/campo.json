@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-18T11:20:10.431Z",
+ "atualizadoEm": "2026-09-18T12:20:10.514Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 17,
+  "emExecucao": 18,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 17
+  "total": 18
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-18",
-   "abertos": 4,
+   "abertos": 5,
    "fechados": 1
   }
  ],
  "itens": [
+  {
+   "numero": "WO0053122",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "21475 - SHOP JARDIM DAS AMERICAS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "18/09/2026 09:12:03",
+   "fechamento": "",
+   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
+   "secundario": "SCI - SPRINKLER ESTOURADO",
+   "sigla": "SCI",
+   "tecnico": "",
+   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - SPRINKLER ESTOURADO",
+   "tarefas": [
+    "WOT0053603"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0053076",
    "marca": "BKB",
