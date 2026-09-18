@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-09-18T01:00:12.681Z",
+ "atualizadoEm": "2026-09-18T11:20:10.431Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 19,
+  "emExecucao": 17,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 1,
-  "total": 19
+  "aguardandoToken": 0,
+  "total": 17
  },
  "serie": [
-  {
-   "data": "2026-09-15",
-   "abertos": 15,
-   "fechados": 27
-  },
   {
    "data": "2026-09-16",
    "abertos": 8,
@@ -23,9 +18,106 @@
    "data": "2026-09-17",
    "abertos": 12,
    "fechados": 10
+  },
+  {
+   "data": "2026-09-18",
+   "abertos": 4,
+   "fechados": 1
   }
  ],
  "itens": [
+  {
+   "numero": "WO0053076",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "24362 - FS SJP - AV DAS TORRES",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "18/09/2026 08:09:10",
+   "fechamento": "",
+   "principal": "BK085284 - BROILER",
+   "secundario": "BRO - VAZAMENTO DE GÁS",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK085284 - BROILER | BRO - VAZAMENTO DE GÁS",
+   "tarefas": [
+    "WOT0053555"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0053074",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "30086 FS PONTA GROSSA R BALDUINO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "18/09/2026 07:55:21",
+   "fechamento": "",
+   "principal": "BK075159 - BROILER",
+   "secundario": "BRO - NÃO ACENDE",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK075159 - BROILER | BRO - NÃO ACENDE",
+   "tarefas": [
+    "WOT0053553"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0053059",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "21475 - SHOP JARDIM DAS AMERICAS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "18/09/2026 02:30:07",
+   "fechamento": "",
+   "principal": "BK035121 - BOILER ELETRICO 300L A.P",
+   "secundario": "BOI - PRINCÍPIO DE INCÊNDIO",
+   "sigla": "BOI",
+   "tecnico": "",
+   "descricao": "BK035121 - BOILER ELETRICO 300L A.P | BOI - PRINCÍPIO DE INCÊNDIO",
+   "tarefas": [
+    "WOT0053536"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0053055",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "21475 - SHOP JARDIM DAS AMERICAS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "18/09/2026 01:28:33",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - QUADRO ELÉTRICO - PRINCÍPIO DE INCÊNDIO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - PRINCÍPIO DE INCÊNDIO",
+   "tarefas": [
+    "WOT0053532"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0052935",
    "marca": "BKB",
@@ -135,29 +227,6 @@
    "descricao": "ZP137211 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
    "tarefas": [
     "WOT0053106"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0052595",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
-   "status": "Trabalho em andamento",
-   "fase": "Iniciado",
-   "abertura": "17/09/2026 10:01:02",
-   "fechamento": "",
-   "principal": "BROILER",
-   "secundario": "BRO - NÃO ACENDE",
-   "sigla": "BRO",
-   "tecnico": "",
-   "descricao": "BROILER | BRO - NÃO ACENDE",
-   "tarefas": [
-    "WOT0053067"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
@@ -345,121 +414,6 @@
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0051995",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "24362 - FS SJP - AV DAS TORRES",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "15/09/2026 22:03:57",
-   "fechamento": "",
-   "principal": "BK069907 - CAMARA DE CONGELADOS; SÃO RAFAEL",
-   "secundario": "CMG - PRINCÍPIO DE INCÊNDIO",
-   "sigla": "CMG",
-   "tecnico": "",
-   "descricao": "BK069907 - CAMARA DE CONGELADOS; SÃO RAFAEL | CMG - PRINCÍPIO DE INCÊNDIO",
-   "tarefas": [
-    "WOT0052454"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0051985",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA NORTE",
-   "loja": "21535 - ANGELONI AGUA VERDE",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "15/09/2026 20:47:58",
-   "fechamento": "",
-   "principal": "BK058143 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
-   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
-   "sigla": "CMR",
-   "tecnico": "",
-   "descricao": "BK058143 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0052444"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0051891",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL NORTE RS",
-   "loja": "23725 - SHOP PRACA NOVA SANTA MARIA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "15/09/2026 17:24:25",
-   "fechamento": "",
-   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
-   "secundario": "SCI - CO² DISPARADO",
-   "sigla": "SCI",
-   "tecnico": "",
-   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - CO² DISPARADO",
-   "tarefas": [
-    "WOT0052350"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0051855",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "24766 - SHOP TOTAL POA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "15/09/2026 16:05:23",
-   "fechamento": "",
-   "principal": "BK063598 - COIFA LAVADORA; MELTING",
-   "secundario": "COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK063598 - COIFA LAVADORA; MELTING | COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
-   "tarefas": [
-    "WOT0052313"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0051585",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "20049 - SHOP PRACA RIO GRANDE",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "15/09/2026 11:00:51",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - QUADRO ELÉTRICO - NÃO LIGA ELETRICAMENTE",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - NÃO LIGA ELETRICAMENTE",
-   "tarefas": [
-    "WOT0052038"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "16/09/2026 16:05:09",
    "contato": "",
    "grupo": "execucao"
   }
