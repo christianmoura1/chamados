@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-18T12:20:10.514Z",
+ "atualizadoEm": "2026-09-18T12:40:10.602Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 18,
+  "emExecucao": 19,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 18
+  "total": 19
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-18",
-   "abertos": 5,
+   "abertos": 6,
    "fechados": 1
   }
  ],
  "itens": [
+  {
+   "numero": "WO0053130",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "25447 - FS POA - AV DA CAVALHADA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "18/09/2026 09:20:36",
+   "fechamento": "",
+   "principal": "BK077588 - BROILER GLP ALTA PERFORMANCE",
+   "secundario": "BRO - NÃO ACENDE",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK077588 - BROILER GLP ALTA PERFORMANCE | BRO - NÃO ACENDE",
+   "tarefas": [
+    "WOT0053611"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0053122",
    "marca": "BKB",
