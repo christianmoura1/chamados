@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-18T14:20:10.692Z",
+ "atualizadoEm": "2026-09-18T16:00:10.083Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 19,
+  "emExecucao": 20,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 19
+  "total": 20
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-18",
-   "abertos": 8,
+   "abertos": 9,
    "fechados": 3
   }
  ],
  "itens": [
+  {
+   "numero": "WO0053282",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "16619 - SHOP PRAIA DE BELAS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "18/09/2026 12:47:35",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - GÁS - VAZAMENTO DE GÁS",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - GÁS - VAZAMENTO DE GÁS",
+   "tarefas": [
+    "WOT0053763"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0053155",
    "marca": "BKB",
