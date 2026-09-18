@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-18T18:40:09.872Z",
+ "atualizadoEm": "2026-09-18T19:20:11.671Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 19,
+  "emExecucao": 20,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 19
+  "total": 20
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-18",
-   "abertos": 10,
+   "abertos": 11,
    "fechados": 6
   }
  ],
  "itens": [
+  {
+   "numero": "WO0053425",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "16988 - SHOP ESTACAO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "18/09/2026 16:16:11",
+   "fechamento": "",
+   "principal": "BK071580 - COIFA LAVADORA; MELTING",
+   "secundario": "COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK071580 - COIFA LAVADORA; MELTING | COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
+   "tarefas": [
+    "WOT0053907"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0053376",
    "marca": "BKB",
