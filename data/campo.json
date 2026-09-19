@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-19T15:40:11.846Z",
+ "atualizadoEm": "2026-09-19T16:00:12.088Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 19,
+  "emExecucao": 21,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 19
+  "total": 21
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-09-19",
-   "abertos": 6,
-   "fechados": 7
+   "abertos": 9,
+   "fechados": 8
   }
  ],
  "itens": [
+  {
+   "numero": "WO0053816",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "23736 - FS CURITIBA - R MARTIN AFONSO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "19/09/2026 12:59:48",
+   "fechamento": "",
+   "principal": "BK077091 - BROILER",
+   "secundario": "BRO - NÃO ATINGE TEMPERATURA",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK077091 - BROILER | BRO - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0054300"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0053811",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "20047 - FS CURITIBA - LINHA VERDE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "19/09/2026 12:54:35",
+   "fechamento": "",
+   "principal": "BK086014 - FRITADEIRA; FRYMASTER; 11814EC; 1403PU00",
+   "secundario": "FRI - SOMENTE 1 CUBA FUNCIONANDO",
+   "sigla": "FRI",
+   "tecnico": "",
+   "descricao": "BK086014 - FRITADEIRA; FRYMASTER; 11814EC; 1403PU00 | FRI - SOMENTE 1 CUBA FUNCIONANDO",
+   "tarefas": [
+    "WOT0054295"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0053786",
    "marca": "BKB",
