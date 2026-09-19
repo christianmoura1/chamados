@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-19T19:20:18.319Z",
+ "atualizadoEm": "2026-09-19T19:40:14.135Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 21,
+  "emExecucao": 22,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 2,
-  "total": 21
+  "total": 22
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-19",
-   "abertos": 13,
-   "fechados": 13
+   "abertos": 14,
+   "fechados": 14
   }
  ],
  "itens": [
+  {
+   "numero": "WO0053940",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "16619 - SHOP PRAIA DE BELAS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "19/09/2026 16:29:47",
+   "fechamento": "",
+   "principal": "BK072064 - CÂMARA DE RESFRIADOS",
+   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMR",
+   "tecnico": "",
+   "descricao": "BK072064 - CÂMARA DE RESFRIADOS | CMR - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0054422"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0053914",
    "marca": "BKB",
