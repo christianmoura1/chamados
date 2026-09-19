@@ -1,7 +1,7 @@
 {
-  "atualizadoEm": "2026-09-19T06:00:49",
-  "totalRegistros": 3344,
-  "totalAbertos": 1710,
+  "atualizadoEm": "2026-09-19T08:00:51",
+  "totalRegistros": 3345,
+  "totalAbertos": 1711,
   "totalFechados": 1634,
   "totalLojas": 71,
   "equipamentos": [
@@ -32,7 +32,7 @@
           "loja": "FS CURITIBA - LINHA VERDE",
           "estado": "Atribuído",
           "prioridade": "Alta",
-          "dias": 50,
+          "dias": 51,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "MÁQUINA DE SORVETE | MDS - NÃO FUNCIONA 1 LADO",
           "abertura": "2026-07-30"
@@ -84,7 +84,7 @@
           "loja": "FS CURITIBA - LINHA VERDE",
           "estado": "Atribuído",
           "prioridade": "Alta",
-          "dias": 50,
+          "dias": 51,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "MÁQUINA DE SORVETE | MDS - NÃO FUNCIONA 1 LADO",
           "abertura": "2026-07-30"
@@ -130,6 +130,16 @@
           "abertura": "2026-08-18"
         },
         {
+          "numero": "WOT0035434",
+          "loja": "CARREFOUR PASSO D'AREIA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 30,
+          "tecnico": "Ruan Carlos da Silva",
+          "problema": "MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - MÁQUINA CONGELADA",
+          "abertura": "2026-08-20"
+        },
+        {
           "numero": "WOT0035763",
           "loja": "SHOP CENTER LAR",
           "estado": "Atribuído",
@@ -160,13 +170,13 @@
           "abertura": "2026-08-20"
         },
         {
-          "numero": "WOT0035434",
-          "loja": "CARREFOUR PASSO D'AREIA",
-          "estado": "Atribuído",
+          "numero": "WOT0036151",
+          "loja": "PARK SHOP CANOAS",
+          "estado": "Expedição pendente",
           "prioridade": "Alta",
           "dias": 30,
-          "tecnico": "Ruan Carlos da Silva",
-          "problema": "MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - MÁQUINA CONGELADA",
+          "tecnico": "",
+          "problema": "BK078952 - MAQUINA DE SORVETE; TAYLOR; C716-33; M70 | MDS - RESERVATÓRIO DOS DOIS LADOS NÃO ATINGE TEMPERATURA",
           "abertura": "2026-08-20"
         },
         {
@@ -180,16 +190,6 @@
           "abertura": "2026-08-21"
         },
         {
-          "numero": "WOT0036460",
-          "loja": "FS POA - AV DA CAVALHADA",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 29,
-          "tecnico": "Marcel Vinicios Rocha Agradem",
-          "problema": "BK077573 - MAQUINA DE SORVETE C716 380V | MDS - NÃO FUNCIONA 1 LADO",
-          "abertura": "2026-08-21"
-        },
-        {
           "numero": "WOT0036637",
           "loja": "",
           "estado": "Atribuído",
@@ -200,34 +200,24 @@
           "abertura": "2026-08-21"
         },
         {
-          "numero": "WOT0036151",
-          "loja": "PARK SHOP CANOAS",
-          "estado": "Expedição pendente",
+          "numero": "WOT0036460",
+          "loja": "FS POA - AV DA CAVALHADA",
+          "estado": "Atribuído",
           "prioridade": "Alta",
           "dias": 29,
-          "tecnico": "",
-          "problema": "BK078952 - MAQUINA DE SORVETE; TAYLOR; C716-33; M70 | MDS - RESERVATÓRIO DOS DOIS LADOS NÃO ATINGE TEMPERATURA",
-          "abertura": "2026-08-20"
+          "tecnico": "Marcel Vinicios Rocha Agradem",
+          "problema": "BK077573 - MAQUINA DE SORVETE C716 380V | MDS - NÃO FUNCIONA 1 LADO",
+          "abertura": "2026-08-21"
         },
         {
           "numero": "WOT0037163",
           "loja": "ATLANTICO SHOP",
           "estado": "Atribuído",
           "prioridade": "Alta",
-          "dias": 27,
+          "dias": 28,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK079250 - MAQUINA DE SORVETE C716 380V | MDS - NÃO FUNCIONA 1 LADO",
           "abertura": "2026-08-22"
-        },
-        {
-          "numero": "WOT0037826",
-          "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 26,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BK050176 - MAQUINA DE SORVETE; TAYLOR; C716-33; M51 | MDS - ERRO NA PASTEURIZAÇÃO",
-          "abertura": "2026-08-24"
         },
         {
           "numero": "WOT0037610",
@@ -240,7 +230,17 @@
           "abertura": "2026-08-24"
         },
         {
-          "numero": "WOT0037823",
+          "numero": "WOT0037826",
+          "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 26,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BK050176 - MAQUINA DE SORVETE; TAYLOR; C716-33; M51 | MDS - ERRO NA PASTEURIZAÇÃO",
+          "abertura": "2026-08-24"
+        },
+        {
+          "numero": "WOT0037928",
           "loja": "SHOP PRAIA DE BELAS",
           "estado": "Expedição pendente",
           "prioridade": "Alta",
@@ -250,7 +250,7 @@
           "abertura": "2026-08-24"
         },
         {
-          "numero": "WOT0037928",
+          "numero": "WOT0037823",
           "loja": "SHOP PRAIA DE BELAS",
           "estado": "Expedição pendente",
           "prioridade": "Alta",
@@ -268,6 +268,16 @@
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK013622 - MAQUINA DE SORVETE; TAYLOR; C712; 94ABAJ | MDS - MÁQUINA CONGELADA",
           "abertura": "2026-08-25"
+        },
+        {
+          "numero": "WOT0039195",
+          "loja": "FC CAXIAS DO SUL - VILLAGIO CAXIAS",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 24,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "ZP189359 - MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - NÃO FUNCIONA 1 LADO",
+          "abertura": "2026-08-26"
         },
         {
           "numero": "WOT0039424",
@@ -288,16 +298,6 @@
           "tecnico": "Emanuel dos Santos Silva",
           "problema": "BK078988 - MAQUINA DE SORVETE; TAYLOR; C712N-33; M3 | MDS - RESERVATÓRIO DOS DOIS LADOS NÃO ATINGE TEMPERATURA",
           "abertura": "2026-08-25"
-        },
-        {
-          "numero": "WOT0039195",
-          "loja": "FC CAXIAS DO SUL - VILLAGIO CAXIAS",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 24,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "ZP189359 - MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - NÃO FUNCIONA 1 LADO",
-          "abertura": "2026-08-26"
         },
         {
           "numero": "WOT0039945",
@@ -330,6 +330,16 @@
           "abertura": "2026-08-28"
         },
         {
+          "numero": "WOT0040891",
+          "loja": "",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 22,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "ZP191556 - MAQUINA DE SORVETE TAYLOR | MDS - ERRO NA PASTEURIZAÇÃO",
+          "abertura": "2026-08-28"
+        },
+        {
           "numero": "WOT0040381",
           "loja": "FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
           "estado": "Atribuído",
@@ -337,16 +347,6 @@
           "dias": 22,
           "tecnico": "Thiago Dos Santos Coelho",
           "problema": "BK078888 - MÁQUINA DE SORVETE | MDS - NÃO FUNCIONA 1 LADO",
-          "abertura": "2026-08-28"
-        },
-        {
-          "numero": "WOT0040891",
-          "loja": "",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 21,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "ZP191556 - MAQUINA DE SORVETE TAYLOR | MDS - ERRO NA PASTEURIZAÇÃO",
           "abertura": "2026-08-28"
         },
         {
@@ -360,6 +360,16 @@
           "abertura": "2026-08-29"
         },
         {
+          "numero": "WOT0041479",
+          "loja": "SHOP PRAIA DE BELAS",
+          "estado": "Expedição pendente",
+          "prioridade": "Alta",
+          "dias": 21,
+          "tecnico": "",
+          "problema": "BK086169 - MÁQUINA DE SORVETE | MDS - NÃO FUNCIONA 1 LADO",
+          "abertura": "2026-08-29"
+        },
+        {
           "numero": "WOT0041628",
           "loja": "SHOP SÃO JOSE DOS PINHAIS",
           "estado": "Atribuído",
@@ -368,16 +378,6 @@
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK079158 - MAQUINA DE SORVETE; TAYLOR; C716-33; M80 | MDS - NÃO LIGA",
           "abertura": "2026-08-30"
-        },
-        {
-          "numero": "WOT0041479",
-          "loja": "SHOP PRAIA DE BELAS",
-          "estado": "Expedição pendente",
-          "prioridade": "Alta",
-          "dias": 20,
-          "tecnico": "",
-          "problema": "BK086169 - MÁQUINA DE SORVETE | MDS - NÃO FUNCIONA 1 LADO",
-          "abertura": "2026-08-29"
         },
         {
           "numero": "WOT0043337",
@@ -410,13 +410,13 @@
           "abertura": "2026-09-05"
         },
         {
-          "numero": "WOT0045057",
-          "loja": "OUTLET NOVO HAMBURGO",
+          "numero": "WOT0044958",
+          "loja": "ATLANTICO SHOP",
           "estado": "Atribuído",
           "prioridade": "Alta",
           "dias": 14,
-          "tecnico": "Thiago Dos Santos Coelho",
-          "problema": "MÁQUINA DE SORVETE | MDS - MÁQUINA CONGELADA",
+          "tecnico": "Solano Silva do Amaral",
+          "problema": "BK079250 - MAQUINA DE SORVETE C716 380V | MDS - RESERVATÓRIO DOS DOIS LADOS NÃO ATINGE TEMPERATURA",
           "abertura": "2026-09-05"
         },
         {
@@ -430,13 +430,13 @@
           "abertura": "2026-09-05"
         },
         {
-          "numero": "WOT0044958",
-          "loja": "ATLANTICO SHOP",
+          "numero": "WOT0045057",
+          "loja": "OUTLET NOVO HAMBURGO",
           "estado": "Atribuído",
           "prioridade": "Alta",
           "dias": 14,
-          "tecnico": "Solano Silva do Amaral",
-          "problema": "BK079250 - MAQUINA DE SORVETE C716 380V | MDS - RESERVATÓRIO DOS DOIS LADOS NÃO ATINGE TEMPERATURA",
+          "tecnico": "Thiago Dos Santos Coelho",
+          "problema": "MÁQUINA DE SORVETE | MDS - MÁQUINA CONGELADA",
           "abertura": "2026-09-05"
         },
         {
@@ -510,6 +510,16 @@
           "abertura": "2026-09-13"
         },
         {
+          "numero": "WOT0052916",
+          "loja": "FS POA - AV DA CAVALHADA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 3,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "BK077573 - MAQUINA DE SORVETE C716 380V | MDS - MÁQUINA CONGELADA",
+          "abertura": "2026-09-16"
+        },
+        {
           "numero": "WOT0052870",
           "loja": "ILR FLORIPA - R JERONIMO COELHO 215",
           "estado": "Atribuído",
@@ -517,26 +527,6 @@
           "dias": 3,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - MÁQUINA CONGELADA",
-          "abertura": "2026-09-16"
-        },
-        {
-          "numero": "WOT0053125",
-          "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 2,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BK050176 - MAQUINA DE SORVETE; TAYLOR; C716-33; M51 | MDS - NÃO LIGA",
-          "abertura": "2026-09-17"
-        },
-        {
-          "numero": "WOT0052916",
-          "loja": "FS POA - AV DA CAVALHADA",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 2,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "BK077573 - MAQUINA DE SORVETE C716 380V | MDS - MÁQUINA CONGELADA",
           "abertura": "2026-09-16"
         },
         {
@@ -550,13 +540,13 @@
           "abertura": "2026-09-17"
         },
         {
-          "numero": "WOT0053521",
-          "loja": "SHOP LAJEADO",
+          "numero": "WOT0053125",
+          "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
           "estado": "Atribuído",
           "prioridade": "Alta",
-          "dias": 1,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "MÁQUINA DE SORVETE | MDS - NÃO FUNCIONA 1 LADO",
+          "dias": 2,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BK050176 - MAQUINA DE SORVETE; TAYLOR; C716-33; M51 | MDS - NÃO LIGA",
           "abertura": "2026-09-17"
         },
         {
@@ -600,6 +590,16 @@
           "abertura": "2026-09-18"
         },
         {
+          "numero": "WOT0053521",
+          "loja": "SHOP LAJEADO",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 1,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "MÁQUINA DE SORVETE | MDS - NÃO FUNCIONA 1 LADO",
+          "abertura": "2026-09-17"
+        },
+        {
           "numero": "WOT0014663",
           "loja": "JOCKEY PLAZA SHOP",
           "estado": "Atribuído",
@@ -620,16 +620,6 @@
           "abertura": "2026-07-31"
         },
         {
-          "numero": "WOT0015127",
-          "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 49,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BK050176 - MAQUINA DE SORVETE; TAYLOR; C716-33; M51 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-01"
-        },
-        {
           "numero": "WOT0015188",
           "loja": "SHOP PRAIA DE BELAS",
           "estado": "Atribuído",
@@ -637,6 +627,16 @@
           "dias": 49,
           "tecnico": "Lucas Gabryel Dreunicki",
           "problema": "BK086169 - MÁQUINA DE SORVETE | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-01"
+        },
+        {
+          "numero": "WOT0015127",
+          "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 49,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BK050176 - MAQUINA DE SORVETE; TAYLOR; C716-33; M51 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-01"
         },
         {
@@ -650,16 +650,6 @@
           "abertura": "2026-08-03"
         },
         {
-          "numero": "WOT0016184",
-          "loja": "FS CANOAS - AV DR SEZEFREDO AZAMBUJA VIEIRA 1033",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 46,
-          "tecnico": "Lucas Gabryel Dreunicki",
-          "problema": "ZP161398 - MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - NÃO ATINGE OVERRUN",
-          "abertura": "2026-08-04"
-        },
-        {
           "numero": "WOT0015954",
           "loja": "FS PORTO ALEGRE - AV IPIRANGA 1600",
           "estado": "Atribuído",
@@ -667,6 +657,16 @@
           "dias": 46,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - NÃO ATINGE OVERRUN",
+          "abertura": "2026-08-04"
+        },
+        {
+          "numero": "WOT0016184",
+          "loja": "FS CANOAS - AV DR SEZEFREDO AZAMBUJA VIEIRA 1033",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 46,
+          "tecnico": "Lucas Gabryel Dreunicki",
+          "problema": "ZP161398 - MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - NÃO ATINGE OVERRUN",
           "abertura": "2026-08-04"
         },
         {
@@ -704,20 +704,10 @@
           "loja": "PARK SHOP CANOAS",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 41,
+          "dias": 42,
           "tecnico": "Ruan Carlos da Silva",
           "problema": "BK078952 - MAQUINA DE SORVETE; TAYLOR; C716-33; M70 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-08"
-        },
-        {
-          "numero": "WOT0021826",
-          "loja": "BOURBON SHOP SAO LEOPOLDO",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 38,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "BK078916 - MAQUINA DE SORVETE; TAYLOR; C712N-33; M1 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-12"
         },
         {
           "numero": "WOT0021754",
@@ -727,6 +717,16 @@
           "dias": 38,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-12"
+        },
+        {
+          "numero": "WOT0021826",
+          "loja": "BOURBON SHOP SAO LEOPOLDO",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 38,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "BK078916 - MAQUINA DE SORVETE; TAYLOR; C712N-33; M1 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-12"
         },
         {
@@ -770,13 +770,13 @@
           "abertura": "2026-08-19"
         },
         {
-          "numero": "WOT0035808",
-          "loja": "SHOP BELLA CITTA",
+          "numero": "WOT0035482",
+          "loja": "FS PORTO ALEGRE - AV IPIRANGA 1600",
           "estado": "Atribuído",
           "prioridade": "Normal",
           "dias": 30,
-          "tecnico": "Ciro Antonio do Nascimento Mello",
-          "problema": "BK038075 - MAQUINA DE SORVETE C716 380V | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-20"
         },
         {
@@ -790,13 +790,13 @@
           "abertura": "2026-08-20"
         },
         {
-          "numero": "WOT0035482",
-          "loja": "FS PORTO ALEGRE - AV IPIRANGA 1600",
+          "numero": "WOT0035808",
+          "loja": "SHOP BELLA CITTA",
           "estado": "Atribuído",
           "prioridade": "Normal",
           "dias": 30,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "tecnico": "Ciro Antonio do Nascimento Mello",
+          "problema": "BK038075 - MAQUINA DE SORVETE C716 380V | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-20"
         },
         {
@@ -810,6 +810,16 @@
           "abertura": "2026-08-22"
         },
         {
+          "numero": "WOT0037440",
+          "loja": "FS CURITIBA - AV SILVA JARDIM",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 27,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BK099879 - MÁQUINA DE SORVETE | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-23"
+        },
+        {
           "numero": "WOT0037390",
           "loja": "SHOP PARK EUROPEU",
           "estado": "Atribuído",
@@ -817,16 +827,6 @@
           "dias": 27,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK080307 - MAQUINA DE SORVETE C716 380V | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-23"
-        },
-        {
-          "numero": "WOT0037440",
-          "loja": "FS CURITIBA - AV SILVA JARDIM",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 26,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BK099879 - MÁQUINA DE SORVETE | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-23"
         },
         {
@@ -840,16 +840,6 @@
           "abertura": "2026-08-26"
         },
         {
-          "numero": "WOT0041346",
-          "loja": "FS CANOAS - AV DR SEZEFREDO AZAMBUJA VIEIRA 1033",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 21,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "ZP161398 - MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-29"
-        },
-        {
           "numero": "WOT0041292",
           "loja": "FS CURITIBA - R MARTIN AFONSO",
           "estado": "Atribuído",
@@ -857,6 +847,16 @@
           "dias": 21,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK077076 - MAQUINA DE SORVETE C716 380V | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-29"
+        },
+        {
+          "numero": "WOT0041346",
+          "loja": "FS CANOAS - AV DR SEZEFREDO AZAMBUJA VIEIRA 1033",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 21,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "ZP161398 - MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-29"
         },
         {
@@ -910,6 +910,16 @@
           "abertura": "2026-09-05"
         },
         {
+          "numero": "WOT0045947",
+          "loja": "PARTAGE SHOP RIO GRANDE",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 11,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "BK037961 - MAQUINA DE SORVETE; TAYLOR; C706-27; M50 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-08"
+        },
+        {
           "numero": "WOT0047286",
           "loja": "PORTO BELO OUTLET",
           "estado": "Atribuído",
@@ -937,16 +947,6 @@
           "dias": 11,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "BK063523 - MAQUINA DE SORVETE; TAYLOR; C716-33; M80 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-08"
-        },
-        {
-          "numero": "WOT0045947",
-          "loja": "PARTAGE SHOP RIO GRANDE",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 11,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "BK037961 - MAQUINA DE SORVETE; TAYLOR; C706-27; M50 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-09-08"
         },
         {
@@ -994,20 +994,20 @@
           "loja": "SHOP SÃO JOSE DOS PINHAIS",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 7,
+          "dias": 8,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK072128 - MAQUINA DE SORVETE C716 380V | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-09-11"
         },
         {
-          "numero": "WOT0050757",
-          "loja": "FS POA - AV DR NILO PECANHA 1715",
+          "numero": "WOT0050616",
+          "loja": "SHOP PRAIA DE BELAS",
           "estado": "Atribuído",
           "prioridade": "Normal",
           "dias": 7,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "BK077533 - MAQUINA DE SORVETE C716 380V | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-12"
+          "problema": "BK086169 - MAQUINA DE SORVETE; TAYLOR; C716-33; M70 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-11"
         },
         {
           "numero": "WOT0050901",
@@ -1020,14 +1020,14 @@
           "abertura": "2026-09-12"
         },
         {
-          "numero": "WOT0050616",
-          "loja": "SHOP PRAIA DE BELAS",
+          "numero": "WOT0050757",
+          "loja": "FS POA - AV DR NILO PECANHA 1715",
           "estado": "Atribuído",
           "prioridade": "Normal",
           "dias": 7,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "BK086169 - MAQUINA DE SORVETE; TAYLOR; C716-33; M70 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-11"
+          "problema": "BK077533 - MAQUINA DE SORVETE C716 380V | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-12"
         },
         {
           "numero": "WOT0051740",
@@ -1060,13 +1060,13 @@
           "abertura": "2026-09-16"
         },
         {
-          "numero": "WOT0052867",
-          "loja": "FC CATUAÍ CASCAVEL",
+          "numero": "WOT0052674",
+          "loja": "SHOP CIDADE CURITIBA",
           "estado": "Atribuído",
           "prioridade": "Normal",
           "dias": 3,
           "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "ZP142362 - MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "problema": "BK036118 - MÁQUINA DE SORVETE | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-09-16"
         },
         {
@@ -1080,13 +1080,23 @@
           "abertura": "2026-09-16"
         },
         {
-          "numero": "WOT0052674",
-          "loja": "SHOP CIDADE CURITIBA",
+          "numero": "WOT0052867",
+          "loja": "FC CATUAÍ CASCAVEL",
           "estado": "Atribuído",
           "prioridade": "Normal",
           "dias": 3,
           "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BK036118 - MÁQUINA DE SORVETE | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "problema": "ZP142362 - MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-16"
+        },
+        {
+          "numero": "WOT0052935",
+          "loja": "WALMART BIG TORRES",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 3,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - MAQUINA COM ALTO RUIDO",
           "abertura": "2026-09-16"
         },
         {
@@ -1100,14 +1110,14 @@
           "abertura": "2026-09-17"
         },
         {
-          "numero": "WOT0052935",
-          "loja": "WALMART BIG TORRES",
+          "numero": "WOT0053023",
+          "loja": "FS CURITIBA - LINHA VERDE",
           "estado": "Atribuído",
           "prioridade": "Normal",
           "dias": 2,
           "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - MAQUINA COM ALTO RUIDO",
-          "abertura": "2026-09-16"
+          "problema": "MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-17"
         },
         {
           "numero": "WOT0053175",
@@ -1117,16 +1127,6 @@
           "dias": 2,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK048107 - MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-17"
-        },
-        {
-          "numero": "WOT0053023",
-          "loja": "FS CURITIBA - LINHA VERDE",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 2,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-09-17"
         },
         {
@@ -1214,13 +1214,13 @@
           "abertura": "2026-07-30"
         },
         {
-          "numero": "WOT0014986",
-          "loja": "WALMART BIG TORRES",
-          "estado": "Atribuído",
+          "numero": "WOT0015066",
+          "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
+          "estado": "Aceito",
           "prioridade": "Alta",
           "dias": 50,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "FRITADEIRA | FRI - FILTRAGEM NÃO FUNCIONA",
+          "tecnico": "Gustavo de Godoy Matheus",
+          "problema": "BK066019 - FRITADEIRA | FRI - FILTRAGEM NÃO FUNCIONA",
           "abertura": "2026-07-31"
         }
       ],
@@ -1266,6 +1266,16 @@
           "abertura": "2026-07-30"
         },
         {
+          "numero": "WOT0015066",
+          "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
+          "estado": "Aceito",
+          "prioridade": "Alta",
+          "dias": 50,
+          "tecnico": "Gustavo de Godoy Matheus",
+          "problema": "BK066019 - FRITADEIRA | FRI - FILTRAGEM NÃO FUNCIONA",
+          "abertura": "2026-07-31"
+        },
+        {
           "numero": "WOT0014986",
           "loja": "WALMART BIG TORRES",
           "estado": "Atribuído",
@@ -1273,16 +1283,6 @@
           "dias": 50,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "FRITADEIRA | FRI - FILTRAGEM NÃO FUNCIONA",
-          "abertura": "2026-07-31"
-        },
-        {
-          "numero": "WOT0015066",
-          "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
-          "estado": "Aceito",
-          "prioridade": "Alta",
-          "dias": 49,
-          "tecnico": "Gustavo de Godoy Matheus",
-          "problema": "BK066019 - FRITADEIRA | FRI - FILTRAGEM NÃO FUNCIONA",
           "abertura": "2026-07-31"
         },
         {
@@ -1346,16 +1346,6 @@
           "abertura": "2026-08-21"
         },
         {
-          "numero": "WOT0037902",
-          "loja": "FS CURITIBA - R CARLOS KLEMTZ 1994",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 26,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "ZP191519 - FRITADEIRA | FRI - FILTRAGEM NÃO FUNCIONA",
-          "abertura": "2026-08-24"
-        },
-        {
           "numero": "WOT0037810",
           "loja": "PORTO BELO OUTLET",
           "estado": "Atribuído",
@@ -1373,6 +1363,26 @@
           "dias": 26,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK077089 - FRITADEIRA TRIPLA GAS NAT 3X3X2CESTOS | FRI - SOMENTE 2 CUBAS FUNCIONANDO",
+          "abertura": "2026-08-24"
+        },
+        {
+          "numero": "WOT0037902",
+          "loja": "FS CURITIBA - R CARLOS KLEMTZ 1994",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 26,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "ZP191519 - FRITADEIRA | FRI - FILTRAGEM NÃO FUNCIONA",
+          "abertura": "2026-08-24"
+        },
+        {
+          "numero": "WOT0037903",
+          "loja": "SHOP PARK EUROPEU",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 26,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BK080286 - FRITADEIRA TRIPLA GAS NAT 3X3X2CESTOS | FRI - FILTRAGEM NÃO FUNCIONA",
           "abertura": "2026-08-24"
         },
         {
@@ -1396,16 +1406,6 @@
           "abertura": "2026-08-24"
         },
         {
-          "numero": "WOT0037903",
-          "loja": "SHOP PARK EUROPEU",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 26,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BK080286 - FRITADEIRA TRIPLA GAS NAT 3X3X2CESTOS | FRI - FILTRAGEM NÃO FUNCIONA",
-          "abertura": "2026-08-24"
-        },
-        {
           "numero": "WOT0041007",
           "loja": "FS CURITIBA - AV SILVA JARDIM",
           "estado": "Atribuído",
@@ -1420,7 +1420,7 @@
           "loja": "SHOP MUELLER CURITIBA",
           "estado": "Atribuído",
           "prioridade": "Alta",
-          "dias": 13,
+          "dias": 14,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK080684 - FRITADEIRA TRIPLA GAS NAT 3X3X2CESTOS | FRI - FILTRAGEM NÃO FUNCIONA",
           "abertura": "2026-09-05"
@@ -1436,6 +1436,16 @@
           "abertura": "2026-09-10"
         },
         {
+          "numero": "WOT0050021",
+          "loja": "",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 9,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "ZP191542 - FRITADEIRA GAS LP AI 32LBS 17KW/H PITCO | FRI - FILTRAGEM NÃO FUNCIONA",
+          "abertura": "2026-09-10"
+        },
+        {
           "numero": "WOT0050046",
           "loja": "BOURBON SHOP SAO LEOPOLDO",
           "estado": "Atribuído",
@@ -1443,16 +1453,6 @@
           "dias": 8,
           "tecnico": "Ruan Carlos da Silva",
           "problema": "BK072151 - FRITADEIRA TRIPLA GAS NAT 3X3X2CESTOS | FRI - SOMENTE 2 CUBAS FUNCIONANDO",
-          "abertura": "2026-09-10"
-        },
-        {
-          "numero": "WOT0050021",
-          "loja": "",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 8,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "ZP191542 - FRITADEIRA GAS LP AI 32LBS 17KW/H PITCO | FRI - FILTRAGEM NÃO FUNCIONA",
           "abertura": "2026-09-10"
         },
         {
@@ -1560,7 +1560,7 @@
           "loja": "CARREFOUR PASSO D'AREIA",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 23,
+          "dias": 24,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "FRITADEIRA | FRI - FPLK - SOMENTE 1 OU 2 CUBAS FUNCIONANDO",
           "abertura": "2026-08-26"
@@ -1606,6 +1606,16 @@
           "abertura": "2026-09-10"
         },
         {
+          "numero": "WOT0050020",
+          "loja": "",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 9,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "ZP191542 - FRITADEIRA GAS LP AI 32LBS 17KW/H PITCO | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-10"
+        },
+        {
           "numero": "WOT0049361",
           "loja": "FS CASCAVEL - AV BRASIL 1580",
           "estado": "Atribuído",
@@ -1616,14 +1626,14 @@
           "abertura": "2026-09-10"
         },
         {
-          "numero": "WOT0050020",
-          "loja": "",
+          "numero": "WOT0051271",
+          "loja": "FS CURITIBA - LINHA VERDE",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 8,
+          "dias": 6,
           "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "ZP191542 - FRITADEIRA GAS LP AI 32LBS 17KW/H PITCO | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-10"
+          "problema": "BK086014 - FRITADEIRA; FRYMASTER; 11814EC; 1403PU00 | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-13"
         },
         {
           "numero": "WOT0051155",
@@ -1633,16 +1643,6 @@
           "dias": 6,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "FRITADEIRA | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-13"
-        },
-        {
-          "numero": "WOT0051271",
-          "loja": "FS CURITIBA - LINHA VERDE",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 6,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BK086014 - FRITADEIRA; FRYMASTER; 11814EC; 1403PU00 | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-09-13"
         },
         {
@@ -1666,16 +1666,6 @@
           "abertura": "2026-09-16"
         },
         {
-          "numero": "WOT0053276",
-          "loja": "ANGELONI AGUA VERDE",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 2,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "FRITADEIRA | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-17"
-        },
-        {
           "numero": "WOT0053271",
           "loja": "SHOP PARK EUROPEU",
           "estado": "Atribuído",
@@ -1684,13 +1674,23 @@
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK080286 - FRITADEIRA TRIPLA GAS NAT 3X3X2CESTOS | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-09-17"
+        },
+        {
+          "numero": "WOT0053276",
+          "loja": "ANGELONI AGUA VERDE",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 2,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "FRITADEIRA | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-17"
         }
       ]
     },
     {
       "chave": "microondas",
       "nome": "Micro-ondas",
-      "pctIndisponibilidade": 37,
+      "pctIndisponibilidade": 36,
       "pdvsEmFalha": 22,
       "chamados": 29,
       "alta": 22,
@@ -1720,16 +1720,6 @@
           "abertura": "2026-08-12"
         },
         {
-          "numero": "WOT0032445",
-          "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Alta",
-          "dias": 33,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK052624 - MICROONDAS; MENUMASTER; OC24BKB; 1603180 | MCR - NÃO AQUECE",
-          "abertura": "2026-08-17"
-        },
-        {
           "numero": "WOT0032439",
           "loja": "FS CANOAS - AV GETULIO VARGAS 3800",
           "estado": "Trabalho em andamento",
@@ -1737,6 +1727,16 @@
           "dias": 33,
           "tecnico": "Cristppher Alencar Pacheco Cruz",
           "problema": "BK070946 - MICROONDAS; MENUMASTER; OC24BKB; 1806180 | MCR - NÃO LIGA",
+          "abertura": "2026-08-17"
+        },
+        {
+          "numero": "WOT0032445",
+          "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 33,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK052624 - MICROONDAS; MENUMASTER; OC24BKB; 1603180 | MCR - NÃO AQUECE",
           "abertura": "2026-08-17"
         },
         {
@@ -1772,16 +1772,6 @@
           "abertura": "2026-08-12"
         },
         {
-          "numero": "WOT0032445",
-          "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Alta",
-          "dias": 33,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK052624 - MICROONDAS; MENUMASTER; OC24BKB; 1603180 | MCR - NÃO AQUECE",
-          "abertura": "2026-08-17"
-        },
-        {
           "numero": "WOT0032439",
           "loja": "FS CANOAS - AV GETULIO VARGAS 3800",
           "estado": "Trabalho em andamento",
@@ -1789,6 +1779,16 @@
           "dias": 33,
           "tecnico": "Cristppher Alencar Pacheco Cruz",
           "problema": "BK070946 - MICROONDAS; MENUMASTER; OC24BKB; 1806180 | MCR - NÃO LIGA",
+          "abertura": "2026-08-17"
+        },
+        {
+          "numero": "WOT0032445",
+          "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 33,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK052624 - MICROONDAS; MENUMASTER; OC24BKB; 1603180 | MCR - NÃO AQUECE",
           "abertura": "2026-08-17"
         },
         {
@@ -1842,33 +1842,13 @@
           "abertura": "2026-08-28"
         },
         {
-          "numero": "WOT0040391",
-          "loja": "FS CANOAS - AV GETULIO VARGAS 3800",
+          "numero": "WOT0040390",
+          "loja": "SHOP PARK EUROPEU",
           "estado": "Atribuído",
           "prioridade": "Alta",
           "dias": 22,
-          "tecnico": "Ruan Carlos da Silva",
-          "problema": "BK070958 - MICROONDAS; MENUMASTER; OC24BKB; 1806180 | MCR - NÃO AQUECE",
-          "abertura": "2026-08-28"
-        },
-        {
-          "numero": "WOT0040415",
-          "loja": "FS POA - AV DA CAVALHADA",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 22,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "BK077584 - FORNO MICROONDAS | MCR - NÃO LIGA",
-          "abertura": "2026-08-28"
-        },
-        {
-          "numero": "WOT0040492",
-          "loja": "OUTLET NOVO HAMBURGO",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 22,
-          "tecnico": "Thiago Dos Santos Coelho",
-          "problema": "MICROONDAS | MCR - NÃO AQUECE",
+          "tecnico": "Solano Silva do Amaral",
+          "problema": "BK080282 - FORNO MICROONDAS | MCR - NÃO AQUECE",
           "abertura": "2026-08-28"
         },
         {
@@ -1882,13 +1862,33 @@
           "abertura": "2026-08-28"
         },
         {
-          "numero": "WOT0040390",
-          "loja": "SHOP PARK EUROPEU",
+          "numero": "WOT0040391",
+          "loja": "FS CANOAS - AV GETULIO VARGAS 3800",
           "estado": "Atribuído",
           "prioridade": "Alta",
           "dias": 22,
-          "tecnico": "Solano Silva do Amaral",
-          "problema": "BK080282 - FORNO MICROONDAS | MCR - NÃO AQUECE",
+          "tecnico": "Ruan Carlos da Silva",
+          "problema": "BK070958 - MICROONDAS; MENUMASTER; OC24BKB; 1806180 | MCR - NÃO AQUECE",
+          "abertura": "2026-08-28"
+        },
+        {
+          "numero": "WOT0040492",
+          "loja": "OUTLET NOVO HAMBURGO",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 22,
+          "tecnico": "Thiago Dos Santos Coelho",
+          "problema": "MICROONDAS | MCR - NÃO AQUECE",
+          "abertura": "2026-08-28"
+        },
+        {
+          "numero": "WOT0040415",
+          "loja": "FS POA - AV DA CAVALHADA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 22,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "BK077584 - FORNO MICROONDAS | MCR - NÃO LIGA",
           "abertura": "2026-08-28"
         },
         {
@@ -1932,16 +1932,6 @@
           "abertura": "2026-09-15"
         },
         {
-          "numero": "WOT0053312",
-          "loja": "ILR FLORIPA - R JERONIMO COELHO 215",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 2,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "MICROONDAS | MCR - NÃO AQUECE",
-          "abertura": "2026-09-17"
-        },
-        {
           "numero": "WOT0053027",
           "loja": "FS CURITIBA - LINHA VERDE",
           "estado": "Atribuído",
@@ -1952,6 +1942,26 @@
           "abertura": "2026-09-17"
         },
         {
+          "numero": "WOT0053312",
+          "loja": "ILR FLORIPA - R JERONIMO COELHO 215",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 2,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "MICROONDAS | MCR - NÃO AQUECE",
+          "abertura": "2026-09-17"
+        },
+        {
+          "numero": "WOT0054019",
+          "loja": "FS PONTA GROSSA - RUA BALDUINO TAQUES 1530",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 1,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "MICROONDAS | MCR - NÃO AQUECE",
+          "abertura": "2026-09-18"
+        },
+        {
           "numero": "WOT0053951",
           "loja": "FS CURITIBA - AV SILVA JARDIM",
           "estado": "Atribuído",
@@ -1959,16 +1969,6 @@
           "dias": 1,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK099890 - MICROONDAS | MCR - NÃO LIGA",
-          "abertura": "2026-09-18"
-        },
-        {
-          "numero": "WOT0054019",
-          "loja": "FS PONTA GROSSA - RUA BALDUINO TAQUES 1530",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 0,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "MICROONDAS | MCR - NÃO AQUECE",
           "abertura": "2026-09-18"
         },
         {
@@ -2006,7 +2006,7 @@
           "loja": "ILR PORTO ALEGRE - R ANDRADAS 1664",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 16,
+          "dias": 17,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "MICROONDAS | MCR - ACESSÓRIOS DANIFICADOS OU EM FALTA",
           "abertura": "2026-09-02"
@@ -2060,7 +2060,7 @@
           "loja": "FS PORTO ALEGRE - AV IPIRANGA 1600",
           "estado": "Atribuído",
           "prioridade": "SOS",
-          "dias": 20,
+          "dias": 21,
           "tecnico": "Ruan Carlos da Silva",
           "problema": "BK035137 - PHU; DUKE; FWM334MB1230BR; 10145055 | PHU - LOJA SEM NENHUMA PHU FUNCIONANDO",
           "abertura": "2026-08-29"
@@ -2086,6 +2086,16 @@
           "abertura": "2026-08-07"
         },
         {
+          "numero": "WOT0027760",
+          "loja": "FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 37,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BK229818 - PHU; DUKE; FWM3-34MB1-230; 94ABJB0018 | PHU - NÃO LIGA",
+          "abertura": "2026-08-13"
+        },
+        {
           "numero": "WOT0028703",
           "loja": "COLOMBO PARK SHOP",
           "estado": "Atribuído",
@@ -2094,16 +2104,6 @@
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK026008 - PHU; DUKE; FWM3-34MB1-230; 94ABAJ0298 | PHU - NÃO LIGA",
           "abertura": "2026-08-14"
-        },
-        {
-          "numero": "WOT0027760",
-          "loja": "FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 36,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BK229818 - PHU; DUKE; FWM3-34MB1-230; 94ABJB0018 | PHU - NÃO LIGA",
-          "abertura": "2026-08-13"
         }
       ],
       "chamadosDetalhe": [
@@ -2112,7 +2112,7 @@
           "loja": "FS PORTO ALEGRE - AV IPIRANGA 1600",
           "estado": "Atribuído",
           "prioridade": "SOS",
-          "dias": 20,
+          "dias": 21,
           "tecnico": "Ruan Carlos da Silva",
           "problema": "BK035137 - PHU; DUKE; FWM334MB1230BR; 10145055 | PHU - LOJA SEM NENHUMA PHU FUNCIONANDO",
           "abertura": "2026-08-29"
@@ -2138,6 +2138,16 @@
           "abertura": "2026-08-07"
         },
         {
+          "numero": "WOT0027760",
+          "loja": "FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 37,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BK229818 - PHU; DUKE; FWM3-34MB1-230; 94ABJB0018 | PHU - NÃO LIGA",
+          "abertura": "2026-08-13"
+        },
+        {
           "numero": "WOT0028703",
           "loja": "COLOMBO PARK SHOP",
           "estado": "Atribuído",
@@ -2146,26 +2156,6 @@
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK026008 - PHU; DUKE; FWM3-34MB1-230; 94ABAJ0298 | PHU - NÃO LIGA",
           "abertura": "2026-08-14"
-        },
-        {
-          "numero": "WOT0027760",
-          "loja": "FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 36,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BK229818 - PHU; DUKE; FWM3-34MB1-230; 94ABJB0018 | PHU - NÃO LIGA",
-          "abertura": "2026-08-13"
-        },
-        {
-          "numero": "WOT0036106",
-          "loja": "JOCKEY PLAZA SHOP",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 30,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BK070611 - PHU HORIZONTAL DE 12 POSICOES EF | PHU - NÃO LIGA",
-          "abertura": "2026-08-20"
         },
         {
           "numero": "WOT0036104",
@@ -2178,6 +2168,26 @@
           "abertura": "2026-08-20"
         },
         {
+          "numero": "WOT0036106",
+          "loja": "JOCKEY PLAZA SHOP",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 30,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BK070611 - PHU HORIZONTAL DE 12 POSICOES EF | PHU - NÃO LIGA",
+          "abertura": "2026-08-20"
+        },
+        {
+          "numero": "WOT0037691",
+          "loja": "FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 26,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BK229800 - PHU; DUKE; FWM3-34MB1-230; 94ABJB0018 | PHU - NÃO ATINGE TEMPERATURA",
+          "abertura": "2026-08-24"
+        },
+        {
           "numero": "WOT0037837",
           "loja": "SHOP PRACA NOVA SANTA MARIA",
           "estado": "Atribuído",
@@ -2188,13 +2198,13 @@
           "abertura": "2026-08-24"
         },
         {
-          "numero": "WOT0037691",
-          "loja": "FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL",
+          "numero": "WOT0037941",
+          "loja": "JOCKEY PLAZA SHOP",
           "estado": "Atribuído",
           "prioridade": "Alta",
           "dias": 26,
           "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BK229800 - PHU; DUKE; FWM3-34MB1-230; 94ABJB0018 | PHU - NÃO ATINGE TEMPERATURA",
+          "problema": "BK070623 - PHU HORIZONTAL DE 12 POSICOES EF | PHU - NÃO LIGA",
           "abertura": "2026-08-24"
         },
         {
@@ -2215,16 +2225,6 @@
           "dias": 26,
           "tecnico": "Ciro Antonio do Nascimento Mello",
           "problema": "BK066900 - PHU; PRINCE CASTLE; EHB34A-BR; GNGK26389 | PHU - NÃO LIGA",
-          "abertura": "2026-08-24"
-        },
-        {
-          "numero": "WOT0037941",
-          "loja": "JOCKEY PLAZA SHOP",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 26,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BK070623 - PHU HORIZONTAL DE 12 POSICOES EF | PHU - NÃO LIGA",
           "abertura": "2026-08-24"
         },
         {
@@ -2466,7 +2466,7 @@
           "loja": "SHOP MUELLER CURITIBA",
           "estado": "Atribuído",
           "prioridade": "SOS",
-          "dias": 6,
+          "dias": 7,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BROILER | BRO - QUEBRANDO CARNE",
           "abertura": "2026-09-12"
@@ -2518,7 +2518,7 @@
           "loja": "SHOP MUELLER CURITIBA",
           "estado": "Atribuído",
           "prioridade": "SOS",
-          "dias": 6,
+          "dias": 7,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BROILER | BRO - QUEBRANDO CARNE",
           "abertura": "2026-09-12"
@@ -2568,7 +2568,7 @@
           "loja": "SHOP BELLA CITTA",
           "estado": "Atribuído",
           "prioridade": "Alta",
-          "dias": 21,
+          "dias": 22,
           "tecnico": "Ciro Antonio do Nascimento Mello",
           "problema": "BK066940 - BROILER; NIECO; JF94G; 832-47522 | BRO - SÓ FUNCIONA UM LADO",
           "abertura": "2026-08-28"
@@ -2608,7 +2608,7 @@
           "loja": "SHOP IGUATEMI PORTO ALEGRE",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 49,
+          "dias": 50,
           "tecnico": "Cristiano Cezar",
           "problema": "BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-07-31"
@@ -2664,16 +2664,6 @@
           "abertura": "2026-08-10"
         },
         {
-          "numero": "WOT0019797",
-          "loja": "FS CURITIBA - R CARLOS KLEMTZ 1994",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 39,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-11"
-        },
-        {
           "numero": "WOT0019705",
           "loja": "FC CATUAÍ CASCAVEL",
           "estado": "Trabalho em andamento",
@@ -2682,6 +2672,16 @@
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "ZP142159 - BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-10"
+        },
+        {
+          "numero": "WOT0019797",
+          "loja": "FS CURITIBA - R CARLOS KLEMTZ 1994",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 39,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-11"
         },
         {
           "numero": "WOT0021785",
@@ -2714,16 +2714,6 @@
           "abertura": "2026-08-18"
         },
         {
-          "numero": "WOT0035150",
-          "loja": "CARREFOUR PARTENON",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 31,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "BK086215 - BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-19"
-        },
-        {
           "numero": "WOT0035199",
           "loja": "FS CURITIBA - LINHA VERDE",
           "estado": "Atribuído",
@@ -2734,44 +2724,14 @@
           "abertura": "2026-08-19"
         },
         {
-          "numero": "WOT0035833",
-          "loja": "PARTAGE SHOP RIO GRANDE",
-          "estado": "Trabalho em andamento",
+          "numero": "WOT0035150",
+          "loja": "CARREFOUR PARTENON",
+          "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 30,
+          "dias": 31,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "BK037999 - BROILER; NIECO; JF93G; 232-32583 | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-20"
-        },
-        {
-          "numero": "WOT0035954",
-          "loja": "SHOP ROYAL PLAZA SANTA MARIA",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 30,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "BK036566 - BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-20"
-        },
-        {
-          "numero": "WOT0035649",
-          "loja": "FS CURITIBA - R MARTIN AFONSO",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 30,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BK077091 - BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-20"
-        },
-        {
-          "numero": "WOT0035951",
-          "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 30,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "BK078966 - BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-20"
+          "problema": "BK086215 - BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-19"
         },
         {
           "numero": "WOT0035936",
@@ -2794,13 +2754,23 @@
           "abertura": "2026-08-20"
         },
         {
-          "numero": "WOT0035949",
-          "loja": "PASSO FUNDO SHOP",
+          "numero": "WOT0035649",
+          "loja": "FS CURITIBA - R MARTIN AFONSO",
           "estado": "Trabalho em andamento",
           "prioridade": "Normal",
           "dias": 30,
-          "tecnico": "Ciro Antonio do Nascimento Mello",
-          "problema": "BK066914 - BROILER; NIECO; JF93G; 832-47499 | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BK077091 - BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-20"
+        },
+        {
+          "numero": "WOT0035954",
+          "loja": "SHOP ROYAL PLAZA SANTA MARIA",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 30,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "BK036566 - BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-20"
         },
         {
@@ -2811,6 +2781,36 @@
           "dias": 30,
           "tecnico": "Ruan Carlos da Silva",
           "problema": "BK066434 - BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-20"
+        },
+        {
+          "numero": "WOT0035951",
+          "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 30,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "BK078966 - BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-20"
+        },
+        {
+          "numero": "WOT0035833",
+          "loja": "PARTAGE SHOP RIO GRANDE",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 30,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "BK037999 - BROILER; NIECO; JF93G; 232-32583 | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-20"
+        },
+        {
+          "numero": "WOT0035949",
+          "loja": "PASSO FUNDO SHOP",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 30,
+          "tecnico": "Ciro Antonio do Nascimento Mello",
+          "problema": "BK066914 - BROILER; NIECO; JF93G; 832-47499 | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-20"
         },
         {
@@ -2914,6 +2914,16 @@
           "abertura": "2026-09-16"
         },
         {
+          "numero": "WOT0052917",
+          "loja": "ILR FLORIPA - R JERONIMO COELHO 215",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 3,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-16"
+        },
+        {
           "numero": "WOT0053020",
           "loja": "SHOP CENTER LAR",
           "estado": "Atribuído",
@@ -2924,14 +2934,14 @@
           "abertura": "2026-09-17"
         },
         {
-          "numero": "WOT0052917",
-          "loja": "ILR FLORIPA - R JERONIMO COELHO 215",
+          "numero": "WOT0053592",
+          "loja": "CANOAS SHOP",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 2,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-16"
+          "dias": 1,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "BK049202 - BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-18"
         },
         {
           "numero": "WOT0053769",
@@ -2941,16 +2951,6 @@
           "dias": 1,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "ZP191527 - BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-18"
-        },
-        {
-          "numero": "WOT0053592",
-          "loja": "CANOAS SHOP",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 1,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "BK049202 - BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-09-18"
         }
       ]
@@ -3090,16 +3090,6 @@
           "abertura": "2026-09-12"
         },
         {
-          "numero": "WOT0014382",
-          "loja": "BOURBON SHOP PORTO ALEGRE",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 52,
-          "tecnico": "Ruan Carlos da Silva",
-          "problema": "BK027746 - TOSTADORA VERTICAL; AJ ANTUNES; VCT-2000 | TST - NÃO ATINGE TEMPERATURA",
-          "abertura": "2026-07-29"
-        },
-        {
           "numero": "WOT0014502",
           "loja": "FS PELOTAS - AV FERREIRA VIANA 540",
           "estado": "Trabalho em andamento",
@@ -3107,6 +3097,16 @@
           "dias": 52,
           "tecnico": "Thiago da Silva Gonzalez",
           "problema": "BK070595 - TOSTADORA VERTICAL; PRINCE CASTLE; DCFT- | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-07-29"
+        },
+        {
+          "numero": "WOT0014382",
+          "loja": "BOURBON SHOP PORTO ALEGRE",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 52,
+          "tecnico": "Ruan Carlos da Silva",
+          "problema": "BK027746 - TOSTADORA VERTICAL; AJ ANTUNES; VCT-2000 | TST - NÃO ATINGE TEMPERATURA",
           "abertura": "2026-07-29"
         },
         {
@@ -3194,7 +3194,7 @@
           "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 36,
+          "dias": 37,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "BK052693 - MESA DA TOSTADORA | MDT - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-13"
@@ -3244,7 +3244,7 @@
           "loja": "OUTLET NOVO HAMBURGO",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 28,
+          "dias": 29,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "TOSTADEIRA 220V 3290W 66A71GRC | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-21"
@@ -3258,16 +3258,6 @@
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "TOSTADORA VERTICAL - EF | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-26"
-        },
-        {
-          "numero": "WOT0040254",
-          "loja": "FS CASCAVEL - AV BRASIL 1580",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 22,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BK079012 - TOSTADORA VERTICAL - EF | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-27"
         },
         {
           "numero": "WOT0040529",
@@ -3290,11 +3280,21 @@
           "abertura": "2026-08-28"
         },
         {
+          "numero": "WOT0040254",
+          "loja": "FS CASCAVEL - AV BRASIL 1580",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 22,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BK079012 - TOSTADORA VERTICAL - EF | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-27"
+        },
+        {
           "numero": "WOT0041881",
           "loja": "SHOP PALLADIUM FOZ DO IGUACU",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 19,
+          "dias": 20,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "TOSTADEIRA 220V 3290W 66A71GRC | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-30"
@@ -3751,6 +3751,17 @@
           "equipamento": "Fritadeira"
         },
         {
+          "numero": "WOT0052916",
+          "loja": "FS POA - AV DA CAVALHADA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 3,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "BK077573 - MAQUINA DE SORVETE C716 380V | MDS - MÁQUINA CONGELADA",
+          "abertura": "2026-09-16",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
           "numero": "WOT0052698",
           "loja": "ILR PORTO ALEGRE - R ANDRADAS 1664",
           "estado": "Atribuído",
@@ -3760,17 +3771,6 @@
           "problema": "PHU; DUKE; FWM3-34MB1-230; 94ABJB0018 | PHU - NÃO LIGA",
           "abertura": "2026-09-16",
           "equipamento": "PHU"
-        },
-        {
-          "numero": "WOT0052916",
-          "loja": "FS POA - AV DA CAVALHADA",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 2,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "BK077573 - MAQUINA DE SORVETE C716 380V | MDS - MÁQUINA CONGELADA",
-          "abertura": "2026-09-16",
-          "equipamento": "Máquina de Sorvete"
         },
         {
           "numero": "WOT0053831",
@@ -3839,6 +3839,17 @@
           "equipamento": "Tostadeira"
         },
         {
+          "numero": "WOT0015064",
+          "loja": "SHOP IGUATEMI PORTO ALEGRE",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 50,
+          "tecnico": "Cristiano Cezar",
+          "problema": "BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-07-31",
+          "equipamento": "Broiler"
+        },
+        {
           "numero": "WOT0015050",
           "loja": "FS PELOTAS - AV FERREIRA VIANA 540",
           "estado": "Trabalho em andamento",
@@ -3848,17 +3859,6 @@
           "problema": "BK071402 - FRITADEIRA; PITCO; SSHLV14; G18GD037571 | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-07-31",
           "equipamento": "Fritadeira"
-        },
-        {
-          "numero": "WOT0015064",
-          "loja": "SHOP IGUATEMI PORTO ALEGRE",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 49,
-          "tecnico": "Cristiano Cezar",
-          "problema": "BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-07-31",
-          "equipamento": "Broiler"
         },
         {
           "numero": "WOT0015499",
@@ -4037,6 +4037,17 @@
           "equipamento": "Broiler"
         },
         {
+          "numero": "WOT0036720",
+          "loja": "OUTLET NOVO HAMBURGO",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 29,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "TOSTADEIRA 220V 3290W 66A71GRC | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-21",
+          "equipamento": "Tostadeira"
+        },
+        {
           "numero": "WOT0036235",
           "loja": "CARREFOUR PARTENON",
           "estado": "Atribuído",
@@ -4046,17 +4057,6 @@
           "problema": "BK086215 - BROILER; NIECO; JF93G; 232-32583 | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-21",
           "equipamento": "Broiler"
-        },
-        {
-          "numero": "WOT0036720",
-          "loja": "OUTLET NOVO HAMBURGO",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 28,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "TOSTADEIRA 220V 3290W 66A71GRC | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-21",
-          "equipamento": "Tostadeira"
         },
         {
           "numero": "WOT0037090",
@@ -4118,7 +4118,7 @@
           "loja": "CARREFOUR PASSO D'AREIA",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 23,
+          "dias": 24,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "FRITADEIRA | FRI - FPLK - SOMENTE 1 OU 2 CUBAS FUNCIONANDO",
           "abertura": "2026-08-26",
@@ -4173,7 +4173,7 @@
           "loja": "ILR PORTO ALEGRE - R ANDRADAS 1664",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 16,
+          "dias": 17,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "MICROONDAS | MCR - ACESSÓRIOS DANIFICADOS OU EM FALTA",
           "abertura": "2026-09-02",
@@ -4357,7 +4357,7 @@
       "chamados": 66,
       "alta": 33,
       "sos": 2,
-      "tempoMedioDias": 25,
+      "tempoMedioDias": 26,
       "chamadosDetalhe": [
         {
           "numero": "WOT0020478",
@@ -4375,7 +4375,7 @@
           "loja": "FS PORTO ALEGRE - AV IPIRANGA 1600",
           "estado": "Atribuído",
           "prioridade": "SOS",
-          "dias": 20,
+          "dias": 21,
           "tecnico": "Ruan Carlos da Silva",
           "problema": "BK035137 - PHU; DUKE; FWM334MB1230BR; 10145055 | PHU - LOJA SEM NENHUMA PHU FUNCIONANDO",
           "abertura": "2026-08-29",
@@ -4470,6 +4470,17 @@
           "equipamento": "Máquina de Sorvete"
         },
         {
+          "numero": "WOT0036151",
+          "loja": "PARK SHOP CANOAS",
+          "estado": "Expedição pendente",
+          "prioridade": "Alta",
+          "dias": 30,
+          "tecnico": "",
+          "problema": "BK078952 - MAQUINA DE SORVETE; TAYLOR; C716-33; M70 | MDS - RESERVATÓRIO DOS DOIS LADOS NÃO ATINGE TEMPERATURA",
+          "abertura": "2026-08-20",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
           "numero": "WOT0036368",
           "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
           "estado": "Atribuído",
@@ -4490,17 +4501,6 @@
           "problema": "BK052645 - TOSTADORA VERTICAL; AJ ANTUNES; VCT-2000 | TST - NÃO TOSTA",
           "abertura": "2026-08-21",
           "equipamento": "Tostadeira"
-        },
-        {
-          "numero": "WOT0036151",
-          "loja": "PARK SHOP CANOAS",
-          "estado": "Expedição pendente",
-          "prioridade": "Alta",
-          "dias": 29,
-          "tecnico": "",
-          "problema": "BK078952 - MAQUINA DE SORVETE; TAYLOR; C716-33; M70 | MDS - RESERVATÓRIO DOS DOIS LADOS NÃO ATINGE TEMPERATURA",
-          "abertura": "2026-08-20",
-          "equipamento": "Máquina de Sorvete"
         },
         {
           "numero": "WOT0037949",
@@ -4547,7 +4547,7 @@
           "equipamento": "Máquina de Sorvete"
         },
         {
-          "numero": "WOT0037823",
+          "numero": "WOT0037928",
           "loja": "SHOP PRAIA DE BELAS",
           "estado": "Expedição pendente",
           "prioridade": "Alta",
@@ -4558,7 +4558,7 @@
           "equipamento": "Máquina de Sorvete"
         },
         {
-          "numero": "WOT0037928",
+          "numero": "WOT0037823",
           "loja": "SHOP PRAIA DE BELAS",
           "estado": "Expedição pendente",
           "prioridade": "Alta",
@@ -4578,6 +4578,17 @@
           "problema": "BK078988 - MAQUINA DE SORVETE; TAYLOR; C712N-33; M3 | MDS - RESERVATÓRIO DOS DOIS LADOS NÃO ATINGE TEMPERATURA",
           "abertura": "2026-08-25",
           "equipamento": "Máquina de Sorvete"
+        },
+        {
+          "numero": "WOT0040915",
+          "loja": "SHOP BELLA CITTA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 22,
+          "tecnico": "Ciro Antonio do Nascimento Mello",
+          "problema": "BK066940 - BROILER; NIECO; JF94G; 832-47522 | BRO - SÓ FUNCIONA UM LADO",
+          "abertura": "2026-08-28",
+          "equipamento": "Broiler"
         },
         {
           "numero": "WOT0040408",
@@ -4602,17 +4613,6 @@
           "equipamento": "Micro-ondas"
         },
         {
-          "numero": "WOT0040915",
-          "loja": "SHOP BELLA CITTA",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 21,
-          "tecnico": "Ciro Antonio do Nascimento Mello",
-          "problema": "BK066940 - BROILER; NIECO; JF94G; 832-47522 | BRO - SÓ FUNCIONA UM LADO",
-          "abertura": "2026-08-28",
-          "equipamento": "Broiler"
-        },
-        {
           "numero": "WOT0041114",
           "loja": "FS PORTO ALEGRE - AV IPIRANGA 1600",
           "estado": "Atribuído",
@@ -4628,7 +4628,7 @@
           "loja": "SHOP PRAIA DE BELAS",
           "estado": "Expedição pendente",
           "prioridade": "Alta",
-          "dias": 20,
+          "dias": 21,
           "tecnico": "",
           "problema": "BK086169 - MÁQUINA DE SORVETE | MDS - NÃO FUNCIONA 1 LADO",
           "abertura": "2026-08-29",
@@ -4833,6 +4833,17 @@
           "equipamento": "Máquina de Sorvete"
         },
         {
+          "numero": "WOT0018673",
+          "loja": "PARK SHOP CANOAS",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 42,
+          "tecnico": "Ruan Carlos da Silva",
+          "problema": "BK078952 - MAQUINA DE SORVETE; TAYLOR; C716-33; M70 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-08",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
           "numero": "WOT0018259",
           "loja": "FS CANOAS - AV GETULIO VARGAS 3800",
           "estado": "Atribuído",
@@ -4844,22 +4855,11 @@
           "equipamento": "Tostadeira"
         },
         {
-          "numero": "WOT0018673",
-          "loja": "PARK SHOP CANOAS",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 41,
-          "tecnico": "Ruan Carlos da Silva",
-          "problema": "BK078952 - MAQUINA DE SORVETE; TAYLOR; C716-33; M70 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-08",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
           "numero": "WOT0026550",
           "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 36,
+          "dias": 37,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "BK052693 - MESA DA TOSTADORA | MDT - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-13",
@@ -5124,6 +5124,17 @@
           "equipamento": "Fritadeira"
         },
         {
+          "numero": "WOT0014817",
+          "loja": "FS CURITIBA - LINHA VERDE",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 51,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "MÁQUINA DE SORVETE | MDS - NÃO FUNCIONA 1 LADO",
+          "abertura": "2026-07-30",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
           "numero": "WOT0014587",
           "loja": "COLOMBO PARK SHOP",
           "estado": "Atribuído",
@@ -5135,26 +5146,26 @@
           "equipamento": "Fritadeira"
         },
         {
-          "numero": "WOT0014817",
-          "loja": "FS CURITIBA - LINHA VERDE",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 50,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "MÁQUINA DE SORVETE | MDS - NÃO FUNCIONA 1 LADO",
-          "abertura": "2026-07-30",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
           "numero": "WOT0015066",
           "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
           "estado": "Aceito",
           "prioridade": "Alta",
-          "dias": 49,
+          "dias": 50,
           "tecnico": "Gustavo de Godoy Matheus",
           "problema": "BK066019 - FRITADEIRA | FRI - FILTRAGEM NÃO FUNCIONA",
           "abertura": "2026-07-31",
           "equipamento": "Fritadeira"
+        },
+        {
+          "numero": "WOT0027760",
+          "loja": "FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 37,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BK229818 - PHU; DUKE; FWM3-34MB1-230; 94ABJB0018 | PHU - NÃO LIGA",
+          "abertura": "2026-08-13",
+          "equipamento": "PHU"
         },
         {
           "numero": "WOT0028703",
@@ -5168,14 +5179,14 @@
           "equipamento": "PHU"
         },
         {
-          "numero": "WOT0027760",
-          "loja": "FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL",
+          "numero": "WOT0036104",
+          "loja": "JOCKEY PLAZA SHOP",
           "estado": "Atribuído",
           "prioridade": "Alta",
-          "dias": 36,
+          "dias": 30,
           "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BK229818 - PHU; DUKE; FWM3-34MB1-230; 94ABJB0018 | PHU - NÃO LIGA",
-          "abertura": "2026-08-13",
+          "problema": "BK070605 - PHU HORIZONTAL DE 12 POSICOES EF | PHU - NÃO LIGA",
+          "abertura": "2026-08-20",
           "equipamento": "PHU"
         },
         {
@@ -5186,17 +5197,6 @@
           "dias": 30,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK070611 - PHU HORIZONTAL DE 12 POSICOES EF | PHU - NÃO LIGA",
-          "abertura": "2026-08-20",
-          "equipamento": "PHU"
-        },
-        {
-          "numero": "WOT0036104",
-          "loja": "JOCKEY PLAZA SHOP",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 30,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BK070605 - PHU HORIZONTAL DE 12 POSICOES EF | PHU - NÃO LIGA",
           "abertura": "2026-08-20",
           "equipamento": "PHU"
         },
@@ -5348,7 +5348,7 @@
           "loja": "FS PONTA GROSSA - RUA BALDUINO TAQUES 1530",
           "estado": "Atribuído",
           "prioridade": "Alta",
-          "dias": 0,
+          "dias": 1,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "MICROONDAS | MCR - NÃO AQUECE",
           "abertura": "2026-09-18",
@@ -5568,7 +5568,7 @@
           "loja": "SHOP PALLADIUM FOZ DO IGUACU",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 19,
+          "dias": 20,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "TOSTADEIRA 220V 3290W 66A71GRC | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-30",
@@ -5826,7 +5826,7 @@
           "loja": "SHOP MUELLER CURITIBA",
           "estado": "Atribuído",
           "prioridade": "SOS",
-          "dias": 6,
+          "dias": 7,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BROILER | BRO - QUEBRANDO CARNE",
           "abertura": "2026-09-12",
@@ -5903,7 +5903,7 @@
           "loja": "ATLANTICO SHOP",
           "estado": "Atribuído",
           "prioridade": "Alta",
-          "dias": 27,
+          "dias": 28,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK079250 - MAQUINA DE SORVETE C716 380V | MDS - NÃO FUNCIONA 1 LADO",
           "abertura": "2026-08-22",
@@ -6057,7 +6057,7 @@
           "loja": "SHOP MUELLER CURITIBA",
           "estado": "Atribuído",
           "prioridade": "Alta",
-          "dias": 13,
+          "dias": 14,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK080684 - FRITADEIRA TRIPLA GAS NAT 3X3X2CESTOS | FRI - FILTRAGEM NÃO FUNCIONA",
           "abertura": "2026-09-05",
@@ -6350,6 +6350,17 @@
           "equipamento": "Micro-ondas"
         },
         {
+          "numero": "WOT0037440",
+          "loja": "FS CURITIBA - AV SILVA JARDIM",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 27,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BK099879 - MÁQUINA DE SORVETE | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-23",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
           "numero": "WOT0037390",
           "loja": "SHOP PARK EUROPEU",
           "estado": "Atribuído",
@@ -6357,17 +6368,6 @@
           "dias": 27,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK080307 - MAQUINA DE SORVETE C716 380V | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-23",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
-          "numero": "WOT0037440",
-          "loja": "FS CURITIBA - AV SILVA JARDIM",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 26,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BK099879 - MÁQUINA DE SORVETE | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-23",
           "equipamento": "Máquina de Sorvete"
         },
@@ -6475,7 +6475,7 @@
           "loja": "SHOP SÃO JOSE DOS PINHAIS",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 7,
+          "dias": 8,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK072128 - MAQUINA DE SORVETE C716 380V | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-09-11",
@@ -6493,6 +6493,28 @@
           "equipamento": "Máquina de Sorvete"
         },
         {
+          "numero": "WOT0052935",
+          "loja": "WALMART BIG TORRES",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 3,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - MAQUINA COM ALTO RUIDO",
+          "abertura": "2026-09-16",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
+          "numero": "WOT0052917",
+          "loja": "ILR FLORIPA - R JERONIMO COELHO 215",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 3,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-16",
+          "equipamento": "Broiler"
+        },
+        {
           "numero": "WOT0052627",
           "loja": "ATLANTICO SHOP",
           "estado": "Atribuído",
@@ -6500,17 +6522,6 @@
           "dias": 3,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK079250 - MAQUINA DE SORVETE C716 380V | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-16",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
-          "numero": "WOT0052935",
-          "loja": "WALMART BIG TORRES",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 2,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - MAQUINA COM ALTO RUIDO",
           "abertura": "2026-09-16",
           "equipamento": "Máquina de Sorvete"
         },
@@ -6524,17 +6535,6 @@
           "problema": "FRITADEIRA | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-09-17",
           "equipamento": "Fritadeira"
-        },
-        {
-          "numero": "WOT0052917",
-          "loja": "ILR FLORIPA - R JERONIMO COELHO 215",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 2,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-16",
-          "equipamento": "Broiler"
         },
         {
           "numero": "WOT0053271",
@@ -6719,7 +6719,7 @@
           "loja": "SHOP MUELLER CURITIBA",
           "estado": "Atribuído",
           "prioridade": "SOS",
-          "dias": 6,
+          "dias": 7,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BROILER | BRO - QUEBRANDO CARNE",
           "abertura": "2026-09-12",
@@ -6759,6 +6759,17 @@
           "equipamento": "Fritadeira"
         },
         {
+          "numero": "WOT0014817",
+          "loja": "FS CURITIBA - LINHA VERDE",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 51,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "MÁQUINA DE SORVETE | MDS - NÃO FUNCIONA 1 LADO",
+          "abertura": "2026-07-30",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
           "numero": "WOT0014587",
           "loja": "COLOMBO PARK SHOP",
           "estado": "Atribuído",
@@ -6768,17 +6779,6 @@
           "problema": "BK079176 - FRITADEIRA | FRI - FILTRAGEM NÃO FUNCIONA",
           "abertura": "2026-07-30",
           "equipamento": "Fritadeira"
-        },
-        {
-          "numero": "WOT0014817",
-          "loja": "FS CURITIBA - LINHA VERDE",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 50,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "MÁQUINA DE SORVETE | MDS - NÃO FUNCIONA 1 LADO",
-          "abertura": "2026-07-30",
-          "equipamento": "Máquina de Sorvete"
         },
         {
           "numero": "WOT0014986",
@@ -6814,6 +6814,17 @@
           "equipamento": "Máquina de Sorvete"
         },
         {
+          "numero": "WOT0027760",
+          "loja": "FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 37,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BK229818 - PHU; DUKE; FWM3-34MB1-230; 94ABJB0018 | PHU - NÃO LIGA",
+          "abertura": "2026-08-13",
+          "equipamento": "PHU"
+        },
+        {
           "numero": "WOT0028703",
           "loja": "COLOMBO PARK SHOP",
           "estado": "Atribuído",
@@ -6825,14 +6836,14 @@
           "equipamento": "PHU"
         },
         {
-          "numero": "WOT0027760",
-          "loja": "FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL",
+          "numero": "WOT0036104",
+          "loja": "JOCKEY PLAZA SHOP",
           "estado": "Atribuído",
           "prioridade": "Alta",
-          "dias": 36,
+          "dias": 30,
           "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BK229818 - PHU; DUKE; FWM3-34MB1-230; 94ABJB0018 | PHU - NÃO LIGA",
-          "abertura": "2026-08-13",
+          "problema": "BK070605 - PHU HORIZONTAL DE 12 POSICOES EF | PHU - NÃO LIGA",
+          "abertura": "2026-08-20",
           "equipamento": "PHU"
         },
         {
@@ -6843,17 +6854,6 @@
           "dias": 30,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK070611 - PHU HORIZONTAL DE 12 POSICOES EF | PHU - NÃO LIGA",
-          "abertura": "2026-08-20",
-          "equipamento": "PHU"
-        },
-        {
-          "numero": "WOT0036104",
-          "loja": "JOCKEY PLAZA SHOP",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 30,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BK070605 - PHU HORIZONTAL DE 12 POSICOES EF | PHU - NÃO LIGA",
           "abertura": "2026-08-20",
           "equipamento": "PHU"
         },
@@ -6895,7 +6895,7 @@
           "loja": "ATLANTICO SHOP",
           "estado": "Atribuído",
           "prioridade": "Alta",
-          "dias": 27,
+          "dias": 28,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK079250 - MAQUINA DE SORVETE C716 380V | MDS - NÃO FUNCIONA 1 LADO",
           "abertura": "2026-08-22",
@@ -6911,17 +6911,6 @@
           "problema": "BK050176 - MAQUINA DE SORVETE; TAYLOR; C716-33; M51 | MDS - ERRO NA PASTEURIZAÇÃO",
           "abertura": "2026-08-24",
           "equipamento": "Máquina de Sorvete"
-        },
-        {
-          "numero": "WOT0037902",
-          "loja": "FS CURITIBA - R CARLOS KLEMTZ 1994",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 26,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "ZP191519 - FRITADEIRA | FRI - FILTRAGEM NÃO FUNCIONA",
-          "abertura": "2026-08-24",
-          "equipamento": "Fritadeira"
         },
         {
           "numero": "WOT0037810",
@@ -6942,6 +6931,17 @@
           "dias": 26,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK077089 - FRITADEIRA TRIPLA GAS NAT 3X3X2CESTOS | FRI - SOMENTE 2 CUBAS FUNCIONANDO",
+          "abertura": "2026-08-24",
+          "equipamento": "Fritadeira"
+        },
+        {
+          "numero": "WOT0037902",
+          "loja": "FS CURITIBA - R CARLOS KLEMTZ 1994",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 26,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "ZP191519 - FRITADEIRA | FRI - FILTRAGEM NÃO FUNCIONA",
           "abertura": "2026-08-24",
           "equipamento": "Fritadeira"
         },
@@ -6968,17 +6968,6 @@
           "equipamento": "PHU"
         },
         {
-          "numero": "WOT0037677",
-          "loja": "FS CURITIBA - FRANCISCO FRISHMANN 3151",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 26,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "PHU; DUKE; FWM3-34MB1-230; 94ABJB0018 | PHU - NÃO ATINGE TEMPERATURA",
-          "abertura": "2026-08-24",
-          "equipamento": "PHU"
-        },
-        {
           "numero": "WOT0037941",
           "loja": "JOCKEY PLAZA SHOP",
           "estado": "Atribuído",
@@ -6986,6 +6975,17 @@
           "dias": 26,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK070623 - PHU HORIZONTAL DE 12 POSICOES EF | PHU - NÃO LIGA",
+          "abertura": "2026-08-24",
+          "equipamento": "PHU"
+        },
+        {
+          "numero": "WOT0037677",
+          "loja": "FS CURITIBA - FRANCISCO FRISHMANN 3151",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 26,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "PHU; DUKE; FWM3-34MB1-230; 94ABJB0018 | PHU - NÃO ATINGE TEMPERATURA",
           "abertura": "2026-08-24",
           "equipamento": "PHU"
         },
@@ -7027,7 +7027,7 @@
           "loja": "",
           "estado": "Atribuído",
           "prioridade": "Alta",
-          "dias": 21,
+          "dias": 22,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "ZP191556 - MAQUINA DE SORVETE TAYLOR | MDS - ERRO NA PASTEURIZAÇÃO",
           "abertura": "2026-08-28",
@@ -7082,7 +7082,7 @@
           "loja": "SHOP MUELLER CURITIBA",
           "estado": "Atribuído",
           "prioridade": "Alta",
-          "dias": 13,
+          "dias": 14,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK080684 - FRITADEIRA TRIPLA GAS NAT 3X3X2CESTOS | FRI - FILTRAGEM NÃO FUNCIONA",
           "abertura": "2026-09-05",
@@ -7122,6 +7122,17 @@
           "equipamento": "Fritadeira"
         },
         {
+          "numero": "WOT0050021",
+          "loja": "",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 9,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "ZP191542 - FRITADEIRA GAS LP AI 32LBS 17KW/H PITCO | FRI - FILTRAGEM NÃO FUNCIONA",
+          "abertura": "2026-09-10",
+          "equipamento": "Fritadeira"
+        },
+        {
           "numero": "WOT0049941",
           "loja": "SHOP SÃO JOSE DOS PINHAIS",
           "estado": "Atribuído",
@@ -7153,17 +7164,6 @@
           "problema": "BK086039 - MÁQUINA DE SORVETE | MDS - NÃO FUNCIONA 1 LADO",
           "abertura": "2026-09-11",
           "equipamento": "Máquina de Sorvete"
-        },
-        {
-          "numero": "WOT0050021",
-          "loja": "",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 8,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "ZP191542 - FRITADEIRA GAS LP AI 32LBS 17KW/H PITCO | FRI - FILTRAGEM NÃO FUNCIONA",
-          "abertura": "2026-09-10",
-          "equipamento": "Fritadeira"
         },
         {
           "numero": "WOT0050854",
@@ -7221,17 +7221,6 @@
           "equipamento": "Máquina de Sorvete"
         },
         {
-          "numero": "WOT0053312",
-          "loja": "ILR FLORIPA - R JERONIMO COELHO 215",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 2,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "MICROONDAS | MCR - NÃO AQUECE",
-          "abertura": "2026-09-17",
-          "equipamento": "Micro-ondas"
-        },
-        {
           "numero": "WOT0053027",
           "loja": "FS CURITIBA - LINHA VERDE",
           "estado": "Atribuído",
@@ -7239,6 +7228,17 @@
           "dias": 2,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK086008 - MICROONDAS | MCR - NÃO AQUECE",
+          "abertura": "2026-09-17",
+          "equipamento": "Micro-ondas"
+        },
+        {
+          "numero": "WOT0053312",
+          "loja": "ILR FLORIPA - R JERONIMO COELHO 215",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 2,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "MICROONDAS | MCR - NÃO AQUECE",
           "abertura": "2026-09-17",
           "equipamento": "Micro-ondas"
         },
@@ -7252,6 +7252,17 @@
           "problema": "BK085994 - FRITADEIRA; FRYMASTER; 11814CSE; 1506PN0 | FRI - FILTRAGEM NÃO FUNCIONA",
           "abertura": "2026-09-18",
           "equipamento": "Fritadeira"
+        },
+        {
+          "numero": "WOT0054019",
+          "loja": "FS PONTA GROSSA - RUA BALDUINO TAQUES 1530",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 1,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "MICROONDAS | MCR - NÃO AQUECE",
+          "abertura": "2026-09-18",
+          "equipamento": "Micro-ondas"
         },
         {
           "numero": "WOT0053951",
@@ -7274,17 +7285,6 @@
           "problema": "PHU | PHU - NÃO ATINGE TEMPERATURA",
           "abertura": "2026-09-18",
           "equipamento": "PHU"
-        },
-        {
-          "numero": "WOT0054019",
-          "loja": "FS PONTA GROSSA - RUA BALDUINO TAQUES 1530",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 0,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "MICROONDAS | MCR - NÃO AQUECE",
-          "abertura": "2026-09-18",
-          "equipamento": "Micro-ondas"
         },
         {
           "numero": "WOT0014663",
@@ -7441,17 +7441,6 @@
           "equipamento": "PHU"
         },
         {
-          "numero": "WOT0019797",
-          "loja": "FS CURITIBA - R CARLOS KLEMTZ 1994",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 39,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-11",
-          "equipamento": "Broiler"
-        },
-        {
           "numero": "WOT0019705",
           "loja": "FC CATUAÍ CASCAVEL",
           "estado": "Trabalho em andamento",
@@ -7460,6 +7449,17 @@
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "ZP142159 - BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-10",
+          "equipamento": "Broiler"
+        },
+        {
+          "numero": "WOT0019797",
+          "loja": "FS CURITIBA - R CARLOS KLEMTZ 1994",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 39,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-11",
           "equipamento": "Broiler"
         },
         {
@@ -7584,6 +7584,17 @@
           "equipamento": "Micro-ondas"
         },
         {
+          "numero": "WOT0037440",
+          "loja": "FS CURITIBA - AV SILVA JARDIM",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 27,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BK099879 - MÁQUINA DE SORVETE | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-23",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
           "numero": "WOT0037390",
           "loja": "SHOP PARK EUROPEU",
           "estado": "Atribuído",
@@ -7593,28 +7604,6 @@
           "problema": "BK080307 - MAQUINA DE SORVETE C716 380V | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-23",
           "equipamento": "Máquina de Sorvete"
-        },
-        {
-          "numero": "WOT0037440",
-          "loja": "FS CURITIBA - AV SILVA JARDIM",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 26,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BK099879 - MÁQUINA DE SORVETE | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-23",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
-          "numero": "WOT0040254",
-          "loja": "FS CASCAVEL - AV BRASIL 1580",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 22,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BK079012 - TOSTADORA VERTICAL - EF | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-27",
-          "equipamento": "Tostadeira"
         },
         {
           "numero": "WOT0040529",
@@ -7636,6 +7625,17 @@
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "TOSTADEIRA 220V 3290W 66A71GRC | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-28",
+          "equipamento": "Tostadeira"
+        },
+        {
+          "numero": "WOT0040254",
+          "loja": "FS CASCAVEL - AV BRASIL 1580",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 22,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BK079012 - TOSTADORA VERTICAL - EF | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-27",
           "equipamento": "Tostadeira"
         },
         {
@@ -7665,7 +7665,7 @@
           "loja": "SHOP PALLADIUM FOZ DO IGUACU",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 19,
+          "dias": 20,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "TOSTADEIRA 220V 3290W 66A71GRC | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-30",
@@ -7771,6 +7771,17 @@
           "equipamento": "PHU"
         },
         {
+          "numero": "WOT0050020",
+          "loja": "",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 9,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "ZP191542 - FRITADEIRA GAS LP AI 32LBS 17KW/H PITCO | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-10",
+          "equipamento": "Fritadeira"
+        },
+        {
           "numero": "WOT0049361",
           "loja": "FS CASCAVEL - AV BRASIL 1580",
           "estado": "Atribuído",
@@ -7815,37 +7826,15 @@
           "equipamento": "Máquina de Sorvete"
         },
         {
-          "numero": "WOT0050020",
-          "loja": "",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 8,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "ZP191542 - FRITADEIRA GAS LP AI 32LBS 17KW/H PITCO | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-10",
-          "equipamento": "Fritadeira"
-        },
-        {
           "numero": "WOT0050586",
           "loja": "SHOP SÃO JOSE DOS PINHAIS",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 7,
+          "dias": 8,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK072128 - MAQUINA DE SORVETE C716 380V | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-09-11",
           "equipamento": "Máquina de Sorvete"
-        },
-        {
-          "numero": "WOT0051155",
-          "loja": "FS FOZ DO IGUACU - AV JORGE SCHIMMELPFENG 50",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 6,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "FRITADEIRA | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-13",
-          "equipamento": "Fritadeira"
         },
         {
           "numero": "WOT0051271",
@@ -7855,6 +7844,17 @@
           "dias": 6,
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "BK086014 - FRITADEIRA; FRYMASTER; 11814EC; 1403PU00 | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-13",
+          "equipamento": "Fritadeira"
+        },
+        {
+          "numero": "WOT0051155",
+          "loja": "FS FOZ DO IGUACU - AV JORGE SCHIMMELPFENG 50",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 6,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "FRITADEIRA | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-09-13",
           "equipamento": "Fritadeira"
         },
@@ -7881,13 +7881,13 @@
           "equipamento": "Máquina de Sorvete"
         },
         {
-          "numero": "WOT0052867",
-          "loja": "FC CATUAÍ CASCAVEL",
+          "numero": "WOT0052674",
+          "loja": "SHOP CIDADE CURITIBA",
           "estado": "Atribuído",
           "prioridade": "Normal",
           "dias": 3,
           "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "ZP142362 - MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "problema": "BK036118 - MÁQUINA DE SORVETE | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-09-16",
           "equipamento": "Máquina de Sorvete"
         },
@@ -7903,13 +7903,24 @@
           "equipamento": "Máquina de Sorvete"
         },
         {
-          "numero": "WOT0052674",
-          "loja": "SHOP CIDADE CURITIBA",
+          "numero": "WOT0052867",
+          "loja": "FC CATUAÍ CASCAVEL",
           "estado": "Atribuído",
           "prioridade": "Normal",
           "dias": 3,
           "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BK036118 - MÁQUINA DE SORVETE | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "problema": "ZP142362 - MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-16",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
+          "numero": "WOT0052935",
+          "loja": "WALMART BIG TORRES",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 3,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - MAQUINA COM ALTO RUIDO",
           "abertura": "2026-09-16",
           "equipamento": "Máquina de Sorvete"
         },
@@ -7947,6 +7958,17 @@
           "equipamento": "Broiler"
         },
         {
+          "numero": "WOT0052917",
+          "loja": "ILR FLORIPA - R JERONIMO COELHO 215",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 3,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-16",
+          "equipamento": "Broiler"
+        },
+        {
           "numero": "WOT0052677",
           "loja": "SHOP CIDADE CURITIBA",
           "estado": "Atribuído",
@@ -7969,14 +7991,14 @@
           "equipamento": "Máquina de Sorvete"
         },
         {
-          "numero": "WOT0052935",
-          "loja": "WALMART BIG TORRES",
+          "numero": "WOT0053023",
+          "loja": "FS CURITIBA - LINHA VERDE",
           "estado": "Atribuído",
           "prioridade": "Normal",
           "dias": 2,
           "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - MAQUINA COM ALTO RUIDO",
-          "abertura": "2026-09-16",
+          "problema": "MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-17",
           "equipamento": "Máquina de Sorvete"
         },
         {
@@ -7991,28 +8013,6 @@
           "equipamento": "Máquina de Sorvete"
         },
         {
-          "numero": "WOT0053023",
-          "loja": "FS CURITIBA - LINHA VERDE",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 2,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-17",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
-          "numero": "WOT0053276",
-          "loja": "ANGELONI AGUA VERDE",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 2,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "FRITADEIRA | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-17",
-          "equipamento": "Fritadeira"
-        },
-        {
           "numero": "WOT0053271",
           "loja": "SHOP PARK EUROPEU",
           "estado": "Atribuído",
@@ -8024,15 +8024,15 @@
           "equipamento": "Fritadeira"
         },
         {
-          "numero": "WOT0052917",
-          "loja": "ILR FLORIPA - R JERONIMO COELHO 215",
+          "numero": "WOT0053276",
+          "loja": "ANGELONI AGUA VERDE",
           "estado": "Atribuído",
           "prioridade": "Normal",
           "dias": 2,
           "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-16",
-          "equipamento": "Broiler"
+          "problema": "FRITADEIRA | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-17",
+          "equipamento": "Fritadeira"
         },
         {
           "numero": "WOT0053853",
@@ -8116,14 +8116,14 @@
           "loja": "PARK SHOP CANOAS",
           "estado": "Expedição pendente",
           "prioridade": "Alta",
-          "dias": 29,
+          "dias": 30,
           "tecnico": "",
           "problema": "BK078952 - MAQUINA DE SORVETE; TAYLOR; C716-33; M70 | MDS - RESERVATÓRIO DOS DOIS LADOS NÃO ATINGE TEMPERATURA",
           "abertura": "2026-08-20",
           "equipamento": "Máquina de Sorvete"
         },
         {
-          "numero": "WOT0037823",
+          "numero": "WOT0037928",
           "loja": "SHOP PRAIA DE BELAS",
           "estado": "Expedição pendente",
           "prioridade": "Alta",
@@ -8134,7 +8134,7 @@
           "equipamento": "Máquina de Sorvete"
         },
         {
-          "numero": "WOT0037928",
+          "numero": "WOT0037823",
           "loja": "SHOP PRAIA DE BELAS",
           "estado": "Expedição pendente",
           "prioridade": "Alta",
@@ -8171,7 +8171,7 @@
           "loja": "SHOP PRAIA DE BELAS",
           "estado": "Expedição pendente",
           "prioridade": "Alta",
-          "dias": 20,
+          "dias": 21,
           "tecnico": "",
           "problema": "BK086169 - MÁQUINA DE SORVETE | MDS - NÃO FUNCIONA 1 LADO",
           "abertura": "2026-08-29",
@@ -8334,314 +8334,6 @@
       ]
     },
     {
-      "nome": "Cristppher Alencar Pacheco Cruz",
-      "ehSupervisor": false,
-      "lojasAtendidas": 13,
-      "chamados": 17,
-      "alta": 12,
-      "sos": 2,
-      "tempoMedioDias": 23,
-      "chamadosDetalhe": [
-        {
-          "numero": "WOT0018633",
-          "loja": "OUTLET NOVO HAMBURGO",
-          "estado": "Trabalho em andamento",
-          "prioridade": "SOS",
-          "dias": 42,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK078900 - BROILER; NIECO; JF93G; 332-34073 | BRO - QUEBRANDO CARNE",
-          "abertura": "2026-08-08",
-          "equipamento": "Broiler"
-        },
-        {
-          "numero": "WOT0045301",
-          "loja": "SHOP IGUATEMI PORTO ALEGRE",
-          "estado": "Atribuído",
-          "prioridade": "SOS",
-          "dias": 13,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK063527 - PHU; PRINCE CASTLE; EHB34A-BR; LMGK22745 | PHU - LOJA SEM NENHUMA PHU FUNCIONANDO",
-          "abertura": "2026-09-06",
-          "equipamento": "PHU"
-        },
-        {
-          "numero": "WOT0032445",
-          "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Alta",
-          "dias": 33,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK052624 - MICROONDAS; MENUMASTER; OC24BKB; 1603180 | MCR - NÃO AQUECE",
-          "abertura": "2026-08-17",
-          "equipamento": "Micro-ondas"
-        },
-        {
-          "numero": "WOT0032439",
-          "loja": "FS CANOAS - AV GETULIO VARGAS 3800",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Alta",
-          "dias": 33,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK070946 - MICROONDAS; MENUMASTER; OC24BKB; 1806180 | MCR - NÃO LIGA",
-          "abertura": "2026-08-17",
-          "equipamento": "Micro-ondas"
-        },
-        {
-          "numero": "WOT0034323",
-          "loja": "CARREFOUR PASSO D'AREIA",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 32,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "FRITADEIRA | FRI - SOMENTE 2 CUBAS FUNCIONANDO",
-          "abertura": "2026-08-18",
-          "equipamento": "Fritadeira"
-        },
-        {
-          "numero": "WOT0035763",
-          "loja": "SHOP CENTER LAR",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 30,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK078979 - MAQUINA DE SORVETE C716 380V | MDS - NÃO FUNCIONA 1 LADO",
-          "abertura": "2026-08-20",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
-          "numero": "WOT0038235",
-          "loja": "SHOP IGUATEMI PORTO ALEGRE",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 26,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK063566 - FORNO MICROONDAS | MCR - NÃO AQUECE",
-          "abertura": "2026-08-24",
-          "equipamento": "Micro-ondas"
-        },
-        {
-          "numero": "WOT0039424",
-          "loja": "ILR PORTO ALEGRE - R ANDRADAS 1664",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 24,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - NÃO FUNCIONA 1 LADO",
-          "abertura": "2026-08-26",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
-          "numero": "WOT0039195",
-          "loja": "FC CAXIAS DO SUL - VILLAGIO CAXIAS",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 24,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "ZP189359 - MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - NÃO FUNCIONA 1 LADO",
-          "abertura": "2026-08-26",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
-          "numero": "WOT0039945",
-          "loja": "FC CAXIAS DO SUL - VILLAGIO CAXIAS",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 23,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "ZP189359 - MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - NÃO FUNCIONAM OS DOIS LADOS",
-          "abertura": "2026-08-27",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
-          "numero": "WOT0040477",
-          "loja": "FS CAXIAS DO SUL - R JOÃO NICHELE 2227",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Alta",
-          "dias": 22,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK087706 - MICROONDAS | MCR - NÃO LIGA",
-          "abertura": "2026-08-28",
-          "equipamento": "Micro-ondas"
-        },
-        {
-          "numero": "WOT0040399",
-          "loja": "BOURBON SHOP WALLIG",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Alta",
-          "dias": 22,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "MICROONDAS | MCR - NÃO AQUECE",
-          "abertura": "2026-08-28",
-          "equipamento": "Micro-ondas"
-        },
-        {
-          "numero": "WOT0040473",
-          "loja": "CARREFOUR PARTENON",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Alta",
-          "dias": 22,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "MICROONDAS | MCR - NÃO AQUECE",
-          "abertura": "2026-08-28",
-          "equipamento": "Micro-ondas"
-        },
-        {
-          "numero": "WOT0049917",
-          "loja": "SHOP JL CASCAVEL",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Alta",
-          "dias": 9,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK062814 - PHU; PRINCE CASTLE; EHB34A-BR; JMGK21558 | PHU - NÃO LIGA",
-          "abertura": "2026-09-10",
-          "equipamento": "PHU"
-        },
-        {
-          "numero": "WOT0048142",
-          "loja": "CATARATAS JL SHOP",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 10,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK077753 - PHU; PRINCE CASTLE; DHB-BK17DBR; HK 0213732 | PHU - NÃO ACENDE LUZES",
-          "abertura": "2026-09-09",
-          "equipamento": "PHU"
-        },
-        {
-          "numero": "WOT0047533",
-          "loja": "CATARATAS JL SHOP",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 10,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK043349 - BROILER; NIECO; JF93G; 232-32583 | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-09",
-          "equipamento": "Broiler"
-        },
-        {
-          "numero": "WOT0049921",
-          "loja": "SHOP JL CASCAVEL",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 9,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK077757 - FRITADEIRA | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-10",
-          "equipamento": "Fritadeira"
-        }
-      ]
-    },
-    {
-      "nome": "Ciro Antonio do Nascimento Mello",
-      "ehSupervisor": false,
-      "lojasAtendidas": 2,
-      "chamados": 9,
-      "alta": 7,
-      "sos": 0,
-      "tempoMedioDias": 27,
-      "chamadosDetalhe": [
-        {
-          "numero": "WOT0016030",
-          "loja": "SHOP BELLA CITTA",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 46,
-          "tecnico": "Ciro Antonio do Nascimento Mello",
-          "problema": "BK066939 - FRITADEIRA TRIPLA GAS GLP 3X3X2CESTOS | FRI - FILTRAGEM NÃO FUNCIONA",
-          "abertura": "2026-08-04",
-          "equipamento": "Fritadeira"
-        },
-        {
-          "numero": "WOT0036089",
-          "loja": "SHOP BELLA CITTA",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 30,
-          "tecnico": "Ciro Antonio do Nascimento Mello",
-          "problema": "BK038075 - MAQUINA DE SORVETE C716 380V | MDS - NÃO FUNCIONA 1 LADO",
-          "abertura": "2026-08-20",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
-          "numero": "WOT0035628",
-          "loja": "SHOP BELLA CITTA",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 30,
-          "tecnico": "Ciro Antonio do Nascimento Mello",
-          "problema": "BK038075 - MAQUINA DE SORVETE C716 380V | MDS - MÁQUINA CONGELADA",
-          "abertura": "2026-08-20",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
-          "numero": "WOT0037949",
-          "loja": "PASSO FUNDO SHOP",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 26,
-          "tecnico": "Ciro Antonio do Nascimento Mello",
-          "problema": "BK066911 - FRITADEIRA | FRI - FILTRAGEM NÃO FUNCIONA",
-          "abertura": "2026-08-24",
-          "equipamento": "Fritadeira"
-        },
-        {
-          "numero": "WOT0037946",
-          "loja": "PASSO FUNDO SHOP",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 26,
-          "tecnico": "Ciro Antonio do Nascimento Mello",
-          "problema": "BK066900 - PHU; PRINCE CASTLE; EHB34A-BR; GNGK26389 | PHU - NÃO LIGA",
-          "abertura": "2026-08-24",
-          "equipamento": "PHU"
-        },
-        {
-          "numero": "WOT0040915",
-          "loja": "SHOP BELLA CITTA",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 21,
-          "tecnico": "Ciro Antonio do Nascimento Mello",
-          "problema": "BK066940 - BROILER; NIECO; JF94G; 832-47522 | BRO - SÓ FUNCIONA UM LADO",
-          "abertura": "2026-08-28",
-          "equipamento": "Broiler"
-        },
-        {
-          "numero": "WOT0050954",
-          "loja": "PASSO FUNDO SHOP",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 7,
-          "tecnico": "Ciro Antonio do Nascimento Mello",
-          "problema": "BK066908 - TOSTADORA VERTICAL; PRINCE CASTLE; DCFT- | TST - NÃO LIGA",
-          "abertura": "2026-09-12",
-          "equipamento": "Tostadeira"
-        },
-        {
-          "numero": "WOT0035808",
-          "loja": "SHOP BELLA CITTA",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 30,
-          "tecnico": "Ciro Antonio do Nascimento Mello",
-          "problema": "BK038075 - MAQUINA DE SORVETE C716 380V | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-20",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
-          "numero": "WOT0035949",
-          "loja": "PASSO FUNDO SHOP",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 30,
-          "tecnico": "Ciro Antonio do Nascimento Mello",
-          "problema": "BK066914 - BROILER; NIECO; JF93G; 832-47499 | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-20",
-          "equipamento": "Broiler"
-        }
-      ]
-    },
-    {
       "nome": "Ruan Carlos da Silva",
       "ehSupervisor": false,
       "lojasAtendidas": 12,
@@ -8655,7 +8347,7 @@
           "loja": "FS PORTO ALEGRE - AV IPIRANGA 1600",
           "estado": "Atribuído",
           "prioridade": "SOS",
-          "dias": 20,
+          "dias": 21,
           "tecnico": "Ruan Carlos da Silva",
           "problema": "BK035137 - PHU; DUKE; FWM334MB1230BR; 10145055 | PHU - LOJA SEM NENHUMA PHU FUNCIONANDO",
           "abertura": "2026-08-29",
@@ -8842,7 +8534,7 @@
           "loja": "PARK SHOP CANOAS",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 41,
+          "dias": 42,
           "tecnico": "Ruan Carlos da Silva",
           "problema": "BK078952 - MAQUINA DE SORVETE; TAYLOR; C716-33; M70 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-08",
@@ -8856,6 +8548,314 @@
           "dias": 30,
           "tecnico": "Ruan Carlos da Silva",
           "problema": "BK066434 - BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-20",
+          "equipamento": "Broiler"
+        }
+      ]
+    },
+    {
+      "nome": "Cristppher Alencar Pacheco Cruz",
+      "ehSupervisor": false,
+      "lojasAtendidas": 13,
+      "chamados": 17,
+      "alta": 12,
+      "sos": 2,
+      "tempoMedioDias": 23,
+      "chamadosDetalhe": [
+        {
+          "numero": "WOT0018633",
+          "loja": "OUTLET NOVO HAMBURGO",
+          "estado": "Trabalho em andamento",
+          "prioridade": "SOS",
+          "dias": 42,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK078900 - BROILER; NIECO; JF93G; 332-34073 | BRO - QUEBRANDO CARNE",
+          "abertura": "2026-08-08",
+          "equipamento": "Broiler"
+        },
+        {
+          "numero": "WOT0045301",
+          "loja": "SHOP IGUATEMI PORTO ALEGRE",
+          "estado": "Atribuído",
+          "prioridade": "SOS",
+          "dias": 13,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK063527 - PHU; PRINCE CASTLE; EHB34A-BR; LMGK22745 | PHU - LOJA SEM NENHUMA PHU FUNCIONANDO",
+          "abertura": "2026-09-06",
+          "equipamento": "PHU"
+        },
+        {
+          "numero": "WOT0032439",
+          "loja": "FS CANOAS - AV GETULIO VARGAS 3800",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 33,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK070946 - MICROONDAS; MENUMASTER; OC24BKB; 1806180 | MCR - NÃO LIGA",
+          "abertura": "2026-08-17",
+          "equipamento": "Micro-ondas"
+        },
+        {
+          "numero": "WOT0032445",
+          "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 33,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK052624 - MICROONDAS; MENUMASTER; OC24BKB; 1603180 | MCR - NÃO AQUECE",
+          "abertura": "2026-08-17",
+          "equipamento": "Micro-ondas"
+        },
+        {
+          "numero": "WOT0034323",
+          "loja": "CARREFOUR PASSO D'AREIA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 32,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "FRITADEIRA | FRI - SOMENTE 2 CUBAS FUNCIONANDO",
+          "abertura": "2026-08-18",
+          "equipamento": "Fritadeira"
+        },
+        {
+          "numero": "WOT0035763",
+          "loja": "SHOP CENTER LAR",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 30,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK078979 - MAQUINA DE SORVETE C716 380V | MDS - NÃO FUNCIONA 1 LADO",
+          "abertura": "2026-08-20",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
+          "numero": "WOT0038235",
+          "loja": "SHOP IGUATEMI PORTO ALEGRE",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 26,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK063566 - FORNO MICROONDAS | MCR - NÃO AQUECE",
+          "abertura": "2026-08-24",
+          "equipamento": "Micro-ondas"
+        },
+        {
+          "numero": "WOT0039195",
+          "loja": "FC CAXIAS DO SUL - VILLAGIO CAXIAS",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 24,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "ZP189359 - MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - NÃO FUNCIONA 1 LADO",
+          "abertura": "2026-08-26",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
+          "numero": "WOT0039424",
+          "loja": "ILR PORTO ALEGRE - R ANDRADAS 1664",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 24,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - NÃO FUNCIONA 1 LADO",
+          "abertura": "2026-08-26",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
+          "numero": "WOT0039945",
+          "loja": "FC CAXIAS DO SUL - VILLAGIO CAXIAS",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 23,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "ZP189359 - MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - NÃO FUNCIONAM OS DOIS LADOS",
+          "abertura": "2026-08-27",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
+          "numero": "WOT0040477",
+          "loja": "FS CAXIAS DO SUL - R JOÃO NICHELE 2227",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 22,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK087706 - MICROONDAS | MCR - NÃO LIGA",
+          "abertura": "2026-08-28",
+          "equipamento": "Micro-ondas"
+        },
+        {
+          "numero": "WOT0040399",
+          "loja": "BOURBON SHOP WALLIG",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 22,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "MICROONDAS | MCR - NÃO AQUECE",
+          "abertura": "2026-08-28",
+          "equipamento": "Micro-ondas"
+        },
+        {
+          "numero": "WOT0040473",
+          "loja": "CARREFOUR PARTENON",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 22,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "MICROONDAS | MCR - NÃO AQUECE",
+          "abertura": "2026-08-28",
+          "equipamento": "Micro-ondas"
+        },
+        {
+          "numero": "WOT0049917",
+          "loja": "SHOP JL CASCAVEL",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 9,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK062814 - PHU; PRINCE CASTLE; EHB34A-BR; JMGK21558 | PHU - NÃO LIGA",
+          "abertura": "2026-09-10",
+          "equipamento": "PHU"
+        },
+        {
+          "numero": "WOT0048142",
+          "loja": "CATARATAS JL SHOP",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 10,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK077753 - PHU; PRINCE CASTLE; DHB-BK17DBR; HK 0213732 | PHU - NÃO ACENDE LUZES",
+          "abertura": "2026-09-09",
+          "equipamento": "PHU"
+        },
+        {
+          "numero": "WOT0047533",
+          "loja": "CATARATAS JL SHOP",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 10,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK043349 - BROILER; NIECO; JF93G; 232-32583 | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-09",
+          "equipamento": "Broiler"
+        },
+        {
+          "numero": "WOT0049921",
+          "loja": "SHOP JL CASCAVEL",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 9,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK077757 - FRITADEIRA | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-10",
+          "equipamento": "Fritadeira"
+        }
+      ]
+    },
+    {
+      "nome": "Ciro Antonio do Nascimento Mello",
+      "ehSupervisor": false,
+      "lojasAtendidas": 2,
+      "chamados": 9,
+      "alta": 7,
+      "sos": 0,
+      "tempoMedioDias": 27,
+      "chamadosDetalhe": [
+        {
+          "numero": "WOT0016030",
+          "loja": "SHOP BELLA CITTA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 46,
+          "tecnico": "Ciro Antonio do Nascimento Mello",
+          "problema": "BK066939 - FRITADEIRA TRIPLA GAS GLP 3X3X2CESTOS | FRI - FILTRAGEM NÃO FUNCIONA",
+          "abertura": "2026-08-04",
+          "equipamento": "Fritadeira"
+        },
+        {
+          "numero": "WOT0036089",
+          "loja": "SHOP BELLA CITTA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 30,
+          "tecnico": "Ciro Antonio do Nascimento Mello",
+          "problema": "BK038075 - MAQUINA DE SORVETE C716 380V | MDS - NÃO FUNCIONA 1 LADO",
+          "abertura": "2026-08-20",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
+          "numero": "WOT0035628",
+          "loja": "SHOP BELLA CITTA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 30,
+          "tecnico": "Ciro Antonio do Nascimento Mello",
+          "problema": "BK038075 - MAQUINA DE SORVETE C716 380V | MDS - MÁQUINA CONGELADA",
+          "abertura": "2026-08-20",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
+          "numero": "WOT0037949",
+          "loja": "PASSO FUNDO SHOP",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 26,
+          "tecnico": "Ciro Antonio do Nascimento Mello",
+          "problema": "BK066911 - FRITADEIRA | FRI - FILTRAGEM NÃO FUNCIONA",
+          "abertura": "2026-08-24",
+          "equipamento": "Fritadeira"
+        },
+        {
+          "numero": "WOT0037946",
+          "loja": "PASSO FUNDO SHOP",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 26,
+          "tecnico": "Ciro Antonio do Nascimento Mello",
+          "problema": "BK066900 - PHU; PRINCE CASTLE; EHB34A-BR; GNGK26389 | PHU - NÃO LIGA",
+          "abertura": "2026-08-24",
+          "equipamento": "PHU"
+        },
+        {
+          "numero": "WOT0040915",
+          "loja": "SHOP BELLA CITTA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 22,
+          "tecnico": "Ciro Antonio do Nascimento Mello",
+          "problema": "BK066940 - BROILER; NIECO; JF94G; 832-47522 | BRO - SÓ FUNCIONA UM LADO",
+          "abertura": "2026-08-28",
+          "equipamento": "Broiler"
+        },
+        {
+          "numero": "WOT0050954",
+          "loja": "PASSO FUNDO SHOP",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 7,
+          "tecnico": "Ciro Antonio do Nascimento Mello",
+          "problema": "BK066908 - TOSTADORA VERTICAL; PRINCE CASTLE; DCFT- | TST - NÃO LIGA",
+          "abertura": "2026-09-12",
+          "equipamento": "Tostadeira"
+        },
+        {
+          "numero": "WOT0035808",
+          "loja": "SHOP BELLA CITTA",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 30,
+          "tecnico": "Ciro Antonio do Nascimento Mello",
+          "problema": "BK038075 - MAQUINA DE SORVETE C716 380V | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-20",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
+          "numero": "WOT0035949",
+          "loja": "PASSO FUNDO SHOP",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 30,
+          "tecnico": "Ciro Antonio do Nascimento Mello",
+          "problema": "BK066914 - BROILER; NIECO; JF93G; 832-47499 | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-20",
           "equipamento": "Broiler"
         }
@@ -9014,6 +9014,17 @@
           "equipamento": "Tostadeira"
         },
         {
+          "numero": "WOT0052916",
+          "loja": "FS POA - AV DA CAVALHADA",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 3,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "BK077573 - MAQUINA DE SORVETE C716 380V | MDS - MÁQUINA CONGELADA",
+          "abertura": "2026-09-16",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
           "numero": "WOT0052698",
           "loja": "ILR PORTO ALEGRE - R ANDRADAS 1664",
           "estado": "Atribuído",
@@ -9025,17 +9036,6 @@
           "equipamento": "PHU"
         },
         {
-          "numero": "WOT0052916",
-          "loja": "FS POA - AV DA CAVALHADA",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 2,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "BK077573 - MAQUINA DE SORVETE C716 380V | MDS - MÁQUINA CONGELADA",
-          "abertura": "2026-09-16",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
           "numero": "WOT0053306",
           "loja": "SHOP TOTAL POA",
           "estado": "Atribuído",
@@ -9043,17 +9043,6 @@
           "dias": 2,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "BK063595 - MAQUINA DE SORVETE; TAYLOR; C716-33; M70 | MDS - NÃO FUNCIONA 1 LADO",
-          "abertura": "2026-09-17",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
-          "numero": "WOT0053521",
-          "loja": "SHOP LAJEADO",
-          "estado": "Atribuído",
-          "prioridade": "Alta",
-          "dias": 1,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "MÁQUINA DE SORVETE | MDS - NÃO FUNCIONA 1 LADO",
           "abertura": "2026-09-17",
           "equipamento": "Máquina de Sorvete"
         },
@@ -9099,6 +9088,17 @@
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "BK078907 - MAQUINA DE SORVETE; TAYLOR; C712N-33 | MDS - NÃO FUNCIONA 1 LADO",
           "abertura": "2026-09-18",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
+          "numero": "WOT0053521",
+          "loja": "SHOP LAJEADO",
+          "estado": "Atribuído",
+          "prioridade": "Alta",
+          "dias": 1,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "MÁQUINA DE SORVETE | MDS - NÃO FUNCIONA 1 LADO",
+          "abertura": "2026-09-17",
           "equipamento": "Máquina de Sorvete"
         },
         {
@@ -9179,17 +9179,6 @@
           "equipamento": "Fritadeira"
         },
         {
-          "numero": "WOT0021826",
-          "loja": "BOURBON SHOP SAO LEOPOLDO",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 38,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "BK078916 - MAQUINA DE SORVETE; TAYLOR; C712N-33; M1 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-12",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
           "numero": "WOT0021754",
           "loja": "CARREFOUR PASSO D'AREIA",
           "estado": "Atribuído",
@@ -9201,11 +9190,22 @@
           "equipamento": "Máquina de Sorvete"
         },
         {
+          "numero": "WOT0021826",
+          "loja": "BOURBON SHOP SAO LEOPOLDO",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 38,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "BK078916 - MAQUINA DE SORVETE; TAYLOR; C712N-33; M1 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-12",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
           "numero": "WOT0026550",
           "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 36,
+          "dias": 37,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "BK052693 - MESA DA TOSTADORA | MDT - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-13",
@@ -9245,17 +9245,6 @@
           "equipamento": "Broiler"
         },
         {
-          "numero": "WOT0035508",
-          "loja": "SHOP TOTAL POA",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 30,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "BK063595 - MAQUINA DE SORVETE; TAYLOR; C716-33; M70 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-20",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
           "numero": "WOT0035482",
           "loja": "FS PORTO ALEGRE - AV IPIRANGA 1600",
           "estado": "Atribuído",
@@ -9263,6 +9252,17 @@
           "dias": 30,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-20",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
+          "numero": "WOT0035508",
+          "loja": "SHOP TOTAL POA",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 30,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "BK063595 - MAQUINA DE SORVETE; TAYLOR; C716-33; M70 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-20",
           "equipamento": "Máquina de Sorvete"
         },
@@ -9278,13 +9278,13 @@
           "equipamento": "PHU"
         },
         {
-          "numero": "WOT0035833",
-          "loja": "PARTAGE SHOP RIO GRANDE",
+          "numero": "WOT0035955",
+          "loja": "BOURBON SHOP WALLIG",
           "estado": "Trabalho em andamento",
           "prioridade": "Normal",
           "dias": 30,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "BK037999 - BROILER; NIECO; JF93G; 232-32583 | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "problema": "BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-20",
           "equipamento": "Broiler"
         },
@@ -9311,13 +9311,13 @@
           "equipamento": "Broiler"
         },
         {
-          "numero": "WOT0035955",
-          "loja": "BOURBON SHOP WALLIG",
+          "numero": "WOT0035833",
+          "loja": "PARTAGE SHOP RIO GRANDE",
           "estado": "Trabalho em andamento",
           "prioridade": "Normal",
           "dias": 30,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "problema": "BK037999 - BROILER; NIECO; JF93G; 232-32583 | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-20",
           "equipamento": "Broiler"
         },
@@ -9333,6 +9333,17 @@
           "equipamento": "Broiler"
         },
         {
+          "numero": "WOT0036720",
+          "loja": "OUTLET NOVO HAMBURGO",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 29,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "TOSTADEIRA 220V 3290W 66A71GRC | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-21",
+          "equipamento": "Tostadeira"
+        },
+        {
           "numero": "WOT0037090",
           "loja": "SHOP CENTER LAR",
           "estado": "Atribuído",
@@ -9342,17 +9353,6 @@
           "problema": "BK035096 - MAQUINA DE SORVETE; TAYLOR; C712N-33 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-22",
           "equipamento": "Máquina de Sorvete"
-        },
-        {
-          "numero": "WOT0036720",
-          "loja": "OUTLET NOVO HAMBURGO",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 28,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "TOSTADEIRA 220V 3290W 66A71GRC | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-21",
-          "equipamento": "Tostadeira"
         },
         {
           "numero": "WOT0038168",
@@ -9388,6 +9388,17 @@
           "equipamento": "Máquina de Sorvete"
         },
         {
+          "numero": "WOT0039603",
+          "loja": "CARREFOUR PASSO D'AREIA",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 24,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "FRITADEIRA | FRI - FPLK - SOMENTE 1 OU 2 CUBAS FUNCIONANDO",
+          "abertura": "2026-08-26",
+          "equipamento": "Fritadeira"
+        },
+        {
           "numero": "WOT0039071",
           "loja": "FS CAXIAS DO SUL - R JOÃO NICHELE 2227",
           "estado": "Atribuído",
@@ -9397,17 +9408,6 @@
           "problema": "TOSTADORA VERTICAL - EF | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-26",
           "equipamento": "Tostadeira"
-        },
-        {
-          "numero": "WOT0039603",
-          "loja": "CARREFOUR PASSO D'AREIA",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 23,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "FRITADEIRA | FRI - FPLK - SOMENTE 1 OU 2 CUBAS FUNCIONANDO",
-          "abertura": "2026-08-26",
-          "equipamento": "Fritadeira"
         },
         {
           "numero": "WOT0041346",
@@ -9458,7 +9458,7 @@
           "loja": "ILR PORTO ALEGRE - R ANDRADAS 1664",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 16,
+          "dias": 17,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "MICROONDAS | MCR - ACESSÓRIOS DANIFICADOS OU EM FALTA",
           "abertura": "2026-09-02",
@@ -9498,6 +9498,17 @@
           "equipamento": "Tostadeira"
         },
         {
+          "numero": "WOT0045947",
+          "loja": "PARTAGE SHOP RIO GRANDE",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 11,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "BK037961 - MAQUINA DE SORVETE; TAYLOR; C706-27; M50 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-08",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
           "numero": "WOT0046551",
           "loja": "BOURBON SHOP SAO LEOPOLDO",
           "estado": "Atribuído",
@@ -9516,17 +9527,6 @@
           "dias": 11,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "BK063523 - MAQUINA DE SORVETE; TAYLOR; C716-33; M80 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-08",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
-          "numero": "WOT0045947",
-          "loja": "PARTAGE SHOP RIO GRANDE",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 11,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "BK037961 - MAQUINA DE SORVETE; TAYLOR; C706-27; M50 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-09-08",
           "equipamento": "Máquina de Sorvete"
         },
@@ -9553,17 +9553,6 @@
           "equipamento": "Máquina de Sorvete"
         },
         {
-          "numero": "WOT0050757",
-          "loja": "FS POA - AV DR NILO PECANHA 1715",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 7,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "BK077533 - MAQUINA DE SORVETE C716 380V | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-12",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
           "numero": "WOT0050616",
           "loja": "SHOP PRAIA DE BELAS",
           "estado": "Atribuído",
@@ -9572,6 +9561,17 @@
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "BK086169 - MAQUINA DE SORVETE; TAYLOR; C716-33; M70 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-09-11",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
+          "numero": "WOT0050757",
+          "loja": "FS POA - AV DR NILO PECANHA 1715",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 7,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "BK077533 - MAQUINA DE SORVETE C716 380V | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-12",
           "equipamento": "Máquina de Sorvete"
         },
         {
@@ -9821,7 +9821,7 @@
           "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
           "estado": "Aceito",
           "prioridade": "Alta",
-          "dias": 49,
+          "dias": 50,
           "tecnico": "Gustavo de Godoy Matheus",
           "problema": "BK066019 - FRITADEIRA | FRI - FILTRAGEM NÃO FUNCIONA",
           "abertura": "2026-07-31",
@@ -10001,14 +10001,14 @@
       "chamados": 2,
       "alta": 0,
       "sos": 0,
-      "tempoMedioDias": 41,
+      "tempoMedioDias": 42,
       "chamadosDetalhe": [
         {
           "numero": "WOT0015064",
           "loja": "SHOP IGUATEMI PORTO ALEGRE",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 49,
+          "dias": 50,
           "tecnico": "Cristiano Cezar",
           "problema": "BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-07-31",
@@ -10050,5 +10050,5 @@
       ]
     }
   ],
-  "disponibilidadeBIAtualizadaEm": "18/09/2026 20:06:51"
+  "disponibilidadeBIAtualizadaEm": "19/09/2026 07:10:20"
 }
