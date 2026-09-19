@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-19T14:20:12.607Z",
+ "atualizadoEm": "2026-09-19T14:40:11.830Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 17,
+  "emExecucao": 18,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 17
+  "total": 18
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-19",
-   "abertos": 4,
+   "abertos": 5,
    "fechados": 6
   }
  ],
  "itens": [
+  {
+   "numero": "WO0053735",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "31345 FS CANOAS - AV DR SEZEFREDO A",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "19/09/2026 11:28:16",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "FALTA DE ÁGUA - CORTE DE ÁGUA NA REGIÃO",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | FALTA DE ÁGUA - CORTE DE ÁGUA NA REGIÃO",
+   "tarefas": [
+    "WOT0054219"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0053641",
    "marca": "BKB",
