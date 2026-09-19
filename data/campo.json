@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-09-18T21:20:10.705Z",
+ "atualizadoEm": "2026-09-19T10:00:12.114Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 21,
+  "emExecucao": 17,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 21
+  "total": 17
  },
  "serie": [
-  {
-   "data": "2026-09-16",
-   "abertos": 8,
-   "fechados": 12
-  },
   {
    "data": "2026-09-17",
    "abertos": 12,
@@ -23,6 +18,11 @@
    "data": "2026-09-18",
    "abertos": 12,
    "fechados": 7
+  },
+  {
+   "data": "2026-09-19",
+   "abertos": 0,
+   "fechados": 0
   }
  ],
  "itens": [
@@ -411,98 +411,6 @@
    "descricao": "BK035104 - COIFA LAVADORA; MELTING | COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
    "tarefas": [
     "WOT0053009"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0052407",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "20215 - CARREFOUR PASSO D'AREIA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "16/09/2026 17:24:51",
-   "fechamento": "",
-   "principal": "Area Externa",
-   "secundario": "FALTA DE ÁGUA - CORTE DE ÁGUA NA REGIÃO",
-   "sigla": "AEX",
-   "tecnico": "",
-   "descricao": "Area Externa | FALTA DE ÁGUA - CORTE DE ÁGUA NA REGIÃO",
-   "tarefas": [
-    "WOT0052871"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0052372",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL SUL RS",
-   "loja": "16619 - SHOP PRAIA DE BELAS",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "16/09/2026 16:31:47",
-   "fechamento": "",
-   "principal": "BK072057 - COIFA LAVADORA; MELTING",
-   "secundario": "COI - COIFA NÃO FUNCIONA",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK072057 - COIFA LAVADORA; MELTING | COI - COIFA NÃO FUNCIONA",
-   "tarefas": [
-    "WOT0052837"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0052218",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "OESTE PR",
-   "loja": "26830 - FS FOZ DO IGUACU - AV JORGE S",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "16/09/2026 12:08:15",
-   "fechamento": "",
-   "principal": "TOSTADEIRA 220V 3290W 66A71GRC",
-   "secundario": "TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
-   "sigla": "TST",
-   "tecnico": "",
-   "descricao": "TOSTADEIRA 220V 3290W 66A71GRC | TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
-   "tarefas": [
-    "WOT0052682"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0052156",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "22507 - ILR PORTO ALEGRE - R ANDRADAS 1664",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "16/09/2026 10:59:54",
-   "fechamento": "",
-   "principal": "BK049862 - BROILER",
-   "secundario": "BRO - NÃO ATINGE TEMPERATURA",
-   "sigla": "BRO",
-   "tecnico": "",
-   "descricao": "BK049862 - BROILER | BRO - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0052621"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
