@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-19T21:40:10.095Z",
+ "atualizadoEm": "2026-09-19T22:20:11.057Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 21,
+  "emExecucao": 22,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 3,
-  "total": 21
+  "total": 22
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-19",
-   "abertos": 14,
+   "abertos": 15,
    "fechados": 16
   }
  ],
  "itens": [
+  {
+   "numero": "WO0054009",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "16619 - SHOP PRAIA DE BELAS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "19/09/2026 19:11:29",
+   "fechamento": "",
+   "principal": "BK086173 - CÂMARA DE CONGELADOS",
+   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMG",
+   "tecnico": "",
+   "descricao": "BK086173 - CÂMARA DE CONGELADOS | CMG - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0054490"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0053940",
    "marca": "BKB",
