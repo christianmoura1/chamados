@@ -1,11 +1,11 @@
 {
- "atualizadoEm": "2026-09-19T20:20:25.760Z",
+ "atualizadoEm": "2026-09-19T21:40:10.095Z",
  "janelaDias": 3,
  "resumo": {
   "emExecucao": 21,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 2,
+  "aguardandoToken": 3,
   "total": 21
  },
  "serie": [
@@ -22,7 +22,7 @@
   {
    "data": "2026-09-19",
    "abertos": 14,
-   "fechados": 15
+   "fechados": 16
   }
  ],
  "itens": [
@@ -124,8 +124,8 @@
    "regional": "SUL",
    "setor": "SUDOESTE RS",
    "loja": "21787 - CARREFOUR PARTENON",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
+   "status": "Trabalho em andamento",
+   "fase": "Requisição Completa - Aguardando Token",
    "abertura": "19/09/2026 12:30:06",
    "fechamento": "",
    "principal": "Area Interna",
@@ -136,8 +136,8 @@
    "tarefas": [
     "WOT0054270"
    ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
+   "aguardandoToken": 1,
+   "fechadoSemToken": "19/09/2026 17:32:02",
    "contato": "",
    "grupo": "execucao"
   },
@@ -460,7 +460,7 @@
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
-   "contato": "",
+   "contato": "Tentativa de contato: 19/09/2026 17:44:12;\n",
    "grupo": "execucao"
   },
   {
