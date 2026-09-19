@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-19T10:00:12.114Z",
+ "atualizadoEm": "2026-09-19T11:20:12.563Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 17,
+  "emExecucao": 18,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 17
+  "total": 18
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-19",
-   "abertos": 0,
+   "abertos": 1,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0053617",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "25677 - FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "19/09/2026 08:13:38",
+   "fechamento": "",
+   "principal": "BK068721 - BROILER",
+   "secundario": "BRO - QUEBRANDO CARNE",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK068721 - BROILER | BRO - QUEBRANDO CARNE",
+   "tarefas": [
+    "WOT0054100"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0053498",
    "marca": "BKB",
