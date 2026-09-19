@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-19T14:40:11.830Z",
+ "atualizadoEm": "2026-09-19T15:40:11.846Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 18,
+  "emExecucao": 19,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 18
+  "total": 19
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-19",
-   "abertos": 5,
-   "fechados": 6
+   "abertos": 6,
+   "fechados": 7
   }
  ],
  "itens": [
+  {
+   "numero": "WO0053786",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "21787 - CARREFOUR PARTENON",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "19/09/2026 12:30:06",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - COZINHA - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
+   "tarefas": [
+    "WOT0054270"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0053735",
    "marca": "BKB",
