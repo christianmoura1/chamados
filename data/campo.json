@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-19T11:20:12.563Z",
+ "atualizadoEm": "2026-09-19T12:00:12.010Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 18,
+  "emExecucao": 19,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 18
+  "total": 19
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-19",
-   "abertos": 1,
+   "abertos": 2,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0053641",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "19/09/2026 08:53:36",
+   "fechamento": "",
+   "principal": "BK078966 - BROILER; NIECO; JF94G; 534-40484",
+   "secundario": "BRO - NÃO ATINGE TEMPERATURA",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK078966 - BROILER; NIECO; JF94G; 534-40484 | BRO - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0054124"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0053617",
    "marca": "BKB",
