@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-19T17:40:12.211Z",
+ "atualizadoEm": "2026-09-19T18:00:12.769Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 19,
+  "emExecucao": 21,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 19
+  "total": 21
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-09-19",
-   "abertos": 9,
+   "abertos": 11,
    "fechados": 11
   }
  ],
  "itens": [
+  {
+   "numero": "WO0053890",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "29084 FS PINHAIS PEDRO JACOMEL 13",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "19/09/2026 14:50:43",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
+   "tarefas": [
+    "WOT0054373"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0053889",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "16619 - SHOP PRAIA DE BELAS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "19/09/2026 14:49:28",
+   "fechamento": "",
+   "principal": "BK072058 - FRITADEIRA; PITCO; SSHLV14; G18LB059328",
+   "secundario": "FRI - NENHUMA DAS CUBAS ATINGE TEMPERATURA",
+   "sigla": "FRI",
+   "tecnico": "",
+   "descricao": "BK072058 - FRITADEIRA; PITCO; SSHLV14; G18LB059328 | FRI - NENHUMA DAS CUBAS ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0054372"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0053816",
    "marca": "BKB",
