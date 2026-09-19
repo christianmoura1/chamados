@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-19T12:00:12.010Z",
+ "atualizadoEm": "2026-09-19T12:20:12.130Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 19,
+  "emExecucao": 21,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 19
+  "total": 21
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-09-19",
-   "abertos": 2,
+   "abertos": 4,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0053658",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "23721 - PARK SHOP CANOAS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "19/09/2026 09:18:11",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "FALTA DE ÁGUA - CORTE DE ÁGUA NA REGIÃO",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | FALTA DE ÁGUA - CORTE DE ÁGUA NA REGIÃO",
+   "tarefas": [
+    "WOT0054142"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0053648",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "31345 FS CANOAS - AV DR SEZEFREDO A",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "19/09/2026 09:00:56",
+   "fechamento": "",
+   "principal": "ZP137114 - BROILER",
+   "secundario": "BRO - NÃO MANTÉM A CHAMA",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "ZP137114 - BROILER | BRO - NÃO MANTÉM A CHAMA",
+   "tarefas": [
+    "WOT0054131"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0053641",
    "marca": "BKB",
