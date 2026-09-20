@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-20T20:20:09.736Z",
+ "atualizadoEm": "2026-09-20T20:40:09.136Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 22,
+  "emExecucao": 20,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 6,
-  "total": 22
+  "aguardandoToken": 5,
+  "total": 20
  },
  "serie": [
   {
@@ -22,33 +22,10 @@
   {
    "data": "2026-09-20",
    "abertos": 14,
-   "fechados": 11
+   "fechados": 14
   }
  ],
  "itens": [
-  {
-   "numero": "WO0054262",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "21787 - CARREFOUR PARTENON",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "20/09/2026 17:16:44",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - COZINHA - REFLUXO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
-   "tarefas": [
-    "WOT0054749"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "20/09/2026 17:19:18",
-   "contato": "",
-   "grupo": "execucao"
-  },
   {
    "numero": "WO0054261",
    "marca": "BKB",
@@ -250,29 +227,6 @@
    "descricao": "BK071672 - CÂMARA DE CONGELADOS | CMG - NÃO ATINGE TEMPERATURA",
    "tarefas": [
     "WOT0054555"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0054037",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA NORTE",
-   "loja": "15875 - SHOP MUELLER CURITIBA",
-   "status": "Trabalho em andamento",
-   "fase": "Iniciado",
-   "abertura": "19/09/2026 22:48:13",
-   "fechamento": "",
-   "principal": "BROILER",
-   "secundario": "BRO - NÃO ACENDE",
-   "sigla": "BRO",
-   "tecnico": "",
-   "descricao": "BROILER | BRO - NÃO ACENDE",
-   "tarefas": [
-    "WOT0054518"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
