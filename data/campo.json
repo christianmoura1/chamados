@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-19T22:40:10.304Z",
+ "atualizadoEm": "2026-09-20T01:00:10.550Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 21,
+  "emExecucao": 22,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 3,
-  "total": 21
+  "total": 22
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-19",
-   "abertos": 15,
+   "abertos": 16,
    "fechados": 17
   }
  ],
  "itens": [
+  {
+   "numero": "WO0054032",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "30086 FS PONTA GROSSA R BALDUINO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "19/09/2026 21:49:57",
+   "fechamento": "",
+   "principal": "BK245265 - COIFA",
+   "secundario": "COI - COIFA NÃO FUNCIONA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK245265 - COIFA | COI - COIFA NÃO FUNCIONA",
+   "tarefas": [
+    "WOT0054513"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0054009",
    "marca": "BKB",
