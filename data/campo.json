@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-20T18:00:18.853Z",
+ "atualizadoEm": "2026-09-20T18:20:26.961Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 23,
+  "emExecucao": 24,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 5,
-  "total": 23
+  "total": 24
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-20",
-   "abertos": 10,
+   "abertos": 11,
    "fechados": 5
   }
  ],
  "itens": [
+  {
+   "numero": "WO0054236",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "17223 - CANOAS SHOP",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "20/09/2026 15:16:21",
+   "fechamento": "",
+   "principal": "BK066349 - COIFA",
+   "secundario": "COI - PRINCÍPIO DE INCÊNDIO",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK066349 - COIFA | COI - PRINCÍPIO DE INCÊNDIO",
+   "tarefas": [
+    "WOT0054721"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0054206",
    "marca": "BKB",
