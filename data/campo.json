@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-20T18:20:26.961Z",
+ "atualizadoEm": "2026-09-20T19:00:34.437Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 24,
+  "emExecucao": 21,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 5,
-  "total": 24
+  "total": 21
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-20",
-   "abertos": 11,
-   "fechados": 5
+   "abertos": 12,
+   "fechados": 10
   }
  ],
  "itens": [
+  {
+   "numero": "WO0054243",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "20/09/2026 15:50:33",
+   "fechamento": "",
+   "principal": "BROILER",
+   "secundario": "BRO - PRINCÍPIO DE INCÊNDIO",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BROILER | BRO - PRINCÍPIO DE INCÊNDIO",
+   "tarefas": [
+    "WOT0054728"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0054236",
    "marca": "BKB",
@@ -395,29 +418,6 @@
    "grupo": "execucao"
   },
   {
-   "numero": "WO0053498",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "21475 - SHOP JARDIM DAS AMERICAS",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "18/09/2026 18:11:16",
-   "fechamento": "",
-   "principal": "BK035272 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
-   "secundario": "CMR - NÃO LIGA",
-   "sigla": "CMR",
-   "tecnico": "",
-   "descricao": "BK035272 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO LIGA",
-   "tarefas": [
-    "WOT0053981"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
    "numero": "WO0053425",
    "marca": "BKB",
    "regional": "SUL",
@@ -503,75 +503,6 @@
    "descricao": "BK077588 - BROILER GLP ALTA PERFORMANCE | BRO - NÃO ACENDE",
    "tarefas": [
     "WOT0053611"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0053122",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "21475 - SHOP JARDIM DAS AMERICAS",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "18/09/2026 09:12:03",
-   "fechamento": "",
-   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
-   "secundario": "SCI - SPRINKLER ESTOURADO",
-   "sigla": "SCI",
-   "tecnico": "",
-   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - SPRINKLER ESTOURADO",
-   "tarefas": [
-    "WOT0053603"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0053059",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "21475 - SHOP JARDIM DAS AMERICAS",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "18/09/2026 02:30:07",
-   "fechamento": "",
-   "principal": "BK035121 - BOILER ELETRICO 300L A.P",
-   "secundario": "BOI - PRINCÍPIO DE INCÊNDIO",
-   "sigla": "BOI",
-   "tecnico": "",
-   "descricao": "BK035121 - BOILER ELETRICO 300L A.P | BOI - PRINCÍPIO DE INCÊNDIO",
-   "tarefas": [
-    "WOT0053536"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0053055",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "21475 - SHOP JARDIM DAS AMERICAS",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "18/09/2026 01:28:33",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - QUADRO ELÉTRICO - PRINCÍPIO DE INCÊNDIO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - PRINCÍPIO DE INCÊNDIO",
-   "tarefas": [
-    "WOT0053532"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
