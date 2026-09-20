@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-20T14:20:16.290Z",
+ "atualizadoEm": "2026-09-20T15:20:18.590Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 21,
+  "emExecucao": 23,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 3,
-  "total": 21
+  "total": 23
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-09-20",
-   "abertos": 7,
+   "abertos": 9,
    "fechados": 2
   }
  ],
  "itens": [
+  {
+   "numero": "WO0054171",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "25677 - FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "20/09/2026 12:12:05",
+   "fechamento": "",
+   "principal": "BK068721 - BROILER",
+   "secundario": "BRO - QUEBRANDO CARNE",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK068721 - BROILER | BRO - QUEBRANDO CARNE",
+   "tarefas": [
+    "WOT0054651"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0054165",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "21529 - PARTAGE SHOP RIO GRANDE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "20/09/2026 12:02:02",
+   "fechamento": "",
+   "principal": "BK037977 - CÂMARA DE CONGELADOS",
+   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMG",
+   "tecnico": "",
+   "descricao": "BK037977 - CÂMARA DE CONGELADOS | CMG - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0054645"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0054142",
    "marca": "BKB",
