@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-09-20T02:00:10.961Z",
+ "atualizadoEm": "2026-09-20T10:00:13.770Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 23,
+  "emExecucao": 16,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 3,
-  "total": 23
+  "total": 16
  },
  "serie": [
-  {
-   "data": "2026-09-17",
-   "abertos": 12,
-   "fechados": 10
-  },
   {
    "data": "2026-09-18",
    "abertos": 12,
@@ -23,6 +18,11 @@
    "data": "2026-09-19",
    "abertos": 17,
    "fechados": 17
+  },
+  {
+   "data": "2026-09-20",
+   "abertos": 0,
+   "fechados": 0
   }
  ],
  "itens": [
@@ -388,167 +388,6 @@
    "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - PRINCÍPIO DE INCÊNDIO",
    "tarefas": [
     "WOT0053532"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0052935",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "21475 - SHOP JARDIM DAS AMERICAS",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "17/09/2026 16:47:32",
-   "fechamento": "",
-   "principal": "BK066039 - CÂMARA DE CONGELADOS",
-   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
-   "sigla": "CMG",
-   "tecnico": "",
-   "descricao": "BK066039 - CÂMARA DE CONGELADOS | CMG - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0053409"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0052909",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "17/09/2026 16:11:10",
-   "fechamento": "",
-   "principal": "BK052651 - COIFA",
-   "secundario": "COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK052651 - COIFA | COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
-   "tarefas": [
-    "WOT0053383"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0052900",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "16852 - SHOP SAO JOSE DOS PINHAIS",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "17/09/2026 15:53:34",
-   "fechamento": "",
-   "principal": "BK066866 - CÂMARA DE RESFRIADOS",
-   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
-   "sigla": "CMR",
-   "tecnico": "",
-   "descricao": "BK066866 - CÂMARA DE RESFRIADOS | CMR - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0053375"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0052693",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "20049 - SHOP PRACA RIO GRANDE",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "17/09/2026 11:53:08",
-   "fechamento": "",
-   "principal": "CÂMARA DE RESFRIADOS",
-   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
-   "sigla": "CMR",
-   "tecnico": "",
-   "descricao": "CÂMARA DE RESFRIADOS | CMR - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0053165"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0052557",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "24741 - FS PELOTAS - AV FERREIRA VIANA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "17/09/2026 09:18:56",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - COZINHA - REFLUXO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
-   "tarefas": [
-    "WOT0053028"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "Tentativa de contato: 19/09/2026 17:44:12;\n",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0052545",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "18443 - SHOP CENTER LAR",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "17/09/2026 09:07:58",
-   "fechamento": "",
-   "principal": "BK034925 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
-   "secundario": "CMR - NÃO LIGA",
-   "sigla": "CMR",
-   "tecnico": "",
-   "descricao": "BK034925 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO LIGA",
-   "tarefas": [
-    "WOT0053015"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0052539",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "17/09/2026 08:51:20",
-   "fechamento": "",
-   "principal": "BK035104 - COIFA LAVADORA; MELTING",
-   "secundario": "COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK035104 - COIFA LAVADORA; MELTING | COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
-   "tarefas": [
-    "WOT0053009"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
