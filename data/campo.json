@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-20T14:00:13.904Z",
+ "atualizadoEm": "2026-09-20T14:20:16.290Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 19,
+  "emExecucao": 21,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 3,
-  "total": 19
+  "total": 21
  },
  "serie": [
   {
@@ -21,28 +21,74 @@
   },
   {
    "data": "2026-09-20",
-   "abertos": 4,
-   "fechados": 1
+   "abertos": 7,
+   "fechados": 2
   }
  ],
  "itens": [
   {
-   "numero": "WO0054128",
+   "numero": "WO0054142",
    "marca": "BKB",
    "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "18443 - SHOP CENTER LAR",
+   "setor": "CAPITAL SUL RS",
+   "loja": "19618 - SHOP GRAVATAI",
    "status": "Pronto para Expedição",
    "fase": "Iniciado",
-   "abertura": "20/09/2026 10:47:17",
+   "abertura": "20/09/2026 11:06:47",
    "fechamento": "",
-   "principal": "BROILER",
-   "secundario": "BRO - NÃO MANTÉM A CHAMA",
-   "sigla": "BRO",
+   "principal": "BK036683 - COIFA LAVADORA; MELTING",
+   "secundario": "COI - COIFA NÃO FUNCIONA",
+   "sigla": "COI",
    "tecnico": "",
-   "descricao": "BROILER | BRO - NÃO MANTÉM A CHAMA",
+   "descricao": "BK036683 - COIFA LAVADORA; MELTING | COI - COIFA NÃO FUNCIONA",
    "tarefas": [
-    "WOT0054608"
+    "WOT0054622"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0054136",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "21659 - BOURBON SHOP PORTO ALEGRE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "20/09/2026 11:02:36",
+   "fechamento": "",
+   "principal": "BK066442 - EXAUSTOR",
+   "secundario": "EXA - NÃO LIGA",
+   "sigla": "EXA",
+   "tecnico": "",
+   "descricao": "BK066442 - EXAUSTOR | EXA - NÃO LIGA",
+   "tarefas": [
+    "WOT0054616"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0054135",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "21659 - BOURBON SHOP PORTO ALEGRE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "20/09/2026 11:01:14",
+   "fechamento": "",
+   "principal": "BK039477 - COIFA",
+   "secundario": "COI - COIFA NÃO FUNCIONA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK039477 - COIFA | COI - COIFA NÃO FUNCIONA",
+   "tarefas": [
+    "WOT0054615"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
