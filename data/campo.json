@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-20T20:00:09.749Z",
+ "atualizadoEm": "2026-09-20T20:20:09.736Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 20,
+  "emExecucao": 22,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 5,
-  "total": 20
+  "aguardandoToken": 6,
+  "total": 22
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-09-20",
-   "abertos": 12,
+   "abertos": 14,
    "fechados": 11
   }
  ],
  "itens": [
+  {
+   "numero": "WO0054262",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "21787 - CARREFOUR PARTENON",
+   "status": "Trabalho em andamento",
+   "fase": "Requisição Completa - Aguardando Token",
+   "abertura": "20/09/2026 17:16:44",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - COZINHA - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
+   "tarefas": [
+    "WOT0054749"
+   ],
+   "aguardandoToken": 1,
+   "fechadoSemToken": "20/09/2026 17:19:18",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0054261",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "21586 - SHOP ROYAL PLAZA SANTA MARIA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "20/09/2026 17:05:40",
+   "fechamento": "",
+   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
+   "secundario": "SCI - ACESSÓRIOS/PEÇAS DANIFICADAS",
+   "sigla": "SCI",
+   "tecnico": "",
+   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - ACESSÓRIOS/PEÇAS DANIFICADAS",
+   "tarefas": [
+    "WOT0054748"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0054236",
    "marca": "BKB",
@@ -216,7 +262,7 @@
    "regional": "SUL",
    "setor": "CURITIBA NORTE",
    "loja": "15875 - SHOP MUELLER CURITIBA",
-   "status": "Pronto para Expedição",
+   "status": "Trabalho em andamento",
    "fase": "Iniciado",
    "abertura": "19/09/2026 22:48:13",
    "fechamento": "",
