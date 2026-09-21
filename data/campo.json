@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-21T15:40:09.494Z",
+ "atualizadoEm": "2026-09-21T16:20:10.319Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 31,
+  "emExecucao": 33,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 4,
-  "total": 31
+  "total": 33
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-09-21",
-   "abertos": 19,
+   "abertos": 21,
    "fechados": 3
   }
  ],
  "itens": [
+  {
+   "numero": "WO0054636",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "27589 - PARK EUROPEU BLUMENAU",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "21/09/2026 13:13:28",
+   "fechamento": "",
+   "principal": "CAMARA DE CONGELADOS; TOPEMA",
+   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMG",
+   "tecnico": "",
+   "descricao": "CAMARA DE CONGELADOS; TOPEMA | CMG - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0055129"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0054624",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "27589 - PARK EUROPEU BLUMENAU",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "21/09/2026 13:01:49",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
+   "tarefas": [
+    "WOT0055118"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0054601",
    "marca": "BKB",
