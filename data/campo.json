@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-21T11:40:09.230Z",
+ "atualizadoEm": "2026-09-21T12:00:11.793Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 21,
+  "emExecucao": 22,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 4,
-  "total": 21
+  "total": 22
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-21",
-   "abertos": 7,
+   "abertos": 8,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0054386",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "29084 FS PINHAIS PEDRO JACOMEL 13",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "21/09/2026 08:49:28",
+   "fechamento": "",
+   "principal": "BK072795 - BROILER",
+   "secundario": "BRO - NÃO ACENDE",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK072795 - BROILER | BRO - NÃO ACENDE",
+   "tarefas": [
+    "WOT0054877"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0054382",
    "marca": "BKB",
