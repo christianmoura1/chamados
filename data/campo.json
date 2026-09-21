@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-21T12:40:09.755Z",
+ "atualizadoEm": "2026-09-21T13:00:10.324Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 25,
+  "emExecucao": 28,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 5,
-  "total": 25
+  "aguardandoToken": 4,
+  "total": 28
  },
  "serie": [
   {
@@ -21,11 +21,103 @@
   },
   {
    "data": "2026-09-21",
-   "abertos": 11,
-   "fechados": 0
+   "abertos": 15,
+   "fechados": 1
   }
  ],
  "itens": [
+  {
+   "numero": "WO0054447",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "19665 - SHOP SAN PELEGRINO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "21/09/2026 09:52:14",
+   "fechamento": "",
+   "principal": "BK021213 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
+   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMR",
+   "tecnico": "",
+   "descricao": "BK021213 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0054939"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0054446",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "22507 - ILR PORTO ALEGRE - R ANDRADAS 1664",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "21/09/2026 09:50:29",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - QUADRO ELÉTRICO - NÃO LIGA ELETRICAMENTE",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - NÃO LIGA ELETRICAMENTE",
+   "tarefas": [
+    "WOT0054938"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0054444",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "18450 - BOURBON SHOP SAO LEOPOLDO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "21/09/2026 09:50:25",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "AEX - FALTA DE ENERGIA - CORTE DE ENERGIA NA REGIÃO",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | AEX - FALTA DE ENERGIA - CORTE DE ENERGIA NA REGIÃO",
+   "tarefas": [
+    "WOT0054936"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0054439",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "16619 - SHOP PRAIA DE BELAS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "21/09/2026 09:41:14",
+   "fechamento": "",
+   "principal": "BK072052 - BROILER; NIECO; JF93G; 232-32583",
+   "secundario": "BRO - VAZAMENTO DE GÁS",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK072052 - BROILER; NIECO; JF93G; 232-32583 | BRO - VAZAMENTO DE GÁS",
+   "tarefas": [
+    "WOT0054931"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0054435",
    "marca": "BKB",
@@ -115,29 +207,6 @@
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0054382",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "18443 - SHOP CENTER LAR",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "21/09/2026 08:37:17",
-   "fechamento": "",
-   "principal": "BROILER",
-   "secundario": "BRO - NÃO MANTÉM A CHAMA",
-   "sigla": "BRO",
-   "tecnico": "",
-   "descricao": "BROILER | BRO - NÃO MANTÉM A CHAMA",
-   "tarefas": [
-    "WOT0054866"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "21/09/2026 09:36:40",
    "contato": "",
    "grupo": "execucao"
   },
