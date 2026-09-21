@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-21T13:20:10.803Z",
+ "atualizadoEm": "2026-09-21T14:00:11.025Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 30,
+  "emExecucao": 31,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 4,
-  "total": 30
+  "total": 31
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-21",
-   "abertos": 17,
+   "abertos": 18,
    "fechados": 1
   }
  ],
  "itens": [
+  {
+   "numero": "WO0054502",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "25677 - FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "21/09/2026 10:52:12",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
+   "tarefas": [
+    "WOT0054996"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0054470",
    "marca": "BKB",
