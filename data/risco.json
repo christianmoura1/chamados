@@ -1,8 +1,8 @@
 {
- "atualizadoEm": "19/09/2026 20:07:17",
- "geradoEm": "2026-09-20T09:01:45.486Z",
+ "atualizadoEm": "20/09/2026 20:07:23",
+ "geradoEm": "2026-09-21T09:01:09.485Z",
  "totalLojasAvaliadas": 71,
- "scoreMedio": 9.56,
+ "scoreMedio": 9.75,
  "categorias": [
   {
    "chave": "sci",
@@ -38,7 +38,17 @@
      "diasAtraso": null
     },
     {
+     "nome": "20049 - SHOP PRACA RIO GRANDE",
+     "score": 15,
+     "diasAtraso": null
+    },
+    {
      "nome": "20215 - CARREFOUR PASSO D'AREIA",
+     "score": 15,
+     "diasAtraso": null
+    },
+    {
+     "nome": "20621 - SHOP PELOTAS",
      "score": 15,
      "diasAtraso": null
     },
@@ -74,16 +84,6 @@
     },
     {
      "nome": "16619 - SHOP PRAIA DE BELAS",
-     "score": 11,
-     "diasAtraso": null
-    },
-    {
-     "nome": "20049 - SHOP PRACA RIO GRANDE",
-     "score": 11,
-     "diasAtraso": null
-    },
-    {
-     "nome": "20621 - SHOP PELOTAS",
      "score": 11,
      "diasAtraso": null
     },
@@ -162,11 +162,16 @@
   {
    "chave": "rotaSeguranca",
    "nome": "Rota Segurança",
-   "vencido": 4,
-   "emDia": 67,
+   "vencido": 5,
+   "emDia": 66,
    "total": 71,
-   "pctVencido": 6,
+   "pctVencido": 7,
    "lojasVencidas": [
+    {
+     "nome": "16852 - SHOP SAO JOSE DOS PINHAIS",
+     "score": 15,
+     "diasAtraso": null
+    },
     {
      "nome": "15903 - SHOP CURITIBA",
      "score": 14,
@@ -217,7 +222,7 @@
   "Exaustor",
   "Broiler",
   "Central de fumaça",
-  "19",
+  "21",
   "3",
   "3",
   "2",
@@ -552,6 +557,34 @@
     "tecnico": "MARCEL VINICIOS ROCHA AGRADEM"
    },
    {
+    "numero": "WO0050832",
+    "statusRisco": "Atrasado",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - COIFA EM CONTIGÊNCIA",
+    "regional": "SUL",
+    "setor": "SUDOESTE RS",
+    "loja": "20049 - SHOP PRACA RIO GRANDE",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "13/09/2026",
+    "dtEncerramento": "",
+    "tecnico": "THIAGO DA SILVA GONZALEZ"
+   },
+   {
+    "numero": "WO0050833",
+    "statusRisco": "Atrasado",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - COIFA EM CONTIGÊNCIA",
+    "regional": "SUL",
+    "setor": "SUDOESTE RS",
+    "loja": "20621 - SHOP PELOTAS",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "13/09/2026",
+    "dtEncerramento": "",
+    "tecnico": "THIAGO DA SILVA GONZALEZ"
+   },
+   {
     "numero": "WO0018913",
     "statusRisco": "Atrasado",
     "item": "Coifa",
@@ -680,6 +713,20 @@
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
    },
    {
+    "numero": "WO0054135",
+    "statusRisco": "No Prazo",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - COIFA NÃO FUNCIONA",
+    "regional": "SUL",
+    "setor": "CAPITAL CENTRO RS",
+    "loja": "21659 - BOURBON SHOP PORTO ALEGRE",
+    "status": "Em Andamento",
+    "dtAbertura": "20/09/2026",
+    "dtEncerramento": "",
+    "tecnico": "MARCEL VINICIOS ROCHA AGRADEM"
+   },
+   {
     "numero": "WO0052372",
     "statusRisco": "No Prazo",
     "item": "Coifa",
@@ -708,32 +755,18 @@
     "tecnico": "CARLOS MAGNO DA SILVA LIRA"
    },
    {
-    "numero": "WO0050832",
+    "numero": "WO0054032",
     "statusRisco": "No Prazo",
     "item": "Coifa",
     "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA EM CONTIGÊNCIA",
+    "assuntoSecundario": "COI - COIFA NÃO FUNCIONA",
     "regional": "SUL",
-    "setor": "SUDOESTE RS",
-    "loja": "20049 - SHOP PRACA RIO GRANDE",
+    "setor": "GRANDE CURITIBA",
+    "loja": "30086 - FS PONTA GROSSA - BALD TAQUES 1530",
     "status": "Pronto Para Envio",
-    "dtAbertura": "13/09/2026",
+    "dtAbertura": "19/09/2026",
     "dtEncerramento": "",
-    "tecnico": "THIAGO DA SILVA GONZALEZ"
-   },
-   {
-    "numero": "WO0050833",
-    "statusRisco": "No Prazo",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA EM CONTIGÊNCIA",
-    "regional": "SUL",
-    "setor": "SUDOESTE RS",
-    "loja": "20621 - SHOP PELOTAS",
-    "status": "Pronto Para Envio",
-    "dtAbertura": "13/09/2026",
-    "dtEncerramento": "",
-    "tecnico": "THIAGO DA SILVA GONZALEZ"
+    "tecnico": "CARLOS MAGNO DA SILVA LIRA"
    },
    {
     "numero": "WO0051644",
