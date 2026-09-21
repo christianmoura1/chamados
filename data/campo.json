@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-09-20T23:20:11.117Z",
+ "atualizadoEm": "2026-09-21T11:03:30.934Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 18,
+  "emExecucao": 19,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 5,
-  "total": 18
+  "aguardandoToken": 4,
+  "total": 19
  },
  "serie": [
-  {
-   "data": "2026-09-18",
-   "abertos": 12,
-   "fechados": 7
-  },
   {
    "data": "2026-09-19",
    "abertos": 17,
@@ -23,9 +18,129 @@
    "data": "2026-09-20",
    "abertos": 14,
    "fechados": 16
+  },
+  {
+   "data": "2026-09-21",
+   "abertos": 5,
+   "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0054356",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "25455 - FS POA - AV DR NILO PECANHA 1715",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "21/09/2026 07:35:52",
+   "fechamento": "",
+   "principal": "CAMARA DE CONGELADOS; TOPEMA",
+   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMG",
+   "tecnico": "",
+   "descricao": "CAMARA DE CONGELADOS; TOPEMA | CMG - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0054840"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0054339",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "21/09/2026 04:40:49",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
+   "tarefas": [
+    "WOT0054823"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0054337",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "31345 FS CANOAS - AV DR SEZEFREDO A",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "21/09/2026 04:19:07",
+   "fechamento": "",
+   "principal": "EXAUSTOR",
+   "secundario": "EXA - NÃO LIGA",
+   "sigla": "EXA",
+   "tecnico": "",
+   "descricao": "EXAUSTOR | EXA - NÃO LIGA",
+   "tarefas": [
+    "WOT0054821"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0054331",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "24741 - FS PELOTAS - AV FERREIRA VIANA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "21/09/2026 01:50:44",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
+   "tarefas": [
+    "WOT0054817"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0054329",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "24741 - FS PELOTAS - AV FERREIRA VIANA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "21/09/2026 01:47:19",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
+   "tarefas": [
+    "WOT0054815"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0054261",
    "marca": "BKB",
@@ -342,98 +457,6 @@
    "descricao": "BK078966 - BROILER; NIECO; JF94G; 534-40484 | BRO - NÃO ATINGE TEMPERATURA",
    "tarefas": [
     "WOT0054124"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0053425",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "16988 - SHOP ESTACAO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "18/09/2026 16:16:11",
-   "fechamento": "",
-   "principal": "BK071580 - COIFA LAVADORA; MELTING",
-   "secundario": "COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK071580 - COIFA LAVADORA; MELTING | COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
-   "tarefas": [
-    "WOT0053907"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0053282",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL SUL RS",
-   "loja": "16619 - SHOP PRAIA DE BELAS",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "18/09/2026 12:47:35",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - GÁS - VAZAMENTO DE GÁS",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - GÁS - VAZAMENTO DE GÁS",
-   "tarefas": [
-    "WOT0053763"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0053147",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "OESTE PR",
-   "loja": "26830 - FS FOZ DO IGUACU - AV JORGE S",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "18/09/2026 09:42:47",
-   "fechamento": "",
-   "principal": "FRITADEIRA",
-   "secundario": "FRI - NÃO LIGA",
-   "sigla": "FRI",
-   "tecnico": "",
-   "descricao": "FRITADEIRA | FRI - NÃO LIGA",
-   "tarefas": [
-    "WOT0053628"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "18/09/2026 10:33:44",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0053130",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL NORTE RS",
-   "loja": "25447 - FS POA - AV DA CAVALHADA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "18/09/2026 09:20:36",
-   "fechamento": "",
-   "principal": "BK077588 - BROILER GLP ALTA PERFORMANCE",
-   "secundario": "BRO - NÃO ACENDE",
-   "sigla": "BRO",
-   "tecnico": "",
-   "descricao": "BK077588 - BROILER GLP ALTA PERFORMANCE | BRO - NÃO ACENDE",
-   "tarefas": [
-    "WOT0053611"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
