@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-21T13:00:10.324Z",
+ "atualizadoEm": "2026-09-21T13:20:10.803Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 28,
+  "emExecucao": 30,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 4,
-  "total": 28
+  "total": 30
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-09-21",
-   "abertos": 15,
+   "abertos": 17,
    "fechados": 1
   }
  ],
  "itens": [
+  {
+   "numero": "WO0054470",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "21/09/2026 10:12:01",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "AEX - FALTA DE ENERGIA - CORTE DE ENERGIA NA REGIÃO",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | AEX - FALTA DE ENERGIA - CORTE DE ENERGIA NA REGIÃO",
+   "tarefas": [
+    "WOT0054963"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0054463",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "32645 FC CAXIAS DO SUL - VILLAGIO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "21/09/2026 10:06:25",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "AEX - FALTA DE ENERGIA - CORTE DE ENERGIA NA REGIÃO",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | AEX - FALTA DE ENERGIA - CORTE DE ENERGIA NA REGIÃO",
+   "tarefas": [
+    "WOT0054956"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0054447",
    "marca": "BKB",
