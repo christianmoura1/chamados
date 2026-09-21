@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-21T12:00:11.793Z",
+ "atualizadoEm": "2026-09-21T12:20:10.159Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 22,
+  "emExecucao": 24,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 4,
-  "total": 22
+  "total": 24
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-09-21",
-   "abertos": 8,
+   "abertos": 10,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0054423",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "19618 - SHOP GRAVATAI",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "21/09/2026 09:15:38",
+   "fechamento": "",
+   "principal": "BK021421 - CÂMARA DE RESFRIADOS",
+   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMR",
+   "tecnico": "",
+   "descricao": "BK021421 - CÂMARA DE RESFRIADOS | CMR - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0054915"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0054403",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "21/09/2026 09:00:59",
+   "fechamento": "",
+   "principal": "FRITADEIRA",
+   "secundario": "FRI - NÃO LIGA",
+   "sigla": "FRI",
+   "tecnico": "",
+   "descricao": "FRITADEIRA | FRI - NÃO LIGA",
+   "tarefas": [
+    "WOT0054895"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0054386",
    "marca": "BKB",
