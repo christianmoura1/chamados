@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-21T11:03:30.934Z",
+ "atualizadoEm": "2026-09-21T11:40:09.230Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 19,
+  "emExecucao": 21,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 4,
-  "total": 19
+  "total": 21
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-09-21",
-   "abertos": 5,
+   "abertos": 7,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0054382",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "18443 - SHOP CENTER LAR",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "21/09/2026 08:37:17",
+   "fechamento": "",
+   "principal": "BROILER",
+   "secundario": "BRO - NÃO MANTÉM A CHAMA",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BROILER | BRO - NÃO MANTÉM A CHAMA",
+   "tarefas": [
+    "WOT0054866"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0054374",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "26839 FS CURITIBA - AV SILVA JARDIM",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "21/09/2026 08:28:04",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - CABINE PRIMÁRIA - NÃO LIGA ELETRICAMENTE",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - CABINE PRIMÁRIA - NÃO LIGA ELETRICAMENTE",
+   "tarefas": [
+    "WOT0054858"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0054356",
    "marca": "BKB",
