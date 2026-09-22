@@ -1,5 +1,5 @@
 {
- "atualizadoEm": "2026-09-22T12:20:11.139Z",
+ "atualizadoEm": "2026-09-22T13:40:10.595Z",
  "janelaDias": 3,
  "resumo": {
   "emExecucao": 29,
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-22",
-   "abertos": 3,
-   "fechados": 0
+   "abertos": 4,
+   "fechados": 1
   }
  ],
  "itens": [
+  {
+   "numero": "WO0055039",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "16687 - SHOP PALLADIUM PONTA GROSSA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "22/09/2026 10:23:38",
+   "fechamento": "",
+   "principal": "BK066105 - COIFA",
+   "secundario": "COI - COIFA EM CONTIGÊNCIA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK066105 - COIFA | COI - COIFA EM CONTIGÊNCIA",
+   "tarefas": [
+    "WOT0055534"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0054981",
    "marca": "BKB",
@@ -434,29 +457,6 @@
    "descricao": "FRITADEIRA | FRI - NÃO LIGA",
    "tarefas": [
     "WOT0054895"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0054374",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "26839 FS CURITIBA - AV SILVA JARDIM",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "21/09/2026 08:28:04",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - CABINE PRIMÁRIA - NÃO LIGA ELETRICAMENTE",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - CABINE PRIMÁRIA - NÃO LIGA ELETRICAMENTE",
-   "tarefas": [
-    "WOT0054858"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
