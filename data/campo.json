@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-22T14:20:11.066Z",
+ "atualizadoEm": "2026-09-22T14:40:10.905Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 30,
+  "emExecucao": 32,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 2,
-  "total": 30
+  "total": 32
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-09-22",
-   "abertos": 5,
+   "abertos": 7,
    "fechados": 1
   }
  ],
  "itens": [
+  {
+   "numero": "WO0055113",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "25677 - FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "22/09/2026 11:32:18",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "AEX - FALTA DE ENERGIA - CORTE DE ENERGIA NA REGIÃO",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | AEX - FALTA DE ENERGIA - CORTE DE ENERGIA NA REGIÃO",
+   "tarefas": [
+    "WOT0055608"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0055108",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "",
+   "loja": "33697  - FS COLOMBO - ESTRADA DA RIBEIRA 3700",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "22/09/2026 11:23:12",
+   "fechamento": "",
+   "principal": "ZP191527 - BROILER",
+   "secundario": "BRO - SUPERAQUECENDO",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "ZP191527 - BROILER | BRO - SUPERAQUECENDO",
+   "tarefas": [
+    "WOT0055603"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0055064",
    "marca": "BKB",
@@ -299,7 +345,7 @@
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
-   "contato": "",
+   "contato": "Tentativa de contato: 22/09/2026 11:33:47;\n",
    "grupo": "execucao"
   },
   {
@@ -368,7 +414,7 @@
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
-   "contato": "",
+   "contato": "Tentativa de contato: 22/09/2026 11:40:07;\n",
    "grupo": "execucao"
   },
   {
