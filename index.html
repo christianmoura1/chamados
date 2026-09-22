@@ -182,6 +182,13 @@
   .mtag-alta { background: var(--alta-soft); color: var(--alta); }
   .mtag-d { background: transparent; color: var(--faint); padding-left: 2px; padding-right: 0; }
 
+  /* seletor entre as duas visoes do card (restaurantes x chamados) */
+  .vis-tabs { display: inline-flex; gap: 2px; background: var(--surface2); border-radius: 8px; padding: 2px; margin-bottom: 2px; cursor: default; }
+  .vis-tab { font-family: "IBM Plex Mono", monospace; font-size: 9.5px; letter-spacing: .04em; text-transform: uppercase; border: 0; background: transparent; color: var(--faint); padding: 3px 9px; border-radius: 6px; cursor: pointer; transition: background .12s ease, color .12s ease; }
+  .vis-tab:hover { color: var(--muted); }
+  .vis-tab.ativo { background: var(--surface); color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+  .vis-painel.oculto { display: none; }
+
   /* ---------- farol por supervisor (velocimetro) ---------- */
   .gauge-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; align-items: start; }
   @media (max-width: 1180px) { .gauge-grid { grid-template-columns: repeat(3,minmax(0,1fr)); } }
@@ -537,6 +544,36 @@ function blocoLojasCriticas(itens) {
       <div class="esos-label">Restaurantes mais críticos (${top.length} de ${agg.size})</div>
       <div class="lcrit-list">${html}</div>
     </div>`;
+}
+
+// Duas visoes no mesmo card, alternadas por botao. Pedido do Christian,
+// 21/09/2026: ele quer a lista de CHAMADOS (a original) e a de LOJAS, sem
+// perder nenhuma. O clique troca as quatro de uma vez -- a graca e' comparar
+// supervisores no mesmo criterio -- e a escolha fica guardada no navegador.
+function blocoDuasVisoes(itens) {
+  return `<div class="vis-bloco">
+      <div class="vis-tabs" onclick="event.stopPropagation()">
+        <button type="button" class="vis-tab ativo" data-v="lojas" onclick="event.stopPropagation();trocarVisaoFarol('lojas')">Restaurantes</button>
+        <button type="button" class="vis-tab" data-v="chamados" onclick="event.stopPropagation();trocarVisaoFarol('chamados')">Chamados</button>
+      </div>
+      <div class="vis-painel" data-v="lojas">${blocoLojasCriticas(itens)}</div>
+      <div class="vis-painel oculto" data-v="chamados">${blocoMaisUrgentes(itens)}</div>
+    </div>`;
+}
+
+function trocarVisaoFarol(v) {
+  document.querySelectorAll('.vis-bloco').forEach(b => {
+    b.querySelectorAll('.vis-tab').forEach(t => t.classList.toggle('ativo', t.dataset.v === v));
+    b.querySelectorAll('.vis-painel').forEach(p => p.classList.toggle('oculto', p.dataset.v !== v));
+  });
+  try { localStorage.setItem('farolVisao', v); } catch (e) { /* navegador sem storage: so' nao lembra */ }
+}
+
+// restaura a preferencia depois que os cards existem
+function aplicarVisaoSalva() {
+  let v = 'lojas';
+  try { v = localStorage.getItem('farolVisao') || 'lojas'; } catch (e) {}
+  if (v === 'chamados') trocarVisaoFarol('chamados');
 }
 
 let MODAL_ITENS = [];
@@ -927,7 +964,7 @@ async function iniciar() {
         <div class="estat crit"><div class="n num">${s.sos}</div><div class="l">SOS</div></div>
       </div>
       <div class="etime"><span>Tempo médio em aberto</span><b>${s.tempoMedioDias}d</b></div>
-      ${blocoLojasCriticas(s.chamadosDetalhe)}
+      ${blocoDuasVisoes(s.chamadosDetalhe)}
     </div>`;
   }).join('');
 
@@ -1004,6 +1041,7 @@ async function iniciar() {
     </footer>
   `;
 
+  aplicarVisaoSalva();
   montarBuscaChamados(D);
   carregarHistorico();
 }
