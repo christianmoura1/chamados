@@ -237,6 +237,17 @@
     border-color: #E5352B; background: #FDECEB; color: #B22119; font-weight: 700;
   }
   .prev-date.hoje { border-color: #F0A31B; background: #FFF6E6; color: #8A5B06; font-weight: 700; }
+  /* aviso de responsaveis/prazos nao salvos -- fica fixo no topo porque a
+     falha anterior era SILENCIOSA e custou dados digitados */
+  .aviso-atrib {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+    font-family: "IBM Plex Sans", sans-serif; font-size: 13px; font-weight: 600;
+    padding: 11px 18px; text-align: center; line-height: 1.45;
+    box-shadow: 0 2px 10px rgba(0,0,0,.14);
+  }
+  .aviso-atrib.erro { background: #FDECEB; color: #B22119; border-bottom: 2px solid #E5352B; }
+  .aviso-atrib.pendente { background: #FFF6E6; color: #8A5B06; border-bottom: 2px solid #F0A31B; }
+  .aviso-atrib[hidden] { display: none; }
   .filtro-limpar {
     font-family: "IBM Plex Sans", sans-serif; font-size: 12.5px; font-weight: 600; color: var(--muted);
     background: var(--surface2); border: 1px solid var(--line); border-radius: 10px; padding: 9px 14px; cursor: pointer;
@@ -346,22 +357,100 @@ function responsavelDoTecnico(tecnico) {
 // painel e precisam ver a mesma coisa). API roda na propria VPS atras do
 // Caddy (154-64-32-227.sslip.io), pedido do Christian, 15/09/2026.
 const API_ATRIBUICOES = 'https://154-64-32-227.sslip.io/v1/risco-atribuicoes';
+const CACHE_ATRIB = 'risco_atribuicoes_cache';
+const FILA_ATRIB = 'risco_atribuicoes_pendentes';
 let ATRIBUICOES = {};
+
+// 22/09/2026 -- o servidor de atribuicoes ficou 5 dias fora do ar e a pagina
+// nao disse nada: o carregamento caia no catch e assumia {}, entao TUDO
+// aparecia em branco como se nunca tivesse sido preenchido, e o Christian
+// perdeu prazos que tinha acabado de digitar. Pior: o POST nem conferia o
+// resultado -- um 502 do Caddy devolve resposta, nao excecao, entao a falha
+// passava por sucesso.
+//
+// Agora: (1) cache local da ultima copia boa, para nunca mostrar vazio como
+// se fosse verdade; (2) fila de pendentes em localStorage, para o que foi
+// digitado offline subir sozinho depois; (3) aviso na tela enquanto houver
+// coisa nao salva. Nenhuma edicao pode sumir em silencio.
+
+function lerJSONLocal(chave, padrao) {
+  try { return JSON.parse(localStorage.getItem(chave)) || padrao; } catch (e) { return padrao; }
+}
+function gravarJSONLocal(chave, valor) {
+  try { localStorage.setItem(chave, JSON.stringify(valor)); } catch (e) { /* sem storage: segue so' em memoria */ }
+}
+
+function avisoAtribuicoes(texto, tom) {
+  let el = document.getElementById('aviso-atrib');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'aviso-atrib';
+    document.body.appendChild(el);
+  }
+  el.className = 'aviso-atrib' + (tom ? ' ' + tom : '');
+  el.textContent = texto || '';
+  el.hidden = !texto;
+}
+
+async function enviarPendentes() {
+  const fila = lerJSONLocal(FILA_ATRIB, {});
+  const numeros = Object.keys(fila);
+  if (!numeros.length) { avisoAtribuicoes(''); return true; }
+  for (const numero of numeros) {
+    try {
+      const r = await fetch(API_ATRIBUICOES, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ numero, ...fila[numero] }),
+      });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      delete fila[numero];
+    } catch (e) { /* continua tentando os outros; o que falhar fica na fila */ }
+  }
+  gravarJSONLocal(FILA_ATRIB, fila);
+  const restam = Object.keys(fila).length;
+  if (restam) {
+    avisoAtribuicoes(restam + (restam === 1 ? ' alteração ainda não foi salva' : ' alterações ainda não foram salvas')
+      + ' no servidor. Estão guardadas neste navegador e sobem sozinhas quando ele voltar.', 'pendente');
+  } else {
+    avisoAtribuicoes('');
+  }
+  return restam === 0;
+}
+
 async function carregarAtribuicoes() {
+  const cache = lerJSONLocal(CACHE_ATRIB, null);
   try {
     const r = await fetch(API_ATRIBUICOES, { cache: 'no-store' });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
     ATRIBUICOES = await r.json();
-  } catch (e) { ATRIBUICOES = {}; }
+    gravarJSONLocal(CACHE_ATRIB, ATRIBUICOES);
+    await enviarPendentes();
+  } catch (e) {
+    ATRIBUICOES = cache ? { ...cache } : {};
+    avisoAtribuicoes(cache
+      ? 'Sem contato com o servidor de responsáveis e prazos. Mostrando a última cópia salva neste navegador — o que você editar fica guardado e sobe sozinho.'
+      : 'Sem contato com o servidor de responsáveis e prazos, e não há cópia neste navegador. Os campos aparecem vazios, mas isso NÃO quer dizer que foram apagados. Evite editar agora.', 'erro');
+  }
+  // o que ainda esta' na fila vale mais que o que veio do servidor
+  const fila = lerJSONLocal(FILA_ATRIB, {});
+  for (const numero of Object.keys(fila)) {
+    ATRIBUICOES[numero] = { ...ATRIBUICOES[numero], ...fila[numero] };
+  }
 }
+
 async function salvarCampoAtribuicao(numero, campo, valor) {
   ATRIBUICOES[numero] = { ...ATRIBUICOES[numero], [campo]: valor };
-  try {
-    await fetch(API_ATRIBUICOES, {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ numero, [campo]: valor }),
-    });
-  } catch (e) { /* falha de rede -- fica so' no cache local ate' proxima carga */ }
+  gravarJSONLocal(CACHE_ATRIB, ATRIBUICOES);
+  // entra na fila ANTES de tentar a rede: se a aba fechar no meio, nao se perde
+  const fila = lerJSONLocal(FILA_ATRIB, {});
+  fila[numero] = { ...fila[numero], [campo]: valor };
+  gravarJSONLocal(FILA_ATRIB, fila);
+  await enviarPendentes();
 }
+
+// reinsiste sozinho: se o servidor voltar, a fila esvazia sem ninguem mexer
+setInterval(function () { enviarPendentes(); }, 60000);
+window.addEventListener('online', function () { enviarPendentes(); });
 function responsavelAtual(c) {
   return ATRIBUICOES[c.numero]?.responsavel || responsavelDoTecnico(c.tecnico) || '';
 }
