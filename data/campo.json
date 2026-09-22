@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-22T15:20:11.555Z",
+ "atualizadoEm": "2026-09-22T15:40:11.072Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 31,
+  "emExecucao": 30,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 4,
-  "total": 31
+  "aguardandoToken": 2,
+  "total": 30
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-22",
-   "abertos": 7,
-   "fechados": 3
+   "abertos": 8,
+   "fechados": 5
   }
  ],
  "itens": [
+  {
+   "numero": "WO0055168",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "18408 - SHOP BELLA CITTA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "22/09/2026 12:31:08",
+   "fechamento": "",
+   "principal": "BK066938 - COIFA LAVADORA; MELTING",
+   "secundario": "COI - COIFA NÃO FUNCIONA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK066938 - COIFA LAVADORA; MELTING | COI - COIFA NÃO FUNCIONA",
+   "tarefas": [
+    "WOT0055663"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0055113",
    "marca": "BKB",
@@ -46,29 +69,6 @@
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0055108",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "",
-   "loja": "33697  - FS COLOMBO - ESTRADA DA RIBEIRA 3700",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "22/09/2026 11:23:12",
-   "fechamento": "",
-   "principal": "ZP191527 - BROILER",
-   "secundario": "BRO - SUPERAQUECENDO",
-   "sigla": "BRO",
-   "tecnico": "",
-   "descricao": "ZP191527 - BROILER | BRO - SUPERAQUECENDO",
-   "tarefas": [
-    "WOT0055603"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "22/09/2026 12:17:01",
    "contato": "",
    "grupo": "execucao"
   },
@@ -170,7 +170,7 @@
    "regional": "SUL",
    "setor": "",
    "loja": "33697  - FS COLOMBO - ESTRADA DA RIBEIRA 3700",
-   "status": "Pronto para Expedição",
+   "status": "Trabalho em andamento",
    "fase": "Iniciado",
    "abertura": "21/09/2026 22:41:56",
    "fechamento": "",
@@ -253,29 +253,6 @@
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0054601",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "27589 - PARK EUROPEU BLUMENAU",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "21/09/2026 12:20:19",
-   "fechamento": "",
-   "principal": "AR CONDICIONADO",
-   "secundario": "ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
-   "sigla": "ARC",
-   "tecnico": "",
-   "descricao": "AR CONDICIONADO | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
-   "tarefas": [
-    "WOT0055095"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "22/09/2026 11:43:04",
    "contato": "",
    "grupo": "execucao"
   },
