@@ -58,11 +58,16 @@ const CATEGORIAS = [
 // que muda pouco -- fixa aqui, igual as CATEGORIAS, em vez de reabrir a
 // planilha (que exige sessao logada) toda vez que o pipeline roda. Se a
 // escala mudar, atualizar esta lista manualmente.
+// AJUSTE MANUAL 15/09/2026: SHOP MUELLER CURITIBA movido de GUSTAVO para
+// CARLOS MAGNO por determinacao do Christian. A planilha "Equipe Sul"
+// (versao de 18/05/2026) ainda lista essa loja sob GUSTAVO / CURITIBA NORTE
+// -- ela esta DESATUALIZADA. Se alguem re-extrair da planilha, este ajuste
+// volta atras sozinho: reaplicar ou atualizar a planilha antes.
 const SUPERVISORES = [
   { nome: 'MARCEL', setores: ['VALE DOS SINOS', 'CAPITAL NORTE RS', 'SUDOESTE RS'], lojas: ['BOURBON SHOP NOVO HAMBURGO', 'BOURBON SHOP SAO LEOPOLDO', 'SHOP LAJEADO', 'SHOP SAN PELEGRINO', 'OUTLET NOVO HAMBURGO', 'FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382', 'FS CAXIAS DO SUL - R JOAO NICHELE 2227', 'FC CAXIAS DO SUL - VILLAGIO CAXIAS', 'SHOP IGUATEMI PORTO ALEGRE', 'BOURBON SHOP WALLIG', 'SHOP ROYAL PLAZA SANTA MARIA', 'SHOP PRACA NOVA SANTA MARIA', 'FS POA - AV CAVALHADA', 'FS POA - AV DR NILO PECANHA 1715', 'SHOP CENTER LAR', 'SHOP PRACA RIO GRANDE', "CARREFOUR PASSO D'AREIA", 'SHOP PELOTAS', 'PARTAGE SHOP RIO GRANDE', 'CARREFOUR PARTENON', 'ILR PORTO ALEGRE - R ANDRADAS 1664', 'FS PELOTAS - AV FERREIRA VIANA'] },
   { nome: 'RAFAEL', setores: ['CAPITAL CENTRO RS', 'CAPITAL SUL RS'], lojas: ['SHOP BELLA CITTA', 'PASSO FUNDO SHOP', 'SHOP DO VALE', 'FS PORTO ALEGRE - AV IPIRANGA 1600', 'BOURBON SHOP PORTO ALEGRE', 'FS CACHOEIRINHA - AV FLORES DA CUNHA', 'SHOP TOTAL POA', 'FS CANOAS - AV DR SEZ AZAMBUJA VIEIRA', 'SHOP PRAIA DE BELAS', 'CANOAS SHOP', 'SHOP GRAVATAI', 'PARK SHOP CANOAS', 'FS CANOAS - AV GETULIO VARGAS 3800'] },
-  { nome: 'GUSTAVO', setores: ['OESTE PR', 'GRANDE CURITIBA', 'CURITIBA NORTE'], lojas: ['CATARATAS JL SHOP', 'SHOP PALLADIUM FOZ DO IGUACU', 'FS FOZ DO IGUACU   AV JORGE SCHIMMELPFENG 50', 'SHOP JL CASCAVEL', 'SHOP GUARAPUAVA', 'FS CASCAVEL - AV BRASIL 1580', 'FC - CATUAI CASCAVEL - AV BRASIL 3561', 'SHOP PALLADIUM PONTA GROSSA', 'SHOP TOTAL PONTA GROSSA', 'FS PONTA GROSSA - BALD TAQUES 1530', 'PLAZA CAMPOS GERAIS', 'FS CURITIBA - LINHA VERDE', 'SHOP CIDADE CURITIBA', 'FS CURITIBA - AV FLORIANO PEIXOTO 5952', 'COLOMBO PARK SHOP', 'FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL 13185', 'JOCKEY PLAZA SHOP', 'SHOP MUELLER CURITIBA'] },
-  { nome: 'CARLOS MAGNO', setores: ['CURITIBA SUL', 'CURITIBA OESTE/SC', 'GRANDE CURITIBA'], lojas: ['SHOP CURITIBA', 'WALMART BIG TORRES', 'SHOP JARDIM DAS AMERICAS', 'ANGELONI AGUA VERDE', 'FS CURITIBA - RUA DOMINGOS STRAPASSON', 'FS CURITIBA   AV SILVA JARDIM 566', 'FS CURITIBA - R BISPO DOM JOSE 2348', 'SHOP ESTACAO', 'ILR FLORIANÓPOLIS - R. JERÔNIMO COELHO, 215', 'FS CURITIBA - R MARTIN AFONSO', 'ATLANTICO SHOP', 'PARK EUROPEU BLUMENAU', 'PORTO BELO OUTLET', 'FS CURITIBA   CARLOS KLEMTZ 1994', 'SHOP PALLADIUM CURITIBA', 'SHOP SAO JOSE DOS PINHAIS', 'FS SJP - AV DAS TORRES', 'FS CURITIBA   FRANCISCO FRISHMANN 3151'] },
+  { nome: 'GUSTAVO', setores: ['OESTE PR', 'GRANDE CURITIBA', 'CURITIBA NORTE'], lojas: ['CATARATAS JL SHOP', 'SHOP PALLADIUM FOZ DO IGUACU', 'FS FOZ DO IGUACU   AV JORGE SCHIMMELPFENG 50', 'SHOP JL CASCAVEL', 'SHOP GUARAPUAVA', 'FS CASCAVEL - AV BRASIL 1580', 'FC - CATUAI CASCAVEL - AV BRASIL 3561', 'SHOP PALLADIUM PONTA GROSSA', 'SHOP TOTAL PONTA GROSSA', 'FS PONTA GROSSA - BALD TAQUES 1530', 'PLAZA CAMPOS GERAIS', 'FS CURITIBA - LINHA VERDE', 'SHOP CIDADE CURITIBA', 'FS CURITIBA - AV FLORIANO PEIXOTO 5952', 'COLOMBO PARK SHOP', 'FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL 13185', 'JOCKEY PLAZA SHOP'] },
+  { nome: 'CARLOS MAGNO', setores: ['CURITIBA SUL', 'CURITIBA OESTE/SC', 'GRANDE CURITIBA'], lojas: ['SHOP CURITIBA', 'WALMART BIG TORRES', 'SHOP JARDIM DAS AMERICAS', 'ANGELONI AGUA VERDE', 'FS CURITIBA - RUA DOMINGOS STRAPASSON', 'FS CURITIBA   AV SILVA JARDIM 566', 'FS CURITIBA - R BISPO DOM JOSE 2348', 'SHOP ESTACAO', 'ILR FLORIANÓPOLIS - R. JERÔNIMO COELHO, 215', 'FS CURITIBA - R MARTIN AFONSO', 'ATLANTICO SHOP', 'PARK EUROPEU BLUMENAU', 'PORTO BELO OUTLET', 'FS CURITIBA   CARLOS KLEMTZ 1994', 'SHOP PALLADIUM CURITIBA', 'SHOP SAO JOSE DOS PINHAIS', 'FS SJP - AV DAS TORRES', 'FS CURITIBA   FRANCISCO FRISHMANN 3151', 'SHOP MUELLER CURITIBA'] },
 ];
 
 function normalizaLoja(s) {
@@ -172,6 +177,14 @@ const MAPA_LABEL_BI = {
   tostadeira: 'TOSTADEIRA',
 };
 
+function parseCarimboBI(carimbo) {
+  const m = String(carimbo).match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})\s+(\d{1,2}):(\d{2}):(\d{2})/);
+  if (!m) return new Date(carimbo);
+  const [, g1, g2, ano, h, min, seg] = m.map(Number);
+  const [dia, mes] = g1 > 12 ? [g1, g2] : g2 > 12 ? [g2, g1] : [g1, g2];
+  return new Date(ano, mes - 1, dia, h, min, seg);
+}
+
 async function buscarDisponibilidadeBI() {
   const browser = await chromium.connectOverCDP(CDP, { timeout: 15000 });
   const ctx = browser.contexts()[0];
@@ -179,12 +192,48 @@ async function buscarDisponibilidadeBI() {
   for (const p of ctx.pages()) {
     if (/e07d5c63-3ebb-4102-95bf-98a5eac89373\/250d750ebb9a588058a3/.test(p.url())) { page = p; break; }
   }
+  // Abas mortas na tela de login se acumulam: cada execucao que estourava o
+  // tempo deixava a sua para tras (achei 5 em 22/09/2026, comendo memoria e
+  // impedindo o reaproveitamento). Antes de abrir mais uma, varre as sobras.
+  if (!page) {
+    let fechadas = 0;
+    for (const p of ctx.pages()) {
+      if (/login\.microsoftonline|oauth2\/v2\.0\/authorize/.test(p.url())) {
+        await p.close().catch(() => {});
+        fechadas++;
+      }
+    }
+    if (fechadas) logInfo('fechei abas presas no login da Microsoft', { quantas: fechadas });
+  }
+
   const abriuNova = !page;
   if (!page) page = await ctx.newPage();
   await page.bringToFront();
   if (abriuNova) {
     await page.goto(URL_DISPONIBILIDADE_BI, { waitUntil: 'domcontentloaded', timeout: 30000 });
+  } else {
+    // Sem isto a aba so' era navegada quando nascia: reaproveitando uma aba
+    // antiga, o script lia o que estava DESENHADO nela, que podia ser de dias
+    // atras. Em 18/09/2026 o Backlog publicou % de indisponibilidade com
+    // carimbo de 16/09 enquanto o dataset ja era de 18/09. Recarrega sempre.
+    await page.reload({ waitUntil: 'domcontentloaded', timeout: 60000 });
   }
+  // O visual e' virtualizado: espera o carimbo aparecer em vez de contar no relogio.
+  //
+  // 22/09/2026 -- eram 40 voltas (2 min) e o pipeline passou o dia falhando.
+  // Sondando a pagina numa aba limpa: ela cai no login da Microsoft, gasta ~90s
+  // resolvendo o SSO sozinha e so' renderiza por volta dos 110s. Ou seja,
+  // perdia por segundos. Agora sao 5 minutos -- custa nada quando da certo,
+  // porque o laco sai assim que o carimbo aparece.
+  let pronta = false;
+  for (let i = 0; i < 100; i++) {
+    await page.waitForTimeout(3000);
+    pronta = await page
+      .evaluate(() => /ltima\s+Atualiza/i.test(document.body.innerText || ''))
+      .catch(() => false);
+    if (pronta) break;
+  }
+  if (!pronta) throw new Error('a pagina de Disponibilidade nao terminou de carregar (5 min)');
   await page.waitForTimeout(3000);
 
   const texto = await page.evaluate(() => document.body.innerText);
@@ -194,7 +243,9 @@ async function buscarDisponibilidadeBI() {
   const carimbo = carimboMatch ? carimboMatch[1].trim() : null;
   if (!carimbo) throw new Error('nao encontrei o carimbo "Última Atualização" na pagina do BI');
 
-  const dataCarimbo = new Date(carimbo);
+  // new Date() nativo assume M/D/AAAA (ingles); a conta do Power BI esta em
+  // pt-BR e devolve D/M/AAAA, entao "15/09/2026" quebrava o parser nativo.
+  const dataCarimbo = parseCarimboBI(carimbo);
   if (isNaN(dataCarimbo)) throw new Error(`carimbo do BI ilegivel: "${carimbo}"`);
   const diasDeAtraso = (Date.now() - dataCarimbo.getTime()) / 86400000;
   if (diasDeAtraso > 5) throw new Error(`disponibilidade BI desatualizada ha ${diasDeAtraso.toFixed(1)} dias (carimbo: ${carimbo})`);
