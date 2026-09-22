@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-21T23:20:10.139Z",
+ "atualizadoEm": "2026-09-22T02:00:10.323Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 31,
+  "emExecucao": 32,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 4,
-  "total": 31
+  "total": 32
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-21",
-   "abertos": 22,
+   "abertos": 23,
    "fechados": 10
   }
  ],
  "itens": [
+  {
+   "numero": "WO0054898",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "",
+   "loja": "33697  - FS COLOMBO - ESTRADA DA RIBEIRA 3700",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "21/09/2026 22:41:56",
+   "fechamento": "",
+   "principal": "ZP191527 - BROILER HORIZONTAL AI GLP 75000BTU/H",
+   "secundario": "BRO - SUPERAQUECENDO",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "ZP191527 - BROILER HORIZONTAL AI GLP 75000BTU/H | BRO - SUPERAQUECENDO",
+   "tarefas": [
+    "WOT0055392"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0054870",
    "marca": "BKB",
