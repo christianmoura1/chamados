@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-09-22T02:00:10.323Z",
+ "atualizadoEm": "2026-09-22T10:00:13.213Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 32,
+  "emExecucao": 27,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 4,
-  "total": 32
+  "aguardandoToken": 2,
+  "total": 27
  },
  "serie": [
-  {
-   "data": "2026-09-19",
-   "abertos": 17,
-   "fechados": 17
-  },
   {
    "data": "2026-09-20",
    "abertos": 14,
@@ -23,9 +18,37 @@
    "data": "2026-09-21",
    "abertos": 23,
    "fechados": 10
+  },
+  {
+   "data": "2026-09-22",
+   "abertos": 1,
+   "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0054915",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "24362 - FS SJP - AV DAS TORRES",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "22/09/2026 01:54:08",
+   "fechamento": "",
+   "principal": "BK069912 - EXAUSTOR",
+   "secundario": "EXA - NÃO LIGA",
+   "sigla": "EXA",
+   "tecnico": "",
+   "descricao": "BK069912 - EXAUSTOR | EXA - NÃO LIGA",
+   "tarefas": [
+    "WOT0055409"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0054898",
    "marca": "BKB",
@@ -618,144 +641,6 @@
    "descricao": "BK071672 - CÂMARA DE CONGELADOS | CMG - NÃO ATINGE TEMPERATURA",
    "tarefas": [
     "WOT0054555"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0054032",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "30086 FS PONTA GROSSA R BALDUINO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "19/09/2026 21:49:57",
-   "fechamento": "",
-   "principal": "BK245265 - COIFA",
-   "secundario": "COI - COIFA NÃO FUNCIONA",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK245265 - COIFA | COI - COIFA NÃO FUNCIONA",
-   "tarefas": [
-    "WOT0054513"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0054009",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL SUL RS",
-   "loja": "16619 - SHOP PRAIA DE BELAS",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "19/09/2026 19:11:29",
-   "fechamento": "",
-   "principal": "BK086173 - CÂMARA DE CONGELADOS",
-   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
-   "sigla": "CMG",
-   "tecnico": "",
-   "descricao": "BK086173 - CÂMARA DE CONGELADOS | CMG - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0054490"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "Tentativa de contato: 20/09/2026 10:06:49;\n",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0053940",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL SUL RS",
-   "loja": "16619 - SHOP PRAIA DE BELAS",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "19/09/2026 16:29:47",
-   "fechamento": "",
-   "principal": "BK072064 - CÂMARA DE RESFRIADOS",
-   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
-   "sigla": "CMR",
-   "tecnico": "",
-   "descricao": "BK072064 - CÂMARA DE RESFRIADOS | CMR - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0054422"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "19/09/2026 19:28:13",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0053890",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA NORTE",
-   "loja": "29084 FS PINHAIS PEDRO JACOMEL 13",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "19/09/2026 14:50:43",
-   "fechamento": "",
-   "principal": "Area Externa",
-   "secundario": "AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
-   "sigla": "AEX",
-   "tecnico": "",
-   "descricao": "Area Externa | AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
-   "tarefas": [
-    "WOT0054373"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "19/09/2026 15:46:02",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0053816",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "23736 - FS CURITIBA - R MARTIN AFONSO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "19/09/2026 12:59:48",
-   "fechamento": "",
-   "principal": "BK077091 - BROILER",
-   "secundario": "BRO - NÃO ATINGE TEMPERATURA",
-   "sigla": "BRO",
-   "tecnico": "",
-   "descricao": "BK077091 - BROILER | BRO - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0054300"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0053641",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "19/09/2026 08:53:36",
-   "fechamento": "",
-   "principal": "BK078966 - BROILER; NIECO; JF94G; 534-40484",
-   "secundario": "BRO - NÃO ATINGE TEMPERATURA",
-   "sigla": "BRO",
-   "tecnico": "",
-   "descricao": "BK078966 - BROILER; NIECO; JF94G; 534-40484 | BRO - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0054124"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
