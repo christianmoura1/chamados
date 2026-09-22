@@ -1,17 +1,27 @@
 {
- "atualizadoEm": "21/09/2026 20:07:00",
- "geradoEm": "2026-09-22T09:03:30.890Z",
+ "atualizadoEm": "22/09/2026 14:10:51",
+ "geradoEm": "2026-09-22T19:20:41.486Z",
  "totalLojasAvaliadas": 71,
- "scoreMedio": 9.63,
+ "scoreMedio": 10.06,
  "categorias": [
   {
    "chave": "sci",
    "nome": "SCI",
-   "vencido": 1,
-   "emDia": 70,
+   "vencido": 3,
+   "emDia": 68,
    "total": 71,
-   "pctVencido": 1,
+   "pctVencido": 4,
    "lojasVencidas": [
+    {
+     "nome": "32610 - FC - CATUAI CASCAVEL - AV BRASIL 3561",
+     "score": 15,
+     "diasAtraso": null
+    },
+    {
+     "nome": "23989 - SHOP JL CASCAVEL",
+     "score": 14,
+     "diasAtraso": null
+    },
     {
      "nome": "33312 - FC PONTA GROSSA - SHOPPING PLAZA CAMPOS GERAIS",
      "score": 10,
@@ -22,23 +32,28 @@
   {
    "chave": "dutos",
    "nome": "Dutos",
-   "vencido": 26,
-   "emDia": 45,
+   "vencido": 30,
+   "emDia": 41,
    "total": 71,
-   "pctVencido": 37,
+   "pctVencido": 42,
    "lojasVencidas": [
-    {
-     "nome": "26828 - FS CURITIBA FRANCISCO FRISHMANN 3151",
-     "score": 19,
-     "diasAtraso": null
-    },
     {
      "nome": "16687 - SHOP PALLADIUM PONTA GROSSA",
      "score": 15,
      "diasAtraso": null
     },
     {
+     "nome": "18408 - SHOP BELLA CITTA",
+     "score": 15,
+     "diasAtraso": null
+    },
+    {
      "nome": "20047 - FS CURITIBA - LINHA VERDE",
+     "score": 15,
+     "diasAtraso": null
+    },
+    {
+     "nome": "20048 - OUTLET NOVO HAMBURGO",
      "score": 15,
      "diasAtraso": null
     },
@@ -69,6 +84,16 @@
     },
     {
      "nome": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
+     "score": 15,
+     "diasAtraso": null
+    },
+    {
+     "nome": "26160 - FS CANOAS - AV GETULIO VARGAS 3800",
+     "score": 15,
+     "diasAtraso": null
+    },
+    {
+     "nome": "26828 - FS CURITIBA FRANCISCO FRISHMANN 3151",
      "score": 15,
      "diasAtraso": null
     },
@@ -123,6 +148,11 @@
      "diasAtraso": null
     },
     {
+     "nome": "22511 - FS CURITIBA - AV FLORIANO PEIXOTO 5952",
+     "score": 10,
+     "diasAtraso": null
+    },
+    {
      "nome": "22536 - SHOP PALLADIUM FOZ DO IGUACU",
      "score": 10,
      "diasAtraso": null
@@ -162,23 +192,18 @@
   {
    "chave": "rotaSeguranca",
    "nome": "Rota Segurança",
-   "vencido": 3,
-   "emDia": 68,
+   "vencido": 2,
+   "emDia": 69,
    "total": 71,
-   "pctVencido": 4,
+   "pctVencido": 3,
    "lojasVencidas": [
     {
-     "nome": "26828 - FS CURITIBA FRANCISCO FRISHMANN 3151",
-     "score": 19,
-     "diasAtraso": null
-    },
-    {
-     "nome": "16852 - SHOP SAO JOSE DOS PINHAIS",
-     "score": 15,
-     "diasAtraso": null
-    },
-    {
      "nome": "23989 - SHOP JL CASCAVEL",
+     "score": 14,
+     "diasAtraso": null
+    },
+    {
+     "nome": "27590 - PORTO BELO OUTLET",
      "score": 10,
      "diasAtraso": null
     }
@@ -194,7 +219,7 @@
    "lojasVencidas": [
     {
      "nome": "18408 - SHOP BELLA CITTA",
-     "score": 10,
+     "score": 15,
      "diasAtraso": null
     },
     {
@@ -207,15 +232,15 @@
  ],
  "abertoPorItemBruto": [
   "Coifa",
+  "Exaustor",
   "Quadro Elétrico",
   "Sensor de gás",
-  "Exaustor",
   "Broiler",
   "Central de fumaça",
-  "21",
+  "23",
+  "4",
+  "4",
   "3",
-  "3",
-  "2",
   "1",
   "1",
   "8",
@@ -277,6 +302,20 @@
     "loja": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
     "status": "Pronto Para Envio",
     "dtAbertura": "31/08/2026",
+    "dtEncerramento": "",
+    "tecnico": "Selecionar Linha"
+   },
+   {
+    "numero": "WO0051855",
+    "statusRisco": "Atrasado",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
+    "regional": "SUL",
+    "setor": "CAPITAL CENTRO RS",
+    "loja": "24766 - SHOP TOTAL POA",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "15/09/2026",
     "dtEncerramento": "",
     "tecnico": "Selecionar Linha"
    },
@@ -351,6 +390,20 @@
     "tecnico": "CARLOS MAGNO DA SILVA LIRA"
    },
    {
+    "numero": "WO0036525",
+    "statusRisco": "Atrasado",
+    "item": "Exaustor",
+    "assuntoPrincipal": "EXAUSTOR",
+    "assuntoSecundario": "EXA - AUSÊNCIA DE PROTEÇÃO DA CORREIA",
+    "regional": "SUL",
+    "setor": "CURITIBA NORTE",
+    "loja": "20047 - FS CURITIBA - LINHA VERDE",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "22/08/2026",
+    "dtEncerramento": "",
+    "tecnico": "CARLOS MAGNO DA SILVA LIRA"
+   },
+   {
     "numero": "WO0038207",
     "statusRisco": "Atrasado",
     "item": "Exaustor",
@@ -376,7 +429,7 @@
     "status": "Pronto Para Envio",
     "dtAbertura": "31/08/2026",
     "dtEncerramento": "",
-    "tecnico": "CARLOS MAGNO DA SILVA LIRA"
+    "tecnico": "Wilson Charles Philistin"
    },
    {
     "numero": "WO0046350",
@@ -575,6 +628,34 @@
     "tecnico": "THIAGO DA SILVA GONZALEZ"
    },
    {
+    "numero": "WO0051644",
+    "statusRisco": "Atrasado",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - ESTRUTURA DA COIFA COM DEFEITO",
+    "regional": "SUL",
+    "setor": "SUDOESTE RS",
+    "loja": "20621 - SHOP PELOTAS",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "15/09/2026",
+    "dtEncerramento": "",
+    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
+   },
+   {
+    "numero": "WO0055121",
+    "statusRisco": "Atrasado",
+    "item": "Quadro Elétrico",
+    "assuntoPrincipal": "ÁREA INTERNA",
+    "assuntoSecundario": "AIN - QUADRO ELÉTRICO - QUADRO ELÉTRICO COM FIOS EXPOSTOS",
+    "regional": "SUL",
+    "setor": "SUDOESTE RS",
+    "loja": "22507 - ILR PORTO ALEGRE - R ANDRADAS 1664",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "22/09/2026",
+    "dtEncerramento": "",
+    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
+   },
+   {
     "numero": "WO0018913",
     "statusRisco": "Atrasado",
     "item": "Coifa",
@@ -631,6 +712,20 @@
     "tecnico": "THIAGO DOS SANTOS COELHO"
    },
    {
+    "numero": "WO0041886",
+    "statusRisco": "Atrasado",
+    "item": "Exaustor",
+    "assuntoPrincipal": "EXAUSTOR",
+    "assuntoSecundario": "EXA - AUSÊNCIA DE PROTEÇÃO DA CORREIA",
+    "regional": "SUL",
+    "setor": "VALE DOS SINOS",
+    "loja": "25677 - FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
+    "status": "Atribuído",
+    "dtAbertura": "31/08/2026",
+    "dtEncerramento": "",
+    "tecnico": "THIAGO DOS SANTOS COELHO"
+   },
+   {
     "numero": "WO0047105",
     "statusRisco": "Atrasado",
     "item": "Coifa",
@@ -660,20 +755,6 @@
    }
   ],
   "aVencer": [
-   {
-    "numero": "WO0051855",
-    "statusRisco": "No Prazo",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
-    "regional": "SUL",
-    "setor": "CAPITAL CENTRO RS",
-    "loja": "24766 - SHOP TOTAL POA",
-    "status": "Pronto Para Envio",
-    "dtAbertura": "15/09/2026",
-    "dtEncerramento": "",
-    "tecnico": "Selecionar Linha"
-   },
    {
     "numero": "WO0052539",
     "statusRisco": "No Prazo",
@@ -715,6 +796,20 @@
     "dtAbertura": "20/09/2026",
     "dtEncerramento": "",
     "tecnico": "MARCEL VINICIOS ROCHA AGRADEM"
+   },
+   {
+    "numero": "WO0055168",
+    "statusRisco": "No Prazo",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - COIFA NÃO FUNCIONA",
+    "regional": "SUL",
+    "setor": "CAPITAL CENTRO RS",
+    "loja": "18408 - SHOP BELLA CITTA",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "22/09/2026",
+    "dtEncerramento": "",
+    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
    },
    {
     "numero": "WO0052372",
@@ -759,18 +854,18 @@
     "tecnico": "CARLOS MAGNO DA SILVA LIRA"
    },
    {
-    "numero": "WO0051644",
+    "numero": "WO0055039",
     "statusRisco": "No Prazo",
     "item": "Coifa",
     "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - ESTRUTURA DA COIFA COM DEFEITO",
+    "assuntoSecundario": "COI - COIFA EM CONTIGÊNCIA",
     "regional": "SUL",
-    "setor": "SUDOESTE RS",
-    "loja": "20621 - SHOP PELOTAS",
+    "setor": "GRANDE CURITIBA",
+    "loja": "16687 - SHOP PALLADIUM PONTA GROSSA",
     "status": "Pronto Para Envio",
-    "dtAbertura": "15/09/2026",
+    "dtAbertura": "22/09/2026",
     "dtEncerramento": "",
-    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
+    "tecnico": "CARLOS MAGNO DA SILVA LIRA"
    }
   ]
  }
