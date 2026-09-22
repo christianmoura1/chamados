@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-22T11:40:10.647Z",
+ "atualizadoEm": "2026-09-22T12:20:11.139Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 28,
+  "emExecucao": 29,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 2,
-  "total": 28
+  "total": 29
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-22",
-   "abertos": 2,
+   "abertos": 3,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0054981",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "22507 - ILR PORTO ALEGRE - R ANDRADAS 1664",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "22/09/2026 09:12:43",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
+   "tarefas": [
+    "WOT0055476"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0054945",
    "marca": "BKB",
