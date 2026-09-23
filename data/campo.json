@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-09-22T22:00:11.639Z",
+ "atualizadoEm": "2026-09-23T10:00:14.104Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 25,
+  "emExecucao": 22,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 1,
-  "total": 25
+  "aguardandoToken": 0,
+  "total": 22
  },
  "serie": [
-  {
-   "data": "2026-09-20",
-   "abertos": 14,
-   "fechados": 16
-  },
   {
    "data": "2026-09-21",
    "abertos": 23,
@@ -23,9 +18,37 @@
    "data": "2026-09-22",
    "abertos": 13,
    "fechados": 21
+  },
+  {
+   "data": "2026-09-23",
+   "abertos": 1,
+   "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0055471",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "30086 FS PONTA GROSSA R BALDUINO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "23/09/2026 02:59:36",
+   "fechamento": "",
+   "principal": "BK048402 - FRITADEIRA; FRYMASTER; 11814CSE; 1504PN0",
+   "secundario": "FRI - NENHUMA DAS CUBAS ATINGE TEMPERATURA",
+   "sigla": "FRI",
+   "tecnico": "",
+   "descricao": "BK048402 - FRITADEIRA; FRYMASTER; 11814CSE; 1504PN0 | FRI - NENHUMA DAS CUBAS ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0055962"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0055273",
    "marca": "BKB",
@@ -506,98 +529,6 @@
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0054261",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL NORTE RS",
-   "loja": "21586 - SHOP ROYAL PLAZA SANTA MARIA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "20/09/2026 17:05:40",
-   "fechamento": "",
-   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
-   "secundario": "SCI - ACESSÓRIOS/PEÇAS DANIFICADAS",
-   "sigla": "SCI",
-   "tecnico": "",
-   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - ACESSÓRIOS/PEÇAS DANIFICADAS",
-   "tarefas": [
-    "WOT0054748"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0054206",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "26828 - FS CURITIBA - FRANCISCO FRISHMANN 3151",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "20/09/2026 13:17:00",
-   "fechamento": "",
-   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
-   "secundario": "SCI - ACESSÓRIOS/PEÇAS DANIFICADAS",
-   "sigla": "SCI",
-   "tecnico": "",
-   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - ACESSÓRIOS/PEÇAS DANIFICADAS",
-   "tarefas": [
-    "WOT0054691"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0054165",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "21529 - PARTAGE SHOP RIO GRANDE",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "20/09/2026 12:02:02",
-   "fechamento": "",
-   "principal": "BK037977 - CÂMARA DE CONGELADOS",
-   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
-   "sigla": "CMG",
-   "tecnico": "",
-   "descricao": "BK037977 - CÂMARA DE CONGELADOS | CMG - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0054645"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0054136",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "21659 - BOURBON SHOP PORTO ALEGRE",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "20/09/2026 11:02:36",
-   "fechamento": "",
-   "principal": "BK066442 - EXAUSTOR",
-   "secundario": "EXA - NÃO LIGA",
-   "sigla": "EXA",
-   "tecnico": "",
-   "descricao": "BK066442 - EXAUSTOR | EXA - NÃO LIGA",
-   "tarefas": [
-    "WOT0054616"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "20/09/2026 13:26:09",
    "contato": "",
    "grupo": "execucao"
   }
