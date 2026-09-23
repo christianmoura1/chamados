@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-23T14:20:12.896Z",
+ "atualizadoEm": "2026-09-23T15:00:16.345Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 25,
+  "emExecucao": 26,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 25
+  "total": 26
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-23",
-   "abertos": 9,
+   "abertos": 10,
    "fechados": 5
   }
  ],
  "itens": [
+  {
+   "numero": "WO0055662",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "20215 - CARREFOUR PASSO D'AREIA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "23/09/2026 11:47:03",
+   "fechamento": "",
+   "principal": "BK078303 - AR CONDICIONADO",
+   "secundario": "ARC - LOJA SEM AR CONDICIONADO",
+   "sigla": "ARC",
+   "tecnico": "",
+   "descricao": "BK078303 - AR CONDICIONADO | ARC - LOJA SEM AR CONDICIONADO",
+   "tarefas": [
+    "WOT0056161"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0055568",
    "marca": "BKB",
