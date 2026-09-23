@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-23T12:00:14.007Z",
+ "atualizadoEm": "2026-09-23T12:20:13.337Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 25,
+  "emExecucao": 26,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 25
+  "total": 26
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-23",
-   "abertos": 5,
+   "abertos": 6,
    "fechados": 1
   }
  ],
  "itens": [
+  {
+   "numero": "WO0055516",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "21659 - BOURBON SHOP PORTO ALEGRE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "23/09/2026 09:08:46",
+   "fechamento": "",
+   "principal": "BK039433 - ESTUFA DE BATATAS",
+   "secundario": "ETB - PRINCÍPIO DE INCÊNDIO",
+   "sigla": "ETB",
+   "tecnico": "",
+   "descricao": "BK039433 - ESTUFA DE BATATAS | ETB - PRINCÍPIO DE INCÊNDIO",
+   "tarefas": [
+    "WOT0056012"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0055506",
    "marca": "BKB",
