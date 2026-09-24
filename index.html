@@ -120,7 +120,9 @@
     background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; box-shadow: var(--shadow);
   }
 
-  .kpis { display: grid; grid-template-columns: repeat(5,1fr); gap: 13px; margin: 22px 0 30px; }
+  .kpis { display: grid; grid-template-columns: repeat(6,1fr); gap: 13px; margin: 22px 0 30px; }
+  @media (max-width: 1320px) { .kpis { grid-template-columns: repeat(3,1fr); } }
+  .kpi-nota { display: block; margin-top: 3px; font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--faint); letter-spacing: .02em; }
   @media (max-width: 1080px) { .kpis { grid-template-columns: repeat(3,1fr); } }
   @media (max-width: 640px) { .kpis { grid-template-columns: repeat(2,1fr); } }
   .kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px 17px 14px; box-shadow: var(--shadow); }
@@ -901,13 +903,39 @@ async function iniciar() {
   const totalSOS = D.equipamentos.reduce((s,e)=>s+e.sos,0);
   const tempoMedioGeral = Math.round(D.equipamentos.reduce((s,e)=>s+e.tempoMedioDias*e.chamados,0) / (totalChamadosEquip||1));
 
+  // Indisponibilidade da REGIONAL SUL, lida do Power BI (nunca calculada aqui).
+  // Pedido do Christian em 24/09/2026. A granularidade DIARIA so' existe quando
+  // o mes esta selecionado no grafico do BI -- e essa selecao nao sobrevive ao
+  // reload do pipeline. A SEMANAL sobrevive, entao e' a que o painel mostra;
+  // se um dia a diaria vier, ela tem preferencia por ser mais fina.
+  function indispKpi() {
+    const i = D.indisponibilidadeSul || {};
+    if (i.pctDia !== null && i.pctDia !== undefined) {
+      return { label: 'Indisponibilidade (dia ' + i.dia + ')', val: i.pctDia + '%', cls: 'k-sos',
+               nota: i.pctMes !== null && i.pctMes !== undefined ? 'mês ' + i.pctMes + '%' : '' };
+    }
+    if (i.pctSemana !== null && i.pctSemana !== undefined) {
+      const s = i.serieSemanal || [];
+      const ant = s.length > 1 ? s[s.length - 2] : null;
+      let nota = String(i.semana || '').replace(/\s*\d{4}$/, '');
+      if (ant) {
+        const d = i.pctSemana - ant.pct;
+        nota += d === 0 ? ' · estável' : (d < 0 ? ' · ' + d + ' pp vs semana anterior' : ' · +' + d + ' pp vs semana anterior');
+      }
+      return { label: 'Indisponibilidade (semana)', val: i.pctSemana + '%', cls: 'k-sos', nota };
+    }
+    return { label: 'Indisponibilidade', val: '—', cls: 'k-violet', nota: 'não lida do BI nesta execução' };
+  }
+
   const kpisHtml = [
     { label: 'Total de Chamados', val: brl0(totalChamadosEquip), cls: 'k-violet' },
     { label: 'Lojas c/ Chamado Aberto', val: brl0(D.totalLojas), cls: 'k-violet' },
     { label: 'Chamados SOS', val: brl0(totalSOS), cls: 'k-sos' },
     { label: 'Chamados Alta', val: brl0(totalAlta), cls: 'k-alta' },
     { label: 'Tempo Médio (dias)', val: brl0(tempoMedioGeral), cls: 'k-violet' },
-  ].map(k => `<div class="kpi ${k.cls}"><span class="label">${k.label}</span><div class="val num">${k.val}</div></div>`).join('');
+    indispKpi(),
+  ].map(k => `<div class="kpi ${k.cls}"><span class="label">${k.label}</span><div class="val num">${k.val}</div>`
+    + (k.nota ? `<span class="kpi-nota">${k.nota}</span>` : '') + `</div>`).join('');
 
   const equipOrdenados = [...D.equipamentos].sort((a, b) => b.pctIndisponibilidade - a.pctIndisponibilidade);
   const equipCards = equipOrdenados.map((e) => {

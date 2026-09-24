@@ -335,6 +335,8 @@ async function buscarDisponibilidadeBI() {
     return { texto: document.body.innerText, cards };
   });
   const texto = leitura.texto;
+  const porDia = await lerMatrizPorDia(page);
+  const porSemana = await lerMatrizSemanal(page);
   await browser.close().catch(() => {});
 
   const carimboMatch = texto.match(/Última Atualização\s*\n?\s*([\d/: AMP]+)/i);
@@ -369,7 +371,107 @@ async function buscarDisponibilidadeBI() {
   const faltando = Object.entries(disponibilidade).filter(([, v]) => v === null).map(([k]) => k);
   if (faltando.length) throw new Error(`disponibilidade BI incompleta, faltando: ${faltando.join(', ')}`);
 
-  return { carimbo, disponibilidade };
+  return { carimbo, disponibilidade, porDia, porSemana };
+}
+
+// A matriz "INDISPONIBILIDADE - SEMANAL" da' a indisponibilidade por semana do
+// ano (S35, S36...). Diferente da diaria, ela SOBREVIVE ao reload -- nao
+// depende de selecionar o mes no grafico -- entao e' a granularidade fina que
+// da' pra publicar sem depender de ninguem deixar o BI num estado especifico.
+function lerMatrizSemanal(page) {
+  return page.evaluate(() => {
+    const limpo = (s) => (s || '').replace(/Formata[çc][ãa]o Condicional Adicional/gi, '').replace(/\s+/g, ' ').trim();
+    for (const v of document.querySelectorAll('visual-container, .visualContainer')) {
+      const tit = limpo((v.querySelector('.visualTitle, .preTextWithEllipsis') || {}).innerText);
+      if (!/INDISPONIBILIDADE\s*[-–]\s*SEMANAL/i.test(tit)) continue;
+      const linhas = [];
+      v.querySelectorAll('[role="row"]').forEach((row) => {
+        const cs = [...row.querySelectorAll('[role="columnheader"], [role="rowheader"], [role="gridcell"]')].map((c) => limpo(c.innerText));
+        if (cs.length) linhas.push(cs);
+      });
+      if (linhas.length < 2) continue;
+      const cab = linhas[0];
+      const sul = linhas.find((l) => /^SUL$/i.test(l[0]));
+      if (!sul) continue;
+      const semanas = [];
+      for (let i = 1; i < cab.length; i++) {
+        const m = String(sul[i] || '').match(/(\d{1,3})\s*%/);
+        if (m && /^S\d{1,2}\b/i.test(cab[i])) semanas.push({ semana: cab[i], pct: Number(m[1]) });
+      }
+      return semanas;
+    }
+    return [];
+  }).catch(() => []);
+}
+
+// A matriz "INDISPONIBILIDADE" traz a Regional nas linhas e os DIAS do mes nas
+// colunas, terminando em "Total" (o mes fechado). Pedido do Christian em
+// 24/09/2026: ele quer o numero DO DIA no painel, que ate' entao so' existia
+// se alguem abrisse o BI e olhasse a ultima coluna.
+//
+// Le' pelo grid (role=row / gridcell) e nao por texto: o innerText embaralha
+// as celulas e ainda vem sujo de "Formatacao Condicional Adicional".
+// A matriz ROLA NA HORIZONTAL e o Power BI so' desenha as colunas visiveis.
+// Depois do reload ela volta ao dia 1, e foi assim que a primeira versao disto
+// leu "dias 1 a 17, todos 32%" -- colunas antigas e ainda por renderizar,
+// enquanto o dado de verdade (dias 9..24 caindo de 35% para 19%) estava a'
+// direita. Entao: empurra ate' o fim ANTES de ler, e so' aceita quando a
+// coluna "Total" aparecer, que e' a ultima.
+async function lerMatrizPorDia(page) {
+  for (let i = 0; i < 25; i++) {
+    const chegouAoFim = await page.evaluate(() => {
+      const limpo = (s) => (s || '').replace(/Formata[çc][ãa]o Condicional Adicional/gi, '').replace(/\s+/g, ' ').trim();
+      for (const v of document.querySelectorAll('visual-container, .visualContainer')) {
+        const tit = limpo((v.querySelector('.visualTitle, .preTextWithEllipsis') || {}).innerText);
+        if (!/^INDISPONIBILIDADE$/i.test(tit)) continue;
+        // empurra todo container rolavel deste visual para a direita
+        v.querySelectorAll('*').forEach((el) => {
+          if (el.scrollWidth > el.clientWidth + 10) el.scrollLeft = el.scrollWidth;
+        });
+        // e usa tambem o botao proprio do visual, quando existir
+        for (const b of v.querySelectorAll('button, [role="button"]')) {
+          const rot = (b.getAttribute('aria-label') || b.getAttribute('title') || '').toLowerCase();
+          if (rot.includes('direita')) { b.click(); break; }
+        }
+        const cab = [...(v.querySelector('[role="row"]') || { querySelectorAll: () => [] })
+          .querySelectorAll('[role="columnheader"], [role="rowheader"], [role="gridcell"]')].map((c) => limpo(c.innerText));
+        return cab.some((x) => /total/i.test(x));
+      }
+      return false;
+    }).catch(() => false);
+    if (chegouAoFim) break;
+    await page.waitForTimeout(1200);
+  }
+  await page.waitForTimeout(2500);
+  return page.evaluate(() => {
+    const limpo = (s) => (s || '').replace(/Formata[çc][ãa]o Condicional Adicional/gi, '').replace(/\s+/g, ' ').trim();
+    for (const v of document.querySelectorAll('visual-container, .visualContainer')) {
+      const tit = limpo((v.querySelector('.visualTitle, .preTextWithEllipsis') || {}).innerText);
+      // a matriz diaria se chama so' "INDISPONIBILIDADE"; existe outra
+      // "INDISPONIBILIDADE - SEMANAL" que nao serve aqui
+      if (!/^INDISPONIBILIDADE$/i.test(tit)) continue;
+      const linhas = [];
+      v.querySelectorAll('[role="row"]').forEach((row) => {
+        const cs = [...row.querySelectorAll('[role="columnheader"], [role="rowheader"], [role="gridcell"]')].map((c) => limpo(c.innerText));
+        if (cs.length) linhas.push(cs);
+      });
+      if (linhas.length < 2) continue;
+      const cab = linhas[0];
+      const linhaSul = linhas.find((l) => /^SUL$/i.test(l[0]));
+      if (!linhaSul) continue;
+      const dias = [];
+      for (let i = 1; i < cab.length; i++) {
+        const rot = cab[i];
+        const val = linhaSul[i];
+        const m = String(val || '').match(/(\d{1,3})\s*%/);
+        if (!m) continue;
+        if (/^\d{1,2}$/.test(rot)) dias.push({ dia: Number(rot), pct: Number(m[1]) });
+        else if (/total/i.test(rot)) dias.push({ dia: 'Total', pct: Number(m[1]) });
+      }
+      return dias;
+    }
+    return [];
+  }).catch(() => []);
 }
 
 function classificar(desc) {
@@ -729,11 +831,47 @@ function rodar(rotulo, cmd, args) {
     logInfo('etapa concluida', { etapa: 'buscar_csv', bytes: csv.length });
 
     logInfo('etapa iniciada', { etapa: 'buscar_disponibilidade_bi' });
-    const { carimbo: carimboBI, disponibilidade: disponibilidadeBI } = await buscarDisponibilidadeBI();
-    logInfo('etapa concluida', { etapa: 'buscar_disponibilidade_bi', carimbo: carimboBI, disponibilidade: disponibilidadeBI });
+    const { carimbo: carimboBI, disponibilidade: disponibilidadeBI, porDia: indispPorDia, porSemana: indispPorSemana } = await buscarDisponibilidadeBI();
+    // o ultimo dia da matriz e' o mais recente com dado; "Total" e' o mes
+    const diasComDado = (indispPorDia || []).filter((x) => typeof x.dia === 'number');
+    const ultimoDia = diasComDado.length ? diasComDado[diasComDado.length - 1] : null;
+    const mesIndisp = (indispPorDia || []).find((x) => x.dia === 'Total') || null;
+    logInfo('etapa concluida', {
+      etapa: 'buscar_disponibilidade_bi', carimbo: carimboBI, disponibilidade: disponibilidadeBI,
+      indispDia: ultimoDia, indispMes: mesIndisp ? mesIndisp.pct : null, diasLidos: diasComDado.length,
+    });
 
     const dadosProcessados = processar(csv, disponibilidadeBI);
     dadosProcessados.disponibilidadeBIAtualizadaEm = carimboBI;
+    // Indisponibilidade da REGIONAL SUL, lida da matriz do BI (nao calculada).
+    // dia   = ultima coluna com dado (o dia corrente, ainda parcial)
+    // mes   = coluna "Total"
+    // serie = todos os dias do mes, para o painel desenhar a evolucao
+    // So' publica se a leitura tiver cara de leitura boa. Ja' veio "dias 1 a 17,
+    // todos 32%" de uma matriz que ainda nao tinha rolado -- numero errado com
+    // cara de certo. Na duvida, melhor o painel mostrar "—" do que mentir.
+    const todosIguais = diasComDado.length > 1 && new Set(diasComDado.map((x) => x.pct)).size === 1;
+    const confiavel = !!ultimoDia && !!mesIndisp && diasComDado.length >= 5 && !todosIguais;
+    if (!confiavel) {
+      logErro('indisponibilidade por dia nao confiavel -- publico sem ela', {
+        dias: diasComDado.length, temTotal: !!mesIndisp, todosIguais,
+      });
+    }
+    const semanas = indispPorSemana || [];
+    const ultimaSemana = semanas.length ? semanas[semanas.length - 1] : null;
+    logInfo('indisponibilidade semanal (SUL)', { semanas, atual: ultimaSemana });
+
+    dadosProcessados.indisponibilidadeSul = {
+      // diaria: so' existe quando o mes esta selecionado no grafico do BI
+      dia: confiavel ? ultimoDia.dia : null,
+      pctDia: confiavel ? ultimoDia.pct : null,
+      pctMes: confiavel ? mesIndisp.pct : null,
+      serie: confiavel ? diasComDado : [],
+      // semanal: sobrevive ao reload, entao e' a que sempre vem
+      semana: ultimaSemana ? ultimaSemana.semana : null,
+      pctSemana: ultimaSemana ? ultimaSemana.pct : null,
+      serieSemanal: semanas,
+    };
     fs.mkdirSync(path.join(ROOT, 'data'), { recursive: true });
     fs.writeFileSync(path.join(ROOT, 'data', 'dados.json'), JSON.stringify(dadosProcessados, null, 2), 'utf8');
     logInfo('dados processados', {
