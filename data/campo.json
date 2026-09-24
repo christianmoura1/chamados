@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-24T19:20:31.237Z",
+ "atualizadoEm": "2026-09-24T20:20:32.901Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 17,
+  "emExecucao": 18,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 17
+  "total": 18
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-24",
-   "abertos": 4,
+   "abertos": 5,
    "fechados": 15
   }
  ],
  "itens": [
+  {
+   "numero": "WO0056409",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "25455 - FS POA - AV DR NILO PECANHA 1715",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "24/09/2026 17:10:29",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - COZINHA - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
+   "tarefas": [
+    "WOT0056927"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0056324",
    "marca": "BKB",
