@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-09-24T00:40:12.481Z",
+ "atualizadoEm": "2026-09-24T11:00:26.410Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 27,
+  "emExecucao": 15,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 27
+  "total": 15
  },
  "serie": [
-  {
-   "data": "2026-09-21",
-   "abertos": 23,
-   "fechados": 10
-  },
   {
    "data": "2026-09-22",
    "abertos": 13,
@@ -23,6 +18,11 @@
    "data": "2026-09-23",
    "abertos": 15,
    "fechados": 18
+  },
+  {
+   "data": "2026-09-24",
+   "abertos": 0,
+   "fechados": 0
   }
  ],
  "itens": [
@@ -369,282 +369,6 @@
    "aguardandoToken": 0,
    "fechadoSemToken": "",
    "contato": "Tentativa de contato: 22/09/2026 11:41:52;\nTentativa de contato: 22/09/2026 14:15:45;\n",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0054870",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "OESTE PR",
-   "loja": "26830 - FS FOZ DO IGUACU - AV JORGE S",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "21/09/2026 20:08:34",
-   "fechamento": "",
-   "principal": "CAMARA DE CONGELADOS; TOPEMA",
-   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
-   "sigla": "CMG",
-   "tecnico": "",
-   "descricao": "CAMARA DE CONGELADOS; TOPEMA | CMG - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0055363"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0054636",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "27589 - PARK EUROPEU BLUMENAU",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "21/09/2026 13:13:28",
-   "fechamento": "",
-   "principal": "CAMARA DE CONGELADOS; TOPEMA",
-   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
-   "sigla": "CMG",
-   "tecnico": "",
-   "descricao": "CAMARA DE CONGELADOS; TOPEMA | CMG - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0055129"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0054624",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "27589 - PARK EUROPEU BLUMENAU",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "21/09/2026 13:01:49",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
-   "tarefas": [
-    "WOT0055118"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0054502",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "25677 - FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "21/09/2026 10:52:12",
-   "fechamento": "",
-   "principal": "Area Externa",
-   "secundario": "AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
-   "sigla": "AEX",
-   "tecnico": "",
-   "descricao": "Area Externa | AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
-   "tarefas": [
-    "WOT0054996"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "Tentativa de contato: 22/09/2026 11:15:42;\n",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0054463",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "32645 FC CAXIAS DO SUL - VILLAGIO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "21/09/2026 10:06:25",
-   "fechamento": "",
-   "principal": "Area Externa",
-   "secundario": "AEX - FALTA DE ENERGIA - CORTE DE ENERGIA NA REGIÃO",
-   "sigla": "AEX",
-   "tecnico": "",
-   "descricao": "Area Externa | AEX - FALTA DE ENERGIA - CORTE DE ENERGIA NA REGIÃO",
-   "tarefas": [
-    "WOT0054956"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0054447",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "19665 - SHOP SAN PELEGRINO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "21/09/2026 09:52:14",
-   "fechamento": "",
-   "principal": "BK021213 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
-   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
-   "sigla": "CMR",
-   "tecnico": "",
-   "descricao": "BK021213 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0054939"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0054446",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "22507 - ILR PORTO ALEGRE - R ANDRADAS 1664",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "21/09/2026 09:50:29",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - QUADRO ELÉTRICO - NÃO LIGA ELETRICAMENTE",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - NÃO LIGA ELETRICAMENTE",
-   "tarefas": [
-    "WOT0054938"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "Tentativa de contato: 22/09/2026 11:40:07;\nTentativa de contato: 22/09/2026 14:13:17;\n",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0054444",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "18450 - BOURBON SHOP SAO LEOPOLDO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "21/09/2026 09:50:25",
-   "fechamento": "",
-   "principal": "Area Externa",
-   "secundario": "AEX - FALTA DE ENERGIA - CORTE DE ENERGIA NA REGIÃO",
-   "sigla": "AEX",
-   "tecnico": "",
-   "descricao": "Area Externa | AEX - FALTA DE ENERGIA - CORTE DE ENERGIA NA REGIÃO",
-   "tarefas": [
-    "WOT0054936"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0054435",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "32645 FC CAXIAS DO SUL - VILLAGIO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "21/09/2026 09:31:37",
-   "fechamento": "",
-   "principal": "Area Externa",
-   "secundario": "AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
-   "sigla": "AEX",
-   "tecnico": "",
-   "descricao": "Area Externa | AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
-   "tarefas": [
-    "WOT0054927"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0054356",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL NORTE RS",
-   "loja": "25455 - FS POA - AV DR NILO PECANHA 1715",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "21/09/2026 07:35:52",
-   "fechamento": "",
-   "principal": "CAMARA DE CONGELADOS; TOPEMA",
-   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
-   "sigla": "CMG",
-   "tecnico": "",
-   "descricao": "CAMARA DE CONGELADOS; TOPEMA | CMG - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0054840"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0054339",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "21/09/2026 04:40:49",
-   "fechamento": "",
-   "principal": "Area Externa",
-   "secundario": "AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
-   "sigla": "AEX",
-   "tecnico": "",
-   "descricao": "Area Externa | AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
-   "tarefas": [
-    "WOT0054823"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0054337",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "31345 FS CANOAS - AV DR SEZEFREDO A",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "21/09/2026 04:19:07",
-   "fechamento": "",
-   "principal": "EXAUSTOR",
-   "secundario": "EXA - NÃO LIGA",
-   "sigla": "EXA",
-   "tecnico": "",
-   "descricao": "EXAUSTOR | EXA - NÃO LIGA",
-   "tarefas": [
-    "WOT0054821"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
    "grupo": "execucao"
   }
  ]
