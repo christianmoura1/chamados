@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-24T11:00:26.410Z",
+ "atualizadoEm": "2026-09-24T14:20:12.165Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 15,
+  "emExecucao": 16,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 15
+  "total": 16
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-24",
-   "abertos": 0,
-   "fechados": 0
+   "abertos": 1,
+   "fechados": 1
   }
  ],
  "itens": [
+  {
+   "numero": "WO0056188",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "21791 - SHOP CIDADE CURITIBA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "24/09/2026 11:19:17",
+   "fechamento": "",
+   "principal": "BK036190 - COIFA LAVADORA; MELTING",
+   "secundario": "COI - COIFA NÃO FUNCIONA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK036190 - COIFA LAVADORA; MELTING | COI - COIFA NÃO FUNCIONA",
+   "tarefas": [
+    "WOT0056706"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0055977",
    "marca": "BKB",
