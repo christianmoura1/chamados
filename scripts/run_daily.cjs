@@ -225,16 +225,86 @@ async function buscarDisponibilidadeBI() {
   // resolvendo o SSO sozinha e so' renderiza por volta dos 110s. Ou seja,
   // perdia por segundos. Agora sao 5 minutos -- custa nada quando da certo,
   // porque o laco sai assim que o carimbo aparece.
+  // 24/09/2026 -- esperar o carimbo NAO e' esperar o que a gente precisa.
+  // O carimbo ("Ultima Atualizacao") desenha em ~13s, os cards de equipamento
+  // demoram bem mais, e o Power BI virtualiza: card fora da area visivel nem
+  // entra no DOM. Resultado: o pipeline seguia em frente cedo demais e caia em
+  // "disponibilidade BI incompleta, faltando: <os seis>". Na vespera funcionou
+  // por sorte de timing, com a aba ja' desenhada de uma execucao anterior.
+  //
+  // Agora a condicao de pronto e' ter OS SEIS CARDS legiveis, e a cada volta o
+  // canvas e' rolado para o topo (e' la' que eles ficam).
+  const CARDS_RE = /BROILER|FRITADEIRA|SORVETE|MICROONDAS|MICRO-ONDAS|PHU|TOSTADEIRA/i;
   let pronta = false;
+  let quantosCards = 0;
   for (let i = 0; i < 100; i++) {
     await page.waitForTimeout(3000);
-    pronta = await page
-      .evaluate(() => /ltima\s+Atualiza/i.test(document.body.innerText || ''))
-      .catch(() => false);
-    if (pronta) break;
+    const r = await page.evaluate((reSrc) => {
+      const re = new RegExp(reSrc, 'i');
+      // sobe o canvas: os cards ficam no topo e o Power BI so' desenha o visivel
+      for (const el of document.querySelectorAll('button, [role="button"]')) {
+        const rot = (el.getAttribute('aria-label') || el.getAttribute('title') || '').toLowerCase();
+        if (rot.includes('rolar para cima')) { el.click(); break; }
+      }
+      document.querySelectorAll('*').forEach((el) => {
+        if (el.scrollHeight > el.clientHeight + 40 && el.clientHeight > 200) el.scrollTop = 0;
+      });
+      const cards = [...document.querySelectorAll('[aria-pressed]')]
+        .map((el) => ((el.innerText || '') + ' ' + (el.getAttribute('aria-label') || '')))
+        .filter((t) => re.test(t) && /\d{1,3}\s*%/.test(t));
+      return { cards: cards.length, carimbo: /ltima\s+Atualiza/i.test(document.body.innerText || '') };
+    }, CARDS_RE.source).catch(() => ({ cards: 0, carimbo: false }));
+    quantosCards = r.cards;
+    if (r.carimbo && r.cards >= 6) { pronta = true; break; }
   }
-  if (!pronta) throw new Error('a pagina de Disponibilidade nao terminou de carregar (5 min)');
+  if (!pronta) {
+    throw new Error(`a pagina de Disponibilidade nao ficou pronta em 5 min (cards legiveis: ${quantosCards} de 6)`);
+  }
+  logInfo('pagina de Disponibilidade pronta', { cards: quantosCards });
   await page.waitForTimeout(3000);
+
+  // ---------- GUARDA DE RECORTE ----------
+  // 24/09/2026 -- o pipeline publicou indisponibilidade de PLK / Brasil inteiro
+  // porque o slicer Marca estava em PLK e Regional em Todos. Numero plausivel e
+  // ERRADO, que e' o pior tipo: ninguem desconfia. O Christian pegou no olho.
+  //
+  // Os slicers desta pagina vivem num painel retratil e NAO entram no DOM
+  // quando ele esta fechado -- nao da' pra le-los como no Gestao de Risco.
+  // Entao a conferencia e' pelo DADO, que e' ate' melhor:
+  //   1. o titulo do relatorio carrega a marca ("BOOK MANUTENCAO - BKB");
+  //   2. a "Tabela - Extracao" traz a Regional de cada chamado; se houver algo
+  //      diferente de SUL, o recorte nao e' o nosso.
+  const recorte = await page.evaluate(() => {
+    const t = document.body.innerText || '';
+    const semAcento = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toUpperCase();
+    const marcaOk = /BOOK\s+MANUTENCAO\s*[-–]\s*BKB/.test(semAcento(t));
+    const tituloTrecho = (t.match(/[^\n]*BOOK[^\n]*/i) || [''])[0].trim().slice(0, 60);
+    // na tabela, a Regional vem na linha logo apos o numero do chamado
+    const linhas = t.split('\n').map((x) => x.trim());
+    const regionais = new Set();
+    for (let i = 0; i < linhas.length - 1; i++) {
+      if (/^WO\d+$/.test(linhas[i])) {
+        const r = linhas[i + 1];
+        if (r && r.length < 30) regionais.add(r);
+      }
+    }
+    return { marcaOk, tituloTrecho, regionais: [...regionais] };
+  }).catch(() => ({ marcaOk: false, tituloTrecho: '(nao li)', regionais: [] }));
+
+  const foraDoSul = recorte.regionais.filter((r) => r.toUpperCase() !== 'SUL');
+  const problemas = [];
+  if (!recorte.marcaOk) problemas.push(`a marca nao e' BKB (titulo: "${recorte.tituloTrecho}")`);
+  if (!recorte.regionais.length) problemas.push('nao consegui ler nenhuma Regional na Tabela - Extracao');
+  else if (foraDoSul.length) problemas.push(`a Regional nao esta so' em SUL (vi: ${recorte.regionais.join(', ')})`);
+
+  logInfo('recorte da pagina de Disponibilidade', {
+    marcaOk: recorte.marcaOk, regionais: recorte.regionais, chamadosLidos: recorte.regionais.length,
+  });
+  if (problemas.length) {
+    await browser.close().catch(() => {});
+    throw new Error('recorte errado no Power BI -- NAO publiquei. ' + problemas.join(' | ')
+      + `. Ajuste Marca=BKB e Regional=SUL em: ${URL_DISPONIBILIDADE_BI}`);
+  }
 
   // 23/09/2026 -- o pipeline passou o dia com "disponibilidade BI incompleta,
   // faltando: <os seis>". Tirando print da pagina, os cards ESTAVAM la' com os
