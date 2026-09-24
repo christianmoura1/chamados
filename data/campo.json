@@ -1,5 +1,5 @@
 {
- "atualizadoEm": "2026-09-24T16:00:12.854Z",
+ "atualizadoEm": "2026-09-24T17:20:23.202Z",
  "janelaDias": 3,
  "resumo": {
   "emExecucao": 18,
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-24",
-   "abertos": 3,
-   "fechados": 11
+   "abertos": 4,
+   "fechados": 13
   }
  ],
  "itens": [
+  {
+   "numero": "WO0056324",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "26806 - JOCKEY PLAZA SHOP",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "24/09/2026 14:11:04",
+   "fechamento": "",
+   "principal": "BK070616 - BROILER GAS NATURAL ALTA PERFORMANCE",
+   "secundario": "BRO - VAZAMENTO DE GÁS",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK070616 - BROILER GAS NATURAL ALTA PERFORMANCE | BRO - VAZAMENTO DE GÁS",
+   "tarefas": [
+    "WOT0056841"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0056260",
    "marca": "BKB",
@@ -342,29 +365,6 @@
    "descricao": "BK066938 - COIFA LAVADORA; MELTING | COI - COIFA NÃO FUNCIONA",
    "tarefas": [
     "WOT0055663"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0055113",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "25677 - FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "22/09/2026 11:32:18",
-   "fechamento": "",
-   "principal": "Area Externa",
-   "secundario": "AEX - FALTA DE ENERGIA - CORTE DE ENERGIA NA REGIÃO",
-   "sigla": "AEX",
-   "tecnico": "",
-   "descricao": "Area Externa | AEX - FALTA DE ENERGIA - CORTE DE ENERGIA NA REGIÃO",
-   "tarefas": [
-    "WOT0055608"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
