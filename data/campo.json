@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-24T00:00:15.693Z",
+ "atualizadoEm": "2026-09-24T00:40:12.481Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 26,
+  "emExecucao": 27,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 26
+  "total": 27
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-23",
-   "abertos": 14,
+   "abertos": 15,
    "fechados": 18
   }
  ],
  "itens": [
+  {
+   "numero": "WO0055977",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "16619 - SHOP PRAIA DE BELAS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "23/09/2026 21:21:20",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
+   "tarefas": [
+    "WOT0056491"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0055967",
    "marca": "BKB",
