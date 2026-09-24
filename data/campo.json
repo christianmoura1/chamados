@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-24T15:20:13.442Z",
+ "atualizadoEm": "2026-09-24T16:00:12.854Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 17,
+  "emExecucao": 18,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 17
+  "total": 18
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-24",
-   "abertos": 2,
+   "abertos": 3,
    "fechados": 11
   }
  ],
  "itens": [
+  {
+   "numero": "WO0056260",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "17223 - CANOAS SHOP",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "24/09/2026 12:44:40",
+   "fechamento": "",
+   "principal": "BK039350 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
+   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMR",
+   "tecnico": "",
+   "descricao": "BK039350 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0056777"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0056199",
    "marca": "BKB",
