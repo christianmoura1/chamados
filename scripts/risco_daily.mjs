@@ -8,6 +8,9 @@ const BOT = 'C:/projetos/climapro-bot';
 const REPO = 'C:/projetos/chamados';
 const NODE = process.execPath;
 const ABA = 'reports/e07d5c63-3ebb-4102-95bf-98a5eac89373/2efd4d969ee24a7d6426';
+const URL_RISCO = 'https://app.powerbi.com/groups/me/apps/38828dac-b7dc-46e0-a737-57db66b372de/'
+  + 'reports/e07d5c63-3ebb-4102-95bf-98a5eac89373/2efd4d969ee24a7d6426'
+  + '?ctid=64587785-97bc-48f0-83e2-1e7a6597212e&experience=power-bi&clientSideAuth=0';
 
 const ts = () => new Date().toLocaleString('pt-BR');
 const log = (m) => console.log('[' + ts() + '] ' + m);
@@ -30,28 +33,94 @@ function dataCarimbo(s) {
 
 log('inicio do pipeline de risco');
 
-// ---------- 1) confere a aba do BI (SEM reload) ----------
-// PROVADO em 16/09/2026: o page.reload() DERRUBA o filtro Regional do relatorio.
-// O Christian marcou SUL, o pipeline recarregou, e a extracao voltou com 694 lojas
-// (Brasil inteiro). Entao nao recarrego mais -- leio a aba como ela esta.
-// Contrapartida: se o dataset atualizar e ninguem reabrir a aba, o dado fica velho;
-// por isso a guarda de carimbo abaixo avisa quando nao for de hoje.
+// ---------- 1) recarrega a aba do BI ----------
+// Historico: em 16/09/2026 o reload DERRUBAVA o filtro Regional (voltava para
+// 'Todos' e vinham 694 lojas), entao ele foi removido. Depois que o Christian
+// fixou o SUL no relatorio, testei de novo e o filtro SOBREVIVEU -- reload de
+// volta, porque sem ele o script le o que estiver desenhado na aba e o dado
+// envelhece quando o dataset atualiza. Se o filtro cair outra vez, a guarda de
+// escopo (>120 lojas) barra a publicacao em vez de publicar o Brasil inteiro.
 {
   const browser = await chromium.connectOverCDP('http://127.0.0.1:9222', { timeout: 20000 });
   const ctx = browser.contexts()[0];
   let page = null;
   for (const p of ctx.pages()) if (p.url().includes(ABA)) page = p;
-  if (!page) fatal('aba de Gestao de Risco nao encontrada no Chrome (CDP 9222)');
-  if (/login\.microsoftonline|oauth2/.test(page.url())) {
-    fatal('a aba caiu na tela de login da Microsoft -- relogar no Power BI pelo RDP');
+  // Em 18/09/2026 a aba do risco sumiu do Chrome e o pipeline morreu aqui: so'
+  // restava a aba da Disponibilidade Book (250d750e...), que e' do MESMO
+  // relatorio mas de outra pagina e pertence ao pipeline do Backlog. Em vez de
+  // abortar -- ou pior, sequestrar a aba do outro pipeline -- abro a minha.
+  if (!page) {
+    log('aba de Gestao de Risco nao encontrada; abrindo uma nova');
+    page = await ctx.newPage();
+    await page.goto(URL_RISCO, { waitUntil: 'domcontentloaded', timeout: 120000 });
+    await new Promise((r) => setTimeout(r, 8000));
   }
-  const pronto = await page.evaluate(() => {
-    const t = document.body.innerText || '';
-    return /ltima\s+Atualiza/i.test(t) && /MATRIZ DE RISCO/i.test(t)
-           && document.querySelectorAll('[role="row"]').length > 5;
-  }).catch(() => false);
-  if (!pronto) fatal('a aba do BI nao esta com a Gestao de Risco desenhada -- abrir/rolar a pagina no RDP');
-  log('aba do BI pronta (sem reload, para nao perder o filtro SUL)');
+  log('recarregando a aba do Power BI');
+  await page.reload({ waitUntil: 'domcontentloaded', timeout: 120000 });
+  let pronto = false;
+  for (let i = 0; i < 100; i++) {
+    await new Promise((r) => setTimeout(r, 3000));
+    if (/login\.microsoftonline|oauth2/.test(page.url())) {
+      fatal('a aba caiu na tela de login da Microsoft -- relogar no Power BI pelo RDP');
+    }
+    pronto = await page.evaluate(() => {
+      const t = document.body.innerText || '';
+      return /ltima\s+Atualiza/i.test(t) && /MATRIZ DE RISCO/i.test(t)
+             && document.querySelectorAll('[role="row"]').length > 5;
+    }).catch(() => false);
+    if (pronto) break;
+  }
+  if (!pronto) fatal('o relatorio nao terminou de carregar em 5 minutos apos o reload');
+  // o grid da Matriz e' virtualizado e desenha depois do resto da pagina
+  await new Promise((r) => setTimeout(r, 20000));
+  log('aba recarregada e pronta');
+
+  // ---------- 1b) GUARDA DOS SLICERS ----------
+  // Este pipeline ja' parou duas vezes por slicer mexido, e das duas o erro
+  // chegou tarde e disfarcado:
+  //   16/09/2026 -- Regional voltou para 'Todos' e vieram 694 lojas;
+  //   23/09/2026 -- Loja travou em "20241 - SHOP PLAZA MACAE" e a pagina ficou
+  //                 VAZIA. O sintoma foi "0 lojas extraidas", que parece
+  //                 problema de renderizacao, e o painel ficou 2 dias parado.
+  // A guarda antiga so' pegava o caso de vir loja DEMAIS (>120); vir loja de
+  // MENOS passava batido. Agora conferimos cada slicer ANTES de extrair, e o
+  // erro diz qual esta errado e para o que voltar.
+  //
+  // O aria-label do combobox e' o nome do campo no modelo (brand_name,
+  // region_name...) e NAO muda com o idioma da conta -- ao contrario do texto
+  // da tela, que ja' quebrou seletor aqui antes.
+  const SLICERS_ESPERADOS = {
+    brand_name: 'BKB',
+    region_name: 'SUL',
+    sector_name: 'Todos',
+    store_bkn_name: 'Todos',
+    assunto_principal: 'Todos',
+    assunto_secundario: 'Todos',
+    status_gestao_risco: 'Todos',
+    Categoria: 'Todos',
+  };
+  const lidos = await page.evaluate(() => {
+    const o = {};
+    document.querySelectorAll('[role="combobox"]').forEach((el) => {
+      const nome = (el.getAttribute('aria-label') || '').trim();
+      if (nome) o[nome] = (el.innerText || '').replace(/\s+/g, ' ').trim();
+    });
+    return o;
+  }).catch(() => ({}));
+
+  const errados = [];
+  for (const [campo, esperado] of Object.entries(SLICERS_ESPERADOS)) {
+    const atual = lidos[campo];
+    if (atual === undefined) { errados.push(campo + ': nao achei o slicer na tela'); continue; }
+    if (atual !== esperado) errados.push(campo + ': esta "' + atual + '", deveria ser "' + esperado + '"');
+  }
+  log('slicers: ' + JSON.stringify(lidos));
+  if (errados.length) {
+    await browser.close().catch(() => {});
+    fatal('filtro do Power BI fora do lugar -- NAO publiquei. ' + errados.join(' | ')
+      + '. Ajuste em: ' + URL_RISCO);
+  }
+  log('slicers conferidos: recorte correto (BKB / SUL / Loja Todos)');
   await browser.close().catch(() => {});
 }
 

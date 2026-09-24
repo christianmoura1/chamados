@@ -236,7 +236,35 @@ async function buscarDisponibilidadeBI() {
   if (!pronta) throw new Error('a pagina de Disponibilidade nao terminou de carregar (5 min)');
   await page.waitForTimeout(3000);
 
-  const texto = await page.evaluate(() => document.body.innerText);
+  // 23/09/2026 -- o pipeline passou o dia com "disponibilidade BI incompleta,
+  // faltando: <os seis>". Tirando print da pagina, os cards ESTAVAM la' com os
+  // valores; o que houve foi outra coisa:
+  //   1. um card (FRITADEIRA) tinha ficado SELECIONADO, e card selecionado
+  //      filtra a pagina inteira -- a Tabela - Extracao so' mostrava fritadeira;
+  //   2. a pagina estava ROLADA para baixo, e o Power BI virtualiza: o que esta
+  //      fora de vista sai do innerText. Os cards viraram invisiveis para quem
+  //      le' texto puro, embora o valor continue no proprio botao do card.
+  // Agora: desmarca o que estiver presa, e le' o numero DO CARD (que carrega
+  // "BROILER 30%" no texto/aria-label) em vez de depender da rolagem.
+  const limpeza = await page.evaluate(() => {
+    const presos = [...document.querySelectorAll('[aria-pressed="true"]')]
+      .filter((el) => /BROILER|FRITADEIRA|SORVETE|MICROONDAS|MICRO-ONDAS|PHU|TOSTADEIRA/i
+        .test(((el.innerText || '') + ' ' + (el.getAttribute('aria-label') || ''))));
+    presos.forEach((el) => el.click());
+    return presos.length;
+  }).catch(() => 0);
+  if (limpeza) {
+    logInfo('desmarquei card de equipamento que estava filtrando a pagina', { quantos: limpeza });
+    await page.waitForTimeout(6000);
+  }
+
+  const leitura = await page.evaluate(() => {
+    const cards = [...document.querySelectorAll('[aria-pressed]')]
+      .map((el) => ((el.innerText || '') + ' ' + (el.getAttribute('aria-label') || '')).replace(/\s+/g, ' ').trim())
+      .filter((t) => /\d{1,3}\s*%/.test(t));
+    return { texto: document.body.innerText, cards };
+  });
+  const texto = leitura.texto;
   await browser.close().catch(() => {});
 
   const carimboMatch = texto.match(/Última Atualização\s*\n?\s*([\d/: AMP]+)/i);
@@ -250,13 +278,22 @@ async function buscarDisponibilidadeBI() {
   const diasDeAtraso = (Date.now() - dataCarimbo.getTime()) / 86400000;
   if (diasDeAtraso > 5) throw new Error(`disponibilidade BI desatualizada ha ${diasDeAtraso.toFixed(1)} dias (carimbo: ${carimbo})`);
 
+  // Primeiro tenta pelos CARDS (fonte confiavel, nao depende de rolagem);
+  // se algum faltar, cai no texto puro, que era o caminho antigo.
+  const semAcento = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toUpperCase();
   const disponibilidade = {};
   for (const [chave, label] of Object.entries(MAPA_LABEL_BI)) {
+    const alvo = semAcento(label);
+    const card = leitura.cards.find((t) => semAcento(t).includes(alvo));
+    if (card) {
+      const m = semAcento(card).slice(semAcento(card).indexOf(alvo) + alvo.length).match(/(\d{1,3})\s*%/);
+      if (m) { disponibilidade[chave] = Number(m[1]); continue; }
+    }
     const idx = texto.indexOf(label);
     if (idx < 0) { disponibilidade[chave] = null; continue; }
     const resto = texto.slice(idx + label.length, idx + label.length + 20);
-    const m = resto.match(/(\d{1,3})%/);
-    disponibilidade[chave] = m ? Number(m[1]) : null;
+    const m2 = resto.match(/(\d{1,3})%/);
+    disponibilidade[chave] = m2 ? Number(m2[1]) : null;
   }
 
   const faltando = Object.entries(disponibilidade).filter(([, v]) => v === null).map(([k]) => k);
