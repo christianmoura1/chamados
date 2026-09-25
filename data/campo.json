@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-25T15:40:11.533Z",
+ "atualizadoEm": "2026-09-25T16:40:11.260Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 12,
+  "emExecucao": 15,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 12
+  "total": 15
  },
  "serie": [
   {
@@ -21,11 +21,80 @@
   },
   {
    "data": "2026-09-25",
-   "abertos": 2,
+   "abertos": 5,
    "fechados": 4
   }
  ],
  "itens": [
+  {
+   "numero": "WO0056761",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "22507 - ILR PORTO ALEGRE - R ANDRADAS 1664",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "25/09/2026 13:37:28",
+   "fechamento": "",
+   "principal": "BK049832 - EXAUSTOR; TERMODIN; 1VLS-280-1-BR-3-1-A3",
+   "secundario": "EXA - NÃO PUXA FUMAÇA",
+   "sigla": "EXA",
+   "tecnico": "",
+   "descricao": "BK049832 - EXAUSTOR; TERMODIN; 1VLS-280-1-BR-3-1-A3 | EXA - NÃO PUXA FUMAÇA",
+   "tarefas": [
+    "WOT0057279"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0056739",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "30086 FS PONTA GROSSA R BALDUINO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "25/09/2026 13:25:06",
+   "fechamento": "",
+   "principal": "BK245289 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
+   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMR",
+   "tecnico": "",
+   "descricao": "BK245289 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0057257"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0056734",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "23725 - SHOP PRACA NOVA SANTA MARIA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "25/09/2026 13:22:24",
+   "fechamento": "",
+   "principal": "BK066582 - CAMARA DE CONGELADOS; SÃO RAFAEL",
+   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMG",
+   "tecnico": "",
+   "descricao": "BK066582 - CAMARA DE CONGELADOS; SÃO RAFAEL | CMG - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0057252"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0056599",
    "marca": "BKB",
