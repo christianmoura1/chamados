@@ -99,28 +99,81 @@ log('inicio do pipeline de risco');
     status_gestao_risco: 'Todos',
     Categoria: 'Todos',
   };
-  const lidos = await page.evaluate(() => {
-    const o = {};
+  // 25/09/2026: o relatorio foi redesenhado e os 7 slicers de canvas
+  // sumiram -- sobrou so' o "Categoria". O recorte BKB/SUL agora vem do
+  // proprio titulo do visual e da regional que aparece em "Em Aberto por
+  // Regional". O guarda passou a olhar os DOIS caminhos: se os slicers
+  // existirem valem eles; se nao, vale o recorte lido da tela. Some os dois
+  // e o pipeline para, porque publicar recorte errado e' pior que nao
+  // publicar (ja' aconteceu: PLK/Brasil publicado como se fosse BKB/Sul).
+  const recorte = await page.evaluate(() => {
+    const limpo = (x) => (x || '').replace(/\s+/g, ' ').trim();
+    const semAcento = (x) => limpo(x).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase();
+
+    const slicers = {};
     document.querySelectorAll('[role="combobox"]').forEach((el) => {
       const nome = (el.getAttribute('aria-label') || '').trim();
-      if (nome) o[nome] = (el.innerText || '').replace(/\s+/g, ' ').trim();
+      if (nome) slicers[nome] = limpo(el.innerText);
     });
-    return o;
-  }).catch(() => ({}));
+
+    const t = document.body.innerText || '';
+    // O titulo que vale e' o do VISUAL ("GESTAO DE RISCO / ROTA DE SEGURANCA
+    // - BKB"). Cuidado: o menu lateral tambem tem uma linha "08. Gestao de
+    // Risco" -- pegar a primeira que casa reprova o recorte certo.
+    const candidatos = t.split('\n').map((l) => l.trim()).filter((l) => /GEST[AÃ]O DE RISCO/i.test(l));
+    const linhaTitulo = candidatos.find((l) => /\bBKB\b/.test(semAcento(l))) || candidatos[0] || '';
+    const marcaOk = /\bBKB\b/.test(semAcento(linhaTitulo));
+
+    // regionais citadas no visual "Em Aberto por Regional"
+    const REGIONAIS = ['SP CENTRO LITORAL', 'SP INTERIOR NORTE', 'SP INTERIOR SUL',
+      'BK E FOGO CENTRO LITORAL', 'BK E FOGO LESTE', 'BK E FOGO NORTE',
+      'CENTRO OESTE', 'MINAS BAHIA', 'SP SUL', 'SUL', 'RJ', 'NE'];
+    let textoVisual = '';
+    document.querySelectorAll('visual-container, .visualContainer').forEach((v) => {
+      const tit = limpo((v.querySelector('.visualTitle, .preTextWithEllipsis') || {}).innerText);
+      if (/Em Aberto por Regional/i.test(tit)) textoVisual = semAcento(v.innerText);
+    });
+    // acha do nome mais longo para o mais curto, senao "SP SUL" vira "SUL"
+    let resto = textoVisual;
+    const regionais = [];
+    for (const r of REGIONAIS) {
+      // palavra inteira: sem isso, o 'region_name' do eixo ou um 'SP SUL'
+      // ja' consumido fariam aparecer regional que nao esta na tela
+      const re = new RegExp('(^|[^A-Z])' + r + '([^A-Z]|$)');
+      if (re.test(resto)) { regionais.push(r); resto = resto.split(r).join(' '); }
+    }
+    return { slicers, marcaOk, linhaTitulo: linhaTitulo.slice(0, 70), candidatos: candidatos.slice(0, 4), regionais, achouVisual: !!textoVisual };
+  }).catch(() => ({ slicers: {}, marcaOk: false, linhaTitulo: '(nao li)', regionais: [], achouVisual: false }));
+
+  const lidos = recorte.slicers;
+  log('slicers: ' + JSON.stringify(lidos));
+  log('recorte na tela: ' + JSON.stringify({
+    marcaOk: recorte.marcaOk, titulo: recorte.linhaTitulo,
+    regionais: recorte.regionais, achouVisualRegional: recorte.achouVisual,
+    titulosCandidatos: recorte.candidatos,
+  }));
 
   const errados = [];
+  // (a) os slicers que AINDA existirem na tela tem que estar certos
+  let slicersConferidos = 0;
   for (const [campo, esperado] of Object.entries(SLICERS_ESPERADOS)) {
     const atual = lidos[campo];
-    if (atual === undefined) { errados.push(campo + ': nao achei o slicer na tela'); continue; }
+    if (atual === undefined) continue;
+    slicersConferidos++;
     if (atual !== esperado) errados.push(campo + ': esta "' + atual + '", deveria ser "' + esperado + '"');
   }
-  log('slicers: ' + JSON.stringify(lidos));
+  // (b) o recorte lido do canvas: marca BKB e SO a regional SUL
+  const soSul = recorte.regionais.length === 1 && recorte.regionais[0] === 'SUL';
+  if (!recorte.marcaOk) errados.push('o titulo do relatorio nao diz BKB (li: "' + recorte.linhaTitulo + '")');
+  if (!recorte.achouVisual) errados.push('nao achei o visual "Em Aberto por Regional" para conferir a regional');
+  else if (!soSul) errados.push('regional fora do lugar -- na tela aparece [' + recorte.regionais.join(', ') + '], esperado so SUL');
+
   if (errados.length) {
     await browser.close().catch(() => {});
     fatal('filtro do Power BI fora do lugar -- NAO publiquei. ' + errados.join(' | ')
       + '. Ajuste em: ' + URL_RISCO);
   }
-  log('slicers conferidos: recorte correto (BKB / SUL / Loja Todos)');
+  log('recorte conferido: BKB / SUL (slicers na tela: ' + slicersConferidos + ')');
   await browser.close().catch(() => {});
 }
 
