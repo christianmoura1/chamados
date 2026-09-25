@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-25T10:00:16.077Z",
+ "atualizadoEm": "2026-09-25T12:40:11.368Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 11,
+  "emExecucao": 12,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 11
+  "total": 12
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-25",
-   "abertos": 0,
-   "fechados": 0
+   "abertos": 1,
+   "fechados": 1
   }
  ],
  "itens": [
+  {
+   "numero": "WO0056576",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "24766 - SHOP TOTAL POA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "25/09/2026 09:38:35",
+   "fechamento": "",
+   "principal": "BK063622 - CAMARA DE CONGELADOS; SÃO RAFAEL",
+   "secundario": "CMG - NÃO LIGA",
+   "sigla": "CMG",
+   "tecnico": "",
+   "descricao": "BK063622 - CAMARA DE CONGELADOS; SÃO RAFAEL | CMG - NÃO LIGA",
+   "tarefas": [
+    "WOT0057094"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0056409",
    "marca": "BKB",
