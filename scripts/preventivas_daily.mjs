@@ -59,6 +59,58 @@ const PREFIXOS_CANCEL = ['cancel'];
 const concluida = (e) => PREFIXOS_FIM.some((p) => semAcento(e).startsWith(p));
 const cancelada = (e) => PREFIXOS_CANCEL.some((p) => semAcento(e).startsWith(p));
 
+// O equipamento da preventiva NAO esta no short_description (que e' sempre
+// so' "Preventiva") -- esta no campo asset, no formato
+//   "BK071656 - PHU; PRINCE CASTLE; EHB34A-BR; HNGK26563"
+//   codigo - TIPO; fabricante; modelo; numero de serie
+// Para filtrar e agrupar interessa o TIPO; o resto vira ruido (cada loja
+// tem um numero de serie diferente, entao agrupar pelo asset inteiro daria
+// uma lista de centenas de itens unicos).
+// Familias de equipamento. O cadastro do SOMA escreve o MESMO equipamento de
+// varios jeitos -- "MAQUINA DE SORVETE", "MAQUINA SORVETE, CARPIGIANI,
+// CN825716181" e "MAQUINA DE SORVETE C716 380V" sao a mesma coisa, e sem
+// agrupar dariam 65 tipos distintos num filtro. Pior: quem filtrasse
+// "MAQUINA DE SORVETE" veria 41 de 100 preventivas e acharia que era tudo.
+// A ordem importa: MEAT FREEZER antes de FREEZER, CAMARA FRIA antes de
+// AR CONDICIONADO (uma condensadora de camara fria nao e' climatizacao).
+const FAMILIAS = [
+  [/MEAT.?FREEZER/, 'MEAT FREEZER'],
+  [/SORVETE/, 'MAQUINA DE SORVETE'],
+  [/MICRO.?ONDAS/, 'MICRO-ONDAS'],
+  [/TOSTADOR|TOSTADEIRA/, 'TOSTADEIRA'],
+  [/FRITADEIRA/, 'FRITADEIRA'],
+  [/BROILER/, 'BROILER'],
+  [/\bPHU\b/, 'PHU'],
+  [/DISPENSADOR|DISPENSER|\bDBC\b/, 'DISPENSADOR DE BATATAS'],
+  [/CAMARA DE CONGELADOS/, 'CAMARA DE CONGELADOS'],
+  [/CAMARA DE RESFRIADOS/, 'CAMARA DE RESFRIADOS'],
+  [/CAMARA FRIA/, 'CAMARA FRIA'],
+  [/FREEZER/, 'FREEZER DE MESA'],
+  [/AR CONDICIONADO|ROOF ?TOP|SPLIT|FANCOIL|CONDENSADOR|EVAPORADOR|UNID/, 'AR CONDICIONADO / CLIMATIZACAO'],
+];
+
+// O equipamento da preventiva NAO esta no short_description (que e' sempre
+// so' "Preventiva") -- esta no campo asset, no formato
+//   "BK071656 - PHU; PRINCE CASTLE; EHB34A-BR; HNGK26563"
+//   codigo - TIPO; fabricante; modelo; numero de serie
+// (as vezes separado por virgula em vez de ponto e virgula).
+function tipoBruto(asset) {
+  const s = String(asset || '').trim();
+  if (!s) return '';
+  const semCodigo = s.replace(/^[A-Z]{2,3}\d+\s*[-\u2013]\s*/i, '');
+  return semCodigo.split(/[;,]/)[0].trim();
+}
+
+function tipoEquipamento(asset) {
+  const bruto = tipoBruto(asset);
+  if (!bruto) return '(sem equipamento)';
+  const chave = bruto.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase();
+  for (const [re, familia] of FAMILIAS) if (re.test(chave)) return familia;
+  // sem regra que case, o tipo fica com o nome que o cadastro deu -- de
+  // proposito: jogar num 'OUTROS' esconderia equipamento de verdade
+  return bruto.toUpperCase();
+}
+
 // datas do SOMA vem como "25/09/2026 17:14:05"
 function paraData(br) {
   const m = String(br || '').match(/^(\d{2})\/(\d{2})\/(\d{4})(?:\s+(\d{2}):(\d{2}):(\d{2}))?/);
@@ -73,7 +125,7 @@ const CAMPOS = [
   'number', 'parent.number', 'opened_at', 'work_type', 'state', 'u_bk_stage',
   'assigned_to', 'assignment_group', 'opened_for.name', 'location',
   'opened_for.u_bk_sector', 'opened_for.city', 'opened_for.state',
-  'expected_start', 'work_start', 'estimated_end', 'sys_updated_on',
+  'expected_start', 'work_start', 'estimated_end', 'sys_updated_on', 'asset',
 ].join(',');
 
 async function baixar() {
@@ -134,6 +186,9 @@ function processar(linhas) {
       uf: x['opened_for.state'] || '',
       tecnico: x.assigned_to || '(sem tecnico)',
       grupo: x.assignment_group || '',
+      ativo: x.asset || '',
+      equipBruto: tipoBruto(x.asset),
+      equipamento: tipoEquipamento(x.asset),
       estado: x.state,
       fase: x.u_bk_stage || '',
       aberturaISO: iso(abertura),
@@ -198,6 +253,7 @@ function processar(linhas) {
 
   const lojas = new Set(itens.map((x) => x.loja));
   const tecnicos = new Set(itens.filter((x) => x.tecnico !== '(sem tecnico)').map((x) => x.tecnico));
+  const equipamentos = new Set(itens.filter((x) => x.equipamento !== '(sem equipamento)').map((x) => x.equipamento));
   const baseConcl = itens.filter((x) => !x.cancelada).length;
 
   return {
@@ -215,10 +271,12 @@ function processar(linhas) {
       pctAtraso: abertas.length ? Math.round(atrasadas.length / abertas.length * 100) : 0,
       lojas: lojas.size,
       tecnicos: tecnicos.size,
+      equipamentos: equipamentos.size,
       mediaDiasAberta: abertas.length ? Math.round(abertas.reduce((s, x) => s + (x.dias ?? 0), 0) / abertas.length) : 0,
       maisAntigaDias: abertas.length ? Math.max(...abertas.map((x) => x.dias ?? 0)) : 0,
     },
     porTecnico: agrupa((x) => x.tecnico),
+    porEquipamento: agrupa((x) => x.equipamento, (lista) => ({ lojas: new Set(lista.map((y) => y.loja)).size })),
     porSetor: agrupa((x) => x.setor, (lista) => ({ lojas: new Set(lista.map((y) => y.loja)).size })),
     porLoja: agrupa((x) => x.loja, (lista) => ({
       setor: (lista[0] || {}).setor || '',
@@ -264,7 +322,20 @@ function publicar() {
     + ' | concluidas ' + dados.totais.concluidas
     + ' | atrasadas ' + dados.totais.atrasadas
     + ' | lojas ' + dados.totais.lojas
-    + ' | tecnicos ' + dados.totais.tecnicos);
+    + ' | tecnicos ' + dados.totais.tecnicos
+    + ' | equipamentos ' + dados.totais.equipamentos);
+
+  // deixa auditavel o agrupamento: se alguma familia engolir algo errado,
+  // da' para ver no log sem abrir o JSON
+  const mapa = new Map();
+  dados.itens.forEach((x) => {
+    if (!mapa.has(x.equipamento)) mapa.set(x.equipamento, new Set());
+    if (x.equipBruto) mapa.get(x.equipamento).add(x.equipBruto);
+  });
+  [...mapa.entries()]
+    .filter(([, brutos]) => brutos.size > 1)
+    .sort((a, b) => b[1].size - a[1].size)
+    .forEach(([familia, brutos]) => log('familia ' + familia + ' <- ' + [...brutos].join(' / ')));
 
   fs.writeFileSync(SAIDA, JSON.stringify(dados), 'utf8');
   log('gravado ' + SAIDA);
