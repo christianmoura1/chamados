@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-25T17:00:14.561Z",
+ "atualizadoEm": "2026-09-25T19:00:14.983Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 16,
+  "emExecucao": 17,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 16
+  "total": 17
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-25",
-   "abertos": 6,
+   "abertos": 7,
    "fechados": 5
   }
  ],
  "itens": [
+  {
+   "numero": "WO0056863",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "19868 - SHOP DO VALE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "25/09/2026 15:59:57",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "AEX - FALTA DE ENERGIA - CORTE DE ENERGIA NA REGIÃO",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | AEX - FALTA DE ENERGIA - CORTE DE ENERGIA NA REGIÃO",
+   "tarefas": [
+    "WOT0057385"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0056786",
    "marca": "BKB",
