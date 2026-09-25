@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-09-24T20:20:32.901Z",
+ "atualizadoEm": "2026-09-25T10:00:16.077Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 18,
+  "emExecucao": 11,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 18
+  "total": 11
  },
  "serie": [
-  {
-   "data": "2026-09-22",
-   "abertos": 13,
-   "fechados": 21
-  },
   {
    "data": "2026-09-23",
    "abertos": 15,
@@ -23,6 +18,11 @@
    "data": "2026-09-24",
    "abertos": 5,
    "fechados": 15
+  },
+  {
+   "data": "2026-09-25",
+   "abertos": 0,
+   "fechados": 0
   }
  ],
  "itens": [
@@ -277,167 +277,6 @@
    "aguardandoToken": 0,
    "fechadoSemToken": "",
    "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0055273",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA NORTE",
-   "loja": "15875 - SHOP MUELLER CURITIBA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "22/09/2026 14:34:21",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - COZINHA - REFLUXO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
-   "tarefas": [
-    "WOT0055765"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0055259",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "22507 - ILR PORTO ALEGRE - R ANDRADAS 1664",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "22/09/2026 14:16:31",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - QUADRO ELÉTRICO - FALTA DE DISPOSITIVO DE PROTEÇÃO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - FALTA DE DISPOSITIVO DE PROTEÇÃO",
-   "tarefas": [
-    "WOT0055752"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0055256",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "22507 - ILR PORTO ALEGRE - R ANDRADAS 1664",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "22/09/2026 14:11:58",
-   "fechamento": "",
-   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
-   "secundario": "SCI - ACESSÓRIOS/PEÇAS DANIFICADAS",
-   "sigla": "SCI",
-   "tecnico": "",
-   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - ACESSÓRIOS/PEÇAS DANIFICADAS",
-   "tarefas": [
-    "WOT0055749"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0055168",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "18408 - SHOP BELLA CITTA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "22/09/2026 12:31:08",
-   "fechamento": "",
-   "principal": "BK066938 - COIFA LAVADORA; MELTING",
-   "secundario": "COI - COIFA NÃO FUNCIONA",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK066938 - COIFA LAVADORA; MELTING | COI - COIFA NÃO FUNCIONA",
-   "tarefas": [
-    "WOT0055663"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0055064",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "OESTE PR",
-   "loja": "22536 - Shopping Palladium Foz do Iguaçu ",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "22/09/2026 10:46:08",
-   "fechamento": "",
-   "principal": "TOSTADEIRA 220V 3290W 66A71GRC",
-   "secundario": "TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
-   "sigla": "TST",
-   "tecnico": "",
-   "descricao": "TOSTADEIRA 220V 3290W 66A71GRC | TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
-   "tarefas": [
-    "WOT0055559"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0055039",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "16687 - SHOP PALLADIUM PONTA GROSSA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "22/09/2026 10:23:38",
-   "fechamento": "",
-   "principal": "BK066105 - COIFA",
-   "secundario": "COI - COIFA EM CONTIGÊNCIA",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK066105 - COIFA | COI - COIFA EM CONTIGÊNCIA",
-   "tarefas": [
-    "WOT0055534"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0054981",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "22507 - ILR PORTO ALEGRE - R ANDRADAS 1664",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "22/09/2026 09:12:43",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
-   "tarefas": [
-    "WOT0055476"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "Tentativa de contato: 22/09/2026 11:41:52;\nTentativa de contato: 22/09/2026 14:15:45;\n",
    "grupo": "execucao"
   }
  ]
