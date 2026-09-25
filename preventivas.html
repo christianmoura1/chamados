@@ -384,7 +384,7 @@
 <script>
 let DADOS = null;
 const VISTA = { aba: 'tecnico' };
-const FILTROS = { loja: '', tecnico: '', setor: '', estado: '', soAtrasadas: false };
+const FILTROS = { loja: '', tecnico: '', setor: '', estado: '', equipamento: '', soAtrasadas: false };
 let LOJAS_LISTA = [];
 
 function escapeHtml(s) {
@@ -417,7 +417,7 @@ function kpis(t) {
   </div>
   <div class="kpis">
     ${c('Lojas com preventiva', t.lojas, '', 'na regional Sul')}
-    ${c('Técnicos envolvidos', t.tecnicos, '', 'com ao menos 1 preventiva')}
+    ${c('Equipamentos', t.equipamentos ?? '—', '', 'tipos distintos em preventiva')}
     ${c('Canceladas', t.canceladas, '', 'fora do cálculo de conclusão')}
     ${c('Total no período', t.total, '', 'abertas + concluídas + canceladas')}
   </div>`;
@@ -452,16 +452,18 @@ const COLUNAS = {
   tecnico: { titulo: 'Técnico', sub: 'quem está com a preventiva atribuída' },
   setor: { titulo: 'Setor', sub: 'região dentro da regional Sul' },
   loja: { titulo: 'Loja', sub: 'restaurante onde a preventiva está pendente' },
+  equipamento: { titulo: 'Equipamento', sub: 'tipo de equipamento, lido do ativo da tarefa' },
 };
 
 function tabelaVisao() {
   const lista = VISTA.aba === 'tecnico' ? DADOS.porTecnico
-    : VISTA.aba === 'setor' ? DADOS.porSetor : DADOS.porLoja;
+    : VISTA.aba === 'setor' ? DADOS.porSetor
+    : VISTA.aba === 'equipamento' ? (DADOS.porEquipamento || []) : DADOS.porLoja;
   const col = COLUNAS[VISTA.aba];
-  const extra = VISTA.aba === 'setor' ? '<th class="num">Lojas</th>'
+  const extra = (VISTA.aba === 'setor' || VISTA.aba === 'equipamento') ? '<th class="num">Lojas</th>'
     : VISTA.aba === 'loja' ? '<th>Setor</th><th>Cidade</th>' : '';
   const linhas = lista.map(x => {
-    const celExtra = VISTA.aba === 'setor' ? `<td class="num">${n(x.lojas)}</td>`
+    const celExtra = (VISTA.aba === 'setor' || VISTA.aba === 'equipamento') ? `<td class="num">${n(x.lojas)}</td>`
       : VISTA.aba === 'loja' ? `<td>${escapeHtml(x.setor || '—')}</td><td>${escapeHtml((x.cidade || '') + (x.uf ? '/' + x.uf : '') || '—')}</td>` : '';
     const clsPct = x.pct >= 70 ? 'ok' : x.pct >= 40 ? 'alta' : 'sos';
     return `<tr>
@@ -481,6 +483,7 @@ function tabelaVisao() {
       <button type="button" class="aba${VISTA.aba === 'tecnico' ? ' on' : ''}" data-aba="tecnico">Por técnico</button>
       <button type="button" class="aba${VISTA.aba === 'setor' ? ' on' : ''}" data-aba="setor">Por setor</button>
       <button type="button" class="aba${VISTA.aba === 'loja' ? ' on' : ''}" data-aba="loja">Por loja</button>
+      <button type="button" class="aba${VISTA.aba === 'equipamento' ? ' on' : ''}" data-aba="equipamento">Por equipamento</button>
     </div>
     <p class="card-sub">${escapeHtml(col.sub)} · ordenado por preventivas em aberto</p>
     <div class="filter-table-wrap"><table class="detail-table">
@@ -502,6 +505,7 @@ function aplicaFiltros(itens) {
     (!FILTROS.tecnico || x.tecnico === FILTROS.tecnico) &&
     (!FILTROS.setor || x.setor === FILTROS.setor) &&
     (!FILTROS.estado || x.estado === FILTROS.estado) &&
+    (!FILTROS.equipamento || x.equipamento === FILTROS.equipamento) &&
     (!FILTROS.soAtrasadas || x.atrasada));
 }
 
@@ -557,7 +561,8 @@ function barraFiltros() {
   const tecnicos = unicos(x => x.tecnico);
   const setores = unicos(x => x.setor);
   const estados = unicos(x => x.estado);
-  const ativo = FILTROS.loja || FILTROS.tecnico || FILTROS.setor || FILTROS.estado || FILTROS.soAtrasadas;
+  const equipamentos = unicos(x => x.equipamento);
+  const ativo = FILTROS.loja || FILTROS.tecnico || FILTROS.setor || FILTROS.estado || FILTROS.equipamento || FILTROS.soAtrasadas;
   const visiveis = aplicaFiltros(DADOS.itens).length;
   return `<div class="filter-bar">
     ${comboLojaHtml(LOJAS_LISTA)}
@@ -565,6 +570,8 @@ function barraFiltros() {
       <select id="fTecnico">${opc(tecnicos, FILTROS.tecnico, 'Todos os técnicos (' + tecnicos.length + ')')}</select></div>
     <div class="filter-field"><label for="fSetor">Setor</label>
       <select id="fSetor">${opc(setores, FILTROS.setor, 'Todos os setores (' + setores.length + ')')}</select></div>
+    <div class="filter-field"><label for="fEquip">Equipamento</label>
+      <select id="fEquip">${opc(equipamentos, FILTROS.equipamento, 'Todos os equipamentos (' + equipamentos.length + ')')}</select></div>
     <div class="filter-field"><label for="fEstado">Estado</label>
       <select id="fEstado">${opc(estados, FILTROS.estado, 'Todos os estados')}</select></div>
     <label class="filter-check"><input type="checkbox" id="fAtrasadas"${FILTROS.soAtrasadas ? ' checked' : ''}> só atrasadas</label>
@@ -587,6 +594,7 @@ function tabelaDetalhe() {
       <td class="mono">${escapeHtml(x.wo)}</td>
       <td>${escapeHtml(x.loja)}</td>
       <td>${escapeHtml(x.setor)}</td>
+      <td title="${escapeHtml(x.ativo || '')}">${escapeHtml(x.equipamento || '—')}</td>
       <td>${escapeHtml(x.tecnico)}</td>
       <td>${escapeHtml(x.estado)}</td>
       <td>${tag}</td>
@@ -601,10 +609,10 @@ function tabelaDetalhe() {
     <div id="barraFiltros">${barraFiltros()}</div>
     <div class="filter-table-wrap alto"><table class="detail-table">
       <thead><tr>
-        <th>Tarefa</th><th>Ordem</th><th>Loja</th><th>Setor</th><th>Técnico</th>
+        <th>Tarefa</th><th>Ordem</th><th>Loja</th><th>Setor</th><th>Equipamento</th><th>Técnico</th>
         <th>Estado</th><th>Situação</th><th class="num">Em aberto</th><th class="num">Atraso</th><th>Aberta em</th>
       </tr></thead>
-      <tbody>${linhas || '<tr><td colspan="10" class="filter-empty">Nenhuma preventiva bate com o filtro escolhido.</td></tr>'}</tbody>
+      <tbody>${linhas || '<tr><td colspan="11" class="filter-empty">Nenhuma preventiva bate com o filtro escolhido.</td></tr>'}</tbody>
     </table></div>
   </div>`;
 }
@@ -621,12 +629,13 @@ document.addEventListener('click', (ev) => {
   const aba = ev.target.closest('.aba');
   if (aba) { VISTA.aba = aba.dataset.aba; render(); return; }
   if (ev.target.id === 'fLimpar') {
-    FILTROS.loja = ''; FILTROS.tecnico = ''; FILTROS.setor = ''; FILTROS.estado = ''; FILTROS.soAtrasadas = false;
+    FILTROS.loja = ''; FILTROS.tecnico = ''; FILTROS.setor = ''; FILTROS.estado = '';
+    FILTROS.equipamento = ''; FILTROS.soAtrasadas = false;
     render();
   }
 });
 document.addEventListener('change', (ev) => {
-  const mapa = { fTecnico: 'tecnico', fSetor: 'setor', fEstado: 'estado' };
+  const mapa = { fTecnico: 'tecnico', fSetor: 'setor', fEstado: 'estado', fEquip: 'equipamento' };
   const k = mapa[ev.target.id];
   if (k) { FILTROS[k] = ev.target.value; render(); return; }
   if (ev.target.id === 'fAtrasadas') { FILTROS.soAtrasadas = ev.target.checked; render(); }
