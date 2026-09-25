@@ -1,8 +1,8 @@
 {
- "atualizadoEm": "24/09/2026 07:09:48",
- "geradoEm": "2026-09-24T11:04:00.274Z",
+ "atualizadoEm": "25/09/2026 18:09:42",
+ "geradoEm": "2026-09-25T22:34:47.863Z",
  "totalLojasAvaliadas": 71,
- "scoreMedio": 10.06,
+ "scoreMedio": 9.99,
  "categorias": [
   {
    "chave": "sci",
@@ -38,6 +38,11 @@
    "pctVencido": 42,
    "lojasVencidas": [
     {
+     "nome": "15875 - SHOP MUELLER CURITIBA",
+     "score": 15,
+     "diasAtraso": null
+    },
+    {
      "nome": "16619 - SHOP PRAIA DE BELAS",
      "score": 15,
      "diasAtraso": null
@@ -53,17 +58,12 @@
      "diasAtraso": null
     },
     {
-     "nome": "20047 - FS CURITIBA - LINHA VERDE",
-     "score": 15,
-     "diasAtraso": null
-    },
-    {
-     "nome": "20048 - OUTLET NOVO HAMBURGO",
-     "score": 15,
-     "diasAtraso": null
-    },
-    {
      "nome": "20049 - SHOP PRACA RIO GRANDE",
+     "score": 15,
+     "diasAtraso": null
+    },
+    {
+     "nome": "20215 - CARREFOUR PASSO D'AREIA",
      "score": 15,
      "diasAtraso": null
     },
@@ -103,16 +103,6 @@
      "diasAtraso": null
     },
     {
-     "nome": "23736 - FS CURITIBA - R MARTIN AFONSO",
-     "score": 14,
-     "diasAtraso": null
-    },
-    {
-     "nome": "15875 - SHOP MUELLER CURITIBA",
-     "score": 10,
-     "diasAtraso": null
-    },
-    {
      "nome": "15903 - SHOP CURITIBA",
      "score": 10,
      "diasAtraso": null
@@ -138,7 +128,12 @@
      "diasAtraso": null
     },
     {
-     "nome": "20215 - CARREFOUR PASSO D'AREIA",
+     "nome": "20047 - FS CURITIBA - LINHA VERDE",
+     "score": 10,
+     "diasAtraso": null
+    },
+    {
+     "nome": "20048 - OUTLET NOVO HAMBURGO",
      "score": 10,
      "diasAtraso": null
     },
@@ -164,6 +159,11 @@
     },
     {
      "nome": "23699 - COLOMBO PARK SHOP",
+     "score": 10,
+     "diasAtraso": null
+    },
+    {
+     "nome": "23736 - FS CURITIBA - R MARTIN AFONSO",
      "score": 10,
      "diasAtraso": null
     },
@@ -198,13 +198,13 @@
    "pctVencido": 4,
    "lojasVencidas": [
     {
-     "nome": "20410 - WALMART BIG TORRES",
-     "score": 15,
+     "nome": "23989 - SHOP JL CASCAVEL",
+     "score": 14,
      "diasAtraso": null
     },
     {
-     "nome": "23989 - SHOP JL CASCAVEL",
-     "score": 14,
+     "nome": "20410 - WALMART BIG TORRES",
+     "score": 10,
      "diasAtraso": null
     },
     {
@@ -217,19 +217,14 @@
   {
    "chave": "rotaPadroes",
    "nome": "Rota Padrões",
-   "vencido": 4,
-   "emDia": 67,
+   "vencido": 3,
+   "emDia": 68,
    "total": 71,
-   "pctVencido": 6,
+   "pctVencido": 4,
    "lojasVencidas": [
     {
      "nome": "18408 - SHOP BELLA CITTA",
      "score": 15,
-     "diasAtraso": null
-    },
-    {
-     "nome": "23736 - FS CURITIBA - R MARTIN AFONSO",
-     "score": 14,
      "diasAtraso": null
     },
     {
@@ -251,31 +246,17 @@
   "Quadro Elétrico",
   "Sensor de gás",
   "Damper",
-  "22",
+  "19",
   "4",
   "3",
   "3",
   "1",
-  "5",
+  "6",
   "Atrasado",
   "No Prazo"
  ],
  "chamadosRisco": {
   "vencidos": [
-   {
-    "numero": "WO0014833",
-    "statusRisco": "Atrasado",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
-    "regional": "SUL",
-    "setor": "CURITIBA SUL",
-    "loja": "20410 - WALMART BIG TORRES",
-    "status": "Atribuído",
-    "dtAbertura": "30/07/2026",
-    "dtEncerramento": "",
-    "tecnico": "CARLOS MAGNO DA SILVA LIRA"
-   },
    {
     "numero": "WO0015122",
     "statusRisco": "Atrasado",
@@ -291,48 +272,6 @@
     "tecnico": "CARLOS MAGNO DA SILVA LIRA"
    },
    {
-    "numero": "WO0018913",
-    "statusRisco": "Atrasado",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
-    "regional": "SUL",
-    "setor": "VALE DOS SINOS",
-    "loja": "20048 - OUTLET NOVO HAMBURGO",
-    "status": "Em Andamento",
-    "dtAbertura": "09/08/2026",
-    "dtEncerramento": "",
-    "tecnico": "THIAGO DOS SANTOS COELHO"
-   },
-   {
-    "numero": "WO0022546",
-    "statusRisco": "Atrasado",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA NÃO FUNCIONA",
-    "regional": "SUL",
-    "setor": "VALE DOS SINOS",
-    "loja": "20048 - OUTLET NOVO HAMBURGO",
-    "status": "Em Andamento",
-    "dtAbertura": "12/08/2026",
-    "dtEncerramento": "",
-    "tecnico": "THIAGO DOS SANTOS COELHO"
-   },
-   {
-    "numero": "WO0031864",
-    "statusRisco": "Atrasado",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA COM VAZAMENTO",
-    "regional": "SUL",
-    "setor": "VALE DOS SINOS",
-    "loja": "20048 - OUTLET NOVO HAMBURGO",
-    "status": "Em Andamento",
-    "dtAbertura": "16/08/2026",
-    "dtEncerramento": "",
-    "tecnico": "THIAGO DOS SANTOS COELHO"
-   },
-   {
     "numero": "WO0033655",
     "statusRisco": "Atrasado",
     "item": "Coifa",
@@ -345,34 +284,6 @@
     "dtAbertura": "17/08/2026",
     "dtEncerramento": "",
     "tecnico": "CRISTIANO CEZAR"
-   },
-   {
-    "numero": "WO0036525",
-    "statusRisco": "Atrasado",
-    "item": "Exaustor",
-    "assuntoPrincipal": "EXAUSTOR",
-    "assuntoSecundario": "EXA - AUSÊNCIA DE PROTEÇÃO DA CORREIA",
-    "regional": "SUL",
-    "setor": "CURITIBA NORTE",
-    "loja": "20047 - FS CURITIBA - LINHA VERDE",
-    "status": "Pronto Para Envio",
-    "dtAbertura": "22/08/2026",
-    "dtEncerramento": "",
-    "tecnico": "CARLOS MAGNO DA SILVA LIRA"
-   },
-   {
-    "numero": "WO0038207",
-    "statusRisco": "Atrasado",
-    "item": "Exaustor",
-    "assuntoPrincipal": "EXAUSTOR",
-    "assuntoSecundario": "AUSÊNCIA DE PROTEÇÃO DA CORREIA",
-    "regional": "SUL",
-    "setor": "CURITIBA NORTE",
-    "loja": "20047 - FS CURITIBA - LINHA VERDE",
-    "status": "Atribuído",
-    "dtAbertura": "25/08/2026",
-    "dtEncerramento": "",
-    "tecnico": "Wilson Charles Philistin"
    },
    {
     "numero": "WO0038306",
@@ -509,7 +420,7 @@
     "regional": "SUL",
     "setor": "VALE DOS SINOS",
     "loja": "32645 - FC CAXIAS DO SUL - VILLAGIO CAXIAS",
-    "status": "Pronto Para Envio",
+    "status": "Em Andamento",
     "dtAbertura": "09/09/2026",
     "dtEncerramento": "",
     "tecnico": "Cristppher Alencar Pacheco Cruz"
@@ -697,6 +608,20 @@
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
    },
    {
+    "numero": "WO0053425",
+    "statusRisco": "Atrasado",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
+    "regional": "SUL",
+    "setor": "CURITIBA OESTE/SC",
+    "loja": "16988 - SHOP ESTACAO",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "18/09/2026",
+    "dtEncerramento": "",
+    "tecnico": "CARLOS MAGNO DA SILVA LIRA"
+   },
+   {
     "numero": "WO0055121",
     "statusRisco": "Atrasado",
     "item": "Quadro Elétrico",
@@ -723,23 +648,37 @@
     "dtAbertura": "23/09/2026",
     "dtEncerramento": "",
     "tecnico": "Cristppher Alencar Pacheco Cruz"
-   }
-  ],
-  "aVencer": [
+   },
    {
-    "numero": "WO0053425",
-    "statusRisco": "No Prazo",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
+    "numero": "WO0056110",
+    "statusRisco": "Atrasado",
+    "item": "Exaustor",
+    "assuntoPrincipal": "EXAUSTOR",
+    "assuntoSecundario": "AUSÊNCIA DE PROTEÇÃO DA CORREIA",
     "regional": "SUL",
-    "setor": "CURITIBA OESTE/SC",
-    "loja": "16988 - SHOP ESTACAO",
+    "setor": "CURITIBA SUL",
+    "loja": "15875 - SHOP MUELLER CURITIBA",
     "status": "Pronto Para Envio",
-    "dtAbertura": "18/09/2026",
+    "dtAbertura": "24/09/2026",
     "dtEncerramento": "",
     "tecnico": "CARLOS MAGNO DA SILVA LIRA"
    },
+   {
+    "numero": "WO0056851",
+    "statusRisco": "Atrasado",
+    "item": "Exaustor",
+    "assuntoPrincipal": "EXAUSTOR",
+    "assuntoSecundario": "EXA - AUSÊNCIA DE PROTEÇÃO DA CORREIA",
+    "regional": "SUL",
+    "setor": "SUDOESTE RS",
+    "loja": "20215 - CARREFOUR PASSO D'AREIA",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "25/09/2026",
+    "dtEncerramento": "",
+    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
+   }
+  ],
+  "aVencer": [
    {
     "numero": "WO0054032",
     "statusRisco": "No Prazo",
@@ -777,10 +716,10 @@
     "regional": "SUL",
     "setor": "CAPITAL CENTRO RS",
     "loja": "18408 - SHOP BELLA CITTA",
-    "status": "Pronto Para Envio",
+    "status": "Em Andamento",
     "dtAbertura": "22/09/2026",
     "dtEncerramento": "",
-    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
+    "tecnico": "Gustavo de Godoy Matheus"
    },
    {
     "numero": "WO0055281",
@@ -795,6 +734,34 @@
     "dtAbertura": "22/09/2026",
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
+   },
+   {
+    "numero": "WO0056188",
+    "statusRisco": "No Prazo",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - COIFA NÃO FUNCIONA",
+    "regional": "SUL",
+    "setor": "CURITIBA NORTE",
+    "loja": "21791 - SHOP CIDADE CURITIBA",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "24/09/2026",
+    "dtEncerramento": "",
+    "tecnico": "CARLOS MAGNO DA SILVA LIRA"
+   },
+   {
+    "numero": "WO0056936",
+    "statusRisco": "No Prazo",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - COIFA COM DRENO ENTUPIDO",
+    "regional": "SUL",
+    "setor": "CURITIBA NORTE",
+    "loja": "21791 - SHOP CIDADE CURITIBA",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "25/09/2026",
+    "dtEncerramento": "",
+    "tecnico": "CARLOS MAGNO DA SILVA LIRA"
    }
   ]
  }
