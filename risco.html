@@ -222,6 +222,35 @@
     font-family: "IBM Plex Sans", sans-serif; font-size: 13px; color: var(--ink); background: var(--surface2);
     border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; appearance: none; width: 100%;
   }
+  /* combo de loja com busca por texto: 28 lojas num <select> nativo obrigava
+     rolar ate' achar. Aqui o campo e' um input que filtra a lista enquanto
+     digita (aceita o codigo "20410" ou pedaco do nome "torres"). */
+  .filter-field.combo { position: relative; min-width: 268px; }
+  .combo-input {
+    font-family: "IBM Plex Sans", sans-serif; font-size: 13px; color: var(--ink); background: var(--surface2);
+    border: 1px solid var(--line); border-radius: 10px; padding: 8px 30px 8px 10px; width: 100%;
+  }
+  .combo-input::placeholder { color: var(--muted); }
+  .combo-input:focus { outline: 2px solid var(--violet); outline-offset: -1px; }
+  .combo-x {
+    position: absolute; right: 8px; bottom: 7px; width: 20px; height: 20px; line-height: 18px; text-align: center;
+    border: 0; border-radius: 50%; background: var(--line); color: var(--ink); font-size: 14px; cursor: pointer; padding: 0;
+  }
+  .combo-x:hover { background: var(--sos-soft); color: var(--sos); }
+  .combo-lista {
+    position: absolute; top: 100%; left: 0; right: 0; z-index: 60; margin: 4px 0 0; padding: 4px; list-style: none;
+    max-height: 262px; overflow-y: auto; background: var(--surface2);
+    border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 10px 26px rgba(0,0,0,.14);
+  }
+  .combo-lista[hidden] { display: none; }
+  .combo-lista li {
+    font-family: "IBM Plex Sans", sans-serif; font-size: 13px; color: var(--ink);
+    padding: 7px 10px; border-radius: 7px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .combo-lista li.ativo { background: var(--violet); color: #fff; }
+  .combo-lista li.todas { font-weight: 600; }
+  .combo-lista li.vazio { color: var(--faint); cursor: default; }
+  .combo-lista li.vazio.ativo { background: none; color: var(--faint); }
   .resp-select {
     font-family: "IBM Plex Sans", sans-serif; font-size: 12.5px; color: var(--ink); background: var(--surface2);
     border: 1px solid var(--line); border-radius: 8px; padding: 4px 7px; min-width: 118px; cursor: pointer;
@@ -491,18 +520,80 @@ function aplicaFiltrosRisco(itens) {
     (!FILTROS_RISCO.resp || responsavelAtual(c) === FILTROS_RISCO.resp));
 }
 
+// lista viva de lojas: quem digita no combo filtra ESTA lista, que muda
+// conforme os chamados que vieram do BI
+let LOJAS_RISCO = [];
+
+function comboLojaHtml(lojas) {
+  const val = FILTROS_RISCO.loja;
+  const rot = 'Todas as lojas (' + lojas.length + ')';
+  return `<div class="filter-field combo" data-combo="loja">
+    <label for="fRiscoLoja">Loja</label>
+    <input type="text" id="fRiscoLoja" class="combo-input" role="combobox" autocomplete="off"
+      aria-expanded="false" aria-autocomplete="list" aria-controls="fRiscoLojaLista"
+      placeholder="${escapeHtml(rot)}" value="${escapeHtml(val)}" data-sel="${escapeHtml(val)}">
+    ${val ? '<button type="button" class="combo-x" id="fRiscoLojaX" aria-label="Limpar loja" title="Limpar loja">&times;</button>' : ''}
+    <ul class="combo-lista" id="fRiscoLojaLista" role="listbox" hidden></ul>
+  </div>`;
+}
+
+// sem acento e sem caixa: "sao jose" acha "SÃO JOSÉ", "torres" acha "TORRES"
+const chaveBusca = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+
+function fecharListaLoja() {
+  const ul = document.getElementById('fRiscoLojaLista');
+  const inp = document.getElementById('fRiscoLoja');
+  if (ul) ul.hidden = true;
+  if (inp) inp.setAttribute('aria-expanded', 'false');
+}
+
+function marcarAtivoLoja(i) {
+  const ul = document.getElementById('fRiscoLojaLista');
+  if (!ul) return;
+  const itens = [...ul.querySelectorAll('li[data-valor]')];
+  if (!itens.length) return;
+  const n = ((i % itens.length) + itens.length) % itens.length;
+  itens.forEach((li, k) => li.classList.toggle('ativo', k === n));
+  itens[n].scrollIntoView({ block: 'nearest' });
+}
+
+function abrirListaLoja(filtro) {
+  const inp = document.getElementById('fRiscoLoja');
+  const ul = document.getElementById('fRiscoLojaLista');
+  if (!inp || !ul) return;
+  // cada palavra digitada tem que aparecer em algum lugar do nome: assim
+  // "novo hamburgo" e "hamburgo novo" acham a mesma loja
+  const termos = chaveBusca(filtro).split(/\s+/).filter(Boolean);
+  const lista = termos.length
+    ? LOJAS_RISCO.filter((v) => { const a = chaveBusca(v); return termos.every((t) => a.includes(t)); })
+    : LOJAS_RISCO.slice();
+  const todas = `<li role="option" class="todas" data-valor="">Todas as lojas (${LOJAS_RISCO.length})</li>`;
+  ul.innerHTML = lista.length
+    ? todas + lista.map((v) => `<li role="option" data-valor="${escapeHtml(v)}">${escapeHtml(v)}</li>`).join('')
+    : todas + '<li class="vazio">nenhuma loja com esse texto</li>';
+  ul.hidden = false;
+  inp.setAttribute('aria-expanded', 'true');
+  marcarAtivoLoja(termos.length ? 1 : 0);
+}
+
+function escolherLoja(valor) {
+  FILTROS_RISCO.loja = valor || '';
+  fecharListaLoja();
+  renderizarChamadosRisco();
+}
+
 function barraFiltrosRisco(todos) {
   const unicos = (fn) => [...new Set((todos || []).map(fn).map((v) => (v || '').trim()).filter(Boolean))]
     .sort((a, b) => a.localeCompare(b, 'pt-BR'));
   const lojas = unicos((c) => c.loja);
+  LOJAS_RISCO = lojas;
   const assuntos = unicos(assuntoDe);
   const visiveis = aplicaFiltrosRisco(todos).length;
   const opc = (lista, sel, todosRot) => `<option value="">${todosRot}</option>` +
     lista.map((v) => `<option value="${escapeHtml(v)}"${v === sel ? ' selected' : ''}>${escapeHtml(v)}</option>`).join('');
   const ativo = FILTROS_RISCO.loja || FILTROS_RISCO.assunto || FILTROS_RISCO.resp;
   return `<div class="filter-bar">
-    <div class="filter-field"><label for="fRiscoLoja">Loja</label>
-      <select id="fRiscoLoja">${opc(lojas, FILTROS_RISCO.loja, 'Todas as lojas (' + lojas.length + ')')}</select></div>
+    ${comboLojaHtml(lojas)}
     <div class="filter-field"><label for="fRiscoAssunto">Assunto</label>
       <select id="fRiscoAssunto">${opc(assuntos, FILTROS_RISCO.assunto, 'Todos os assuntos (' + assuntos.length + ')')}</select></div>
     <div class="filter-field"><label for="fRiscoResp">Responsável</label>
@@ -694,10 +785,60 @@ iniciar();
 // pra caixa de selecao/data de cada chamado gravar a escolha no banco
 // compartilhado e atualizar contagens
 document.addEventListener('change', (ev) => {
-  const mapa = { fRiscoLoja: 'loja', fRiscoAssunto: 'assunto', fRiscoResp: 'resp', fRiscoOrdem: 'ordem' };
+  // fRiscoLoja fica de fora de proposito: virou input, e o 'change' dele no
+  // blur gravaria o texto cru digitado como se fosse o nome de uma loja
+  const mapa = { fRiscoAssunto: 'assunto', fRiscoResp: 'resp', fRiscoOrdem: 'ordem' };
   const chave = mapa[ev.target.id];
   if (chave) { FILTROS_RISCO[chave] = ev.target.value; renderizarChamadosRisco(); }
 });
+// ----- combo de loja: digitar para filtrar -----
+document.addEventListener('input', (ev) => {
+  if (ev.target.id === 'fRiscoLoja') abrirListaLoja(ev.target.value);
+});
+document.addEventListener('focusin', (ev) => {
+  // ao focar, abre a lista inteira e seleciona o texto: digitar por cima ja
+  // comeca uma busca nova sem precisar apagar
+  if (ev.target.id === 'fRiscoLoja') { ev.target.select(); abrirListaLoja(''); }
+});
+document.addEventListener('focusout', (ev) => {
+  if (ev.target.id !== 'fRiscoLoja') return;
+  setTimeout(() => {
+    const inp = document.getElementById('fRiscoLoja');
+    if (!inp || document.activeElement === inp) return;
+    fecharListaLoja();
+    // texto digitado sem escolher nada nao vira filtro: volta o que valia
+    inp.value = inp.dataset.sel || '';
+  }, 120);
+});
+// mousedown e nao click: o click chegaria depois do blur ja ter fechado a lista
+document.addEventListener('mousedown', (ev) => {
+  const li = ev.target.closest('#fRiscoLojaLista li[data-valor]');
+  if (li) { ev.preventDefault(); escolherLoja(li.dataset.valor); return; }
+  if (ev.target.closest('#fRiscoLojaX')) { ev.preventDefault(); escolherLoja(''); return; }
+  if (!ev.target.closest('[data-combo="loja"]')) fecharListaLoja();
+});
+document.addEventListener('keydown', (ev) => {
+  if (ev.target.id !== 'fRiscoLoja') return;
+  const ul = document.getElementById('fRiscoLojaLista');
+  if (!ul) return;
+  if (ev.key === 'ArrowDown' || ev.key === 'ArrowUp') {
+    ev.preventDefault();
+    if (ul.hidden) { abrirListaLoja(ev.target.value); return; }
+    const itens = [...ul.querySelectorAll('li[data-valor]')];
+    const at = itens.findIndex((li) => li.classList.contains('ativo'));
+    marcarAtivoLoja(ev.key === 'ArrowDown' ? at + 1 : at - 1);
+  } else if (ev.key === 'Enter') {
+    ev.preventDefault();
+    const at = ul.querySelector('li.ativo[data-valor]');
+    if (at) escolherLoja(at.dataset.valor);
+  } else if (ev.key === 'Escape') {
+    ev.stopPropagation();
+    fecharListaLoja();
+    ev.target.value = ev.target.dataset.sel || '';
+    ev.target.blur();
+  }
+});
+
 document.addEventListener('click', (ev) => {
   if (ev.target.id === 'fRiscoLimpar') {
     FILTROS_RISCO.loja = ''; FILTROS_RISCO.assunto = ''; FILTROS_RISCO.resp = '';
