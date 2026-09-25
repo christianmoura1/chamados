@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Preventivas — Sul</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+
+  :root {
+    --sidebar:   #1E1B3A;
+    --sidebar-2: #2A2555;
+    --ground:    #F3F1FB;
+    --surface:   #FFFFFF;
+    --surface2:  #F6F4FC;
+    --ink:       #211D3D;
+    --muted:     #726E93;
+    --faint:     #A9A5C6;
+    --line:      #ECEAF6;
+    --violet:    #7C5CFC;
+    --violet-2:  #A78BFA;
+    --pink:      #F472B6;
+    --blue:      #38BDF8;
+    --sos:       #E43F5A;
+    --sos-soft:  rgba(228,63,90,0.10);
+    --alta:      #F5A623;
+    --alta-soft: rgba(245,166,35,0.12);
+    --ok:        #22C08D;
+    --grid:      rgba(33,29,61,0.06);
+    --shadow:    0 1px 2px rgba(33,29,61,.04), 0 12px 28px rgba(33,29,61,.07);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:   #100E22; --surface: #1A1733; --surface2: #211D42;
+      --ink: #ECEAFB; --muted: #A29DC7; --faint: #6C6791; --line: #2C2854;
+      --violet: #9A82FF; --violet-2: #C4B5FD; --pink: #F9A8D4; --blue: #7DD3FC;
+      --sos: #F3697F; --sos-soft: rgba(243,105,127,0.16);
+      --alta: #FBBF56; --alta-soft: rgba(251,191,86,0.16); --ok: #4ADE9E;
+      --grid: rgba(236,234,251,0.07); --shadow: 0 1px 2px rgba(0,0,0,.35), 0 14px 32px rgba(0,0,0,.32);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:   #100E22; --surface: #1A1733; --surface2: #211D42;
+    --ink: #ECEAFB; --muted: #A29DC7; --faint: #6C6791; --line: #2C2854;
+    --violet: #9A82FF; --violet-2: #C4B5FD; --pink: #F9A8D4; --blue: #7DD3FC;
+    --sos: #F3697F; --sos-soft: rgba(243,105,127,0.16);
+    --alta: #FBBF56; --alta-soft: rgba(251,191,86,0.16); --ok: #4ADE9E;
+    --grid: rgba(236,234,251,0.07); --shadow: 0 1px 2px rgba(0,0,0,.35), 0 14px 32px rgba(0,0,0,.32);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--ground); color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif; font-size: 15px; line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .num { font-variant-numeric: tabular-nums; }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+
+  .shell { display: grid; grid-template-columns: 240px minmax(0,1fr); min-height: 100vh; transition: grid-template-columns .22s ease; }
+  .shell.sb-collapsed { grid-template-columns: 0 minmax(0,1fr); }
+  @media (max-width: 860px) { .shell:not(.sb-expanded) { grid-template-columns: 0 minmax(0,1fr); } }
+
+  .side {
+    background: linear-gradient(180deg, var(--sidebar), var(--sidebar-2));
+    padding: 26px 20px; display: flex; flex-direction: column; gap: 30px; color: #EDEAFF;
+    position: relative; overflow: hidden; white-space: nowrap; min-width: 0;
+    transition: opacity .18s ease;
+  }
+  .shell.sb-collapsed .side { opacity: 0; padding-left: 0; padding-right: 0; }
+
+  .side-toggle {
+    position: absolute; top: 22px; right: 14px; width: 26px; height: 26px; border-radius: 999px;
+    background: rgba(255,255,255,0.08); border: none; color: #C6C0EE; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; font-size: 14px; line-height: 1; flex: none;
+  }
+  .side-toggle:hover { background: rgba(255,255,255,0.16); color: #FFFFFF; }
+
+  .side-reopen {
+    display: none; position: fixed; top: 22px; left: 18px; z-index: 40;
+    width: 32px; height: 32px; border-radius: 999px; border: 1px solid var(--line);
+    background: var(--surface); color: var(--muted); box-shadow: var(--shadow); cursor: pointer;
+    align-items: center; justify-content: center; font-size: 15px; line-height: 1;
+  }
+  .side-reopen:hover { color: var(--violet); }
+  .shell.sb-collapsed .side-reopen { display: flex; }
+
+  .brand { display: flex; align-items: center; gap: 11px; padding-right: 24px; }
+  .brand .mark {
+    width: 34px; height: 34px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--violet), var(--pink));
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Archivo", sans-serif; font-weight: 800; font-size: 15px; color: white; flex: none;
+  }
+  .brand .name { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
+  .brand .sub { font-size: 11px; color: #A79FE0; }
+
+  .navgroup { display: flex; flex-direction: column; gap: 3px; }
+  .navlabel { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #7A72B8; padding: 0 12px; margin: 14px 0 6px; }
+  .navitem {
+    display: flex; align-items: center; gap: 11px; padding: 9px 12px; border-radius: 10px;
+    color: #C6C0EE; font-size: 13.5px; font-weight: 500; text-decoration: none;
+  }
+  a.navitem:hover { background: rgba(255,255,255,0.06); color: #FFFFFF; }
+  .navitem .dot { width: 7px; height: 7px; border-radius: 999px; background: currentColor; opacity: .55; flex: none; }
+  .navitem.active { background: rgba(255,255,255,0.08); color: #FFFFFF; }
+  .navitem.active .dot { background: var(--pink); opacity: 1; }
+
+  .side-foot { margin-top: auto; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 11.5px; color: #8B84C4; }
+
+  .main { padding: clamp(18px,3vw,34px) clamp(16px,3.5vw,40px) 60px; }
+  .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 22px; flex-wrap: wrap; }
+  .eyebrow { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--violet); margin: 0 0 6px; }
+  h1 { font-family: "Archivo", sans-serif; font-weight: 800; font-size: clamp(24px,3.4vw,32px); letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+  .stamp-pill {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--muted);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; box-shadow: var(--shadow);
+  }
+
+  .kpis { display: grid; grid-template-columns: repeat(4,1fr); gap: 13px; margin: 22px 0 30px; }
+  @media (max-width: 1080px) { .kpis { grid-template-columns: repeat(2,1fr); } }
+  .kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px 17px 14px; box-shadow: var(--shadow); }
+  .kpi .label { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); display:block; margin-bottom: 7px; }
+  .kpi .val { font-family: "Archivo", sans-serif; font-weight: 800; font-size: clamp(20px,2.6vw,25px); letter-spacing: -0.01em; }
+  .kpi.k-sos .val { color: var(--sos); }
+  .kpi.k-alta .val { color: var(--alta); }
+  .kpi.k-violet .val { color: var(--violet); }
+  .kpi.k-ok .val { color: var(--ok); }
+
+  section { margin-top: 34px; }
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin-bottom: 15px; flex-wrap: wrap; }
+  h2 { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 17px; letter-spacing: -0.01em; margin: 0; }
+  .sec-note { font-size: 12px; color: var(--faint); font-family: "IBM Plex Mono", monospace; }
+
+  .equip-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; align-items: start; }
+  @media (max-width: 1180px) { .equip-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+  @media (max-width: 640px) { .equip-grid { grid-template-columns: minmax(0,1fr); } }
+
+  .ecard { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 18px 18px 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 14px; cursor: pointer; transition: transform .12s ease, box-shadow .12s ease; text-align: left; }
+  .ecard:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(33,29,61,.08), 0 18px 34px rgba(33,29,61,.10); }
+  .ecard:focus-visible { outline: 2px solid var(--violet); outline-offset: 2px; }
+  .ecard .ehead { display: flex; align-items: center; justify-content: space-between; }
+  .ecard .etitle { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 14.5px; }
+  .ecard .eopen { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--faint); }
+
+  .donut-row { display: flex; align-items: center; gap: 16px; }
+  .donut-wrap { position: relative; width: 92px; height: 92px; flex: none; }
+  .donut-wrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .donut-wrap .center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .donut-wrap .pctv { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 17px; }
+  .donut-wrap .pctl { font-family: "IBM Plex Mono", monospace; font-size: 8.5px; color: var(--faint); letter-spacing: .04em; text-transform: uppercase; }
+
+  .estats { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .estat { background: var(--surface2); border-radius: 10px; padding: 8px 10px; }
+  .estat .n { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 16px; }
+  .estat .l { font-family: "IBM Plex Mono", monospace; font-size: 9px; color: var(--faint); text-transform: uppercase; letter-spacing: .04em; }
+  .estat.crit .n { color: var(--sos); }
+  .estat.ok .n { color: var(--ok); }
+
+  .esos-label { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); display: flex; align-items: center; gap: 6px; }
+  .esos-label::before { content: "●"; font-size: 8px; }
+  .esos-list { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
+  .esos-item { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 11.5px; }
+  .esos-item .loja { color: var(--ink); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+  .esos-empty { font-size: 11.5px; color: var(--faint); }
+
+  .cons-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 780px) { .cons-grid { grid-template-columns: 1fr; } }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px 16px; box-shadow: var(--shadow); }
+  .card h3 { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 13.5px; margin: 0 0 14px; }
+  .hbar-row { display: grid; grid-template-columns: 108px 1fr 40px; align-items: center; gap: 10px; margin-bottom: 9px; font-size: 12px; }
+  .hbar-row .lbl { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hbar-track { background: var(--surface2); border-radius: 999px; height: 9px; overflow: hidden; }
+  .hbar-fill { height: 100%; border-radius: 999px; }
+  .hbar-row .v { text-align: right; font-family: "IBM Plex Mono", monospace; font-weight: 600; }
+
+  footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--faint); font-size: 12px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .msg-carregando, .msg-erro { padding: 40px 0; text-align: center; color: var(--muted); font-family: "IBM Plex Mono", monospace; font-size: 13px; }
+  .msg-erro { color: var(--sos); }
+
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(16,14,34,0.55); backdrop-filter: blur(2px);
+    display: flex; align-items: center; justify-content: center; padding: 24px; z-index: 50;
+  }
+  .modal-overlay[hidden] { display: none; }
+  .modal-panel {
+    background: var(--surface); border-radius: 20px; box-shadow: var(--shadow);
+    width: min(560px, 100%); max-height: min(640px, 88vh); display: flex; flex-direction: column; overflow: hidden;
+  }
+  .modal-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; border-bottom: 1px solid var(--line); flex: none; }
+  .modal-head h3 { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 16.5px; margin: 0; }
+  .modal-close {
+    appearance: none; border: none; background: var(--surface2); color: var(--muted); width: 30px; height: 30px;
+    border-radius: 999px; font-size: 17px; line-height: 1; cursor: pointer;
+  }
+  .modal-close:hover { color: var(--ink); }
+  .modal-sub { padding: 12px 22px 0; font-size: 12px; color: var(--faint); font-family: "IBM Plex Mono", monospace; flex: none; }
+  .modal-body { overflow: auto; padding: 14px 22px 20px; }
+  .detail-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  .detail-table th {
+    text-align: left; font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .05em; text-transform: uppercase;
+    color: var(--faint); padding: 8px 10px; position: sticky; top: 0; background: var(--surface);
+  }
+  .detail-table td { padding: 8px 10px; border-top: 1px solid var(--line); vertical-align: top; }
+  .detail-table tr:hover td { background: var(--surface2); }
+  .tag { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; font-weight: 600; border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
+  .tag-sos { background: var(--sos-soft); color: var(--sos); }
+  .tag-normal { background: var(--surface2); color: var(--muted); }
+  .filter-table-wrap { max-height: 420px; overflow: auto; border-radius: 12px; }
+  .filter-empty { padding: 24px 0; text-align: center; color: var(--faint); font-size: 12.5px; }
+  .risco-subhead { display: flex; align-items: center; gap: 10px; margin: 22px 0 10px; font-family: "Archivo", sans-serif; font-weight: 700; font-size: 14px; }
+  .risco-subhead .cnt { font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 600; border-radius: 999px; padding: 2px 10px; }
+  .risco-subhead .cnt.vencido { background: var(--sos-soft); color: var(--sos); }
+  .risco-subhead .cnt.avencer { background: var(--ok); color: white; }
+  .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 16px; }
+  .filter-field { display: flex; flex-direction: column; gap: 4px; min-width: 168px; }
+  .filter-field label {
+    font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--faint);
+  }
+  .filter-field select {
+    font-family: "IBM Plex Sans", sans-serif; font-size: 13px; color: var(--ink); background: var(--surface2);
+    border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; appearance: none; width: 100%;
+  }
+  /* combo de loja com busca por texto: 28 lojas num <select> nativo obrigava
+     rolar ate' achar. Aqui o campo e' um input que filtra a lista enquanto
+     digita (aceita o codigo "20410" ou pedaco do nome "torres"). */
+  .filter-field.combo { position: relative; min-width: 268px; }
+  .combo-input {
+    font-family: "IBM Plex Sans", sans-serif; font-size: 13px; color: var(--ink); background: var(--surface2);
+    border: 1px solid var(--line); border-radius: 10px; padding: 8px 30px 8px 10px; width: 100%;
+  }
+  .combo-input::placeholder { color: var(--muted); }
+  .combo-input:focus { outline: 2px solid var(--violet); outline-offset: -1px; }
+  .combo-x {
+    position: absolute; right: 8px; bottom: 7px; width: 20px; height: 20px; line-height: 18px; text-align: center;
+    border: 0; border-radius: 50%; background: var(--line); color: var(--ink); font-size: 14px; cursor: pointer; padding: 0;
+  }
+  .combo-x:hover { background: var(--sos-soft); color: var(--sos); }
+  .combo-lista {
+    position: absolute; top: 100%; left: 0; right: 0; z-index: 60; margin: 4px 0 0; padding: 4px; list-style: none;
+    max-height: 262px; overflow-y: auto; background: var(--surface2);
+    border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 10px 26px rgba(0,0,0,.14);
+  }
+  .combo-lista[hidden] { display: none; }
+  .combo-lista li {
+    font-family: "IBM Plex Sans", sans-serif; font-size: 13px; color: var(--ink);
+    padding: 7px 10px; border-radius: 7px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .combo-lista li.ativo { background: var(--violet); color: #fff; }
+  .combo-lista li.todas { font-weight: 600; }
+  .combo-lista li.vazio { color: var(--faint); cursor: default; }
+  .combo-lista li.vazio.ativo { background: none; color: var(--faint); }
+  .resp-select {
+    font-family: "IBM Plex Sans", sans-serif; font-size: 12.5px; color: var(--ink); background: var(--surface2);
+    border: 1px solid var(--line); border-radius: 8px; padding: 4px 7px; min-width: 118px; cursor: pointer;
+  }
+  .resp-select:focus { outline: 2px solid var(--violet); outline-offset: -1px; }
+  .prev-date {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink); background: var(--surface2);
+    border: 1px solid var(--line); border-radius: 8px; padding: 4px 7px; min-width: 128px; cursor: pointer;
+  }
+  .prev-date:focus { outline: 2px solid var(--violet); outline-offset: -1px; }
+  /* previsao de termino ja passou: precisa saltar aos olhos */
+  .prev-date.vencida {
+    border-color: #E5352B; background: #FDECEB; color: #B22119; font-weight: 700;
+  }
+  .prev-date.hoje { border-color: #F0A31B; background: #FFF6E6; color: #8A5B06; font-weight: 700; }
+  /* aviso de responsaveis/prazos nao salvos -- fica fixo no topo porque a
+     falha anterior era SILENCIOSA e custou dados digitados */
+  .aviso-atrib {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+    font-family: "IBM Plex Sans", sans-serif; font-size: 13px; font-weight: 600;
+    padding: 11px 18px; text-align: center; line-height: 1.45;
+    box-shadow: 0 2px 10px rgba(0,0,0,.14);
+  }
+  .aviso-atrib.erro { background: #FDECEB; color: #B22119; border-bottom: 2px solid #E5352B; }
+  .aviso-atrib.pendente { background: #FFF6E6; color: #8A5B06; border-bottom: 2px solid #F0A31B; }
+  .aviso-atrib[hidden] { display: none; }
+  .filtro-limpar {
+    font-family: "IBM Plex Sans", sans-serif; font-size: 12.5px; font-weight: 600; color: var(--muted);
+    background: var(--surface2); border: 1px solid var(--line); border-radius: 10px; padding: 9px 14px; cursor: pointer;
+  }
+  .filtro-limpar:hover { color: var(--ink); }
+  .filtro-conta { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--faint); padding-bottom: 10px; }
+
+
+  /* ---- especifico do painel de Preventivas ---- */
+  .kpi .hint { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--faint); margin-top: 2px; }
+  .card-sub {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--faint);
+    margin: -4px 0 12px;
+  }
+  .abas { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+  .aba {
+    font-family: "IBM Plex Sans", sans-serif; font-size: 13px; font-weight: 600; color: var(--muted);
+    background: var(--surface2); border: 1px solid var(--line); border-radius: 999px;
+    padding: 7px 16px; cursor: pointer;
+  }
+  .aba:hover { color: var(--ink); }
+  .aba.on { background: var(--violet); border-color: var(--violet); color: #fff; }
+
+  /* grafico de barras: abertura x conclusao por dia */
+  .glegend {
+    display: flex; gap: 14px; margin-bottom: 8px;
+    font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--faint);
+  }
+  .glegend span { display: flex; align-items: center; gap: 5px; }
+  .sw { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
+  .sw-abre { background: var(--violet); }
+  .sw-fecha { background: var(--ok); }
+  .grafico {
+    display: flex; gap: 3px; align-items: flex-end; height: 132px;
+    overflow-x: auto; padding-bottom: 2px;
+  }
+  .gcol { flex: 1 0 15px; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .gpar { display: flex; gap: 2px; align-items: flex-end; height: 108px; width: 100%; justify-content: center; }
+  .gbar { width: 6px; border-radius: 3px 3px 0 0; min-height: 2px; }
+  .gb-abre { background: var(--violet); }
+  .gb-fecha { background: var(--ok); }
+  .glab { font-family: "IBM Plex Mono", monospace; font-size: 9px; color: var(--faint); }
+
+  /* percentual de conclusao com semaforo -- mesmo criterio dos outros paineis */
+  .pct {
+    font-family: "IBM Plex Mono", monospace; font-size: 11.5px; font-weight: 600;
+    border-radius: 999px; padding: 2px 9px;
+  }
+  .pct-ok { background: rgba(34,192,141,.13); color: var(--ok); }
+  .pct-alta { background: var(--alta-soft); color: var(--alta); }
+  .pct-sos { background: var(--sos-soft); color: var(--sos); }
+  .detail-table td.forte { font-weight: 700; }
+  .detail-table td.ruim { color: var(--sos); font-weight: 700; }
+
+  .tag.t-sos { background: var(--sos-soft); color: var(--sos); }
+  .tag.t-ok { background: rgba(34,192,141,.13); color: var(--ok); }
+  .tag.t-violet { background: rgba(124,92,252,.13); color: var(--violet); }
+  .tag.t-faint { background: var(--surface2); color: var(--faint); }
+
+  .filter-check {
+    display: flex; align-items: center; gap: 7px; padding-bottom: 9px;
+    font-family: "IBM Plex Sans", sans-serif; font-size: 13px; color: var(--muted); cursor: pointer;
+  }
+  .filter-check input { accent-color: var(--violet); width: 15px; height: 15px; cursor: pointer; }
+  .filter-table-wrap.alto { max-height: 620px; }
+
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <button class="side-toggle" id="sideToggle" type="button" aria-label="Recolher menu">‹</button>
+    <div class="brand">
+      <div class="mark">Z</div>
+      <div><div class="name">Manutenção Sul</div><div class="sub">Zamp · BK Brasil</div></div>
+    </div>
+    <div class="navgroup">
+      <a class="navitem" href="index.html"><span class="dot"></span>Backlog</a>
+      <a class="navitem" href="tecnicos.html"><span class="dot"></span>Técnicos</a>
+      <div class="navlabel">Painéis</div>
+      <div class="navitem"><span class="dot"></span>Perda de Receita</div>
+      <a class="navitem" href="risco.html"><span class="dot"></span>Gestão de Risco</a>
+      <a class="navitem" href="campo.html"><span class="dot"></span>Acompanhamento Campo</a>
+      <a class="navitem active" href="preventivas.html"><span class="dot"></span>Preventivas</a>
+      <div class="navlabel">Fonte</div>
+      <div class="navitem"><span class="dot"></span>ServiceNow · SOMA</div>
+    </div>
+    <div class="side-foot">Atualização diária · fonte SOMA (wm_task)</div>
+  </aside>
+  <button class="side-reopen" id="sideReopen" type="button" aria-label="Abrir menu">›</button>
+
+  <main class="main">
+    <div class="topbar">
+      <div>
+        <p class="eyebrow">Regional Sul · Manutenção Preventiva</p>
+        <h1>Preventivas</h1>
+      </div>
+      <div class="stamp-pill" id="stamp">carregando…</div>
+    </div>
+    <div id="conteudo"><div class="msg-carregando">carregando data/preventivas.json…</div></div>
+  </main>
+</div>
+
+<script>
+let DADOS = null;
+const VISTA = { aba: 'tecnico' };
+const FILTROS = { loja: '', tecnico: '', setor: '', estado: '', soAtrasadas: false };
+let LOJAS_LISTA = [];
+
+function escapeHtml(s) {
+  return String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+}
+const chaveBusca = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+const n = (v) => (v == null ? '—' : String(v));
+
+// ---------- barra lateral ----------
+(function () {
+  const shell = document.querySelector('.shell');
+  const fechar = () => shell.classList.add('side-collapsed');
+  const abrir = () => shell.classList.remove('side-collapsed');
+  document.getElementById('sideToggle')?.addEventListener('click', fechar);
+  document.getElementById('sideReopen')?.addEventListener('click', abrir);
+})();
+
+// ---------- KPIs ----------
+function kpis(t) {
+  const c = (rotulo, valor, cls, nota) => `<div class="kpi ${cls || ''}">
+    <div class="label">${escapeHtml(rotulo)}</div>
+    <div class="val num">${escapeHtml(String(valor))}</div>
+    ${nota ? `<div class="hint">${escapeHtml(nota)}</div>` : ''}
+  </div>`;
+  return `<div class="kpis">
+    ${c('Preventivas em aberto', t.abertas, 'k-violet', t.total + ' na janela de ' + DADOS.janelaDias + ' dias')}
+    ${c('Atrasadas', t.atrasadas, 'k-sos', t.pctAtraso + '% das abertas')}
+    ${c('Concluídas', t.concluidas, 'k-ok', t.pctConclusao + '% de conclusão')}
+    ${c('Mais antiga em aberto', t.maisAntigaDias + 'd', 'k-alta', 'média ' + t.mediaDiasAberta + 'd')}
+  </div>
+  <div class="kpis">
+    ${c('Lojas com preventiva', t.lojas, '', 'na regional Sul')}
+    ${c('Técnicos envolvidos', t.tecnicos, '', 'com ao menos 1 preventiva')}
+    ${c('Canceladas', t.canceladas, '', 'fora do cálculo de conclusão')}
+    ${c('Total no período', t.total, '', 'abertas + concluídas + canceladas')}
+  </div>`;
+}
+
+// ---------- gráfico de abertura x conclusão ----------
+function grafico(serie) {
+  if (!serie || !serie.length) return '';
+  const max = Math.max(1, ...serie.map(d => Math.max(d.abertas, d.concluidas)));
+  const barras = serie.map(d => {
+    const [ano, mes, dia] = d.dia.split('-');
+    return `<div class="gcol" title="${escapeHtml(dia + '/' + mes)} · ${d.abertas} abertas · ${d.concluidas} concluídas">
+      <div class="gpar">
+        <div class="gbar gb-abre" style="height:${Math.round(d.abertas / max * 100)}%"></div>
+        <div class="gbar gb-fecha" style="height:${Math.round(d.concluidas / max * 100)}%"></div>
+      </div>
+      <div class="glab">${escapeHtml(dia)}</div>
+    </div>`;
+  }).join('');
+  return `<div class="card">
+    <h3>Abertura × conclusão por dia</h3>
+    <p class="card-sub">últimos ${serie.length} dias com movimento · pico de ${max} no dia</p>
+    <div class="glegend">
+      <span><i class="sw sw-abre"></i>abertas</span><span><i class="sw sw-fecha"></i>concluídas</span>
+    </div>
+    <div class="grafico">${barras}</div>
+  </div>`;
+}
+
+// ---------- tabelas de visão ----------
+const COLUNAS = {
+  tecnico: { titulo: 'Técnico', sub: 'quem está com a preventiva atribuída' },
+  setor: { titulo: 'Setor', sub: 'região dentro da regional Sul' },
+  loja: { titulo: 'Loja', sub: 'restaurante onde a preventiva está pendente' },
+};
+
+function tabelaVisao() {
+  const lista = VISTA.aba === 'tecnico' ? DADOS.porTecnico
+    : VISTA.aba === 'setor' ? DADOS.porSetor : DADOS.porLoja;
+  const col = COLUNAS[VISTA.aba];
+  const extra = VISTA.aba === 'setor' ? '<th class="num">Lojas</th>'
+    : VISTA.aba === 'loja' ? '<th>Setor</th><th>Cidade</th>' : '';
+  const linhas = lista.map(x => {
+    const celExtra = VISTA.aba === 'setor' ? `<td class="num">${n(x.lojas)}</td>`
+      : VISTA.aba === 'loja' ? `<td>${escapeHtml(x.setor || '—')}</td><td>${escapeHtml((x.cidade || '') + (x.uf ? '/' + x.uf : '') || '—')}</td>` : '';
+    const clsPct = x.pct >= 70 ? 'ok' : x.pct >= 40 ? 'alta' : 'sos';
+    return `<tr>
+      <td>${escapeHtml(x.nome)}</td>
+      ${celExtra}
+      <td class="num">${x.total}</td>
+      <td class="num forte">${x.abertas}</td>
+      <td class="num ${x.atrasadas ? 'ruim' : ''}">${x.atrasadas}</td>
+      <td class="num">${x.concluidas}</td>
+      <td class="num"><span class="pct pct-${clsPct}">${x.pct}%</span></td>
+      <td class="num">${x.mediaDiasAberta}d</td>
+      <td class="num">${x.maisAntigaDias}d</td>
+    </tr>`;
+  }).join('');
+  return `<div class="card">
+    <div class="abas">
+      <button type="button" class="aba${VISTA.aba === 'tecnico' ? ' on' : ''}" data-aba="tecnico">Por técnico</button>
+      <button type="button" class="aba${VISTA.aba === 'setor' ? ' on' : ''}" data-aba="setor">Por setor</button>
+      <button type="button" class="aba${VISTA.aba === 'loja' ? ' on' : ''}" data-aba="loja">Por loja</button>
+    </div>
+    <p class="card-sub">${escapeHtml(col.sub)} · ordenado por preventivas em aberto</p>
+    <div class="filter-table-wrap"><table class="detail-table">
+      <thead><tr>
+        <th>${escapeHtml(col.titulo)}</th>${extra}
+        <th class="num">Total</th><th class="num">Abertas</th><th class="num">Atrasadas</th>
+        <th class="num">Concluídas</th><th class="num">% concl.</th>
+        <th class="num">Média aberta</th><th class="num">Mais antiga</th>
+      </tr></thead>
+      <tbody>${linhas || '<tr><td colspan="9" class="filter-empty">sem dados</td></tr>'}</tbody>
+    </table></div>
+  </div>`;
+}
+
+// ---------- detalhe com filtros ----------
+function aplicaFiltros(itens) {
+  return itens.filter(x =>
+    (!FILTROS.loja || x.loja === FILTROS.loja) &&
+    (!FILTROS.tecnico || x.tecnico === FILTROS.tecnico) &&
+    (!FILTROS.setor || x.setor === FILTROS.setor) &&
+    (!FILTROS.estado || x.estado === FILTROS.estado) &&
+    (!FILTROS.soAtrasadas || x.atrasada));
+}
+
+function comboLojaHtml(lojas) {
+  const val = FILTROS.loja;
+  return `<div class="filter-field combo" data-combo="loja">
+    <label for="fLoja">Loja</label>
+    <input type="text" id="fLoja" class="combo-input" role="combobox" autocomplete="off"
+      aria-expanded="false" aria-autocomplete="list" aria-controls="fLojaLista"
+      placeholder="Todas as lojas (${lojas.length})" value="${escapeHtml(val)}" data-sel="${escapeHtml(val)}">
+    ${val ? '<button type="button" class="combo-x" id="fLojaX" aria-label="Limpar loja" title="Limpar loja">&times;</button>' : ''}
+    <ul class="combo-lista" id="fLojaLista" role="listbox" hidden></ul>
+  </div>`;
+}
+function fecharLista() {
+  const ul = document.getElementById('fLojaLista');
+  const inp = document.getElementById('fLoja');
+  if (ul) ul.hidden = true;
+  if (inp) inp.setAttribute('aria-expanded', 'false');
+}
+function marcarAtivo(i) {
+  const ul = document.getElementById('fLojaLista');
+  if (!ul) return;
+  const itens = [...ul.querySelectorAll('li[data-valor]')];
+  if (!itens.length) return;
+  const k = ((i % itens.length) + itens.length) % itens.length;
+  itens.forEach((li, j) => li.classList.toggle('ativo', j === k));
+  itens[k].scrollIntoView({ block: 'nearest' });
+}
+function abrirLista(filtro) {
+  const inp = document.getElementById('fLoja');
+  const ul = document.getElementById('fLojaLista');
+  if (!inp || !ul) return;
+  const termos = chaveBusca(filtro).split(/\s+/).filter(Boolean);
+  const lista = termos.length
+    ? LOJAS_LISTA.filter(v => { const a = chaveBusca(v); return termos.every(t => a.includes(t)); })
+    : LOJAS_LISTA.slice();
+  const todas = `<li role="option" class="todas" data-valor="">Todas as lojas (${LOJAS_LISTA.length})</li>`;
+  ul.innerHTML = lista.length
+    ? todas + lista.map(v => `<li role="option" data-valor="${escapeHtml(v)}">${escapeHtml(v)}</li>`).join('')
+    : todas + '<li class="vazio">nenhuma loja com esse texto</li>';
+  ul.hidden = false;
+  inp.setAttribute('aria-expanded', 'true');
+  marcarAtivo(termos.length ? 1 : 0);
+}
+function escolherLoja(v) { FILTROS.loja = v || ''; fecharLista(); render(); }
+
+function barraFiltros() {
+  const unicos = (f) => [...new Set(DADOS.itens.map(f).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+  LOJAS_LISTA = unicos(x => x.loja);
+  const opc = (lista, sel, rotulo) => `<option value="">${rotulo}</option>` +
+    lista.map(v => `<option value="${escapeHtml(v)}"${v === sel ? ' selected' : ''}>${escapeHtml(v)}</option>`).join('');
+  const tecnicos = unicos(x => x.tecnico);
+  const setores = unicos(x => x.setor);
+  const estados = unicos(x => x.estado);
+  const ativo = FILTROS.loja || FILTROS.tecnico || FILTROS.setor || FILTROS.estado || FILTROS.soAtrasadas;
+  const visiveis = aplicaFiltros(DADOS.itens).length;
+  return `<div class="filter-bar">
+    ${comboLojaHtml(LOJAS_LISTA)}
+    <div class="filter-field"><label for="fTecnico">Técnico</label>
+      <select id="fTecnico">${opc(tecnicos, FILTROS.tecnico, 'Todos os técnicos (' + tecnicos.length + ')')}</select></div>
+    <div class="filter-field"><label for="fSetor">Setor</label>
+      <select id="fSetor">${opc(setores, FILTROS.setor, 'Todos os setores (' + setores.length + ')')}</select></div>
+    <div class="filter-field"><label for="fEstado">Estado</label>
+      <select id="fEstado">${opc(estados, FILTROS.estado, 'Todos os estados')}</select></div>
+    <label class="filter-check"><input type="checkbox" id="fAtrasadas"${FILTROS.soAtrasadas ? ' checked' : ''}> só atrasadas</label>
+    ${ativo ? '<button type="button" class="filtro-limpar" id="fLimpar">limpar filtros</button>' : ''}
+    ${ativo ? `<span class="filtro-conta">${visiveis} de ${DADOS.itens.length} preventivas</span>` : ''}
+  </div>`;
+}
+
+function tabelaDetalhe() {
+  const filtrados = aplicaFiltros(DADOS.itens)
+    .sort((a, b) => (b.atrasada - a.atrasada) || ((b.dias ?? 0) - (a.dias ?? 0)))
+    .slice(0, 400);
+  const linhas = filtrados.map(x => {
+    const tag = x.atrasada ? '<span class="tag t-sos">Atrasada</span>'
+      : x.concluida ? '<span class="tag t-ok">Concluída</span>'
+      : x.cancelada ? '<span class="tag t-faint">Cancelada</span>'
+      : '<span class="tag t-violet">Em aberto</span>';
+    return `<tr>
+      <td class="mono">${escapeHtml(x.numero)}</td>
+      <td class="mono">${escapeHtml(x.wo)}</td>
+      <td>${escapeHtml(x.loja)}</td>
+      <td>${escapeHtml(x.setor)}</td>
+      <td>${escapeHtml(x.tecnico)}</td>
+      <td>${escapeHtml(x.estado)}</td>
+      <td>${tag}</td>
+      <td class="num">${n(x.dias)}d</td>
+      <td class="num ${x.diasAtraso ? 'ruim' : ''}">${x.diasAtraso != null ? x.diasAtraso + 'd' : '—'}</td>
+      <td class="mono">${escapeHtml((x.aberturaBR || '').slice(0, 10))}</td>
+    </tr>`;
+  }).join('');
+  return `<div class="card">
+    <h3>Preventivas, uma a uma</h3>
+    <p class="card-sub">atrasadas primeiro, depois as mais antigas · mostrando ${filtrados.length}${filtrados.length === 400 ? ' (limite de 400)' : ''}</p>
+    <div id="barraFiltros">${barraFiltros()}</div>
+    <div class="filter-table-wrap alto"><table class="detail-table">
+      <thead><tr>
+        <th>Tarefa</th><th>Ordem</th><th>Loja</th><th>Setor</th><th>Técnico</th>
+        <th>Estado</th><th>Situação</th><th class="num">Em aberto</th><th class="num">Atraso</th><th>Aberta em</th>
+      </tr></thead>
+      <tbody>${linhas || '<tr><td colspan="10" class="filter-empty">Nenhuma preventiva bate com o filtro escolhido.</td></tr>'}</tbody>
+    </table></div>
+  </div>`;
+}
+
+// ---------- render ----------
+function render() {
+  if (!DADOS) return;
+  document.getElementById('conteudo').innerHTML =
+    kpis(DADOS.totais) + grafico(DADOS.porDia) + tabelaVisao() + tabelaDetalhe();
+}
+
+// ---------- eventos ----------
+document.addEventListener('click', (ev) => {
+  const aba = ev.target.closest('.aba');
+  if (aba) { VISTA.aba = aba.dataset.aba; render(); return; }
+  if (ev.target.id === 'fLimpar') {
+    FILTROS.loja = ''; FILTROS.tecnico = ''; FILTROS.setor = ''; FILTROS.estado = ''; FILTROS.soAtrasadas = false;
+    render();
+  }
+});
+document.addEventListener('change', (ev) => {
+  const mapa = { fTecnico: 'tecnico', fSetor: 'setor', fEstado: 'estado' };
+  const k = mapa[ev.target.id];
+  if (k) { FILTROS[k] = ev.target.value; render(); return; }
+  if (ev.target.id === 'fAtrasadas') { FILTROS.soAtrasadas = ev.target.checked; render(); }
+});
+// combo de loja: mesmo comportamento do painel de risco
+document.addEventListener('input', (ev) => { if (ev.target.id === 'fLoja') abrirLista(ev.target.value); });
+document.addEventListener('focusin', (ev) => { if (ev.target.id === 'fLoja') { ev.target.select(); abrirLista(''); } });
+document.addEventListener('focusout', (ev) => {
+  if (ev.target.id !== 'fLoja') return;
+  setTimeout(() => {
+    const inp = document.getElementById('fLoja');
+    if (!inp || document.activeElement === inp) return;
+    fecharLista();
+    inp.value = inp.dataset.sel || '';
+  }, 120);
+});
+document.addEventListener('mousedown', (ev) => {
+  const li = ev.target.closest('#fLojaLista li[data-valor]');
+  if (li) { ev.preventDefault(); escolherLoja(li.dataset.valor); return; }
+  if (ev.target.closest('#fLojaX')) { ev.preventDefault(); escolherLoja(''); return; }
+  if (!ev.target.closest('[data-combo="loja"]')) fecharLista();
+});
+document.addEventListener('keydown', (ev) => {
+  if (ev.target.id !== 'fLoja') return;
+  const ul = document.getElementById('fLojaLista');
+  if (!ul) return;
+  if (ev.key === 'ArrowDown' || ev.key === 'ArrowUp') {
+    ev.preventDefault();
+    if (ul.hidden) { abrirLista(ev.target.value); return; }
+    const itens = [...ul.querySelectorAll('li[data-valor]')];
+    const at = itens.findIndex(li => li.classList.contains('ativo'));
+    marcarAtivo(ev.key === 'ArrowDown' ? at + 1 : at - 1);
+  } else if (ev.key === 'Enter') {
+    ev.preventDefault();
+    const at = ul.querySelector('li.ativo[data-valor]');
+    if (at) escolherLoja(at.dataset.valor);
+  } else if (ev.key === 'Escape') {
+    ev.stopPropagation();
+    fecharLista();
+    ev.target.value = ev.target.dataset.sel || '';
+    ev.target.blur();
+  }
+});
+
+// ---------- start ----------
+(async function iniciar() {
+  try {
+    const r = await fetch('data/preventivas.json', { cache: 'no-store' });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    DADOS = await r.json();
+  } catch (e) {
+    document.getElementById('conteudo').innerHTML =
+      `<div class="msg-erro">Não consegui carregar os dados (${escapeHtml(e.message)}).</div>`;
+    return;
+  }
+  document.getElementById('stamp').textContent = 'Atualizado ' + (DADOS.atualizadoEm || '—');
+  render();
+})();
+</script>
+</body>
+</html>
