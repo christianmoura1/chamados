@@ -52,6 +52,17 @@ const objetos = (txt) => {
 };
 
 const semAcento = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+
+// A visao POR TECNICO so' pode listar quem e' da equipe do Christian. O SOMA
+// atribui preventiva de loja da Sul a tecnico de outra regional de vez em
+// quando (grupo 'FSM - TECHS - SAO PAULO', 'FSM - TECNICOS PROPRIOS SPIS') e a
+// empresa terceira tem uma conta de backoffice que tambem aparecia como se
+// fosse tecnico. Sao poucos registros, mas viram card no farol.
+//
+// O corte e pelo GRUPO e nao por lista de nomes: nome muda, entra gente nova,
+// e uma lista fixa vira manutencao eterna.
+const GRUPO_SUL = /tecnicos proprios sul/;
+const ehEquipeSul = (grupo) => GRUPO_SUL.test(semAcento(grupo));
 // "acabou" = encerrado/concluido. O resto conta como aberto. Casamento por
 // prefixo porque o SOMA escreve "Cancelado", "Encerrado concluido" e variacoes.
 const PREFIXOS_FIM = ['encerrad', 'fechad', 'closed', 'complete'];
@@ -417,8 +428,37 @@ function processar(linhas) {
     pct: (m.abertas - m.canceladas) > 0 ? Math.round(m.concluidasDaCoorte / (m.abertas - m.canceladas) * 100) : 0,
   }));
 
+  // mesma conta do agrupa(), mas so com quem e da equipe da Sul
+  const agrupaTecnicos = () => {
+    const meus = itens.filter((x) => ehEquipeSul(x.grupo));
+    const m = new Map();
+    meus.forEach((x) => {
+      if (!m.has(x.tecnico)) m.set(x.tecnico, []);
+      m.get(x.tecnico).push(x);
+    });
+    return [...m.entries()].map(([nome, lista]) => {
+      const ab = lista.filter((y) => y.aberta);
+      const co = lista.filter((y) => y.concluida);
+      const at = ab.filter((y) => y.atrasada);
+      const base = lista.filter((y) => !y.cancelada).length;
+      return {
+        nome,
+        total: lista.length,
+        abertas: ab.length,
+        concluidas: co.length,
+        canceladas: lista.length - base,
+        atrasadas: at.length,
+        pct: base ? Math.round(co.length / base * 100) : 0,
+        maisAntigaDias: ab.length ? Math.max(...ab.map((y) => y.dias ?? 0)) : 0,
+        mediaDiasAberta: ab.length ? Math.round(ab.reduce((sm, y) => sm + (y.dias ?? 0), 0) / ab.length) : 0,
+      };
+    }).sort((a, b) => b.abertas - a.abertas || b.total - a.total);
+  };
+
   const lojas = new Set(itens.map((x) => x.loja));
-  const tecnicos = new Set(itens.filter((x) => x.tecnico !== '(sem tecnico)').map((x) => x.tecnico));
+  // so conta quem entra na visao por tecnico, senao o KPI diz 23 e a grade
+  // mostra 19 cards -- e ninguem confia mais em nenhum dos dois
+  const tecnicos = new Set(itens.filter((x) => x.tecnico !== '(sem tecnico)' && ehEquipeSul(x.grupo)).map((x) => x.tecnico));
   const equipamentos = new Set(itens.filter((x) => x.equipamento !== '(sem equipamento)').map((x) => x.equipamento));
   const baseConcl = itens.filter((x) => !x.cancelada).length;
 
@@ -442,7 +482,17 @@ function processar(linhas) {
       maisAntigaDias: abertas.length ? Math.max(...abertas.map((x) => x.dias ?? 0)) : 0,
     },
     porMes,
-    porTecnico: agrupa((x) => x.tecnico),
+    porTecnico: agrupaTecnicos(),
+    foraDaEquipe: (() => {
+      const fora = new Map();
+      itens.filter((x) => !ehEquipeSul(x.grupo) && x.tecnico !== '(sem tecnico)').forEach((x) => {
+        if (!fora.has(x.tecnico)) fora.set(x.tecnico, { nome: x.tecnico, grupo: x.grupo, tarefas: 0, abertas: 0 });
+        const f = fora.get(x.tecnico);
+        f.tarefas++;
+        if (x.aberta) f.abertas++;
+      });
+      return [...fora.values()].sort((a, b) => b.tarefas - a.tarefas);
+    })(),
     porEquipamento: agrupa((x) => x.equipamento, (lista) => ({ lojas: new Set(lista.map((y) => y.loja)).size })),
     porSetor: agrupa((x) => x.setor, (lista) => ({ lojas: new Set(lista.map((y) => y.loja)).size })),
     porLoja: agrupa((x) => x.loja, (lista) => ({
@@ -491,6 +541,10 @@ function publicar() {
     + ' | lojas ' + dados.totais.lojas
     + ' | tecnicos ' + dados.totais.tecnicos
     + ' | equipamentos ' + dados.totais.equipamentos);
+  if ((dados.foraDaEquipe || []).length) {
+    log('fora da equipe Sul (nao entram na visao por tecnico): '
+      + dados.foraDaEquipe.map((f) => f.nome + ' [' + f.grupo + '] ' + f.tarefas + ' tarefa(s), ' + f.abertas + ' aberta(s)').join(' | '));
+  }
   log('meses com movimento: ' + dados.porMes.map((m) => m.mes + '(ab ' + m.abertas + '/fe ' + m.fechadas + '/at ' + m.atrasadas + ')').join(' '));
 
   // deixa auditavel o agrupamento: se alguma familia engolir algo errado,
