@@ -344,6 +344,43 @@
   .filter-check input { accent-color: var(--violet); width: 15px; height: 15px; cursor: pointer; }
   .filter-table-wrap.alto { max-height: 620px; }
 
+  /* ---- farol da carteira por tecnico (mesmo velocimetro do Backlog) ---- */
+  .gauge-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; align-items: start; }
+  @media (max-width: 1180px) { .gauge-grid { grid-template-columns: repeat(3,minmax(0,1fr)); } }
+  @media (max-width: 860px) { .gauge-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+  @media (max-width: 520px) { .gauge-grid { grid-template-columns: minmax(0,1fr); } }
+  .gcard {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+    padding: 16px 16px 14px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 6px;
+    cursor: pointer; transition: transform .12s ease, box-shadow .12s ease; text-align: left; width: 100%;
+  }
+  .gcard:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(33,29,61,.08), 0 18px 34px rgba(33,29,61,.10); }
+  .gcard:focus-visible { outline: 2px solid var(--violet); outline-offset: 2px; }
+  .gcard.sel { border-color: var(--violet); box-shadow: 0 0 0 2px rgba(124,92,252,.22); }
+  .ghead { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 2px; }
+  .ghead > div { min-width: 0; }
+  .gname { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 13.5px; display: block; }
+  .gsetor { font-family: "IBM Plex Mono", monospace; font-size: 9.5px; color: var(--faint); text-transform: uppercase; letter-spacing: .04em; display: block; margin-top: 1px; }
+  .gdetalhe { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--faint); white-space: nowrap; flex: none; }
+  .ggauge { margin: 0 -4px; }
+  .gval { display: flex; flex-direction: column; align-items: center; margin-top: -34px; }
+  .gnum { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 26px; }
+  .glabel { font-family: "IBM Plex Mono", monospace; font-size: 9px; color: var(--faint); text-transform: uppercase; letter-spacing: .04em; }
+  .gstats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-top: 6px; }
+  .gstats .estat { padding: 6px 6px; text-align: center; }
+  .gstats .estat .n { font-size: 14px; }
+  .gstats .estat .l { font-size: 8px; }
+  .farol-legenda {
+    display: flex; gap: 16px; flex-wrap: wrap; margin: -4px 0 14px;
+    font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--faint);
+  }
+  .farol-legenda span { display: flex; align-items: center; gap: 6px; }
+  .farol-legenda i { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
+  .farol-zerados {
+    font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--faint);
+    margin: 14px 0 0; line-height: 1.5;
+  }
+
 </style>
 </head>
 <body>
@@ -444,6 +481,87 @@ function grafico(serie) {
       <span><i class="sw sw-abre"></i>abertas</span><span><i class="sw sw-fecha"></i>concluídas</span>
     </div>
     <div class="grafico">${barras}</div>
+  </div>`;
+}
+
+// ---------- farol da carteira por tecnico ----------
+// Faixas escolhidas a partir da distribuicao real das carteiras (24 tecnicos,
+// mediana 38 e quartil superior 67 preventivas abertas): ate 30 e carteira
+// normal, de 30 a 70 pesada, acima de 70 estourada. Escala vai a 140 porque
+// o maior observado foi 134.
+const FAROL_MAX = 140;
+const FAROL_ZONAS = [
+  { de: 0, ate: 30, cor: 'var(--ok)' },
+  { de: 30, ate: 70, cor: 'var(--alta)' },
+  { de: 70, ate: FAROL_MAX, cor: 'var(--sos)' },
+];
+function corDoFarol(valor) {
+  const z = FAROL_ZONAS.find(z => valor < z.ate) || FAROL_ZONAS[FAROL_ZONAS.length - 1];
+  return z.cor;
+}
+
+// Velocimetro identico ao do painel de Backlog, inclusive nos detalhes que
+// custaram caro la: fill/stroke vao em style="" e nao como atributo de
+// apresentacao (no Edge do Christian, var() dentro de stroke="" nao resolve e
+// os arcos ficam invisiveis), e o svg leva width/height explicitos alem do
+// viewBox (sem eles o Edge colapsa a altura pra quase zero).
+function gaugeSVG(valor, max, zonas) {
+  const cx = 100, cy = 100, r = 80, sw = 16;
+  const toRad = deg => deg * Math.PI / 180;
+  const angulo = v => 180 - (Math.min(v, max) / max) * 180;
+  const ponto = (deg, raio) => {
+    const rad = toRad(deg);
+    return { x: cx + raio * Math.cos(rad), y: cy - raio * Math.sin(rad) };
+  };
+  const arco = (v0, v1, cor) => {
+    const p0 = ponto(angulo(v0), r), p1 = ponto(angulo(v1), r);
+    return `<path d="M ${p0.x.toFixed(1)} ${p0.y.toFixed(1)} A ${r} ${r} 0 0 1 ${p1.x.toFixed(1)} ${p1.y.toFixed(1)}" style="fill:none;stroke:${cor}" stroke-width="${sw}"/>`;
+  };
+  const zonasSvg = zonas.map(z => arco(z.de, z.ate, z.cor)).join('');
+  const pontaAgulha = ponto(angulo(valor), r - sw / 2 - 8);
+  const agulha = `<line x1="${cx}" y1="${cy}" x2="${pontaAgulha.x.toFixed(1)}" y2="${pontaAgulha.y.toFixed(1)}" style="stroke:var(--ink)" stroke-width="3" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="6" style="fill:var(--ink)"/>`;
+  return `<svg viewBox="0 0 200 112" width="200" height="112" style="width:100%;height:auto;display:block;">${zonasSvg}${agulha}</svg>`;
+}
+
+function farolTecnicos() {
+  const todos = (DADOS.porTecnico || []).filter(x => x.nome !== '(sem tecnico)');
+  const comCarteira = todos.filter(x => x.abertas > 0).sort((a, b) => b.abertas - a.abertas);
+  const zerados = todos.filter(x => x.abertas === 0);
+  if (!comCarteira.length) return '';
+  const cards = comCarteira.map(x => {
+    const cor = corDoFarol(x.abertas);
+    const sel = FILTROS.tecnico === x.nome ? ' sel' : '';
+    return `<button type="button" class="gcard${sel}" data-tecnico="${escapeHtml(x.nome)}">
+      <div class="ghead">
+        <div><span class="gname">${escapeHtml(x.nome)}</span>
+        <span class="gsetor">${x.total} no período · ${x.concluidas} concluídas</span></div>
+        <span class="gdetalhe">${x.pct}% concl.</span>
+      </div>
+      <div class="ggauge">${gaugeSVG(x.abertas, FAROL_MAX, FAROL_ZONAS)}</div>
+      <div class="gval">
+        <span class="gnum" style="color:${cor}">${x.abertas}</span>
+        <span class="glabel">na carteira</span>
+      </div>
+      <div class="gstats">
+        <div class="estat${x.atrasadas ? ' crit' : ''}"><div class="n">${x.atrasadas}</div><div class="l">ATRASADAS</div></div>
+        <div class="estat"><div class="n">${x.mediaDiasAberta}d</div><div class="l">MÉDIA ABERTA</div></div>
+        <div class="estat"><div class="n">${x.maisAntigaDias}d</div><div class="l">MAIS ANTIGA</div></div>
+      </div>
+    </button>`;
+  }).join('');
+  const rodape = zerados.length
+    ? `<p class="farol-zerados">${zerados.length} técnico(s) sem nenhuma preventiva em aberto: ${zerados.map(z => escapeHtml(z.nome)).join(', ')}</p>`
+    : '';
+  return `<div class="card">
+    <h3>Farol da carteira por técnico</h3>
+    <p class="card-sub">preventivas em aberto na mão de cada um · clique num card para filtrar a tabela abaixo</p>
+    <div class="farol-legenda">
+      <span><i style="background:var(--ok)"></i>até 30 na carteira</span>
+      <span><i style="background:var(--alta)"></i>de 30 a 70</span>
+      <span><i style="background:var(--sos)"></i>acima de 70</span>
+    </div>
+    <div class="gauge-grid">${cards}</div>
+    ${rodape}
   </div>`;
 }
 
@@ -621,11 +739,19 @@ function tabelaDetalhe() {
 function render() {
   if (!DADOS) return;
   document.getElementById('conteudo').innerHTML =
-    kpis(DADOS.totais) + grafico(DADOS.porDia) + tabelaVisao() + tabelaDetalhe();
+    kpis(DADOS.totais) + farolTecnicos() + grafico(DADOS.porDia) + tabelaVisao() + tabelaDetalhe();
 }
 
 // ---------- eventos ----------
 document.addEventListener('click', (ev) => {
+  const card = ev.target.closest('.gcard');
+  if (card) {
+    const nome = card.dataset.tecnico;
+    FILTROS.tecnico = (FILTROS.tecnico === nome) ? '' : nome;
+    render();
+    document.querySelector('#barraFiltros')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
   const aba = ev.target.closest('.aba');
   if (aba) { VISTA.aba = aba.dataset.aba; render(); return; }
   if (ev.target.id === 'fLimpar') {
