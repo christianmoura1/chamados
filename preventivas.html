@@ -477,10 +477,33 @@ function kpis(t) {
   </div>
   <div class="kpis">
     ${c('Lojas com preventiva', t.lojas, '', 'na regional Sul')}
-    ${c('Equipamentos', t.equipamentos ?? '—', '', 'tipos distintos em preventiva')}
-    ${c('Canceladas', t.canceladas, '', 'fora do cálculo de conclusão')}
-    ${c('Total no período', t.total, '', 'abertas + concluídas + canceladas')}
+    ${kpisDosMeses()}
   </div>`;
+}
+
+// Os 3 últimos meses direto no topo: o percentual que o pessoal cobra é o do
+// Power BI (% execução), com o % de lojas cobertas logo abaixo. Vem do BI e
+// não da minha contagem porque é a régua oficial -- e porque o SOMA só tem
+// preventiva desde agosto/2026.
+function kpisDosMeses() {
+  const bi = DADOS.bi && !DADOS.bi.erro ? DADOS.bi : null;
+  if (!bi || !(bi.execucaoMensal || []).length) {
+    return `<div class="kpi"><div class="label">Meses</div><div class="val num">—</div>
+      <div class="hint">série do Power BI não entrou nesta rodada</div></div>`;
+  }
+  const lojas = Object.fromEntries((bi.lojasFechadasMensal || []).map(x => [x.mes, x.pct]));
+  const ultimos = bi.execucaoMensal.slice(-3);
+  return ultimos.map((x, i) => {
+    // o mês corrente ainda está correndo: marco para ninguém ler como fechado
+    const corrente = i === ultimos.length - 1;
+    const cls = parseInt(x.pct, 10) >= 60 ? 'k-ok' : parseInt(x.pct, 10) >= 35 ? 'k-alta' : 'k-sos';
+    const hintLojas = lojas[x.mes] ? lojas[x.mes] + ' das lojas' : 'sem dado de lojas';
+    return `<div class="kpi ${cls}">
+      <div class="label">${escapeHtml(x.mes)}${corrente ? ' · parcial' : ''}</div>
+      <div class="val num">${escapeHtml(x.pct)}</div>
+      <div class="hint">execução · ${escapeHtml(hintLojas)}</div>
+    </div>`;
+  }).join('');
 }
 
 // ---------- gráfico de abertura x conclusão ----------
@@ -544,26 +567,11 @@ function blocoMeses() {
     atual.pctLojasBI ? `<span>lojas com preventiva fechada (BI) <b>${escapeHtml(atual.pctLojasBI)}</b></span>` : '',
   ].filter(Boolean).join('');
 
-  // histórico do BI: vai bem além do que o SOMA guarda
-  let hist = '';
-  if (bi && (bi.execucaoMensal || []).length) {
-    const lojas = Object.fromEntries((bi.lojasFechadasMensal || []).map(x => [x.mes, x.pct]));
-    const linhas = bi.execucaoMensal.map(x => `<tr>
-      <td>${escapeHtml(x.mes)}</td>
-      <td class="num">${escapeHtml(x.pct)}</td>
-      <td class="num">${escapeHtml(lojas[x.mes] || '—')}</td>
-    </tr>`).join('');
-    hist = `<div class="hist-tabela">
-      <h4>Histórico mensal — fonte Power BI (${escapeHtml(bi.carimbo || 'sem carimbo')})</h4>
-      <div class="filter-table-wrap"><table class="detail-table">
-        <thead><tr><th>Mês</th><th class="num">% execução</th><th class="num">% lojas com preventiva fechada</th></tr></thead>
-        <tbody>${linhas}</tbody>
-      </table></div>
-    </div>`;
-  } else if (DADOS.bi && DADOS.bi.erro) {
-    hist = `<p class="farol-zerados">Histórico do Power BI não entrou nesta rodada: ${escapeHtml(DADOS.bi.erro)}.</p>`;
-  }
-
+  // a tabela de 21 meses saiu a pedido do Christian: o percentual dos meses
+  // que interessam ja fica nos KPIs do topo. Se o BI falhar, aviso aqui.
+  const hist = (DADOS.bi && DADOS.bi.erro)
+    ? `<p class="farol-zerados">Série do Power BI não entrou nesta rodada: ${escapeHtml(DADOS.bi.erro)}.</p>`
+    : '';
   const ordens = (DADOS.ordensFechadasPorMes || {})[atual.mes];
   const notaOrdens = ordens
     ? `<p class="farol-zerados">No mês, o SOMA fechou <b>${ordens.total}</b> ordens de preventiva (${ordens.concluidas} concluídas, ${ordens.canceladas} canceladas). A ordem agrupa as tarefas de uma mesma visita, por isso o número é menor que o de tarefas fechadas.</p>`
