@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-26T19:40:13.372Z",
+ "atualizadoEm": "2026-09-26T20:20:16.033Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 10,
+  "emExecucao": 11,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 10
+  "total": 11
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-26",
-   "abertos": 7,
-   "fechados": 16
+   "abertos": 8,
+   "fechados": 17
   }
  ],
  "itens": [
+  {
+   "numero": "WO0057389",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "19868 - SHOP DO VALE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "26/09/2026 17:00:38",
+   "fechamento": "",
+   "principal": "BK021474 - BROILER; NIECO; JF93G; 332-34095",
+   "secundario": "BRO - NÃO ATINGE TEMPERATURA",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK021474 - BROILER; NIECO; JF93G; 332-34095 | BRO - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0057917"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0057321",
    "marca": "BKB",
@@ -193,7 +216,7 @@
    "regional": "SUL",
    "setor": "CAPITAL CENTRO RS",
    "loja": "24766 - SHOP TOTAL POA",
-   "status": "Pronto para Expedição",
+   "status": "Trabalho em andamento",
    "fase": "Iniciado",
    "abertura": "25/09/2026 09:38:35",
    "fechamento": "",
