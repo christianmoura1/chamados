@@ -376,6 +376,45 @@
   }
   .farol-legenda span { display: flex; align-items: center; gap: 6px; }
   .farol-legenda i { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
+
+  /* ---- farol em rosca (teste do layout de aderencia) ---- */
+  .donut-wrap { display: grid; grid-template-columns: 250px 1fr; gap: 18px; align-items: start; }
+  @media (max-width: 900px) { .donut-wrap { grid-template-columns: minmax(0,1fr); } }
+  .donut-total {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+    padding: 18px 16px 16px; box-shadow: var(--shadow); text-align: center;
+  }
+  .donut-total h4 {
+    font-family: "Archivo", sans-serif; font-weight: 700; font-size: 13.5px; margin: 0 0 10px;
+  }
+  .donut-legenda {
+    display: flex; gap: 14px; justify-content: center; margin-top: 10px;
+    font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--faint);
+  }
+  .donut-legenda span { display: flex; align-items: center; gap: 5px; }
+  .donut-legenda i { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
+  .donut-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 14px; }
+  @media (max-width: 1180px) { .donut-grid { grid-template-columns: repeat(3,minmax(0,1fr)); } }
+  @media (max-width: 760px) { .donut-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+  @media (max-width: 460px) { .donut-grid { grid-template-columns: minmax(0,1fr); } }
+  .dcard {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+    padding: 14px 12px 12px; box-shadow: var(--shadow); cursor: pointer; text-align: center;
+    display: flex; flex-direction: column; gap: 6px; width: 100%;
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .dcard:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(33,29,61,.08), 0 18px 34px rgba(33,29,61,.10); }
+  .dcard:focus-visible { outline: 2px solid var(--violet); outline-offset: 2px; }
+  .dcard.sel { border-color: var(--violet); box-shadow: 0 0 0 2px rgba(124,92,252,.22); }
+  .dnome {
+    font-family: "Archivo", sans-serif; font-weight: 700; font-size: 12.5px; line-height: 1.25;
+    min-height: 2.5em; display: flex; align-items: center; justify-content: center;
+  }
+  .dsub { font-family: "IBM Plex Mono", monospace; font-size: 9px; color: var(--faint); text-transform: uppercase; letter-spacing: .04em; }
+  .dstats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; margin-top: 2px; }
+  .dstats .estat { padding: 5px 4px; text-align: center; }
+  .dstats .estat .n { font-size: 13px; }
+  .dstats .estat .l { font-size: 7.5px; }
   /* ---- acompanhamento mes a mes ---- */
   .mes-kpis { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; margin: 14px 0 4px; }
   @media (max-width: 620px) { .mes-kpis { grid-template-columns: minmax(0,1fr); } }
@@ -589,105 +628,81 @@ function blocoMeses() {
 
 // ---------- farol da carteira ----------
 
-// Velocimetro identico ao do painel de Backlog, inclusive nos detalhes que
-// custaram caro la: fill/stroke vao em style="" e nao como atributo de
-// apresentacao (no Edge do Christian, var() dentro de stroke="" nao resolve e
-// os arcos ficam invisiveis), e o svg leva width/height explicitos alem do
-// viewBox (sem eles o Edge colapsa a altura pra quase zero).
-function gaugeSVG(valor, max, zonas) {
-  const cx = 100, cy = 100, r = 80, sw = 16;
-  const toRad = deg => deg * Math.PI / 180;
-  const angulo = v => 180 - (Math.min(v, max) / max) * 180;
-  const ponto = (deg, raio) => {
-    const rad = toRad(deg);
-    return { x: cx + raio * Math.cos(rad), y: cy - raio * Math.sin(rad) };
-  };
-  const arco = (v0, v1, cor) => {
-    const p0 = ponto(angulo(v0), r), p1 = ponto(angulo(v1), r);
-    return `<path d="M ${p0.x.toFixed(1)} ${p0.y.toFixed(1)} A ${r} ${r} 0 0 1 ${p1.x.toFixed(1)} ${p1.y.toFixed(1)}" style="fill:none;stroke:${cor}" stroke-width="${sw}"/>`;
-  };
-  const zonasSvg = zonas.map(z => arco(z.de, z.ate, z.cor)).join('');
-  const pontaAgulha = ponto(angulo(valor), r - sw / 2 - 8);
-  const agulha = `<line x1="${cx}" y1="${cy}" x2="${pontaAgulha.x.toFixed(1)}" y2="${pontaAgulha.y.toFixed(1)}" style="stroke:var(--ink)" stroke-width="3" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="6" style="fill:var(--ink)"/>`;
-  return `<svg viewBox="0 0 200 112" width="200" height="112" style="width:100%;height:auto;display:block;">${zonasSvg}${agulha}</svg>`;
-}
-
-// Dois faróis na mesma moldura: carteira por TÉCNICO (quem está segurando) e
-// por EQUIPAMENTO (o que está parado). As faixas de cada um saem da
-// distribuição real daquela dimensão -- não dá para usar a mesma escala: a
-// maior carteira de técnico é 134 e a maior de equipamento é 98, e a mediana
-// de técnico (38) é bem menor que a de equipamento (54).
+// Duas visões na mesma moldura: aderência por TÉCNICO (quem está segurando) e
+// por EQUIPAMENTO (o que está parado).
 const FAROIS = {
   tecnico: {
     rotulo: 'Por técnico',
-    sub: 'preventivas em aberto na mão de cada um',
-    max: 140,
-    zonas: [
-      { de: 0, ate: 30, cor: 'var(--ok)' },
-      { de: 30, ate: 70, cor: 'var(--alta)' },
-      { de: 70, ate: 140, cor: 'var(--sos)' },
-    ],
-    legenda: ['até 30 na carteira', 'de 30 a 70', 'acima de 70'],
     dados: () => (DADOS.porTecnico || []).filter(x => x.nome !== '(sem tecnico)'),
     filtro: 'tecnico',
-    vazios: 'técnico(s) sem nenhuma preventiva em aberto',
   },
   equipamento: {
     rotulo: 'Por equipamento',
-    sub: 'preventivas em aberto por tipo de equipamento',
-    max: 110,
-    zonas: [
-      { de: 0, ate: 40, cor: 'var(--ok)' },
-      { de: 40, ate: 75, cor: 'var(--alta)' },
-      { de: 75, ate: 110, cor: 'var(--sos)' },
-    ],
-    legenda: ['até 40 em aberto', 'de 40 a 75', 'acima de 75'],
     dados: () => (DADOS.porEquipamento || []).filter(x => x.nome !== '(sem equipamento)'),
     filtro: 'equipamento',
-    vazios: 'equipamento(s) sem nenhuma preventiva em aberto',
   },
 };
 
-function corDoFarol(valor, cfg) {
-  const z = cfg.zonas.find(z => valor < z.ate) || cfg.zonas[cfg.zonas.length - 1];
-  return z.cor;
+// Rosca de aderência, no lugar do velocímetro (layout que o Christian trouxe
+// do relatório de aderência de manutenção). O velocímetro mostrava TAMANHO
+// da carteira; a rosca mostra PROPORÇÃO -- quanto do que entrou no período já
+// foi fechado. São perguntas diferentes, e a contagem continua nas caixinhas
+// embaixo para não se perder.
+//
+// fill/stroke vão em style="" e não como atributo de apresentação: no Edge do
+// Christian, var() dentro de stroke="" não resolve e o desenho some. Mesmo
+// motivo do width/height explícito além do viewBox.
+function donutSVG(pct, tamanho, cor) {
+  const p = Math.max(0, Math.min(100, Number(pct) || 0));
+  const r = 42, c = 2 * Math.PI * r;
+  const cheio = (p / 100) * c;
+  const fonte = Math.round(tamanho * 0.22);
+  return `<svg viewBox="0 0 120 120" width="${tamanho}" height="${tamanho}" style="display:block;margin:0 auto;">
+    <circle cx="60" cy="60" r="${r}" style="fill:none;stroke:var(--line)" stroke-width="16"/>
+    <circle cx="60" cy="60" r="${r}" style="fill:none;stroke:${cor}" stroke-width="16"
+      stroke-dasharray="${cheio.toFixed(1)} ${(c - cheio).toFixed(1)}"
+      stroke-linecap="butt" transform="rotate(-90 60 60)"/>
+    <text x="60" y="60" text-anchor="middle" dominant-baseline="central"
+      style="fill:${cor};font-family:Archivo,sans-serif;font-weight:800;font-size:${fonte}px">${p}%</text>
+  </svg>`;
+}
+
+// mesmo semáforo do resto do painel
+function corAderencia(pct) {
+  return pct >= 60 ? 'var(--ok)' : pct >= 35 ? 'var(--alta)' : 'var(--sos)';
 }
 
 function blocoFarol() {
   const chave = VISTA.farol;
   const cfg = FAROIS[chave];
   const todos = cfg.dados();
-  const comCarteira = todos.filter(x => x.abertas > 0).sort((a, b) => b.abertas - a.abertas);
-  const zerados = todos.filter(x => x.abertas === 0);
+  const comMovimento = todos.filter(x => x.total > 0).sort((a, b) => a.pct - b.pct || b.abertas - a.abertas);
 
   const abas = Object.entries(FAROIS).map(([k, c]) =>
     `<button type="button" class="aba${k === chave ? ' on' : ''}" data-farol="${k}">${escapeHtml(c.rotulo)}</button>`).join('');
 
-  if (!comCarteira.length) {
-    return `<div class="card"><h3>Farol da carteira</h3>
+  if (!comMovimento.length) {
+    return `<div class="card"><h3>Aderência às preventivas</h3>
       <div class="abas">${abas}</div>
-      <p class="card-sub">nada em aberto nesta visão</p></div>`;
+      <p class="card-sub">nada no período nesta visão</p></div>`;
   }
 
-  const cards = comCarteira.map(x => {
-    const cor = corDoFarol(x.abertas, cfg);
+  // aderência total: o mesmo critério dos cards, somado
+  const t = DADOS.totais;
+  const base = t.total - t.canceladas;
+  const pctTotal = base > 0 ? Math.round(t.concluidas / base * 100) : 0;
+
+  const cards = comMovimento.map(x => {
+    const cor = corAderencia(x.pct);
     const sel = FILTROS[cfg.filtro] === x.nome ? ' sel' : '';
-    // no farol de equipamento vale mais saber em quantas lojas ele está parado
     const sub = chave === 'equipamento'
       ? `${x.total} no período · ${n(x.lojas)} lojas`
-      : `${x.total} no período · média ${x.mediaDiasAberta}d em aberto`;
-    return `<button type="button" class="gcard${sel}" data-farol-tipo="${cfg.filtro}" data-farol-valor="${escapeHtml(x.nome)}">
-      <div class="ghead">
-        <div><span class="gname">${escapeHtml(x.nome)}</span>
-        <span class="gsetor">${sub}</span></div>
-        <span class="gdetalhe">${x.pct}% concl.</span>
-      </div>
-      <div class="ggauge">${gaugeSVG(x.abertas, cfg.max, cfg.zonas)}</div>
-      <div class="gval">
-        <span class="gnum" style="color:${cor}">${x.abertas}</span>
-        <span class="glabel">${chave === 'equipamento' ? 'em aberto' : 'na carteira'}</span>
-      </div>
-      <div class="gstats">
+      : `${x.total} no período`;
+    return `<button type="button" class="dcard${sel}" data-farol-tipo="${cfg.filtro}" data-farol-valor="${escapeHtml(x.nome)}">
+      <div class="dnome">${escapeHtml(x.nome)}</div>
+      ${donutSVG(x.pct, 104, cor)}
+      <div class="dsub">${escapeHtml(sub)}</div>
+      <div class="dstats">
         <div class="estat${x.atrasadas ? ' crit' : ''}"><div class="n">${x.atrasadas}</div><div class="l">ATRASADAS</div></div>
         <div class="estat"><div class="n">${x.abertas}</div><div class="l">ABERTAS</div></div>
         <div class="estat${x.concluidas ? ' ok' : ''}"><div class="n">${x.concluidas}</div><div class="l">FECHADAS</div></div>
@@ -695,25 +710,24 @@ function blocoFarol() {
     </button>`;
   }).join('');
 
-  const rodape = zerados.length
-    ? `<p class="farol-zerados">${zerados.length} ${escapeHtml(cfg.vazios)}: ${zerados.map(z => escapeHtml(z.nome)).join(', ')}</p>`
-    : '';
-
-  const cores = ['var(--ok)', 'var(--alta)', 'var(--sos)'];
-  const legenda = cfg.legenda.map((t, k) =>
-    `<span><i style="background:${cores[k]}"></i>${escapeHtml(t)}</span>`).join('');
-
   return `<div class="card">
-    <h3>Farol da carteira</h3>
+    <h3>Aderência às preventivas</h3>
     <div class="abas">${abas}</div>
-    <p class="card-sub">${escapeHtml(cfg.sub)} · clique num card para filtrar a tabela abaixo</p>
-    <div class="farol-legenda">${legenda}</div>
-    <div class="gauge-grid">${cards}</div>
-    ${rodape}
+    <p class="card-sub">fechadas sobre o que entrou no período, fora as canceladas · clique num card para filtrar a tabela abaixo</p>
+    <div class="donut-wrap">
+      <div class="donut-total">
+        <h4>Aderência Total</h4>
+        ${donutSVG(pctTotal, 168, corAderencia(pctTotal))}
+        <div class="donut-legenda">
+          <span><i style="background:${corAderencia(pctTotal)}"></i>fechadas</span>
+          <span><i style="background:var(--line)"></i>em aberto</span>
+        </div>
+        <div class="dsub" style="margin-top:8px">${t.concluidas} de ${base} · ${t.atrasadas} atrasadas</div>
+      </div>
+      <div class="donut-grid">${cards}</div>
+    </div>
   </div>`;
-}
-
-// ---------- tabelas de visão ----------
+}// ---------- tabelas de visão ----------
 const COLUNAS = {
   tecnico: { titulo: 'Técnico', sub: 'quem está com a preventiva atribuída' },
   setor: { titulo: 'Setor', sub: 'região dentro da regional Sul' },
@@ -896,7 +910,7 @@ document.addEventListener('click', (ev) => {
   if (abaMes) { VISTA.mes = abaMes.dataset.mes; render(); return; }
   const abaFarol = ev.target.closest('[data-farol]');
   if (abaFarol) { VISTA.farol = abaFarol.dataset.farol; render(); return; }
-  const card = ev.target.closest('.gcard');
+  const card = ev.target.closest('.dcard');
   if (card) {
     const campo = card.dataset.farolTipo;
     const nome = card.dataset.farolValor;
