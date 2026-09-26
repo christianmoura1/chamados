@@ -376,6 +376,29 @@
   }
   .farol-legenda span { display: flex; align-items: center; gap: 6px; }
   .farol-legenda i { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
+  /* ---- acompanhamento mes a mes ---- */
+  .mes-kpis { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; margin: 14px 0 4px; }
+  @media (max-width: 620px) { .mes-kpis { grid-template-columns: minmax(0,1fr); } }
+  .mes-kpi { background: var(--surface2); border-radius: 14px; padding: 16px 18px; }
+  .mes-kpi .l {
+    font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--faint);
+  }
+  .mes-kpi .n { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 34px; line-height: 1.1; }
+  .mes-kpi .h { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--muted); margin-top: 2px; }
+  .mes-kpi.aberto .n { color: var(--violet); }
+  .mes-kpi.fechado .n { color: var(--ok); }
+  .mes-kpi.atrasado .n { color: var(--sos); }
+  .mes-linha {
+    display: flex; gap: 20px; flex-wrap: wrap; margin-top: 12px;
+    font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--muted);
+  }
+  .mes-linha b { color: var(--ink); font-weight: 600; }
+  .hist-tabela { margin-top: 18px; }
+  .hist-tabela h4 {
+    font-family: "Archivo", sans-serif; font-weight: 700; font-size: 12px; margin: 0 0 8px;
+  }
+
   .farol-zerados {
     font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--faint);
     margin: 14px 0 0; line-height: 1.5;
@@ -420,7 +443,7 @@
 
 <script>
 let DADOS = null;
-const VISTA = { aba: 'tecnico', farol: 'tecnico' };
+const VISTA = { aba: 'tecnico', farol: 'tecnico', mes: null };
 const FILTROS = { loja: '', tecnico: '', setor: '', estado: '', equipamento: '', soAtrasadas: false };
 let LOJAS_LISTA = [];
 
@@ -481,6 +504,83 @@ function grafico(serie) {
       <span><i class="sw sw-abre"></i>abertas</span><span><i class="sw sw-fecha"></i>concluídas</span>
     </div>
     <div class="grafico">${barras}</div>
+  </div>`;
+}
+
+// ---------- acompanhamento mês a mês ----------
+// Aberto / fechado / atrasado com uma aba por mês. As contagens saem do
+// SOMA, que só enxerga preventiva a partir de agosto/2026 -- o histórico
+// mais antigo existe só no Power BI e entra como percentual, na tabela de
+// baixo, com a fonte dita em cada coluna.
+const MES_NOME = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+function rotuloMes(iso) {
+  const m = String(iso || '').match(/^(\d{4})-(\d{2})$/);
+  if (!m) return iso || '—';
+  const nome = MES_NOME[+m[2] - 1] || '?';
+  return nome.charAt(0).toUpperCase() + nome.slice(1) + '/' + m[1].slice(2);
+}
+
+function blocoMeses() {
+  const meses = DADOS.porMes || [];
+  if (!meses.length) return '';
+  if (!VISTA.mes || !meses.some(m => m.mes === VISTA.mes)) VISTA.mes = meses[0].mes;
+  const atual = meses.find(m => m.mes === VISTA.mes) || meses[0];
+
+  const abas = meses.map(m =>
+    `<button type="button" class="aba${m.mes === VISTA.mes ? ' on' : ''}" data-mes="${m.mes}">${escapeHtml(rotuloMes(m.mes))}</button>`).join('');
+
+  const kpi = (cls, rotulo, valor, hint) => `<div class="mes-kpi ${cls}">
+    <div class="l">${escapeHtml(rotulo)}</div>
+    <div class="n num">${valor}</div>
+    <div class="h">${escapeHtml(hint)}</div>
+  </div>`;
+
+  const bi = DADOS.bi && !DADOS.bi.erro ? DADOS.bi : null;
+  const linha = [
+    `<span>do que abriu no mês, já fechou <b>${atual.pct}%</b></span>`,
+    atual.canceladas ? `<span>canceladas <b>${atual.canceladas}</b></span>` : '',
+    `<span>ainda em aberto hoje <b>${atual.emAberto}</b></span>`,
+    atual.pctExecucaoBI ? `<span>% execução (BI) <b>${escapeHtml(atual.pctExecucaoBI)}</b></span>` : '',
+    atual.pctLojasBI ? `<span>lojas com preventiva fechada (BI) <b>${escapeHtml(atual.pctLojasBI)}</b></span>` : '',
+  ].filter(Boolean).join('');
+
+  // histórico do BI: vai bem além do que o SOMA guarda
+  let hist = '';
+  if (bi && (bi.execucaoMensal || []).length) {
+    const lojas = Object.fromEntries((bi.lojasFechadasMensal || []).map(x => [x.mes, x.pct]));
+    const linhas = bi.execucaoMensal.map(x => `<tr>
+      <td>${escapeHtml(x.mes)}</td>
+      <td class="num">${escapeHtml(x.pct)}</td>
+      <td class="num">${escapeHtml(lojas[x.mes] || '—')}</td>
+    </tr>`).join('');
+    hist = `<div class="hist-tabela">
+      <h4>Histórico mensal — fonte Power BI (${escapeHtml(bi.carimbo || 'sem carimbo')})</h4>
+      <div class="filter-table-wrap"><table class="detail-table">
+        <thead><tr><th>Mês</th><th class="num">% execução</th><th class="num">% lojas com preventiva fechada</th></tr></thead>
+        <tbody>${linhas}</tbody>
+      </table></div>
+    </div>`;
+  } else if (DADOS.bi && DADOS.bi.erro) {
+    hist = `<p class="farol-zerados">Histórico do Power BI não entrou nesta rodada: ${escapeHtml(DADOS.bi.erro)}.</p>`;
+  }
+
+  const ordens = (DADOS.ordensFechadasPorMes || {})[atual.mes];
+  const notaOrdens = ordens
+    ? `<p class="farol-zerados">No mês, o SOMA fechou <b>${ordens.total}</b> ordens de preventiva (${ordens.concluidas} concluídas, ${ordens.canceladas} canceladas). A ordem agrupa as tarefas de uma mesma visita, por isso o número é menor que o de tarefas fechadas.</p>`
+    : '';
+
+  return `<div class="card">
+    <h3>Acompanhamento mês a mês</h3>
+    <div class="abas">${abas}</div>
+    <p class="card-sub">aberto = abriu no mês · fechado = foi encerrado no mês, tenha aberto quando tiver · atrasado = abriu no mês e segue vencido hoje</p>
+    <div class="mes-kpis">
+      ${kpi('aberto', 'Abertos no mês', atual.abertas, 'preventivas criadas em ' + rotuloMes(atual.mes))}
+      ${kpi('fechado', 'Fechados no mês', atual.fechadas, 'encerradas dentro do mês')}
+      ${kpi('atrasado', 'Atrasados', atual.atrasadas, 'abertos no mês e vencidos hoje')}
+    </div>
+    <div class="mes-linha">${linha}</div>
+    ${notaOrdens}
+    ${hist}
   </div>`;
 }
 
@@ -784,11 +884,13 @@ function tabelaDetalhe() {
 function render() {
   if (!DADOS) return;
   document.getElementById('conteudo').innerHTML =
-    kpis(DADOS.totais) + blocoFarol() + grafico(DADOS.porDia) + tabelaVisao() + tabelaDetalhe();
+    kpis(DADOS.totais) + blocoMeses() + blocoFarol() + grafico(DADOS.porDia) + tabelaVisao() + tabelaDetalhe();
 }
 
 // ---------- eventos ----------
 document.addEventListener('click', (ev) => {
+  const abaMes = ev.target.closest('[data-mes]');
+  if (abaMes) { VISTA.mes = abaMes.dataset.mes; render(); return; }
   const abaFarol = ev.target.closest('[data-farol]');
   if (abaFarol) { VISTA.farol = abaFarol.dataset.farol; render(); return; }
   const card = ev.target.closest('.gcard');
