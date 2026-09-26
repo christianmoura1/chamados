@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-26T21:00:18.371Z",
+ "atualizadoEm": "2026-09-26T22:20:12.335Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 11,
+  "emExecucao": 13,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 11
+  "total": 13
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-09-26",
-   "abertos": 9,
+   "abertos": 11,
    "fechados": 19
   }
  ],
  "itens": [
+  {
+   "numero": "WO0057473",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "15875 - SHOP MUELLER CURITIBA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "26/09/2026 19:05:57",
+   "fechamento": "",
+   "principal": "BK080684 - FRITADEIRA TRIPLA GAS NAT 3X3X2CESTOS",
+   "secundario": "FRI - PRINCÍPIO DE INCÊNDIO",
+   "sigla": "FRI",
+   "tecnico": "",
+   "descricao": "BK080684 - FRITADEIRA TRIPLA GAS NAT 3X3X2CESTOS | FRI - PRINCÍPIO DE INCÊNDIO",
+   "tarefas": [
+    "WOT0058001"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0057470",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "26160 - FS CANOAS - AV GETULIO VARGAS 3800",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "26/09/2026 19:00:29",
+   "fechamento": "",
+   "principal": "BK070972 - CAMARA DE CONGELADOS; SÃO RAFAEL",
+   "secundario": "CMG - NÃO LIGA",
+   "sigla": "CMG",
+   "tecnico": "",
+   "descricao": "BK070972 - CAMARA DE CONGELADOS; SÃO RAFAEL | CMG - NÃO LIGA",
+   "tarefas": [
+    "WOT0057998"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0057404",
    "marca": "BKB",
