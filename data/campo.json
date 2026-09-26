@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-26T14:20:14.305Z",
+ "atualizadoEm": "2026-09-26T14:40:12.803Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 15,
+  "emExecucao": 16,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 15
+  "total": 16
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-26",
-   "abertos": 4,
+   "abertos": 5,
    "fechados": 2
   }
  ],
  "itens": [
+  {
+   "numero": "WO0057161",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "26828 - FS CURITIBA - FRANCISCO FRISHMANN 3151",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "26/09/2026 11:35:00",
+   "fechamento": "",
+   "principal": "BK088198 - AR CONDICIONADO",
+   "secundario": "ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "sigla": "ARC",
+   "tecnico": "",
+   "descricao": "BK088198 - AR CONDICIONADO | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "tarefas": [
+    "WOT0057685"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0057149",
    "marca": "BKB",
