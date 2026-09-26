@@ -121,6 +121,8 @@ const iso = (d) => (d ? d.getFullYear() + '-' + String(d.getMonth() + 1).padStar
 const diasEntre = (a, b) => (a && b ? Math.floor((b - a) / 86400000) : null);
 
 // ---------- baixa do SOMA ----------
+const ABA_BI = 'fce72299';   // pagina "09. Manutencao Preventiva - BK" do Power BI
+
 const CAMPOS = [
   'number', 'parent.number', 'opened_at', 'work_type', 'state', 'u_bk_stage',
   'assigned_to', 'assignment_group', 'opened_for.name', 'location',
@@ -128,7 +130,9 @@ const CAMPOS = [
   'expected_start', 'work_start', 'estimated_end', 'sys_updated_on', 'asset',
 ].join(',');
 
-async function baixar() {
+// download generico de CSV do SOMA, reaproveitado pela consulta das tarefas e
+// pela contagem mensal de ordens fechadas
+async function baixarCSV(tabela, campos, query) {
   let browser;
   for (let t = 1; t <= 3 && !browser; t++) {
     try { browser = await chromium.connectOverCDP('http://127.0.0.1:9222', { timeout: 60000 }); }
@@ -138,14 +142,9 @@ async function baixar() {
   for (const c of browser.contexts()) for (const p of c.pages()) pgs.push(p);
   const pg = pgs.find((p) => /soma\.zamp\.com\.br/i.test(p.url()));
   if (!pg) { await browser.close().catch(() => {}); fatal('nenhuma aba do SOMA aberta no Chrome'); }
-
-  const query = 'opened_for.u_bk_work_center=CSUL'
-    + '^opened_at>=javascript:gs.daysAgoStart(' + JANELA + ')'
-    + '^ORDERBYDESCopened_at';
-  const url = BASE + '/wm_task_list.do?CSV&sysparm_display_value=true'
-    + '&sysparm_fields=' + encodeURIComponent(CAMPOS)
+  const url = BASE + '/' + tabela + '_list.do?CSV&sysparm_display_value=true'
+    + '&sysparm_fields=' + encodeURIComponent(campos)
     + '&sysparm_query=' + encodeURIComponent(query);
-
   const r = await pg.evaluate(async (u) => {
     const resp = await fetch(u, { credentials: 'include' });
     const buf = await resp.arrayBuffer();
@@ -155,13 +154,148 @@ async function baixar() {
     return { status: resp.status, url: resp.url, tipo: resp.headers.get('content-type') || '', b64: btoa(bin) };
   }, url);
   await browser.close().catch(() => {});
-
   if (/login\.microsoftonline|saml2/i.test(r.url)) fatal('SOMA em tela de login -- relogar pelo RDP');
-  if (r.status !== 200) fatal('SOMA respondeu HTTP ' + r.status);
-  const txt = Buffer.from(r.b64, 'base64').toString('latin1');   // latin1, NAO utf-8
-  if (!/text\/csv/i.test(r.tipo)) fatal('content-type inesperado: ' + r.tipo + ' (provavel tela de login)');
-  if (txt.length < 1000) fatal('CSV pequeno demais (' + txt.length + " bytes) -- nao confio");
+  if (r.status !== 200) fatal('SOMA respondeu HTTP ' + r.status + ' em ' + tabela);
+  return Buffer.from(r.b64, 'base64').toString('latin1');   // latin1, NAO utf-8
+}
+
+async function baixar() {
+  const query = 'opened_for.u_bk_work_center=CSUL'
+    + '^opened_at>=javascript:gs.daysAgoStart(' + JANELA + ')'
+    + '^ORDERBYDESCopened_at';
+  const txt = await baixarCSV('wm_task', CAMPOS, query);
+  if (txt.length < 1000) fatal('CSV pequeno demais (' + txt.length + ' bytes) -- nao confio');
   return txt;
+}
+
+// ---------- serie mensal ----------
+//
+// O SOMA so' enxerga preventiva a partir de agosto/2026 (conferido: nenhuma
+// ordem de preventiva aberta ou fechada antes disso). O historico mes a mes
+// vive no Power BI, na pagina "09. Manutencao Preventiva - BK". Entao a
+// quantidade realizada sai do SOMA e o percentual sai do BI, cada um
+// rotulado com a sua fonte no painel.
+
+const MES_NUM = { jan: 1, fev: 2, mar: 3, abr: 4, mai: 5, jun: 6, jul: 7, ago: 8, set: 9, out: 10, nov: 11, dez: 12 };
+// "Set/26" -> "2026-09"
+function mesISO(rotulo) {
+  const m = String(rotulo || '').match(/^([a-zç]{3})\/(\d{2})$/i);
+  if (!m) return null;
+  const n = MES_NUM[m[1].toLowerCase()];
+  if (!n) return null;
+  return '20' + m[2] + '-' + String(n).padStart(2, '0');
+}
+
+// transforma a matriz "Regional x meses" na serie da linha SUL
+function serieDaMatriz(linhas) {
+  if (!linhas || !linhas.length) return { serie: [], regionais: [] };
+  const cab = linhas[0];
+  const sul = linhas.find((l) => /^SUL$/i.test((l[0] || '').trim()));
+  const regionais = linhas.slice(1).map((l) => (l[0] || '').trim()).filter((x) => x && !/^total$/i.test(x));
+  if (!sul) return { serie: [], regionais };
+  const serie = [];
+  for (let i = 1; i < cab.length; i++) {
+    const rot = (cab[i] || '').trim();
+    const val = (sul[i] || '').trim();
+    if (rot && val) serie.push({ mes: rot, pct: val });
+  }
+  return { serie, regionais };
+}
+
+async function lerBI() {
+  let browser;
+  try { browser = await chromium.connectOverCDP('http://127.0.0.1:9222', { timeout: 60000 }); }
+  catch (e) { return { erro: 'CDP nao respondeu: ' + e.message.slice(0, 80) }; }
+  const pgs = [];
+  for (const c of browser.contexts()) for (const p of c.pages()) pgs.push(p);
+  const page = pgs.find((p) => p.url().includes(ABA_BI));
+  if (!page) { await browser.close().catch(() => {}); return { erro: 'a aba "09. Manutencao Preventiva" do Power BI nao esta aberta no Chrome' }; }
+
+  const r = await page.evaluate(() => {
+    const limpo = (s) => (s || '').replace(/Formata[çc][ãa]o Condicional Adicional/gi, '').replace(/\s+/g, ' ').trim();
+    const MES = /^(jan|fev|mar|abr|mai|jun|jul|ago|set|out|nov|dez)\/\d{2}$/i;
+    const PCT = /^-?\d{1,3}(,\d+)?%$/;
+    // rotulo do grafico e' <title> de SVG, tamanho zero: quem tem posicao e' o pai
+    const rect = (el) => {
+      let p = el;
+      for (let i = 0; i < 4 && p; i++) {
+        const b = p.getBoundingClientRect();
+        if (b.width || b.height) return b;
+        p = p.parentElement;
+      }
+      return null;
+    };
+
+    const texto = document.body.innerText || '';
+    const titulo = (texto.split('\n').find((l) => /Preventivas\s*-\s*BK/i.test(l)) || '').trim();
+    const carimbo = (texto.match(/[ÚU]ltima Atualiza[çc][ãa]o\s*\n?\s*([\d/: ]+)/i) || [])[1] || null;
+
+    const matrizes = {};
+    document.querySelectorAll('visual-container, .visualContainer').forEach((v) => {
+      const tit = limpo((v.querySelector('.visualTitle, .preTextWithEllipsis') || {}).innerText);
+      if (!tit || matrizes[tit]) return;
+      const linhas = [];
+      v.querySelectorAll('[role="row"]').forEach((row) => {
+        const c = [...row.querySelectorAll('[role="columnheader"], [role="rowheader"], [role="gridcell"]')]
+          .map((x) => limpo(x.innerText));
+        if (c.length) linhas.push(c);
+      });
+      if (linhas.length) matrizes[tit] = linhas;
+    });
+
+    const meses = [], pcts = [];
+    document.querySelectorAll('*').forEach((el) => {
+      if (el.children.length) return;
+      const t = limpo(el.textContent);
+      if (!t) return;
+      if (el.closest('[class*="pivotTable"], [role="grid"]')) return;
+      const ehMes = MES.test(t), ehPct = PCT.test(t);
+      if (!ehMes && !ehPct) return;
+      const b = rect(el);
+      if (!b) return;
+      const item = { t, x: b.x + b.width / 2, y: b.y + b.height / 2 };
+      if (ehMes) meses.push(item); else pcts.push(item);
+    });
+    meses.sort((a, b) => a.x - b.x);
+
+    // Pareamento por ORDEM DE X, nao por vizinho mais proximo: o % fica ~16px
+    // a direita do centro do mes e o vizinho mais proximo erra por um
+    // (daria Fev/25 = 6% em vez de 16%). Se as contagens nao baterem, devolvo
+    // vazio -- serie errada e' pior que serie ausente.
+    let execucaoMensal = [];
+    const diag = { meses: meses.length, pctsNaTela: pcts.length, pctsNaFaixa: 0 };
+    if (meses.length) {
+      const x0 = meses[0].x - 25, x1 = meses[meses.length - 1].x + 25;
+      const yRef = meses.reduce((sm, m) => sm + m.y, 0) / meses.length;
+      const naFaixa = pcts.filter((p) => p.x >= x0 && p.x <= x1 && p.y < yRef && p.y > yRef - 320);
+      naFaixa.sort((a, b) => a.x - b.x);
+      diag.pctsNaFaixa = naFaixa.length;
+      if (naFaixa.length === meses.length) execucaoMensal = meses.map((m, i) => ({ mes: m.t, pct: naFaixa[i].t }));
+    }
+    return { titulo, carimbo, matrizes, execucaoMensal, diag };
+  }).catch((e) => ({ erro: e.message.slice(0, 120) }));
+
+  await browser.close().catch(() => {});
+  return r;
+}
+
+// quantas preventivas foram REALIZADAS por mes, contadas no SOMA pelas ORDENS
+// fechadas (na tarefa o closed_at vem sempre vazio)
+async function realizadasPorMes() {
+  const q = 'opened_for.u_bk_work_center=CSUL^short_descriptionSTARTSWITHPreventiva'
+    + '^closed_at>=javascript:gs.monthsAgoStart(12)';
+  const txt = await baixarCSV('wm_order', 'number,opened_at,closed_at,state', q);
+  const linhas = objetos(txt);
+  const porMes = {};
+  linhas.forEach((x) => {
+    const m = String(x.closed_at || '').match(/^(\d{2})\/(\d{2})\/(\d{4})/);
+    if (!m) return;
+    const iso = m[3] + '-' + m[2];
+    if (!porMes[iso]) porMes[iso] = { total: 0, concluidas: 0, canceladas: 0 };
+    porMes[iso].total++;
+    if (cancelada(x.state)) porMes[iso].canceladas++; else porMes[iso].concluidas++;
+  });
+  return porMes;
 }
 
 // ---------- agrega ----------
@@ -251,6 +385,38 @@ function processar(linhas) {
   itens.forEach((x) => { toca(x.aberturaISO, 'abertas'); if (x.concluida) toca(x.fimISO, 'concluidas'); });
   const porDia = [...dias.values()].sort((a, b) => a.dia.localeCompare(b.dia)).slice(-45);
 
+  // ---- acompanhamento mes a mes ----
+  // ABERTAS  = tarefas cuja ABERTURA caiu no mes
+  // FECHADAS = tarefas ENCERRADAS no mes (independe de quando abriram)
+  // ATRASADAS= das abertas no mes, quantas seguem abertas e ja vencidas HOJE
+  const mesDe = (isoDia) => (isoDia ? isoDia.slice(0, 7) : null);
+  const meses = new Map();
+  const garante = (m) => {
+    if (!m) return null;
+    if (!meses.has(m)) meses.set(m, { mes: m, abertas: 0, fechadas: 0, canceladas: 0, atrasadas: 0, emAberto: 0, concluidasDaCoorte: 0 });
+    return meses.get(m);
+  };
+  itens.forEach((x) => {
+    const mA = garante(mesDe(x.aberturaISO));
+    if (mA) {
+      mA.abertas++;
+      if (x.aberta) mA.emAberto++;
+      if (x.atrasada) mA.atrasadas++;
+      if (x.cancelada) mA.canceladas++;
+      // do que abriu neste mes, quanto ja foi concluido (coorte)
+      if (x.concluida) mA.concluidasDaCoorte++;
+    }
+    if (x.concluida) { const mF = garante(mesDe(x.fimISO)); if (mF) mF.fechadas++; }
+  });
+  const porMes = [...meses.values()].sort((a, b) => b.mes.localeCompare(a.mes)).map((m) => ({
+    ...m,
+    // ATENCAO: "fechadas" e throughput (encerrou no mes, tenha aberto quando
+    // tiver) e nao serve de numerador de percentual -- em setembro fecharam
+    // 219 tarefas com 149 abertas no mes, o que daria 147%. O percentual do
+    // mes e de COORTE: do que abriu naquele mes, quanto ja fechou.
+    pct: (m.abertas - m.canceladas) > 0 ? Math.round(m.concluidasDaCoorte / (m.abertas - m.canceladas) * 100) : 0,
+  }));
+
   const lojas = new Set(itens.map((x) => x.loja));
   const tecnicos = new Set(itens.filter((x) => x.tecnico !== '(sem tecnico)').map((x) => x.tecnico));
   const equipamentos = new Set(itens.filter((x) => x.equipamento !== '(sem equipamento)').map((x) => x.equipamento));
@@ -275,6 +441,7 @@ function processar(linhas) {
       mediaDiasAberta: abertas.length ? Math.round(abertas.reduce((s, x) => s + (x.dias ?? 0), 0) / abertas.length) : 0,
       maisAntigaDias: abertas.length ? Math.max(...abertas.map((x) => x.dias ?? 0)) : 0,
     },
+    porMes,
     porTecnico: agrupa((x) => x.tecnico),
     porEquipamento: agrupa((x) => x.equipamento, (lista) => ({ lojas: new Set(lista.map((y) => y.loja)).size })),
     porSetor: agrupa((x) => x.setor, (lista) => ({ lojas: new Set(lista.map((y) => y.loja)).size })),
@@ -324,6 +491,7 @@ function publicar() {
     + ' | lojas ' + dados.totais.lojas
     + ' | tecnicos ' + dados.totais.tecnicos
     + ' | equipamentos ' + dados.totais.equipamentos);
+  log('meses com movimento: ' + dados.porMes.map((m) => m.mes + '(ab ' + m.abertas + '/fe ' + m.fechadas + '/at ' + m.atrasadas + ')').join(' '));
 
   // deixa auditavel o agrupamento: se alguma familia engolir algo errado,
   // da' para ver no log sem abrir o JSON
@@ -336,6 +504,54 @@ function publicar() {
     .filter(([, brutos]) => brutos.size > 1)
     .sort((a, b) => b[1].size - a[1].size)
     .forEach(([familia, brutos]) => log('familia ' + familia + ' <- ' + [...brutos].join(' / ')));
+
+  // ---- historico mensal: percentual vem do BI, contagem vem do SOMA ----
+  const bi = await lerBI();
+  if (bi.erro) {
+    log('AVISO: nao li o Power BI (' + bi.erro + ') -- publico o painel sem a serie oficial');
+    dados.bi = { erro: bi.erro };
+  } else {
+    const mensal = serieDaMatriz(bi.matrizes['Lojas com Preventivas Fechadas por Regional - Mensal']);
+    const semanal = serieDaMatriz(bi.matrizes['Lojas com Preventivas Fechadas por Regional - Semanal']);
+    // guarda de recorte, igual aos outros paineis: titulo tem que dizer BK e
+    // a matriz de regional so pode ter SUL
+    const soSul = mensal.regionais.length === 1 && /^SUL$/i.test(mensal.regionais[0]);
+    const marcaOk = /\bBK\b/i.test(bi.titulo || '');
+    if (!marcaOk || !soSul) {
+      log('AVISO: recorte do BI fora do lugar (titulo="' + bi.titulo + '", regionais=['
+        + mensal.regionais.join(', ') + ']) -- NAO uso a serie oficial');
+      dados.bi = { erro: 'recorte do BI fora do lugar' };
+    } else {
+      dados.bi = {
+        titulo: bi.titulo,
+        carimbo: bi.carimbo,
+        execucaoMensal: bi.execucaoMensal,
+        lojasFechadasMensal: mensal.serie,
+        lojasFechadasSemanal: semanal.serie,
+      };
+      log('BI: ' + bi.execucaoMensal.length + ' meses de % execucao, '
+        + mensal.serie.length + ' meses de % lojas fechadas (carimbo ' + bi.carimbo + ')');
+      if (!bi.execucaoMensal.length) {
+        log('AVISO: nao consegui parear o grafico de % execucao (' + JSON.stringify(bi.diag) + ')');
+      }
+    }
+  }
+
+  // contagem de ORDENS fechadas por mes -- o que o SOMA enxerga de historico
+  try {
+    const ordens = await realizadasPorMes();
+    dados.ordensFechadasPorMes = ordens;
+    log('ordens de preventiva fechadas por mes (SOMA): ' + JSON.stringify(ordens));
+  } catch (e) {
+    log('AVISO: nao contei as ordens fechadas (' + e.message.slice(0, 80) + ')');
+  }
+
+  // casa o rotulo do BI (Set/26) com o mes ISO do SOMA (2026-09)
+  if (dados.bi && dados.bi.execucaoMensal) {
+    const pctExec = Object.fromEntries(dados.bi.execucaoMensal.map((x) => [mesISO(x.mes), x.pct]));
+    const pctLojas = Object.fromEntries((dados.bi.lojasFechadasMensal || []).map((x) => [mesISO(x.mes), x.pct]));
+    dados.porMes = dados.porMes.map((m) => ({ ...m, pctExecucaoBI: pctExec[m.mes] || null, pctLojasBI: pctLojas[m.mes] || null }));
+  }
 
   fs.writeFileSync(SAIDA, JSON.stringify(dados), 'utf8');
   log('gravado ' + SAIDA);
