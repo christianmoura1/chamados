@@ -389,6 +389,9 @@
   .mes-kpi.aberto .n { color: var(--violet); }
   .mes-kpi.fechado .n { color: var(--ok); }
   .mes-kpi.atrasado .n { color: var(--sos); }
+  .mes-kpi.ok .n { color: var(--ok); }
+  .mes-kpi.alta .n { color: var(--alta); }
+  .mes-kpi.ruim .n { color: var(--sos); }
   .mes-linha {
     display: flex; gap: 20px; flex-wrap: wrap; margin-top: 12px;
     font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--muted);
@@ -477,33 +480,10 @@ function kpis(t) {
   </div>
   <div class="kpis">
     ${c('Lojas com preventiva', t.lojas, '', 'na regional Sul')}
-    ${kpisDosMeses()}
+    ${c('Equipamentos', t.equipamentos ?? '—', '', 'tipos distintos em preventiva')}
+    ${c('Canceladas', t.canceladas, '', 'fora do cálculo de conclusão')}
+    ${c('Total no período', t.total, '', 'abertas + concluídas + canceladas')}
   </div>`;
-}
-
-// Os 3 últimos meses direto no topo: o percentual que o pessoal cobra é o do
-// Power BI (% execução), com o % de lojas cobertas logo abaixo. Vem do BI e
-// não da minha contagem porque é a régua oficial -- e porque o SOMA só tem
-// preventiva desde agosto/2026.
-function kpisDosMeses() {
-  const bi = DADOS.bi && !DADOS.bi.erro ? DADOS.bi : null;
-  if (!bi || !(bi.execucaoMensal || []).length) {
-    return `<div class="kpi"><div class="label">Meses</div><div class="val num">—</div>
-      <div class="hint">série do Power BI não entrou nesta rodada</div></div>`;
-  }
-  const lojas = Object.fromEntries((bi.lojasFechadasMensal || []).map(x => [x.mes, x.pct]));
-  const ultimos = bi.execucaoMensal.slice(-3);
-  return ultimos.map((x, i) => {
-    // o mês corrente ainda está correndo: marco para ninguém ler como fechado
-    const corrente = i === ultimos.length - 1;
-    const cls = parseInt(x.pct, 10) >= 60 ? 'k-ok' : parseInt(x.pct, 10) >= 35 ? 'k-alta' : 'k-sos';
-    const hintLojas = lojas[x.mes] ? lojas[x.mes] + ' das lojas' : 'sem dado de lojas';
-    return `<div class="kpi ${cls}">
-      <div class="label">${escapeHtml(x.mes)}${corrente ? ' · parcial' : ''}</div>
-      <div class="val num">${escapeHtml(x.pct)}</div>
-      <div class="hint">execução · ${escapeHtml(hintLojas)}</div>
-    </div>`;
-  }).join('');
 }
 
 // ---------- gráfico de abertura x conclusão ----------
@@ -559,12 +539,26 @@ function blocoMeses() {
   </div>`;
 
   const bi = DADOS.bi && !DADOS.bi.erro ? DADOS.bi : null;
+
+  // segunda fileira do mês: os percentuais, do mesmo tamanho dos números de
+  // cima. O % de execução e o de lojas vêm do Power BI (régua oficial); o
+  // 'já fechou' é a minha conta de coorte sobre o que abriu no mês.
+  const pctNum = (p) => parseInt(String(p).replace(',', '.'), 10);
+  const semaforo = (p) => (pctNum(p) >= 60 ? ' ok' : pctNum(p) >= 35 ? ' alta' : ' ruim');
+  const cardPct = (rotulo, valor, hint) => `<div class="mes-kpi${semaforo(valor)}">
+    <div class="l">${escapeHtml(rotulo)}</div>
+    <div class="n num">${escapeHtml(String(valor))}</div>
+    <div class="h">${escapeHtml(hint)}</div>
+  </div>`;
+  const pcts = [
+    cardPct('Do que abriu, já fechou', atual.pct + '%', 'minha contagem no SOMA'),
+    atual.pctExecucaoBI ? cardPct('% execução', atual.pctExecucaoBI, 'fonte Power BI') : '',
+    atual.pctLojasBI ? cardPct('Lojas com preventiva fechada', atual.pctLojasBI, 'fonte Power BI') : '',
+  ].filter(Boolean).join('');
+
   const linha = [
-    `<span>do que abriu no mês, já fechou <b>${atual.pct}%</b></span>`,
-    atual.canceladas ? `<span>canceladas <b>${atual.canceladas}</b></span>` : '',
     `<span>ainda em aberto hoje <b>${atual.emAberto}</b></span>`,
-    atual.pctExecucaoBI ? `<span>% execução (BI) <b>${escapeHtml(atual.pctExecucaoBI)}</b></span>` : '',
-    atual.pctLojasBI ? `<span>lojas com preventiva fechada (BI) <b>${escapeHtml(atual.pctLojasBI)}</b></span>` : '',
+    atual.canceladas ? `<span>canceladas <b>${atual.canceladas}</b></span>` : '',
   ].filter(Boolean).join('');
 
   // a tabela de 21 meses saiu a pedido do Christian: o percentual dos meses
@@ -586,6 +580,7 @@ function blocoMeses() {
       ${kpi('fechado', 'Fechados no mês', atual.fechadas, 'encerradas dentro do mês')}
       ${kpi('atrasado', 'Atrasados', atual.atrasadas, 'abertos no mês e vencidos hoje')}
     </div>
+    <div class="mes-kpis">${pcts}</div>
     <div class="mes-linha">${linha}</div>
     ${notaOrdens}
     ${hist}
