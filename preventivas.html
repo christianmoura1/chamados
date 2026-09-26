@@ -420,7 +420,7 @@
 
 <script>
 let DADOS = null;
-const VISTA = { aba: 'tecnico' };
+const VISTA = { aba: 'tecnico', farol: 'tecnico' };
 const FILTROS = { loja: '', tecnico: '', setor: '', estado: '', equipamento: '', soAtrasadas: false };
 let LOJAS_LISTA = [];
 
@@ -484,21 +484,7 @@ function grafico(serie) {
   </div>`;
 }
 
-// ---------- farol da carteira por tecnico ----------
-// Faixas escolhidas a partir da distribuicao real das carteiras (24 tecnicos,
-// mediana 38 e quartil superior 67 preventivas abertas): ate 30 e carteira
-// normal, de 30 a 70 pesada, acima de 70 estourada. Escala vai a 140 porque
-// o maior observado foi 134.
-const FAROL_MAX = 140;
-const FAROL_ZONAS = [
-  { de: 0, ate: 30, cor: 'var(--ok)' },
-  { de: 30, ate: 70, cor: 'var(--alta)' },
-  { de: 70, ate: FAROL_MAX, cor: 'var(--sos)' },
-];
-function corDoFarol(valor) {
-  const z = FAROL_ZONAS.find(z => valor < z.ate) || FAROL_ZONAS[FAROL_ZONAS.length - 1];
-  return z.cor;
-}
+// ---------- farol da carteira ----------
 
 // Velocimetro identico ao do painel de Backlog, inclusive nos detalhes que
 // custaram caro la: fill/stroke vao em style="" e nao como atributo de
@@ -523,24 +509,80 @@ function gaugeSVG(valor, max, zonas) {
   return `<svg viewBox="0 0 200 112" width="200" height="112" style="width:100%;height:auto;display:block;">${zonasSvg}${agulha}</svg>`;
 }
 
-function farolTecnicos() {
-  const todos = (DADOS.porTecnico || []).filter(x => x.nome !== '(sem tecnico)');
+// Dois faróis na mesma moldura: carteira por TÉCNICO (quem está segurando) e
+// por EQUIPAMENTO (o que está parado). As faixas de cada um saem da
+// distribuição real daquela dimensão -- não dá para usar a mesma escala: a
+// maior carteira de técnico é 134 e a maior de equipamento é 98, e a mediana
+// de técnico (38) é bem menor que a de equipamento (54).
+const FAROIS = {
+  tecnico: {
+    rotulo: 'Por técnico',
+    sub: 'preventivas em aberto na mão de cada um',
+    max: 140,
+    zonas: [
+      { de: 0, ate: 30, cor: 'var(--ok)' },
+      { de: 30, ate: 70, cor: 'var(--alta)' },
+      { de: 70, ate: 140, cor: 'var(--sos)' },
+    ],
+    legenda: ['até 30 na carteira', 'de 30 a 70', 'acima de 70'],
+    dados: () => (DADOS.porTecnico || []).filter(x => x.nome !== '(sem tecnico)'),
+    filtro: 'tecnico',
+    vazios: 'técnico(s) sem nenhuma preventiva em aberto',
+  },
+  equipamento: {
+    rotulo: 'Por equipamento',
+    sub: 'preventivas em aberto por tipo de equipamento',
+    max: 110,
+    zonas: [
+      { de: 0, ate: 40, cor: 'var(--ok)' },
+      { de: 40, ate: 75, cor: 'var(--alta)' },
+      { de: 75, ate: 110, cor: 'var(--sos)' },
+    ],
+    legenda: ['até 40 em aberto', 'de 40 a 75', 'acima de 75'],
+    dados: () => (DADOS.porEquipamento || []).filter(x => x.nome !== '(sem equipamento)'),
+    filtro: 'equipamento',
+    vazios: 'equipamento(s) sem nenhuma preventiva em aberto',
+  },
+};
+
+function corDoFarol(valor, cfg) {
+  const z = cfg.zonas.find(z => valor < z.ate) || cfg.zonas[cfg.zonas.length - 1];
+  return z.cor;
+}
+
+function blocoFarol() {
+  const chave = VISTA.farol;
+  const cfg = FAROIS[chave];
+  const todos = cfg.dados();
   const comCarteira = todos.filter(x => x.abertas > 0).sort((a, b) => b.abertas - a.abertas);
   const zerados = todos.filter(x => x.abertas === 0);
-  if (!comCarteira.length) return '';
+
+  const abas = Object.entries(FAROIS).map(([k, c]) =>
+    `<button type="button" class="aba${k === chave ? ' on' : ''}" data-farol="${k}">${escapeHtml(c.rotulo)}</button>`).join('');
+
+  if (!comCarteira.length) {
+    return `<div class="card"><h3>Farol da carteira</h3>
+      <div class="abas">${abas}</div>
+      <p class="card-sub">nada em aberto nesta visão</p></div>`;
+  }
+
   const cards = comCarteira.map(x => {
-    const cor = corDoFarol(x.abertas);
-    const sel = FILTROS.tecnico === x.nome ? ' sel' : '';
-    return `<button type="button" class="gcard${sel}" data-tecnico="${escapeHtml(x.nome)}">
+    const cor = corDoFarol(x.abertas, cfg);
+    const sel = FILTROS[cfg.filtro] === x.nome ? ' sel' : '';
+    // no farol de equipamento vale mais saber em quantas lojas ele está parado
+    const sub = chave === 'equipamento'
+      ? `${x.total} no período · ${n(x.lojas)} lojas`
+      : `${x.total} no período · ${x.concluidas} concluídas`;
+    return `<button type="button" class="gcard${sel}" data-farol-tipo="${cfg.filtro}" data-farol-valor="${escapeHtml(x.nome)}">
       <div class="ghead">
         <div><span class="gname">${escapeHtml(x.nome)}</span>
-        <span class="gsetor">${x.total} no período · ${x.concluidas} concluídas</span></div>
+        <span class="gsetor">${sub}</span></div>
         <span class="gdetalhe">${x.pct}% concl.</span>
       </div>
-      <div class="ggauge">${gaugeSVG(x.abertas, FAROL_MAX, FAROL_ZONAS)}</div>
+      <div class="ggauge">${gaugeSVG(x.abertas, cfg.max, cfg.zonas)}</div>
       <div class="gval">
         <span class="gnum" style="color:${cor}">${x.abertas}</span>
-        <span class="glabel">na carteira</span>
+        <span class="glabel">${chave === 'equipamento' ? 'em aberto' : 'na carteira'}</span>
       </div>
       <div class="gstats">
         <div class="estat${x.atrasadas ? ' crit' : ''}"><div class="n">${x.atrasadas}</div><div class="l">ATRASADAS</div></div>
@@ -549,17 +591,20 @@ function farolTecnicos() {
       </div>
     </button>`;
   }).join('');
+
   const rodape = zerados.length
-    ? `<p class="farol-zerados">${zerados.length} técnico(s) sem nenhuma preventiva em aberto: ${zerados.map(z => escapeHtml(z.nome)).join(', ')}</p>`
+    ? `<p class="farol-zerados">${zerados.length} ${escapeHtml(cfg.vazios)}: ${zerados.map(z => escapeHtml(z.nome)).join(', ')}</p>`
     : '';
+
+  const cores = ['var(--ok)', 'var(--alta)', 'var(--sos)'];
+  const legenda = cfg.legenda.map((t, k) =>
+    `<span><i style="background:${cores[k]}"></i>${escapeHtml(t)}</span>`).join('');
+
   return `<div class="card">
-    <h3>Farol da carteira por técnico</h3>
-    <p class="card-sub">preventivas em aberto na mão de cada um · clique num card para filtrar a tabela abaixo</p>
-    <div class="farol-legenda">
-      <span><i style="background:var(--ok)"></i>até 30 na carteira</span>
-      <span><i style="background:var(--alta)"></i>de 30 a 70</span>
-      <span><i style="background:var(--sos)"></i>acima de 70</span>
-    </div>
+    <h3>Farol da carteira</h3>
+    <div class="abas">${abas}</div>
+    <p class="card-sub">${escapeHtml(cfg.sub)} · clique num card para filtrar a tabela abaixo</p>
+    <div class="farol-legenda">${legenda}</div>
     <div class="gauge-grid">${cards}</div>
     ${rodape}
   </div>`;
@@ -739,15 +784,18 @@ function tabelaDetalhe() {
 function render() {
   if (!DADOS) return;
   document.getElementById('conteudo').innerHTML =
-    kpis(DADOS.totais) + farolTecnicos() + grafico(DADOS.porDia) + tabelaVisao() + tabelaDetalhe();
+    kpis(DADOS.totais) + blocoFarol() + grafico(DADOS.porDia) + tabelaVisao() + tabelaDetalhe();
 }
 
 // ---------- eventos ----------
 document.addEventListener('click', (ev) => {
+  const abaFarol = ev.target.closest('[data-farol]');
+  if (abaFarol) { VISTA.farol = abaFarol.dataset.farol; render(); return; }
   const card = ev.target.closest('.gcard');
   if (card) {
-    const nome = card.dataset.tecnico;
-    FILTROS.tecnico = (FILTROS.tecnico === nome) ? '' : nome;
+    const campo = card.dataset.farolTipo;
+    const nome = card.dataset.farolValor;
+    FILTROS[campo] = (FILTROS[campo] === nome) ? '' : nome;
     render();
     document.querySelector('#barraFiltros')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
