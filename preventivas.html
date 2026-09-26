@@ -675,7 +675,7 @@ function blocoFarol() {
     // no farol de equipamento vale mais saber em quantas lojas ele está parado
     const sub = chave === 'equipamento'
       ? `${x.total} no período · ${n(x.lojas)} lojas`
-      : `${x.total} no período · ${x.concluidas} concluídas`;
+      : `${x.total} no período · média ${x.mediaDiasAberta}d em aberto`;
     return `<button type="button" class="gcard${sel}" data-farol-tipo="${cfg.filtro}" data-farol-valor="${escapeHtml(x.nome)}">
       <div class="ghead">
         <div><span class="gname">${escapeHtml(x.nome)}</span>
@@ -689,8 +689,8 @@ function blocoFarol() {
       </div>
       <div class="gstats">
         <div class="estat${x.atrasadas ? ' crit' : ''}"><div class="n">${x.atrasadas}</div><div class="l">ATRASADAS</div></div>
-        <div class="estat"><div class="n">${x.mediaDiasAberta}d</div><div class="l">MÉDIA ABERTA</div></div>
-        <div class="estat"><div class="n">${x.maisAntigaDias}d</div><div class="l">MAIS ANTIGA</div></div>
+        <div class="estat"><div class="n">${x.abertas}</div><div class="l">ABERTAS</div></div>
+        <div class="estat${x.concluidas ? ' ok' : ''}"><div class="n">${x.concluidas}</div><div class="l">FECHADAS</div></div>
       </div>
     </button>`;
   }).join('');
