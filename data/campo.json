@@ -1,5 +1,5 @@
 {
- "atualizadoEm": "2026-09-26T20:20:16.033Z",
+ "atualizadoEm": "2026-09-26T20:40:13.010Z",
  "janelaDias": 3,
  "resumo": {
   "emExecucao": 11,
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-26",
-   "abertos": 8,
-   "fechados": 17
+   "abertos": 9,
+   "fechados": 18
   }
  ],
  "itens": [
+  {
+   "numero": "WO0057404",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "18450 - BOURBON SHOP SAO LEOPOLDO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "26/09/2026 17:32:35",
+   "fechamento": "",
+   "principal": "AR CONDICIONADO",
+   "secundario": "ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "sigla": "ARC",
+   "tecnico": "",
+   "descricao": "AR CONDICIONADO | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "tarefas": [
+    "WOT0057932"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0057389",
    "marca": "BKB",
@@ -204,29 +227,6 @@
    "descricao": "BK066582 - CAMARA DE CONGELADOS; SÃO RAFAEL | CMG - NÃO ATINGE TEMPERATURA",
    "tarefas": [
     "WOT0057252"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0056576",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "24766 - SHOP TOTAL POA",
-   "status": "Trabalho em andamento",
-   "fase": "Iniciado",
-   "abertura": "25/09/2026 09:38:35",
-   "fechamento": "",
-   "principal": "BK063622 - CAMARA DE CONGELADOS; SÃO RAFAEL",
-   "secundario": "CMG - NÃO LIGA",
-   "sigla": "CMG",
-   "tecnico": "",
-   "descricao": "BK063622 - CAMARA DE CONGELADOS; SÃO RAFAEL | CMG - NÃO LIGA",
-   "tarefas": [
-    "WOT0057094"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
