@@ -1,11 +1,11 @@
 {
- "atualizadoEm": "2026-09-27T20:00:10.050Z",
+ "atualizadoEm": "2026-09-27T22:00:11.125Z",
  "janelaDias": 3,
  "resumo": {
   "emExecucao": 6,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 0,
+  "aguardandoToken": 1,
   "total": 6
  },
  "serie": [
@@ -21,31 +21,31 @@
   },
   {
    "data": "2026-09-27",
-   "abertos": 6,
-   "fechados": 16
+   "abertos": 7,
+   "fechados": 17
   }
  ],
  "itens": [
   {
-   "numero": "WO0057560",
+   "numero": "WO0057820",
    "marca": "BKB",
    "regional": "SUL",
-   "setor": "CAPITAL NORTE RS",
-   "loja": "25447 - FS POA - AV DA CAVALHADA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "27/09/2026 03:51:02",
+   "setor": "SUDOESTE RS",
+   "loja": "21787 - CARREFOUR PARTENON",
+   "status": "Trabalho em andamento",
+   "fase": "Requisição Completa - Aguardando Token",
+   "abertura": "27/09/2026 18:40:09",
    "fechamento": "",
-   "principal": "AR CONDICIONADO",
-   "secundario": "ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
-   "sigla": "ARC",
+   "principal": "TOSTADEIRA 220V 3290W 66A71GRC",
+   "secundario": "TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
+   "sigla": "TST",
    "tecnico": "",
-   "descricao": "AR CONDICIONADO | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "descricao": "TOSTADEIRA 220V 3290W 66A71GRC | TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
    "tarefas": [
-    "WOT0058090"
+    "WOT0058356"
    ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
+   "aguardandoToken": 1,
+   "fechadoSemToken": "27/09/2026 18:55:01",
    "contato": "",
    "grupo": "execucao"
   },
