@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-26T23:20:11.906Z",
+ "atualizadoEm": "2026-09-27T00:20:12.272Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 13,
+  "emExecucao": 14,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 2,
-  "total": 13
+  "total": 14
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-26",
-   "abertos": 11,
-   "fechados": 19
+   "abertos": 12,
+   "fechados": 20
   }
  ],
  "itens": [
+  {
+   "numero": "WO0057529",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "26/09/2026 21:12:22",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
+   "tarefas": [
+    "WOT0058058"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0057473",
    "marca": "BKB",
