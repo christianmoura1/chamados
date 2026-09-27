@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-27T14:20:16.153Z",
+ "atualizadoEm": "2026-09-27T14:40:14.127Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 13,
+  "emExecucao": 14,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 2,
-  "total": 13
+  "total": 14
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-27",
-   "abertos": 5,
-   "fechados": 5
+   "abertos": 6,
+   "fechados": 6
   }
  ],
  "itens": [
+  {
+   "numero": "WO0057664",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "24362 - FS SJP - AV DAS TORRES",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "27/09/2026 11:31:30",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - GÁS - VAZAMENTO DE GÁS",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - GÁS - VAZAMENTO DE GÁS",
+   "tarefas": [
+    "WOT0058195"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0057651",
    "marca": "BKB",
