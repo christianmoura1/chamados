@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-09-27T01:20:13.555Z",
+ "atualizadoEm": "2026-09-27T10:00:18.178Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 13,
+  "emExecucao": 14,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 2,
-  "total": 13
+  "total": 14
  },
  "serie": [
-  {
-   "data": "2026-09-24",
-   "abertos": 5,
-   "fechados": 15
-  },
   {
    "data": "2026-09-25",
    "abertos": 10,
@@ -21,11 +16,85 @@
   },
   {
    "data": "2026-09-26",
-   "abertos": 12,
+   "abertos": 13,
    "fechados": 21
+  },
+  {
+   "data": "2026-09-27",
+   "abertos": 2,
+   "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0057560",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "25447 - FS POA - AV DA CAVALHADA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "27/09/2026 03:51:02",
+   "fechamento": "",
+   "principal": "AR CONDICIONADO",
+   "secundario": "ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "sigla": "ARC",
+   "tecnico": "",
+   "descricao": "AR CONDICIONADO | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "tarefas": [
+    "WOT0058090"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0057558",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "24741 - FS PELOTAS - AV FERREIRA VIANA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "27/09/2026 01:27:00",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "AEX - REFLUXO",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | AEX - REFLUXO",
+   "tarefas": [
+    "WOT0058088"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0057550",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "",
+   "loja": "33312 - FC PONTA GROSSA SHOPPING PLAZA CAMPOS",
+   "status": "Pronto para Expedição",
+   "fase": "Started",
+   "abertura": "26/09/2026 23:20:56",
+   "fechamento": "",
+   "principal": "BROILER HORIZONTAL AI GLP 75000BTU/H",
+   "secundario": "BRO - NÃO MANTÉM A CHAMA",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BROILER HORIZONTAL AI GLP 75000BTU/H | BRO - NÃO MANTÉM A CHAMA",
+   "tarefas": [
+    "WOT0058080"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0057529",
    "marca": "BKB",
@@ -273,52 +342,6 @@
    "descricao": "BK066582 - CAMARA DE CONGELADOS; SÃO RAFAEL | CMG - NÃO ATINGE TEMPERATURA",
    "tarefas": [
     "WOT0057252"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0056409",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL NORTE RS",
-   "loja": "25455 - FS POA - AV DR NILO PECANHA 1715",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "24/09/2026 17:10:29",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - COZINHA - REFLUXO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
-   "tarefas": [
-    "WOT0056927"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0056188",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA NORTE",
-   "loja": "21791 - SHOP CIDADE CURITIBA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "24/09/2026 11:19:17",
-   "fechamento": "",
-   "principal": "BK036190 - COIFA LAVADORA; MELTING",
-   "secundario": "COI - COIFA NÃO FUNCIONA",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK036190 - COIFA LAVADORA; MELTING | COI - COIFA NÃO FUNCIONA",
-   "tarefas": [
-    "WOT0056706"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
