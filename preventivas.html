@@ -443,6 +443,19 @@
     font-family: "Archivo", sans-serif; font-weight: 700; font-size: 12px; margin: 0 0 8px;
   }
 
+  /* ---- copiar para o WhatsApp ---- */
+  .zap-linha { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: -4px 0 12px; }
+  .btn-zap {
+    font-family: "IBM Plex Sans", sans-serif; font-size: 12.5px; font-weight: 600;
+    color: #fff; background: #25D366; border: 0; border-radius: 10px;
+    padding: 9px 15px; cursor: pointer; display: inline-flex; align-items: center; gap: 7px;
+  }
+  .btn-zap:hover { filter: brightness(.94); }
+  .btn-zap:disabled { opacity: .55; cursor: default; }
+  .btn-zap.ok { background: var(--ok); }
+  .zap-aviso { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--faint); }
+  .zap-aviso.alerta { color: var(--alta); }
+
   .farol-zerados {
     font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--faint);
     margin: 14px 0 0; line-height: 1.5;
@@ -863,10 +876,77 @@ function barraFiltros() {
   </div>`;
 }
 
+// Texto para o WhatsApp. Agrupo por loja porque e assim que a conversa
+// acontece ('o que tem pendente na loja X'), e porque uma lista corrida de
+// 400 linhas soltas ninguem le. Negrito do WhatsApp e *asterisco*.
+let ULTIMA_LISTA = [];
+
+function textoWhatsApp(itens) {
+  const t = DADOS.totais;
+  const ctx = [
+    FILTROS.loja ? 'loja: ' + FILTROS.loja : '',
+    FILTROS.tecnico ? 'tecnico: ' + FILTROS.tecnico : '',
+    FILTROS.setor ? 'setor: ' + FILTROS.setor : '',
+    FILTROS.equipamento ? 'equipamento: ' + FILTROS.equipamento : '',
+    FILTROS.estado ? 'estado: ' + FILTROS.estado : '',
+    FILTROS.soAtrasadas ? 'somente atrasadas' : '',
+  ].filter(Boolean).join(' · ');
+
+  const porLoja = new Map();
+  itens.forEach((x) => {
+    if (!porLoja.has(x.loja)) porLoja.set(x.loja, []);
+    porLoja.get(x.loja).push(x);
+  });
+
+  const linhas = ['*PREVENTIVAS - REGIONAL SUL*'];
+  linhas.push('_' + itens.length + ' preventiva(s)' + (ctx ? ' · ' + ctx : '') + '_');
+  linhas.push('_atualizado ' + (DADOS.atualizadoEm || '') + '_');
+
+  [...porLoja.entries()]
+    .sort((a, b) => b[1].length - a[1].length)
+    .forEach(([loja, lista]) => {
+      linhas.push('');
+      linhas.push('*' + loja + '* (' + lista.length + ')');
+      lista.forEach((x) => {
+        // o que ja esta no filtro nao precisa se repetir em cada linha: se a
+        // lista e de um tecnico so, o nome dele em 80 linhas e' so ruido
+        const partes = [x.numero];
+        if (!FILTROS.equipamento) partes.push(x.equipamento);
+        if (!FILTROS.tecnico) partes.push(x.tecnico);
+        const situacao = x.atrasada ? ('ATRASADA ' + x.diasAtraso + 'd')
+          : x.concluida ? 'concluida' : x.cancelada ? 'cancelada' : ('em aberto ' + x.dias + 'd');
+        linhas.push('• ' + partes.join(' · ') + ' — ' + situacao);
+      });
+    });
+  return linhas.join('\n');
+}
+
+async function copiarWhatsApp(botao) {
+  const texto = textoWhatsApp(ULTIMA_LISTA);
+  try {
+    await navigator.clipboard.writeText(texto);
+  } catch (e) {
+    // clipboard bloqueado (sem https, permissao negada): caio no textarea
+    const ta = document.createElement('textarea');
+    ta.value = texto;
+    ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch (e2) { alert('Nao consegui copiar. Selecione o texto manualmente.'); }
+    ta.remove();
+  }
+  const antes = botao.innerHTML;
+  botao.classList.add('ok');
+  botao.innerHTML = '✓ copiado (' + ULTIMA_LISTA.length + ')';
+  setTimeout(() => { botao.innerHTML = antes; botao.classList.remove('ok'); }, 2500);
+}
+
 function tabelaDetalhe() {
   const filtrados = aplicaFiltros(DADOS.itens)
     .sort((a, b) => (b.atrasada - a.atrasada) || ((b.dias ?? 0) - (a.dias ?? 0)))
     .slice(0, 400);
+  // o botao copia exatamente o que a tabela mostra
+  ULTIMA_LISTA = filtrados;
   const linhas = filtrados.map(x => {
     const tag = x.atrasada ? '<span class="tag t-sos">Atrasada</span>'
       : x.concluida ? '<span class="tag t-ok">Concluída</span>'
@@ -890,6 +970,14 @@ function tabelaDetalhe() {
     <h3>Preventivas, uma a uma</h3>
     <p class="card-sub">atrasadas primeiro, depois as mais antigas · mostrando ${filtrados.length}${filtrados.length === 400 ? ' (limite de 400)' : ''}</p>
     <div id="barraFiltros">${barraFiltros()}</div>
+    <div class="zap-linha">
+      <button type="button" class="btn-zap" id="btnZap">📋 Copiar para WhatsApp</button>
+      <span class="zap-aviso${filtrados.length > 60 ? ' alerta' : ''}">
+        ${filtrados.length > 60
+          ? 'copia as ' + filtrados.length + ' linhas da tabela — mensagem longa, considere filtrar antes'
+          : 'copia as ' + filtrados.length + ' linhas da tabela, agrupadas por loja'}
+      </span>
+    </div>
     <div class="filter-table-wrap alto"><table class="detail-table">
       <thead><tr>
         <th>Tarefa</th><th>Ordem</th><th>Loja</th><th>Setor</th><th>Equipamento</th><th>Técnico</th>
@@ -909,6 +997,8 @@ function render() {
 
 // ---------- eventos ----------
 document.addEventListener('click', (ev) => {
+  const zap = ev.target.closest('#btnZap');
+  if (zap) { copiarWhatsApp(zap); return; }
   const abaMes = ev.target.closest('[data-mes]');
   if (abaMes) { VISTA.mes = abaMes.dataset.mes; render(); return; }
   const abaFarol = ev.target.closest('[data-farol]');
