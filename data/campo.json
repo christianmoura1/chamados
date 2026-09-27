@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-27T12:40:12.500Z",
+ "atualizadoEm": "2026-09-27T13:00:31.656Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 13,
+  "emExecucao": 14,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 13
+  "total": 14
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-27",
-   "abertos": 3,
+   "abertos": 4,
    "fechados": 2
   }
  ],
  "itens": [
+  {
+   "numero": "WO0057597",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "OESTE PR",
+   "loja": "25277 - SHOP GUARAPUAVA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "27/09/2026 09:45:20",
+   "fechamento": "",
+   "principal": "BK066058 - FRITADEIRA",
+   "secundario": "FRI - NÃO LIGA",
+   "sigla": "FRI",
+   "tecnico": "",
+   "descricao": "BK066058 - FRITADEIRA | FRI - NÃO LIGA",
+   "tarefas": [
+    "WOT0058128"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0057577",
    "marca": "BKB",
