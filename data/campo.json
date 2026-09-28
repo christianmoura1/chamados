@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-28T16:20:11.466Z",
+ "atualizadoEm": "2026-09-28T17:00:17.771Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 9,
+  "emExecucao": 10,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 9
+  "total": 10
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-28",
-   "abertos": 6,
+   "abertos": 7,
    "fechados": 6
   }
  ],
  "itens": [
+  {
+   "numero": "WO0058182",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "27589 - PARK EUROPEU BLUMENAU",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "28/09/2026 13:55:56",
+   "fechamento": "",
+   "principal": "BK080288 - BROILER",
+   "secundario": "BRO - PRINCÍPIO DE INCÊNDIO",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK080288 - BROILER | BRO - PRINCÍPIO DE INCÊNDIO",
+   "tarefas": [
+    "WOT0058718"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0058149",
    "marca": "BKB",
