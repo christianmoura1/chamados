@@ -656,7 +656,14 @@ function tabelaChamadosRisco(itens, refDate, filtroResp) {
 function textoRiscoWhats(titulo, itens, refDate) {
   const filtrados = aplicaFiltrosRisco(itens);
   const comDias = filtrados.map(c => ({ ...c, dias: diasVencido(c.dtAbertura, refDate) }));
-  comDias.sort((a, b) => (b.dias ?? -1) - (a.dias ?? -1));
+  // ordem de cobranca: o que vence primeiro vem primeiro. Sem previsao vai para
+  // o fim, porque nao da' pra cobrar prazo de quem nao tem prazo.
+  comDias.sort((a, b) => {
+    const pa = previsaoAtual(a) || '9999-12-31';
+    const pb = previsaoAtual(b) || '9999-12-31';
+    if (pa !== pb) return pa.localeCompare(pb);
+    return (b.dias ?? -1) - (a.dias ?? -1);
+  });
 
   const ctx = [];
   if (FILTROS_RISCO.loja) ctx.push('loja: ' + FILTROS_RISCO.loja);
@@ -674,15 +681,27 @@ function textoRiscoWhats(titulo, itens, refDate) {
     const resp = responsavelAtual(c) || 'sem responsavel';
     const prev = previsaoAtual(c);
     if (!prev) semPrev++;
-    const prevTxt = prev ? prev.split('-').reverse().slice(0, 2).join('/') : 'sem previsao';
+    // o WhatsApp nao tem cor no texto; o vermelho sai como emoji, e so' no que
+    // interessa: previsao ja vencida. Hoje leva o amarelo.
+    const hojeISO = new Date().toISOString().slice(0, 10);
+    let prevTxt, marca = '';
+    if (!prev) { prevTxt = 'sem previsao'; marca = '\u26A0 '; }
+    else {
+      prevTxt = '*' + prev.split('-').reverse().slice(0, 2).join('/') + '*';
+      if (prev < hojeISO) marca = '\uD83D\uDD34 ';
+      else if (prev === hojeISO) marca = '\uD83D\uDFE1 ';
+    }
     const dias = c.dias != null ? c.dias + 'd' : '\u2014';
-    L.push('*' + dias + '* \u00b7 ' + c.numero + ' \u2014 ' + c.loja);
+    L.push(marca + c.numero + ' \u2014 ' + c.loja);
     L.push('  ' + (c.assuntoSecundario || c.assuntoPrincipal));
-    L.push('  ' + resp + ' \u00b7 prev. ' + prevTxt);
+    L.push('  ' + resp + ' \u00b7 vencido ha ' + dias + ' \u00b7 prev. ' + prevTxt);
     L.push('');
   });
 
-  if (semPrev) L.push('_' + semPrev + ' sem previsao de termino_');
+  const venc = comDias.filter(c => { const p = previsaoAtual(c); return p && p < new Date().toISOString().slice(0, 10); }).length;
+  L.push('');
+  if (venc) L.push('\uD83D\uDD34 _' + venc + ' com previsao ja vencida_');
+  if (semPrev) L.push('\u26A0 _' + semPrev + ' sem previsao de termino_');
   return L.join('\n').trim();
 }
 
