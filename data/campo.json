@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-28T12:20:12.252Z",
+ "atualizadoEm": "2026-09-28T13:00:14.726Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 7,
+  "emExecucao": 8,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 1,
-  "total": 7
+  "aguardandoToken": 2,
+  "total": 8
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-28",
-   "abertos": 1,
+   "abertos": 2,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0057966",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "28/09/2026 09:54:43",
+   "fechamento": "",
+   "principal": "BK035191 - AR CONDICIONADO",
+   "secundario": "ARC - LOJA SEM AR CONDICIONADO",
+   "sigla": "ARC",
+   "tecnico": "",
+   "descricao": "BK035191 - AR CONDICIONADO | ARC - LOJA SEM AR CONDICIONADO",
+   "tarefas": [
+    "WOT0058503"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0057911",
    "marca": "BKB",
@@ -56,7 +79,7 @@
    "setor": "SUDOESTE RS",
    "loja": "21529 - PARTAGE SHOP RIO GRANDE",
    "status": "Trabalho em andamento",
-   "fase": "Iniciado",
+   "fase": "Requisição Completa - Aguardando Token",
    "abertura": "27/09/2026 19:35:05",
    "fechamento": "",
    "principal": "BK037999 - BROILER; NIECO; JF93G; 232-32583",
@@ -67,8 +90,8 @@
    "tarefas": [
     "WOT0058363"
    ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
+   "aguardandoToken": 1,
+   "fechadoSemToken": "28/09/2026 09:55:07",
    "contato": "",
    "grupo": "execucao"
   },
