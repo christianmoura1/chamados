@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-28T17:00:17.771Z",
+ "atualizadoEm": "2026-09-28T17:20:12.315Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 10,
+  "emExecucao": 12,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 10
+  "total": 12
  },
  "serie": [
   {
@@ -21,11 +21,80 @@
   },
   {
    "data": "2026-09-28",
-   "abertos": 7,
-   "fechados": 6
+   "abertos": 10,
+   "fechados": 9
   }
  ],
  "itens": [
+  {
+   "numero": "WO0058198",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "OESTE PR",
+   "loja": "21702 - CATARATAS JL SHOP",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "28/09/2026 14:17:11",
+   "fechamento": "",
+   "principal": "BK086054 - CARRINHO DO BROILER",
+   "secundario": "CDB - RODA DO CARRINHO DANIFICADO/OXIDADA",
+   "sigla": "CDB",
+   "tecnico": "",
+   "descricao": "BK086054 - CARRINHO DO BROILER | CDB - RODA DO CARRINHO DANIFICADO/OXIDADA",
+   "tarefas": [
+    "WOT0058733"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0058197",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "25447 - FS POA - AV DA CAVALHADA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "28/09/2026 14:17:03",
+   "fechamento": "",
+   "principal": "AR CONDICIONADO",
+   "secundario": "ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "sigla": "ARC",
+   "tecnico": "",
+   "descricao": "AR CONDICIONADO | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "tarefas": [
+    "WOT0058732"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0058185",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "27589 - PARK EUROPEU BLUMENAU",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "28/09/2026 14:01:14",
+   "fechamento": "",
+   "principal": "BK080288 - BROILER",
+   "secundario": "BRO - NÃO ATINGE TEMPERATURA",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK080288 - BROILER | BRO - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0058721"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0058182",
    "marca": "BKB",
@@ -204,29 +273,6 @@
    "descricao": "BK070972 - CAMARA DE CONGELADOS; SÃO RAFAEL | CMG - NÃO LIGA",
    "tarefas": [
     "WOT0057998"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0057404",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "18450 - BOURBON SHOP SAO LEOPOLDO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "26/09/2026 17:32:35",
-   "fechamento": "",
-   "principal": "AR CONDICIONADO",
-   "secundario": "ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
-   "sigla": "ARC",
-   "tecnico": "",
-   "descricao": "AR CONDICIONADO | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
-   "tarefas": [
-    "WOT0057932"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
