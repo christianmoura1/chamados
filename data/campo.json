@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-28T14:00:13.604Z",
+ "atualizadoEm": "2026-09-28T14:40:10.960Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 8,
+  "emExecucao": 9,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 1,
-  "total": 8
+  "aguardandoToken": 0,
+  "total": 9
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-09-28",
-   "abertos": 3,
-   "fechados": 3
+   "abertos": 5,
+   "fechados": 5
   }
  ],
  "itens": [
+  {
+   "numero": "WO0058045",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "19618 - SHOP GRAVATAI",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "28/09/2026 11:33:45",
+   "fechamento": "",
+   "principal": "BK078988 - MAQUINA DE SORVETE; TAYLOR; C712N-33; M3",
+   "secundario": "MDS - PRINCÍPIO DE INCÊNDIO",
+   "sigla": "MDS",
+   "tecnico": "",
+   "descricao": "BK078988 - MAQUINA DE SORVETE; TAYLOR; C712N-33; M3 | MDS - PRINCÍPIO DE INCÊNDIO",
+   "tarefas": [
+    "WOT0058581"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0058039",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "",
+   "loja": "33312 - FC PONTA GROSSA SHOPPING PLAZA CAMPOS",
+   "status": "Pronto para Expedição",
+   "fase": "Started",
+   "abertura": "28/09/2026 11:23:02",
+   "fechamento": "",
+   "principal": "BROILER HORIZONTAL AI GLP 75000BTU/H",
+   "secundario": "BRO - SUPERAQUECENDO",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BROILER HORIZONTAL AI GLP 75000BTU/H | BRO - SUPERAQUECENDO",
+   "tarefas": [
+    "WOT0058575"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0058018",
    "marca": "BKB",
@@ -92,29 +138,6 @@
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0057820",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "21787 - CARREFOUR PARTENON",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "27/09/2026 18:40:09",
-   "fechamento": "",
-   "principal": "TOSTADEIRA 220V 3290W 66A71GRC",
-   "secundario": "TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
-   "sigla": "TST",
-   "tecnico": "",
-   "descricao": "TOSTADEIRA 220V 3290W 66A71GRC | TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
-   "tarefas": [
-    "WOT0058356"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "27/09/2026 18:55:01",
    "contato": "",
    "grupo": "execucao"
   },
