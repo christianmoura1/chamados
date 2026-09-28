@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-28T21:20:11.800Z",
+ "atualizadoEm": "2026-09-28T21:40:11.862Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 12,
+  "emExecucao": 13,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 12
+  "total": 13
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-28",
-   "abertos": 10,
+   "abertos": 11,
    "fechados": 19
   }
  ],
  "itens": [
+  {
+   "numero": "WO0058304",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "26839 FS CURITIBA - AV SILVA JARDIM",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "28/09/2026 18:35:55",
+   "fechamento": "",
+   "principal": "BK099819 - COIFA",
+   "secundario": "COI - COIFA NÃO FUNCIONA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK099819 - COIFA | COI - COIFA NÃO FUNCIONA",
+   "tarefas": [
+    "WOT0058839"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0058198",
    "marca": "BKB",
