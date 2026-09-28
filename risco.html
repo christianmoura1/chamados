@@ -213,6 +213,11 @@
   .risco-subhead .cnt { font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 600; border-radius: 999px; padding: 2px 10px; }
   .risco-subhead .cnt.vencido { background: var(--sos-soft); color: var(--sos); }
   .risco-subhead .cnt.avencer { background: var(--ok); color: white; }
+.risco-subhead .btn-zap { margin-left: auto; font-family: "Archivo", sans-serif; font-size: 11px;
+  font-weight: 600; cursor: pointer; border: 1px solid var(--line); background: var(--card);
+  color: var(--muted); border-radius: 7px; padding: 4px 11px; transition: all .15s; }
+.risco-subhead .btn-zap:hover { color: var(--ink); border-color: var(--muted); }
+.risco-subhead .btn-zap.copiado { background: var(--ok); border-color: var(--ok); color: #fff; }
   .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 16px; }
   .filter-field { display: flex; flex-direction: column; gap: 4px; min-width: 168px; }
   .filter-field label {
@@ -645,6 +650,72 @@ function tabelaChamadosRisco(itens, refDate, filtroResp) {
   </table></div>`;
 }
 
+
+// ---- copiar a lista de risco para o WhatsApp ----
+// Respeita os filtros da tela: copia o que esta visivel, nao a base inteira.
+function textoRiscoWhats(titulo, itens, refDate) {
+  const filtrados = aplicaFiltrosRisco(itens);
+  const comDias = filtrados.map(c => ({ ...c, dias: diasVencido(c.dtAbertura, refDate) }));
+  comDias.sort((a, b) => (b.dias ?? -1) - (a.dias ?? -1));
+
+  const ctx = [];
+  if (FILTROS_RISCO.loja) ctx.push('loja: ' + FILTROS_RISCO.loja);
+  if (FILTROS_RISCO.assunto) ctx.push('assunto: ' + FILTROS_RISCO.assunto);
+  if (FILTROS_RISCO.resp) ctx.push('resp: ' + FILTROS_RISCO.resp);
+
+  const L = [];
+  L.push('*' + titulo + ' \u00b7 REGIONAL SUL*');
+  L.push('_' + comDias.length + ' chamado(s)' + (ctx.length ? ' \u00b7 ' + ctx.join(' \u00b7 ') : '')
+    + ' \u00b7 ' + ((DADOS_ATUAIS && DADOS_ATUAIS.atualizadoEm) ? DADOS_ATUAIS.atualizadoEm : '') + '_');
+  L.push('');
+
+  let semPrev = 0;
+  comDias.forEach(function(c) {
+    const resp = responsavelAtual(c) || 'sem responsavel';
+    const prev = previsaoAtual(c);
+    if (!prev) semPrev++;
+    const prevTxt = prev ? prev.split('-').reverse().slice(0, 2).join('/') : 'sem previsao';
+    const dias = c.dias != null ? c.dias + 'd' : '\u2014';
+    L.push('*' + dias + '* \u00b7 ' + c.numero + ' \u2014 ' + c.loja);
+    L.push('  ' + (c.assuntoSecundario || c.assuntoPrincipal));
+    L.push('  ' + resp + ' \u00b7 prev. ' + prevTxt);
+    L.push('');
+  });
+
+  if (semPrev) L.push('_' + semPrev + ' sem previsao de termino_');
+  return L.join('\n').trim();
+}
+
+function copiarRisco(btn, qual) {
+  const D = DADOS_ATUAIS;
+  if (!D) return;
+  const refDate = parseDataBR(D.atualizadoEm) || new Date();
+  const itens = qual === 'vencido'
+    ? ((D.chamadosRisco && D.chamadosRisco.vencidos) || [])
+    : ((D.chamadosRisco && D.chamadosRisco.aVencer) || []);
+  const titulo = qual === 'vencido' ? 'RISCO VENCIDO' : 'RISCO A VENCER';
+  const texto = textoRiscoWhats(titulo, itens, refDate);
+  function ok() {
+    const antes = btn.textContent;
+    btn.textContent = 'copiado';
+    btn.classList.add('copiado');
+    setTimeout(function() { btn.textContent = antes; btn.classList.remove('copiado'); }, 1800);
+  }
+  function fallback() {
+    const ta = document.createElement('textarea');
+    ta.value = texto;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); ok(); } catch (e) { /* nada */ }
+    document.body.removeChild(ta);
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(texto).then(ok, fallback);
+  } else fallback();
+}
+
 function renderizarChamadosRisco() {
   const D = DADOS_ATUAIS;
   if (!D) return;
@@ -767,9 +838,9 @@ async function iniciar() {
       <div class="sec-head"><h2>Chamados de Gestão de Risco</h2><span class="sec-note">Coifa, Broiler, Exaustor, Sensor de gás, Quadro Elétrico · fonte: Power BI (Gestão de Risco · Sul)</span></div>
       <div class="card">
         <div id="barraFiltrosRisco">${barraFiltrosRisco([...(D.chamadosRisco?.vencidos || []), ...(D.chamadosRisco?.aVencer || [])])}</div>
-        <div class="risco-subhead"><span>Risco Vencido</span><span class="cnt vencido" id="cntVencido">${(D.chamadosRisco?.vencidos || []).length}</span></div>
+        <div class="risco-subhead"><span>Risco Vencido</span><button type="button" class="btn-zap" onclick="copiarRisco(this,'vencido')">copiar p/ WhatsApp</button><span class="cnt vencido" id="cntVencido">${(D.chamadosRisco?.vencidos || []).length}</span></div>
         <div id="tabelaVencido">${tabelaChamadosRisco(D.chamadosRisco?.vencidos, refDate)}</div>
-        <div class="risco-subhead"><span>Risco a Vencer</span><span class="cnt avencer" id="cntAVencer">${(D.chamadosRisco?.aVencer || []).length}</span></div>
+        <div class="risco-subhead"><span>Risco a Vencer</span><button type="button" class="btn-zap" onclick="copiarRisco(this,'avencer')">copiar p/ WhatsApp</button><span class="cnt avencer" id="cntAVencer">${(D.chamadosRisco?.aVencer || []).length}</span></div>
         <div id="tabelaAVencer">${tabelaChamadosRisco(D.chamadosRisco?.aVencer, refDate)}</div>
       </div>
     </section>
