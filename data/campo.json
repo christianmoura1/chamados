@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-29T13:40:11.531Z",
+ "atualizadoEm": "2026-09-29T14:20:11.407Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 10,
+  "emExecucao": 12,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 10
+  "total": 12
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-09-29",
-   "abertos": 4,
+   "abertos": 6,
    "fechados": 1
   }
  ],
  "itens": [
+  {
+   "numero": "WO0058573",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "19618 - SHOP GRAVATAI",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "29/09/2026 11:14:12",
+   "fechamento": "",
+   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
+   "secundario": "SCI - NÃO LIGA",
+   "sigla": "SCI",
+   "tecnico": "",
+   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - NÃO LIGA",
+   "tarefas": [
+    "WOT0059107"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0058571",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "26160 - FS CANOAS - AV GETULIO VARGAS 3800",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "29/09/2026 11:12:58",
+   "fechamento": "",
+   "principal": "BK070955 - COIFA",
+   "secundario": "COI - COIFA NÃO FUNCIONA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK070955 - COIFA | COI - COIFA NÃO FUNCIONA",
+   "tarefas": [
+    "WOT0059106"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0058519",
    "marca": "BKB",
