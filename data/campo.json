@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-29T11:00:17.044Z",
+ "atualizadoEm": "2026-09-29T11:40:10.904Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 7,
+  "emExecucao": 8,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 7
+  "total": 8
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-29",
-   "abertos": 1,
+   "abertos": 2,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0058438",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "17223 - CANOAS SHOP",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "29/09/2026 08:39:49",
+   "fechamento": "",
+   "principal": "BK049202 - BROILER",
+   "secundario": "BRO - NÃO ACENDE",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK049202 - BROILER | BRO - NÃO ACENDE",
+   "tarefas": [
+    "WOT0058974"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0058416",
    "marca": "BKB",
