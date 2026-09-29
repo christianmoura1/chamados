@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-29T20:20:12.002Z",
+ "atualizadoEm": "2026-09-29T20:40:12.315Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 11,
+  "emExecucao": 12,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 11
+  "total": 12
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-29",
-   "abertos": 11,
+   "abertos": 12,
    "fechados": 11
   }
  ],
  "itens": [
+  {
+   "numero": "WO0058870",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "20047 - FS CURITIBA - LINHA VERDE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "29/09/2026 17:32:10",
+   "fechamento": "",
+   "principal": "BK034373 - COIFA",
+   "secundario": "COI - COIFA EM CONTIGÊNCIA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK034373 - COIFA | COI - COIFA EM CONTIGÊNCIA",
+   "tarefas": [
+    "WOT0059403"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0058851",
    "marca": "BKB",
