@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-09-28T23:00:19.224Z",
+ "atualizadoEm": "2026-09-29T11:00:17.044Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 8,
+  "emExecucao": 7,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 8
+  "total": 7
  },
  "serie": [
-  {
-   "data": "2026-09-26",
-   "abertos": 13,
-   "fechados": 21
-  },
   {
    "data": "2026-09-27",
    "abertos": 8,
@@ -23,9 +18,37 @@
    "data": "2026-09-28",
    "abertos": 11,
    "fechados": 25
+  },
+  {
+   "data": "2026-09-29",
+   "abertos": 1,
+   "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0058416",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "20047 - FS CURITIBA - LINHA VERDE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "29/09/2026 05:16:34",
+   "fechamento": "",
+   "principal": "BOILER",
+   "secundario": "BOI - REGISTRO ENTRE O BOILER E VÁLVULA DE ALÍVIO",
+   "sigla": "BOI",
+   "tecnico": "",
+   "descricao": "BOILER | BOI - REGISTRO ENTRE O BOILER E VÁLVULA DE ALÍVIO",
+   "tarefas": [
+    "WOT0058952"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0058304",
    "marca": "BKB",
@@ -158,52 +181,6 @@
    "descricao": "Area Externa | AEX - REFLUXO",
    "tarefas": [
     "WOT0058088"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0057470",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL SUL RS",
-   "loja": "26160 - FS CANOAS - AV GETULIO VARGAS 3800",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "26/09/2026 19:00:29",
-   "fechamento": "",
-   "principal": "BK070972 - CAMARA DE CONGELADOS; SÃO RAFAEL",
-   "secundario": "CMG - NÃO LIGA",
-   "sigla": "CMG",
-   "tecnico": "",
-   "descricao": "BK070972 - CAMARA DE CONGELADOS; SÃO RAFAEL | CMG - NÃO LIGA",
-   "tarefas": [
-    "WOT0057998"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0057314",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "OESTE PR",
-   "loja": "23989 - SHOP JL CASCAVEL",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "26/09/2026 15:25:10",
-   "fechamento": "",
-   "principal": "BK077748 - AR CONDICIONADO",
-   "secundario": "ARC - LOJA SEM AR CONDICIONADO",
-   "sigla": "ARC",
-   "tecnico": "",
-   "descricao": "BK077748 - AR CONDICIONADO | ARC - LOJA SEM AR CONDICIONADO",
-   "tarefas": [
-    "WOT0057841"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
