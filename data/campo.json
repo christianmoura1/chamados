@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-29T16:00:12.117Z",
+ "atualizadoEm": "2026-09-29T16:20:13.651Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 10,
+  "emExecucao": 11,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 10
+  "total": 11
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-29",
-   "abertos": 8,
+   "abertos": 9,
    "fechados": 8
   }
  ],
  "itens": [
+  {
+   "numero": "WO0058658",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "20047 - FS CURITIBA - LINHA VERDE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "29/09/2026 13:02:34",
+   "fechamento": "",
+   "principal": "BK066008 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
+   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMR",
+   "tecnico": "",
+   "descricao": "BK066008 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0059191"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0058608",
    "marca": "BKB",
@@ -55,7 +78,7 @@
    "regional": "SUL",
    "setor": "CURITIBA NORTE",
    "loja": "26806 - JOCKEY PLAZA SHOP",
-   "status": "Pronto para Expedição",
+   "status": "Atribuído",
    "fase": "Iniciado",
    "abertura": "29/09/2026 11:26:56",
    "fechamento": "",
