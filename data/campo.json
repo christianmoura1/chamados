@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-29T19:20:12.512Z",
+ "atualizadoEm": "2026-09-29T20:20:12.002Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 10,
+  "emExecucao": 11,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 10
+  "total": 11
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-29",
-   "abertos": 10,
+   "abertos": 11,
    "fechados": 11
   }
  ],
  "itens": [
+  {
+   "numero": "WO0058851",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "19868 - SHOP DO VALE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "29/09/2026 17:11:50",
+   "fechamento": "",
+   "principal": "BK021456 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
+   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMR",
+   "tecnico": "",
+   "descricao": "BK021456 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0059383"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0058714",
    "marca": "BKB",
