@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-29T16:40:11.866Z",
+ "atualizadoEm": "2026-09-29T17:00:38.366Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 9,
+  "emExecucao": 10,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 9
+  "total": 10
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-29",
-   "abertos": 9,
+   "abertos": 10,
    "fechados": 10
   }
  ],
  "itens": [
+  {
+   "numero": "WO0058714",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "23725 - SHOP PRACA NOVA SANTA MARIA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "29/09/2026 14:00:20",
+   "fechamento": "",
+   "principal": "BK055469 - COIFA",
+   "secundario": "COI - COIFA NÃO FUNCIONA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK055469 - COIFA | COI - COIFA NÃO FUNCIONA",
+   "tarefas": [
+    "WOT0059247"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0058658",
    "marca": "BKB",
