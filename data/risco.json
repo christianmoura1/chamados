@@ -1,8 +1,8 @@
 {
- "atualizadoEm": "28/09/2026 20:05:54",
- "geradoEm": "2026-09-29T09:01:22.846Z",
+ "atualizadoEm": "29/09/2026 09:10:41",
+ "geradoEm": "2026-09-29T12:17:58.957Z",
  "totalLojasAvaliadas": 71,
- "scoreMedio": 9.72,
+ "scoreMedio": 9.85,
  "categorias": [
   {
    "chave": "sci",
@@ -28,12 +28,12 @@
      "diasAtraso": null
     },
     {
-     "nome": "26830 - FS FOZ DO IGUACU AV JORGE SCHIMMELPFENG 50",
+     "nome": "26837 - FS CASCAVEL - AV BRASIL 1580",
      "score": 14,
      "diasAtraso": null
     },
     {
-     "nome": "32610 - FC - CATUAI CASCAVEL - AV BRASIL 3561",
+     "nome": "26830 - FS FOZ DO IGUACU AV JORGE SCHIMMELPFENG 50",
      "score": 10,
      "diasAtraso": null
     },
@@ -47,13 +47,18 @@
   {
    "chave": "dutos",
    "nome": "Dutos",
-   "vencido": 32,
-   "emDia": 39,
+   "vencido": 34,
+   "emDia": 37,
    "total": 71,
-   "pctVencido": 45,
+   "pctVencido": 48,
    "lojasVencidas": [
     {
      "nome": "18408 - SHOP BELLA CITTA",
+     "score": 19,
+     "diasAtraso": null
+    },
+    {
+     "nome": "16852 - SHOP SAO JOSE DOS PINHAIS",
      "score": 15,
      "diasAtraso": null
     },
@@ -69,11 +74,6 @@
     },
     {
      "nome": "20621 - SHOP PELOTAS",
-     "score": 15,
-     "diasAtraso": null
-    },
-    {
-     "nome": "21791 - SHOP CIDADE CURITIBA",
      "score": 15,
      "diasAtraso": null
     },
@@ -113,6 +113,16 @@
      "diasAtraso": null
     },
     {
+     "nome": "26837 - FS CASCAVEL - AV BRASIL 1580",
+     "score": 14,
+     "diasAtraso": null
+    },
+    {
+     "nome": "20047 - FS CURITIBA - LINHA VERDE",
+     "score": 11,
+     "diasAtraso": null
+    },
+    {
      "nome": "26839 - FS CURITIBA AV SILVA JARDIM 566",
      "score": 11,
      "diasAtraso": null
@@ -143,12 +153,12 @@
      "diasAtraso": null
     },
     {
-     "nome": "19868 - SHOP DO VALE",
+     "nome": "19665 - SHOP SAN PELEGRINO",
      "score": 10,
      "diasAtraso": null
     },
     {
-     "nome": "20047 - FS CURITIBA - LINHA VERDE",
+     "nome": "19868 - SHOP DO VALE",
      "score": 10,
      "diasAtraso": null
     },
@@ -188,6 +198,11 @@
      "diasAtraso": null
     },
     {
+     "nome": "24362 - FS SJP - AV DAS TORRES",
+     "score": 10,
+     "diasAtraso": null
+    },
+    {
      "nome": "24741 - FS PELOTAS - AV FERREIRA VIANA",
      "score": 10,
      "diasAtraso": null
@@ -203,11 +218,6 @@
      "diasAtraso": null
     },
     {
-     "nome": "26837 - FS CASCAVEL - AV BRASIL 1580",
-     "score": 10,
-     "diasAtraso": null
-    },
-    {
      "nome": "29084 - FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL 13185",
      "score": 10,
      "diasAtraso": null
@@ -217,23 +227,18 @@
   {
    "chave": "rotaSeguranca",
    "nome": "Rota Segurança",
-   "vencido": 3,
-   "emDia": 68,
+   "vencido": 2,
+   "emDia": 69,
    "total": 71,
-   "pctVencido": 4,
+   "pctVencido": 3,
    "lojasVencidas": [
     {
-     "nome": "26830 - FS FOZ DO IGUACU AV JORGE SCHIMMELPFENG 50",
-     "score": 14,
+     "nome": "27589 - PARK EUROPEU BLUMENAU",
+     "score": 15,
      "diasAtraso": null
     },
     {
      "nome": "25277 - SHOP GUARAPUAVA",
-     "score": 10,
-     "diasAtraso": null
-    },
-    {
-     "nome": "27590 - PORTO BELO OUTLET",
      "score": 10,
      "diasAtraso": null
     }
@@ -249,7 +254,7 @@
    "lojasVencidas": [
     {
      "nome": "18408 - SHOP BELLA CITTA",
-     "score": 15,
+     "score": 19,
      "diasAtraso": null
     },
     {
@@ -265,11 +270,13 @@
   "Exaustor",
   "Quadro Elétrico",
   "Sensor de gás",
-  "14",
+  "Válvula de Alivio (boiler)",
+  "16",
   "3",
   "2",
   "2",
-  "4",
+  "2",
+  "1",
   "Atrasado",
   "No Prazo"
  ],
@@ -452,10 +459,10 @@
     "regional": "SUL",
     "setor": "SUDOESTE RS",
     "loja": "20621 - SHOP PELOTAS",
-    "status": "Pronto Para Envio",
+    "status": "Atribuído",
     "dtAbertura": "15/09/2026",
     "dtEncerramento": "",
-    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
+    "tecnico": "THIAGO DA SILVA GONZALEZ"
    },
    {
     "numero": "WO0052539",
@@ -528,6 +535,20 @@
     "tecnico": "CARLOS MAGNO DA SILVA LIRA"
    },
    {
+    "numero": "WO0055039",
+    "statusRisco": "Atrasado",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - COIFA EM CONTIGÊNCIA",
+    "regional": "SUL",
+    "setor": "GRANDE CURITIBA",
+    "loja": "16687 - SHOP PALLADIUM PONTA GROSSA",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "22/09/2026",
+    "dtEncerramento": "",
+    "tecnico": "CARLOS MAGNO DA SILVA LIRA"
+   },
+   {
     "numero": "WO0055121",
     "statusRisco": "Atrasado",
     "item": "Quadro Elétrico",
@@ -540,6 +561,20 @@
     "dtAbertura": "22/09/2026",
     "dtEncerramento": "",
     "tecnico": "RUAN CARLOS DA SILVA"
+   },
+   {
+    "numero": "WO0055168",
+    "statusRisco": "Atrasado",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - COIFA NÃO FUNCIONA",
+    "regional": "SUL",
+    "setor": "CAPITAL CENTRO RS",
+    "loja": "18408 - SHOP BELLA CITTA",
+    "status": "Em Andamento",
+    "dtAbertura": "22/09/2026",
+    "dtEncerramento": "",
+    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
    },
    {
     "numero": "WO0056110",
@@ -572,34 +607,6 @@
   ],
   "aVencer": [
    {
-    "numero": "WO0055039",
-    "statusRisco": "No Prazo",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA EM CONTIGÊNCIA",
-    "regional": "SUL",
-    "setor": "GRANDE CURITIBA",
-    "loja": "16687 - SHOP PALLADIUM PONTA GROSSA",
-    "status": "Pronto Para Envio",
-    "dtAbertura": "22/09/2026",
-    "dtEncerramento": "",
-    "tecnico": "CARLOS MAGNO DA SILVA LIRA"
-   },
-   {
-    "numero": "WO0055168",
-    "statusRisco": "No Prazo",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA NÃO FUNCIONA",
-    "regional": "SUL",
-    "setor": "CAPITAL CENTRO RS",
-    "loja": "18408 - SHOP BELLA CITTA",
-    "status": "Em Andamento",
-    "dtAbertura": "22/09/2026",
-    "dtEncerramento": "",
-    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
-   },
-   {
     "numero": "WO0056188",
     "statusRisco": "No Prazo",
     "item": "Coifa",
@@ -624,6 +631,20 @@
     "loja": "26839 - FS CURITIBA AV SILVA JARDIM 566",
     "status": "Pronto Para Envio",
     "dtAbertura": "28/09/2026",
+    "dtEncerramento": "",
+    "tecnico": "CARLOS MAGNO DA SILVA LIRA"
+   },
+   {
+    "numero": "WO0058416",
+    "statusRisco": "No Prazo",
+    "item": "Válvula de Alivio (boiler)",
+    "assuntoPrincipal": "BOILER",
+    "assuntoSecundario": "BOI - REGISTRO ENTRE O BOILER E VÁLVULA DE ALÍVIO",
+    "regional": "SUL",
+    "setor": "CURITIBA NORTE",
+    "loja": "20047 - FS CURITIBA - LINHA VERDE",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "29/09/2026",
     "dtEncerramento": "",
     "tecnico": "CARLOS MAGNO DA SILVA LIRA"
    }
