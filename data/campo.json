@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-30T10:00:15.659Z",
+ "atualizadoEm": "2026-09-30T12:00:13.349Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 13,
+  "emExecucao": 15,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 13
+  "total": 15
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-09-30",
-   "abertos": 0,
+   "abertos": 2,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0059059",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "19665 - SHOP SAN PELEGRINO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "30/09/2026 08:51:31",
+   "fechamento": "",
+   "principal": "BK021213 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
+   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMR",
+   "tecnico": "",
+   "descricao": "BK021213 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0059592"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0059051",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "OESTE PR",
+   "loja": "22536 - Shopping Palladium Foz do Iguaçu ",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "30/09/2026 08:41:44",
+   "fechamento": "",
+   "principal": "BROILER GAS NATURAL ALTA PERFORMANCE",
+   "secundario": "BRO - NÃO ACENDE",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BROILER GAS NATURAL ALTA PERFORMANCE | BRO - NÃO ACENDE",
+   "tarefas": [
+    "WOT0059584"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0059014",
    "marca": "BKB",
