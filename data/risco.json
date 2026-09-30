@@ -1,8 +1,8 @@
 {
- "atualizadoEm": "30/09/2026 09:10:37",
- "geradoEm": "2026-09-30T13:38:52.283Z",
+ "atualizadoEm": "30/09/2026 18:09:11",
+ "geradoEm": "2026-09-30T22:32:31.111Z",
  "totalLojasAvaliadas": 71,
- "scoreMedio": 9.39,
+ "scoreMedio": 9.48,
  "categorias": [
   {
    "chave": "sci",
@@ -33,12 +33,12 @@
    "pctVencido": 46,
    "lojasVencidas": [
     {
-     "nome": "18408 - SHOP BELLA CITTA",
-     "score": 19,
+     "nome": "16852 - SHOP SAO JOSE DOS PINHAIS",
+     "score": 15,
      "diasAtraso": null
     },
     {
-     "nome": "16852 - SHOP SAO JOSE DOS PINHAIS",
+     "nome": "19665 - SHOP SAN PELEGRINO",
      "score": 15,
      "diasAtraso": null
     },
@@ -78,6 +78,11 @@
      "diasAtraso": null
     },
     {
+     "nome": "18408 - SHOP BELLA CITTA",
+     "score": 14,
+     "diasAtraso": null
+    },
+    {
      "nome": "22536 - SHOP PALLADIUM FOZ DO IGUACU",
      "score": 14,
      "diasAtraso": null
@@ -114,11 +119,6 @@
     },
     {
      "nome": "18443 - SHOP CENTER LAR",
-     "score": 10,
-     "diasAtraso": null
-    },
-    {
-     "nome": "19665 - SHOP SAN PELEGRINO",
      "score": 10,
      "diasAtraso": null
     },
@@ -218,7 +218,7 @@
    "lojasVencidas": [
     {
      "nome": "18408 - SHOP BELLA CITTA",
-     "score": 19,
+     "score": 14,
      "diasAtraso": null
     },
     {
@@ -237,10 +237,10 @@
   "Sistema de Incêndio",
   "14",
   "6",
-  "3",
+  "4",
   "2",
   "1",
-  "6",
+  "7",
   "Atrasado",
   "No Prazo"
  ],
@@ -259,20 +259,6 @@
     "dtAbertura": "31/07/2026",
     "dtEncerramento": "",
     "tecnico": "CARLOS MAGNO DA SILVA LIRA"
-   },
-   {
-    "numero": "WO0016083",
-    "statusRisco": "Atrasado",
-    "item": "Quadro Elétrico",
-    "assuntoPrincipal": "ÁREA INTERNA",
-    "assuntoSecundario": "AIN - QUADRO ELÉTRICO - FALTA DE ACRÍLICO DE PROTEÇÃO",
-    "regional": "SUL",
-    "setor": "CAPITAL CENTRO RS",
-    "loja": "18408 - SHOP BELLA CITTA",
-    "status": "Em Andamento",
-    "dtAbertura": "04/08/2026",
-    "dtEncerramento": "",
-    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
    },
    {
     "numero": "WO0040160",
@@ -609,6 +595,34 @@
     "dtAbertura": "29/09/2026",
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
+   },
+   {
+    "numero": "WO0059268",
+    "statusRisco": "Atrasado",
+    "item": "Quadro Elétrico",
+    "assuntoPrincipal": "ÁREA INTERNA",
+    "assuntoSecundario": "AIN - QUADRO ELÉTRICO - FALTA DE ACRÍLICO DE PROTEÇÃO",
+    "regional": "SUL",
+    "setor": "VALE DOS SINOS",
+    "loja": "26819 - FS CAXIAS DO SUL - R JOAO NICHELE 2227",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "30/09/2026",
+    "dtEncerramento": "",
+    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
+   },
+   {
+    "numero": "WO0059408",
+    "statusRisco": "Atrasado",
+    "item": "Quadro Elétrico",
+    "assuntoPrincipal": "ÁREA INTERNA",
+    "assuntoSecundario": "AIN - QUADRO ELÉTRICO - FALTA DE ACRÍLICO DE PROTEÇÃO",
+    "regional": "SUL",
+    "setor": "VALE DOS SINOS",
+    "loja": "19665 - SHOP SAN PELEGRINO",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "30/09/2026",
+    "dtEncerramento": "",
+    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
    }
   ],
   "aVencer": [
@@ -695,6 +709,20 @@
     "dtAbertura": "29/09/2026",
     "dtEncerramento": "",
     "tecnico": "CARLOS MAGNO DA SILVA LIRA"
+   },
+   {
+    "numero": "WO0059152",
+    "statusRisco": "No Prazo",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - COIFA NÃO FUNCIONA",
+    "regional": "SUL",
+    "setor": "VALE DOS SINOS",
+    "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "30/09/2026",
+    "dtEncerramento": "",
+    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
    }
   ]
  }
