@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-09-30T00:20:12.332Z",
+ "atualizadoEm": "2026-09-30T10:00:15.659Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 12,
+  "emExecucao": 13,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 12
+  "total": 13
  },
  "serie": [
-  {
-   "data": "2026-09-27",
-   "abertos": 8,
-   "fechados": 17
-  },
   {
    "data": "2026-09-28",
    "abertos": 11,
@@ -21,11 +16,62 @@
   },
   {
    "data": "2026-09-29",
-   "abertos": 13,
+   "abertos": 15,
    "fechados": 14
+  },
+  {
+   "data": "2026-09-30",
+   "abertos": 0,
+   "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0059014",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "27589 - PARK EUROPEU BLUMENAU",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "29/09/2026 23:42:39",
+   "fechamento": "",
+   "principal": "AT210094 - CÂMARA DE RESFRIADOS",
+   "secundario": "CMR - NÃO LIGA",
+   "sigla": "CMR",
+   "tecnico": "",
+   "descricao": "AT210094 - CÂMARA DE RESFRIADOS | CMR - NÃO LIGA",
+   "tarefas": [
+    "WOT0059547"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0059011",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "26839 FS CURITIBA - AV SILVA JARDIM",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "29/09/2026 23:05:47",
+   "fechamento": "",
+   "principal": "AR CONDICIONADO",
+   "secundario": "ARC - PRINCÍPIO DE INCÊNDIO",
+   "sigla": "ARC",
+   "tecnico": "",
+   "descricao": "AR CONDICIONADO | ARC - PRINCÍPIO DE INCÊNDIO",
+   "tarefas": [
+    "WOT0059544"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0058984",
    "marca": "BKB",
@@ -46,7 +92,7 @@
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
-   "contato": "",
+   "contato": "Tentativa de contato: 29/09/2026 23:40:33;\nTentativa de contato: 29/09/2026 23:42:35;\n",
    "grupo": "execucao"
   },
   {
@@ -273,29 +319,6 @@
    "descricao": "BK035191 - AR CONDICIONADO | ARC - LOJA SEM AR CONDICIONADO",
    "tarefas": [
     "WOT0058503"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0057558",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "24741 - FS PELOTAS - AV FERREIRA VIANA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "27/09/2026 01:27:00",
-   "fechamento": "",
-   "principal": "Area Externa",
-   "secundario": "AEX - REFLUXO",
-   "sigla": "AEX",
-   "tecnico": "",
-   "descricao": "Area Externa | AEX - REFLUXO",
-   "tarefas": [
-    "WOT0058088"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
