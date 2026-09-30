@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-30T13:40:11.801Z",
+ "atualizadoEm": "2026-09-30T14:00:12.546Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 18,
+  "emExecucao": 20,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 18
+  "total": 20
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-09-30",
-   "abertos": 5,
+   "abertos": 7,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0059172",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "18450 - BOURBON SHOP SAO LEOPOLDO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "30/09/2026 10:58:21",
+   "fechamento": "",
+   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
+   "secundario": "SCI - TEMPERATURA ELEVADA",
+   "sigla": "SCI",
+   "tecnico": "",
+   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - TEMPERATURA ELEVADA",
+   "tarefas": [
+    "WOT0059704"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0059152",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "30/09/2026 10:42:02",
+   "fechamento": "",
+   "principal": "BK038151 - COIFA",
+   "secundario": "COI - COIFA NÃO FUNCIONA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK038151 - COIFA | COI - COIFA NÃO FUNCIONA",
+   "tarefas": [
+    "WOT0059684"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0059145",
    "marca": "BKB",
