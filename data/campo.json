@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-30T18:20:12.114Z",
+ "atualizadoEm": "2026-09-30T19:00:18.810Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 24,
+  "emExecucao": 26,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 24
+  "total": 26
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-09-30",
-   "abertos": 11,
+   "abertos": 13,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0059424",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "25676 - FS CURITIBA - RUA DOMINGOS STRAPASSON",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "30/09/2026 15:58:40",
+   "fechamento": "",
+   "principal": "BK085004 - FRITADEIRA; PITCO; SSHLV14; G18GD037568",
+   "secundario": "FRI - SOMENTE 1 CUBA FUNCIONANDO",
+   "sigla": "FRI",
+   "tecnico": "",
+   "descricao": "BK085004 - FRITADEIRA; PITCO; SSHLV14; G18GD037568 | FRI - SOMENTE 1 CUBA FUNCIONANDO",
+   "tarefas": [
+    "WOT0059955"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0059408",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "19665 - SHOP SAN PELEGRINO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "30/09/2026 15:42:05",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - QUADRO ELÉTRICO - FALTA DE ACRÍLICO DE PROTEÇÃO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - FALTA DE ACRÍLICO DE PROTEÇÃO",
+   "tarefas": [
+    "WOT0059939"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0059374",
    "marca": "BKB",
