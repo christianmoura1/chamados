@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-30T13:00:16.147Z",
+ "atualizadoEm": "2026-09-30T13:40:11.801Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 17,
+  "emExecucao": 18,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 17
+  "total": 18
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-09-30",
-   "abertos": 4,
+   "abertos": 5,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0059145",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "OESTE PR",
+   "loja": "32610 FC CATUAI CASCAVEL",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "30/09/2026 10:35:34",
+   "fechamento": "",
+   "principal": "ZP142157 - EXAUSTOR",
+   "secundario": "EXA - SUPERAQUECENDO",
+   "sigla": "EXA",
+   "tecnico": "",
+   "descricao": "ZP142157 - EXAUSTOR | EXA - SUPERAQUECENDO",
+   "tarefas": [
+    "WOT0059677"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0059110",
    "marca": "BKB",
