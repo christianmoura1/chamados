@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-09-30T12:00:13.349Z",
+ "atualizadoEm": "2026-09-30T13:00:16.147Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 15,
+  "emExecucao": 17,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 15
+  "total": 17
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-09-30",
-   "abertos": 2,
+   "abertos": 4,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0059110",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "18443 - SHOP CENTER LAR",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "30/09/2026 09:58:40",
+   "fechamento": "",
+   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
+   "secundario": "SCI - CO² DISPARADO",
+   "sigla": "SCI",
+   "tecnico": "",
+   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - CO² DISPARADO",
+   "tarefas": [
+    "WOT0059643"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0059108",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "27589 - PARK EUROPEU BLUMENAU",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "30/09/2026 09:55:06",
+   "fechamento": "",
+   "principal": "CAMARA DE CONGELADOS; TOPEMA",
+   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMG",
+   "tecnico": "",
+   "descricao": "CAMARA DE CONGELADOS; TOPEMA | CMG - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0059641"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0059059",
    "marca": "BKB",
