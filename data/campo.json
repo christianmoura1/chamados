@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-01T18:20:17.503Z",
+ "atualizadoEm": "2026-10-01T18:40:14.324Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 22,
+  "emExecucao": 21,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 2,
-  "total": 22
+  "aguardandoToken": 3,
+  "total": 21
  },
  "serie": [
   {
@@ -22,7 +22,7 @@
   {
    "data": "2026-10-01",
    "abertos": 6,
-   "fechados": 8
+   "fechados": 9
   }
  ],
  "itens": [
@@ -194,7 +194,7 @@
    "setor": "VALE DOS SINOS",
    "loja": "19665 - SHOP SAN PELEGRINO",
    "status": "Trabalho em andamento",
-   "fase": "Iniciado",
+   "fase": "Requisição Completa - Aguardando Token",
    "abertura": "30/09/2026 15:42:05",
    "fechamento": "",
    "principal": "Area Interna",
@@ -205,8 +205,8 @@
    "tarefas": [
     "WOT0059939"
    ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
+   "aguardandoToken": 1,
+   "fechadoSemToken": "01/10/2026 15:34:50",
    "contato": "",
    "grupo": "execucao"
   },
@@ -227,29 +227,6 @@
    "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - FALTA DE ACRÍLICO DE PROTEÇÃO",
    "tarefas": [
     "WOT0059798"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0059172",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "18450 - BOURBON SHOP SAO LEOPOLDO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "30/09/2026 10:58:21",
-   "fechamento": "",
-   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
-   "secundario": "SCI - TEMPERATURA ELEVADA",
-   "sigla": "SCI",
-   "tecnico": "",
-   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - TEMPERATURA ELEVADA",
-   "tarefas": [
-    "WOT0059704"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
