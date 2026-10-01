@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-01T12:40:13.111Z",
+ "atualizadoEm": "2026-10-01T14:00:16.466Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 22,
+  "emExecucao": 23,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 22
+  "total": 23
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-01",
-   "abertos": 2,
+   "abertos": 3,
    "fechados": 2
   }
  ],
  "itens": [
+  {
+   "numero": "WO0060274",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "23726 - PASSO FUNDO SHOP",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "01/10/2026 10:53:23",
+   "fechamento": "",
+   "principal": "BK066914 - BROILER; NIECO; JF93G; 832-47499",
+   "secundario": "BRO - NÃO ACENDE",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK066914 - BROILER; NIECO; JF93G; 832-47499 | BRO - NÃO ACENDE",
+   "tarefas": [
+    "WOT0060806"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "Tentativa de contato: 01/10/2026 10:56:44;\n",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0060221",
    "marca": "BKB",
