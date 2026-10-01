@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-01T14:00:16.466Z",
+ "atualizadoEm": "2026-10-01T14:20:14.224Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 23,
+  "emExecucao": 24,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 23
+  "total": 24
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-01",
-   "abertos": 3,
+   "abertos": 4,
    "fechados": 2
   }
  ],
  "itens": [
+  {
+   "numero": "WO0060292",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "16988 - SHOP ESTACAO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "01/10/2026 11:07:07",
+   "fechamento": "",
+   "principal": "BK072146 - BROILER",
+   "secundario": "BRO - VAZAMENTO DE GÁS",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK072146 - BROILER | BRO - VAZAMENTO DE GÁS",
+   "tarefas": [
+    "WOT0060824"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0060274",
    "marca": "BKB",
