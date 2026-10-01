@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-01T10:00:28.249Z",
+ "atualizadoEm": "2026-10-01T12:40:13.111Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 21,
+  "emExecucao": 22,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 21
+  "total": 22
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-10-01",
-   "abertos": 0,
-   "fechados": 0
+   "abertos": 2,
+   "fechados": 2
   }
  ],
  "itens": [
+  {
+   "numero": "WO0060221",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "15875 - SHOP MUELLER CURITIBA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "01/10/2026 09:29:02",
+   "fechamento": "",
+   "principal": "BROILER",
+   "secundario": "BRO - NÃO ACENDE",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BROILER | BRO - NÃO ACENDE",
+   "tarefas": [
+    "WOT0060753"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0060220",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "26819 - FS CAXIAS DO SUL - R JOAO NICHELE 2227",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "01/10/2026 09:28:06",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "FALTA DE ÁGUA - CORTE DE ÁGUA NA REGIÃO",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | FALTA DE ÁGUA - CORTE DE ÁGUA NA REGIÃO",
+   "tarefas": [
+    "WOT0060752"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0060153",
    "marca": "BKB",
@@ -480,29 +526,6 @@
    "descricao": "BK036190 - COIFA LAVADORA; MELTING | COI - COIFA EM CONTIGÊNCIA",
    "tarefas": [
     "WOT0059141"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0058571",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL SUL RS",
-   "loja": "26160 - FS CANOAS - AV GETULIO VARGAS 3800",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "29/09/2026 11:12:58",
-   "fechamento": "",
-   "principal": "BK070955 - COIFA",
-   "secundario": "COI - COIFA NÃO FUNCIONA",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK070955 - COIFA | COI - COIFA NÃO FUNCIONA",
-   "tarefas": [
-    "WOT0059106"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
