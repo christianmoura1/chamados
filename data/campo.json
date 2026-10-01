@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-01T15:40:13.833Z",
+ "atualizadoEm": "2026-10-01T17:00:29.447Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 24,
+  "emExecucao": 25,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 24
+  "total": 25
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-01",
-   "abertos": 5,
+   "abertos": 6,
    "fechados": 3
   }
  ],
  "itens": [
+  {
+   "numero": "WO0061130",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "OESTE PR",
+   "loja": "21702 - CATARATAS JL SHOP",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "01/10/2026 13:44:22",
+   "fechamento": "",
+   "principal": "BK086054 - CARRINHO DO BROILER",
+   "secundario": "CDB - CARRINHO TORTO / BALANÇANDO",
+   "sigla": "CDB",
+   "tecnico": "",
+   "descricao": "BK086054 - CARRINHO DO BROILER | CDB - CARRINHO TORTO / BALANÇANDO",
+   "tarefas": [
+    "WOT0061663"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0060320",
    "marca": "BKB",
