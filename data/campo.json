@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-10-01T01:40:11.686Z",
+ "atualizadoEm": "2026-10-01T10:00:28.249Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 25,
+  "emExecucao": 21,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 25
+  "total": 21
  },
  "serie": [
-  {
-   "data": "2026-09-28",
-   "abertos": 11,
-   "fechados": 25
-  },
   {
    "data": "2026-09-29",
    "abertos": 15,
@@ -23,6 +18,11 @@
    "data": "2026-09-30",
    "abertos": 15,
    "fechados": 8
+  },
+  {
+   "data": "2026-10-01",
+   "abertos": 0,
+   "fechados": 0
   }
  ],
  "itens": [
@@ -503,98 +503,6 @@
    "descricao": "BK070955 - COIFA | COI - COIFA NÃO FUNCIONA",
    "tarefas": [
     "WOT0059106"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0058304",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "26839 FS CURITIBA - AV SILVA JARDIM",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "28/09/2026 18:35:55",
-   "fechamento": "",
-   "principal": "BK099819 - COIFA",
-   "secundario": "COI - COIFA NÃO FUNCIONA",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK099819 - COIFA | COI - COIFA NÃO FUNCIONA",
-   "tarefas": [
-    "WOT0058839"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0058198",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "OESTE PR",
-   "loja": "21702 - CATARATAS JL SHOP",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "28/09/2026 14:17:11",
-   "fechamento": "",
-   "principal": "BK086054 - CARRINHO DO BROILER",
-   "secundario": "CDB - RODA DO CARRINHO DANIFICADO/OXIDADA",
-   "sigla": "CDB",
-   "tecnico": "",
-   "descricao": "BK086054 - CARRINHO DO BROILER | CDB - RODA DO CARRINHO DANIFICADO/OXIDADA",
-   "tarefas": [
-    "WOT0058733"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0058197",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL NORTE RS",
-   "loja": "25447 - FS POA - AV DA CAVALHADA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "28/09/2026 14:17:03",
-   "fechamento": "",
-   "principal": "AR CONDICIONADO",
-   "secundario": "ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
-   "sigla": "ARC",
-   "tecnico": "",
-   "descricao": "AR CONDICIONADO | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
-   "tarefas": [
-    "WOT0058732"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0057966",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "28/09/2026 09:54:43",
-   "fechamento": "",
-   "principal": "BK035191 - AR CONDICIONADO",
-   "secundario": "ARC - LOJA SEM AR CONDICIONADO",
-   "sigla": "ARC",
-   "tecnico": "",
-   "descricao": "BK035191 - AR CONDICIONADO | ARC - LOJA SEM AR CONDICIONADO",
-   "tarefas": [
-    "WOT0058503"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
