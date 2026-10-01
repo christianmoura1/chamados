@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-01T21:40:15.812Z",
+ "atualizadoEm": "2026-10-01T22:00:19.603Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 17,
+  "emExecucao": 18,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 2,
-  "total": 17
+  "total": 18
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-01",
-   "abertos": 6,
+   "abertos": 7,
    "fechados": 14
   }
  ],
  "itens": [
+  {
+   "numero": "WO0063440",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "22511 - FS CURITIBA - AV FLORIANO PEIXOTO 5952",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "01/10/2026 18:55:29",
+   "fechamento": "",
+   "principal": "BK066021 - CÂMARA DE CONGELADOS",
+   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMG",
+   "tecnico": "",
+   "descricao": "BK066021 - CÂMARA DE CONGELADOS | CMG - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0063973"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0061130",
    "marca": "BKB",
