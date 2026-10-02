@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-10-01T23:00:51.971Z",
+ "atualizadoEm": "2026-10-02T12:40:10.065Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 18,
+  "emExecucao": 13,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 18
+  "total": 13
  },
  "serie": [
-  {
-   "data": "2026-09-29",
-   "abertos": 15,
-   "fechados": 14
-  },
   {
    "data": "2026-09-30",
    "abertos": 15,
@@ -23,9 +18,83 @@
    "data": "2026-10-01",
    "abertos": 8,
    "fechados": 16
+  },
+  {
+   "data": "2026-10-02",
+   "abertos": 3,
+   "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0063581",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "26819 - FS CAXIAS DO SUL - R JOAO NICHELE 2227",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "02/10/2026 09:06:57",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "AEX - AQUECEDOR DE PASSAGEM - NÃO AQUECE",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | AEX - AQUECEDOR DE PASSAGEM - NÃO AQUECE",
+   "tarefas": [
+    "WOT0064114"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0063562",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "27588 - ATLANTICO SHOP",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "02/10/2026 08:38:17",
+   "fechamento": "",
+   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
+   "secundario": "SCI - SENSOR DE GÁS INOPERANTE",
+   "sigla": "SCI",
+   "tecnico": "",
+   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - SENSOR DE GÁS INOPERANTE",
+   "tarefas": [
+    "WOT0064095"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0063548",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "16619 - SHOP PRAIA DE BELAS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "02/10/2026 08:07:41",
+   "fechamento": "",
+   "principal": "BK072068 - EXAUSTOR; TERMODIN; VLS-450-1-BU-1-2-A36",
+   "secundario": "EXA - NÃO LIGA",
+   "sigla": "EXA",
+   "tecnico": "",
+   "descricao": "BK072068 - EXAUSTOR; TERMODIN; VLS-450-1-BU-1-2-A36 | EXA - NÃO LIGA",
+   "tarefas": [
+    "WOT0064081"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0063451",
    "marca": "BKB",
@@ -250,190 +319,6 @@
    "descricao": "BK021213 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
    "tarefas": [
     "WOT0059592"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0059014",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "27589 - PARK EUROPEU BLUMENAU",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "29/09/2026 23:42:39",
-   "fechamento": "",
-   "principal": "AT210094 - CÂMARA DE RESFRIADOS",
-   "secundario": "CMR - NÃO LIGA",
-   "sigla": "CMR",
-   "tecnico": "",
-   "descricao": "AT210094 - CÂMARA DE RESFRIADOS | CMR - NÃO LIGA",
-   "tarefas": [
-    "WOT0059547"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0059011",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "26839 FS CURITIBA - AV SILVA JARDIM",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "29/09/2026 23:05:47",
-   "fechamento": "",
-   "principal": "AR CONDICIONADO",
-   "secundario": "ARC - PRINCÍPIO DE INCÊNDIO",
-   "sigla": "ARC",
-   "tecnico": "",
-   "descricao": "AR CONDICIONADO | ARC - PRINCÍPIO DE INCÊNDIO",
-   "tarefas": [
-    "WOT0059544"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0058984",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "27589 - PARK EUROPEU BLUMENAU",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "29/09/2026 21:17:35",
-   "fechamento": "",
-   "principal": "AT210094 - CÂMARA DE RESFRIADOS",
-   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
-   "sigla": "CMR",
-   "tecnico": "",
-   "descricao": "AT210094 - CÂMARA DE RESFRIADOS | CMR - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0059517"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "Tentativa de contato: 29/09/2026 23:40:33;\nTentativa de contato: 29/09/2026 23:42:35;\n",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0058870",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA NORTE",
-   "loja": "20047 - FS CURITIBA - LINHA VERDE",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "29/09/2026 17:32:10",
-   "fechamento": "",
-   "principal": "BK034373 - COIFA",
-   "secundario": "COI - COIFA EM CONTIGÊNCIA",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK034373 - COIFA | COI - COIFA EM CONTIGÊNCIA",
-   "tarefas": [
-    "WOT0059403"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0058851",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "19868 - SHOP DO VALE",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "29/09/2026 17:11:50",
-   "fechamento": "",
-   "principal": "BK021456 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
-   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
-   "sigla": "CMR",
-   "tecnico": "",
-   "descricao": "BK021456 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0059383"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0058714",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL NORTE RS",
-   "loja": "23725 - SHOP PRACA NOVA SANTA MARIA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "29/09/2026 14:00:20",
-   "fechamento": "",
-   "principal": "BK055469 - COIFA",
-   "secundario": "COI - COIFA NÃO FUNCIONA",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK055469 - COIFA | COI - COIFA NÃO FUNCIONA",
-   "tarefas": [
-    "WOT0059247"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0058658",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA NORTE",
-   "loja": "20047 - FS CURITIBA - LINHA VERDE",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "29/09/2026 13:02:34",
-   "fechamento": "",
-   "principal": "BK066008 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
-   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
-   "sigla": "CMR",
-   "tecnico": "",
-   "descricao": "BK066008 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0059191"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0058608",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA NORTE",
-   "loja": "21791 - SHOP CIDADE CURITIBA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "29/09/2026 11:51:08",
-   "fechamento": "",
-   "principal": "BK036190 - COIFA LAVADORA; MELTING",
-   "secundario": "COI - COIFA EM CONTIGÊNCIA",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK036190 - COIFA LAVADORA; MELTING | COI - COIFA EM CONTIGÊNCIA",
-   "tarefas": [
-    "WOT0059141"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
