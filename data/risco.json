@@ -1,8 +1,8 @@
 {
- "atualizadoEm": "30/09/2026 20:06:41",
- "geradoEm": "2026-10-01T09:01:32.998Z",
+ "atualizadoEm": "01/10/2026 20:08:03",
+ "geradoEm": "2026-10-02T09:03:12.395Z",
  "totalLojasAvaliadas": 71,
- "scoreMedio": 9.48,
+ "scoreMedio": 9.21,
  "categorias": [
   {
    "chave": "sci",
@@ -38,11 +38,6 @@
      "diasAtraso": null
     },
     {
-     "nome": "19665 - SHOP SAN PELEGRINO",
-     "score": 15,
-     "diasAtraso": null
-    },
-    {
      "nome": "20049 - SHOP PRACA RIO GRANDE",
      "score": 15,
      "diasAtraso": null
@@ -68,18 +63,8 @@
      "diasAtraso": null
     },
     {
-     "nome": "26160 - FS CANOAS - AV GETULIO VARGAS 3800",
-     "score": 15,
-     "diasAtraso": null
-    },
-    {
      "nome": "26828 - FS CURITIBA FRANCISCO FRISHMANN 3151",
      "score": 15,
-     "diasAtraso": null
-    },
-    {
-     "nome": "18408 - SHOP BELLA CITTA",
-     "score": 14,
      "diasAtraso": null
     },
     {
@@ -89,11 +74,6 @@
     },
     {
      "nome": "20047 - FS CURITIBA - LINHA VERDE",
-     "score": 11,
-     "diasAtraso": null
-    },
-    {
-     "nome": "26839 - FS CURITIBA AV SILVA JARDIM 566",
      "score": 11,
      "diasAtraso": null
     },
@@ -118,7 +98,17 @@
      "diasAtraso": null
     },
     {
+     "nome": "18408 - SHOP BELLA CITTA",
+     "score": 10,
+     "diasAtraso": null
+    },
+    {
      "nome": "18443 - SHOP CENTER LAR",
+     "score": 10,
+     "diasAtraso": null
+    },
+    {
+     "nome": "19665 - SHOP SAN PELEGRINO",
      "score": 10,
      "diasAtraso": null
     },
@@ -188,7 +178,17 @@
      "diasAtraso": null
     },
     {
+     "nome": "26160 - FS CANOAS - AV GETULIO VARGAS 3800",
+     "score": 10,
+     "diasAtraso": null
+    },
+    {
      "nome": "26837 - FS CASCAVEL - AV BRASIL 1580",
+     "score": 10,
+     "diasAtraso": null
+    },
+    {
+     "nome": "26839 - FS CURITIBA AV SILVA JARDIM 566",
      "score": 10,
      "diasAtraso": null
     },
@@ -211,22 +211,11 @@
   {
    "chave": "rotaPadroes",
    "nome": "Rota Padrões",
-   "vencido": 2,
-   "emDia": 69,
+   "vencido": 0,
+   "emDia": 71,
    "total": 71,
-   "pctVencido": 3,
-   "lojasVencidas": [
-    {
-     "nome": "18408 - SHOP BELLA CITTA",
-     "score": 14,
-     "diasAtraso": null
-    },
-    {
-     "nome": "23726 - PASSO FUNDO SHOP",
-     "score": 10,
-     "diasAtraso": null
-    }
-   ]
+   "pctVencido": 0,
+   "lojasVencidas": []
   }
  ],
  "abertoPorItemBruto": [
@@ -235,12 +224,12 @@
   "Quadro Elétrico",
   "Sensor de gás",
   "Sistema de Incêndio",
-  "14",
+  "13",
   "6",
-  "4",
+  "3",
   "2",
   "1",
-  "7",
+  "5",
   "Atrasado",
   "No Prazo"
  ],
@@ -303,20 +292,6 @@
     "tecnico": "RUAN CARLOS DA SILVA"
    },
    {
-    "numero": "WO0042366",
-    "statusRisco": "Atrasado",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA NÃO FUNCIONA",
-    "regional": "SUL",
-    "setor": "GRANDE CURITIBA",
-    "loja": "16852 - SHOP SAO JOSE DOS PINHAIS",
-    "status": "Atribuído",
-    "dtAbertura": "01/09/2026",
-    "dtEncerramento": "",
-    "tecnico": "PEDRO HENRIQUE PEREIRA DA SILVA"
-   },
-   {
     "numero": "WO0042419",
     "statusRisco": "Atrasado",
     "item": "Coifa",
@@ -371,20 +346,6 @@
     "dtAbertura": "10/09/2026",
     "dtEncerramento": "",
     "tecnico": "CARLOS MAGNO DA SILVA LIRA"
-   },
-   {
-    "numero": "WO0049505",
-    "statusRisco": "Atrasado",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA EM CONTIGÊNCIA",
-    "regional": "SUL",
-    "setor": "CAPITAL SUL RS",
-    "loja": "26160 - FS CANOAS - AV GETULIO VARGAS 3800",
-    "status": "Pronto Para Envio",
-    "dtAbertura": "10/09/2026",
-    "dtEncerramento": "",
-    "tecnico": "CRISTIANO CEZAR"
    },
    {
     "numero": "WO0050832",
@@ -541,6 +502,20 @@
     "tecnico": "CARLOS MAGNO DA SILVA LIRA"
    },
    {
+    "numero": "WO0056188",
+    "statusRisco": "Atrasado",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - COIFA NÃO FUNCIONA",
+    "regional": "SUL",
+    "setor": "CURITIBA NORTE",
+    "loja": "21791 - SHOP CIDADE CURITIBA",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "24/09/2026",
+    "dtEncerramento": "",
+    "tecnico": "CARLOS MAGNO DA SILVA LIRA"
+   },
+   {
     "numero": "WO0056851",
     "statusRisco": "Atrasado",
     "item": "Exaustor",
@@ -605,69 +580,13 @@
     "regional": "SUL",
     "setor": "VALE DOS SINOS",
     "loja": "26819 - FS CAXIAS DO SUL - R JOAO NICHELE 2227",
-    "status": "Pronto Para Envio",
+    "status": "Em Andamento",
     "dtAbertura": "30/09/2026",
     "dtEncerramento": "",
-    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
-   },
-   {
-    "numero": "WO0059408",
-    "statusRisco": "Atrasado",
-    "item": "Quadro Elétrico",
-    "assuntoPrincipal": "ÁREA INTERNA",
-    "assuntoSecundario": "AIN - QUADRO ELÉTRICO - FALTA DE ACRÍLICO DE PROTEÇÃO",
-    "regional": "SUL",
-    "setor": "VALE DOS SINOS",
-    "loja": "19665 - SHOP SAN PELEGRINO",
-    "status": "Pronto Para Envio",
-    "dtAbertura": "30/09/2026",
-    "dtEncerramento": "",
-    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
+    "tecnico": "THIAGO DOS SANTOS COELHO"
    }
   ],
   "aVencer": [
-   {
-    "numero": "WO0056188",
-    "statusRisco": "No Prazo",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA NÃO FUNCIONA",
-    "regional": "SUL",
-    "setor": "CURITIBA NORTE",
-    "loja": "21791 - SHOP CIDADE CURITIBA",
-    "status": "Pronto Para Envio",
-    "dtAbertura": "24/09/2026",
-    "dtEncerramento": "",
-    "tecnico": "CARLOS MAGNO DA SILVA LIRA"
-   },
-   {
-    "numero": "WO0058304",
-    "statusRisco": "No Prazo",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA NÃO FUNCIONA",
-    "regional": "SUL",
-    "setor": "CURITIBA SUL",
-    "loja": "26839 - FS CURITIBA AV SILVA JARDIM 566",
-    "status": "Pronto Para Envio",
-    "dtAbertura": "28/09/2026",
-    "dtEncerramento": "",
-    "tecnico": "CARLOS MAGNO DA SILVA LIRA"
-   },
-   {
-    "numero": "WO0058571",
-    "statusRisco": "No Prazo",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA NÃO FUNCIONA",
-    "regional": "SUL",
-    "setor": "CAPITAL SUL RS",
-    "loja": "26160 - FS CANOAS - AV GETULIO VARGAS 3800",
-    "status": "Pronto Para Envio",
-    "dtAbertura": "29/09/2026",
-    "dtEncerramento": "",
-    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
-   },
    {
     "numero": "WO0058608",
     "statusRisco": "No Prazo",
@@ -719,6 +638,20 @@
     "regional": "SUL",
     "setor": "VALE DOS SINOS",
     "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "30/09/2026",
+    "dtEncerramento": "",
+    "tecnico": "THIAGO DOS SANTOS COELHO"
+   },
+   {
+    "numero": "WO0060153",
+    "statusRisco": "No Prazo",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - COIFA COM DRENO ENTUPIDO",
+    "regional": "SUL",
+    "setor": "CAPITAL NORTE RS",
+    "loja": "25455 - FS POA - AV DR NILO PECANHA 1715",
     "status": "Pronto Para Envio",
     "dtAbertura": "30/09/2026",
     "dtEncerramento": "",
