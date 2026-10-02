@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-02T18:20:10.651Z",
+ "atualizadoEm": "2026-10-02T19:00:15.431Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 12,
+  "emExecucao": 13,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 12
+  "total": 13
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-02",
-   "abertos": 5,
+   "abertos": 6,
    "fechados": 6
   }
  ],
  "itens": [
+  {
+   "numero": "WO0063867",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "16647 - FS CURITIBA - R BISPO DOM JOSE 2348",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "02/10/2026 15:44:15",
+   "fechamento": "",
+   "principal": "BK066139 - COIFA",
+   "secundario": "COI - COIFA EM CONTIGÊNCIA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK066139 - COIFA | COI - COIFA EM CONTIGÊNCIA",
+   "tarefas": [
+    "WOT0064402"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0063601",
    "marca": "BKB",
