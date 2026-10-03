@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-03T13:20:09.864Z",
+ "atualizadoEm": "2026-10-03T13:40:09.673Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 7,
+  "emExecucao": 8,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 7
+  "total": 8
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-03",
-   "abertos": 1,
+   "abertos": 2,
    "fechados": 2
   }
  ],
  "itens": [
+  {
+   "numero": "WO0064103",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "24741 - FS PELOTAS - AV FERREIRA VIANA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "03/10/2026 10:30:19",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - COZINHA - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
+   "tarefas": [
+    "WOT0064637"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0064091",
    "marca": "BKB",
