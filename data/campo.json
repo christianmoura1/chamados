@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-10-02T22:20:11.908Z",
+ "atualizadoEm": "2026-10-03T10:00:10.209Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 8,
+  "emExecucao": 7,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 8
+  "total": 7
  },
  "serie": [
-  {
-   "data": "2026-09-30",
-   "abertos": 15,
-   "fechados": 8
-  },
   {
    "data": "2026-10-01",
    "abertos": 8,
@@ -21,11 +16,62 @@
   },
   {
    "data": "2026-10-02",
-   "abertos": 6,
+   "abertos": 8,
    "fechados": 13
+  },
+  {
+   "data": "2026-10-03",
+   "abertos": 0,
+   "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0064018",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "OESTE PR",
+   "loja": "21702 - CATARATAS JL SHOP",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "02/10/2026 23:28:21",
+   "fechamento": "",
+   "principal": "BK062844 - CÂMARA DE CONGELADOS",
+   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMG",
+   "tecnico": "",
+   "descricao": "BK062844 - CÂMARA DE CONGELADOS | CMG - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0064552"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0064016",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "OESTE PR",
+   "loja": "21702 - CATARATAS JL SHOP",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "02/10/2026 23:24:58",
+   "fechamento": "",
+   "principal": "BK048168 - CÂMARA DE RESFRIADOS",
+   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMR",
+   "tecnico": "",
+   "descricao": "BK048168 - CÂMARA DE RESFRIADOS | CMR - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0064550"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0063867",
    "marca": "BKB",
@@ -139,75 +185,6 @@
    "aguardandoToken": 0,
    "fechadoSemToken": "",
    "contato": "Tentativa de contato: 01/10/2026 10:56:44;\n",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0059152",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "30/09/2026 10:42:02",
-   "fechamento": "",
-   "principal": "BK038151 - COIFA",
-   "secundario": "COI - COIFA NÃO FUNCIONA",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK038151 - COIFA | COI - COIFA NÃO FUNCIONA",
-   "tarefas": [
-    "WOT0059684"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0059108",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "27589 - PARK EUROPEU BLUMENAU",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "30/09/2026 09:55:06",
-   "fechamento": "",
-   "principal": "CAMARA DE CONGELADOS; TOPEMA",
-   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
-   "sigla": "CMG",
-   "tecnico": "",
-   "descricao": "CAMARA DE CONGELADOS; TOPEMA | CMG - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0059641"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0059059",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "19665 - SHOP SAN PELEGRINO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "30/09/2026 08:51:31",
-   "fechamento": "",
-   "principal": "BK021213 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
-   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
-   "sigla": "CMR",
-   "tecnico": "",
-   "descricao": "BK021213 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0059592"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
    "grupo": "execucao"
   }
  ]
