@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-03T15:40:09.936Z",
+ "atualizadoEm": "2026-10-03T16:00:09.916Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 8,
+  "emExecucao": 9,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 8
+  "total": 9
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-03",
-   "abertos": 3,
+   "abertos": 4,
    "fechados": 3
   }
  ],
  "itens": [
+  {
+   "numero": "WO0064177",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "15893 - SHOP IGUATEMI PORTO ALEGRE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "03/10/2026 12:45:24",
+   "fechamento": "",
+   "principal": "BK034835 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
+   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMR",
+   "tecnico": "",
+   "descricao": "BK034835 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0064711"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0064164",
    "marca": "BKB",
