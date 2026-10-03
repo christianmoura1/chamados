@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-03T15:00:12.061Z",
+ "atualizadoEm": "2026-10-03T15:40:09.936Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 7,
+  "emExecucao": 8,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 7
+  "total": 8
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-03",
-   "abertos": 2,
+   "abertos": 3,
    "fechados": 3
   }
  ],
  "itens": [
+  {
+   "numero": "WO0064164",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "21586 - SHOP ROYAL PLAZA SANTA MARIA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "03/10/2026 12:29:56",
+   "fechamento": "",
+   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
+   "secundario": "SCI - PROBLEMA NO INTERTRAVAMENTO",
+   "sigla": "SCI",
+   "tecnico": "",
+   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - PROBLEMA NO INTERTRAVAMENTO",
+   "tarefas": [
+    "WOT0064698"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0064103",
    "marca": "BKB",
