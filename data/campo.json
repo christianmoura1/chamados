@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-03T12:40:09.859Z",
+ "atualizadoEm": "2026-10-03T13:20:09.864Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 6,
+  "emExecucao": 7,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 6
+  "total": 7
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-03",
-   "abertos": 0,
-   "fechados": 1
+   "abertos": 1,
+   "fechados": 2
   }
  ],
  "itens": [
+  {
+   "numero": "WO0064091",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "23699 - COLOMBO PARK SHOP",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "03/10/2026 10:06:35",
+   "fechamento": "",
+   "principal": "BK079177 - BROILER; NIECO; JF94G; 631-41482",
+   "secundario": "BRO - NÃO ACENDE",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK079177 - BROILER; NIECO; JF94G; 631-41482 | BRO - NÃO ACENDE",
+   "tarefas": [
+    "WOT0064625"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0064018",
    "marca": "BKB",
