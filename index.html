@@ -318,6 +318,14 @@
     cursor: pointer; padding: 8px 4px; white-space: nowrap; align-self: flex-end;
   }
   .filter-clear:hover { text-decoration: underline; }
+  .filter-copy {
+    font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--violet);
+    background: none; border: 1px solid var(--violet); border-radius: 8px;
+    cursor: pointer; padding: 7px 12px; white-space: nowrap; align-self: flex-end;
+  }
+  .filter-copy:hover { opacity: .72; }
+  .filter-copy.ok { color: var(--ok); border-color: var(--ok); }
+  .filter-copy:disabled { opacity: .4; cursor: default; }
   .filter-count { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--muted); margin-bottom: 10px; }
   .filter-table-wrap { max-height: 520px; overflow: auto; border-radius: 12px; }
   .filter-empty { padding: 30px 0; text-align: center; color: var(--faint); font-size: 12.5px; }
@@ -1044,6 +1052,7 @@ async function iniciar() {
             </div>
           </div>
           <button class="filter-clear" id="filtroLimpar" type="button">Limpar filtros</button>
+          <button class="filter-copy" id="filtroCopiar" type="button" title="Copia a lista filtrada já formatada para colar no WhatsApp">Copiar p/ WhatsApp</button>
         </div>
         <div class="filter-count" id="filtroContagem"></div>
         <div class="filter-table-wrap">
@@ -1095,6 +1104,10 @@ function montarBuscaChamados(D) {
   const inDataAte = document.getElementById('filtroDataAte');
   const tbody = document.getElementById('filtroTbody');
   const contagem = document.getElementById('filtroContagem');
+  // guarda o resultado do ultimo filtro para o botao de copiar: tem que ser
+  // exatamente o que esta na tela, na mesma ordem, senao o que vai pro grupo
+  // nao e' o que o Christian conferiu
+  let filtradosAtuais = [];
 
   const popular = (sel, valores) => valores.forEach(v => {
     const opt = document.createElement('option');
@@ -1121,6 +1134,7 @@ function montarBuscaChamados(D) {
       )
     );
 
+    filtradosAtuais = filtrados;
     contagem.textContent = `${filtrados.length} de ${todos.length} chamados`;
     tbody.innerHTML = filtrados.length
       ? filtrados.map(c => `<tr>
@@ -1169,6 +1183,95 @@ function montarBuscaChamados(D) {
     inDataDe.value = ''; inDataAte.value = '';
     listaLoja.hidden = true;
     renderizar();
+  });
+
+  // ---------- copiar a lista filtrada no formato do WhatsApp ----------
+
+  const dataBR = (iso) => (iso ? iso.split('-').reverse().join('/') : '');
+
+  // descreve os filtros ativos, para quem recebe a mensagem saber o recorte.
+  // Sem isso o grupo recebe "87 chamados" sem saber de onde saiu.
+  function resumoFiltros() {
+    const p = [];
+    if (selSetor.value) p.push('equipamento ' + selSetor.value);
+    if (inLoja.value.trim()) p.push('loja ' + inLoja.value.trim());
+    if (inProblema.value.trim()) p.push('problema "' + inProblema.value.trim() + '"');
+    if (selResp.value) p.push('responsável ' + selResp.value);
+    if (inDataDe.value && inDataAte.value) p.push('abertura de ' + dataBR(inDataDe.value) + ' a ' + dataBR(inDataAte.value));
+    else if (inDataDe.value) p.push('abertura a partir de ' + dataBR(inDataDe.value));
+    else if (inDataAte.value) p.push('abertura até ' + dataBR(inDataAte.value));
+    return p;
+  }
+
+  function textoWhatsApp() {
+    // o codigo do equipamento ja' aparece na coluna Equipamento; repetir ele no
+    // comeco do problema so' alonga a linha no celular
+    const limpaProblema = (s) => (s || '').replace(/^[A-Z]{2}\d+\s*[-–]\s*/, '').trim();
+
+    const L = [];
+    L.push('*BACKLOG DE CHAMADOS — Visão Sul*');
+    L.push('_' + new Date().toLocaleDateString('pt-BR') + ' · ' + filtradosAtuais.length + ' de ' + todos.length + ' chamados_');
+    const filtros = resumoFiltros();
+    if (filtros.length) L.push('_Filtros: ' + filtros.join(' · ') + '_');
+    L.push('');
+
+    for (const c of filtradosAtuais) {
+      L.push('• *' + c.dias + 'd* · ' + c.numero
+        + ' · ' + (c.loja || 'sem loja')
+        + ' · ' + (limpaProblema(c.problema) || '—')
+        + ' · ' + (c.tecnico || 'sem responsável'));
+    }
+
+    // a contagem por responsavel e' o que a lideranca usa para cobrar
+    const porResp = {};
+    for (const c of filtradosAtuais) {
+      const k = c.tecnico || 'sem responsável';
+      porResp[k] = (porResp[k] || 0) + 1;
+    }
+    const ranking = Object.entries(porResp).sort((a, b) => b[1] - a[1]);
+    if (ranking.length > 1) {
+      L.push('');
+      L.push('*Por responsável:* ' + ranking.map(([n, q]) => n + ' ' + q).join(' · '));
+    }
+    return L.join('\n');
+  }
+
+  const btnCopiar = document.getElementById('filtroCopiar');
+  let timerCopia = null;
+
+  function avisarCopia(msg, erro) {
+    btnCopiar.textContent = msg;
+    btnCopiar.classList.toggle('ok', !erro);
+    clearTimeout(timerCopia);
+    timerCopia = setTimeout(() => {
+      btnCopiar.textContent = 'Copiar p/ WhatsApp';
+      btnCopiar.classList.remove('ok');
+    }, 2400);
+  }
+
+  btnCopiar.addEventListener('click', async () => {
+    if (!filtradosAtuais.length) { avisarCopia('Nada para copiar', true); return; }
+    const texto = textoWhatsApp();
+    let ok = false;
+    try {
+      await navigator.clipboard.writeText(texto);
+      ok = true;
+    } catch (e) {
+      // a Clipboard API exige contexto seguro e aba em foco; o textarea com
+      // execCommand ainda funciona quando ela recusa
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = texto;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.top = '-1000px';
+        document.body.appendChild(ta);
+        ta.select();
+        ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+      } catch (e2) { ok = false; }
+    }
+    avisarCopia(ok ? 'Copiado! ' + filtradosAtuais.length + ' chamados' : 'Não consegui copiar', !ok);
   });
 
   renderizar();
