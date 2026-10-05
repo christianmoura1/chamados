@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-05T18:00:10.674Z",
+ "atualizadoEm": "2026-10-05T18:40:10.611Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 11,
+  "emExecucao": 12,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 3,
-  "total": 11
+  "total": 12
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-05",
-   "abertos": 4,
+   "abertos": 5,
    "fechados": 5
   }
  ],
  "itens": [
+  {
+   "numero": "WO0065022",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "16647 - FS CURITIBA - R BISPO DOM JOSE 2348",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "05/10/2026 15:37:06",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - COZINHA - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
+   "tarefas": [
+    "WOT0065552"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0064766",
    "marca": "BKB",
