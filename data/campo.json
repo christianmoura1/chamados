@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-05T20:00:13.656Z",
+ "atualizadoEm": "2026-10-05T20:20:11.042Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 12,
+  "emExecucao": 13,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 4,
-  "total": 12
+  "total": 13
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-05",
-   "abertos": 6,
+   "abertos": 7,
    "fechados": 7
   }
  ],
  "itens": [
+  {
+   "numero": "WO0065060",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "20410 - WALMART BIG TORRES",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "05/10/2026 17:14:02",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - COZINHA - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
+   "tarefas": [
+    "WOT0065591"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0065024",
    "marca": "BKB",
