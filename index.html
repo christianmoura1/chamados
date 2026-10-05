@@ -306,6 +306,7 @@
   .filter-combo-item { padding: 7px 10px; border-radius: 7px; font-size: 13px; color: var(--ink); cursor: pointer; }
   .filter-combo-item:hover, .filter-combo-item.ativo { background: var(--surface2); }
   .filter-combo-vazio { padding: 7px 10px; font-size: 12.5px; color: var(--faint); }
+  .filter-field-curto { min-width: 120px; flex: 0 1 130px; }
   .filter-field-datas { min-width: 240px; }
   .filter-datas { display: flex; align-items: center; gap: 6px; }
   .filter-datas input[type="date"] {
@@ -1039,9 +1040,13 @@ async function iniciar() {
             <label for="filtroProblema">Problema</label>
             <input type="text" id="filtroProblema" placeholder="Buscar palavra..." autocomplete="off">
           </div>
+          <div class="filter-field filter-field-curto">
+            <label for="filtroPrioridade">Prioridade</label>
+            <select id="filtroPrioridade"><option value="">Todas</option></select>
+          </div>
           <div class="filter-field">
-            <label for="filtroResp">Responsável</label>
-            <select id="filtroResp"><option value="">Todos</option></select>
+            <label for="filtroSupervisor">Supervisor</label>
+            <select id="filtroSupervisor" title="Filtra pela carteira de lojas do supervisor, não por quem está atribuído no chamado"><option value="">Todos</option></select>
           </div>
           <div class="filter-field filter-field-datas">
             <label>Abertura</label>
@@ -1093,13 +1098,28 @@ function montarBuscaChamados(D) {
 
   const setores = D.equipamentos.map(e => e.nome);
   const lojas = [...new Set(todos.map(c => c.loja).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
-  const responsaveis = [...new Set(todos.map(c => c.tecnico).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+
+  // O filtro de supervisor e' por CARTEIRA DE LOJAS, nao por quem esta atribuido
+  // no chamado -- sao coisas diferentes e os numeros divergem muito (o Marcel tem
+  // 76 chamados nas lojas dele e aparece como responsavel em 1). Por isso o mapa
+  // sai de supervisores[].chamadosDetalhe, que e' a carteira, e nao de c.tecnico.
+  const supervisorDoChamado = {};
+  for (const s of (D.supervisores || [])) {
+    for (const c of (s.chamadosDetalhe || [])) supervisorDoChamado[c.numero] = s.nome;
+  }
+  const SEM_SUPERVISOR = '(sem supervisor)';
+  const supervisorDe = (c) => supervisorDoChamado[c.numero] || SEM_SUPERVISOR;
+  // os chamados sem carteira existem (loja em branco no SOMA); entram como opcao
+  // propria para nao sumirem calados quando alguem escolhe um supervisor
+  const supervisores = [...new Set(todos.map(supervisorDe))]
+    .sort((a, b) => (a === SEM_SUPERVISOR ? 1 : b === SEM_SUPERVISOR ? -1 : a.localeCompare(b, 'pt-BR')));
 
   const selSetor = document.getElementById('filtroSetor');
   const inLoja = document.getElementById('filtroLoja');
   const listaLoja = document.getElementById('filtroLojaLista');
   const inProblema = document.getElementById('filtroProblema');
-  const selResp = document.getElementById('filtroResp');
+  const selPrioridade = document.getElementById('filtroPrioridade');
+  const selSupervisor = document.getElementById('filtroSupervisor');
   const inDataDe = document.getElementById('filtroDataDe');
   const inDataAte = document.getElementById('filtroDataAte');
   const tbody = document.getElementById('filtroTbody');
@@ -1115,20 +1135,32 @@ function montarBuscaChamados(D) {
     sel.appendChild(opt);
   });
   popular(selSetor, setores);
-  popular(selResp, responsaveis);
+  popular(selSupervisor, supervisores);
+
+  // prioridade sai do proprio dado, mas ordenada por gravidade e nao por
+  // alfabeto -- SOS tem que vir primeiro na lista
+  const ORDEM_PRIORIDADE = ['SOS', 'Alta', 'Normal', 'Baixa'];
+  const prioridades = [...new Set(todos.map(c => c.prioridade).filter(Boolean))]
+    .sort((a, b) => {
+      const ia = ORDEM_PRIORIDADE.indexOf(a), ib = ORDEM_PRIORIDADE.indexOf(b);
+      return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib) || a.localeCompare(b, 'pt-BR');
+    });
+  popular(selPrioridade, prioridades);
 
   const semAcento = s => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 
   function renderizar() {
-    const fs = selSetor.value, flBusca = semAcento(inLoja.value.trim()), fr = selResp.value;
+    const fs = selSetor.value, flBusca = semAcento(inLoja.value.trim()), fsup = selSupervisor.value;
     const fpBusca = semAcento(inProblema.value.trim());
+    const fpri = selPrioridade.value;
     const dataDe = inDataDe.value, dataAte = inDataAte.value;
     const filtrados = ordenaChamados(
       todos.filter(c =>
         (!fs || c.equipamento === fs)
         && (!flBusca || semAcento(c.loja).includes(flBusca))
         && (!fpBusca || semAcento(c.problema).includes(fpBusca))
-        && (!fr || c.tecnico === fr)
+        && (!fpri || c.prioridade === fpri)
+        && (!fsup || supervisorDe(c) === fsup)
         && (!dataDe || (c.abertura && c.abertura >= dataDe))
         && (!dataAte || (c.abertura && c.abertura <= dataAte))
       )
@@ -1175,11 +1207,12 @@ function montarBuscaChamados(D) {
     if (ev.target !== inLoja && !listaLoja.contains(ev.target)) listaLoja.hidden = true;
   });
 
-  [selSetor, selResp].forEach(sel => sel.addEventListener('change', renderizar));
+  [selSetor, selPrioridade, selSupervisor].forEach(sel => sel.addEventListener('change', renderizar));
   inProblema.addEventListener('input', renderizar);
   [inDataDe, inDataAte].forEach(el => el.addEventListener('change', renderizar));
   document.getElementById('filtroLimpar').addEventListener('click', () => {
-    selSetor.value = ''; inLoja.value = ''; inProblema.value = ''; selResp.value = '';
+    selSetor.value = ''; inLoja.value = ''; inProblema.value = ''; selSupervisor.value = '';
+    selPrioridade.value = '';
     inDataDe.value = ''; inDataAte.value = '';
     listaLoja.hidden = true;
     renderizar();
@@ -1196,7 +1229,8 @@ function montarBuscaChamados(D) {
     if (selSetor.value) p.push('equipamento ' + selSetor.value);
     if (inLoja.value.trim()) p.push('loja ' + inLoja.value.trim());
     if (inProblema.value.trim()) p.push('problema "' + inProblema.value.trim() + '"');
-    if (selResp.value) p.push('responsável ' + selResp.value);
+    if (selPrioridade.value) p.push('prioridade ' + selPrioridade.value);
+    if (selSupervisor.value) p.push('supervisor ' + selSupervisor.value);
     if (inDataDe.value && inDataAte.value) p.push('abertura de ' + dataBR(inDataDe.value) + ' a ' + dataBR(inDataAte.value));
     else if (inDataDe.value) p.push('abertura a partir de ' + dataBR(inDataDe.value));
     else if (inDataAte.value) p.push('abertura até ' + dataBR(inDataAte.value));
