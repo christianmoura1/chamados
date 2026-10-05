@@ -1,36 +1,25 @@
 {
- "atualizadoEm": "01/10/2026 20:08:03",
- "geradoEm": "2026-10-02T09:03:12.395Z",
+ "atualizadoEm": "05/10/2026 07:12:11",
+ "geradoEm": "2026-10-05T11:15:30.632Z",
  "totalLojasAvaliadas": 71,
- "scoreMedio": 9.21,
+ "scoreMedio": 9.11,
  "categorias": [
   {
    "chave": "sci",
    "nome": "SCI",
-   "vencido": 2,
-   "emDia": 69,
+   "vencido": 0,
+   "emDia": 71,
    "total": 71,
-   "pctVencido": 3,
-   "lojasVencidas": [
-    {
-     "nome": "22536 - SHOP PALLADIUM FOZ DO IGUACU",
-     "score": 14,
-     "diasAtraso": null
-    },
-    {
-     "nome": "33312 - FC PONTA GROSSA - SHOPPING PLAZA CAMPOS GERAIS",
-     "score": 10,
-     "diasAtraso": null
-    }
-   ]
+   "pctVencido": 0,
+   "lojasVencidas": []
   },
   {
    "chave": "dutos",
    "nome": "Dutos",
-   "vencido": 33,
-   "emDia": 38,
+   "vencido": 32,
+   "emDia": 39,
    "total": 71,
-   "pctVencido": 46,
+   "pctVencido": 45,
    "lojasVencidas": [
     {
      "nome": "16852 - SHOP SAO JOSE DOS PINHAIS",
@@ -39,11 +28,6 @@
     },
     {
      "nome": "20049 - SHOP PRACA RIO GRANDE",
-     "score": 15,
-     "diasAtraso": null
-    },
-    {
-     "nome": "20215 - CARREFOUR PASSO D'AREIA",
      "score": 15,
      "diasAtraso": null
     },
@@ -63,17 +47,27 @@
      "diasAtraso": null
     },
     {
+     "nome": "25455 - FS POA - AV DR NILO PECANHA 1715",
+     "score": 15,
+     "diasAtraso": null
+    },
+    {
      "nome": "26828 - FS CURITIBA FRANCISCO FRISHMANN 3151",
      "score": 15,
      "diasAtraso": null
     },
     {
-     "nome": "22536 - SHOP PALLADIUM FOZ DO IGUACU",
-     "score": 14,
+     "nome": "16647 - FS CURITIBA - R BISPO DOM JOSE 2348",
+     "score": 11,
      "diasAtraso": null
     },
     {
      "nome": "20047 - FS CURITIBA - LINHA VERDE",
+     "score": 11,
+     "diasAtraso": null
+    },
+    {
+     "nome": "25447 - FS POA - AV CAVALHADA",
      "score": 11,
      "diasAtraso": null
     },
@@ -88,22 +82,12 @@
      "diasAtraso": null
     },
     {
-     "nome": "16647 - FS CURITIBA - R BISPO DOM JOSE 2348",
-     "score": 10,
-     "diasAtraso": null
-    },
-    {
      "nome": "17223 - CANOAS SHOP",
      "score": 10,
      "diasAtraso": null
     },
     {
      "nome": "18408 - SHOP BELLA CITTA",
-     "score": 10,
-     "diasAtraso": null
-    },
-    {
-     "nome": "18443 - SHOP CENTER LAR",
      "score": 10,
      "diasAtraso": null
     },
@@ -119,6 +103,11 @@
     },
     {
      "nome": "20048 - OUTLET NOVO HAMBURGO",
+     "score": 10,
+     "diasAtraso": null
+    },
+    {
+     "nome": "20215 - CARREFOUR PASSO D'AREIA",
      "score": 10,
      "diasAtraso": null
     },
@@ -168,11 +157,6 @@
      "diasAtraso": null
     },
     {
-     "nome": "25447 - FS POA - AV CAVALHADA",
-     "score": 10,
-     "diasAtraso": null
-    },
-    {
      "nome": "25676 - FS CURITIBA - RUA DOMINGOS STRAPASSON",
      "score": 10,
      "diasAtraso": null
@@ -202,11 +186,22 @@
   {
    "chave": "rotaSeguranca",
    "nome": "Rota Segurança",
-   "vencido": 0,
-   "emDia": 71,
+   "vencido": 2,
+   "emDia": 69,
    "total": 71,
-   "pctVencido": 0,
-   "lojasVencidas": []
+   "pctVencido": 3,
+   "lojasVencidas": [
+    {
+     "nome": "21586 - SHOP ROYAL PLAZA SANTA MARIA",
+     "score": 15,
+     "diasAtraso": null
+    },
+    {
+     "nome": "24766 - SHOP TOTAL POA",
+     "score": 10,
+     "diasAtraso": null
+    }
+   ]
   },
   {
    "chave": "rotaPadroes",
@@ -223,13 +218,17 @@
   "Exaustor",
   "Quadro Elétrico",
   "Sensor de gás",
-  "Sistema de Incêndio",
+  "Cilindro CO2",
+  "Intertravamento",
+  "Sistema deIncêndio",
   "13",
-  "6",
-  "3",
+  "4",
+  "2",
   "2",
   "1",
-  "5",
+  "1",
+  "1",
+  "6",
   "Atrasado",
   "No Prazo"
  ],
@@ -303,7 +302,7 @@
     "status": "Atribuído",
     "dtAbertura": "01/09/2026",
     "dtEncerramento": "",
-    "tecnico": "CARLOS MAGNO DA SILVA LIRA"
+    "tecnico": "Wilson Charles Philistin"
    },
    {
     "numero": "WO0042660",
@@ -317,7 +316,7 @@
     "status": "Pronto Para Envio",
     "dtAbertura": "02/09/2026",
     "dtEncerramento": "",
-    "tecnico": "PEDRO HENRIQUE PEREIRA DA SILVA"
+    "tecnico": "Wilson Charles Philistin"
    },
    {
     "numero": "WO0046350",
@@ -516,34 +515,6 @@
     "tecnico": "CARLOS MAGNO DA SILVA LIRA"
    },
    {
-    "numero": "WO0056851",
-    "statusRisco": "Atrasado",
-    "item": "Exaustor",
-    "assuntoPrincipal": "EXAUSTOR",
-    "assuntoSecundario": "EXA - AUSÊNCIA DE PROTEÇÃO DA CORREIA",
-    "regional": "SUL",
-    "setor": "SUDOESTE RS",
-    "loja": "20215 - CARREFOUR PASSO D'AREIA",
-    "status": "Pronto Para Envio",
-    "dtAbertura": "25/09/2026",
-    "dtEncerramento": "",
-    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
-   },
-   {
-    "numero": "WO0058478",
-    "statusRisco": "Atrasado",
-    "item": "Exaustor",
-    "assuntoPrincipal": "EXAUSTOR",
-    "assuntoSecundario": "EXA - AUSÊNCIA DE PROTEÇÃO DA CORREIA",
-    "regional": "SUL",
-    "setor": "SUDOESTE RS",
-    "loja": "20215 - CARREFOUR PASSO D'AREIA",
-    "status": "Pronto Para Envio",
-    "dtAbertura": "29/09/2026",
-    "dtEncerramento": "",
-    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
-   },
-   {
     "numero": "WO0058737",
     "statusRisco": "Atrasado",
     "item": "Exaustor",
@@ -572,18 +543,32 @@
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
    },
    {
-    "numero": "WO0059268",
+    "numero": "WO0063703",
     "statusRisco": "Atrasado",
-    "item": "Quadro Elétrico",
-    "assuntoPrincipal": "ÁREA INTERNA",
-    "assuntoSecundario": "AIN - QUADRO ELÉTRICO - FALTA DE ACRÍLICO DE PROTEÇÃO",
+    "item": "Cilindro CO2",
+    "assuntoPrincipal": "SISTEMA DE INCÊNDIO",
+    "assuntoSecundario": "SCI - CO2 VENCIDO / VENCENDO",
     "regional": "SUL",
-    "setor": "VALE DOS SINOS",
-    "loja": "26819 - FS CAXIAS DO SUL - R JOAO NICHELE 2227",
-    "status": "Em Andamento",
-    "dtAbertura": "30/09/2026",
+    "setor": "SUDOESTE RS",
+    "loja": "20621 - SHOP PELOTAS",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "02/10/2026",
     "dtEncerramento": "",
-    "tecnico": "THIAGO DOS SANTOS COELHO"
+    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
+   },
+   {
+    "numero": "WO0064164",
+    "statusRisco": "Atrasado",
+    "item": "Intertravamento",
+    "assuntoPrincipal": "SISTEMA DE INCÊNDIO",
+    "assuntoSecundario": "SCI - PROBLEMA NO INTERTRAVAMENTO",
+    "regional": "SUL",
+    "setor": "CAPITAL NORTE RS",
+    "loja": "21586 - SHOP ROYAL PLAZA SANTA MARIA",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "03/10/2026",
+    "dtEncerramento": "",
+    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
    }
   ],
   "aVencer": [
@@ -600,20 +585,6 @@
     "dtAbertura": "29/09/2026",
     "dtEncerramento": "",
     "tecnico": "CARLOS MAGNO DA SILVA LIRA"
-   },
-   {
-    "numero": "WO0058714",
-    "statusRisco": "No Prazo",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA NÃO FUNCIONA",
-    "regional": "SUL",
-    "setor": "CAPITAL NORTE RS",
-    "loja": "23725 - SHOP PRACA NOVA SANTA MARIA",
-    "status": "Pronto Para Envio",
-    "dtAbertura": "29/09/2026",
-    "dtEncerramento": "",
-    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
    },
    {
     "numero": "WO0058870",
@@ -644,16 +615,44 @@
     "tecnico": "THIAGO DOS SANTOS COELHO"
    },
    {
-    "numero": "WO0060153",
+    "numero": "WO0063760",
     "statusRisco": "No Prazo",
     "item": "Coifa",
     "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA COM DRENO ENTUPIDO",
+    "assuntoSecundario": "COI - ESTRUTURA DA COIFA COM DEFEITO",
     "regional": "SUL",
     "setor": "CAPITAL NORTE RS",
-    "loja": "25455 - FS POA - AV DR NILO PECANHA 1715",
+    "loja": "18625 - BOURBON SHOP WALLIG",
     "status": "Pronto Para Envio",
-    "dtAbertura": "30/09/2026",
+    "dtAbertura": "02/10/2026",
+    "dtEncerramento": "",
+    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
+   },
+   {
+    "numero": "WO0063867",
+    "statusRisco": "No Prazo",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - COIFA EM CONTIGÊNCIA",
+    "regional": "SUL",
+    "setor": "CURITIBA OESTE/SC",
+    "loja": "16647 - FS CURITIBA - R BISPO DOM JOSE 2348",
+    "status": "Em Andamento",
+    "dtAbertura": "02/10/2026",
+    "dtEncerramento": "",
+    "tecnico": "CARLOS MAGNO DA SILVA LIRA"
+   },
+   {
+    "numero": "WO0064559",
+    "statusRisco": "No Prazo",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - PRINCÍPIO DE INCÊNDIO",
+    "regional": "SUL",
+    "setor": "CAPITAL NORTE RS",
+    "loja": "25447 - FS POA - AV CAVALHADA",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "04/10/2026",
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
    }
