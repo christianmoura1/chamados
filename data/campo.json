@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-10-05T21:40:11.038Z",
+ "atualizadoEm": "2026-10-06T10:00:16.992Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 11,
+  "emExecucao": 8,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 4,
-  "total": 11
+  "aguardandoToken": 3,
+  "total": 8
  },
  "serie": [
-  {
-   "data": "2026-10-03",
-   "abertos": 5,
-   "fechados": 5
-  },
   {
    "data": "2026-10-04",
    "abertos": 7,
@@ -23,9 +18,37 @@
    "data": "2026-10-05",
    "abertos": 7,
    "fechados": 10
+  },
+  {
+   "data": "2026-10-06",
+   "abertos": 1,
+   "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0065165",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "26839 FS CURITIBA - AV SILVA JARDIM",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "06/10/2026 05:15:56",
+   "fechamento": "",
+   "principal": "BK099823 - CÂMARA DE CONGELADOS",
+   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMG",
+   "tecnico": "",
+   "descricao": "BK099823 - CÂMARA DE CONGELADOS | CMG - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0065698"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0065060",
    "marca": "BKB",
@@ -184,98 +207,6 @@
    ],
    "aguardandoToken": 1,
    "fechadoSemToken": "04/10/2026 16:11:48",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0064282",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "03/10/2026 16:49:37",
-   "fechamento": "",
-   "principal": "BK078876 - EXAUSTOR",
-   "secundario": "EXA - NÃO PUXA FUMAÇA",
-   "sigla": "EXA",
-   "tecnico": "",
-   "descricao": "BK078876 - EXAUSTOR | EXA - NÃO PUXA FUMAÇA",
-   "tarefas": [
-    "WOT0064815"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "04/10/2026 08:40:10",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0064177",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL NORTE RS",
-   "loja": "15893 - SHOP IGUATEMI PORTO ALEGRE",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "03/10/2026 12:45:24",
-   "fechamento": "",
-   "principal": "BK034835 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
-   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
-   "sigla": "CMR",
-   "tecnico": "",
-   "descricao": "BK034835 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0064711"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0064164",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL NORTE RS",
-   "loja": "21586 - SHOP ROYAL PLAZA SANTA MARIA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "03/10/2026 12:29:56",
-   "fechamento": "",
-   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
-   "secundario": "SCI - PROBLEMA NO INTERTRAVAMENTO",
-   "sigla": "SCI",
-   "tecnico": "",
-   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - PROBLEMA NO INTERTRAVAMENTO",
-   "tarefas": [
-    "WOT0064698"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0064103",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "24741 - FS PELOTAS - AV FERREIRA VIANA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "03/10/2026 10:30:19",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - COZINHA - REFLUXO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
-   "tarefas": [
-    "WOT0064637"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
    "contato": "",
    "grupo": "execucao"
   }
