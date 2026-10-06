@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-06T10:00:16.992Z",
+ "atualizadoEm": "2026-10-06T13:20:13.520Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 8,
+  "emExecucao": 9,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 3,
-  "total": 8
+  "total": 9
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-06",
-   "abertos": 1,
+   "abertos": 2,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0065247",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "16619 - SHOP PRAIA DE BELAS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "06/10/2026 10:19:05",
+   "fechamento": "",
+   "principal": "BK072057 - COIFA LAVADORA; MELTING",
+   "secundario": "COI - COIFA EM CONTIGÊNCIA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK072057 - COIFA LAVADORA; MELTING | COI - COIFA EM CONTIGÊNCIA",
+   "tarefas": [
+    "WOT0065781"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0065165",
    "marca": "BKB",
