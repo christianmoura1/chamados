@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-06T13:20:13.520Z",
+ "atualizadoEm": "2026-10-06T13:40:13.614Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 9,
+  "emExecucao": 10,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 3,
-  "total": 9
+  "total": 10
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-06",
-   "abertos": 2,
+   "abertos": 3,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0065253",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "18625 - BOURBON SHOP WALLIG",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "06/10/2026 10:23:19",
+   "fechamento": "",
+   "principal": "BK034204 - COIFA",
+   "secundario": "COI - COIFA EM CONTIGÊNCIA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK034204 - COIFA | COI - COIFA EM CONTIGÊNCIA",
+   "tarefas": [
+    "WOT0065787"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0065247",
    "marca": "BKB",
