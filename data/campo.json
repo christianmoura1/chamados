@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-06T21:20:15.447Z",
+ "atualizadoEm": "2026-10-06T23:40:10.058Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 9,
+  "emExecucao": 10,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 2,
-  "total": 9
+  "total": 10
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-06",
-   "abertos": 5,
+   "abertos": 6,
    "fechados": 4
   }
  ],
  "itens": [
+  {
+   "numero": "WO0065584",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "OESTE PR",
+   "loja": "23989 - SHOP JL CASCAVEL",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "06/10/2026 20:35:40",
+   "fechamento": "",
+   "principal": "BK077757 - FRITADEIRA",
+   "secundario": "FRI - PRINCÍPIO DE INCÊNDIO",
+   "sigla": "FRI",
+   "tecnico": "",
+   "descricao": "BK077757 - FRITADEIRA | FRI - PRINCÍPIO DE INCÊNDIO",
+   "tarefas": [
+    "WOT0066118"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0065396",
    "marca": "BKB",
