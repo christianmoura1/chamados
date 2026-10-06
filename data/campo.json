@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-06T13:40:13.614Z",
+ "atualizadoEm": "2026-10-06T16:00:17.337Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 10,
+  "emExecucao": 12,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 3,
-  "total": 10
+  "total": 12
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-10-06",
-   "abertos": 3,
+   "abertos": 5,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0065396",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "21529 - PARTAGE SHOP RIO GRANDE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "06/10/2026 12:45:13",
+   "fechamento": "",
+   "principal": "BK037977 - CAMARA DE CONGELADOS; SÃO RAFAEL",
+   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMG",
+   "tecnico": "",
+   "descricao": "BK037977 - CAMARA DE CONGELADOS; SÃO RAFAEL | CMG - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0065930"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0065394",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "23725 - SHOP PRACA NOVA SANTA MARIA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "06/10/2026 12:44:05",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - QUADRO ELÉTRICO - NÃO LIGA ELETRICAMENTE",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - NÃO LIGA ELETRICAMENTE",
+   "tarefas": [
+    "WOT0065928"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0065253",
    "marca": "BKB",
