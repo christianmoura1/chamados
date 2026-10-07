@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-07T13:20:11.195Z",
+ "atualizadoEm": "2026-10-07T14:00:11.344Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 12,
+  "emExecucao": 13,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 12
+  "total": 13
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-07",
-   "abertos": 3,
+   "abertos": 4,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0065705",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "25455 - FS POA - AV DR NILO PECANHA 1715",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "07/10/2026 10:56:24",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "AEX - REFLUXO",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | AEX - REFLUXO",
+   "tarefas": [
+    "WOT0066240"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0065679",
    "marca": "BKB",
