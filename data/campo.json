@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-07T16:40:10.528Z",
+ "atualizadoEm": "2026-10-07T18:20:10.439Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 11,
+  "emExecucao": 12,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 11
+  "total": 12
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-10-07",
-   "abertos": 4,
-   "fechados": 2
+   "abertos": 6,
+   "fechados": 3
   }
  ],
  "itens": [
+  {
+   "numero": "WO0065866",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "OESTE PR",
+   "loja": "23989 - SHOP JL CASCAVEL",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "07/10/2026 15:09:51",
+   "fechamento": "",
+   "principal": "BK077757 - FRITADEIRA",
+   "secundario": "FRI - NÃO LIGA",
+   "sigla": "FRI",
+   "tecnico": "",
+   "descricao": "BK077757 - FRITADEIRA | FRI - NÃO LIGA",
+   "tarefas": [
+    "WOT0066401"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0065864",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "OESTE PR",
+   "loja": "23989 - SHOP JL CASCAVEL",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "07/10/2026 15:06:32",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - COZINHA - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
+   "tarefas": [
+    "WOT0066399"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0065705",
    "marca": "BKB",
@@ -43,29 +89,6 @@
    "descricao": "Area Externa | AEX - REFLUXO",
    "tarefas": [
     "WOT0066240"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0065656",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "30086 FS PONTA GROSSA R BALDUINO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "07/10/2026 09:31:44",
-   "fechamento": "",
-   "principal": "BK075159 - BROILER",
-   "secundario": "BRO - VAZAMENTO DE GÁS",
-   "sigla": "BRO",
-   "tecnico": "",
-   "descricao": "BK075159 - BROILER | BRO - VAZAMENTO DE GÁS",
-   "tarefas": [
-    "WOT0066190"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
