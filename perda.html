@@ -205,7 +205,7 @@
   <main class="main">
     <div class="topbar">
       <div>
-        <p class="eyebrow">Chamados Abertos · Perda de Receita</p>
+        <p class="eyebrow">Regional Sul · Chamados Abertos</p>
         <h1>Perda de Receita</h1>
       </div>
       <div class="stamp-pill" id="stamp">carregando…</div>
@@ -213,21 +213,21 @@
 
     <div class="kpis" id="kpis">
       <div class="kpi k-sos"><span class="label">Chamados Abertos</span><span class="val" id="kpi-total">—</span></div>
-      <div class="kpi k-alta"><span class="label">Perda Total (R$)</span><span class="val" id="kpi-perda">—</span></div>
-      <div class="kpi k-violet"><span class="label">Regionais Afetadas</span><span class="val" id="kpi-regionais">—</span></div>
-      <div class="kpi k-ok"><span class="label">Maior Perda Unitária</span><span class="val" id="kpi-max">—</span></div>
+      <div class="kpi k-alta"><span class="label">Perda Medida (R$)</span><span class="val" id="kpi-perda">—</span></div>
+      <div class="kpi k-violet"><span class="label">Param a Venda</span><span class="val" id="kpi-regionais">—</span></div>
+      <div class="kpi k-ok"><span class="label">Mais Antigo (dias)</span><span class="val" id="kpi-max">—</span></div>
     </div>
 
     <section>
       <div class="sec-head">
         <h2>Chamados Abertos com Perda de Receita</h2>
-        <span class="sec-note" id="sec-note">dados do Power BI + SOMA</span>
+        <span class="sec-note" id="sec-note">chamados corretivos abertos — SOMA</span>
       </div>
 
       <div class="filter-bar">
         <div class="filter-field">
-          <label for="filtroRegional">Regional</label>
-          <select id="filtroRegional"><option value="">Todas</option></select>
+          <label for="filtroFamilia">Problema</label>
+          <select id="filtroFamilia"><option value="">Todos</option></select>
         </div>
         <div class="filter-field">
           <label for="filtroEstado">Estado</label>
@@ -235,7 +235,7 @@
         </div>
         <div class="filter-field">
           <label for="filtroBusca">Buscar</label>
-          <input type="text" id="filtroBusca" placeholder="Chamado, loja, equipamento…" autocomplete="off">
+          <input type="text" id="filtroBusca" placeholder="Chamado, loja, equipamento, problema…" autocomplete="off">
         </div>
         <button class="filter-clear" id="filtroLimpar" type="button">Limpar</button>
       </div>
@@ -246,24 +246,25 @@
           <thead>
             <tr>
               <th>Chamado</th>
-              <th>Regional</th>
               <th>Loja</th>
-              <th>Data</th>
+              <th>Equipamento</th>
+              <th>Problema</th>
+              <th>Família</th>
+              <th class="col-num">Dias</th>
               <th class="col-num">Perda (R$)</th>
               <th>Estado</th>
-              <th>Fase</th>
               <th>Abertura</th>
             </tr>
           </thead>
           <tbody id="tbody">
-            <tr><td colspan="8" class="msg-carregando">carregando chamados…</td></tr>
+            <tr><td colspan="9" class="msg-carregando">carregando chamados…</td></tr>
           </tbody>
         </table>
       </div>
     </section>
 
     <footer>
-      <span>Fonte: Power BI Perda de Receita + SOMA</span>
+      <span>Fonte: SOMA (chamados abertos do Sul) · perda em R$ do Power BI</span>
       <span id="footer-stamp"></span>
     </footer>
   </main>
@@ -304,19 +305,26 @@
         atualizarKPIs(dados);
       })
       .catch(function(e){
-        document.getElementById('tbody').innerHTML = '<tr><td colspan="8" class="msg-erro">Erro ao carregar dados: '+e.message+'</td></tr>';
+        document.getElementById('tbody').innerHTML = '<tr><td colspan="9" class="msg-erro">Erro ao carregar dados: '+e.message+'</td></tr>';
       });
   }
 
   function popularFiltros() {
-    var regs = {}, ests = {};
+    var fams = {}, ests = {};
     dados.forEach(function(x){
-      if(x.regional) regs[x.regional] = true;
+      if(x.familia) fams[x.familia] = (fams[x.familia]||0) + 1;
       if(x.estado) ests[x.estado] = true;
     });
-    var selReg = document.getElementById('filtroRegional');
-    Object.keys(regs).sort().forEach(function(r){
-      var o = document.createElement('option'); o.value = r; o.textContent = r; selReg.appendChild(o);
+    var selFam = document.getElementById('filtroFamilia');
+    // as familias que param a venda vem primeiro, com a contagem ao lado
+    var criticas = {'Refrigeração':1,'Cocção':1,'Sobremesa':1,'Elétrica':1,'Gás':1,'Incêndio':1};
+    Object.keys(fams).sort(function(a,b){
+      var ca = criticas[a]?0:1, cb = criticas[b]?0:1;
+      return ca - cb || fams[b] - fams[a];
+    }).forEach(function(r){
+      var o = document.createElement('option');
+      o.value = r; o.textContent = r + ' (' + fams[r] + ')' + (criticas[r] ? ' — para a venda' : '');
+      selFam.appendChild(o);
     });
     var selEst = document.getElementById('filtroEstado');
     Object.keys(ests).sort().forEach(function(e){
@@ -325,14 +333,14 @@
   }
 
   function aplicarFiltros() {
-    var reg = document.getElementById('filtroRegional').value;
+    var fam = document.getElementById('filtroFamilia').value;
     var est = document.getElementById('filtroEstado').value;
     var busca = (document.getElementById('filtroBusca').value || '').toLowerCase().trim();
     var filtrados = dados.filter(function(x){
-      if(reg && x.regional !== reg) return false;
+      if(fam && x.familia !== fam) return false;
       if(est && x.estado !== est) return false;
       if(busca) {
-        var hay = [x.chamado, x.loja, x.regional, x.estado, x.equipamento, x.motivo, x.descricao].join(' ').toLowerCase();
+        var hay = [x.chamado, x.bkn, x.loja, x.setor, x.estado, x.equipamento, x.problema, x.familia, x.descricao].join(' ').toLowerCase();
         if(hay.indexOf(busca) === -1) return false;
       }
       return true;
@@ -344,22 +352,21 @@
 
   function atualizarKPIs(arr) {
     document.getElementById('kpi-total').textContent = fmtN(arr.length);
-    var perdaTotal = 0, maxPerda = 0, regs = {};
+    var perdaTotal = 0, criticos = 0, maisAntigo = 0;
     arr.forEach(function(x){
-      var p = x.perda || 0;
-      perdaTotal += p;
-      if(p > maxPerda) maxPerda = p;
-      if(x.regional) regs[x.regional] = true;
+      perdaTotal += (x.perda || 0);
+      if(x.critica) criticos++;
+      if((x.dias||0) > maisAntigo) maisAntigo = x.dias||0;
     });
     document.getElementById('kpi-perda').textContent = fmtR(perdaTotal);
-    document.getElementById('kpi-regionais').textContent = fmtN(Object.keys(regs).length);
-    document.getElementById('kpi-max').textContent = fmtR(maxPerda);
+    document.getElementById('kpi-regionais').textContent = fmtN(criticos);
+    document.getElementById('kpi-max').textContent = fmtN(maisAntigo);
   }
 
   function renderTabela(arr) {
     var tbody = document.getElementById('tbody');
     if(arr.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="8" class="msg-carregando">Nenhum chamado encontrado.</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="9" class="msg-carregando">Nenhum chamado encontrado.</td></tr>';
       return;
     }
     var html = '';
@@ -370,26 +377,34 @@
       if(estLower.indexOf('expedi') !== -1) estadoTag = '<span class="tag tag-alta">'+(x.estado||'')+'</span>';
       else if(estLower.indexOf('andamento') !== -1) estadoTag = '<span class="tag tag-sos">'+(x.estado||'')+'</span>';
       else estadoTag = '<span class="tag tag-normal">'+(x.estado||'')+'</span>';
-      var dataFmt = x.data ? x.data.replace(/^(\d{4})-(\d{2})-(\d{2})$/, '$3/$2/$1') : '';
+      // familia que para a venda vem marcada em vermelho; as demais, discretas
+      var famTag = x.critica
+        ? '<span class="tag tag-sos">'+(x.familia||'')+'</span>'
+        : '<span class="tag tag-normal">'+(x.familia||'')+'</span>';
+      // acima de 30 dias em aberto o numero de dias fica vermelho
+      var diasTxt = (x.dias == null) ? '' : (x.dias > 30
+        ? '<strong style="color:var(--sos)">'+x.dias+'</strong>'
+        : String(x.dias));
       html += '<tr>' +
-        '<td><a class="chamado-link" href="https://zamp.service-now.com/nav_to.do?uri=%2Fsn_customerservice_case.do%3Fsys_id%3D'+(x.chamado||'')+'" target="_blank" rel="noopener">'+(x.chamado||'')+'</a></td>' +
-        '<td>'+(x.regional||'')+'</td>' +
-        '<td class="loja-cell" title="'+(x.loja||'').replace(/"/g,'&quot;')+'">'+(x.loja||'')+'</td>' +
-        '<td>'+dataFmt+'</td>' +
-        '<td class="col-num"><strong>'+perdaFmt+'</strong></td>' +
+        '<td><a class="chamado-link" href="https://soma.zamp.com.br/wm_order_list.do?sysparm_query=number%3D'+(x.chamado||'')+'" target="_blank" rel="noopener">'+(x.chamado||'')+'</a></td>' +
+        '<td class="loja-cell" title="'+((x.bkn?x.bkn+' · ':'')+(x.setor||'')).replace(/"/g,'&quot;')+'">'+(x.loja||'')+'</td>' +
+        '<td style="font-size:11.5px;">'+(x.equipamento||'')+'</td>' +
+        '<td style="font-size:11.5px;color:var(--muted);" title="'+(x.problema||'').replace(/"/g,'&quot;')+'">'+(x.problema||'')+'</td>' +
+        '<td>'+famTag+'</td>' +
+        '<td class="col-num">'+diasTxt+'</td>' +
+        '<td class="col-num">'+(x.perda != null ? '<strong>'+perdaFmt+'</strong>' : '<span style="color:var(--muted)">—</span>')+'</td>' +
         '<td>'+estadoTag+'</td>' +
-        '<td>'+(x.fase||'')+'</td>' +
         '<td style="font-size:11px;color:var(--muted);">'+(x.abertura||'')+'</td>' +
         '</tr>';
     });
     tbody.innerHTML = html;
   }
 
-  document.getElementById('filtroRegional').addEventListener('change', aplicarFiltros);
+  document.getElementById('filtroFamilia').addEventListener('change', aplicarFiltros);
   document.getElementById('filtroEstado').addEventListener('change', aplicarFiltros);
   document.getElementById('filtroBusca').addEventListener('input', aplicarFiltros);
   document.getElementById('filtroLimpar').addEventListener('click', function(){
-    document.getElementById('filtroRegional').value = '';
+    document.getElementById('filtroFamilia').value = '';
     document.getElementById('filtroEstado').value = '';
     document.getElementById('filtroBusca').value = '';
     aplicarFiltros();
