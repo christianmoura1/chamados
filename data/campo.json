@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-07T20:40:10.736Z",
+ "atualizadoEm": "2026-10-07T21:40:11.200Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 14,
+  "emExecucao": 15,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 14
+  "total": 15
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-07",
-   "abertos": 8,
+   "abertos": 9,
    "fechados": 3
   }
  ],
  "itens": [
+  {
+   "numero": "WO0065968",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "26828 - FS CURITIBA - FRANCISCO FRISHMANN 3151",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "07/10/2026 18:34:43",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "AEX - FALTA DE ÁGUA - CONTA NÃO FOI PAGA",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | AEX - FALTA DE ÁGUA - CONTA NÃO FOI PAGA",
+   "tarefas": [
+    "WOT0066503"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0065941",
    "marca": "BKB",
