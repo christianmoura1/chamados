@@ -2,11 +2,11 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<title>Perda de Receita — Sul</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Máquina de Sorvete — Brasil</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --sidebar:   #1E1B3A;
@@ -178,10 +178,41 @@
 
   footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--faint); font-size: 12px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 </style>
+
+<style>
+  /* o que e' proprio deste painel */
+  .abas { display:flex; gap:4px; flex-wrap:wrap; margin:18px 0 6px; border-bottom:1px solid var(--line); }
+  .aba { appearance:none; border:0; background:transparent; cursor:pointer; font:inherit;
+         font-size:13px; font-weight:600; color:var(--muted); padding:9px 14px;
+         border-radius:8px 8px 0 0; border-bottom:2px solid transparent; white-space:nowrap; }
+  .aba:hover { background:var(--surface2); color:var(--ink); }
+  .aba.on { color:var(--violet); border-bottom-color:var(--violet); background:var(--surface2); }
+  .aba .qtd { font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--faint); margin-left:6px; }
+
+  .secao { margin:22px 0 0; }
+  .secao-tit { font-size:11.5px; font-weight:700; letter-spacing:.09em; text-transform:uppercase;
+               color:#fff; background:var(--sidebar); padding:7px 14px; border-radius:7px; }
+  .itens { margin-top:4px; }
+  .item { display:grid; grid-template-columns: minmax(0,1fr) 108px minmax(0,1.1fr);
+          align-items:center; gap:14px; padding:7px 14px; border-bottom:1px solid var(--line); }
+  .item:last-child { border-bottom:0; }
+  .item .rot { font-size:13.5px; color:var(--ink); }
+  .item .val { font-family:"IBM Plex Mono",monospace; font-size:17px; font-weight:600;
+               text-align:right; color:var(--ink); }
+  .item.forte .rot { font-weight:700; }
+  .item.forte .val { font-size:26px; color:var(--sos); }
+  .item .ctx { font-size:11.5px; color:var(--muted); }
+  .item.verde .val { color:var(--ok); }
+
+  .busca-linha { display:flex; gap:10px; align-items:flex-end; flex-wrap:wrap; margin:14px 0 8px; }
+  .msg { padding:26px; text-align:center; color:var(--muted); }
+  .msg-erro { padding:26px; text-align:center; color:var(--sos); font-weight:600; }
+  td.wrap { max-width:360px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+</style>
 </head>
 <body>
 <div class="shell">
-  <aside class="side">
+  <aside class="side" id="side">
     <button class="side-toggle" id="sideToggle" type="button" aria-label="Recolher menu">‹</button>
     <div class="brand">
       <div class="mark">Z</div>
@@ -191,227 +222,202 @@
       <a class="navitem" href="index.html"><span class="dot"></span>Backlog</a>
       <a class="navitem" href="tecnicos.html"><span class="dot"></span>Técnicos</a>
       <div class="navlabel">Painéis</div>
-      <div class="navitem active"><span class="dot"></span>Perda de Receita</div>
+      <a class="navitem" href="perda.html"><span class="dot"></span>Perda de Receita</a>
       <a class="navitem" href="risco.html"><span class="dot"></span>Gestão de Risco</a>
       <a class="navitem" href="campo.html"><span class="dot"></span>Acompanhamento Campo</a>
       <a class="navitem" href="preventivas.html"><span class="dot"></span>Preventivas</a>
-      <a class="navitem" href="sorvete.html"><span class="dot"></span>Máquina de Sorvete</a>
+      <div class="navitem active"><span class="dot"></span>Máquina de Sorvete</div>
       <div class="navlabel">Fonte</div>
-      <div class="navitem"><span class="dot"></span>Power BI · Perda de Receita</div>
+      <div class="navitem"><span class="dot"></span>Power BI + SOMA</div>
     </div>
-    <div class="side-foot">Atualização automática diária</div>
+    <div class="side-foot">Brasil · 11 regionais</div>
   </aside>
   <button class="side-reopen" id="sideReopen" type="button" aria-label="Abrir menu">›</button>
 
   <main class="main">
     <div class="topbar">
       <div>
-        <p class="eyebrow">Regional Sul · Chamados Abertos</p>
-        <h1>Perda de Receita</h1>
+        <p class="eyebrow">Brasil · 11 regionais</p>
+        <h1>Máquina de Sorvete</h1>
       </div>
       <div class="stamp-pill" id="stamp">carregando…</div>
     </div>
 
-    <div class="kpis" id="kpis">
-      <div class="kpi k-sos"><span class="label">Chamados Abertos</span><span class="val" id="kpi-total">—</span></div>
-      <div class="kpi k-alta"><span class="label">Perda Medida (R$)</span><span class="val" id="kpi-perda">—</span></div>
-      <div class="kpi k-violet"><span class="label">Param a Venda</span><span class="val" id="kpi-regionais">—</span></div>
-      <div class="kpi k-ok"><span class="label">Mais Antigo (dias)</span><span class="val" id="kpi-max">—</span></div>
-    </div>
+    <div class="kpis" id="kpis"></div>
 
     <section>
-      <div class="sec-head">
-        <h2>Chamados Abertos com Perda de Receita</h2>
-        <span class="sec-note" id="sec-note">chamados corretivos abertos — SOMA</span>
-      </div>
-
-      <div class="filter-bar">
-        <div class="filter-field">
-          <label for="filtroFamilia">Problema</label>
-          <select id="filtroFamilia"><option value="">Todos</option></select>
-        </div>
-        <div class="filter-field">
-          <label for="filtroEstado">Estado</label>
-          <select id="filtroEstado"><option value="">Todos</option></select>
-        </div>
-        <div class="filter-field">
-          <label for="filtroBusca">Buscar</label>
-          <input type="text" id="filtroBusca" placeholder="Chamado, loja, equipamento, problema…" autocomplete="off">
-        </div>
-        <button class="filter-clear" id="filtroLimpar" type="button">Limpar</button>
-      </div>
-      <div class="filter-count" id="filtroContagem"></div>
-
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Chamado</th>
-              <th>Loja</th>
-              <th>Equipamento</th>
-              <th>Problema</th>
-              <th>Família</th>
-              <th class="col-num">Dias</th>
-              <th class="col-num">Perda (R$)</th>
-              <th>Estado</th>
-              <th>Abertura</th>
-            </tr>
-          </thead>
-          <tbody id="tbody">
-            <tr><td colspan="9" class="msg-carregando">carregando chamados…</td></tr>
-          </tbody>
-        </table>
-      </div>
+      <div class="abas" id="abas"></div>
+      <div id="conteudo"><div class="msg">carregando…</div></div>
     </section>
 
     <footer>
-      <span>Fonte: SOMA (chamados abertos do Sul) · perda em R$ do Power BI</span>
+      <span>Fonte: Power BI (disponibilidade e venda) + SOMA (chamados) · base de tratativas MDS</span>
       <span id="footer-stamp"></span>
     </footer>
   </main>
 </div>
 
 <script>
-(function(){
-  var CHAVE_SIDEBAR = 'chamados_sidebar_collapsed';
-  var shell = document.querySelector('.shell');
-  var toggleBtn = document.getElementById('sideToggle');
-  var reopenBtn = document.getElementById('sideReopen');
+(function () {
+  var D = null, abaAtual = null, LIMITE = 300;
+  var esc = function (s) { return String(s == null ? '' : s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); };
+  var fmtN = function (n) { return (typeof n === 'number') ? n.toLocaleString('pt-BR') : (n == null ? '' : n); };
 
-  function setSidebar(collapsed) {
-    shell.classList.toggle('sb-collapsed', collapsed);
-    try { localStorage.setItem(CHAVE_SIDEBAR, collapsed ? '1' : '0'); } catch(e){}
+  // percentual: a planilha guarda 72,4 e nao 0,724
+  var ehPct = function (cab) { return /%|Hoje|Méd|Disp/i.test(cab); };
+
+  function kpis() {
+    // puxa do painel os numeros que abrem a conversa
+    var achar = function (rot) {
+      for (var i = 0; i < D.painel.length; i++) {
+        for (var j = 0; j < D.painel[i].itens.length; j++) {
+          var it = D.painel[i].itens[j];
+          if (it.rotulo.toLowerCase().indexOf(rot.toLowerCase()) === 0) return it;
+        } }
+      return null;
+    };
+    var cards = [
+      ['k-violet', 'Equipamentos', achar('Equipamentos monitorados')],
+      ['k-sos', 'Parados (venda)', achar('Equipamentos parados')],
+      ['k-alta', 'Indisponíveis', achar('Equipamentos indisponíveis')],
+      ['k-ok', 'Disponibilidade hoje', achar('DISPONIBILIDADE HOJE')]
+    ];
+    var h = '';
+    cards.forEach(function (c) {
+      if (!c[2]) return;
+      var v = c[2].valor;
+      var txt = (c[0] === 'k-ok' && typeof v === 'number') ? Math.round(v) + '%' : fmtN(v);
+      h += '<div class="kpi ' + c[0] + '"><span class="label">' + esc(c[1]) + '</span>'
+         + '<span class="val">' + esc(txt) + '</span></div>';
+    });
+    document.getElementById('kpis').innerHTML = h;
   }
-  try { if (localStorage.getItem(CHAVE_SIDEBAR) === '1') setSidebar(true); } catch(e){}
-  toggleBtn.addEventListener('click', function(){ setSidebar(!shell.classList.contains('sb-collapsed')); });
-  reopenBtn.addEventListener('click', function(){ setSidebar(false); });
 
-  var dados = [];
-  var fmtBRL = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
-  var fmtNum = new Intl.NumberFormat('pt-BR');
+  function montaAbas() {
+    var h = '<button class="aba on" data-aba="__painel">Panorama</button>';
+    Object.keys(D.abas).forEach(function (n) {
+      h += '<button class="aba" data-aba="' + esc(n) + '">' + esc(n)
+         + '<span class="qtd">' + D.abas[n].linhas.length + '</span></button>';
+    });
+    var el = document.getElementById('abas');
+    el.innerHTML = h;
+    el.addEventListener('click', function (e) {
+      var b = e.target.closest('.aba'); if (!b) return;
+      [].forEach.call(el.querySelectorAll('.aba'), function (x) { x.classList.remove('on'); });
+      b.classList.add('on');
+      abaAtual = b.getAttribute('data-aba');
+      render();
+    });
+    abaAtual = '__painel';
+  }
 
-  function fmtR(v) { return v != null ? fmtBRL.format(v) : '—'; }
-  function fmtN(v) { return v != null ? fmtNum.format(v) : '—'; }
-
-  function loadData() {
-    fetch('data/chamados-abertos-perda.json')
-      .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
-      .then(function(arr){
-        dados = arr || [];
-        var agora = new Date();
-        document.getElementById('stamp').textContent = agora.toLocaleDateString('pt-BR') + ' ' + agora.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
-        document.getElementById('footer-stamp').textContent = document.getElementById('stamp').textContent;
-        popularFiltros();
-        aplicarFiltros();
-        atualizarKPIs(dados);
-      })
-      .catch(function(e){
-        document.getElementById('tbody').innerHTML = '<tr><td colspan="9" class="msg-erro">Erro ao carregar dados: '+e.message+'</td></tr>';
+  function renderPainel() {
+    var h = '';
+    D.painel.forEach(function (s) {
+      if (!s.itens.length) return;
+      h += '<div class="secao">';
+      if (s.titulo) h += '<div class="secao-tit">' + esc(s.titulo) + '</div>';
+      h += '<div class="itens">';
+      s.itens.forEach(function (it) {
+        var grande = /^(Equipamentos monitorados|Equipamentos parados|Equipamentos disponíveis|Equipamentos indisponíveis|DISPONIBILIDADE HOJE|Chamados SOS|Destes)/i.test(it.rotulo);
+        var verde = /DISPONIBILIDADE HOJE|Projeção|disponíveis/i.test(it.rotulo);
+        var v = it.valor;
+        if (typeof v === 'number' && /%|Projeção|DISPONIBILIDADE HOJE|Méd|Hoje/i.test(it.rotulo)) {
+          v = (Math.round(v * 10) / 10).toLocaleString('pt-BR') + '%';
+        } else { v = fmtN(v); }
+        h += '<div class="item' + (grande ? ' forte' : '') + (verde ? ' verde' : '') + '">'
+           + '<div class="rot">' + esc(it.rotulo) + '</div>'
+           + '<div class="val">' + esc(v) + '</div>'
+           + '<div class="ctx">' + esc(it.contexto) + '</div></div>';
       });
+      h += '</div></div>';
+    });
+    document.getElementById('conteudo').innerHTML = h;
   }
 
-  function popularFiltros() {
-    var fams = {}, ests = {};
-    dados.forEach(function(x){
-      if(x.familia) fams[x.familia] = (fams[x.familia]||0) + 1;
-      if(x.estado) ests[x.estado] = true;
-    });
-    var selFam = document.getElementById('filtroFamilia');
-    // as familias que param a venda vem primeiro, com a contagem ao lado
-    var criticas = {'Refrigeração':1,'Cocção':1,'Sobremesa':1,'Elétrica':1,'Gás':1,'Incêndio':1};
-    Object.keys(fams).sort(function(a,b){
-      var ca = criticas[a]?0:1, cb = criticas[b]?0:1;
-      return ca - cb || fams[b] - fams[a];
-    }).forEach(function(r){
-      var o = document.createElement('option');
-      o.value = r; o.textContent = r + ' (' + fams[r] + ')' + (criticas[r] ? ' — para a venda' : '');
-      selFam.appendChild(o);
-    });
-    var selEst = document.getElementById('filtroEstado');
-    Object.keys(ests).sort().forEach(function(e){
-      var o = document.createElement('option'); o.value = e; o.textContent = e; selEst.appendChild(o);
-    });
-  }
-
-  function aplicarFiltros() {
-    var fam = document.getElementById('filtroFamilia').value;
-    var est = document.getElementById('filtroEstado').value;
-    var busca = (document.getElementById('filtroBusca').value || '').toLowerCase().trim();
-    var filtrados = dados.filter(function(x){
-      if(fam && x.familia !== fam) return false;
-      if(est && x.estado !== est) return false;
-      if(busca) {
-        var hay = [x.chamado, x.bkn, x.loja, x.setor, x.estado, x.equipamento, x.problema, x.familia, x.descricao].join(' ').toLowerCase();
-        if(hay.indexOf(busca) === -1) return false;
-      }
+  function renderTabela() {
+    var A = D.abas[abaAtual];
+    var busca = (document.getElementById('q') ? document.getElementById('q').value : '').toLowerCase().trim();
+    var filtro = (document.getElementById('fReg') ? document.getElementById('fReg').value : '');
+    var iReg = A.cab.indexOf('Regional');
+    var linhas = A.linhas.filter(function (l) {
+      if (filtro && iReg >= 0 && String(l[iReg]) !== filtro) return false;
+      if (busca && l.join(' ').toLowerCase().indexOf(busca) === -1) return false;
       return true;
     });
-    document.getElementById('filtroContagem').textContent = filtrados.length + ' de ' + dados.length + ' chamados';
-    renderTabela(filtrados);
-    atualizarKPIs(filtrados);
-  }
-
-  function atualizarKPIs(arr) {
-    document.getElementById('kpi-total').textContent = fmtN(arr.length);
-    var perdaTotal = 0, criticos = 0, maisAntigo = 0;
-    arr.forEach(function(x){
-      perdaTotal += (x.perda || 0);
-      if(x.critica) criticos++;
-      if((x.dias||0) > maisAntigo) maisAntigo = x.dias||0;
+    var mostra = linhas.slice(0, LIMITE);
+    var h = '<thead><tr>' + A.cab.map(function (c) {
+      return '<th' + (ehPct(c) ? ' class="col-num"' : '') + '>' + esc(c) + '</th>'; }).join('') + '</tr></thead><tbody>';
+    if (!mostra.length) { h += '<tr><td colspan="' + A.cab.length + '" class="msg">Nada encontrado.</td></tr>'; }
+    mostra.forEach(function (l) {
+      h += '<tr>' + l.map(function (v, i) {
+        var c = A.cab[i];
+        if (typeof v === 'number' && ehPct(c)) return '<td class="col-num">' + Math.round(v) + '%</td>';
+        if (typeof v === 'number') return '<td class="col-num">' + fmtN(v) + '</td>';
+        var t = String(v == null ? '' : v);
+        if (t === 'SOS') return '<td><span class="tag tag-sos">SOS</span></td>';
+        if (t === 'ALTO') return '<td><span class="tag tag-alta">ALTO</span></td>';
+        if (t === 'Sim') return '<td><span class="tag tag-alta">Sim</span></td>';
+        if (/INOPERANTE/.test(t)) return '<td><span class="tag tag-sos">' + esc(t) + '</span></td>';
+        if (t === 'OPERANDO' || t === 'DISPONÍVEL') return '<td><span class="tag tag-ok">' + esc(t) + '</span></td>';
+        return '<td class="wrap" title="' + esc(t) + '">' + esc(t) + '</td>';
+      }).join('') + '</tr>';
     });
-    document.getElementById('kpi-perda').textContent = fmtR(perdaTotal);
-    document.getElementById('kpi-regionais').textContent = fmtN(criticos);
-    document.getElementById('kpi-max').textContent = fmtN(maisAntigo);
+    h += '</tbody>';
+    document.getElementById('tabela').innerHTML = h;
+    document.getElementById('cont').textContent = linhas.length === A.linhas.length
+      ? (A.linhas.length + ' registros') + (linhas.length > LIMITE ? ' · mostrando ' + LIMITE : '')
+      : linhas.length + ' de ' + A.linhas.length + (linhas.length > LIMITE ? ' · mostrando ' + LIMITE : '');
   }
 
-  function renderTabela(arr) {
-    var tbody = document.getElementById('tbody');
-    if(arr.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="9" class="msg-carregando">Nenhum chamado encontrado.</td></tr>';
-      return;
+  function render() {
+    if (abaAtual === '__painel') { renderPainel(); return; }
+    var A = D.abas[abaAtual];
+    var iReg = A.cab.indexOf('Regional');
+    var regs = [];
+    if (iReg >= 0) {
+      var vis = {};
+      A.linhas.forEach(function (l) { if (l[iReg]) vis[l[iReg]] = 1; });
+      regs = Object.keys(vis).sort();
     }
-    var html = '';
-    arr.forEach(function(x){
-      var perdaFmt = fmtR(x.perda);
-      var estadoTag = '';
-      var estLower = (x.estado||'').toLowerCase();
-      if(estLower.indexOf('expedi') !== -1) estadoTag = '<span class="tag tag-alta">'+(x.estado||'')+'</span>';
-      else if(estLower.indexOf('andamento') !== -1) estadoTag = '<span class="tag tag-sos">'+(x.estado||'')+'</span>';
-      else estadoTag = '<span class="tag tag-normal">'+(x.estado||'')+'</span>';
-      // familia que para a venda vem marcada em vermelho; as demais, discretas
-      var famTag = x.critica
-        ? '<span class="tag tag-sos">'+(x.familia||'')+'</span>'
-        : '<span class="tag tag-normal">'+(x.familia||'')+'</span>';
-      // acima de 30 dias em aberto o numero de dias fica vermelho
-      var diasTxt = (x.dias == null) ? '' : (x.dias > 30
-        ? '<strong style="color:var(--sos)">'+x.dias+'</strong>'
-        : String(x.dias));
-      html += '<tr>' +
-        '<td><a class="chamado-link" href="https://soma.zamp.com.br/wm_order_list.do?sysparm_query=number%3D'+(x.chamado||'')+'" target="_blank" rel="noopener">'+(x.chamado||'')+'</a></td>' +
-        '<td class="loja-cell" title="'+((x.bkn?x.bkn+' · ':'')+(x.setor||'')).replace(/"/g,'&quot;')+'">'+(x.loja||'')+'</td>' +
-        '<td style="font-size:11.5px;">'+(x.equipamento||'')+'</td>' +
-        '<td style="font-size:11.5px;color:var(--muted);" title="'+(x.problema||'').replace(/"/g,'&quot;')+'">'+(x.problema||'')+'</td>' +
-        '<td>'+famTag+'</td>' +
-        '<td class="col-num">'+diasTxt+'</td>' +
-        '<td class="col-num">'+(x.perda != null ? '<strong>'+perdaFmt+'</strong>' : '<span style="color:var(--muted)">—</span>')+'</td>' +
-        '<td>'+estadoTag+'</td>' +
-        '<td style="font-size:11px;color:var(--muted);">'+(x.abertura||'')+'</td>' +
-        '</tr>';
-    });
-    tbody.innerHTML = html;
+    var h = '<div class="sec-head"><h2>' + esc(A.titulo || abaAtual) + '</h2>'
+          + '<span class="sec-note">' + esc(abaAtual) + '</span></div>'
+          + '<div class="busca-linha">';
+    if (regs.length) {
+      h += '<div class="filter-field"><label for="fReg">Regional</label><select id="fReg"><option value="">Todas</option>'
+         + regs.map(function (r) { return '<option>' + esc(r) + '</option>'; }).join('') + '</select></div>';
+    }
+    h += '<div class="filter-field" style="flex:1;min-width:240px"><label for="q">Buscar</label>'
+       + '<input type="text" id="q" placeholder="loja, chamado, problema…" autocomplete="off"></div>'
+       + '<button class="filter-clear" id="limpar" type="button">Limpar</button></div>'
+       + '<div class="filter-count" id="cont"></div>'
+       + '<div class="table-wrap"><table id="tabela"></table></div>';
+    document.getElementById('conteudo').innerHTML = h;
+    var q = document.getElementById('q'); if (q) q.addEventListener('input', renderTabela);
+    var fr = document.getElementById('fReg'); if (fr) fr.addEventListener('change', renderTabela);
+    document.getElementById('limpar').addEventListener('click', function () {
+      if (q) q.value = ''; if (fr) fr.value = ''; renderTabela(); });
+    renderTabela();
   }
 
-  document.getElementById('filtroFamilia').addEventListener('change', aplicarFiltros);
-  document.getElementById('filtroEstado').addEventListener('change', aplicarFiltros);
-  document.getElementById('filtroBusca').addEventListener('input', aplicarFiltros);
-  document.getElementById('filtroLimpar').addEventListener('click', function(){
-    document.getElementById('filtroFamilia').value = '';
-    document.getElementById('filtroEstado').value = '';
-    document.getElementById('filtroBusca').value = '';
-    aplicarFiltros();
-  });
+  var tg = document.getElementById('sideToggle'), rp = document.getElementById('sideReopen');
+  if (tg) tg.addEventListener('click', function () { document.getElementById('side').classList.add('off'); });
+  if (rp) rp.addEventListener('click', function () { document.getElementById('side').classList.remove('off'); });
 
-  loadData();
+  fetch('data/sorvete.json')
+    .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function (j) {
+      D = j;
+      var d = j.geradoEm ? new Date(j.geradoEm) : new Date();
+      var carimbo = d.toLocaleDateString('pt-BR') + ' ' + d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+      document.getElementById('stamp').textContent = carimbo;
+      document.getElementById('footer-stamp').textContent = carimbo;
+      kpis(); montaAbas(); render();
+    })
+    .catch(function (e) {
+      document.getElementById('conteudo').innerHTML = '<div class="msg-erro">Erro ao carregar dados: ' + esc(e.message) + '</div>';
+    });
 })();
 </script>
 </body>
