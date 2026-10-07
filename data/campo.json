@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-07T18:20:10.439Z",
+ "atualizadoEm": "2026-10-07T19:40:10.576Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 12,
+  "emExecucao": 13,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 12
+  "total": 13
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-07",
-   "abertos": 6,
+   "abertos": 7,
    "fechados": 3
   }
  ],
  "itens": [
+  {
+   "numero": "WO0065909",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "23725 - SHOP PRACA NOVA SANTA MARIA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "07/10/2026 16:33:40",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - COZINHA - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
+   "tarefas": [
+    "WOT0066444"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0065866",
    "marca": "BKB",
