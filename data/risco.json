@@ -1,8 +1,8 @@
 {
- "atualizadoEm": "06/10/2026 20:05:56",
- "geradoEm": "2026-10-07T09:01:35.587Z",
+ "atualizadoEm": "07/10/2026 07:11:07",
+ "geradoEm": "2026-10-07T10:55:44.223Z",
  "totalLojasAvaliadas": 71,
- "scoreMedio": 9.21,
+ "scoreMedio": 9.49,
  "categorias": [
   {
    "chave": "sci",
@@ -22,13 +22,8 @@
    "pctVencido": 45,
    "lojasVencidas": [
     {
-     "nome": "25455 - FS POA - AV DR NILO PECANHA 1715",
-     "score": 19,
-     "diasAtraso": null
-    },
-    {
      "nome": "20047 - FS CURITIBA - LINHA VERDE",
-     "score": 15,
+     "score": 19,
      "diasAtraso": null
     },
     {
@@ -52,8 +47,28 @@
      "diasAtraso": null
     },
     {
+     "nome": "25455 - FS POA - AV DR NILO PECANHA 1715",
+     "score": 15,
+     "diasAtraso": null
+    },
+    {
      "nome": "26828 - FS CURITIBA FRANCISCO FRISHMANN 3151",
      "score": 15,
+     "diasAtraso": null
+    },
+    {
+     "nome": "16626 - SHOP PALLADIUM CURITIBA",
+     "score": 14,
+     "diasAtraso": null
+    },
+    {
+     "nome": "29084 - FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL 13185",
+     "score": 14,
+     "diasAtraso": null
+    },
+    {
+     "nome": "16852 - SHOP SAO JOSE DOS PINHAIS",
+     "score": 14,
      "diasAtraso": null
     },
     {
@@ -64,16 +79,6 @@
     {
      "nome": "16647 - FS CURITIBA - R BISPO DOM JOSE 2348",
      "score": 11,
-     "diasAtraso": null
-    },
-    {
-     "nome": "16626 - SHOP PALLADIUM CURITIBA",
-     "score": 10,
-     "diasAtraso": null
-    },
-    {
-     "nome": "16852 - SHOP SAO JOSE DOS PINHAIS",
-     "score": 10,
      "diasAtraso": null
     },
     {
@@ -175,30 +180,30 @@
      "nome": "26839 - FS CURITIBA AV SILVA JARDIM 566",
      "score": 10,
      "diasAtraso": null
-    },
-    {
-     "nome": "29084 - FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL 13185",
-     "score": 10,
-     "diasAtraso": null
     }
    ]
   },
   {
    "chave": "rotaSeguranca",
    "nome": "Rota Segurança",
-   "vencido": 4,
-   "emDia": 67,
+   "vencido": 5,
+   "emDia": 66,
    "total": 71,
-   "pctVencido": 6,
+   "pctVencido": 7,
    "lojasVencidas": [
-    {
-     "nome": "25455 - FS POA - AV DR NILO PECANHA 1715",
-     "score": 19,
-     "diasAtraso": null
-    },
     {
      "nome": "21586 - SHOP ROYAL PLAZA SANTA MARIA",
      "score": 15,
+     "diasAtraso": null
+    },
+    {
+     "nome": "16626 - SHOP PALLADIUM CURITIBA",
+     "score": 14,
+     "diasAtraso": null
+    },
+    {
+     "nome": "29084 - FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL 13185",
+     "score": 14,
      "diasAtraso": null
     },
     {
@@ -207,7 +212,7 @@
      "diasAtraso": null
     },
     {
-     "nome": "24766 - SHOP TOTAL POA",
+     "nome": "26806 - JOCKEY PLAZA SHOP",
      "score": 10,
      "diasAtraso": null
     }
@@ -216,11 +221,27 @@
   {
    "chave": "rotaPadroes",
    "nome": "Rota Padrões",
-   "vencido": 0,
-   "emDia": 71,
+   "vencido": 3,
+   "emDia": 68,
    "total": 71,
-   "pctVencido": 0,
-   "lojasVencidas": []
+   "pctVencido": 4,
+   "lojasVencidas": [
+    {
+     "nome": "20047 - FS CURITIBA - LINHA VERDE",
+     "score": 19,
+     "diasAtraso": null
+    },
+    {
+     "nome": "16852 - SHOP SAO JOSE DOS PINHAIS",
+     "score": 14,
+     "diasAtraso": null
+    },
+    {
+     "nome": "21535 - ANGELONI AGUA VERDE",
+     "score": 10,
+     "diasAtraso": null
+    }
+   ]
   }
  ],
  "abertoPorItemBruto": [
@@ -230,13 +251,13 @@
   "Intertravamento",
   "Sensor de gás",
   "Sistema de Incêndio",
-  "12",
+  "13",
   "4",
   "3",
   "1",
   "1",
   "1",
-  "5",
+  "4",
   "Atrasado",
   "No Prazo"
  ],
@@ -335,10 +356,10 @@
     "regional": "SUL",
     "setor": "SUDOESTE RS",
     "loja": "20621 - SHOP PELOTAS",
-    "status": "Pronto Para Envio",
+    "status": "Em Andamento",
     "dtAbertura": "13/09/2026",
     "dtEncerramento": "",
-    "tecnico": "THIAGO DA SILVA GONZALEZ"
+    "tecnico": "MARCEL VINICIOS ROCHA AGRADEM"
    },
    {
     "numero": "WO0052539",
@@ -523,6 +544,20 @@
     "tecnico": "CARLOS MAGNO DA SILVA LIRA"
    },
    {
+    "numero": "WO0059152",
+    "statusRisco": "Atrasado",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - COIFA NÃO FUNCIONA",
+    "regional": "SUL",
+    "setor": "VALE DOS SINOS",
+    "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "30/09/2026",
+    "dtEncerramento": "",
+    "tecnico": "THIAGO DOS SANTOS COELHO"
+   },
+   {
     "numero": "WO0064164",
     "statusRisco": "Atrasado",
     "item": "Intertravamento",
@@ -552,20 +587,6 @@
    }
   ],
   "aVencer": [
-   {
-    "numero": "WO0059152",
-    "statusRisco": "No Prazo",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA NÃO FUNCIONA",
-    "regional": "SUL",
-    "setor": "VALE DOS SINOS",
-    "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
-    "status": "Pronto Para Envio",
-    "dtAbertura": "30/09/2026",
-    "dtEncerramento": "",
-    "tecnico": "THIAGO DOS SANTOS COELHO"
-   },
    {
     "numero": "WO0063760",
     "statusRisco": "No Prazo",
