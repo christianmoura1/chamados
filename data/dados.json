@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-07T07:55:54",
+  "atualizadoEm": "2026-10-07T08:02:03",
   "totalRegistros": 4436,
   "totalAbertos": 1775,
   "totalFechados": 2661,
@@ -260,6 +260,16 @@
           "abertura": "2026-09-26"
         },
         {
+          "numero": "WOT0059494",
+          "loja": "SHOP GRAVATAI",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 8,
+          "tecnico": "Thiago Dos Santos Coelho",
+          "problema": "BK078988 - MAQUINA DE SORVETE; TAYLOR; C712N-33; M3 | MDS - MÁQUINA CONGELADA",
+          "abertura": "2026-09-29"
+        },
+        {
           "numero": "WOT0060005",
           "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
           "estado": "Atribuído",
@@ -298,16 +308,6 @@
           "tecnico": "Thiago Dos Santos Coelho",
           "problema": "MÁQUINA DE SORVETE | MDS - ERRO NA PASTEURIZAÇÃO",
           "abertura": "2026-09-30"
-        },
-        {
-          "numero": "WOT0059494",
-          "loja": "SHOP GRAVATAI",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Alta",
-          "dias": 7,
-          "tecnico": "Thiago Dos Santos Coelho",
-          "problema": "BK078988 - MAQUINA DE SORVETE; TAYLOR; C712N-33; M3 | MDS - MÁQUINA CONGELADA",
-          "abertura": "2026-09-29"
         },
         {
           "numero": "WOT0059610",
@@ -734,7 +734,7 @@
           "loja": "SHOP PRACA NOVA SANTA MARIA",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 12,
+          "dias": 13,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "BK055625 - MÁQUINA DE SORVETE | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-09-24"
@@ -3308,6 +3308,17 @@
           "equipamento": "Máquina de Sorvete"
         },
         {
+          "numero": "WOT0056983",
+          "loja": "SHOP PRACA NOVA SANTA MARIA",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 13,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "BK055625 - MÁQUINA DE SORVETE | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-24",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
           "numero": "WOT0057013",
           "loja": "SHOP ROYAL PLAZA SANTA MARIA",
           "estado": "Atribuído",
@@ -3315,17 +3326,6 @@
           "dias": 12,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "BK036544 - MAQUINA DE SORVETE; TAYLOR; C706-27; M50 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-24",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
-          "numero": "WOT0056983",
-          "loja": "SHOP PRACA NOVA SANTA MARIA",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 12,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "BK055625 - MÁQUINA DE SORVETE | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-09-24",
           "equipamento": "Máquina de Sorvete"
         },
@@ -3675,6 +3675,17 @@
           "equipamento": "Micro-ondas"
         },
         {
+          "numero": "WOT0059494",
+          "loja": "SHOP GRAVATAI",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 8,
+          "tecnico": "Thiago Dos Santos Coelho",
+          "problema": "BK078988 - MAQUINA DE SORVETE; TAYLOR; C712N-33; M3 | MDS - MÁQUINA CONGELADA",
+          "abertura": "2026-09-29",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
           "numero": "WOT0059610",
           "loja": "SHOP DO VALE",
           "estado": "Trabalho em andamento",
@@ -3705,17 +3716,6 @@
           "tecnico": "Thiago Dos Santos Coelho",
           "problema": "MÁQUINA DE SORVETE | MDS - ERRO NA PASTEURIZAÇÃO",
           "abertura": "2026-09-30",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
-          "numero": "WOT0059494",
-          "loja": "SHOP GRAVATAI",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Alta",
-          "dias": 7,
-          "tecnico": "Thiago Dos Santos Coelho",
-          "problema": "BK078988 - MAQUINA DE SORVETE; TAYLOR; C712N-33; M3 | MDS - MÁQUINA CONGELADA",
-          "abertura": "2026-09-29",
           "equipamento": "Máquina de Sorvete"
         },
         {
@@ -6593,6 +6593,94 @@
       ]
     },
     {
+      "nome": "Thiago Dos Santos Coelho",
+      "ehSupervisor": false,
+      "lojasAtendidas": 5,
+      "chamados": 7,
+      "alta": 3,
+      "sos": 0,
+      "tempoMedioDias": 19,
+      "chamadosDetalhe": [
+        {
+          "numero": "WOT0059494",
+          "loja": "SHOP GRAVATAI",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 8,
+          "tecnico": "Thiago Dos Santos Coelho",
+          "problema": "BK078988 - MAQUINA DE SORVETE; TAYLOR; C712N-33; M3 | MDS - MÁQUINA CONGELADA",
+          "abertura": "2026-09-29",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
+          "numero": "WOT0060145",
+          "loja": "SHOP GRAVATAI",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 7,
+          "tecnico": "Thiago Dos Santos Coelho",
+          "problema": "MÁQUINA DE SORVETE | MDS - ERRO NA PASTEURIZAÇÃO",
+          "abertura": "2026-09-30",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
+          "numero": "WOT0065557",
+          "loja": "SHOP CENTER LAR",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 2,
+          "tecnico": "Thiago Dos Santos Coelho",
+          "problema": "BK078979 - MAQUINA DE SORVETE C716 380V | MDS - MÁQUINA CONGELADA",
+          "abertura": "2026-10-05",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
+          "numero": "WOT0021820",
+          "loja": "BOURBON SHOP SAO LEOPOLDO",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 56,
+          "tecnico": "Thiago Dos Santos Coelho",
+          "problema": "BK066334 - PHU; DUKE; FWM3-24MB1-230; 94AAAJ0120 | PHU - NÃO ACENDE LUZES",
+          "abertura": "2026-08-12",
+          "equipamento": "PHU"
+        },
+        {
+          "numero": "WOT0050048",
+          "loja": "BOURBON SHOP SAO LEOPOLDO",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 26,
+          "tecnico": "Thiago Dos Santos Coelho",
+          "problema": "BK066333 - PHU; DUKE; FWM3-24SB2-230; 94AAAJ0121 | PHU - NÃO ACENDE LUZES",
+          "abertura": "2026-09-10",
+          "equipamento": "PHU"
+        },
+        {
+          "numero": "WOT0050901",
+          "loja": "OUTLET NOVO HAMBURGO",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 25,
+          "tecnico": "Thiago Dos Santos Coelho",
+          "problema": "MÁQUINA DE SORVETE | MDS - SORVETE MOLE",
+          "abertura": "2026-09-12",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
+          "numero": "WOT0059792",
+          "loja": "FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 7,
+          "tecnico": "Thiago Dos Santos Coelho",
+          "problema": "BK068720 - FRITADEIRA; PITCO; SSHLV14; G18GB037535 | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-30",
+          "equipamento": "Fritadeira"
+        }
+      ]
+    },
+    {
       "nome": "Rafael Wagner Barbosa de Jesus",
       "ehSupervisor": true,
       "lojasAtendidas": 29,
@@ -6987,6 +7075,17 @@
           "equipamento": "Máquina de Sorvete"
         },
         {
+          "numero": "WOT0056983",
+          "loja": "SHOP PRACA NOVA SANTA MARIA",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 13,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "BK055625 - MÁQUINA DE SORVETE | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-24",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
           "numero": "WOT0056606",
           "loja": "SHOP BELLA CITTA",
           "estado": "Atribuído",
@@ -6996,17 +7095,6 @@
           "problema": "BK066933 - TOSTADORA VERTICAL; PRINCE CASTLE; DCFT- | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-09-24",
           "equipamento": "Tostadeira"
-        },
-        {
-          "numero": "WOT0056983",
-          "loja": "SHOP PRACA NOVA SANTA MARIA",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 12,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "BK055625 - MÁQUINA DE SORVETE | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-24",
-          "equipamento": "Máquina de Sorvete"
         },
         {
           "numero": "WOT0057013",
@@ -7392,94 +7480,6 @@
           "problema": "BK063577 - PHU; PRINCE CASTLE; EHB34A-BR; FMGK20163 | PHU - NÃO ACENDE LUZES",
           "abertura": "2026-10-06",
           "equipamento": "PHU"
-        }
-      ]
-    },
-    {
-      "nome": "Thiago Dos Santos Coelho",
-      "ehSupervisor": false,
-      "lojasAtendidas": 5,
-      "chamados": 7,
-      "alta": 3,
-      "sos": 0,
-      "tempoMedioDias": 19,
-      "chamadosDetalhe": [
-        {
-          "numero": "WOT0060145",
-          "loja": "SHOP GRAVATAI",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Alta",
-          "dias": 7,
-          "tecnico": "Thiago Dos Santos Coelho",
-          "problema": "MÁQUINA DE SORVETE | MDS - ERRO NA PASTEURIZAÇÃO",
-          "abertura": "2026-09-30",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
-          "numero": "WOT0059494",
-          "loja": "SHOP GRAVATAI",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Alta",
-          "dias": 7,
-          "tecnico": "Thiago Dos Santos Coelho",
-          "problema": "BK078988 - MAQUINA DE SORVETE; TAYLOR; C712N-33; M3 | MDS - MÁQUINA CONGELADA",
-          "abertura": "2026-09-29",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
-          "numero": "WOT0065557",
-          "loja": "SHOP CENTER LAR",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Alta",
-          "dias": 2,
-          "tecnico": "Thiago Dos Santos Coelho",
-          "problema": "BK078979 - MAQUINA DE SORVETE C716 380V | MDS - MÁQUINA CONGELADA",
-          "abertura": "2026-10-05",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
-          "numero": "WOT0021820",
-          "loja": "BOURBON SHOP SAO LEOPOLDO",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 56,
-          "tecnico": "Thiago Dos Santos Coelho",
-          "problema": "BK066334 - PHU; DUKE; FWM3-24MB1-230; 94AAAJ0120 | PHU - NÃO ACENDE LUZES",
-          "abertura": "2026-08-12",
-          "equipamento": "PHU"
-        },
-        {
-          "numero": "WOT0050048",
-          "loja": "BOURBON SHOP SAO LEOPOLDO",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 26,
-          "tecnico": "Thiago Dos Santos Coelho",
-          "problema": "BK066333 - PHU; DUKE; FWM3-24SB2-230; 94AAAJ0121 | PHU - NÃO ACENDE LUZES",
-          "abertura": "2026-09-10",
-          "equipamento": "PHU"
-        },
-        {
-          "numero": "WOT0050901",
-          "loja": "OUTLET NOVO HAMBURGO",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 25,
-          "tecnico": "Thiago Dos Santos Coelho",
-          "problema": "MÁQUINA DE SORVETE | MDS - SORVETE MOLE",
-          "abertura": "2026-09-12",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
-          "numero": "WOT0059792",
-          "loja": "FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 7,
-          "tecnico": "Thiago Dos Santos Coelho",
-          "problema": "BK068720 - FRITADEIRA; PITCO; SSHLV14; G18GB037535 | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-30",
-          "equipamento": "Fritadeira"
         }
       ]
     },
