@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-07T10:00:26.189Z",
+ "atualizadoEm": "2026-10-07T12:00:11.845Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 9,
+  "emExecucao": 10,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 9
+  "total": 10
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-07",
-   "abertos": 0,
+   "abertos": 1,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0065638",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "16619 - SHOP PRAIA DE BELAS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "07/10/2026 08:57:09",
+   "fechamento": "",
+   "principal": "BK072052 - BROILER; NIECO; JF93G; 232-32583",
+   "secundario": "BRO - VAZAMENTO DE GÁS",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK072052 - BROILER; NIECO; JF93G; 232-32583 | BRO - VAZAMENTO DE GÁS",
+   "tarefas": [
+    "WOT0066172"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0065593",
    "marca": "BKB",
