@@ -232,27 +232,34 @@ try {
   log('AVISO: dias de atraso nao extraidos (' + String(e.message || e).split('\n')[0] + ') -- sigo sem eles');
 }
 
-// Celulas cruas de uma linha -> { loja, categoria, data, dias }. A data vem no
-// formato do idioma da conta do BI (mesma desambiguacao do carimbo); "dias" e'
-// o ULTIMO numero inteiro da linha (Dias em Atraso / Dias sem Rota).
+// Celulas cruas de uma linha -> { loja, categoria, datas, dias }. As datas vem
+// no formato do idioma da conta do BI (mesma desambiguacao do carimbo) e saem
+// ordenadas; "dias" e' o ULTIMO numero inteiro (Dias em Atraso / Dias sem
+// Rota). Preventivas traz Ult. Manutencao e Prox. Manutencao: a mais nova e' o
+// vencimento, de onde o BI conta os Dias em Atraso. Rota traz so' Ult. Visita.
 function interpretaLinha(cel) {
   const loja = cel[0];
-  let data = null, dias = null, categoria = null;
+  const datas = [];
+  let dias = null, categoria = null;
   for (const c of cel.slice(1)) {
     const m = c.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);
-    if (m) { const p = partesBI(m[1], m[2]); data = String(p.dia).padStart(2, '0') + '/' + String(p.mes).padStart(2, '0') + '/' + m[3]; continue; }
+    if (m) { const p = partesBI(m[1], m[2]); datas.push({ t: new Date(+m[3], p.mes - 1, p.dia).getTime(), txt: String(p.dia).padStart(2, '0') + '/' + String(p.mes).padStart(2, '0') + '/' + m[3] }); continue; }
     const n = c.replace(/\./g, '');
     if (/^-?\d+$/.test(n)) { dias = Number(n); continue; }
     if (!categoria) categoria = c;
   }
-  return { loja, categoria, data, dias };
+  datas.sort((a, b) => a.t - b.t);
+  return { loja, categoria, datas: datas.map((d) => d.txt), dias };
 }
 // Qual tabela e quais linhas valem para cada coluna da Matriz de Risco.
+// Conferido em 08/10/2026: as 23 lojas vencidas em Dutos sao exatamente as 23
+// com LIMPEZA DE DUTO atrasada. LIMPEZA DE CAIXA NAO entra: sao registros
+// parados desde 2008-2025 (milhares de dias) que a matriz ignora.
 const FONTE_CATEGORIA = {
-  dutos: { visual: 'preventivas', filtro: (l) => /DUTO|CAIXA/i.test(l.categoria || ''), rotulo: 'últ. manut.' },
-  sci: { visual: 'preventivas', filtro: (l) => /INC[EÊ]NDIO|SCI/i.test(l.categoria || ''), rotulo: 'últ. manut.' },
-  rotaSeguranca: { visual: 'rotaSeguranca', filtro: () => true, rotulo: 'últ. visita' },
-  rotaPadroes: { visual: 'rotaTecnica', filtro: () => true, rotulo: 'últ. visita' },
+  dutos: { visual: 'preventivas', filtro: (l) => /LIMPEZA DE DUTO/i.test(l.categoria || ''), rotulo: 'venceu', qual: 'ultima' },
+  sci: { visual: 'preventivas', filtro: (l) => /INC[EÊ]NDIO/i.test(l.categoria || ''), rotulo: 'venceu', qual: 'ultima' },
+  rotaSeguranca: { visual: 'rotaSeguranca', filtro: () => true, rotulo: 'últ. visita', qual: 'primeira' },
+  rotaPadroes: { visual: 'rotaTecnica', filtro: () => true, rotulo: 'últ. visita', qual: 'primeira' },
 };
 function atrasoDaLoja(chaveCategoria, nomeLoja) {
   const f = FONTE_CATEGORIA[chaveCategoria];
@@ -262,10 +269,11 @@ function atrasoDaLoja(chaveCategoria, nomeLoja) {
   const candidatas = v.linhas.map(interpretaLinha)
     .filter((l) => String(l.loja).split(' - ')[0].trim() === codigo && f.filtro(l) && l.dias != null);
   if (!candidatas.length) return null;
-  // mais de uma linha (ex.: LIMPEZA DE DUTO e LIMPEZA DE CAIXA): vale a pior
+  // mais de uma linha para a mesma loja e item: vale a pior
   candidatas.sort((a, b) => b.dias - a.dias);
   const l = candidatas[0];
-  return { dias: l.dias, data: l.data, rotulo: f.rotulo, ref: l.categoria && f.visual === 'preventivas' ? l.categoria : null };
+  const data = l.datas.length ? (f.qual === 'ultima' ? l.datas[l.datas.length - 1] : l.datas[0]) : null;
+  return { dias: l.dias, data, rotulo: f.rotulo, ref: null };
 }
 
 // ---------- 3) junta ----------
