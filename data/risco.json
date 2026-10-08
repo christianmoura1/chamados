@@ -1,8 +1,8 @@
 {
- "atualizadoEm": "08/10/2026 07:10:50",
- "geradoEm": "2026-10-08T12:02:23.922Z",
+ "atualizadoEm": "08/10/2026 12:12:14",
+ "geradoEm": "2026-10-08T17:11:46.062Z",
  "totalLojasAvaliadas": 71,
- "scoreMedio": 9.32,
+ "scoreMedio": 8.76,
  "categorias": [
   {
    "chave": "sci",
@@ -16,43 +16,13 @@
   {
    "chave": "dutos",
    "nome": "Dutos",
-   "vencido": 32,
-   "emDia": 39,
+   "vencido": 23,
+   "emDia": 48,
    "total": 71,
-   "pctVencido": 45,
+   "pctVencido": 32,
    "lojasVencidas": [
     {
-     "nome": "20047 - FS CURITIBA - LINHA VERDE",
-     "score": 15,
-     "diasAtraso": null
-    },
-    {
-     "nome": "20049 - SHOP PRACA RIO GRANDE",
-     "score": 15,
-     "diasAtraso": null
-    },
-    {
-     "nome": "20621 - SHOP PELOTAS",
-     "score": 15,
-     "diasAtraso": null
-    },
-    {
      "nome": "22507 - ILR PORTO ALEGRE - R ANDRADAS 1664",
-     "score": 15,
-     "diasAtraso": null
-    },
-    {
-     "nome": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
-     "score": 15,
-     "diasAtraso": null
-    },
-    {
-     "nome": "25455 - FS POA - AV DR NILO PECANHA 1715",
-     "score": 15,
-     "diasAtraso": null
-    },
-    {
-     "nome": "26828 - FS CURITIBA FRANCISCO FRISHMANN 3151",
      "score": 15,
      "diasAtraso": null
     },
@@ -72,12 +42,12 @@
      "diasAtraso": null
     },
     {
-     "nome": "16852 - SHOP SAO JOSE DOS PINHAIS",
-     "score": 10,
+     "nome": "26160 - FS CANOAS - AV GETULIO VARGAS 3800",
+     "score": 11,
      "diasAtraso": null
     },
     {
-     "nome": "17223 - CANOAS SHOP",
+     "nome": "16852 - SHOP SAO JOSE DOS PINHAIS",
      "score": 10,
      "diasAtraso": null
     },
@@ -88,11 +58,6 @@
     },
     {
      "nome": "19665 - SHOP SAN PELEGRINO",
-     "score": 10,
-     "diasAtraso": null
-    },
-    {
-     "nome": "19868 - SHOP DO VALE",
      "score": 10,
      "diasAtraso": null
     },
@@ -122,7 +87,7 @@
      "diasAtraso": null
     },
     {
-     "nome": "23699 - COLOMBO PARK SHOP",
+     "nome": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
      "score": 10,
      "diasAtraso": null
     },
@@ -147,22 +112,7 @@
      "diasAtraso": null
     },
     {
-     "nome": "24741 - FS PELOTAS - AV FERREIRA VIANA",
-     "score": 10,
-     "diasAtraso": null
-    },
-    {
-     "nome": "25447 - FS POA - AV CAVALHADA",
-     "score": 10,
-     "diasAtraso": null
-    },
-    {
      "nome": "25676 - FS CURITIBA - RUA DOMINGOS STRAPASSON",
-     "score": 10,
-     "diasAtraso": null
-    },
-    {
-     "nome": "26160 - FS CANOAS - AV GETULIO VARGAS 3800",
      "score": 10,
      "diasAtraso": null
     },
@@ -178,6 +128,11 @@
     },
     {
      "nome": "29084 - FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL 13185",
+     "score": 10,
+     "diasAtraso": null
+    },
+    {
+     "nome": "31345 - FS CANOAS - AV DR SEZ AZAMBUJA VIEIRA",
      "score": 10,
      "diasAtraso": null
     }
@@ -235,13 +190,13 @@
   "Intertravamento",
   "Sensor de gás",
   "Sistema de Incêndio",
-  "13",
+  "11",
   "4",
   "2",
   "1",
   "1",
   "1",
-  "4",
+  "5",
   "Atrasado",
   "No Prazo"
  ],
@@ -270,20 +225,6 @@
     "regional": "SUL",
     "setor": "VALE DOS SINOS",
     "loja": "25677 - FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
-    "status": "Em Andamento",
-    "dtAbertura": "31/08/2026",
-    "dtEncerramento": "",
-    "tecnico": "RUAN CARLOS DA SILVA"
-   },
-   {
-    "numero": "WO0041899",
-    "statusRisco": "Atrasado",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA EM CONTIGÊNCIA",
-    "regional": "SUL",
-    "setor": "CAPITAL CENTRO RS",
-    "loja": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
     "status": "Em Andamento",
     "dtAbertura": "31/08/2026",
     "dtEncerramento": "",
@@ -341,20 +282,6 @@
     "setor": "CAPITAL CENTRO RS",
     "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
     "status": "Pronto Para Envio",
-    "dtAbertura": "17/09/2026",
-    "dtEncerramento": "",
-    "tecnico": "RUAN CARLOS DA SILVA"
-   },
-   {
-    "numero": "WO0052909",
-    "statusRisco": "Atrasado",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
-    "regional": "SUL",
-    "setor": "CAPITAL CENTRO RS",
-    "loja": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
-    "status": "Em Andamento",
     "dtAbertura": "17/09/2026",
     "dtEncerramento": "",
     "tecnico": "RUAN CARLOS DA SILVA"
@@ -612,6 +539,20 @@
     "dtAbertura": "06/10/2026",
     "dtEncerramento": "",
     "tecnico": "MARCEL VINICIOS ROCHA AGRADEM"
+   },
+   {
+    "numero": "WO0066144",
+    "statusRisco": "No Prazo",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - COIFA EM CONTIGÊNCIA",
+    "regional": "SUL",
+    "setor": "CAPITAL SUL RS",
+    "loja": "26160 - FS CANOAS - AV GETULIO VARGAS 3800",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "08/10/2026",
+    "dtEncerramento": "",
+    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
    }
   ]
  }
