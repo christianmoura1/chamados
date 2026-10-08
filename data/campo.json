@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-08T13:40:10.280Z",
+ "atualizadoEm": "2026-10-08T14:00:11.077Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 14,
+  "emExecucao": 15,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 14
+  "total": 15
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-08",
-   "abertos": 1,
+   "abertos": 2,
    "fechados": 4
   }
  ],
  "itens": [
+  {
+   "numero": "WO0066144",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "26160 - FS CANOAS - AV GETULIO VARGAS 3800",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "08/10/2026 10:44:24",
+   "fechamento": "",
+   "principal": "BK070955 - COIFA",
+   "secundario": "COI - COIFA EM CONTIGÊNCIA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK070955 - COIFA | COI - COIFA EM CONTIGÊNCIA",
+   "tarefas": [
+    "WOT0066679"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0066079",
    "marca": "BKB",
