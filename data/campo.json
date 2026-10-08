@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-08T14:40:10.160Z",
+ "atualizadoEm": "2026-10-08T15:20:10.416Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 16,
+  "emExecucao": 17,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 16
+  "total": 17
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-08",
-   "abertos": 3,
-   "fechados": 4
+   "abertos": 4,
+   "fechados": 5
   }
  ],
  "itens": [
+  {
+   "numero": "WO0066222",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "25677 - FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "08/10/2026 12:19:26",
+   "fechamento": "",
+   "principal": "BK068743 - EXAUSTOR",
+   "secundario": "EXA - NÃO LIGA",
+   "sigla": "EXA",
+   "tecnico": "",
+   "descricao": "BK068743 - EXAUSTOR | EXA - NÃO LIGA",
+   "tarefas": [
+    "WOT0066758"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0066167",
    "marca": "BKB",
@@ -285,7 +308,7 @@
    "regional": "SUL",
    "setor": "OESTE PR",
    "loja": "23989 - SHOP JL CASCAVEL",
-   "status": "Pronto para Expedição",
+   "status": "Trabalho em andamento",
    "fase": "Iniciado",
    "abertura": "06/10/2026 20:35:40",
    "fechamento": "",
