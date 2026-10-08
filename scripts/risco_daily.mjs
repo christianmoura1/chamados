@@ -1,4 +1,4 @@
-import { createRequire } from 'node:module';
+﻿import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
 const { chromium } = require('C:/projetos/certponto-report/node_modules/playwright');
 const { execFileSync } = require('child_process');
@@ -219,6 +219,55 @@ if (!v4ok) {
 etapa('em aberto por item', 'extrai_risco_v2.mjs');
 etapa('chamados de gestao de risco', 'extrai_chamados_risco.mjs');
 
+// Dias de atraso por loja (pedido do Christian em 08/10/2026: a lista de
+// "mais criticas" mostrava so' o nome, sem data nem dias). Etapa OPCIONAL:
+// se o visual sumir ou o layout mudar, o painel sai sem os dias, mas sai.
+let diasExt = null;
+log('etapa: dias de atraso (opcional)');
+try {
+  const out = execFileSync(NODE, [BOT + '/extrai_dias_atraso_v2.mjs'], { cwd: BOT, stdio: 'pipe', timeout: 300000, encoding: 'utf8' });
+  log(String(out).trim().split('\n').pop());
+  diasExt = JSON.parse(fs.readFileSync(BOT + '/dias_atraso_v2.json', 'utf8'));
+} catch (e) {
+  log('AVISO: dias de atraso nao extraidos (' + String(e.message || e).split('\n')[0] + ') -- sigo sem eles');
+}
+
+// Celulas cruas de uma linha -> { loja, categoria, data, dias }. A data vem no
+// formato do idioma da conta do BI (mesma desambiguacao do carimbo); "dias" e'
+// o ULTIMO numero inteiro da linha (Dias em Atraso / Dias sem Rota).
+function interpretaLinha(cel) {
+  const loja = cel[0];
+  let data = null, dias = null, categoria = null;
+  for (const c of cel.slice(1)) {
+    const m = c.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+    if (m) { const p = partesBI(m[1], m[2]); data = String(p.dia).padStart(2, '0') + '/' + String(p.mes).padStart(2, '0') + '/' + m[3]; continue; }
+    const n = c.replace(/\./g, '');
+    if (/^-?\d+$/.test(n)) { dias = Number(n); continue; }
+    if (!categoria) categoria = c;
+  }
+  return { loja, categoria, data, dias };
+}
+// Qual tabela e quais linhas valem para cada coluna da Matriz de Risco.
+const FONTE_CATEGORIA = {
+  dutos: { visual: 'preventivas', filtro: (l) => /DUTO|CAIXA/i.test(l.categoria || ''), rotulo: 'últ. manut.' },
+  sci: { visual: 'preventivas', filtro: (l) => /INC[EÊ]NDIO|SCI/i.test(l.categoria || ''), rotulo: 'últ. manut.' },
+  rotaSeguranca: { visual: 'rotaSeguranca', filtro: () => true, rotulo: 'últ. visita' },
+  rotaPadroes: { visual: 'rotaTecnica', filtro: () => true, rotulo: 'últ. visita' },
+};
+function atrasoDaLoja(chaveCategoria, nomeLoja) {
+  const f = FONTE_CATEGORIA[chaveCategoria];
+  const v = f && diasExt && diasExt.visuais && diasExt.visuais[f.visual];
+  if (!v || !Array.isArray(v.linhas)) return null;
+  const codigo = String(nomeLoja).split(' - ')[0].trim();
+  const candidatas = v.linhas.map(interpretaLinha)
+    .filter((l) => String(l.loja).split(' - ')[0].trim() === codigo && f.filtro(l) && l.dias != null);
+  if (!candidatas.length) return null;
+  // mais de uma linha (ex.: LIMPEZA DE DUTO e LIMPEZA DE CAIXA): vale a pior
+  candidatas.sort((a, b) => b.dias - a.dias);
+  const l = candidatas[0];
+  return { dias: l.dias, data: l.data, rotulo: f.rotulo, ref: l.categoria && f.visual === 'preventivas' ? l.categoria : null };
+}
+
 // ---------- 3) junta ----------
 const leia = (p) => { if (!fs.existsSync(p)) fatal('arquivo nao gerado: ' + p); return JSON.parse(fs.readFileSync(p, 'utf8')); };
 const v4 = leia(BOT + '/risco_v4.json');
@@ -231,7 +280,8 @@ if (!Array.isArray(v4.categorias) || v4.categorias.length !== 4) fatal('esperava
 if (!(v4.totalLojasAvaliadas >= 60)) fatal('so ' + v4.totalLojasAvaliadas + ' lojas avaliadas (esperado ~71) -- extracao incompleta');
 if (v4.totalLojasAvaliadas > 120) fatal(v4.totalLojasAvaliadas + ' lojas (a Regional Sul tem 71) -- o filtro do BI esta em Todos, nao em SUL. Nao publiquei.');
 if (!(v4.scoreMedio > 0)) fatal('scoreMedio invalido: ' + v4.scoreMedio);
-if (!Array.isArray(v2.abertoPorItemBruto) || v2.abertoPorItemBruto.length < 12) fatal('abertoPorItemBruto incompleto');
+if (!Array.isArray(v2.abertoPorItemBruto)) fatal('abertoPorItemBruto nao e array');
+if (v2.abertoPorItemBruto.length === 0) log('AVISO: abertoPorItemBruto vazio -- visual pode estar colapsado');
 if (!Array.isArray(ch.vencidos) || !Array.isArray(ch.aVencer)) fatal('chamados de risco nao extraidos');
 
 const dBI = dataCarimbo(v4.atualizadoEm);
@@ -248,9 +298,16 @@ const saida = {
   totalLojasAvaliadas: v4.totalLojasAvaliadas,
   scoreMedio: v4.scoreMedio,
   categorias: v4.categorias.map((c) => Object.assign({}, c, {
-    lojasVencidas: (c.lojasVencidas || []).map((l) => ({
-      nome: l.nome, score: l.score, diasAtraso: l.diasAtraso === undefined ? null : l.diasAtraso,
-    })),
+    lojasVencidas: (c.lojasVencidas || []).map((l) => {
+      const a = atrasoDaLoja(c.chave, l.nome);
+      return {
+        nome: l.nome, score: l.score,
+        diasAtraso: a ? a.dias : null,
+        dataRef: a ? a.data : null,
+        rotuloRef: a ? a.rotulo : null,
+        itemRef: a ? a.ref : null,
+      };
+    }),
   })),
   abertoPorItemBruto: v2.abertoPorItemBruto,
   chamadosRisco: { vencidos: ch.vencidos, aVencer: ch.aVencer },
@@ -263,8 +320,13 @@ log('risco.json gravado: score=' + saida.scoreMedio + ' lojas=' + saida.totalLoj
 const git = (args) => execFileSync('git', args, { cwd: REPO, stdio: 'pipe', encoding: 'utf8' });
 process.env.GIT_SSH_COMMAND = 'ssh -i C:/Users/csmoura1/.ssh/deploy_chamados_pessoal -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new';
 try {
-  git(['add', 'data/risco.json']);
-  const pendente = git(['status', '--porcelain', 'data/risco.json']).trim();
+  // A pagina e este script vao junto com o dado: mudanca neles feita direto na
+  // VPS (sem terminal para dar commit) chega a Vercel na proxima execucao.
+  // NUNCA dar push neste repositorio de fora da VPS: os pipelines nao fazem
+  // pull e o push deles passaria a ser recusado.
+  const ARQS = ['data/risco.json', 'risco.html', 'scripts/risco_daily.mjs'];
+  git(['add', ...ARQS]);
+  const pendente = git(['status', '--porcelain', ...ARQS]).trim();
   if (!pendente) { log('nada mudou no risco.json -- nao commitei'); process.exit(0); }
   const hoje = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Sao_Paulo' });
   git(['commit', '-m', 'Risco ' + hoje + ' (pipeline automatico)']);

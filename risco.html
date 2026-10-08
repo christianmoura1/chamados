@@ -163,6 +163,8 @@
   .esos-list { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
   .esos-item { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 11.5px; }
   .esos-item .loja { color: var(--ink); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+  .esos-item .loja-col { display: flex; flex-direction: column; min-width: 0; }
+  .esos-item .ref { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .esos-empty { font-size: 11.5px; color: var(--faint); }
 
   .cons-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -335,7 +337,7 @@
     <div class="modal-sub" id="modalSub"></div>
     <div class="modal-body">
       <table class="detail-table">
-        <thead><tr><th>Loja</th><th>Dias em Atraso</th></tr></thead>
+        <thead><tr><th>Loja</th><th>Referência</th><th>Dias em Atraso</th></tr></thead>
         <tbody id="modalTbody"></tbody>
       </table>
     </div>
@@ -369,10 +371,23 @@ function donutSVG(pct, cor) {
   </svg>`;
 }
 
+// "últ. visita 12/08/2026" ou "últ. manut. 03/07/2026 · limpeza de duto".
+// A data vem primeiro: no celular a linha corta no fim. Sem data no BI (item
+// nunca registrado) diz isso em vez de inventar.
+function refAtraso(l) {
+  const item = l.itemRef ? l.itemRef.toLowerCase() : '';
+  const quando = l.dataRef ? `${l.rotuloRef || 'últ.'} ${l.dataRef}` : (l.diasAtraso != null ? 'sem data registrada' : '');
+  return [quando, item].filter(Boolean).join(' · ');
+}
+const diasTxt = l => l.diasAtraso != null ? `${l.diasAtraso}d` : '—';
+
 function blocoMaisUrgentes(itens) {
   const top5 = (itens || []).slice(0, 5);
   const html = top5.length
-    ? top5.map(l => `<div class="esos-item"><span class="loja">${escapeHtml(l.nome)}</span><span class="tag tag-sos">${l.diasAtraso != null ? l.diasAtraso + 'd' : '—'}</span></div>`).join('')
+    ? top5.map(l => {
+        const ref = refAtraso(l);
+        return `<div class="esos-item"><span class="loja-col"><span class="loja">${escapeHtml(l.nome)}</span>${ref ? `<span class="ref">${escapeHtml(ref)}</span>` : ''}</span><span class="tag tag-sos">${diasTxt(l)}</span></div>`;
+      }).join('')
     : '<div class="esos-empty">Nenhuma loja vencida nessa categoria.</div>';
   return `<div>
       <div class="esos-label">Mais críticas (${top5.length}${itens && itens.length > 5 ? ' de ' + itens.length : ''})</div>
@@ -758,8 +773,8 @@ function abrirModalCategoria(chave) {
   document.getElementById('modalTitle').textContent = c.nome;
   document.getElementById('modalSub').textContent = `${c.vencido} de ${c.total} lojas com item vencido (${c.pctVencido}%)`;
   document.getElementById('modalTbody').innerHTML = c.lojasVencidas.length
-    ? c.lojasVencidas.map(l => `<tr><td>${escapeHtml(l.nome)}</td><td class="num">${l.diasAtraso != null ? l.diasAtraso + 'd' : '—'}</td></tr>`).join('')
-    : `<tr><td colspan="2" class="esos-empty">Nenhuma loja vencida nessa categoria.</td></tr>`;
+    ? c.lojasVencidas.map(l => `<tr><td>${escapeHtml(l.nome)}</td><td>${escapeHtml(refAtraso(l) || '—')}</td><td class="num">${l.diasAtraso != null ? l.diasAtraso + 'd' : '—'}</td></tr>`).join('')
+    : `<tr><td colspan="3" class="esos-empty">Nenhuma loja vencida nessa categoria.</td></tr>`;
   document.getElementById('modalOverlay').hidden = false;
   document.body.style.overflow = 'hidden';
 }
