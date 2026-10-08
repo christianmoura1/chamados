@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-10-08T00:00:11.767Z",
+ "atualizadoEm": "2026-10-08T11:00:31.609Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 15,
+  "emExecucao": 14,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 1,
-  "total": 15
+  "aguardandoToken": 0,
+  "total": 14
  },
  "serie": [
-  {
-   "data": "2026-10-05",
-   "abertos": 7,
-   "fechados": 10
-  },
   {
    "data": "2026-10-06",
    "abertos": 7,
@@ -21,11 +16,39 @@
   },
   {
    "data": "2026-10-07",
-   "abertos": 10,
+   "abertos": 11,
    "fechados": 4
+  },
+  {
+   "data": "2026-10-08",
+   "abertos": 0,
+   "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0066023",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "15875 - SHOP MUELLER CURITIBA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "07/10/2026 23:28:57",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "FALTA DE ÁGUA - CORTE DE ÁGUA NA REGIÃO",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | FALTA DE ÁGUA - CORTE DE ÁGUA NA REGIÃO",
+   "tarefas": [
+    "WOT0066558"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0066007",
    "marca": "BKB",
@@ -322,52 +345,6 @@
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0065022",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "16647 - FS CURITIBA - R BISPO DOM JOSE 2348",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "05/10/2026 15:37:06",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - COZINHA - REFLUXO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
-   "tarefas": [
-    "WOT0065552"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0064686",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA NORTE",
-   "loja": "25676 - FS CURITIBA - RUA DOMINGOS STRAPASSON",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "05/10/2026 06:02:48",
-   "fechamento": "",
-   "principal": "BK071672 - CAMARA DE CONGELADOS; SÃO RAFAEL",
-   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
-   "sigla": "CMG",
-   "tecnico": "",
-   "descricao": "BK071672 - CAMARA DE CONGELADOS; SÃO RAFAEL | CMG - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0065218"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "05/10/2026 16:37:43",
    "contato": "",
    "grupo": "execucao"
   }
