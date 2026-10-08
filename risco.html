@@ -478,9 +478,12 @@ async function carregarAtribuicoes() {
     await enviarPendentes();
   } catch (e) {
     ATRIBUICOES = cache ? { ...cache } : {};
-    avisoAtribuicoes(cache
-      ? 'Sem contato com o servidor de responsáveis e prazos. Mostrando a última cópia salva neste navegador — o que você editar fica guardado e sobe sozinho.'
-      : 'Sem contato com o servidor de responsáveis e prazos, e não há cópia neste navegador. Os campos aparecem vazios, mas isso NÃO quer dizer que foram apagados. Evite editar agora.', 'erro');
+    // 08/10/2026 -- a faixa vermelha de "sem contato com o servidor" foi
+    // retirada a pedido do Christian: outras pessoas abrem o painel e ela
+    // aparecia para todo mundo. A protecao continua: cache local, fila do que
+    // for editado offline e a faixa amarela, que so' aparece para quem editou
+    // algo que ainda nao subiu.
+    console.warn('servidor de atribuicoes inacessivel (' + (e && e.message) + '); usando ' + (cache ? 'copia local' : 'campos vazios'));
   }
   // o que ainda esta' na fila vale mais que o que veio do servidor
   const fila = lerJSONLocal(FILA_ATRIB, {});
