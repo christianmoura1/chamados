@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-08T11:00:31.609Z",
+ "atualizadoEm": "2026-10-08T12:20:10.403Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 14,
+  "emExecucao": 15,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 14
+  "total": 15
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-08",
-   "abertos": 0,
-   "fechados": 0
+   "abertos": 1,
+   "fechados": 2
   }
  ],
  "itens": [
+  {
+   "numero": "WO0066079",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "08/10/2026 09:19:29",
+   "fechamento": "",
+   "principal": "FRITADEIRA",
+   "secundario": "FRI - NÃO LIGA",
+   "sigla": "FRI",
+   "tecnico": "",
+   "descricao": "FRITADEIRA | FRI - NÃO LIGA",
+   "tarefas": [
+    "WOT0066614"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0066023",
    "marca": "BKB",
