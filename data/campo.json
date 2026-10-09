@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-09T12:20:11.876Z",
+ "atualizadoEm": "2026-10-09T14:00:12.338Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 11,
+  "emExecucao": 12,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 11
+  "total": 12
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-09",
-   "abertos": 1,
+   "abertos": 2,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0066702",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "26828 - FS CURITIBA - FRANCISCO FRISHMANN 3151",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "09/10/2026 10:53:36",
+   "fechamento": "",
+   "principal": "BK088222 - BROILER",
+   "secundario": "BRO - NÃO ACENDE",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK088222 - BROILER | BRO - NÃO ACENDE",
+   "tarefas": [
+    "WOT0067245"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0066626",
    "marca": "BKB",
