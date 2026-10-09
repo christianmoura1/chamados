@@ -336,6 +336,40 @@
     document.getElementById('conteudo').innerHTML = h;
   }
 
+  // Baixa a aba atual como CSV. Usa o mesmo filtro da tela, mas SEM o corte
+  // de LIMITE linhas -- o arquivo tem que trazer tudo que o filtro seleciona.
+  function baixarCSV() {
+    var A = D.abas[abaAtual];
+    if (!A) return;
+    var busca = (document.getElementById('q') ? document.getElementById('q').value : '').toLowerCase().trim();
+    var filtro = (document.getElementById('fReg') ? document.getElementById('fReg').value : '');
+    var iReg = A.cab.indexOf('Regional');
+    var linhas = A.linhas.filter(function (l) {
+      if (filtro && iReg >= 0 && String(l[iReg]) !== filtro) return false;
+      if (busca && l.join(' ').toLowerCase().indexOf(busca) === -1) return false;
+      return true;
+    });
+    var cel = function (v) {
+      var t = String(v == null ? '' : v);
+      if (typeof v === 'number') t = t.replace('.', ',');
+      return '"' + t.replace(/"/g, '""') + '"';
+    };
+    var sep = ';';
+    var txt = [A.cab.map(cel).join(sep)]
+      .concat(linhas.map(function (l) { return l.map(cel).join(sep); }))
+      .join('\r\n');
+    var dia = D.ultimoDiaFechado || String(D.geradoEm || '').slice(0, 10) || 'hoje';
+    var nome = 'sorvete_' + String(abaAtual).normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^A-Za-z0-9]+/g, '-').toLowerCase() + '_' + dia + '.csv';
+    // BOM, senao o Excel abre os acentos errados
+    var blob = new Blob(['\ufeff' + txt], { type: 'text/csv;charset=utf-8;' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = nome;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+  }
+
   function renderTabela() {
     var A = D.abas[abaAtual];
     var busca = (document.getElementById('q') ? document.getElementById('q').value : '').toLowerCase().trim();
@@ -390,12 +424,15 @@
     }
     h += '<div class="filter-field" style="flex:1;min-width:240px"><label for="q">Buscar</label>'
        + '<input type="text" id="q" placeholder="loja, chamado, problema…" autocomplete="off"></div>'
-       + '<button class="filter-clear" id="limpar" type="button">Limpar</button></div>'
+       + '<button class="filter-clear" id="limpar" type="button">Limpar</button>'
+       + '<button class="filter-clear" id="baixar" type="button" title="Baixa esta aba como CSV, ja filtrada">Baixar relatorio</button></div>'
        + '<div class="filter-count" id="cont"></div>'
        + '<div class="table-wrap"><table id="tabela"></table></div>';
     document.getElementById('conteudo').innerHTML = h;
     var q = document.getElementById('q'); if (q) q.addEventListener('input', renderTabela);
     var fr = document.getElementById('fReg'); if (fr) fr.addEventListener('change', renderTabela);
+    var bx = document.getElementById('baixar');
+    if (bx) bx.addEventListener('click', baixarCSV);
     document.getElementById('limpar').addEventListener('click', function () {
       if (q) q.value = ''; if (fr) fr.value = ''; renderTabela(); });
     renderTabela();
