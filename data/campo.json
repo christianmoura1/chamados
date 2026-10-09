@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-09T14:40:12.507Z",
+ "atualizadoEm": "2026-10-09T15:00:17.176Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 12,
+  "emExecucao": 13,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 12
+  "total": 13
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-09",
-   "abertos": 3,
+   "abertos": 4,
    "fechados": 1
   }
  ],
  "itens": [
+  {
+   "numero": "WO0066763",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "OESTE PR",
+   "loja": "25277 - SHOP GUARAPUAVA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "09/10/2026 11:59:54",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - GÁS - VAZAMENTO DE GÁS",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - GÁS - VAZAMENTO DE GÁS",
+   "tarefas": [
+    "WOT0067306"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0066716",
    "marca": "BKB",
