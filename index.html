@@ -330,7 +330,18 @@
   .filter-count { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--muted); margin-bottom: 10px; }
   .filter-table-wrap { max-height: 520px; overflow: auto; border-radius: 12px; }
   .filter-empty { padding: 30px 0; text-align: center; color: var(--faint); font-size: 12.5px; }
-</style>
+
+    /* Ultimos chamados fechados: lista enxuta, so o numero e quem responde
+       pela loja. Sem data e sem nome de loja -- foi o pedido. */
+    .fechados-lista { display: flex; flex-direction: column; }
+    .fechado-item { display: flex; align-items: center; gap: 10px;
+      padding: 9px 2px; border-bottom: 1px solid rgba(0,0,0,.06); }
+    .fechado-item:last-child { border-bottom: none; }
+    .fechado-confete { font-size: 17px; line-height: 1; flex: none; }
+    .fechado-txt { font-size: 14px; }
+    .fechado-txt strong { font-variant-numeric: tabular-nums; }
+    .fechado-sup { font-weight: 600; }
+  </style>
 </head>
 <body>
 <div class="shell">
@@ -1083,6 +1094,11 @@ async function iniciar() {
       <div class="card" id="chartCard"><div class="chart-note">carregando histórico…</div></div>
     </section>
 
+    <section>
+      <div class="sec-head"><h2>\u00daltimos chamados fechados</h2><span class="sec-note">os 10 mais recentes \u00b7 supervisor respons\u00e1vel pela loja</span></div>
+      <div class="card">${montarFechados(D.ultimosFechados)}</div>
+    </section>
+
     <footer>
       <span>Fonte: SOMA (ServiceNow) · Power BI (Disponibilidade) · Visão Sul${D.disponibilidadeBIAtualizadaEm ? ' · BI atualizado ' + escapeHtml(D.disponibilidadeBIAtualizadaEm) : ''}</span>
       <span class="mono">${brl0(D.totalRegistros)} registros · ${brl0(D.totalAbertos)} abertos</span>
@@ -1092,6 +1108,24 @@ async function iniciar() {
   aplicarVisaoSalva();
   montarBuscaChamados(D);
   carregarHistorico();
+}
+
+// Lista dos ultimos chamados fechados. So o numero do chamado e quem
+// responde pela loja -- o supervisor vem da CARTEIRA (run_daily.cjs), nao
+// de quem clicou "fechar" no SOMA, que quase sempre e o tecnico.
+function montarFechados(lista) {
+  const itens = (lista || []).filter((f) => f && f.numero);
+  if (!itens.length) return '<div class="chart-note">sem fechamentos recentes.</div>';
+  return '<div class="fechados-lista">' + itens.map((f) => {
+    const quem = f.supervisor
+      ? escapeHtml(f.supervisor)
+      : 'sem supervisor na carteira';
+    return '<div class="fechado-item">'
+      + '<span class="fechado-confete" aria-hidden="true">\u{1F389}</span>'
+      + '<span class="fechado-txt"><strong>' + escapeHtml(f.numero) + '</strong>'
+      + ' \u2014 \u00faltimo chamado fechado por <span class="fechado-sup">' + quem + '</span></span>'
+      + '</div>';
+  }).join('') + '</div>';
 }
 
 function montarBuscaChamados(D) {
