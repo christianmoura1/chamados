@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-09T18:20:14.055Z",
+ "atualizadoEm": "2026-10-09T19:20:12.706Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 10,
+  "emExecucao": 11,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 10
+  "total": 11
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-09",
-   "abertos": 5,
+   "abertos": 6,
    "fechados": 6
   }
  ],
  "itens": [
+  {
+   "numero": "WO0066888",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "27589 - PARK EUROPEU BLUMENAU",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "09/10/2026 16:14:26",
+   "fechamento": "",
+   "principal": "AR CONDICIONADO",
+   "secundario": "ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "sigla": "ARC",
+   "tecnico": "",
+   "descricao": "AR CONDICIONADO | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "tarefas": [
+    "WOT0067431"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0066827",
    "marca": "BKB",
