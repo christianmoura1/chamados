@@ -344,12 +344,13 @@
     /* horario encostado na direita, discreto -- nao compete com o chamado */
     .fechado-prob { display: block; margin-top: 2px; font-size: 12.5px; color: var(--muted); }
     .fechado-loja { font-weight: 600; color: var(--text); }
-    .fechado-meta { margin-left: auto; display: flex; align-items: center; gap: 10px; flex: none; }
+    .fechado-meta { margin-left: auto; display: flex; align-items: center; gap: 16px; flex: none; }
     .fechado-dias { font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums;
       white-space: nowrap; min-width: 46px; text-align: right; }
     .fechado-item { align-items: flex-start; }
-    .fechado-hora { padding-left: 0; font-size: 12.5px;
-      opacity: .55; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    /* a data e' um campo proprio: nao pode ficar mais apagada que os dias */
+    .fechado-hora { padding-left: 0; font-size: 12.5px; font-weight: 600;
+      opacity: .85; font-variant-numeric: tabular-nums; white-space: nowrap; }
   </style>
 </head>
 <body>
@@ -1151,8 +1152,9 @@ function montarFechados(lista) {
       + '<span class="fechado-meta">'
       + (f.prioridade ? '<span class="tag ' + tagClsPrioridade(f.prioridade) + '">'
           + escapeHtml(f.prioridade) + '</span>' : '')
-      + '<span class="fechado-dias">' + (f.dias == null ? '' : f.dias + 'd') + '</span>'
-      + (q ? '<span class="fechado-hora">' + escapeHtml(q) + '</span>' : '')
+      + '<span class="fechado-dias" title="dias em aberto até o fechamento">'
+          + (f.dias == null ? '' : f.dias + 'd') + '</span>'
+      + (q ? '<span class="fechado-hora" title="fechado em">' + escapeHtml(q) + '</span>' : '')
       + '</span>'
       + '</div>';
   }).join('') + '</div>';
