@@ -1098,7 +1098,7 @@ async function iniciar() {
     </section>
 
     <section>
-      <div class="sec-head"><h2>\u00daltimos chamados fechados</h2><span class="sec-note">os 10 mais recentes \u00b7 supervisor respons\u00e1vel pela loja</span></div>
+      <div class="sec-head"><h2>\u00daltimos chamados fechados</h2><span class="sec-note">os 10 mais recentes \u00b7 quem deu baixa no SOMA</span></div>
       <div class="card">${montarFechados(D.ultimosFechados)}</div>
     </section>
 
@@ -1126,9 +1126,9 @@ function montarFechados(lista) {
     return m ? m[1] + '/' + m[2] + ' ' + m[3] + ':' + m[4] : String(x || '');
   };
   return '<div class="fechados-lista">' + itens.map((f) => {
-    const quem = f.supervisor
+    const quem = f.fechadoPor
       ? escapeHtml(f.supervisor)
-      : 'sem supervisor na carteira';
+      : 'sem registro de quem fechou';
     const q = hora(f.fechadoEm);
     return '<div class="fechado-item">'
       + '<span class="fechado-confete" aria-hidden="true">\u{1F389}</span>'
