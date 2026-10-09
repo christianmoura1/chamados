@@ -1,30 +1,47 @@
 {
- "atualizadoEm": "08/10/2026 20:04:01",
- "geradoEm": "2026-10-09T09:03:25.212Z",
+ "atualizadoEm": "09/10/2026 12:10:30",
+ "geradoEm": "2026-10-09T15:58:46.866Z",
  "totalLojasAvaliadas": 71,
- "scoreMedio": 8.76,
+ "scoreMedio": 8.93,
  "categorias": [
   {
    "chave": "sci",
    "nome": "SCI",
-   "vencido": 0,
-   "emDia": 71,
+   "vencido": 1,
+   "emDia": 70,
    "total": 71,
-   "pctVencido": 0,
-   "lojasVencidas": []
+   "pctVencido": 1,
+   "lojasVencidas": [
+    {
+     "nome": "27589 - PARK EUROPEU BLUMENAU",
+     "score": 15,
+     "diasAtraso": 1,
+     "dataRef": "07/10/2026",
+     "rotuloRef": "venceu",
+     "itemRef": null
+    }
+   ]
   },
   {
    "chave": "dutos",
    "nome": "Dutos",
-   "vencido": 23,
-   "emDia": 48,
+   "vencido": 22,
+   "emDia": 49,
    "total": 71,
-   "pctVencido": 32,
+   "pctVencido": 31,
    "lojasVencidas": [
+    {
+     "nome": "16647 - FS CURITIBA - R BISPO DOM JOSE 2348",
+     "score": 15,
+     "diasAtraso": 46,
+     "dataRef": "23/08/2026",
+     "rotuloRef": "venceu",
+     "itemRef": null
+    },
     {
      "nome": "22507 - ILR PORTO ALEGRE - R ANDRADAS 1664",
      "score": 15,
-     "diasAtraso": 12,
+     "diasAtraso": 13,
      "dataRef": "25/09/2026",
      "rotuloRef": "venceu",
      "itemRef": null
@@ -32,31 +49,15 @@
     {
      "nome": "16626 - SHOP PALLADIUM CURITIBA",
      "score": 14,
-     "diasAtraso": 57,
+     "diasAtraso": 58,
      "dataRef": "11/08/2026",
-     "rotuloRef": "venceu",
-     "itemRef": null
-    },
-    {
-     "nome": "16619 - SHOP PRAIA DE BELAS",
-     "score": 11,
-     "diasAtraso": 29,
-     "dataRef": "08/09/2026",
-     "rotuloRef": "venceu",
-     "itemRef": null
-    },
-    {
-     "nome": "16647 - FS CURITIBA - R BISPO DOM JOSE 2348",
-     "score": 11,
-     "diasAtraso": 45,
-     "dataRef": "23/08/2026",
      "rotuloRef": "venceu",
      "itemRef": null
     },
     {
      "nome": "26160 - FS CANOAS - AV GETULIO VARGAS 3800",
      "score": 11,
-     "diasAtraso": 17,
+     "diasAtraso": 18,
      "dataRef": "20/09/2026",
      "rotuloRef": "venceu",
      "itemRef": null
@@ -64,7 +65,7 @@
     {
      "nome": "16852 - SHOP SAO JOSE DOS PINHAIS",
      "score": 10,
-     "diasAtraso": 11,
+     "diasAtraso": 12,
      "dataRef": "26/09/2026",
      "rotuloRef": "venceu",
      "itemRef": null
@@ -72,7 +73,7 @@
     {
      "nome": "18408 - SHOP BELLA CITTA",
      "score": 10,
-     "diasAtraso": 18,
+     "diasAtraso": 19,
      "dataRef": "19/09/2026",
      "rotuloRef": "venceu",
      "itemRef": null
@@ -80,7 +81,7 @@
     {
      "nome": "19665 - SHOP SAN PELEGRINO",
      "score": 10,
-     "diasAtraso": 11,
+     "diasAtraso": 12,
      "dataRef": "26/09/2026",
      "rotuloRef": "venceu",
      "itemRef": null
@@ -88,7 +89,7 @@
     {
      "nome": "20048 - OUTLET NOVO HAMBURGO",
      "score": 10,
-     "diasAtraso": 16,
+     "diasAtraso": 17,
      "dataRef": "21/09/2026",
      "rotuloRef": "venceu",
      "itemRef": null
@@ -96,7 +97,7 @@
     {
      "nome": "20215 - CARREFOUR PASSO D'AREIA",
      "score": 10,
-     "diasAtraso": 51,
+     "diasAtraso": 52,
      "dataRef": "17/08/2026",
      "rotuloRef": "venceu",
      "itemRef": null
@@ -104,7 +105,7 @@
     {
      "nome": "21475 - SHOP JARDIM DAS AMERICAS",
      "score": 10,
-     "diasAtraso": 25,
+     "diasAtraso": 26,
      "dataRef": "12/09/2026",
      "rotuloRef": "venceu",
      "itemRef": null
@@ -112,7 +113,7 @@
     {
      "nome": "21529 - PARTAGE SHOP RIO GRANDE",
      "score": 10,
-     "diasAtraso": 31,
+     "diasAtraso": 32,
      "dataRef": "06/09/2026",
      "rotuloRef": "venceu",
      "itemRef": null
@@ -120,7 +121,7 @@
     {
      "nome": "22511 - FS CURITIBA - AV FLORIANO PEIXOTO 5952",
      "score": 10,
-     "diasAtraso": 18,
+     "diasAtraso": 19,
      "dataRef": "19/09/2026",
      "rotuloRef": "venceu",
      "itemRef": null
@@ -128,7 +129,7 @@
     {
      "nome": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
      "score": 10,
-     "diasAtraso": 61,
+     "diasAtraso": 62,
      "dataRef": "07/08/2026",
      "rotuloRef": "venceu",
      "itemRef": null
@@ -136,7 +137,7 @@
     {
      "nome": "23721 - PARK SHOP CANOAS",
      "score": 10,
-     "diasAtraso": 12,
+     "diasAtraso": 13,
      "dataRef": "25/09/2026",
      "rotuloRef": "venceu",
      "itemRef": null
@@ -144,7 +145,7 @@
     {
      "nome": "23736 - FS CURITIBA - R MARTIN AFONSO",
      "score": 10,
-     "diasAtraso": 52,
+     "diasAtraso": 53,
      "dataRef": "16/08/2026",
      "rotuloRef": "venceu",
      "itemRef": null
@@ -152,7 +153,7 @@
     {
      "nome": "23989 - SHOP JL CASCAVEL",
      "score": 10,
-     "diasAtraso": 13,
+     "diasAtraso": 14,
      "dataRef": "24/09/2026",
      "rotuloRef": "venceu",
      "itemRef": null
@@ -160,7 +161,7 @@
     {
      "nome": "24362 - FS SJP - AV DAS TORRES",
      "score": 10,
-     "diasAtraso": 11,
+     "diasAtraso": 12,
      "dataRef": "26/09/2026",
      "rotuloRef": "venceu",
      "itemRef": null
@@ -168,7 +169,7 @@
     {
      "nome": "25676 - FS CURITIBA - RUA DOMINGOS STRAPASSON",
      "score": 10,
-     "diasAtraso": 24,
+     "diasAtraso": 25,
      "dataRef": "13/09/2026",
      "rotuloRef": "venceu",
      "itemRef": null
@@ -176,7 +177,7 @@
     {
      "nome": "26837 - FS CASCAVEL - AV BRASIL 1580",
      "score": 10,
-     "diasAtraso": 13,
+     "diasAtraso": 14,
      "dataRef": "24/09/2026",
      "rotuloRef": "venceu",
      "itemRef": null
@@ -184,7 +185,7 @@
     {
      "nome": "26839 - FS CURITIBA AV SILVA JARDIM 566",
      "score": 10,
-     "diasAtraso": 43,
+     "diasAtraso": 44,
      "dataRef": "25/08/2026",
      "rotuloRef": "venceu",
      "itemRef": null
@@ -192,7 +193,7 @@
     {
      "nome": "29084 - FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL 13185",
      "score": 10,
-     "diasAtraso": 23,
+     "diasAtraso": 24,
      "dataRef": "14/09/2026",
      "rotuloRef": "venceu",
      "itemRef": null
@@ -200,7 +201,7 @@
     {
      "nome": "31345 - FS CANOAS - AV DR SEZ AZAMBUJA VIEIRA",
      "score": 10,
-     "diasAtraso": 3,
+     "diasAtraso": 4,
      "dataRef": "04/10/2026",
      "rotuloRef": "venceu",
      "itemRef": null
@@ -217,8 +218,8 @@
    "lojasVencidas": [
     {
      "nome": "16988 - SHOP ESTACAO",
-     "score": 15,
-     "diasAtraso": 20,
+     "score": 19,
+     "diasAtraso": 21,
      "dataRef": "18/09/2026",
      "rotuloRef": "últ. visita",
      "itemRef": null
@@ -226,7 +227,7 @@
     {
      "nome": "21586 - SHOP ROYAL PLAZA SANTA MARIA",
      "score": 15,
-     "diasAtraso": 23,
+     "diasAtraso": 24,
      "dataRef": "15/09/2026",
      "rotuloRef": "últ. visita",
      "itemRef": null
@@ -234,7 +235,7 @@
     {
      "nome": "16626 - SHOP PALLADIUM CURITIBA",
      "score": 14,
-     "diasAtraso": 21,
+     "diasAtraso": 22,
      "dataRef": "17/09/2026",
      "rotuloRef": "últ. visita",
      "itemRef": null
@@ -242,7 +243,7 @@
     {
      "nome": "23725 - SHOP PRACA NOVA SANTA MARIA",
      "score": 10,
-     "diasAtraso": 22,
+     "diasAtraso": 23,
      "dataRef": "16/09/2026",
      "rotuloRef": "últ. visita",
      "itemRef": null
@@ -250,7 +251,7 @@
     {
      "nome": "26806 - JOCKEY PLAZA SHOP",
      "score": 10,
-     "diasAtraso": 21,
+     "diasAtraso": 22,
      "dataRef": "17/09/2026",
      "rotuloRef": "últ. visita",
      "itemRef": null
@@ -260,11 +261,20 @@
   {
    "chave": "rotaPadroes",
    "nome": "Rota Padrões",
-   "vencido": 0,
-   "emDia": 71,
+   "vencido": 1,
+   "emDia": 70,
    "total": 71,
-   "pctVencido": 0,
-   "lojasVencidas": []
+   "pctVencido": 1,
+   "lojasVencidas": [
+    {
+     "nome": "16988 - SHOP ESTACAO",
+     "score": 19,
+     "diasAtraso": 50,
+     "dataRef": "20/08/2026",
+     "rotuloRef": "últ. visita",
+     "itemRef": null
+    }
+   ]
   }
  ],
  "abertoPorItemBruto": [
@@ -275,14 +285,14 @@
   "Limpeza",
   "Sensor de gás",
   "Sistema deIncêndio",
-  "10",
+  "12",
   "4",
   "2",
   "1",
   "1",
   "1",
   "1",
-  "5",
+  "3",
   "Atrasado",
   "No Prazo"
  ],
@@ -527,6 +537,34 @@
     "tecnico": "THIAGO DOS SANTOS COELHO"
    },
    {
+    "numero": "WO0063760",
+    "statusRisco": "Atrasado",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - ESTRUTURA DA COIFA COM DEFEITO",
+    "regional": "SUL",
+    "setor": "CAPITAL NORTE RS",
+    "loja": "18625 - BOURBON SHOP WALLIG",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "02/10/2026",
+    "dtEncerramento": "",
+    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
+   },
+   {
+    "numero": "WO0063867",
+    "statusRisco": "Atrasado",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - COIFA EM CONTIGÊNCIA",
+    "regional": "SUL",
+    "setor": "CURITIBA OESTE/SC",
+    "loja": "16647 - FS CURITIBA - R BISPO DOM JOSE 2348",
+    "status": "Em Andamento",
+    "dtAbertura": "02/10/2026",
+    "dtEncerramento": "",
+    "tecnico": "CARLOS MAGNO DA SILVA LIRA"
+   },
+   {
     "numero": "WO0064164",
     "statusRisco": "Atrasado",
     "item": "Intertravamento",
@@ -535,10 +573,10 @@
     "regional": "SUL",
     "setor": "CAPITAL NORTE RS",
     "loja": "21586 - SHOP ROYAL PLAZA SANTA MARIA",
-    "status": "Pronto Para Envio",
+    "status": "Em Andamento",
     "dtAbertura": "03/10/2026",
     "dtEncerramento": "",
-    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
+    "tecnico": "MARCEL VINICIOS ROCHA AGRADEM"
    },
    {
     "numero": "WO0065102",
@@ -570,34 +608,6 @@
    }
   ],
   "aVencer": [
-   {
-    "numero": "WO0063760",
-    "statusRisco": "No Prazo",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - ESTRUTURA DA COIFA COM DEFEITO",
-    "regional": "SUL",
-    "setor": "CAPITAL NORTE RS",
-    "loja": "18625 - BOURBON SHOP WALLIG",
-    "status": "Pronto Para Envio",
-    "dtAbertura": "02/10/2026",
-    "dtEncerramento": "",
-    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
-   },
-   {
-    "numero": "WO0063867",
-    "statusRisco": "No Prazo",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA EM CONTIGÊNCIA",
-    "regional": "SUL",
-    "setor": "CURITIBA OESTE/SC",
-    "loja": "16647 - FS CURITIBA - R BISPO DOM JOSE 2348",
-    "status": "Em Andamento",
-    "dtAbertura": "02/10/2026",
-    "dtEncerramento": "",
-    "tecnico": "CARLOS MAGNO DA SILVA LIRA"
-   },
    {
     "numero": "WO0065247",
     "statusRisco": "No Prazo",
