@@ -1127,7 +1127,7 @@ function montarFechados(lista) {
   };
   return '<div class="fechados-lista">' + itens.map((f) => {
     const quem = f.fechadoPor
-      ? escapeHtml(f.supervisor)
+      ? escapeHtml(f.fechadoPor)
       : 'sem registro de quem fechou';
     const q = hora(f.fechadoEm);
     return '<div class="fechado-item">'
