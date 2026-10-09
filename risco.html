@@ -290,7 +290,24 @@
   }
   .filtro-limpar:hover { color: var(--ink); }
   .filtro-conta { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--faint); padding-bottom: 10px; }
-</style>
+
+    /* Ultimos chamados de risco fechados */
+    .fechados-lista { display: flex; flex-direction: column; }
+    .fechado-item { display: flex; align-items: flex-start; gap: 10px;
+      padding: 9px 2px; border-bottom: 1px solid rgba(0,0,0,.06); }
+    .fechado-item:last-child { border-bottom: none; }
+    .fechado-confete { font-size: 17px; line-height: 1; flex: none; }
+    .fechado-txt { font-size: 14px; }
+    .fechado-txt strong { font-variant-numeric: tabular-nums; }
+    .fechado-sup { font-weight: 600; }
+    .fechado-prob { display: block; margin-top: 2px; font-size: 12.5px; color: var(--muted); }
+    .fechado-loja { font-weight: 600; color: var(--text); }
+    .fechado-meta { margin-left: auto; display: flex; align-items: center; gap: 16px; flex: none; }
+    .fechado-dias { font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums;
+      white-space: nowrap; min-width: 46px; text-align: right; }
+    .fechado-hora { font-size: 12.5px; font-weight: 600; opacity: .85;
+      font-variant-numeric: tabular-nums; white-space: nowrap; }
+  </style>
 </head>
 <body>
 <div class="shell">
@@ -754,6 +771,45 @@ function copiarRisco(btn, qual) {
   } else fallback();
 }
 
+// Lista dos ultimos chamados de Gestao de Risco fechados. O recorte e o
+// mesmo assunto que o BI marca como risco (ver scripts/fechados_risco.mjs).
+function montarFechadosRisco(lista) {
+  var esc = function (t) {
+    return String(t == null ? '' : t).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  };
+  var cls = function (p) { return p === 'SOS' ? 'tag-sos' : (p === 'Alta' ? 'tag-alta' : 'tag-normal'); };
+  var hora = function (x) {
+    var m = String(x || '').match(/^(\d{2})\/(\d{2})\/\d{4}\s+(\d{2}):(\d{2})/);
+    return m ? m[1] + '/' + m[2] + ' ' + m[3] + ':' + m[4] : String(x || '');
+  };
+  var itens = (lista || []).filter(function (f) { return f && f.numero; });
+  if (!itens.length) return '<div class="chart-note">sem fechamentos recentes.</div>';
+  return '<div class="fechados-lista">' + itens.map(function (f) {
+    var quem = f.fechadoPor ? esc(f.fechadoPor) : 'sem registro de quem fechou';
+    var q = hora(f.fechadoEm);
+    return '<div class="fechado-item">'
+      + '<span class="fechado-confete" aria-hidden="true">\u{1F389}</span>'
+      + '<span class="fechado-txt"><strong>' + esc(f.numero) + '</strong>'
+      + ' \u2014 \u00faltimo chamado fechado por <span class="fechado-sup">' + quem + '</span>'
+      + ((f.loja || f.problema)
+          ? '<span class="fechado-prob">'
+            + (f.loja ? '<span class="fechado-loja">' + esc(f.loja) + '</span>' : '')
+            + (f.loja && f.problema ? ' \u00b7 ' : '')
+            + (f.problema ? esc(f.problema) : '')
+            + '</span>'
+          : '')
+      + '</span>'
+      + '<span class="fechado-meta">'
+      + (f.prioridade ? '<span class="tag ' + cls(f.prioridade) + '" >' + esc(f.prioridade) + '</span>' : '')
+      + '<span class="fechado-dias" title="dias em aberto at\u00e9 o fechamento">'
+          + (f.dias == null ? '' : f.dias + 'd') + '</span>'
+      + (q ? '<span class="fechado-hora" title="fechado em">' + esc(q) + '</span>' : '')
+      + '</span>'
+      + '</div>';
+  }).join('') + '</div>';
+}
+
 function renderizarChamadosRisco() {
   const D = DADOS_ATUAIS;
   if (!D) return;
@@ -883,7 +939,12 @@ async function iniciar() {
       </div>
     </section>
 
-    <footer>
+    <section>
+  <div class="sec-head"><h2>\u00daltimos chamados de risco fechados</h2><span class="sec-note">os 10 mais recentes \u00b7 quem deu baixa no SOMA</span></div>
+  <div class="card">${montarFechadosRisco(D.ultimosFechados)}</div>
+</section>
+
+<footer>
       <span>Fonte: Power BI (Gestão de Risco / Rota de Segurança · Visão Sul)</span>
       <span class="mono">${brl0(D.totalLojasAvaliadas)} lojas avaliadas</span>
     </footer>

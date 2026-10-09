@@ -324,6 +324,14 @@ fs.writeFileSync(REPO + '/data/risco.json', JSON.stringify(saida, null, 1), 'utf
 log('risco.json gravado: score=' + saida.scoreMedio + ' lojas=' + saida.totalLojasAvaliadas
     + ' vencidos=' + saida.chamadosRisco.vencidos.length + ' aVencer=' + saida.chamadosRisco.aVencer.length);
 
+// ---------- 3b) ultimos chamados de risco fechados ----------
+// Extra do painel: se falhar, o painel sai sem o bloco e o resto segue.
+try {
+  execFileSync(process.execPath, [REPO + '/scripts/fechados_risco.mjs'], { stdio: 'inherit' });
+} catch (e) {
+  log('AVISO: nao montei os ultimos fechados de risco -- publico sem o bloco');
+}
+
 // ---------- 4) publica ----------
 const git = (args) => execFileSync('git', args, { cwd: REPO, stdio: 'pipe', encoding: 'utf8' });
 process.env.GIT_SSH_COMMAND = 'ssh -i C:/Users/csmoura1/.ssh/deploy_chamados_pessoal -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new';
@@ -332,7 +340,8 @@ try {
   // VPS (sem terminal para dar commit) chega a Vercel na proxima execucao.
   // NUNCA dar push neste repositorio de fora da VPS: os pipelines nao fazem
   // pull e o push deles passaria a ser recusado.
-  const ARQS = ['data/risco.json', 'risco.html', 'scripts/risco_daily.mjs'];
+  const ARQS = ['data/risco.json', 'data/assuntos_risco.json', 'risco.html',
+    'scripts/risco_daily.mjs', 'scripts/fechados_risco.mjs'];
   git(['add', ...ARQS]);
   const pendente = git(['status', '--porcelain', ...ARQS]).trim();
   if (!pendente) { log('nada mudou no risco.json -- nao commitei'); process.exit(0); }
