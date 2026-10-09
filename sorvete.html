@@ -338,6 +338,20 @@
 
   // Baixa a aba atual como CSV. Usa o mesmo filtro da tela, mas SEM o corte
   // de LIMITE linhas -- o arquivo tem que trazer tudo que o filtro seleciona.
+  function ehEvolucao() { return String(abaAtual).indexOf('Evolu') === 0; }
+
+  // Na Evolucao o relatorio ja existe pronto, gerado pela VPS com a mesma
+  // formatacao da planilha. Nas outras abas nao ha arquivo pronto, entao
+  // exporto CSV do que esta filtrado.
+  function baixar() {
+    if (!ehEvolucao()) return baixarCSV();
+    var dia = D.ultimoDiaFechado || '';
+    var a = document.createElement('a');
+    a.href = 'data/relatorio_sorvete.xlsx' + (dia ? '?v=' + encodeURIComponent(dia) : '');
+    a.download = 'Evolucao_Sorvete_' + (dia || 'hoje') + '.xlsx';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  }
+
   function baixarCSV() {
     var A = D.abas[abaAtual];
     if (!A) return;
@@ -425,14 +439,17 @@
     h += '<div class="filter-field" style="flex:1;min-width:240px"><label for="q">Buscar</label>'
        + '<input type="text" id="q" placeholder="loja, chamado, problema…" autocomplete="off"></div>'
        + '<button class="filter-clear" id="limpar" type="button">Limpar</button>'
-       + '<button class="filter-clear" id="baixar" type="button" title="Baixa esta aba como CSV, ja filtrada">Baixar relatorio</button></div>'
+       + '<button class="filter-clear" id="baixar" type="button" title="'
+       + (ehEvolucao() ? 'Baixa o relatorio em Excel, com a formatacao da planilha'
+                       : 'Baixa esta aba como CSV, ja filtrada') + '">'
+       + (ehEvolucao() ? 'Baixar relatório (Excel)' : 'Baixar CSV') + '</button></div>'
        + '<div class="filter-count" id="cont"></div>'
        + '<div class="table-wrap"><table id="tabela"></table></div>';
     document.getElementById('conteudo').innerHTML = h;
     var q = document.getElementById('q'); if (q) q.addEventListener('input', renderTabela);
     var fr = document.getElementById('fReg'); if (fr) fr.addEventListener('change', renderTabela);
     var bx = document.getElementById('baixar');
-    if (bx) bx.addEventListener('click', baixarCSV);
+    if (bx) bx.addEventListener('click', baixar);
     document.getElementById('limpar').addEventListener('click', function () {
       if (q) q.value = ''; if (fr) fr.value = ''; renderTabela(); });
     renderTabela();
