@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-09T14:00:12.338Z",
+ "atualizadoEm": "2026-10-09T14:20:12.378Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 12,
+  "emExecucao": 13,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 0,
-  "total": 12
+  "aguardandoToken": 1,
+  "total": 13
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-09",
-   "abertos": 2,
+   "abertos": 3,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0066716",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "20049 - SHOP PRACA RIO GRANDE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "09/10/2026 11:06:36",
+   "fechamento": "",
+   "principal": "CÂMARA DE RESFRIADOS",
+   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMR",
+   "tecnico": "",
+   "descricao": "CÂMARA DE RESFRIADOS | CMR - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0067259"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0066702",
    "marca": "BKB",
@@ -193,8 +216,8 @@
    "regional": "SUL",
    "setor": "VALE DOS SINOS",
    "loja": "18450 - BOURBON SHOP SAO LEOPOLDO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
+   "status": "Trabalho em andamento",
+   "fase": "Requisição Completa - Aguardando Token",
    "abertura": "07/10/2026 20:54:23",
    "fechamento": "",
    "principal": "BK039635 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
@@ -205,8 +228,8 @@
    "tarefas": [
     "WOT0066542"
    ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
+   "aguardandoToken": 1,
+   "fechadoSemToken": "09/10/2026 11:19:41",
    "contato": "",
    "grupo": "execucao"
   },
