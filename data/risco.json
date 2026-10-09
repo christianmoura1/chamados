@@ -1,8 +1,8 @@
 {
- "atualizadoEm": "09/10/2026 14:09:46",
- "geradoEm": "2026-10-09T18:29:02.064Z",
+ "atualizadoEm": "09/10/2026 18:09:17",
+ "geradoEm": "2026-10-09T22:56:42.968Z",
  "totalLojasAvaliadas": 71,
- "scoreMedio": 8.93,
+ "scoreMedio": 8.79,
  "categorias": [
   {
    "chave": "sci",
@@ -225,18 +225,18 @@
      "itemRef": null
     },
     {
-     "nome": "21586 - SHOP ROYAL PLAZA SANTA MARIA",
-     "score": 15,
-     "diasAtraso": 24,
-     "dataRef": "15/09/2026",
-     "rotuloRef": "últ. visita",
-     "itemRef": null
-    },
-    {
      "nome": "16626 - SHOP PALLADIUM CURITIBA",
      "score": 14,
      "diasAtraso": 22,
      "dataRef": "17/09/2026",
+     "rotuloRef": "últ. visita",
+     "itemRef": null
+    },
+    {
+     "nome": "21586 - SHOP ROYAL PLAZA SANTA MARIA",
+     "score": 10,
+     "diasAtraso": 24,
+     "dataRef": "15/09/2026",
      "rotuloRef": "últ. visita",
      "itemRef": null
     },
@@ -281,15 +281,11 @@
   "Coifa",
   "Exaustor",
   "Quadro Elétrico",
-  "Intertravamento",
   "Limpeza",
   "Sensor de gás",
-  "Sistema deIncêndio",
   "12",
   "4",
   "2",
-  "1",
-  "1",
   "1",
   "1",
   "3",
@@ -393,20 +389,6 @@
     "loja": "16988 - SHOP ESTACAO",
     "status": "Pronto Para Envio",
     "dtAbertura": "18/09/2026",
-    "dtEncerramento": "",
-    "tecnico": "CARLOS MAGNO DA SILVA LIRA"
-   },
-   {
-    "numero": "WO0054206",
-    "statusRisco": "Atrasado",
-    "item": "Sistema de Incêndio",
-    "assuntoPrincipal": "SISTEMA DE INCÊNDIO",
-    "assuntoSecundario": "SCI - ACESSÓRIOS/PEÇAS DANIFICADAS",
-    "regional": "SUL",
-    "setor": "GRANDE CURITIBA",
-    "loja": "26828 - FS CURITIBA FRANCISCO FRISHMANN 3151",
-    "status": "Pronto Para Envio",
-    "dtAbertura": "20/09/2026",
     "dtEncerramento": "",
     "tecnico": "CARLOS MAGNO DA SILVA LIRA"
    },
@@ -565,20 +547,6 @@
     "tecnico": "CARLOS MAGNO DA SILVA LIRA"
    },
    {
-    "numero": "WO0064164",
-    "statusRisco": "Atrasado",
-    "item": "Intertravamento",
-    "assuntoPrincipal": "SISTEMA DE INCÊNDIO",
-    "assuntoSecundario": "SCI - PROBLEMA NO INTERTRAVAMENTO",
-    "regional": "SUL",
-    "setor": "CAPITAL NORTE RS",
-    "loja": "21586 - SHOP ROYAL PLAZA SANTA MARIA",
-    "status": "Em Andamento",
-    "dtAbertura": "03/10/2026",
-    "dtEncerramento": "",
-    "tecnico": "MARCEL VINICIOS ROCHA AGRADEM"
-   },
-   {
     "numero": "WO0065102",
     "statusRisco": "Atrasado",
     "item": "Quadro Elétrico",
@@ -601,10 +569,10 @@
     "regional": "SUL",
     "setor": "VALE DOS SINOS",
     "loja": "25677 - FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
-    "status": "Pronto Para Envio",
+    "status": "Em Andamento",
     "dtAbertura": "08/10/2026",
     "dtEncerramento": "",
-    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
+    "tecnico": "THIAGO DOS SANTOS COELHO"
    }
   ],
   "aVencer": [
@@ -653,6 +621,15 @@
   ]
  },
  "ultimosFechados": [
+  {
+   "numero": "WO0064164",
+   "fechadoEm": "09/10/2026 16:54:38",
+   "dias": 6,
+   "prioridade": "SOS",
+   "problema": "SCI - PROBLEMA NO INTERTRAVAMENTO",
+   "loja": "21586 - SHOP ROYAL PLAZA SANTA MARIA",
+   "fechadoPor": "Marcel Vinicios Rocha Agradem"
+  },
   {
    "numero": "WO0054206",
    "fechadoEm": "09/10/2026 15:09:11",
@@ -733,15 +710,6 @@
    "problema": "COI - COIFA EM CONTIGÊNCIA",
    "loja": "16852 - SHOP SAO JOSE DOS PINHAIS",
    "fechadoPor": "Carlos Magno da Silva Lira"
-  },
-  {
-   "numero": "WO0056851",
-   "fechadoEm": "03/10/2026 16:28:29",
-   "dias": 8,
-   "prioridade": "Alta",
-   "problema": "EXA - AUSÊNCIA DE PROTEÇÃO DA CORREIA",
-   "loja": "20215 - CARREFOUR PASSO D'AREIA",
-   "fechadoPor": "Cristppher Alencar Pacheco Cruz"
   }
  ]
 }
