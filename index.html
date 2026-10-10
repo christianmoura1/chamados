@@ -460,6 +460,15 @@ function ordenaChamados(itens) {
 }
 const tagClsPrioridade = p => p === 'SOS' ? 'tag-sos' : (p === 'Alta' ? 'tag-alta' : 'tag-normal');
 
+// Conjunto dos numeros de chamado que tem pedido de peca e a funcao que
+// gera a etiqueta. Em escopo GLOBAL porque sao usados em tres lugares:
+// blocoMaisUrgentes (abaixo), renderizarModalTabela (modal do tecnico) e
+// a tabela principal dentro de iniciar(). Antes estavam dentro de iniciar()
+// e as funcoes fora desse escopo nao enxergavam -- a etiqueta nunca aparecia.
+let chamadosComPeca = new Set();
+const tagPecas = (numero) => chamadosComPeca.has(numero)
+  ? '<span class="tag tag-pecas">Peças</span>' : '';
+
 function blocoMaisUrgentes(itens) {
   const top5 = (itens || []).slice(0, 5);
   const html = top5.length
@@ -1050,16 +1059,14 @@ function montarBuscaChamados(D) {
   for (const s of (D.supervisores || [])) {
     for (const c of (s.chamadosDetalhe || [])) supervisorDoChamado[c.numero] = s.nome;
   }
-  // Conjunto dos numeros de chamado que tem pedido de peca -- usado para
-  // mostrar a etiqueta "Pecas" na tabela do backlog e no modal do tecnico.
-  const chamadosComPeca = new Set();
+  // Preenche o Set global chamadosComPeca (definido em escopo global acima,
+  // junto com tagPecas) com os numeros dos chamados que tem pecas.
+  chamadosComPeca = new Set();
   for (const eq of (D.equipamentos || [])) {
     for (const c of (eq.chamadosDetalhe || [])) {
       if (c.pecas && c.pecas.length > 0) chamadosComPeca.add(c.numero);
     }
   }
-  const tagPecas = (numero) => chamadosComPeca.has(numero)
-    ? '<span class="tag tag-pecas">Peças</span>' : '';
   const SEM_SUPERVISOR = '(sem supervisor)';
   const supervisorDe = (c) => supervisorDoChamado[c.numero] || SEM_SUPERVISOR;
   const supervisores = [...new Set(todos.map(supervisorDe))]
