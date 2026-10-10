@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-10T15:20:09.896Z",
+ "atualizadoEm": "2026-10-10T15:40:09.825Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 11,
+  "emExecucao": 12,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 2,
-  "total": 11
+  "total": 12
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-10",
-   "abertos": 5,
+   "abertos": 6,
    "fechados": 3
   }
  ],
  "itens": [
+  {
+   "numero": "WO0067222",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "27590 - PORTO BELO OUTLET",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "10/10/2026 12:26:12",
+   "fechamento": "",
+   "principal": "BK080251 - BROILER",
+   "secundario": "BRO - NÃO MANTÉM A CHAMA",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK080251 - BROILER | BRO - NÃO MANTÉM A CHAMA",
+   "tarefas": [
+    "WOT0067767"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0067207",
    "marca": "BKB",
