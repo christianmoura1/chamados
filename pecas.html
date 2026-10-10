@@ -260,6 +260,18 @@
   .modal-total-valor { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 20px; color: var(--violet); }
   .chamado-card { cursor: pointer; transition: box-shadow .15s ease, transform .15s ease; }
   .chamado-card:hover { box-shadow: 0 4px 20px rgba(124,92,252,.12); transform: translateY(-2px); }
+  /* ---------- rastreio no modal ---------- */
+  .rastreio-badge { display: inline-flex; align-items: center; gap: 5px; font-family: "IBM Plex Mono", monospace; font-size: 10px; font-weight: 600; border-radius: 999px; padding: 2px 8px; white-space: nowrap; }
+  .rastreio-badge.dispatched { background: rgba(56,189,248,0.12); color: var(--blue); }
+  .rastreio-badge.in_transit { background: rgba(245,166,35,0.12); color: var(--alta); }
+  .rastreio-badge.delivered { background: rgba(34,192,141,0.12); color: var(--ok); }
+  .rastreio-badge.collected { background: rgba(124,92,252,0.12); color: var(--violet); }
+  .rastreio-badge.failed { background: var(--sos-soft); color: var(--sos); }
+  .rastreio-badge.default { background: var(--surface2); color: var(--muted); }
+  .rastreio-info { margin-top: 4px; padding: 8px 10px; background: var(--surface2); border-radius: 8px; font-size: 11.5px; color: var(--muted); line-height: 1.5; }
+  .rastreio-info .dest { color: var(--ink); font-weight: 500; }
+  .rastreio-info .tracking { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--faint); }
+  .rastreio-info .eta { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--violet); }
 </style>
 </head>
 <body>
@@ -622,6 +634,23 @@ function parseBrl(s) {
 function fmtBrl(n) {
   return n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
+function statusBadgeClass(status) {
+  const s = (status || '').toUpperCase();
+  if (s === 'DISPATCHED') return 'dispatched';
+  if (s === 'IN_TRANSIT' || s === 'COLLECTED') return 'in_transit';
+  if (s === 'SUCCESSFUL' || s === 'DELIVERED') return 'delivered';
+  if (s.includes('FAIL') || s.includes('CANCEL') || s.includes('RETURN')) return 'failed';
+  return 'default';
+}
+function statusLabel(status, sub) {
+  const map = {
+    'DISPATCHED': 'Despachado', 'IN_TRANSIT': 'Em trânsito', 'COLLECTED': 'Coletado',
+    'SUCCESSFUL': 'Entregue', 'DELIVERED': 'Entregue', 'PENDING': 'Pendente',
+    'CREATED': 'Criado', 'ORDER_FAILED': 'Falhou', 'CANCELED': 'Cancelado',
+    'RETURNING': 'Retornando', 'RETURNED': 'Devolvido', 'START_DELIVERY': 'Iniciando entrega',
+  };
+  return map[(status || '').toUpperCase()] || status || '—';
+}
 function abrirDetalhe(idx) {
   const c = TODOS_CHAMADOS_COM_PECAS[idx];
   if (!c) return;
@@ -630,9 +659,24 @@ function abrirDetalhe(idx) {
   const linhas = pecas.map(p => {
     const totalPeca = parseBrl(p.total);
     totalGeral += totalPeca;
-    return `<tr>
+    // Rastreio: se a peca tem dados do abbiamolog, mostra badge + info
+    let rastreioHtml = '';
+    if (p.rastreio && p.rastreio.length > 0) {
+      const r = p.rastreio[0]; // pega o mais recente
+      const badgeCls = statusBadgeClass(r.status);
+      const etaStr = r.eta ? new Date(r.eta).toLocaleDateString('pt-BR') : '';
+      rastreioHtml = `<div class="rastreio-info">
+        <span class="rastreio-badge ${badgeCls}">${statusLabel(r.status, r.subStatus)}</span>
+        ${r.transportadora ? ' · ' + escapeHtml(r.transportadora) : ''}
+        ${r.destino ? ' → <span class="dest">' + escapeHtml(r.destino) + '</span>' : ''}
+        ${etaStr ? ' · <span class="eta">ETA ' + etaStr + '</span>' : ''}
+        ${r.tracking ? '<br><span class="tracking">Tracking: ' + escapeHtml(r.tracking) + '</span>' : ''}
+        ${p.rastreio.length > 1 ? '<br><span class="tracking">+' + (p.rastreio.length - 1) + ' envio(s) adicional(is)</span>' : ''}
+      </div>`;
+    }
+    return `<tr class="modal-peca-row">
       <td class="modal-peca-incl">${escapeHtml(p.numero)}</td>
-      <td class="modal-peca-material">${escapeHtml(p.material)}</td>
+      <td class="modal-peca-material">${escapeHtml(p.material)}${rastreioHtml}</td>
       <td class="modal-peca-qtd">${p.quantidade != null ? p.quantidade : '—'}</td>
       <td class="modal-peca-total">${p.total ? escapeHtml(p.total) : '—'}</td>
     </tr>`;

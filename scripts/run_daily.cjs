@@ -11,6 +11,7 @@ const { chromium } = require('C:/projetos/certponto-report/node_modules/playwrig
 const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
+const { supervisorDe } = require(path.join(__dirname, 'campo_supervisor.cjs'));
 
 const ROOT = 'C:/projetos/chamados';
 const GIT = 'C:/Program Files/Git/cmd/git.exe';
@@ -126,7 +127,12 @@ async function buscarCSVUmaVez() {
   if (/login\.microsoftonline|Conta\/LogOn/i.test(page.url())) throw new Error('a aba do SOMA esta em tela de login');
   page.setDefaultTimeout(110000);
 
-  const url = `https://soma.zamp.com.br/wm_task_list.do?CSV&sysparm_query=${encodeURIComponent(QUERY)}`;
+  // sys_id necessario para buscar pecas/materiais de cada chamado na etapa
+  // seguinte (buscarPecas). Sem ele, teria que fazer uma query extra por
+  // chamado so' para pegar o sys_id pelo number -- mais lento.
+  const CAMPOS_A = ['sys_id', 'number', 'location', 'state', 'priority',
+    'short_description', 'opened_at', 'assigned_to'].join(',');
+  const url = `https://soma.zamp.com.br/wm_task_list.do?CSV&sysparm_fields=${encodeURIComponent(CAMPOS_A)}&sysparm_query=${encodeURIComponent(QUERY)}`;
   const resultado = await Promise.race([
     page.evaluate(async (u) => {
       const ctrl = new AbortController();
@@ -142,13 +148,47 @@ async function buscarCSVUmaVez() {
     new Promise((_, reject) => setTimeout(() => reject(new Error('timeout externo 100s')), 100000)),
   ]);
 
+  // Segunda consulta, na MESMA aba e na MESMA conexao CDP: os ultimos
+  // fechados, com closed_at. Abrir outra conexao CDP ja derrubou pipeline
+  // aqui, entao nao abro outra. E' um extra do painel: se falhar, NAO
+  // derruba o pipeline -- segue sem a lista.
+  let fechadosCsv = '';
+  try {
+    const CAMPOS_F = ['number', 'opened_at', 'closed_at', 'closed_by', 'priority',
+      'short_description', 'opened_for.name', 'opened_for.u_bk_sector'].join(',');
+    const QF = QUERY + '^active=false^closed_at>=javascript:gs.daysAgoStart(14)^ORDERBYDESCclosed_at';
+    const urlF = 'https://soma.zamp.com.br/wm_task_list.do?CSV&sysparm_display_value=true'
+      + '&sysparm_fields=' + encodeURIComponent(CAMPOS_F)
+      + '&sysparm_query=' + encodeURIComponent(QF);
+    const rf = await Promise.race([
+      page.evaluate(async (u) => {
+        const ctrl = new AbortController();
+        const t = setTimeout(() => ctrl.abort('timeout'), 50000);
+        const r = await fetch(u, { credentials: 'include', signal: ctrl.signal });
+        clearTimeout(t);
+        const bytes = new Uint8Array(await r.arrayBuffer());
+        let bin = '';
+        for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+        return { status: r.status, contentType: r.headers.get('content-type'), b64: btoa(bin) };
+      }, urlF),
+      new Promise((_, reject) => setTimeout(() => reject(new Error('timeout externo 60s')), 60000)),
+    ]);
+    if (rf.status === 200 && /text\/csv/i.test(rf.contentType || '')) {
+      fechadosCsv = Buffer.from(rf.b64, 'base64').toString('latin1');
+    } else {
+      logInfo('consulta de fechados devolveu algo inesperado (segue sem a lista)', { status: rf.status, ct: rf.contentType });
+    }
+  } catch (e) {
+    logInfo('nao consegui buscar os ultimos fechados (segue sem a lista)', { erro: String(e.message).slice(0, 160) });
+  }
+
   await browser.close().catch(() => {});
 
   if (resultado.status !== 200) throw new Error(`SOMA respondeu status ${resultado.status}`);
   if (!/text\/csv/i.test(resultado.contentType || '')) throw new Error(`content-type inesperado: ${resultado.contentType} (provavel tela de login)`);
   if (resultado.tamanhoBytes < 1000) throw new Error(`CSV suspeito pequeno demais: ${resultado.tamanhoBytes} bytes`);
 
-  return Buffer.from(resultado.b64, 'base64').toString('latin1');
+  return { csv: Buffer.from(resultado.b64, 'base64').toString('latin1'), fechadosCsv };
 }
 
 async function buscarCSV() {
@@ -209,6 +249,25 @@ async function buscarDisponibilidadeBI() {
   const abriuNova = !page;
   if (!page) page = await ctx.newPage();
   await page.bringToFront();
+
+  // ---------- indisponibilidade DIARIA, lida ANTES do reload ----------
+  // A matriz por dia so' aparece com o mes selecionado no grafico do BI, e essa
+  // selecao NAO sobrevive ao reload -- depois dele a matriz devolve dias 1..17
+  // todos iguais, que e' numero errado com cara de certo. A selecao e' feita a
+  // mao pelo Christian e fica na aba; entao a leitura util e' a de ANTES.
+  //
+  // O risco de ler sem recarregar e' o dado estar velho, e para isso a propria
+  // matriz traz o antidoto: a ultima coluna e' o numero do DIA. Se nao for hoje
+  // (nem ontem, para execucao de madrugada), a leitura e' descartada.
+  let diarioPreReload = [];
+  if (!abriuNova) {
+    diarioPreReload = await lerMatrizPorDia(page);
+    logInfo('leitura da matriz diaria antes do reload', {
+      colunas: diarioPreReload.length,
+      ultima: diarioPreReload.length ? diarioPreReload[diarioPreReload.length - 1] : null,
+    });
+  }
+
   if (abriuNova) {
     await page.goto(URL_DISPONIBILIDADE_BI, { waitUntil: 'domcontentloaded', timeout: 30000 });
   } else {
@@ -335,7 +394,9 @@ async function buscarDisponibilidadeBI() {
     return { texto: document.body.innerText, cards };
   });
   const texto = leitura.texto;
-  const porDia = await lerMatrizPorDia(page);
+  // a de antes do reload e' a boa; a de depois fica como plano B
+  const posReload = await lerMatrizPorDia(page);
+  const porDia = diarioPreReload.length ? diarioPreReload : posReload;
   const porSemana = await lerMatrizSemanal(page);
   await browser.close().catch(() => {});
 
@@ -497,7 +558,7 @@ function processar(csvTexto, disponibilidadeBI) {
   const idx = (nome) => header.indexOf(nome);
   const iLocal = idx('location'), iEstado = idx('state'), iPrior = idx('priority'),
     iNum = idx('number'), iDesc = idx('short_description'), iAberto = idx('opened_at'),
-    iTec = idx('assigned_to');
+    iTec = idx('assigned_to'), iSysId = idx('sys_id');
   for (const [nome, i] of [['location', iLocal], ['state', iEstado], ['priority', iPrior], ['short_description', iDesc], ['opened_at', iAberto]]) {
     if (i < 0) throw new Error(`coluna esperada ausente no CSV: ${nome}`);
   }
@@ -556,7 +617,8 @@ function processar(csvTexto, disponibilidadeBI) {
     // 'YYYY-MM-DD' p/ filtro de data no front (input type=date usa esse
     // formato) -- pedido do Christian, 11/09/2026.
     const abertura = dt ? `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, '0')}-${String(dt.getDate()).padStart(2, '0')}` : null;
-    const item = { numero: l[iNum], loja, estado: l[iEstado] || '', prioridade, dias, tecnico: l[iTec] || '', problema: (l[iDesc] || '').trim(), abertura };
+    const sysId = iSysId >= 0 ? (l[iSysId] || '').trim() : '';
+    const item = { numero: l[iNum], loja, estado: l[iEstado] || '', prioridade, dias, tecnico: l[iTec] || '', problema: (l[iDesc] || '').trim(), abertura, sysId };
     g.itensTodos.push(item);
   }
 
@@ -735,6 +797,76 @@ function calcularTecnicos(equipamentos) {
 // Guarda 1 ponto por dia (America/Sao_Paulo) com o retrato do backlog, pra
 // alimentar o grafico de evolucao da tratativa. Reruns no mesmo dia
 // substituem o ponto do dia (nao duplicam). Mantem so os ultimos 180 dias.
+// Os ultimos chamados fechados, para o painel mostrar o progresso do time.
+// O supervisor sai da CARTEIRA DE LOJAS, nao de closed_by: quem fecha no
+// SOMA quase sempre e' o tecnico, e o pedido foi o supervisor RESPONSAVEL.
+// Nunca derruba o pipeline: na duvida devolve lista vazia e o painel some
+// com o bloco, em vez de publicar nome errado.
+// Dias inteiros entre duas datas no formato do SOMA (dd/mm/aaaa HH:MM:SS).
+// Devolve null quando qualquer uma nao bate o formato -- melhor nao mostrar
+// do que mostrar um numero inventado.
+function diasEntre(de, ate) {
+  const p = (x) => {
+    const m = String(x || '').match(/^(\d{2})\/(\d{2})\/(\d{4})\s+(\d{2}):(\d{2}):(\d{2})/);
+    return m ? new Date(+m[3], +m[2] - 1, +m[1], +m[4], +m[5], +m[6]) : null;
+  };
+  const a = p(de), b = p(ate);
+  if (!a || !b) return null;
+  return Math.max(0, Math.floor((b - a) / 86400000));
+}
+
+function ultimosFechados(csvTexto, quantos = 10) {
+  if (!csvTexto) return [];
+  try {
+    const linhas = parseCSV(csvTexto);
+    if (linhas.length < 2) return [];
+    const cab = linhas[0].map((x) => String(x || '').trim());
+    const iNum = cab.indexOf('number');
+    const iFech = cab.indexOf('closed_at');
+    const iLoja = cab.indexOf('opened_for.name');
+    const iPor = cab.indexOf('closed_by');
+    const iAb = cab.indexOf('opened_at');
+    const iPrior = cab.indexOf('priority');
+    const iProb = cab.indexOf('short_description');
+    const iSetor = cab.indexOf('opened_for.u_bk_sector');
+    if (iNum < 0 || iFech < 0) return [];
+    const fora = [];
+    for (let i = 1; i < linhas.length; i++) {
+      const l = linhas[i];
+      const numero = String(l[iNum] || '').trim();
+      const fechadoEm = String(l[iFech] || '').trim();
+      if (!numero || !fechadoEm) continue;
+      const loja = iLoja >= 0 ? String(l[iLoja] || '').trim() : '';
+      const setor = iSetor >= 0 ? String(l[iSetor] || '').trim() : '';
+      // fechadoPor = quem deu baixa no SOMA (pedido do Christian, 09/10).
+      // Mantenho supervisor ao lado: e' a carteira da loja, serve de contexto
+      // e ja' e' usado em outros lugares do painel.
+      const fechadoPor = iPor >= 0 ? String(l[iPor] || '').trim() : '';
+      const abertoEm = iAb >= 0 ? String(l[iAb] || '').trim() : '';
+      const problema = iProb >= 0 ? String(l[iProb] || '').trim() : '';
+      // mesma regra do resto do pipeline (ver 'critica'/'alta' em processar)
+      const prior = iPrior >= 0 ? String(l[iPrior] || '') : '';
+      const prioridade = /cr[ií]tica/i.test(prior) ? 'SOS'
+        : (/^2\s*-\s*alta/i.test(prior) ? 'Alta' : 'Normal');
+      // dias que o chamado ficou aberto, da abertura ao fechamento
+      const dias = diasEntre(abertoEm, fechadoEm);
+      fora.push({ numero, fechadoEm, abertoEm, dias, prioridade, problema, loja,
+        fechadoPor, supervisor: supervisorDe(loja, setor) || '' });
+    }
+    // o SOMA ja manda ORDERBYDESCclosed_at, mas nao confio na ordem do CSV:
+    // ordeno pela data (dd/mm/aaaa hh:mm:ss) para o topo ser o mais recente
+    const ts = (x) => {
+      const m = String(x).match(/^(\d{2})\/(\d{2})\/(\d{4})\s+(\d{2}):(\d{2}):(\d{2})/);
+      return m ? m[3] + m[2] + m[1] + m[4] + m[5] + m[6] : '0';
+    };
+    fora.sort((a, b) => ts(b.fechadoEm).localeCompare(ts(a.fechadoEm)));
+    return fora.slice(0, quantos);
+  } catch (e) {
+    logErro('nao montei a lista de ultimos fechados -- publico sem ela', { erro: String(e.message).slice(0, 200) });
+    return [];
+  }
+}
+
 function atualizarHistorico(dadosProcessados) {
   const caminho = path.join(ROOT, 'data', 'historico.json');
   let historico = [];
@@ -822,13 +954,254 @@ function rodar(rotulo, cmd, args) {
   }
 }
 
+// Busca pecas/materiais dos chamados de equipamento diretamente na pagina
+// individual do SOMA (wm_task.do?sys_id=...). O fetch puro do HTML leva
+// ~1.7s por chamado e traz a tabela "Materiais/Serviços" completa com
+// numero INCL, descricao do material, quantidade, custo e total.
+// So' busca para os chamados das 6 categorias de equipamento (sorvete,
+// fritadeira, microondas, phu, broiler, tostadeira) -- nao para todos os
+// ~1800 abertos. Com ~220 chamados e paralelismo de 5, adiciona ~75s ao
+// pipeline diario (que hoje leva ~2-3 min). Viavel.
+async function buscarPecas(dadosProcessados) {
+  const browser = await chromium.connectOverCDP(CDP, { timeout: 15000 });
+  const ctx = browser.contexts()[0];
+  // Fecha abas velhas do SOMA para evitar degradacao (mesmo padrao do buscarCSV)
+  for (const p of ctx.pages()) { if (/soma\.zamp\.com\.br/.test(p.url())) await p.close().catch(() => {}); }
+  const page = await ctx.newPage();
+  await page.goto('https://soma.zamp.com.br/wm_task_list.do', { waitUntil: 'domcontentloaded', timeout: 30000 });
+  await page.waitForTimeout(1000);
+  if (/login\.microsoftonline|Conta\/LogOn/i.test(page.url())) {
+    await browser.close().catch(() => {});
+    throw new Error('SOMA em tela de login -- nao consigo buscar pecas');
+  }
+
+  // Coleta todos os chamados de equipamento com sys_id valido
+  const chamadosComPeca = [];
+  for (const eq of dadosProcessados.equipamentos) {
+    for (const c of (eq.chamadosDetalhe || [])) {
+      if (c.sysId) chamadosComPeca.push({ ...c, equipamento: eq.chave });
+    }
+  }
+  logInfo('buscando pecas', { totalChamados: chamadosComPeca.length });
+
+  // Processa em lotes de 5 para nao sobrecarregar o SOMA
+  const CONCURRENCY = 5;
+  let processados = 0;
+  let comPeca = 0;
+
+  for (let i = 0; i < chamadosComPeca.length; i += CONCURRENCY) {
+    const lote = chamadosComPeca.slice(i, i + CONCURRENCY);
+    const resultados = await Promise.all(lote.map(async (chamado) => {
+      try {
+        const url = `https://soma.zamp.com.br/wm_task.do?sys_id=${chamado.sysId}`;
+        const html = await page.evaluate(async (u) => {
+          const ctrl = new AbortController();
+          const t = setTimeout(() => ctrl.abort('timeout'), 20000);
+          try {
+            const r = await fetch(u, { credentials: 'include', signal: ctrl.signal });
+            clearTimeout(t);
+            return await r.text();
+          } catch (e) { clearTimeout(t); return null; }
+        }, url);
+        if (!html) return { numero: chamado.numero, pecas: [] };
+        // Extrai pecas da tabela Materiais/Serviços embutida no HTML.
+        // Cada linha tem: numero INCL, material (codigo - nome), qtd, custo, total.
+        // Os links alm_facility dao o nome completo do material.
+        const pecas = [];
+        const linkRegex = /alm_facility\.do\?sys_id=[^"]+">([^<]+)</g;
+        const inclRegex = /INCL\d+/g;
+        const materiais = [];
+        let m;
+        while ((m = linkRegex.exec(html)) !== null) materiais.push(m[1].trim());
+        const inclNumbers = [...new Set(html.match(inclRegex) || [])];
+        // Para cada INCL, tenta extrair qtd e total das celulas adjacentes no HTML
+        for (let j = 0; j < inclNumbers.length && j < materiais.length; j++) {
+          // Procura o bloco HTML ao redor do INCL para extrair qtd e total
+          const idx = html.indexOf(inclNumbers[j]);
+          const bloco = html.substring(idx, idx + 2000);
+          // Qtd: primeiro numero isolado apos o material
+          const qtdMatch = bloco.match(/>\s*(\d{1,4})\s*</);
+          const qtd = qtdMatch ? parseInt(qtdMatch[1], 10) : null;
+          // Total: valor em R$ (ultimo R$ no bloco)
+          const totalMatches = bloco.match(/R\$\s*[\d.,]+/g);
+          const total = totalMatches ? totalMatches[totalMatches.length - 1] : null;
+          pecas.push({
+            numero: inclNumbers[j],
+            material: materiais[j],
+            quantidade: qtd,
+            total: total,
+          });
+        }
+        return { numero: chamado.numero, pecas };
+      } catch (e) {
+        return { numero: chamado.numero, pecas: [], erro: e.message.slice(0, 100) };
+      }
+    }));
+    // Grava as pecas de volta nos chamadosDetalhe do equipamento correspondente
+    for (const res of resultados) {
+      if (res.pecas && res.pecas.length > 0) {
+        comPeca++;
+        // Encontra o chamado no dadosProcessados e anexa as pecas
+        for (const eq of dadosProcessados.equipamentos) {
+          const det = (eq.chamadosDetalhe || []).find(c => c.numero === res.numero);
+          if (det) { det.pecas = res.pecas; break; }
+        }
+      }
+      processados++;
+    }
+    if (i + CONCURRENCY >= chamadosComPeca.length || (i / CONCURRENCY) % 10 === 0) {
+      logInfo('progresso pecas', { processados, total: chamadosComPeca.length, comPeca });
+    }
+  }
+
+  await browser.close().catch(() => {});
+  logInfo('pecas buscadas', { total: processados, comPeca, semPeca: processados - comPeca });
+  return { total: processados, comPeca };
+}
+
+// Busca o rastreio de pecas no abbiamolog (log.abbiamolog.com).
+// A API dashboard-api.abbiamo.io retorna pedidos com itens cujo campo sku
+// contem o codigo do material SOMA (ex: "PREV B-303018500397" -> 303018500397).
+// Indexa por codigo de material para o painel mostrar onde cada peca esta.
+// Usa a aba logada do abbiamolog no Chrome via CDP para pegar o Bearer token.
+async function buscarRastreio(dadosProcessados) {
+  const browser = await chromium.connectOverCDP(CDP, { timeout: 15000 });
+  const ctx = browser.contexts()[0];
+  // Procura a aba do abbiamolog ja logada
+  let page = ctx.pages().find(p => /abbiamolog\.com/.test(p.url()));
+  if (!page) {
+    page = await ctx.newPage();
+    await page.goto('https://log.abbiamolog.com/orders', { waitUntil: 'domcontentloaded', timeout: 30000 });
+    await page.waitForTimeout(2000);
+  }
+  // Captura o Bearer token dos requests da pagina
+  let bearerToken = null;
+  page.on('request', req => {
+    const auth = req.headers()['authorization'];
+    if (auth && auth.startsWith('Bearer ') && !bearerToken) bearerToken = auth;
+  });
+  // Recarrega para garantir que o token seja capturado
+  await page.reload({ waitUntil: 'networkidle', timeout: 30000 }).catch(() => {});
+  await page.waitForTimeout(2000);
+  if (!bearerToken) {
+    await browser.close().catch(() => {});
+    throw new Error('nao capturei Bearer token do abbiamolog -- aba nao logada?');
+  }
+  const headers = { 'Authorization': bearerToken, 'Accept': 'application/json', 'Content-Type': 'application/json' };
+  // Pega seller_ids
+  const meResp = await ctx.request.get('https://dashboard-api.abbiamo.io/me', {
+    headers: { 'Authorization': bearerToken, 'Accept': 'application/json' }
+  });
+  const meData = JSON.parse(await meResp.text());
+  const sellerIds = (meData.sellers || []).map(s => s.id);
+  // Busca pedidos dos ultimos 30 dias em paginas de 50
+  const agora = new Date();
+  const desde = new Date(agora.getTime() - 30 * 86400000);
+  const bodyBase = {
+    from: 0, size: 50, sort: {}, conditions: false,
+    filters: {
+      created_at: { gte: desde.toISOString(), lte: agora.toISOString() },
+      last_delivery_type: [], creation_origin: [], seller_group_invoice_tag_ids: []
+    },
+    seller_ids: sellerIds
+  };
+  // Coleta todos os codigos de material que precisamos rastrear
+  const codigosNecessarios = new Set();
+  for (const eq of dadosProcessados.equipamentos) {
+    for (const c of (eq.chamadosDetalhe || [])) {
+      for (const p of (c.pecas || [])) {
+        // Extrai o codigo numerico do material (ex: "303018500369 - PISTAO..." -> "303018500369")
+        const codeMatch = (p.material || '').match(/^(\d{10,})/);
+        if (codeMatch) codigosNecessarios.add(codeMatch[1]);
+      }
+    }
+  }
+  logInfo('rastreio abbiamolog', { codigosNecessarios: codigosNecessarios.size });
+  // Busca pedidos em paginas
+  const indiceRastreio = {}; // codigo_material -> [{ bkn, status, tracking, destino, eta, eventos }]
+  let pagina = 0;
+  let totalPedidos = 0;
+  let pedidosProcessados = 0;
+  while (true) {
+    const body = { ...bodyBase, from: pagina * 50 };
+    const resp = await ctx.request.post('https://dashboard-api.abbiamo.io/orders-page/v1/search/orders', {
+      headers, data: JSON.stringify(body)
+    });
+    const data = JSON.parse(await resp.text());
+    if (pagina === 0) totalPedidos = data.total || 0;
+    const pedidos = data.data || [];
+    if (!pedidos.length) break;
+    for (const pedido of pedidos) {
+      // Para cada pedido, pega os detalhes completos (volumes/itens)
+      try {
+        const detailResp = await ctx.request.get(
+          `https://dashboard-api.abbiamo.io/orders-page/v1/search/order?order_id=${pedido.id}`,
+          { headers: { 'Authorization': bearerToken, 'Accept': 'application/json' } }
+        );
+        const detail = JSON.parse(await detailResp.text());
+        const dest = detail.destination_address || {};
+        const ultimoEvento = (detail.delivery_events || []).slice(-1)[0] || {};
+        const entrega = (detail.deliveries || [])[0] || {};
+        const infoRastreio = {
+          bkn: (pedido.number || '').split('-')[0].trim(),
+          numeroCompleto: pedido.number || '',
+          status: pedido.status_name || '',
+          subStatus: pedido.sub_status || '',
+          tracking: pedido.tracking || '',
+          destino: [dest.city, dest.state].filter(Boolean).join('/'),
+          endereco: [dest.street, dest.street_number, dest.complement].filter(Boolean).join(' '),
+          eta: entrega.expected_carrier_delivery_date || null,
+          transportadora: ultimoEvento.observation || (detail.carrier ? detail.carrier.name : '') || '',
+          ultimoEvento: ultimoEvento.status || '',
+          ultimoEventoData: ultimoEvento.event_at || null,
+        };
+        // Indexa por codigo de material nos volumes/itens
+        for (const vol of (detail.volumes || [])) {
+          for (const item of (vol.items || [])) {
+            // sku pode ser "PREV B-303018500397" ou "388951-303013500119"
+            const skuCodes = (item.sku || '').match(/(\d{10,})/g) || [];
+            for (const code of skuCodes) {
+              if (!indiceRastreio[code]) indiceRastreio[code] = [];
+              indiceRastreio[code].push(infoRastreio);
+            }
+          }
+        }
+      } catch (e) { /* ignora pedido individual que falhar */ }
+      pedidosProcessados++;
+    }
+    pagina++;
+    if (pagina * 50 >= totalPedidos || pagina >= 20) break; // max 1000 pedidos
+    if (pagina % 5 === 0) logInfo('progresso rastreio', { pagina, pedidosProcessados, totalPedidos });
+  }
+  // Anota o rastreio nas pecas dos chamados
+  let pecasComRastreio = 0;
+  for (const eq of dadosProcessados.equipamentos) {
+    for (const c of (eq.chamadosDetalhe || [])) {
+      for (const p of (c.pecas || [])) {
+        const codeMatch = (p.material || '').match(/^(\d{10,})/);
+        if (codeMatch && indiceRastreio[codeMatch[1]]) {
+          p.rastreio = indiceRastreio[codeMatch[1]];
+          pecasComRastreio++;
+        }
+      }
+    }
+  }
+  await browser.close().catch(() => {});
+  logInfo('rastreio concluido', {
+    totalPedidos, pedidosProcessados,
+    codigosIndexados: Object.keys(indiceRastreio).length,
+    pecasComRastreio
+  });
+  return { totalPedidos, pedidosProcessados, pecasComRastreio };
+}
+
 (async () => {
   const inicio = Date.now();
   logInfo('pipeline chamados iniciado');
   try {
     logInfo('etapa iniciada', { etapa: 'buscar_csv' });
-    const csv = await buscarCSV();
-    logInfo('etapa concluida', { etapa: 'buscar_csv', bytes: csv.length });
+    const { csv, fechadosCsv } = await buscarCSV();
+    logInfo('etapa concluida', { etapa: 'buscar_csv', bytes: csv.length, bytesFechados: fechadosCsv ? fechadosCsv.length : 0 });
 
     logInfo('etapa iniciada', { etapa: 'buscar_disponibilidade_bi' });
     const { carimbo: carimboBI, disponibilidade: disponibilidadeBI, porDia: indispPorDia, porSemana: indispPorSemana } = await buscarDisponibilidadeBI();
@@ -843,6 +1216,30 @@ function rodar(rotulo, cmd, args) {
 
     const dadosProcessados = processar(csv, disponibilidadeBI);
     dadosProcessados.disponibilidadeBIAtualizadaEm = carimboBI;
+    dadosProcessados.ultimosFechados = ultimosFechados(fechadosCsv);
+
+    // Busca pecas/materiais dos chamados de equipamento (sorvete, fritadeira,
+    // microondas, phu, broiler, tostadeira) diretamente na pagina individual
+    // do SOMA. So' para esses ~220 chamados, nao para todos os ~1800 abertos.
+    logInfo('etapa iniciada', { etapa: 'buscar_pecas' });
+    try {
+      const resultadoPecas = await buscarPecas(dadosProcessados);
+      logInfo('etapa concluida', { etapa: 'buscar_pecas', ...resultadoPecas });
+    } catch (e) {
+      logErro('buscar_pecas falhou -- continuo sem pecas', { erro: e.message.slice(0, 200) });
+    }
+
+    // Busca rastreio das pecas no abbiamolog (log.abbiamolog.com).
+    // Cruza o codigo de material SOMA com os pedidos BKN via API, indexando
+    // por codigo para o painel mostrar onde cada peca esta.
+    logInfo('etapa iniciada', { etapa: 'buscar_rastreio' });
+    try {
+      const resultadoRastreio = await buscarRastreio(dadosProcessados);
+      logInfo('etapa concluida', { etapa: 'buscar_rastreio', ...resultadoRastreio });
+    } catch (e) {
+      logErro('buscar_rastreio falhou -- continuo sem rastreio', { erro: e.message.slice(0, 200) });
+    }
+
     // Indisponibilidade da REGIONAL SUL, lida da matriz do BI (nao calculada).
     // dia   = ultima coluna com dado (o dia corrente, ainda parcial)
     // mes   = coluna "Total"
@@ -851,10 +1248,19 @@ function rodar(rotulo, cmd, args) {
     // todos 32%" de uma matriz que ainda nao tinha rolado -- numero errado com
     // cara de certo. Na duvida, melhor o painel mostrar "—" do que mentir.
     const todosIguais = diasComDado.length > 1 && new Set(diasComDado.map((x) => x.pct)).size === 1;
-    const confiavel = !!ultimoDia && !!mesIndisp && diasComDado.length >= 5 && !todosIguais;
+    // A leitura diaria vem de ANTES do reload, sem recarregar -- entao ela pode
+    // estar velha. O antidoto esta' na propria matriz: a ultima coluna e' o
+    // numero do dia. Se nao for hoje (nem ontem, para execucao de madrugada),
+    // a aba ficou para tras e a leitura nao vale.
+    const hojeSP = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
+    const diaHoje = hojeSP.getDate();
+    const ontem = new Date(hojeSP.getTime() - 86400000).getDate();
+    const diaFresco = !!ultimoDia && (ultimoDia.dia === diaHoje || ultimoDia.dia === ontem);
+    const confiavel = !!ultimoDia && !!mesIndisp && diasComDado.length >= 5 && !todosIguais && diaFresco;
     if (!confiavel) {
       logErro('indisponibilidade por dia nao confiavel -- publico sem ela', {
         dias: diasComDado.length, temTotal: !!mesIndisp, todosIguais,
+        ultimoDiaLido: ultimoDia ? ultimoDia.dia : null, hoje: diaHoje, diaFresco,
       });
     }
     const semanas = indispPorSemana || [];
