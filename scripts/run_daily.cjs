@@ -1186,6 +1186,7 @@ eta: entrega.expected_carrier_delivery_date || null,
 transportadora: ultimoEvento.observation || (detail.carrier ? detail.carrier.name : '') || '',
 ultimoEvento: ultimoEvento.status || '',
 ultimoEventoData: ultimoEvento.event_at || null,
+orderId: pedido.id || '',
 };
 for (const vol of (detail.volumes || [])) {
 for (const item of (vol.items || [])) {
