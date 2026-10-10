@@ -833,6 +833,17 @@ async function iniciar() {
   const dt = new Date(D.atualizadoEm);
   document.getElementById('stamp').textContent = 'Atualizado ' + dt.toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
 
+  // Preenche o Set global chamadosComPeca ANTES de montar os KPIs -- o
+  // card "Chamados c/ Materiais" lê chamadosComPeca.size, e se o Set ainda
+  // estiver vazio nesse ponto o card mostra 0. Antes esse preenchimento
+  // ficava ~230 linhas abaixo (depois dos KPIs), por isso vinha zerado.
+  chamadosComPeca = new Set();
+  for (const eq of (D.equipamentos || [])) {
+    for (const c of (eq.chamadosDetalhe || [])) {
+      if (c.pecas && c.pecas.length > 0) chamadosComPeca.add(c.numero);
+    }
+  }
+
   const totalChamadosEquip = D.equipamentos.reduce((s,e)=>s+e.chamados,0);
   const totalAlta = D.equipamentos.reduce((s,e)=>s+e.alta,0);
   const totalSOS = D.equipamentos.reduce((s,e)=>s+e.sos,0);
@@ -1063,14 +1074,8 @@ function montarBuscaChamados(D) {
   for (const s of (D.supervisores || [])) {
     for (const c of (s.chamadosDetalhe || [])) supervisorDoChamado[c.numero] = s.nome;
   }
-  // Preenche o Set global chamadosComPeca (definido em escopo global acima,
-  // junto com tagPecas) com os numeros dos chamados que tem pecas.
-  chamadosComPeca = new Set();
-  for (const eq of (D.equipamentos || [])) {
-    for (const c of (eq.chamadosDetalhe || [])) {
-      if (c.pecas && c.pecas.length > 0) chamadosComPeca.add(c.numero);
-    }
-  }
+  // O Set global chamadosComPeca ja foi preenchido acima (antes dos KPIs).
+  // Nao preencher de novo aqui -- era isso que fazia o card vir zerado.
   const SEM_SUPERVISOR = '(sem supervisor)';
   const supervisorDe = (c) => supervisorDoChamado[c.numero] || SEM_SUPERVISOR;
   const supervisores = [...new Set(todos.map(supervisorDe))]
