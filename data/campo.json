@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-09T23:00:31.186Z",
+ "atualizadoEm": "2026-10-10T00:00:11.746Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 9,
+  "emExecucao": 10,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 9
+  "total": 10
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-09",
-   "abertos": 6,
+   "abertos": 7,
    "fechados": 12
   }
  ],
  "itens": [
+  {
+   "numero": "WO0067017",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "30086 FS PONTA GROSSA R BALDUINO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "09/10/2026 20:49:12",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "FALTA DE ÁGUA - CORTE DE ÁGUA NA REGIÃO",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | FALTA DE ÁGUA - CORTE DE ÁGUA NA REGIÃO",
+   "tarefas": [
+    "WOT0067560"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0066888",
    "marca": "BKB",
