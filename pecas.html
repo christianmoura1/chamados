@@ -659,7 +659,8 @@ function abrirDetalhe(idx) {
   const linhas = pecas.map(p => {
     const totalPeca = parseBrl(p.total);
     totalGeral += totalPeca;
-    // Rastreio: se a peca tem dados do abbiamolog, mostra badge + info
+    // Rastreio: se a peca tem dados do abbiamolog, mostra badge + info.
+    // Se nao tem, mostra "sem envio recente" para nao parecer que faltou dado.
     let rastreioHtml = '';
     if (p.rastreio && p.rastreio.length > 0) {
       const r = p.rastreio[0]; // pega o mais recente
@@ -673,6 +674,8 @@ function abrirDetalhe(idx) {
         ${r.tracking ? '<br><span class="tracking">Tracking: ' + escapeHtml(r.tracking) + '</span>' : ''}
         ${p.rastreio.length > 1 ? '<br><span class="tracking">+' + (p.rastreio.length - 1) + ' envio(s) adicional(is)</span>' : ''}
       </div>`;
+    } else {
+      rastreioHtml = `<div class="rastreio-info"><span class="rastreio-badge default">Sem envio recente</span> <span style="color:var(--faint);font-size:11px">nenhum pedido nos últimos 14 dias</span></div>`;
     }
     return `<tr class="modal-peca-row">
       <td class="modal-peca-incl">${escapeHtml(p.numero)}</td>
