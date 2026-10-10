@@ -255,6 +255,7 @@
   .tag { font-size: 10.5px; font-weight: 600; border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
   .tag-sos { background: var(--sos-soft); color: var(--rosa); }
   .tag-alta { background: var(--alta-soft); color: var(--laranja); }
+  .tag-pecas { background: rgba(30,59,255,0.10); color: var(--cobalto); font-size: 10px; padding: 1px 7px; margin-left: 4px; vertical-align: middle; }
   .tag-normal { background: var(--cinza-bg); color: var(--text-2); }
 
   /* ---------- busca de chamados ---------- */
@@ -462,7 +463,7 @@ const tagClsPrioridade = p => p === 'SOS' ? 'tag-sos' : (p === 'Alta' ? 'tag-alt
 function blocoMaisUrgentes(itens) {
   const top5 = (itens || []).slice(0, 5);
   const html = top5.length
-    ? top5.map(c => `<div class="esos-item"><span class="loja">${escapeHtml(c.loja)}</span><span class="tag ${tagClsPrioridade(c.prioridade)}">${c.dias}d</span></div>`).join('')
+    ? top5.map(c => `<div class="esos-item"><span class="loja">${escapeHtml(c.loja)}</span><span class="tag ${tagClsPrioridade(c.prioridade)}">${c.dias}d</span>${tagPecas(c.numero)}</div>`).join('')
     : '<div class="esos-empty">Nenhum chamado em aberto.</div>';
   return `<div>
       <div class="esos-label">Mais urgentes (${top5.length})</div>
@@ -561,7 +562,7 @@ function renderizarModalTabela() {
         <td>${escapeHtml(c.loja)}</td>
         <td>${escapeHtml(c.problema) || '—'}</td>
         <td>${escapeHtml(c.estado)}</td>
-        <td><span class="tag ${tagClsPrioridade(c.prioridade)}">${escapeHtml(c.prioridade)}</span></td>
+        <td><span class="tag ${tagClsPrioridade(c.prioridade)}">${escapeHtml(c.prioridade)}</span>${tagPecas(c.numero)}</td>
         <td class="num">${c.dias}d</td>
         <td>${escapeHtml(c.tecnico) || '—'}</td>
       </tr>`).join('')
@@ -1049,6 +1050,16 @@ function montarBuscaChamados(D) {
   for (const s of (D.supervisores || [])) {
     for (const c of (s.chamadosDetalhe || [])) supervisorDoChamado[c.numero] = s.nome;
   }
+  // Conjunto dos numeros de chamado que tem pedido de peca -- usado para
+  // mostrar a etiqueta "Pecas" na tabela do backlog e no modal do tecnico.
+  const chamadosComPeca = new Set();
+  for (const eq of (D.equipamentos || [])) {
+    for (const c of (eq.chamadosDetalhe || [])) {
+      if (c.pecas && c.pecas.length > 0) chamadosComPeca.add(c.numero);
+    }
+  }
+  const tagPecas = (numero) => chamadosComPeca.has(numero)
+    ? '<span class="tag tag-pecas">Peças</span>' : '';
   const SEM_SUPERVISOR = '(sem supervisor)';
   const supervisorDe = (c) => supervisorDoChamado[c.numero] || SEM_SUPERVISOR;
   const supervisores = [...new Set(todos.map(supervisorDe))]
@@ -1110,7 +1121,7 @@ function montarBuscaChamados(D) {
           <td>${escapeHtml(c.loja)}</td>
           <td>${escapeHtml(c.problema) || '—'}</td>
           <td>${escapeHtml(c.estado)}</td>
-          <td><span class="tag ${tagClsPrioridade(c.prioridade)}">${escapeHtml(c.prioridade)}</span></td>
+          <td><span class="tag ${tagClsPrioridade(c.prioridade)}">${escapeHtml(c.prioridade)}</span>${tagPecas(c.numero)}</td>
           <td class="num">${c.dias}d</td>
           <td>${escapeHtml(c.tecnico) || '—'}</td>
         </tr>`).join('')
