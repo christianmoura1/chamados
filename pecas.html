@@ -391,7 +391,24 @@ return;
 }
 const dt = new Date(D.atualizadoEm);
 document.getElementById('stamp').textContent = 'Atualizado ' + dt.toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
-TODOS_CHAMADOS_COM_PECAS = (D.chamadosComPecas || []);
+// Monta a lista de chamados com peca a partir dos equipamentos -- o
+// dados.json nao tem um campo "chamadosComPecas" pronto; as pecas vivem
+// em equipamentos[].chamadosDetalhe[].pecas. Ler D.chamadosComPecas
+// (que nao existe) fazia o painel mostrar sempre zero.
+const mapaSupervisorInit = {};
+for (const sup of (D.supervisores || [])) {
+for (const c of (sup.chamadosDetalhe || [])) {
+mapaSupervisorInit[c.numero] = sup.nome;
+}
+}
+TODOS_CHAMADOS_COM_PECAS = [];
+for (const eq of (D.equipamentos || [])) {
+for (const c of (eq.chamadosDetalhe || [])) {
+if (c.pecas && c.pecas.length > 0) {
+TODOS_CHAMADOS_COM_PECAS.push({ ...c, equipamento: eq.nome, supervisor: mapaSupervisorInit[c.numero] || '' });
+}
+}
+}
 const totalChamadosComPeca = TODOS_CHAMADOS_COM_PECAS.length;
 const totalItensPeca = TODOS_CHAMADOS_COM_PECAS.reduce((s, c) => s + (c.pecas || []).length, 0);
 const totalChamadosEquip = D.equipamentos.reduce((s, e) => s + e.chamados, 0);
