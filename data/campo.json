@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-10T19:20:10.894Z",
+ "atualizadoEm": "2026-10-10T20:00:26.851Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 8,
+  "emExecucao": 9,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 8
+  "total": 9
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-10",
-   "abertos": 8,
+   "abertos": 9,
    "fechados": 10
   }
  ],
  "itens": [
+  {
+   "numero": "WO0067358",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "15893 - SHOP IGUATEMI PORTO ALEGRE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "10/10/2026 16:49:22",
+   "fechamento": "",
+   "principal": "BK063529 - CAMARA DE CONGELADOS; SÃO RAFAEL",
+   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMG",
+   "tecnico": "",
+   "descricao": "BK063529 - CAMARA DE CONGELADOS; SÃO RAFAEL | CMG - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0067908"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0067319",
    "marca": "BKB",
