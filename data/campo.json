@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-10T00:00:11.746Z",
+ "atualizadoEm": "2026-10-10T00:20:12.634Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 10,
+  "emExecucao": 11,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 10
+  "total": 11
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-09",
-   "abertos": 7,
+   "abertos": 8,
    "fechados": 12
   }
  ],
  "itens": [
+  {
+   "numero": "WO0067027",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "OESTE PR",
+   "loja": "25277 - SHOP GUARAPUAVA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "09/10/2026 21:14:46",
+   "fechamento": "",
+   "principal": "BK066058 - FRITADEIRA; PITCO; SSH60W; G16JB068249",
+   "secundario": "FRI - NENHUMA DAS CUBAS ATINGE TEMPERATURA",
+   "sigla": "FRI",
+   "tecnico": "",
+   "descricao": "BK066058 - FRITADEIRA; PITCO; SSH60W; G16JB068249 | FRI - NENHUMA DAS CUBAS ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0067570"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0067017",
    "marca": "BKB",
@@ -46,7 +69,7 @@
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
-   "contato": "",
+   "contato": "Tentativa de contato: 09/10/2026 21:16:33;\n",
    "grupo": "execucao"
   },
   {
