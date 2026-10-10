@@ -343,12 +343,14 @@ function renderizar() {
   const fMaterial = semAcento(inMaterial.value.trim());
   const fChamado = semAcento(inChamado.value.trim());
   const fPri = selPrioridade.value;
+  const fSup = document.getElementById('filtroSupervisor').value;
 
   const filtrados = TODOS_CHAMADOS_COM_PECAS.filter(c => {
     if (fEquip && c.equipamento !== fEquip) return false;
     if (fLoja && !semAcento(c.loja).includes(fLoja)) return false;
     if (fChamado && !semAcento(c.numero).includes(fChamado)) return false;
     if (fPri && c.prioridade !== fPri) return false;
+    if (fSup && c.supervisor !== fSup) return false;
     if (fMaterial) {
       const temMaterial = (c.pecas || []).some(p => semAcento(p.material || '').includes(fMaterial));
       if (!temMaterial) return false;
@@ -446,12 +448,20 @@ async function iniciar() {
   const dt = new Date(D.atualizadoEm);
   document.getElementById('stamp').textContent = 'Atualizado ' + dt.toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
 
+  // Construir mapa numero -> supervisor a partir dos dados de supervisores
+  const mapaSupervisor = {};
+  for (const sup of (D.supervisores || [])) {
+    for (const c of (sup.chamadosDetalhe || [])) {
+      mapaSupervisor[c.numero] = sup.nome;
+    }
+  }
+
   // Coletar todos os chamados que têm peças
   TODOS_CHAMADOS_COM_PECAS = [];
   for (const eq of (D.equipamentos || [])) {
     for (const c of (eq.chamadosDetalhe || [])) {
       if (c.pecas && c.pecas.length > 0) {
-        TODOS_CHAMADOS_COM_PECAS.push({ ...c, equipamento: eq.nome });
+        TODOS_CHAMADOS_COM_PECAS.push({ ...c, equipamento: eq.nome, supervisor: mapaSupervisor[c.numero] || '' });
       }
     }
   }
@@ -517,6 +527,10 @@ async function iniciar() {
             <label for="filtroPrioridade">Prioridade</label>
             <select id="filtroPrioridade"><option value="">Todas</option></select>
           </div>
+          <div class="filter-field" style="flex:0 1 160px;min-width:130px;">
+            <label for="filtroSupervisor">Supervisor</label>
+            <select id="filtroSupervisor"><option value="">Todos</option></select>
+          </div>
           <button class="filter-clear" id="filtroLimpar" type="button">Limpar filtros</button>
         </div>
         <div class="filter-count" id="filtroContagem"></div>
@@ -571,9 +585,19 @@ async function iniciar() {
     if (ev.target !== inLoja && !listaLoja.contains(ev.target)) listaLoja.hidden = true;
   });
 
+  // Popular select de supervisor
+  const supervisores = [...new Set(TODOS_CHAMADOS_COM_PECAS.map(c => c.supervisor).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+  const selSup = document.getElementById('filtroSupervisor');
+  supervisores.forEach(v => {
+    const opt = document.createElement('option');
+    opt.value = v; opt.textContent = v;
+    selSup.appendChild(opt);
+  });
+
   // Listeners dos filtros
   selEquip.addEventListener('change', renderizar);
   selPri.addEventListener('change', renderizar);
+  selSup.addEventListener('change', renderizar);
   document.getElementById('filtroMaterial').addEventListener('input', renderizar);
   document.getElementById('filtroChamado').addEventListener('input', renderizar);
   document.getElementById('filtroLimpar').addEventListener('click', () => {
@@ -581,6 +605,7 @@ async function iniciar() {
     document.getElementById('filtroMaterial').value = '';
     document.getElementById('filtroChamado').value = '';
     selPri.value = '';
+    selSup.value = '';
     listaLoja.hidden = true;
     renderizar();
   });
