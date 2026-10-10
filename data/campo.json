@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-10T18:20:09.589Z",
+ "atualizadoEm": "2026-10-10T18:40:10.442Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 11,
+  "emExecucao": 12,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 11
+  "total": 12
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-10",
-   "abertos": 7,
+   "abertos": 8,
    "fechados": 6
   }
  ],
  "itens": [
+  {
+   "numero": "WO0067319",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "24741 - FS PELOTAS - AV FERREIRA VIANA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "10/10/2026 15:36:22",
+   "fechamento": "",
+   "principal": "BK071407 - COIFA",
+   "secundario": "COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK071407 - COIFA | COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
+   "tarefas": [
+    "WOT0067867"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0067274",
    "marca": "BKB",
