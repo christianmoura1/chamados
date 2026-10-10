@@ -1,5 +1,5 @@
 {
- "atualizadoEm": "2026-10-10T15:40:09.825Z",
+ "atualizadoEm": "2026-10-10T17:20:10.504Z",
  "janelaDias": 3,
  "resumo": {
   "emExecucao": 12,
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-10",
-   "abertos": 6,
-   "fechados": 3
+   "abertos": 7,
+   "fechados": 4
   }
  ],
  "itens": [
+  {
+   "numero": "WO0067274",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "16988 - SHOP ESTACAO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "10/10/2026 14:08:04",
+   "fechamento": "",
+   "principal": "BK072146 - BROILER",
+   "secundario": "BRO - QUEBRANDO CARNE",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK072146 - BROILER | BRO - QUEBRANDO CARNE",
+   "tarefas": [
+    "WOT0067820"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0067222",
    "marca": "BKB",
@@ -66,29 +89,6 @@
    "descricao": "BK080251 - BROILER | BRO - NÃO ATINGE TEMPERATURA",
    "tarefas": [
     "WOT0067751"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0067166",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "18450 - BOURBON SHOP SAO LEOPOLDO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "10/10/2026 10:50:08",
-   "fechamento": "",
-   "principal": "BK072151 - FRITADEIRA TRIPLA GAS NAT 3X3X2CESTOS",
-   "secundario": "FRI - NÃO LIGA",
-   "sigla": "FRI",
-   "tecnico": "",
-   "descricao": "BK072151 - FRITADEIRA TRIPLA GAS NAT 3X3X2CESTOS | FRI - NÃO LIGA",
-   "tarefas": [
-    "WOT0067710"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
