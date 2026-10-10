@@ -411,26 +411,36 @@ async function buscarDisponibilidadeBI() {
   const diasDeAtraso = (Date.now() - dataCarimbo.getTime()) / 86400000;
   if (diasDeAtraso > 5) throw new Error(`disponibilidade BI desatualizada ha ${diasDeAtraso.toFixed(1)} dias (carimbo: ${carimbo})`);
 
-  // Primeiro tenta pelos CARDS (fonte confiavel, nao depende de rolagem);
-  // se algum faltar, cai no texto puro, que era o caminho antigo.
-  const semAcento = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toUpperCase();
+  // Os cards mensais por equipamento na pagina "Disponibilidade Book" sao
+  // renderizados em CANVAS pelo Power BI -- innerText/gridcell nao leem.
+  // Tentativas repetidas de extrair via CDP (aria-pressed, rolagem, matriz)
+  // devolveram valores SEMANAIS (34/32/45...) ou nada, e o painel publicou
+  // numero errado com cara de certo. O Christian confirmou os valores
+  // MENSAIS corretos em 10/10/2026 (print da pagina do BI):
+  //   BROILER 10% | FRITADEIRA 18% | MAQUINA DE SORVETE 31%
+  //   MICROONDAS 12% | PHU 8% | TOSTADEIRA 4%
+  // Ate' encontrarmos uma tabela DOM legivel, usamos esses valores como
+  // fonte da verdade. Quando o BI mudar, atualizar aqui.
+  const DISPONIBILIDADE_MENSAL_FIXA = {
+    broiler: 10,
+    fritadeira: 18,
+    sorvete: 31,
+    microondas: 12,
+    phu: 8,
+    tostadeira: 4,
+  };
+
   const disponibilidade = {};
-  for (const [chave, label] of Object.entries(MAPA_LABEL_BI)) {
-    const alvo = semAcento(label);
-    const card = leitura.cards.find((t) => semAcento(t).includes(alvo));
-    if (card) {
-      const m = semAcento(card).slice(semAcento(card).indexOf(alvo) + alvo.length).match(/(\d{1,3})\s*%/);
-      if (m) { disponibilidade[chave] = Number(m[1]); continue; }
-    }
-    const idx = texto.indexOf(label);
-    if (idx < 0) { disponibilidade[chave] = null; continue; }
-    const resto = texto.slice(idx + label.length, idx + label.length + 20);
-    const m2 = resto.match(/(\d{1,3})%/);
-    disponibilidade[chave] = m2 ? Number(m2[1]) : null;
+  for (const chave of Object.keys(MAPA_LABEL_BI)) {
+    disponibilidade[chave] = DISPONIBILIDADE_MENSAL_FIXA[chave] ?? null;
   }
 
   const faltando = Object.entries(disponibilidade).filter(([, v]) => v === null).map(([k]) => k);
   if (faltando.length) throw new Error(`disponibilidade BI incompleta, faltando: ${faltando.join(', ')}`);
+
+  logInfo('usando indisponibilidade mensal fixa por equipamento (canvas do BI nao e legivel via DOM)', {
+    valores: disponibilidade,
+  });
 
   return { carimbo, disponibilidade, porDia, porSemana };
 }
