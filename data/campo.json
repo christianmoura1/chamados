@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-10T14:20:10.042Z",
+ "atualizadoEm": "2026-10-10T15:20:09.896Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 10,
+  "emExecucao": 11,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 1,
-  "total": 10
+  "aguardandoToken": 2,
+  "total": 11
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-10",
-   "abertos": 4,
+   "abertos": 5,
    "fechados": 3
   }
  ],
  "itens": [
+  {
+   "numero": "WO0067207",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "27590 - PORTO BELO OUTLET",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "10/10/2026 12:02:18",
+   "fechamento": "",
+   "principal": "BK080251 - BROILER",
+   "secundario": "BRO - NÃO ATINGE TEMPERATURA",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK080251 - BROILER | BRO - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0067751"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0067166",
    "marca": "BKB",
@@ -193,8 +216,8 @@
    "regional": "SUL",
    "setor": "SUDOESTE RS",
    "loja": "20049 - SHOP PRACA RIO GRANDE",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
+   "status": "Trabalho em andamento",
+   "fase": "Requisição Completa - Aguardando Token",
    "abertura": "09/10/2026 11:06:36",
    "fechamento": "",
    "principal": "CÂMARA DE RESFRIADOS",
@@ -205,8 +228,8 @@
    "tarefas": [
     "WOT0067259"
    ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
+   "aguardandoToken": 1,
+   "fechadoSemToken": "10/10/2026 12:18:40",
    "contato": "",
    "grupo": "execucao"
   },
