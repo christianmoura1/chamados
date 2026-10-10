@@ -327,13 +327,32 @@ var busca = (document.getElementById('q') ? document.getElementById('q').value :
 var fReg = (document.getElementById('fReg') ? document.getElementById('fReg').value : '');
 var fStatus = (document.getElementById('fStatus') ? document.getElementById('fStatus').value : '');
 var fPri = (document.getElementById('fPri') ? document.getElementById('fPri').value : '');
+var fLoja = (document.getElementById('fLoja') ? document.getElementById('fLoja').value : '').toLowerCase().trim();
+var fDataDe = (document.getElementById('fDataDe') ? document.getElementById('fDataDe').value : '');
+var fDataAte = (document.getElementById('fDataAte') ? document.getElementById('fDataAte').value : '');
 var iReg = A.cab.indexOf('Regional');
-var iStatus = A.cab.findIndex(function(c) { return /status/i.test(c); });
+var iStatus = A.cab.findIndex(function(c) { return /^estado$/i.test(c) || /^status/i.test(c); });
 var iPri = A.cab.findIndex(function(c) { return /prioridade/i.test(c); });
+var iLoja = A.cab.findIndex(function(c) { return /^loja$/i.test(c); });
+var iAbertura = A.cab.findIndex(function(c) { return /abertura/i.test(c); });
+function dataBRparaISO(s) {
+var m = String(s||'').match(/^(\d{2})\/(\d{2})\/(\d{4})/);
+return m ? m[3]+'-'+m[2]+'-'+m[1] : '';
+}
 return A.linhas.filter(function (l) {
 if (fReg && iReg >= 0 && String(l[iReg]) !== fReg) return false;
 if (fStatus && iStatus >= 0 && String(l[iStatus]) !== fStatus) return false;
 if (fPri && iPri >= 0 && String(l[iPri]) !== fPri) return false;
+if (fLoja && iLoja >= 0 && semAcento(String(l[iLoja])).indexOf(fLoja) === -1) return false;
+if (fLoja && iLoja < 0 && busca && l.join(' ').toLowerCase().indexOf(fLoja) === -1) return false;
+if (fDataDe && iAbertura >= 0) {
+var iso = dataBRparaISO(l[iAbertura]);
+if (iso && iso < fDataDe) return false;
+}
+if (fDataAte && iAbertura >= 0) {
+var iso2 = dataBRparaISO(l[iAbertura]);
+if (iso2 && iso2 > fDataAte) return false;
+}
 if (busca && l.join(' ').toLowerCase().indexOf(busca) === -1) return false;
 return true;
 });
@@ -386,9 +405,11 @@ function render() {
 if (abaAtual === '__painel') { renderPainel(); return; }
 var A = D.abas[abaAtual];
 var iReg = A.cab.indexOf('Regional');
-var iStatus = A.cab.findIndex(function(c) { return /status/i.test(c); });
+var iStatus = A.cab.findIndex(function(c) { return /^estado$/i.test(c) || /^status/i.test(c); });
 var iPri = A.cab.findIndex(function(c) { return /prioridade/i.test(c); });
-var regs = [], statuses = [], pris = [];
+var iLoja = A.cab.findIndex(function(c) { return /^loja$/i.test(c); });
+var iAbertura = A.cab.findIndex(function(c) { return /abertura/i.test(c); });
+var regs = [], statuses = [], pris = [], lojas = [];
 if (iReg >= 0) {
 var vis = {};
 A.linhas.forEach(function (l) { if (l[iReg]) vis[l[iReg]] = 1; });
@@ -404,6 +425,11 @@ var vp = {};
 A.linhas.forEach(function (l) { if (l[iPri]) vp[l[iPri]] = 1; });
 pris = Object.keys(vp).sort();
 }
+if (iLoja >= 0) {
+var vl = {};
+A.linhas.forEach(function (l) { if (l[iLoja]) vl[l[iLoja]] = 1; });
+lojas = Object.keys(vl).sort(function(a,b) { return a.localeCompare(b, 'pt-BR'); });
+}
 var h = '<div class="sec-head"><h2>' + esc(A.titulo || abaAtual) + '</h2>'
 + '<span class="sec-note">' + esc(abaAtual) + '</span></div>'
 + '<div class="filter-bar">';
@@ -411,23 +437,62 @@ if (regs.length) {
 h += '<div class="filter-field"><label for="fReg">Regional</label><select id="fReg"><option value="">Todas</option>'
 + regs.map(function (r) { return '<option>' + esc(r) + '</option>'; }).join('') + '</select></div>';
 }
+if (lojas.length) {
+h += '<div class="filter-field filter-combo"><label for="fLoja">Loja</label>'
++ '<input type="text" id="fLoja" placeholder="Todas" autocomplete="off">'
++ '<div class="filter-combo-lista" id="fLojaLista" hidden></div></div>';
+}
 if (statuses.length) {
-h += '<div class="filter-field"><label for="fStatus">Status</label><select id="fStatus"><option value="">Todos</option>'
+h += '<div class="filter-field"><label for="fStatus">Estado</label><select id="fStatus"><option value="">Todos</option>'
 + statuses.map(function (s) { return '<option>' + esc(s) + '</option>'; }).join('') + '</select></div>';
 }
 if (pris.length) {
 h += '<div class="filter-field"><label for="fPri">Prioridade</label><select id="fPri"><option value="">Todas</option>'
 + pris.map(function (p) { return '<option>' + esc(p) + '</option>'; }).join('') + '</select></div>';
 }
-h += '<div class="filter-field" style="flex:1;min-width:240px"><label for="q">Buscar</label>'
-+ '<input type="text" id="q" placeholder="loja, chamado, problema…" autocomplete="off"></div>'
+if (iAbertura >= 0) {
+h += '<div class="filter-field" style="flex:0 1 260px;min-width:220px"><label>Abertura</label>'
++ '<div style="display:flex;align-items:center;gap:6px">'
++ '<input type="date" id="fDataDe" title="De" style="font-family:Inter,sans-serif;font-size:12.5px;color:var(--text);background:var(--cinza-bg);border:1.5px solid var(--border);border-radius:var(--r);padding:7px 8px;flex:1;min-width:0">'
++ '<span style="font-size:11.5px;color:var(--text-3);flex:none">até</span>'
++ '<input type="date" id="fDataAte" title="Até" style="font-family:Inter,sans-serif;font-size:12.5px;color:var(--text);background:var(--cinza-bg);border:1.5px solid var(--border);border-radius:var(--r);padding:7px 8px;flex:1;min-width:0">'
++ '</div></div>';
+}
+h += '<div class="filter-field" style="flex:1;min-width:200px"><label for="q">Buscar</label>'
++ '<input type="text" id="q" placeholder="chamado, problema, técnico…" autocomplete="off"></div>'
 + '<button class="filter-clear" id="limpar" type="button">Limpar</button>'
 + '<button class="btn-baixar" id="baixar" type="button" title="'
-+ (ehEvolucao() ? 'Baixa o relatório em Excel' : 'Baixa esta aba como CSV') + '">'
-+ (ehEvolucao() ? ' Baixar Excel' : ' Baixar CSV') + '</button></div>'
++ (ehEvolucao() ? 'Baixa o relatório em Excel' : 'Baixa esta aba como CSV, já filtrada') + '">'
++ (ehEvolucao() ? '⬇ Baixar Excel' : '⬇ Baixar CSV') + '</button></div>'
 + '<div class="filter-count" id="cont"></div>'
 + '<div class="table-wrap"><table id="tabela"></table></div>';
 document.getElementById('conteudo').innerHTML = h;
+// Combo de loja
+if (lojas.length) {
+var inLoja = document.getElementById('fLoja');
+var listaLoja = document.getElementById('fLojaLista');
+function mostrarListaLoja() {
+var busca = semAcento(inLoja.value.trim());
+var opcoes = (busca ? lojas.filter(function(l) { return semAcento(l).indexOf(busca) !== -1; }) : lojas).slice(0, 40);
+listaLoja.innerHTML = opcoes.length
+? opcoes.map(function(l) { return '<div class="filter-combo-item">' + esc(l) + '</div>'; }).join('')
+: '<div class="filter-combo-vazio">Nenhuma loja encontrada</div>';
+listaLoja.hidden = false;
+}
+inLoja.addEventListener('input', function() { mostrarListaLoja(); renderTabela(); });
+inLoja.addEventListener('focus', mostrarListaLoja);
+listaLoja.addEventListener('mousedown', function(ev) {
+var item = ev.target.closest('.filter-combo-item');
+if (!item) return;
+ev.preventDefault();
+inLoja.value = item.textContent;
+listaLoja.hidden = true;
+renderTabela();
+});
+document.addEventListener('click', function(ev) {
+if (ev.target !== inLoja && !listaLoja.contains(ev.target)) listaLoja.hidden = true;
+});
+}
 var q = document.getElementById('q'); if (q) q.addEventListener('input', renderTabela);
 var fr = document.getElementById('fReg'); if (fr) fr.addEventListener('change', renderTabela);
 var fs = document.getElementById('fStatus'); if (fs) fs.addEventListener('change', renderTabela);
@@ -437,8 +502,14 @@ if (bx) bx.addEventListener('click', baixar);
 document.getElementById('limpar').addEventListener('click', function () {
 if (q) q.value = ''; if (fr) fr.value = '';
 if (fs) fs.value = ''; if (fp) fp.value = '';
+var fl = document.getElementById('fLoja'); if (fl) fl.value = '';
+var fd1 = document.getElementById('fDataDe'); if (fd1) fd1.value = '';
+var fd2 = document.getElementById('fDataAte'); if (fd2) fd2.value = '';
+var ll = document.getElementById('fLojaLista'); if (ll) ll.hidden = true;
 renderTabela();
 });
+var fdd = document.getElementById('fDataDe'); if (fdd) fdd.addEventListener('change', renderTabela);
+var fda = document.getElementById('fDataAte'); if (fda) fda.addEventListener('change', renderTabela);
 renderTabela();
 }
 
