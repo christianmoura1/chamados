@@ -271,8 +271,17 @@ return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 }
 function classificarEntrega(p) {
 if (!p.rastreio || !p.rastreio.length) return 'sem_envio';
-const s = (p.rastreio[0].status || '').toUpperCase();
+// Se QUALQUER rastreio desta peca foi entregue, classifica como entregue.
+// Cada peca pode ter multiplos rastreios (historico de eventos); SUCCESSFUL
+// nunca e' o primeiro, entao olhar so' rastreio[0] fazia o filtro "Entregue"
+// retornar zero mesmo com 63 pecas SUCCESSFUL nos dados.
+for (const r of p.rastreio) {
+const s = (r.status || '').toUpperCase();
 if (s === 'SUCCESSFUL' || s === 'DELIVERED') return 'entregue';
+}
+// Senao, usa o ultimo rastreio (mais recente) para o status atual.
+const ultimo = p.rastreio[p.rastreio.length - 1];
+const s = (ultimo.status || '').toUpperCase();
 if (s === 'IN_TRANSIT' || s === 'COLLECTED' || s === 'START_DELIVERY') return 'em_rota';
 if (s === 'DISPATCHED') return 'despachado';
 if (s.includes('FAIL') || s.includes('CANCEL') || s.includes('RETURN')) return 'falhou';
