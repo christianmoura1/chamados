@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-10T21:00:24.506Z",
+ "atualizadoEm": "2026-10-10T21:20:09.120Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 10,
+  "emExecucao": 11,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 2,
-  "total": 10
+  "total": 11
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-10",
-   "abertos": 12,
+   "abertos": 13,
    "fechados": 12
   }
  ],
  "itens": [
+  {
+   "numero": "WO0067394",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "10/10/2026 18:19:05",
+   "fechamento": "",
+   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
+   "secundario": "SCI - ALARME DISPARADO",
+   "sigla": "SCI",
+   "tecnico": "",
+   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - ALARME DISPARADO",
+   "tarefas": [
+    "WOT0067944"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0067388",
    "marca": "BKB",
