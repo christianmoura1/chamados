@@ -28,22 +28,11 @@
 --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.05);
 --r: 10px; --r-lg: 16px; --r-xl: 20px;
 --sidebar-w: 220px;
---ink: var(--text);
---muted: var(--text-3);
---faint: var(--text-3);
---line: var(--border);
---ground: var(--bg);
---surface2: var(--cinza-bg);
---violet: var(--cobalto);
---violet-2: var(--cobalto);
---pink: var(--rosa);
---blue: var(--cobalto);
 --sos: var(--rosa);
 --sos-soft: rgba(255,51,102,0.10);
 --alta: var(--laranja);
 --alta-soft: rgba(255,107,0,0.12);
 --ok: var(--verde);
---grid: rgba(0,0,0,0.06);
 }
 [data-theme="dark"] {
 --surface: #1a1d2e; --bg: #0f1120; --text: #f1f5f9; --text-2: #94a3b8; --text-3: #475569;
@@ -51,7 +40,6 @@
 --cinza-bg: #1f2235; --verde-bg: #0d2e1a; --laranja-bg: #2d1a0d;
 --rosa-bg: #2d0d1a; --amarelo-bg: #2d2a0d;
 --sos-soft: rgba(255,51,102,0.16); --alta-soft: rgba(255,107,0,0.16);
---grid: rgba(255,255,255,0.07);
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; transition: background .25s, color .25s; }
@@ -115,8 +103,8 @@ text-align:right; color:var(--text); }
 .item.forte .val { font-size:26px; color:var(--rosa); }
 .item .ctx { font-size:11.5px; color:var(--text-3); }
 .item.verde .val { color:var(--verde); }
-/* busca / tabela */
-.busca-linha { display:flex; gap:10px; align-items:flex-end; flex-wrap:wrap; margin:14px 0 8px; }
+/* filtros */
+.filter-bar { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; margin: 14px 0 8px; }
 .filter-field { display: flex; flex-direction: column; gap: 4px; min-width: 168px; flex: 1; }
 .filter-field label { font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-3); }
 .filter-field select, .filter-field input[type="text"] {
@@ -124,21 +112,47 @@ font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text); backgroun
 border: 1.5px solid var(--border); border-radius: var(--r); padding: 8px 10px; appearance: none; width: 100%;
 }
 .filter-field input[type="text"]:focus, .filter-field select:focus { outline: 2px solid var(--cobalto); outline-offset: -1px; }
+.filter-combo { position: relative; }
+.filter-combo-lista {
+position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 30; max-height: 240px; overflow: auto;
+background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r); box-shadow: var(--shadow); padding: 4px;
+}
+.filter-combo-item { padding: 7px 10px; border-radius: 7px; font-size: 13px; color: var(--text); cursor: pointer; }
+.filter-combo-item:hover, .filter-combo-item.ativo { background: var(--cinza-bg); }
+.filter-combo-vazio { padding: 7px 10px; font-size: 12.5px; color: var(--text-3); }
 .filter-clear {
 font-size: 11.5px; color: var(--cobalto); background: none; border: none;
 cursor: pointer; padding: 8px 4px; white-space: nowrap; align-self: flex-end;
 }
 .filter-clear:hover { text-decoration: underline; }
+.btn-baixar {
+font-size: 11.5px; font-weight: 600; color: #fff; background: var(--cobalto); border: none;
+border-radius: 8px; cursor: pointer; padding: 8px 14px; white-space: nowrap; align-self: flex-end;
+transition: filter .15s;
+}
+.btn-baixar:hover { filter: brightness(.92); }
 .filter-count { font-size: 12px; color: var(--text-2); margin-bottom: 10px; }
+/* tabela */
 .table-wrap { overflow-x: auto; border-radius: var(--r-lg); border: 1.5px solid var(--border); background: var(--surface); box-shadow: var(--shadow); }
 table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
 thead th {
 text-align: left; font-size: 10px; letter-spacing: .05em; text-transform: uppercase;
-color: var(--text-3); padding: 10px 12px; position: sticky; top: 0; background: var(--surface); border-bottom: 1.5px solid var(--border); z-index: 2;
+color: var(--text-3); padding: 11px 12px; position: sticky; top: 0; background: var(--cinza-bg); border-bottom: 1.5px solid var(--border); z-index: 2;
 }
+thead th.col-num { text-align: right; }
 tbody td { padding: 9px 12px; border-top: 1px solid var(--border); vertical-align: middle; }
+tbody tr:nth-child(even) td { background: rgba(0,0,0,0.015); }
+[data-theme="dark"] tbody tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
 tbody tr:hover td { background: var(--cinza-bg); }
-.col-num { text-align: right; }
+tbody tr.row-total td { background: linear-gradient(90deg, rgba(30,59,255,0.06), rgba(30,59,255,0.02)); font-weight: 700; border-top: 2px solid var(--cobalto); }
+tbody tr.row-total:hover td { background: linear-gradient(90deg, rgba(30,59,255,0.10), rgba(30,59,255,0.04)); }
+tbody tr.row-resumo td { color: var(--text-2); font-size: 11.5px; border-top: 1px dashed var(--border); }
+tbody tr.row-resumo:first-of-type td { border-top: 2px solid var(--border); padding-top: 12px; }
+.col-num { text-align: right; font-variant-numeric: tabular-nums; }
+.col-regional { font-weight: 600; color: var(--text); white-space: nowrap; }
+.var-pos { color: var(--rosa); font-weight: 600; }
+.var-neg { color: var(--verde); font-weight: 600; }
+.var-zero { color: var(--text-3); }
 .tag { font-size: 10.5px; font-weight: 600; border-radius: 999px; padding: 2px 9px; white-space: nowrap; display: inline-block; }
 .tag-sos { background: var(--sos-soft); color: var(--rosa); }
 .tag-alta { background: var(--alta-soft); color: var(--laranja); }
@@ -201,6 +215,8 @@ var esc = function (s) { return String(s == null ? '' : s)
 .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); };
 var fmtN = function (n) { return (typeof n === 'number') ? n.toLocaleString('pt-BR') : (n == null ? '' : n); };
 var ehPct = function (cab) { return /%|Hoje|Méd|Disp/i.test(cab); };
+var semAcento = function (s) { return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); };
+
 function kpis() {
 var achar = function (rot) {
 for (var i = 0; i < D.painel.length; i++) {
@@ -226,6 +242,7 @@ h += '<div class="kpi ' + c[0] + '"><span class="label">' + esc(c[1]) + '</span>
 });
 document.getElementById('kpis').innerHTML = h;
 }
+
 function montaAbas() {
 var h = '<button class="aba on" data-aba="__painel">Panorama</button>';
 Object.keys(D.abas).forEach(function (n) {
@@ -243,6 +260,7 @@ render();
 });
 abaAtual = '__painel';
 }
+
 function renderPainel() {
 var h = '';
 D.painel.forEach(function (s) {
@@ -266,7 +284,9 @@ h += '</div></div>';
 });
 document.getElementById('conteudo').innerHTML = h;
 }
+
 function ehEvolucao() { return String(abaAtual).indexOf('Evolu') === 0; }
+
 function baixar() {
 if (!ehEvolucao()) return baixarCSV();
 var dia = D.ultimoDiaFechado || '';
@@ -275,17 +295,11 @@ a.href = 'data/relatorio_sorvete.xlsx' + (dia ? '?v=' + encodeURIComponent(dia) 
 a.download = 'Evolucao_Sorvete_' + (dia || 'hoje') + '.xlsx';
 document.body.appendChild(a); a.click(); document.body.removeChild(a);
 }
+
 function baixarCSV() {
 var A = D.abas[abaAtual];
 if (!A) return;
-var busca = (document.getElementById('q') ? document.getElementById('q').value : '').toLowerCase().trim();
-var filtro = (document.getElementById('fReg') ? document.getElementById('fReg').value : '');
-var iReg = A.cab.indexOf('Regional');
-var linhas = A.linhas.filter(function (l) {
-if (filtro && iReg >= 0 && String(l[iReg]) !== filtro) return false;
-if (busca && l.join(' ').toLowerCase().indexOf(busca) === -1) return false;
-return true;
-});
+var linhas = getLinhasFiltradas();
 var cel = function (v) {
 var t = String(v == null ? '' : v);
 if (typeof v === 'number') t = t.replace('.', ',');
@@ -305,26 +319,54 @@ a.download = nome;
 document.body.appendChild(a); a.click(); document.body.removeChild(a);
 setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
 }
-function renderTabela() {
+
+function getLinhasFiltradas() {
 var A = D.abas[abaAtual];
+if (!A) return [];
 var busca = (document.getElementById('q') ? document.getElementById('q').value : '').toLowerCase().trim();
-var filtro = (document.getElementById('fReg') ? document.getElementById('fReg').value : '');
+var fReg = (document.getElementById('fReg') ? document.getElementById('fReg').value : '');
+var fStatus = (document.getElementById('fStatus') ? document.getElementById('fStatus').value : '');
+var fPri = (document.getElementById('fPri') ? document.getElementById('fPri').value : '');
 var iReg = A.cab.indexOf('Regional');
-var linhas = A.linhas.filter(function (l) {
-if (filtro && iReg >= 0 && String(l[iReg]) !== filtro) return false;
+var iStatus = A.cab.findIndex(function(c) { return /status/i.test(c); });
+var iPri = A.cab.findIndex(function(c) { return /prioridade/i.test(c); });
+return A.linhas.filter(function (l) {
+if (fReg && iReg >= 0 && String(l[iReg]) !== fReg) return false;
+if (fStatus && iStatus >= 0 && String(l[iStatus]) !== fStatus) return false;
+if (fPri && iPri >= 0 && String(l[iPri]) !== fPri) return false;
 if (busca && l.join(' ').toLowerCase().indexOf(busca) === -1) return false;
 return true;
 });
+}
+
+function renderTabela() {
+var A = D.abas[abaAtual];
+var linhas = getLinhasFiltradas();
 var mostra = linhas.slice(0, LIMITE);
-var h = '<thead><tr>' + A.cab.map(function (c) {
-return '<th' + (ehPct(c) ? ' class="col-num"' : '') + '>' + esc(c) + '</th>'; }).join('') + '</tr></thead><tbody>';
+var iReg = A.cab.indexOf('Regional');
+var h = '<thead><tr>' + A.cab.map(function (c, ci) {
+var cls = '';
+if (ehPct(c)) cls = ' class="col-num"';
+else if (ci === iReg) cls = ' class="col-regional"';
+else if (/Varia/i.test(c)) cls = ' class="col-num"';
+return '<th' + cls + '>' + esc(c) + '</th>';
+}).join('') + '</tr></thead><tbody>';
 if (!mostra.length) { h += '<tr><td colspan="' + A.cab.length + '" class="msg">Nada encontrado.</td></tr>'; }
 mostra.forEach(function (l) {
-h += '<tr>' + l.map(function (v, i) {
+var isTotal = String(l[0] || '').toUpperCase().indexOf('TOTAL') >= 0;
+var isResumo = !isTotal && (String(l[0] || '') === '' || /^(Fechados|Abertos|Saldo|Lojas)/i.test(String(l[0] || '')));
+var rowCls = isTotal ? ' class="row-total"' : isResumo ? ' class="row-resumo"' : '';
+h += '<tr' + rowCls + '>' + l.map(function (v, i) {
 var c = A.cab[i];
 if (typeof v === 'number' && ehPct(c)) return '<td class="col-num">' + Math.round(v) + '%</td>';
+if (typeof v === 'number' && /Varia/i.test(c)) {
+var cls = v > 0 ? 'var-pos' : v < 0 ? 'var-neg' : 'var-zero';
+var sinal = v > 0 ? '+' : '';
+return '<td class="col-num ' + cls + '">' + sinal + v + '</td>';
+}
 if (typeof v === 'number') return '<td class="col-num">' + fmtN(v) + '</td>';
 var t = String(v == null ? '' : v);
+if (i === iReg) return '<td class="col-regional">' + esc(t) + '</td>';
 if (t === 'SOS') return '<td><span class="tag tag-sos">SOS</span></td>';
 if (t === 'ALTO') return '<td><span class="tag tag-alta">ALTO</span></td>';
 if (t === 'Sim') return '<td><span class="tag tag-alta">Sim</span></td>';
@@ -339,41 +381,67 @@ document.getElementById('cont').textContent = linhas.length === A.linhas.length
 ? (A.linhas.length + ' registros') + (linhas.length > LIMITE ? ' · mostrando ' + LIMITE : '')
 : linhas.length + ' de ' + A.linhas.length + (linhas.length > LIMITE ? ' · mostrando ' + LIMITE : '');
 }
+
 function render() {
 if (abaAtual === '__painel') { renderPainel(); return; }
 var A = D.abas[abaAtual];
 var iReg = A.cab.indexOf('Regional');
-var regs = [];
+var iStatus = A.cab.findIndex(function(c) { return /status/i.test(c); });
+var iPri = A.cab.findIndex(function(c) { return /prioridade/i.test(c); });
+var regs = [], statuses = [], pris = [];
 if (iReg >= 0) {
 var vis = {};
 A.linhas.forEach(function (l) { if (l[iReg]) vis[l[iReg]] = 1; });
 regs = Object.keys(vis).sort();
 }
+if (iStatus >= 0) {
+var vs = {};
+A.linhas.forEach(function (l) { if (l[iStatus]) vs[l[iStatus]] = 1; });
+statuses = Object.keys(vs).sort();
+}
+if (iPri >= 0) {
+var vp = {};
+A.linhas.forEach(function (l) { if (l[iPri]) vp[l[iPri]] = 1; });
+pris = Object.keys(vp).sort();
+}
 var h = '<div class="sec-head"><h2>' + esc(A.titulo || abaAtual) + '</h2>'
 + '<span class="sec-note">' + esc(abaAtual) + '</span></div>'
-+ '<div class="busca-linha">';
++ '<div class="filter-bar">';
 if (regs.length) {
 h += '<div class="filter-field"><label for="fReg">Regional</label><select id="fReg"><option value="">Todas</option>'
 + regs.map(function (r) { return '<option>' + esc(r) + '</option>'; }).join('') + '</select></div>';
 }
+if (statuses.length) {
+h += '<div class="filter-field"><label for="fStatus">Status</label><select id="fStatus"><option value="">Todos</option>'
++ statuses.map(function (s) { return '<option>' + esc(s) + '</option>'; }).join('') + '</select></div>';
+}
+if (pris.length) {
+h += '<div class="filter-field"><label for="fPri">Prioridade</label><select id="fPri"><option value="">Todas</option>'
++ pris.map(function (p) { return '<option>' + esc(p) + '</option>'; }).join('') + '</select></div>';
+}
 h += '<div class="filter-field" style="flex:1;min-width:240px"><label for="q">Buscar</label>'
 + '<input type="text" id="q" placeholder="loja, chamado, problema…" autocomplete="off"></div>'
 + '<button class="filter-clear" id="limpar" type="button">Limpar</button>'
-+ '<button class="filter-clear" id="baixar" type="button" title="'
-+ (ehEvolucao() ? 'Baixa o relatorio em Excel, com a formatacao da planilha'
-: 'Baixa esta aba como CSV, ja filtrada') + '">'
-+ (ehEvolucao() ? 'Baixar relatório (Excel)' : 'Baixar CSV') + '</button></div>'
++ '<button class="btn-baixar" id="baixar" type="button" title="'
++ (ehEvolucao() ? 'Baixa o relatório em Excel' : 'Baixa esta aba como CSV') + '">'
++ (ehEvolucao() ? ' Baixar Excel' : ' Baixar CSV') + '</button></div>'
 + '<div class="filter-count" id="cont"></div>'
 + '<div class="table-wrap"><table id="tabela"></table></div>';
 document.getElementById('conteudo').innerHTML = h;
 var q = document.getElementById('q'); if (q) q.addEventListener('input', renderTabela);
 var fr = document.getElementById('fReg'); if (fr) fr.addEventListener('change', renderTabela);
+var fs = document.getElementById('fStatus'); if (fs) fs.addEventListener('change', renderTabela);
+var fp = document.getElementById('fPri'); if (fp) fp.addEventListener('change', renderTabela);
 var bx = document.getElementById('baixar');
 if (bx) bx.addEventListener('click', baixar);
 document.getElementById('limpar').addEventListener('click', function () {
-if (q) q.value = ''; if (fr) fr.value = ''; renderTabela(); });
+if (q) q.value = ''; if (fr) fr.value = '';
+if (fs) fs.value = ''; if (fp) fp.value = '';
+renderTabela();
+});
 renderTabela();
 }
+
 fetch('data/sorvete.json')
 .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
 .then(function (j) {
