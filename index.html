@@ -1,391 +1,347 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
 <head>
 <meta charset="utf-8">
 <title>Backlog — Sul</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --sidebar:   #1E1B3A;
-    --sidebar-2: #2A2555;
-    --ground:    #F3F1FB;
-    --surface:   #FFFFFF;
-    --surface2:  #F6F4FC;
-    --ink:       #211D3D;
-    --muted:     #726E93;
-    --faint:     #A9A5C6;
-    --line:      #ECEAF6;
-    --violet:    #7C5CFC;
-    --violet-2:  #A78BFA;
-    --pink:      #F472B6;
-    --blue:      #38BDF8;
-    --sos:       #E43F5A;
-    --sos-soft:  rgba(228,63,90,0.10);
-    --alta:      #F5A623;
-    --alta-soft: rgba(245,166,35,0.12);
-    --ok:        #22C08D;
-    --grid:      rgba(33,29,61,0.06);
-    --shadow:    0 1px 2px rgba(33,29,61,.04), 0 12px 28px rgba(33,29,61,.07);
+    --cobalto: #1e3bff;
+    --laranja: #ff6b00;
+    --laranja-bg: #fff4ee;
+    --rosa: #ff3366;
+    --verde: #00c853;
+    --verde-bg: #e8fdf0;
+    --amarelo: #ffcc00;
+    --amarelo-bg: #fffef0;
+    --cinza: #6b7280;
+    --cinza-bg: #f3f4f6;
+    --surface: #ffffff;
+    --bg: #f8f9fc;
+    --text: #111827;
+    --text-2: #374151;
+    --text-3: #9ca3af;
+    --border: #e5e7eb;
+    --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.05);
+    --r: 10px; --r-lg: 16px; --r-xl: 20px;
+    --sidebar-w: 220px;
+    /* aliases for JS functions that reference old var names */
+    --ink: var(--text);
+    --muted: var(--text-3);
+    --faint: var(--text-3);
+    --line: var(--border);
+    --ground: var(--bg);
+    --surface2: var(--cinza-bg);
+    --violet: var(--cobalto);
+    --violet-2: var(--cobalto);
+    --pink: var(--rosa);
+    --blue: var(--cobalto);
+    --sos: var(--rosa);
+    --sos-soft: rgba(255,51,102,0.10);
+    --alta: var(--laranja);
+    --alta-soft: rgba(255,107,0,0.12);
+    --ok: var(--verde);
+    --grid: rgba(0,0,0,0.06);
   }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --ground:   #100E22; --surface: #1A1733; --surface2: #211D42;
-      --ink: #ECEAFB; --muted: #A29DC7; --faint: #6C6791; --line: #2C2854;
-      --violet: #9A82FF; --violet-2: #C4B5FD; --pink: #F9A8D4; --blue: #7DD3FC;
-      --sos: #F3697F; --sos-soft: rgba(243,105,127,0.16);
-      --alta: #FBBF56; --alta-soft: rgba(251,191,86,0.16); --ok: #4ADE9E;
-      --grid: rgba(236,234,251,0.07); --shadow: 0 1px 2px rgba(0,0,0,.35), 0 14px 32px rgba(0,0,0,.32);
-    }
-  }
-  :root[data-theme="dark"] {
-    --ground:   #100E22; --surface: #1A1733; --surface2: #211D42;
-    --ink: #ECEAFB; --muted: #A29DC7; --faint: #6C6791; --line: #2C2854;
-    --violet: #9A82FF; --violet-2: #C4B5FD; --pink: #F9A8D4; --blue: #7DD3FC;
-    --sos: #F3697F; --sos-soft: rgba(243,105,127,0.16);
-    --alta: #FBBF56; --alta-soft: rgba(251,191,86,0.16); --ok: #4ADE9E;
-    --grid: rgba(236,234,251,0.07); --shadow: 0 1px 2px rgba(0,0,0,.35), 0 14px 32px rgba(0,0,0,.32);
+  [data-theme="dark"] {
+    --surface: #1a1d2e; --bg: #0f1120; --text: #f1f5f9; --text-2: #94a3b8; --text-3: #475569;
+    --border: #2d3148; --shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 12px rgba(0,0,0,.2);
+    --cinza-bg: #1f2235; --verde-bg: #0d2e1a; --laranja-bg: #2d1a0d;
+    --rosa-bg: #2d0d1a; --amarelo-bg: #2d2a0d;
+    --sos-soft: rgba(255,51,102,0.16); --alta-soft: rgba(255,107,0,0.16);
+    --grid: rgba(255,255,255,0.07);
   }
 
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; background: var(--ground); color: var(--ink);
-    font-family: "IBM Plex Sans", system-ui, sans-serif; font-size: 15px; line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; transition: background .25s, color .25s; }
   .num { font-variant-numeric: tabular-nums; }
-  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  .mono { font-family: 'Inter', monospace; }
 
-  .shell { display: grid; grid-template-columns: 240px minmax(0,1fr); min-height: 100vh; transition: grid-template-columns .22s ease; }
-  .shell.sb-collapsed { grid-template-columns: 0 minmax(0,1fr); }
-  @media (max-width: 860px) { .shell:not(.sb-expanded) { grid-template-columns: 0 minmax(0,1fr); } }
+  /* ---------- header ---------- */
+  header { background: var(--surface); border-bottom: 2px solid var(--cobalto); padding: 12px 24px; display: flex; align-items: center; gap: 14px; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow); }
+  .brand-mark { width: 38px; height: 38px; background: var(--cobalto); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: 900; flex-shrink: 0; }
+  .header-title { flex: 1; }
+  .header-title h1 { font-size: 18px; font-weight: 800; color: var(--text); line-height: 1.1; }
+  .header-title span { font-size: 11px; font-weight: 500; color: var(--text-3); text-transform: uppercase; letter-spacing: .5px; }
+  .carimbo { background: var(--cobalto); color: white; font-size: 11px; font-weight: 700; padding: 5px 11px; border-radius: 20px; white-space: nowrap; }
+  .theme-btn { background: var(--bg); border: 1.5px solid var(--border); border-radius: 8px; width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; transition: background .2s; }
+  .theme-btn:hover { background: var(--border); }
 
-  /* ---------- sidebar ---------- */
-  .side {
-    background: linear-gradient(180deg, var(--sidebar), var(--sidebar-2));
-    padding: 26px 20px; display: flex; flex-direction: column; gap: 30px; color: #EDEAFF;
-    position: relative; overflow: hidden; white-space: nowrap; min-width: 0;
-    transition: opacity .18s ease;
-  }
-  .shell.sb-collapsed .side { opacity: 0; padding-left: 0; padding-right: 0; }
+  /* ---------- layout ---------- */
+  .layout { display: flex; flex: 1; }
+  aside { width: var(--sidebar-w); background: var(--surface); border-right: 1.5px solid var(--border); padding: 18px 14px; display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; transition: width .22s ease, opacity .18s ease; overflow: hidden; white-space: nowrap; }
+  aside.collapsed { width: 0; padding: 0; opacity: 0; }
+  aside .s-header { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--text-3); padding: 0 8px; margin-bottom: 4px; }
+  aside a, aside .navitem-static { display: flex; align-items: center; gap: 9px; padding: 8px 10px; border-radius: var(--r); color: var(--text-2); text-decoration: none; font-size: 13px; font-weight: 500; transition: background .15s, color .15s; cursor: pointer; }
+  aside a:hover, aside .navitem-static:hover { background: var(--bg); color: var(--text); }
+  aside a.active { background: var(--cobalto); color: white; }
+  aside .s-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: .7; flex: none; }
+  aside a.active .s-dot { background: white; opacity: 1; }
+  .side-foot { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-3); padding-left: 8px; }
 
-  .side-toggle {
-    position: absolute; top: 22px; right: 14px; width: 26px; height: 26px; border-radius: 999px;
-    background: rgba(255,255,255,0.08); border: none; color: #C6C0EE; cursor: pointer;
-    display: flex; align-items: center; justify-content: center; font-size: 14px; line-height: 1; flex: none;
-  }
-  .side-toggle:hover { background: rgba(255,255,255,0.16); color: #FFFFFF; }
+  .side-toggle { position: absolute; top: 14px; right: -14px; z-index: 101; width: 28px; height: 28px; border-radius: 999px; background: var(--surface); border: 1.5px solid var(--border); color: var(--text-3); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; box-shadow: var(--shadow); }
+  .side-toggle:hover { color: var(--cobalto); }
 
-  .side-reopen {
-    display: none; position: fixed; top: 22px; left: 18px; z-index: 40;
-    width: 32px; height: 32px; border-radius: 999px; border: 1px solid var(--line);
-    background: var(--surface); color: var(--muted); box-shadow: var(--shadow); cursor: pointer;
-    align-items: center; justify-content: center; font-size: 15px; line-height: 1;
-  }
-  .side-reopen:hover { color: var(--violet); }
-  .shell.sb-collapsed .side-reopen { display: flex; }
+  main { flex: 1; padding: 22px 24px; overflow-y: auto; }
 
-  .brand { display: flex; align-items: center; gap: 11px; padding-right: 24px; }
-  .brand .mark {
-    width: 34px; height: 34px; border-radius: 10px;
-    background: linear-gradient(135deg, var(--violet), var(--pink));
-    display: flex; align-items: center; justify-content: center;
-    font-family: "Archivo", sans-serif; font-weight: 800; font-size: 15px; color: white; flex: none;
-  }
-  .brand .name { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
-  .brand .sub { font-size: 11px; color: #A79FE0; }
-
-  .navgroup { display: flex; flex-direction: column; gap: 3px; }
-  .navlabel { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #7A72B8; padding: 0 12px; margin: 14px 0 6px; }
-  .navitem {
-    display: flex; align-items: center; gap: 11px; padding: 9px 12px; border-radius: 10px;
-    color: #C6C0EE; font-size: 13.5px; font-weight: 500; text-decoration: none;
-  }
-  a.navitem:hover { background: rgba(255,255,255,0.06); color: #FFFFFF; }
-  .navitem .dot { width: 7px; height: 7px; border-radius: 999px; background: currentColor; opacity: .55; flex: none; }
-  .navitem.active { background: rgba(255,255,255,0.08); color: #FFFFFF; }
-  .navitem.active .dot { background: var(--pink); opacity: 1; }
-
-  .side-foot { margin-top: auto; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 11.5px; color: #8B84C4; }
-
-  /* ---------- main ---------- */
-  .main { padding: clamp(18px,3vw,34px) clamp(16px,3.5vw,40px) 60px; }
-  .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 22px; flex-wrap: wrap; }
-  .eyebrow { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--violet); margin: 0 0 6px; }
-  h1 { font-family: "Archivo", sans-serif; font-weight: 800; font-size: clamp(24px,3.4vw,32px); letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
-  .stamp-pill {
-    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--muted);
-    background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; box-shadow: var(--shadow);
-  }
-
-  .kpis { display: grid; grid-template-columns: repeat(6,1fr); gap: 13px; margin: 22px 0 30px; }
+  /* ---------- KPIs ---------- */
+  .kpis { display: grid; grid-template-columns: repeat(6,1fr); gap: 14px; margin-bottom: 18px; }
   @media (max-width: 1320px) { .kpis { grid-template-columns: repeat(3,1fr); } }
-  .kpi-nota { display: block; margin-top: 3px; font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--faint); letter-spacing: .02em; }
-  @media (max-width: 1080px) { .kpis { grid-template-columns: repeat(3,1fr); } }
   @media (max-width: 640px) { .kpis { grid-template-columns: repeat(2,1fr); } }
-  .kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px 17px 14px; box-shadow: var(--shadow); }
-  .kpi .label { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); display:block; margin-bottom: 7px; }
-  .kpi .val { font-family: "Archivo", sans-serif; font-weight: 800; font-size: clamp(20px,2.6vw,25px); letter-spacing: -0.01em; }
-  .kpi.k-sos .val { color: var(--sos); }
-  .kpi.k-alta .val { color: var(--alta); }
-  .kpi.k-violet .val { color: var(--violet); }
+  .kpi { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r-lg); padding: 16px 18px; box-shadow: var(--shadow); }
+  .kpi .label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; color: var(--text-3); display: block; margin-bottom: 7px; }
+  .kpi .val { font-size: clamp(22px,2.6vw,30px); font-weight: 900; letter-spacing: -1px; }
+  .kpi.k-sos .val { color: var(--rosa); }
+  .kpi.k-alta .val { color: var(--laranja); }
+  .kpi.k-violet .val { color: var(--cobalto); }
+  .kpi-nota { display: block; margin-top: 3px; font-size: 10px; color: var(--text-3); letter-spacing: .02em; }
 
-  section { margin-top: 34px; }
-  .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin-bottom: 15px; flex-wrap: wrap; }
-  h2 { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 17px; letter-spacing: -0.01em; margin: 0; }
-  .sec-note { font-size: 12px; color: var(--faint); font-family: "IBM Plex Mono", monospace; }
+  /* ---------- sections ---------- */
+  section { margin-top: 28px; }
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin-bottom: 12px; flex-wrap: wrap; }
+  .section-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--text-3); margin-bottom: 10px; }
+  h2 { font-size: 15px; font-weight: 700; margin: 0; }
+  .sec-note { font-size: 11px; color: var(--text-3); }
 
+  /* ---------- equipment cards ---------- */
   .equip-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; align-items: start; }
   @media (max-width: 980px) { .equip-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
   @media (max-width: 640px) { .equip-grid { grid-template-columns: minmax(0,1fr); } }
 
-  .ecard { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 18px 18px 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 14px; cursor: pointer; transition: transform .12s ease, box-shadow .12s ease; text-align: left; }
-  .ecard:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(33,29,61,.08), 0 18px 34px rgba(33,29,61,.10); }
-  .ecard:focus-visible { outline: 2px solid var(--violet); outline-offset: 2px; }
+  .ecard { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r-lg); padding: 18px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 14px; cursor: pointer; transition: transform .12s ease, box-shadow .12s ease; text-align: left; }
+  .ecard:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,.08), 0 18px 34px rgba(0,0,0,.10); }
+  .ecard:focus-visible { outline: 2px solid var(--cobalto); outline-offset: 2px; }
   .ecard .ehead { display: flex; align-items: center; justify-content: space-between; }
-  .ecard .etitle { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 14.5px; }
-  .ecard .eopen { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--faint); }
+  .ecard .etitle { font-weight: 700; font-size: 14px; }
+  .ecard .eopen { font-size: 10px; color: var(--text-3); }
 
   .donut-row { display: flex; align-items: center; gap: 16px; }
   .donut-wrap { position: relative; width: 116px; height: 116px; flex: none; }
   .donut-wrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
   .donut-wrap .center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-  .donut-wrap .pctv { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 23px; line-height: 1.1; }
-  .donut-wrap .pctl { font-family: "IBM Plex Mono", monospace; font-size: 9px; color: var(--faint); letter-spacing: .04em; text-transform: uppercase; }
+  .donut-wrap .pctv { font-weight: 800; font-size: 23px; line-height: 1.1; }
+  .donut-wrap .pctl { font-size: 9px; color: var(--text-3); letter-spacing: .04em; text-transform: uppercase; }
 
   .estats { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .estat { background: var(--surface2); border-radius: 10px; padding: 8px 10px; }
-  .estat .n { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 16px; }
-  .estat .l { font-family: "IBM Plex Mono", monospace; font-size: 9px; color: var(--faint); text-transform: uppercase; letter-spacing: .04em; }
-  .estat.crit .n { color: var(--sos); }
-  .estat.alta .n { color: var(--alta); }
+  .estat { background: var(--cinza-bg); border-radius: var(--r); padding: 8px 10px; }
+  .estat .n { font-weight: 700; font-size: 16px; }
+  .estat .l { font-size: 9px; color: var(--text-3); text-transform: uppercase; letter-spacing: .04em; }
+  .estat.crit .n { color: var(--rosa); }
+  .estat.alta .n { color: var(--laranja); }
 
-  .etime { display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 10px; }
-  .etime b { color: var(--ink); font-family: "IBM Plex Mono", monospace; }
+  .etime { display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: var(--text-2); border-top: 1px solid var(--border); padding-top: 10px; }
+  .etime b { color: var(--text); font-family: 'Inter', monospace; }
 
-  .esos-label { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); display: flex; align-items: center; gap: 6px; }
+  .esos-label { font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-3); display: flex; align-items: center; gap: 6px; }
   .esos-label::before { content: "●"; font-size: 8px; }
   .esos-list { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
   .esos-item { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 11.5px; }
-  .esos-item .loja { color: var(--ink); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
-  .esos-empty { font-size: 11.5px; color: var(--faint); }
+  .esos-item .loja { color: var(--text); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+  .esos-empty { font-size: 11.5px; color: var(--text-3); }
 
   /* restaurantes mais criticos por supervisor */
   .lcrit-list { display: flex; flex-direction: column; gap: 5px; margin-top: 4px; }
   .lcrit { display: flex; align-items: center; gap: 6px; font-size: 11.5px; }
-  .lcrit .pos { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--faint); width: 11px; flex: none; }
-  .lcrit .loja { color: var(--ink); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 1; }
+  .lcrit .pos { font-family: 'Inter', monospace; font-size: 10px; color: var(--text-3); width: 11px; flex: none; }
+  .lcrit .loja { color: var(--text); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 1; }
   .lcrit .mini { display: flex; gap: 4px; flex: none; }
-  .mtag { font-family: "IBM Plex Mono", monospace; font-size: 9.5px; font-weight: 600; border-radius: 4px; padding: 1px 5px; white-space: nowrap; }
-  .mtag-ch { background: var(--surface2); color: var(--muted); }
-  .mtag-sos { background: var(--sos-soft); color: var(--sos); }
-  .mtag-alta { background: var(--alta-soft); color: var(--alta); }
-  .mtag-d { background: transparent; color: var(--faint); padding-left: 2px; padding-right: 0; }
+  .mtag { font-size: 9.5px; font-weight: 600; border-radius: 4px; padding: 1px 5px; white-space: nowrap; }
+  .mtag-ch { background: var(--cinza-bg); color: var(--text-2); }
+  .mtag-sos { background: var(--sos-soft); color: var(--rosa); }
+  .mtag-alta { background: var(--alta-soft); color: var(--laranja); }
+  .mtag-d { background: transparent; color: var(--text-3); padding-left: 2px; padding-right: 0; }
 
-  /* seletor entre as duas visoes do card (restaurantes x chamados) */
-  .vis-tabs { display: inline-flex; gap: 2px; background: var(--surface2); border-radius: 8px; padding: 2px; margin-bottom: 2px; cursor: default; }
-  .vis-tab { font-family: "IBM Plex Mono", monospace; font-size: 9.5px; letter-spacing: .04em; text-transform: uppercase; border: 0; background: transparent; color: var(--faint); padding: 3px 9px; border-radius: 6px; cursor: pointer; transition: background .12s ease, color .12s ease; }
-  .vis-tab:hover { color: var(--muted); }
-  .vis-tab.ativo { background: var(--surface); color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+  /* seletor entre as duas visoes do card */
+  .vis-tabs { display: inline-flex; gap: 2px; background: var(--cinza-bg); border-radius: 8px; padding: 2px; margin-bottom: 2px; cursor: default; }
+  .vis-tab { font-size: 9.5px; letter-spacing: .04em; text-transform: uppercase; border: 0; background: transparent; color: var(--text-3); padding: 3px 9px; border-radius: 6px; cursor: pointer; transition: background .12s ease, color .12s ease; }
+  .vis-tab:hover { color: var(--text-2); }
+  .vis-tab.ativo { background: var(--surface); color: var(--text); font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
   .vis-painel.oculto { display: none; }
 
-  /* ---------- farol por supervisor (velocimetro) ---------- */
+  /* ---------- farol por supervisor ---------- */
   .gauge-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; align-items: start; }
   @media (max-width: 1180px) { .gauge-grid { grid-template-columns: repeat(3,minmax(0,1fr)); } }
   @media (max-width: 860px) { .gauge-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
   @media (max-width: 520px) { .gauge-grid { grid-template-columns: minmax(0,1fr); } }
-  .gcard { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 16px 16px 14px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 6px; cursor: pointer; transition: transform .12s ease, box-shadow .12s ease; text-align: left; }
-  .gcard:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(33,29,61,.08), 0 18px 34px rgba(33,29,61,.10); }
-  .gcard:focus-visible { outline: 2px solid var(--violet); outline-offset: 2px; }
+  .gcard { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r-lg); padding: 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 6px; cursor: pointer; transition: transform .12s ease, box-shadow .12s ease; text-align: left; }
+  .gcard:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,.08), 0 18px 34px rgba(0,0,0,.10); }
+  .gcard:focus-visible { outline: 2px solid var(--cobalto); outline-offset: 2px; }
   .ghead { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 2px; }
   .ghead > div { min-width: 0; }
-  .gname { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 13.5px; display: block; }
-  .gsetor { font-family: "IBM Plex Mono", monospace; font-size: 9.5px; color: var(--faint); text-transform: uppercase; letter-spacing: .04em; display: block; margin-top: 1px; }
-  .gdetalhe { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--faint); white-space: nowrap; flex: none; }
+  .gname { font-weight: 700; font-size: 13.5px; display: block; }
+  .gsetor { font-size: 9.5px; color: var(--text-3); text-transform: uppercase; letter-spacing: .04em; display: block; margin-top: 1px; }
+  .gdetalhe { font-size: 10px; color: var(--text-3); white-space: nowrap; flex: none; }
   .ggauge { margin: 0 -4px; }
   .gval { display: flex; flex-direction: column; align-items: center; margin-top: -34px; }
-  .gnum { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 26px; }
-  .glabel { font-family: "IBM Plex Mono", monospace; font-size: 9px; color: var(--faint); text-transform: uppercase; letter-spacing: .04em; }
+  .gnum { font-weight: 800; font-size: 26px; }
+  .glabel { font-size: 9px; color: var(--text-3); text-transform: uppercase; letter-spacing: .04em; }
   .gstats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-top: 6px; }
-  .gstats .estat { padding: 6px 6px; text-align: center; }
+  .gstats .estat { padding: 6px; text-align: center; }
   .gstats .estat .n { font-size: 14px; }
   .gstats .estat .l { font-size: 8px; }
 
   /* consolidado: barras horizontais */
   .cons-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   @media (max-width: 780px) { .cons-grid { grid-template-columns: 1fr; } }
-  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px 16px; box-shadow: var(--shadow); }
-  .card h3 { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 13.5px; margin: 0 0 14px; }
+  .card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r-lg); padding: 18px 20px 16px; box-shadow: var(--shadow); }
+  .card h3 { font-weight: 700; font-size: 13.5px; margin: 0 0 14px; }
   .hbar-row { display: grid; grid-template-columns: 108px 1fr 40px; align-items: center; gap: 10px; margin-bottom: 9px; font-size: 12px; }
-  .hbar-row .lbl { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .hbar-track { background: var(--surface2); border-radius: 999px; height: 9px; overflow: hidden; }
+  .hbar-row .lbl { color: var(--text-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hbar-track { background: var(--cinza-bg); border-radius: 999px; height: 9px; overflow: hidden; }
   .hbar-fill { height: 100%; border-radius: 999px; }
-  .hbar-row .v { text-align: right; font-family: "IBM Plex Mono", monospace; font-weight: 600; }
+  .hbar-row .v { text-align: right; font-family: 'Inter', monospace; font-weight: 600; }
 
-  footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--faint); font-size: 12px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-  .msg-carregando, .msg-erro { padding: 40px 0; text-align: center; color: var(--muted); font-family: "IBM Plex Mono", monospace; font-size: 13px; }
-  .msg-erro { color: var(--sos); }
+  footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--text-3); font-size: 12px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .msg-carregando, .msg-erro { padding: 40px 0; text-align: center; color: var(--text-2); font-size: 13px; }
+  .msg-erro { color: var(--rosa); }
 
   /* ---------- grafico de evolucao ---------- */
   .chart-legend { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 10px; }
-  .chart-legend .li { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--muted); }
+  .chart-legend .li { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text-2); }
   .chart-legend .sw { width: 10px; height: 10px; border-radius: 3px; flex: none; }
-  .chart-note { font-size: 12px; color: var(--faint); font-family: "IBM Plex Mono", monospace; margin-top: 10px; }
+  .chart-note { font-size: 12px; color: var(--text-3); margin-top: 10px; }
 
-  .hist-stamp { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--faint); margin-bottom: 12px; }
+  .hist-stamp { font-size: 11px; color: var(--text-3); margin-bottom: 12px; }
   .chart-svg-wrap { position: relative; }
   .chart-dot { cursor: pointer; }
   .chart-tooltip {
     position: absolute; z-index: 20; pointer-events: none; transform: translate(-50%, -100%);
-    background: var(--ink); color: var(--surface); border-radius: 10px; padding: 7px 10px;
-    font-family: "IBM Plex Mono", monospace; font-size: 11px; white-space: nowrap; box-shadow: var(--shadow);
+    background: var(--text); color: var(--surface); border-radius: var(--r); padding: 7px 10px;
+    font-size: 11px; white-space: nowrap; box-shadow: var(--shadow);
     display: flex; flex-direction: column; gap: 2px; align-items: flex-start;
   }
   .chart-tooltip .ctt-quando { font-size: 9.5px; opacity: .75; }
   .chart-tooltip .ctt-valor { font-weight: 700; font-size: 13px; }
   .hist-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 20px; }
   @media (max-width: 780px) { .hist-stats { grid-template-columns: repeat(2,1fr); } }
-  .hstat { background: var(--surface2); border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 3px; }
-  .hstat-lbl { display: flex; align-items: center; gap: 6px; font-family: "IBM Plex Mono", monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+  .hstat { background: var(--cinza-bg); border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 3px; }
+  .hstat-lbl { display: flex; align-items: center; gap: 6px; font-size: 10.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--text-2); }
   .hstat-dot { width: 8px; height: 8px; border-radius: 999px; flex: none; }
-  .hstat-val { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -0.01em; }
-  .hstat-delta { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--faint); }
+  .hstat-val { font-weight: 800; font-size: 24px; letter-spacing: -0.01em; }
+  .hstat-delta { font-size: 11px; color: var(--text-3); }
 
   /* ---------- modal de detalhe ---------- */
   .modal-overlay {
-    position: fixed; inset: 0; background: rgba(16,14,34,0.55); backdrop-filter: blur(2px);
+    position: fixed; inset: 0; background: rgba(0,0,0,0.55); backdrop-filter: blur(2px);
     display: flex; align-items: center; justify-content: center; padding: 24px; z-index: 50;
   }
   .modal-overlay[hidden] { display: none; }
   .modal-panel {
-    background: var(--surface); border-radius: 20px; box-shadow: var(--shadow);
+    background: var(--surface); border-radius: var(--r-xl); box-shadow: var(--shadow);
     width: min(760px, 100%); max-height: min(640px, 88vh); display: flex; flex-direction: column; overflow: hidden;
   }
-  .modal-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; border-bottom: 1px solid var(--line); flex: none; }
-  .modal-head h3 { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 16.5px; margin: 0; }
+  .modal-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; border-bottom: 1.5px solid var(--border); flex: none; }
+  .modal-head h3 { font-weight: 700; font-size: 16.5px; margin: 0; }
   .modal-close {
-    appearance: none; border: none; background: var(--surface2); color: var(--muted); width: 30px; height: 30px;
+    appearance: none; border: none; background: var(--cinza-bg); color: var(--text-2); width: 30px; height: 30px;
     border-radius: 999px; font-size: 17px; line-height: 1; cursor: pointer;
   }
-  .modal-close:hover { color: var(--ink); }
-  .modal-sub { padding: 12px 22px 0; font-size: 12px; color: var(--faint); font-family: "IBM Plex Mono", monospace; flex: none; }
+  .modal-close:hover { color: var(--text); }
+  .modal-sub { padding: 12px 22px 0; font-size: 12px; color: var(--text-3); flex: none; }
   .modal-filtros { display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-end; padding: 12px 22px 0; flex: none; }
   .modal-filtros .filter-field { min-width: 130px; }
-  .modal-filtro-contagem { padding: 8px 22px 0; font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--faint); flex: none; }
+  .modal-filtro-contagem { padding: 8px 22px 0; font-size: 11.5px; color: var(--text-3); flex: none; }
   .modal-body { overflow: auto; padding: 14px 22px 20px; }
   .detail-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
   .detail-table th {
-    text-align: left; font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .05em; text-transform: uppercase;
-    color: var(--faint); padding: 8px 10px; position: sticky; top: 0; background: var(--surface);
+    text-align: left; font-size: 10px; letter-spacing: .05em; text-transform: uppercase;
+    color: var(--text-3); padding: 8px 10px; position: sticky; top: 0; background: var(--surface);
   }
-  .detail-table td { padding: 8px 10px; border-top: 1px solid var(--line); vertical-align: top; }
-  .detail-table tr:hover td { background: var(--surface2); }
-  .tag { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; font-weight: 600; border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
-  .tag-sos { background: var(--sos-soft); color: var(--sos); }
-  .tag-alta { background: var(--alta-soft); color: var(--alta); }
-  .tag-normal { background: var(--surface2); color: var(--muted); }
+  .detail-table td { padding: 8px 10px; border-top: 1px solid var(--border); vertical-align: top; }
+  .detail-table tr:hover td { background: var(--cinza-bg); }
+  .tag { font-size: 10.5px; font-weight: 600; border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
+  .tag-sos { background: var(--sos-soft); color: var(--rosa); }
+  .tag-alta { background: var(--alta-soft); color: var(--laranja); }
+  .tag-normal { background: var(--cinza-bg); color: var(--text-2); }
 
-  /* ---------- busca de chamados (filtro setor/loja/responsavel) ---------- */
+  /* ---------- busca de chamados ---------- */
   .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
   .filter-field { display: flex; flex-direction: column; gap: 4px; min-width: 168px; flex: 1; }
-  .filter-field label {
-    font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--faint);
-  }
+  .filter-field label { font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-3); }
   .filter-field select, .filter-field input[type="text"] {
-    font-family: "IBM Plex Sans", sans-serif; font-size: 13px; color: var(--ink); background: var(--surface2);
-    border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; appearance: none; width: 100%;
+    font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text); background: var(--cinza-bg);
+    border: 1.5px solid var(--border); border-radius: var(--r); padding: 8px 10px; appearance: none; width: 100%;
   }
-  .filter-field input[type="text"]:focus { outline: 2px solid var(--violet); outline-offset: -1px; }
+  .filter-field input[type="text"]:focus { outline: 2px solid var(--cobalto); outline-offset: -1px; }
   .filter-combo { position: relative; }
   .filter-combo-lista {
     position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 30; max-height: 240px; overflow: auto;
-    background: var(--surface); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); padding: 4px;
+    background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r); box-shadow: var(--shadow); padding: 4px;
   }
-  .filter-combo-item { padding: 7px 10px; border-radius: 7px; font-size: 13px; color: var(--ink); cursor: pointer; }
-  .filter-combo-item:hover, .filter-combo-item.ativo { background: var(--surface2); }
-  .filter-combo-vazio { padding: 7px 10px; font-size: 12.5px; color: var(--faint); }
+  .filter-combo-item { padding: 7px 10px; border-radius: 7px; font-size: 13px; color: var(--text); cursor: pointer; }
+  .filter-combo-item:hover, .filter-combo-item.ativo { background: var(--cinza-bg); }
+  .filter-combo-vazio { padding: 7px 10px; font-size: 12.5px; color: var(--text-3); }
   .filter-field-curto { min-width: 120px; flex: 0 1 130px; }
   .filter-field-datas { min-width: 240px; }
   .filter-datas { display: flex; align-items: center; gap: 6px; }
   .filter-datas input[type="date"] {
-    font-family: "IBM Plex Sans", sans-serif; font-size: 12.5px; color: var(--ink); background: var(--surface2);
-    border: 1px solid var(--line); border-radius: 10px; padding: 7px 8px; flex: 1; min-width: 0;
+    font-family: 'Inter', sans-serif; font-size: 12.5px; color: var(--text); background: var(--cinza-bg);
+    border: 1.5px solid var(--border); border-radius: var(--r); padding: 7px 8px; flex: 1; min-width: 0;
   }
-  .filter-datas span { font-size: 11.5px; color: var(--faint); flex: none; }
+  .filter-datas span { font-size: 11.5px; color: var(--text-3); flex: none; }
   .filter-clear {
-    font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--violet); background: none; border: none;
+    font-size: 11.5px; color: var(--cobalto); background: none; border: none;
     cursor: pointer; padding: 8px 4px; white-space: nowrap; align-self: flex-end;
   }
   .filter-clear:hover { text-decoration: underline; }
   .filter-copy {
-    font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--violet);
-    background: none; border: 1px solid var(--violet); border-radius: 8px;
+    font-size: 11.5px; color: var(--cobalto);
+    background: none; border: 1.5px solid var(--cobalto); border-radius: 8px;
     cursor: pointer; padding: 7px 12px; white-space: nowrap; align-self: flex-end;
   }
   .filter-copy:hover { opacity: .72; }
-  .filter-copy.ok { color: var(--ok); border-color: var(--ok); }
+  .filter-copy.ok { color: var(--verde); border-color: var(--verde); }
   .filter-copy:disabled { opacity: .4; cursor: default; }
-  .filter-count { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+  .filter-count { font-size: 12px; color: var(--text-2); margin-bottom: 10px; }
   .filter-table-wrap { max-height: 520px; overflow: auto; border-radius: 12px; }
-  .filter-empty { padding: 30px 0; text-align: center; color: var(--faint); font-size: 12.5px; }
+  .filter-empty { padding: 30px 0; text-align: center; color: var(--text-3); font-size: 12.5px; }
 
-    /* Ultimos chamados fechados: lista enxuta, so o numero e quem responde
-       pela loja. Sem data e sem nome de loja -- foi o pedido. */
-    .fechados-lista { display: flex; flex-direction: column; }
-    .fechado-item { display: flex; align-items: center; gap: 10px;
-      padding: 9px 2px; border-bottom: 1px solid rgba(0,0,0,.06); }
-    .fechado-item:last-child { border-bottom: none; }
-    .fechado-confete { font-size: 17px; line-height: 1; flex: none; }
-    .fechado-txt { font-size: 14px; }
-    .fechado-txt strong { font-variant-numeric: tabular-nums; }
-    .fechado-sup { font-weight: 600; }
-    /* horario encostado na direita, discreto -- nao compete com o chamado */
-    .fechado-prob { display: block; margin-top: 2px; font-size: 12.5px; color: var(--muted); }
-    .fechado-loja { font-weight: 600; color: var(--text); }
-    .fechado-meta { margin-left: auto; display: flex; align-items: center; gap: 16px; flex: none; }
-    .fechado-dias { font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums;
-      white-space: nowrap; min-width: 46px; text-align: right; }
-    .fechado-item { align-items: flex-start; }
-    /* a data e' um campo proprio: nao pode ficar mais apagada que os dias */
-    .fechado-hora { padding-left: 0; font-size: 12.5px; font-weight: 600;
-      opacity: .85; font-variant-numeric: tabular-nums; white-space: nowrap; }
-  </style>
+  /* Ultimos chamados fechados */
+  .fechados-lista { display: flex; flex-direction: column; }
+  .fechado-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 2px; border-bottom: 1px solid var(--border); }
+  .fechado-item:last-child { border-bottom: none; }
+  .fechado-confete { font-size: 17px; line-height: 1; flex: none; }
+  .fechado-txt { font-size: 14px; }
+  .fechado-txt strong { font-variant-numeric: tabular-nums; }
+  .fechado-sup { font-weight: 600; }
+  .fechado-prob { display: block; margin-top: 2px; font-size: 12.5px; color: var(--text-2); }
+  .fechado-loja { font-weight: 600; color: var(--text); }
+  .fechado-meta { margin-left: auto; display: flex; align-items: center; gap: 16px; flex: none; }
+  .fechado-dias { font-size: 12.5px; color: var(--text-2); font-variant-numeric: tabular-nums; white-space: nowrap; min-width: 46px; text-align: right; }
+  .fechado-hora { padding-left: 0; font-size: 12.5px; font-weight: 600; opacity: .85; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  @media (max-width: 900px) { :root { --sidebar-w: 0px; } aside { display: none; } .kpis { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .kpis { grid-template-columns: 1fr 1fr; gap: 10px; } main { padding: 14px; } }
+</style>
 </head>
 <body>
-<div class="shell">
-  <aside class="side">
-    <button class="side-toggle" id="sideToggle" type="button" aria-label="Recolher menu">‹</button>
-    <div class="brand">
-      <div class="mark">Z</div>
-      <div><div class="name">Manutenção Sul</div><div class="sub">Zamp · BK Brasil</div></div>
-    </div>
-    <div class="navgroup">
-      <div class="navitem active"><span class="dot"></span>Backlog</div>
-      <a class="navitem" href="tecnicos.html"><span class="dot"></span>Técnicos</a>
-      <div class="navlabel">Painéis</div>
-      <a class="navitem" href="perda.html"><span class="dot"></span>Perda de Receita</a>
-      <a class="navitem" href="risco.html"><span class="dot"></span>Gestão de Risco</a>
-      <a class="navitem" href="campo.html"><span class="dot"></span>Acompanhamento Campo</a>
-      <a class="navitem" href="preventivas.html"><span class="dot"></span>Preventivas</a>
-      <a class="navitem" href="sorvete.html"><span class="dot"></span>Máquina de Sorvete</a>
-      <a class="navitem" href="pecas.html"><span class="dot"></span>Peças / Materiais</a>
-      <div class="navlabel">Fonte</div>
-      <div class="navitem"><span class="dot"></span>ServiceNow · SOMA</div>
-    </div>
+<header>
+  <div class="brand-mark">Z</div>
+  <div class="header-title"><h1>Backlog</h1><span>Manutenção Sul · Zamp · BK Brasil</span></div>
+  <div class="carimbo" id="stamp">carregando…</div>
+  <button class="theme-btn" onclick="toggleTheme()" title="Alternar tema">&#9788;</button>
+</header>
+<div class="layout">
+  <aside id="sidebar">
+    <div class="s-header">Navegação</div>
+    <a class="active" href="#"><span class="s-dot"></span> Backlog</a>
+    <a href="tecnicos.html"><span class="s-dot"></span> Técnicos</a>
+    <div class="s-header" style="margin-top:12px">Painéis</div>
+    <a href="perda.html"><span class="s-dot" style="color:var(--laranja)"></span> Perda de Receita</a>
+    <a href="risco.html"><span class="s-dot" style="color:var(--rosa)"></span> Gestão de Risco</a>
+    <a href="campo.html"><span class="s-dot" style="color:var(--cobalto)"></span> Acompanhamento Campo</a>
+    <a href="preventivas.html"><span class="s-dot" style="color:var(--verde)"></span> Preventivas</a>
+    <a href="sorvete.html"><span class="s-dot" style="color:var(--amarelo)"></span> Máquina de Sorvete</a>
+    <a href="pecas.html"><span class="s-dot" style="color:var(--cinza)"></span> Peças / Materiais</a>
+    <div class="s-header" style="margin-top:12px">Fonte</div>
+    <div class="navitem-static"><span class="s-dot"></span> ServiceNow · SOMA</div>
     <div class="side-foot">Atualização automática diária</div>
   </aside>
-  <button class="side-reopen" id="sideReopen" type="button" aria-label="Abrir menu">›</button>
 
-  <main class="main">
-    <div class="topbar">
-      <div>
-        <p class="eyebrow">Regional Sul · Equipamentos</p>
-        <h1>Backlog</h1>
-      </div>
-      <div class="stamp-pill" id="stamp">carregando…</div>
-    </div>
+  <main>
     <div id="conteudo"><div class="msg-carregando">carregando data/dados.json…</div></div>
   </main>
 </div>
@@ -432,6 +388,16 @@
 </div>
 
 <script>
+function toggleTheme() {
+  var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('backlog-theme', next);
+}
+(function() {
+  var saved = localStorage.getItem('backlog-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+
 const brl0 = n => n.toLocaleString('pt-BR');
 let DADOS_ATUAIS = null;
 
@@ -439,44 +405,27 @@ function escapeHtml(s) {
   return String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
 }
 
-// semaforo por severidade do % de indisponibilidade: vermelho = pior,
-// laranja = medio, verde = bom (pedido do Christian, 09/09/2026) --
-// cortes ajustados em 12/09/2026 (verde <15, laranja 15-29, vermelho >=30)
-// depois da correcao do calculo de indisponibilidade (antes disso os
-// valores eram os invertidos "100 - x", entao os cortes antigos de 25/50
-// nao faziam mais sentido pra escala real dos numeros do BI).
 function corPorIndisponibilidade(pct) {
-  if (pct >= 30) return 'var(--sos)';
-  if (pct >= 15) return 'var(--alta)';
-  return 'var(--ok)';
+  if (pct >= 30) return 'var(--rosa)';
+  if (pct >= 15) return 'var(--laranja)';
+  return 'var(--verde)';
 }
 
 function donutSVG(pct, cor) {
-  // Mesmo desenho do painel de Preventivas: anel grosso (16 de 120), fundo em
-  // var(--line) e ponta reta. O anel fino de antes quase sumia no cartao.
   const r = 42, c = 2 * Math.PI * r;
   const dash = (Math.min(pct, 100) / 100) * c;
-  // fill/stroke vao em style="", nao como atributo de apresentacao puro
-  // (ver comentario grande em gaugeSVG, mesma causa raiz).
-  // A rotacao de -90 graus vem do CSS (.donut-wrap svg); o desenho nao a
-  // repete, senao o anel comecaria na horizontal.
   return `<svg viewBox="0 0 120 120" width="120" height="120">
-    <circle cx="60" cy="60" r="${r}" style="fill:none;stroke:var(--line)" stroke-width="16"/>
+    <circle cx="60" cy="60" r="${r}" style="fill:none;stroke:var(--border)" stroke-width="16"/>
     <circle cx="60" cy="60" r="${r}" style="fill:none;stroke:${cor}" stroke-width="16"
       stroke-dasharray="${dash.toFixed(1)} ${c.toFixed(1)}" stroke-linecap="butt"/>
   </svg>`;
 }
 
-// faixas do farol por supervisor: vermelho = mais chamados, verde = menos
-// (pedido do Christian, 09/09/2026) -- corrigido em 09/09/2026 p/ os 4
-// supervisores reais (Marcel/Rafael/Gustavo/Carlos Magno, cada um cobrindo
-// varios setores/lojas). Escala fixa 0-120 (o maior valor observado foi
-// 108), faixas em 60 e 90.
 const FAROL_MAX = 120;
 const FAROL_ZONAS = [
-  { de: 0, ate: 60, cor: 'var(--ok)' },
-  { de: 60, ate: 90, cor: 'var(--alta)' },
-  { de: 90, ate: FAROL_MAX, cor: 'var(--sos)' },
+  { de: 0, ate: 60, cor: 'var(--verde)' },
+  { de: 60, ate: 90, cor: 'var(--laranja)' },
+  { de: 90, ate: FAROL_MAX, cor: 'var(--rosa)' },
 ];
 function corDoFarol(valor) {
   const z = FAROL_ZONAS.find(z => valor < z.ate) || FAROL_ZONAS[FAROL_ZONAS.length - 1];
@@ -497,27 +446,10 @@ function gaugeSVG(valor, max, zonas) {
   };
   const zonasSvg = zonas.map(z => arco(z.de, z.ate, z.cor)).join('');
   const pontaAgulha = ponto(angulo(valor), r - sw / 2 - 8);
-  // fill/stroke em style="", nao em atributo de apresentacao puro
-  // (stroke="var(--x)"/fill="var(--x)") -- CORRIGIDO em 12/09/2026: no
-  // navegador do Christian (Edge, reproduzido ate' em InPrivate -- nao era
-  // cache/extensao), var() dentro de um atributo de apresentacao SVG nao
-  // resolvia: os arcos (fill="none" + stroke que falhava) ficavam
-  // INVISIVEIS, e o pivo da agulha (fill que falhava) caia no preto padrao
-  // do SVG -- exatamente o "so' um pontinho preto sem cor" que ele via.
-  // style="" passa pelo pipeline normal de CSS, que resolve var() sempre.
-  const agulha = `<line x1="${cx}" y1="${cy}" x2="${pontaAgulha.x.toFixed(1)}" y2="${pontaAgulha.y.toFixed(1)}" style="stroke:var(--ink)" stroke-width="3" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="6" style="fill:var(--ink)"/>`;
-  // width/height explicitos (alem do viewBox) tambem sao necessarios: sem
-  // eles, "height:auto" so' funciona de forma confiavel no Chrome -- no
-  // Edge do Christian o SVG colapsava pra quase zero de altura,
-  // sobrando so' a agulha flutuando sobre o numero. Com width/height fixos
-  // casando a proporcao do viewBox, o navegador tem uma base de escala
-  // sem ambiguidade e o "width:100%;height:auto" do CSS escala certo.
+  const agulha = `<line x1="${cx}" y1="${cy}" x2="${pontaAgulha.x.toFixed(1)}" y2="${pontaAgulha.y.toFixed(1)}" style="stroke:var(--text)" stroke-width="3" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="6" style="fill:var(--text)"/>`;
   return `<svg viewBox="0 0 200 112" width="200" height="112" style="width:100%;height:auto;display:block;">${zonasSvg}${agulha}</svg>`;
 }
 
-// ordem de exibicao nos modais: SOS primeiro, depois Alta, depois Normal;
-// dentro de cada prioridade, mais dias em aberto primeiro (os itens ja vem
-// assim do backend, isso aqui e' so garantia caso a origem mude)
 const RANK_PRIORIDADE = { SOS: 0, Alta: 1, Normal: 2 };
 function ordenaChamados(itens) {
   return [...itens].sort((a, b) => {
@@ -527,11 +459,6 @@ function ordenaChamados(itens) {
 }
 const tagClsPrioridade = p => p === 'SOS' ? 'tag-sos' : (p === 'Alta' ? 'tag-alta' : 'tag-normal');
 
-// bloco "Mais urgentes" reaproveitado nos cards de equipamento, supervisor e
-// tecnico -- pedido do Christian, 12/09/2026: mostrar os 5 chamados mais
-// urgentes (ja vem ordenado por prioridade+dias do backend) tambem nos
-// faroles de supervisor/tecnico, do mesmo jeito que ja existia no card de
-// equipamento.
 function blocoMaisUrgentes(itens) {
   const top5 = (itens || []).slice(0, 5);
   const html = top5.length
@@ -543,13 +470,6 @@ function blocoMaisUrgentes(itens) {
     </div>`;
 }
 
-// Restaurantes mais criticos do supervisor. Pedido do Christian, 21/09/2026:
-// a lista "Mais urgentes" e' de CHAMADOS, entao a mesma loja aparecia 3x e
-// sobravam 3 restaurantes em 5 linhas. Aqui agrupamos POR LOJA.
-//
-// Ordem: peso = SOS*5 + Alta*2 + Normal*1, +2 se o mais antigo passou de 30 dias.
-// Nao e' indicador oficial de lugar nenhum -- e' criterio de ordenacao desta
-// lista, e por isso os numeros que o formam ficam visiveis em cada linha.
 function blocoLojasCriticas(itens) {
   const agg = new Map();
   (itens || []).forEach(c => {
@@ -585,10 +505,6 @@ function blocoLojasCriticas(itens) {
     </div>`;
 }
 
-// Duas visoes no mesmo card, alternadas por botao. Pedido do Christian,
-// 21/09/2026: ele quer a lista de CHAMADOS (a original) e a de LOJAS, sem
-// perder nenhuma. O clique troca as quatro de uma vez -- a graca e' comparar
-// supervisores no mesmo criterio -- e a escolha fica guardada no navegador.
 function blocoDuasVisoes(itens) {
   return `<div class="vis-bloco">
       <div class="vis-tabs" onclick="event.stopPropagation()">
@@ -605,10 +521,9 @@ function trocarVisaoFarol(v) {
     b.querySelectorAll('.vis-tab').forEach(t => t.classList.toggle('ativo', t.dataset.v === v));
     b.querySelectorAll('.vis-painel').forEach(p => p.classList.toggle('oculto', p.dataset.v !== v));
   });
-  try { localStorage.setItem('farolVisao', v); } catch (e) { /* navegador sem storage: so' nao lembra */ }
+  try { localStorage.setItem('farolVisao', v); } catch (e) {}
 }
 
-// restaura a preferencia depois que os cards existem
 function aplicarVisaoSalva() {
   let v = 'lojas';
   try { v = localStorage.getItem('farolVisao') || 'lojas'; } catch (e) {}
@@ -663,7 +578,6 @@ function abrirModalGenerico(titulo, subtitulo, itens, { mostrarEquipamento } = {
   MODAL_ITENS = itens;
   MODAL_MOSTRA_EQUIP = !!mostrarEquipamento;
 
-  // reseta os filtros e repopula as opcoes com base nos itens deste modal
   const inLoja = document.getElementById('modalFiltroLoja');
   const inProblema = document.getElementById('modalFiltroProblema');
   const selResp = document.getElementById('modalFiltroResp');
@@ -679,8 +593,6 @@ function abrirModalGenerico(titulo, subtitulo, itens, { mostrarEquipamento } = {
   document.body.style.overflow = 'hidden';
 }
 
-// filtros do modal -- os elementos sao fixos no HTML (o modal e' reaproveitado
-// a cada abertura), entao os listeners so' precisam ser ligados uma vez
 (function () {
   const inLoja = document.getElementById('modalFiltroLoja');
   const listaLoja = document.getElementById('modalFiltroLojaLista');
@@ -771,19 +683,14 @@ function lineChartSVG(pontos, series) {
   const grid = [0, 0.25, 0.5, 0.75, 1].map(f => {
     const yy = padT + innerH * (1 - f);
     return `<line x1="${padL}" y1="${yy.toFixed(1)}" x2="${W - padR}" y2="${yy.toFixed(1)}" style="stroke:var(--grid)" stroke-width="1"/>
-      <text x="${padL - 6}" y="${(yy + 3).toFixed(1)}" font-size="9" text-anchor="end" style="fill:var(--faint)" font-family="IBM Plex Mono, monospace">${Math.round(maxV * f)}</text>`;
+      <text x="${padL - 6}" y="${(yy + 3).toFixed(1)}" font-size="9" text-anchor="end" style="fill:var(--text-3)" font-family="Inter, monospace">${Math.round(maxV * f)}</text>`;
   }).join('');
 
-  // rotulo do valor atual (ponta da linha) -- espalha verticalmente quando
-  // duas series terminam perto uma da outra, pra nao sobrepor o numero
   const finais = series.map(s => ({ s, v: pontos[n - 1][s.key] })).sort((a, b) => b.v - a.v);
   const minGap = 11;
   finais.forEach((f, i) => { f.yLabel = i === 0 ? y(f.v) : Math.max(y(f.v), finais[i - 1].yLabel + minGap); });
   const yLabelPorChave = Object.fromEntries(finais.map(f => [f.s.key, f.yLabel]));
 
-  // dado de cada bolinha guardado em atributos data-* pra o tooltip (caixa
-  // com o valor exato) ler no hover, sem precisar recalcular nada -- pedido
-  // do Christian, 12/09/2026.
   const dotAttrs = (p, i, s) => {
     const d = new Date(p.quando || (p.data + 'T00:00:00'));
     const quandoFmt = d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' }) + ' ' + d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
@@ -792,7 +699,7 @@ function lineChartSVG(pontos, series) {
 
   const seriesSvg = series.map(s => {
     const valorFinal = pontos[n - 1][s.key];
-    const rotuloFinal = `<text x="${(x(n - 1) + 8).toFixed(1)}" y="${(yLabelPorChave[s.key] + 3).toFixed(1)}" font-size="11" font-weight="700" style="fill:${s.color}" font-family="IBM Plex Mono, monospace">${valorFinal}</text>`;
+    const rotuloFinal = `<text x="${(x(n - 1) + 8).toFixed(1)}" y="${(yLabelPorChave[s.key] + 3).toFixed(1)}" font-size="11" font-weight="700" style="fill:${s.color}" font-family="Inter, monospace">${valorFinal}</text>`;
     if (n === 1) {
       return `<circle cx="${x(0).toFixed(1)}" cy="${y(pontos[0][s.key]).toFixed(1)}" r="5" style="fill:${s.color}" ${dotAttrs(pontos[0], 0, s)}/>${rotuloFinal}`;
     }
@@ -802,19 +709,15 @@ function lineChartSVG(pontos, series) {
     return `<polyline points="${pts}" style="fill:none;stroke:${s.color};pointer-events:none" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>${dotsVisiveis}${dots}${rotuloFinal}`;
   }).join('');
 
-  // rotulo com dia + hora (ex.: "09/09 22h") pra dar pra comparar o mesmo
-  // horario entre dias, agora que cada execucao (a cada 2h) vira um ponto
   const passo = Math.max(1, Math.ceil(n / 7));
   const labels = pontos.map((p, i) => {
     if (i % passo !== 0 && i !== n - 1) return '';
     const d = new Date(p.quando || (p.data + 'T00:00:00'));
     const dataLbl = d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
     const horaLbl = d.toLocaleTimeString('pt-BR', { hour: '2-digit' });
-    return `<text x="${x(i).toFixed(1)}" y="${H - 8}" font-size="9" text-anchor="middle" style="fill:var(--faint)" font-family="IBM Plex Mono, monospace">${dataLbl} ${horaLbl}</text>`;
+    return `<text x="${x(i).toFixed(1)}" y="${H - 8}" font-size="9" text-anchor="middle" style="fill:var(--text-3)" font-family="Inter, monospace">${dataLbl} ${horaLbl}</text>`;
   }).join('');
 
-  // width/height explicitos junto do viewBox: mesmo fix do gaugeSVG (ver
-  // comentario la') pro "height:auto" escalar certo em qualquer navegador.
   return `<div class="chart-svg-wrap"><svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="width:100%;height:auto;display:block;">${grid}${seriesSvg}${labels}</svg><div class="chart-tooltip" id="chartTooltip" hidden></div></div>`;
 }
 
@@ -834,8 +737,6 @@ async function carregarHistorico() {
     alvo.innerHTML = `<div class="chart-note">Histórico vazio.</div>`;
     return;
   }
-  // pontos gravados antes de 10/09/2026 nao tem esses campos -- sem isso o
-  // Math.max(...) do grafico vira NaN e quebra as 4 linhas inteiras.
   H.forEach(p => {
     p.totalAlta ??= 0;
     p.totalSOS ??= 0;
@@ -843,17 +744,11 @@ async function carregarHistorico() {
     p.totalFechadosHoje ??= 0;
   });
 
-  // acompanhamento e' SOS, Alta (estoque atual) e Abertos/Fechados DO DIA
-  // (pedido do Christian, 10/09/2026 -- "a quantidade aberta e fechada deve
-  // ser do dia e nao total"). Abertos hoje = contagem exata pela data de
-  // abertura do chamado; Fechados hoje = estimativa pela diferenca do
-  // estoque de fechados desde a 1a execucao do dia (o SOMA nao tem data de
-  // fechamento no CSV). Os dois reiniciam perto de 0 a cada novo dia.
   const series = [
-    { key: 'totalSOS', label: 'SOS', color: 'var(--sos)' },
-    { key: 'totalAlta', label: 'Alta', color: 'var(--alta)' },
-    { key: 'totalAbertosHoje', label: 'Abertos hoje', color: 'var(--violet)' },
-    { key: 'totalFechadosHoje', label: 'Fechados hoje', color: 'var(--blue)' },
+    { key: 'totalSOS', label: 'SOS', color: 'var(--rosa)' },
+    { key: 'totalAlta', label: 'Alta', color: 'var(--laranja)' },
+    { key: 'totalAbertosHoje', label: 'Abertos hoje', color: 'var(--cobalto)' },
+    { key: 'totalFechadosHoje', label: 'Fechados hoje', color: 'var(--verde)' },
   ];
 
   const ultimo = H[H.length - 1];
@@ -890,13 +785,6 @@ async function carregarHistorico() {
     ${nota}`;
 }
 
-// tooltip do grafico: delegado no `document` (nao no #chartCard) porque o
-// #chartCard so' existe depois que iniciar() monta o conteudo de forma
-// assincrona -- ligar o listener direto nele nesse ponto do script (que
-// roda antes do fetch terminar) achava null e saia em silencio, sem erro
-// nenhum no console. `document` ja existe desde sempre, entao a delegacao
-// funciona nao importa quando o grafico aparece. Pedido do Christian,
-// 12/09/2026: uma caixa com o valor exato ao passar o mouse na bolinha.
 (function () {
   document.addEventListener('mouseover', (ev) => {
     const dot = ev.target.closest('.chart-dot');
@@ -940,11 +828,6 @@ async function iniciar() {
   const totalSOS = D.equipamentos.reduce((s,e)=>s+e.sos,0);
   const tempoMedioGeral = Math.round(D.equipamentos.reduce((s,e)=>s+e.tempoMedioDias*e.chamados,0) / (totalChamadosEquip||1));
 
-  // Indisponibilidade da REGIONAL SUL, lida do Power BI (nunca calculada aqui).
-  // Pedido do Christian em 24/09/2026. A granularidade DIARIA so' existe quando
-  // o mes esta selecionado no grafico do BI -- e essa selecao nao sobrevive ao
-  // reload do pipeline. A SEMANAL sobrevive, entao e' a que o painel mostra;
-  // se um dia a diaria vier, ela tem preferencia por ser mais fina.
   function indispKpi() {
     const i = D.indisponibilidadeSul || {};
     if (i.pctDia !== null && i.pctDia !== undefined) {
@@ -1003,12 +886,12 @@ async function iniciar() {
 
   const barsPdvs = ordPdvs.map(e => `<div class="hbar-row">
       <span class="lbl">${e.nome}</span>
-      <div class="hbar-track"><div class="hbar-fill" style="width:${(e.pdvsEmFalha/maxChamados*100).toFixed(0)}%;background:linear-gradient(90deg,var(--violet-2),var(--violet))"></div></div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:${(e.pdvsEmFalha/maxChamados*100).toFixed(0)}%;background:linear-gradient(90deg,var(--cobalto),var(--cobalto))"></div></div>
       <span class="v num">${e.pdvsEmFalha}</span>
     </div>`).join('');
   const barsTempo = ordTempo.map(e => `<div class="hbar-row">
       <span class="lbl">${e.nome}</span>
-      <div class="hbar-track"><div class="hbar-fill" style="width:${(e.tempoMedioDias/maxTempo*100).toFixed(0)}%;background:linear-gradient(90deg,var(--pink),var(--sos))"></div></div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:${(e.tempoMedioDias/maxTempo*100).toFixed(0)}%;background:linear-gradient(90deg,var(--laranja),var(--rosa))"></div></div>
       <span class="v num">${e.tempoMedioDias}d</span>
     </div>`).join('');
 
@@ -1106,7 +989,7 @@ async function iniciar() {
     </section>
 
     <section>
-      <div class="sec-head"><h2>\u00daltimos chamados fechados</h2><span class="sec-note">os 10 mais recentes \u00b7 quem deu baixa no SOMA</span></div>
+      <div class="sec-head"><h2>Últimos chamados fechados</h2><span class="sec-note">os 10 mais recentes · quem deu baixa no SOMA</span></div>
       <div class="card">${montarFechados(D.ultimosFechados)}</div>
     </section>
 
@@ -1121,14 +1004,9 @@ async function iniciar() {
   carregarHistorico();
 }
 
-// Lista dos ultimos chamados fechados. So o numero do chamado e quem
-// responde pela loja -- o supervisor vem da CARTEIRA (run_daily.cjs), nao
-// de quem clicou "fechar" no SOMA, que quase sempre e o tecnico.
 function montarFechados(lista) {
   const itens = (lista || []).filter((f) => f && f.numero);
   if (!itens.length) return '<div class="chart-note">sem fechamentos recentes.</div>';
-  // "08/10/2026 21:39:17" -> "08/10 21:39". Se vier em outro formato, mostro
-  // o texto cru em vez de inventar uma data.
   const hora = (x) => {
     const m = String(x || '').match(/^(\d{2})\/(\d{2})\/\d{4}\s+(\d{2}):(\d{2})/);
     return m ? m[1] + '/' + m[2] + ' ' + m[3] + ':' + m[4] : String(x || '');
@@ -1141,7 +1019,7 @@ function montarFechados(lista) {
     return '<div class="fechado-item">'
       + '<span class="fechado-confete" aria-hidden="true">\u{1F389}</span>'
       + '<span class="fechado-txt"><strong>' + escapeHtml(f.numero) + '</strong>'
-      + ' \u2014 \u00faltimo chamado fechado por <span class="fechado-sup">' + quem + '</span>'
+      + ' — último chamado fechado por <span class="fechado-sup">' + quem + '</span>'
       + ((f.loja || f.problema)
           ? '<span class="fechado-prob">'
             + (f.loja ? '<span class="fechado-loja">' + escapeHtml(f.loja) + '</span>' : '')
@@ -1167,18 +1045,12 @@ function montarBuscaChamados(D) {
   const setores = D.equipamentos.map(e => e.nome);
   const lojas = [...new Set(todos.map(c => c.loja).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
 
-  // O filtro de supervisor e' por CARTEIRA DE LOJAS, nao por quem esta atribuido
-  // no chamado -- sao coisas diferentes e os numeros divergem muito (o Marcel tem
-  // 76 chamados nas lojas dele e aparece como responsavel em 1). Por isso o mapa
-  // sai de supervisores[].chamadosDetalhe, que e' a carteira, e nao de c.tecnico.
   const supervisorDoChamado = {};
   for (const s of (D.supervisores || [])) {
     for (const c of (s.chamadosDetalhe || [])) supervisorDoChamado[c.numero] = s.nome;
   }
   const SEM_SUPERVISOR = '(sem supervisor)';
   const supervisorDe = (c) => supervisorDoChamado[c.numero] || SEM_SUPERVISOR;
-  // os chamados sem carteira existem (loja em branco no SOMA); entram como opcao
-  // propria para nao sumirem calados quando alguem escolhe um supervisor
   const supervisores = [...new Set(todos.map(supervisorDe))]
     .sort((a, b) => (a === SEM_SUPERVISOR ? 1 : b === SEM_SUPERVISOR ? -1 : a.localeCompare(b, 'pt-BR')));
 
@@ -1192,9 +1064,6 @@ function montarBuscaChamados(D) {
   const inDataAte = document.getElementById('filtroDataAte');
   const tbody = document.getElementById('filtroTbody');
   const contagem = document.getElementById('filtroContagem');
-  // guarda o resultado do ultimo filtro para o botao de copiar: tem que ser
-  // exatamente o que esta na tela, na mesma ordem, senao o que vai pro grupo
-  // nao e' o que o Christian conferiu
   let filtradosAtuais = [];
 
   const popular = (sel, valores) => valores.forEach(v => {
@@ -1205,8 +1074,6 @@ function montarBuscaChamados(D) {
   popular(selSetor, setores);
   popular(selSupervisor, supervisores);
 
-  // prioridade sai do proprio dado, mas ordenada por gravidade e nao por
-  // alfabeto -- SOS tem que vir primeiro na lista
   const ORDEM_PRIORIDADE = ['SOS', 'Alta', 'Normal', 'Baixa'];
   const prioridades = [...new Set(todos.map(c => c.prioridade).filter(Boolean))]
     .sort((a, b) => {
@@ -1250,9 +1117,6 @@ function montarBuscaChamados(D) {
       : `<tr><td colspan="8"><div class="filter-empty">Nenhum chamado com esses filtros.</div></td></tr>`;
   }
 
-  // combobox de loja: digita e filtra a lista; clicar numa opcao preenche
-  // o campo. O filtro da tabela ja' e' por trecho (nao precisa clicar pra
-  // filtrar, so' ajuda a achar o nome certo).
   function mostrarListaLoja() {
     const busca = semAcento(inLoja.value.trim());
     const opcoes = (busca ? lojas.filter(l => semAcento(l).includes(busca)) : lojas).slice(0, 40);
@@ -1286,12 +1150,8 @@ function montarBuscaChamados(D) {
     renderizar();
   });
 
-  // ---------- copiar a lista filtrada no formato do WhatsApp ----------
-
   const dataBR = (iso) => (iso ? iso.split('-').reverse().join('/') : '');
 
-  // descreve os filtros ativos, para quem recebe a mensagem saber o recorte.
-  // Sem isso o grupo recebe "87 chamados" sem saber de onde saiu.
   function resumoFiltros() {
     const p = [];
     if (selSetor.value) p.push('equipamento ' + selSetor.value);
@@ -1306,8 +1166,6 @@ function montarBuscaChamados(D) {
   }
 
   function textoWhatsApp() {
-    // o codigo do equipamento ja' aparece na coluna Equipamento; repetir ele no
-    // comeco do problema so' alonga a linha no celular
     const limpaProblema = (s) => (s || '').replace(/^[A-Z]{2}\d+\s*[-–]\s*/, '').trim();
 
     const L = [];
@@ -1324,7 +1182,6 @@ function montarBuscaChamados(D) {
         + ' · ' + (c.tecnico || 'sem responsável'));
     }
 
-    // a contagem por responsavel e' o que a lideranca usa para cobrar
     const porResp = {};
     for (const c of filtradosAtuais) {
       const k = c.tecnico || 'sem responsável';
@@ -1359,8 +1216,6 @@ function montarBuscaChamados(D) {
       await navigator.clipboard.writeText(texto);
       ok = true;
     } catch (e) {
-      // a Clipboard API exige contexto seguro e aba em foco; o textarea com
-      // execCommand ainda funciona quando ela recusa
       try {
         const ta = document.createElement('textarea');
         ta.value = texto;
@@ -1379,31 +1234,6 @@ function montarBuscaChamados(D) {
   renderizar();
 }
 iniciar();
-
-// menu lateral recolhivel -- lembra a preferencia do usuario
-(function () {
-  const shell = document.querySelector('.shell');
-  const CHAVE = 'chamados_sidebar_collapsed';
-  function aplicar(colapsado) {
-    shell.classList.toggle('sb-collapsed', colapsado);
-    shell.classList.toggle('sb-expanded', !colapsado);
-  }
-  let salvo = null;
-  try { salvo = localStorage.getItem(CHAVE); } catch (e) {}
-  // sem preferencia salva ainda: comeca recolhido em telas estreitas (a aba
-  // de 240px nao cabe num celular), expandido em telas largas
-  const colapsado = salvo === null ? window.innerWidth <= 860 : salvo === '1';
-  aplicar(colapsado);
-
-  document.getElementById('sideToggle').addEventListener('click', () => {
-    aplicar(true);
-    try { localStorage.setItem(CHAVE, '1'); } catch (e) {}
-  });
-  document.getElementById('sideReopen').addEventListener('click', () => {
-    aplicar(false);
-    try { localStorage.setItem(CHAVE, '0'); } catch (e) {}
-  });
-})();
 </script>
 </body>
 </html>
