@@ -207,6 +207,59 @@
   .view-btn { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .04em; text-transform: uppercase; border: 0; background: transparent; color: var(--faint); padding: 5px 12px; border-radius: 6px; cursor: pointer; transition: background .12s ease, color .12s ease; }
   .view-btn:hover { color: var(--muted); }
   .view-btn.ativo { background: var(--surface); color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+
+  /* ---------- modal de detalhes ---------- */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 100;
+    background: rgba(16,14,34,0.55); backdrop-filter: blur(4px);
+    align-items: center; justify-content: center; padding: 24px;
+  }
+  .modal-overlay.aberto { display: flex; }
+  .modal-box {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 20px;
+    box-shadow: 0 8px 40px rgba(33,29,61,.18); max-width: 640px; width: 100%;
+    max-height: 85vh; overflow: auto; padding: 28px 28px 22px;
+    animation: modalIn .18s ease;
+  }
+  @keyframes modalIn { from { opacity: 0; transform: translateY(12px) scale(.97); } to { opacity: 1; transform: none; } }
+  .modal-close {
+    float: right; width: 30px; height: 30px; border-radius: 999px; border: 1px solid var(--line);
+    background: var(--surface2); color: var(--muted); cursor: pointer; font-size: 16px; line-height: 1;
+    display: flex; align-items: center; justify-content: center; margin: -4px -4px 0 0;
+  }
+  .modal-close:hover { background: var(--sos-soft); color: var(--sos); border-color: var(--sos); }
+  .modal-header { margin-bottom: 18px; }
+  .modal-numero { font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: 15px; color: var(--violet); }
+  .modal-loja { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 18px; margin: 4px 0 2px; }
+  .modal-equip { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--faint); text-transform: uppercase; letter-spacing: .04em; }
+  .modal-problema { font-size: 13px; color: var(--muted); margin-top: 8px; line-height: 1.45; }
+  .modal-meta { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 10px; font-size: 12px; color: var(--faint); }
+  .modal-meta .tecnico { color: var(--muted); }
+  .modal-peca-titulo {
+    font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--faint); margin: 20px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line);
+  }
+  .modal-peca-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .modal-peca-table th {
+    text-align: left; font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .05em;
+    text-transform: uppercase; color: var(--faint); padding: 6px 8px; border-bottom: 1px solid var(--line);
+  }
+  .modal-peca-table td { padding: 9px 8px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  .modal-peca-table tr:last-child td { border-bottom: none; }
+  .modal-peca-table tr:hover td { background: var(--surface2); }
+  .modal-peca-incl { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--faint); }
+  .modal-peca-material { color: var(--ink); font-weight: 500; }
+  .modal-peca-qtd { font-family: "IBM Plex Mono", monospace; text-align: center; color: var(--muted); }
+  .modal-peca-custo { font-family: "IBM Plex Mono", monospace; text-align: right; color: var(--muted); }
+  .modal-peca-total { font-family: "IBM Plex Mono", monospace; text-align: right; font-weight: 700; color: var(--ink); }
+  .modal-total-geral {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 14px; padding: 12px 14px; background: var(--surface2); border-radius: 12px;
+  }
+  .modal-total-label { font-family: "IBM Plex Mono", monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--faint); }
+  .modal-total-valor { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 20px; color: var(--violet); }
+  .chamado-card { cursor: pointer; transition: box-shadow .15s ease, transform .15s ease; }
+  .chamado-card:hover { box-shadow: 0 4px 20px rgba(124,92,252,.12); transform: translateY(-2px); }
 </style>
 </head>
 <body>
@@ -244,6 +297,14 @@
     </div>
     <div id="conteudo"><div class="msg-carregando">carregando data/dados.json…</div></div>
   </main>
+</div>
+
+<!-- Modal de detalhes do chamado -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box" id="modalBox">
+    <button class="modal-close" id="modalClose" type="button" aria-label="Fechar">×</button>
+    <div id="modalConteudo"></div>
+  </div>
 </div>
 
 <script>
@@ -317,7 +378,8 @@ function renderizar() {
         </div>`
       ).join('');
 
-      return `<div class="chamado-card">
+      const idx = TODOS_CHAMADOS_COM_PECAS.indexOf(c);
+      return `<div class="chamado-card" onclick="abrirDetalhe(${idx})">
         <div class="chamado-head">
           <span class="chamado-numero">${escapeHtml(c.numero)}</span>
           <span class="tag ${tagClsPrioridade(c.prioridade)}">${escapeHtml(c.prioridade)}</span>
@@ -525,6 +587,65 @@ async function iniciar() {
 
   renderizar();
 }
+
+// ---------- Modal de detalhes ----------
+function parseBrl(s) {
+  if (s == null) return 0;
+  const n = parseFloat(String(s).replace(/[^\d,.-]/g, '').replace(/\./g, '').replace(',', '.'));
+  return isNaN(n) ? 0 : n;
+}
+function fmtBrl(n) {
+  return n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+}
+function abrirDetalhe(idx) {
+  const c = TODOS_CHAMADOS_COM_PECAS[idx];
+  if (!c) return;
+  const pecas = c.pecas || [];
+  let totalGeral = 0;
+  const linhas = pecas.map(p => {
+    const totalPeca = parseBrl(p.total);
+    totalGeral += totalPeca;
+    return `<tr>
+      <td class="modal-peca-incl">${escapeHtml(p.numero)}</td>
+      <td class="modal-peca-material">${escapeHtml(p.material)}</td>
+      <td class="modal-peca-qtd">${p.quantidade != null ? p.quantidade : '—'}</td>
+      <td class="modal-peca-total">${p.total ? escapeHtml(p.total) : '—'}</td>
+    </tr>`;
+  }).join('');
+  document.getElementById('modalConteudo').innerHTML = `
+    <div class="modal-header">
+      <div class="modal-numero">${escapeHtml(c.numero)}</div>
+      <div class="modal-loja">${escapeHtml(c.loja)}</div>
+      <div class="modal-equip">${escapeHtml(c.equipamento)} · <span class="tag ${tagClsPrioridade(c.prioridade)}">${escapeHtml(c.prioridade)}</span></div>
+      <div class="modal-problema">${escapeHtml(c.problema) || '—'}</div>
+      <div class="modal-meta">
+        <span class="num">${c.dias} dias aberto</span>
+        <span class="tecnico">${escapeHtml(c.tecnico) || 'sem técnico'}</span>
+        <span>abertura ${escapeHtml(c.abertura) || '—'}</span>
+      </div>
+    </div>
+    <div class="modal-peca-titulo">Peças / Materiais solicitados (${pecas.length})</div>
+    ${pecas.length ? `
+      <table class="modal-peca-table">
+        <thead><tr><th>Nº</th><th>Material</th><th>Qtd</th><th style="text-align:right">Total</th></tr></thead>
+        <tbody>${linhas}</tbody>
+      </table>
+      <div class="modal-total-geral">
+        <span class="modal-total-label">Total geral</span>
+        <span class="modal-total-valor num">${fmtBrl(totalGeral)}</span>
+      </div>
+    ` : '<div class="filter-empty">Nenhuma peça registrada para este chamado.</div>'}
+  `;
+  document.getElementById('modalOverlay').classList.add('aberto');
+}
+function fecharModal() {
+  document.getElementById('modalOverlay').classList.remove('aberto');
+}
+document.getElementById('modalClose').addEventListener('click', fecharModal);
+document.getElementById('modalOverlay').addEventListener('click', (ev) => {
+  if (ev.target.id === 'modalOverlay') fecharModal();
+});
+document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') fecharModal(); });
 
 iniciar();
 </script>
