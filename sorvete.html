@@ -244,9 +244,15 @@ document.getElementById('kpis').innerHTML = h;
 }
 
 function montaAbas() {
-var h = '<button class="aba on" data-aba="__painel">Panorama</button>';
-Object.keys(D.abas).forEach(function (n) {
-h += '<button class="aba" data-aba="' + esc(n) + '">' + esc(n)
+var nomes = Object.keys(D.abas);
+var temPainel = D.painel && D.painel.length > 0;
+var h = '';
+if (temPainel) {
+h += '<button class="aba on" data-aba="__painel">Panorama</button>';
+}
+nomes.forEach(function (n, i) {
+var ativo = !temPainel && i === 0 ? ' on' : '';
+h += '<button class="aba' + ativo + '" data-aba="' + esc(n) + '">' + esc(n)
 + '<span class="qtd">' + D.abas[n].linhas.length + '</span></button>';
 });
 var el = document.getElementById('abas');
@@ -258,7 +264,7 @@ b.classList.add('on');
 abaAtual = b.getAttribute('data-aba');
 render();
 });
-abaAtual = '__painel';
+abaAtual = temPainel ? '__painel' : (nomes[0] || '__painel');
 }
 
 function renderPainel() {
@@ -331,7 +337,7 @@ var fLoja = (document.getElementById('fLoja') ? document.getElementById('fLoja')
 var fDataDe = (document.getElementById('fDataDe') ? document.getElementById('fDataDe').value : '');
 var fDataAte = (document.getElementById('fDataAte') ? document.getElementById('fDataAte').value : '');
 var iReg = A.cab.indexOf('Regional');
-var iStatus = A.cab.findIndex(function(c) { return /^estado$/i.test(c) || /^status/i.test(c); });
+var iStatus = A.cab.findIndex(function(c) { return /status\s+da\s+m[aá]quina/i.test(c); });
 var iPri = A.cab.findIndex(function(c) { return /prioridade/i.test(c); });
 var iLoja = A.cab.findIndex(function(c) { return /^loja$/i.test(c); });
 var iAbertura = A.cab.findIndex(function(c) { return /abertura/i.test(c); });
@@ -405,7 +411,7 @@ function render() {
 if (abaAtual === '__painel') { renderPainel(); return; }
 var A = D.abas[abaAtual];
 var iReg = A.cab.indexOf('Regional');
-var iStatus = A.cab.findIndex(function(c) { return /^estado$/i.test(c) || /^status/i.test(c); });
+var iStatus = A.cab.findIndex(function(c) { return /status\s+da\s+m[aá]quina/i.test(c); });
 var iPri = A.cab.findIndex(function(c) { return /prioridade/i.test(c); });
 var iLoja = A.cab.findIndex(function(c) { return /^loja$/i.test(c); });
 var iAbertura = A.cab.findIndex(function(c) { return /abertura/i.test(c); });
@@ -443,7 +449,7 @@ h += '<div class="filter-field filter-combo"><label for="fLoja">Loja</label>'
 + '<div class="filter-combo-lista" id="fLojaLista" hidden></div></div>';
 }
 if (statuses.length) {
-h += '<div class="filter-field"><label for="fStatus">Estado</label><select id="fStatus"><option value="">Todos</option>'
+h += '<div class="filter-field"><label for="fStatus">Status da máquina</label><select id="fStatus"><option value="">Todos</option>'
 + statuses.map(function (s) { return '<option>' + esc(s) + '</option>'; }).join('') + '</select></div>';
 }
 if (pris.length) {
