@@ -851,9 +851,19 @@ async function iniciar() {
 
   function indispKpi() {
     const i = D.indisponibilidadeSul || {};
+    // Prioriza o MENSAL (pctMes) porque e' o numero que bate com o
+    // Power BI (coluna "Total" na tabela INDISPONIBILIDADE = 14% em
+    // Out/26). O semanal (pctSemana = 16%) era o fallback anterior e
+    // nao batia com o BI. Mostra o semanal/dia so' como nota secundaria.
+    if (i.pctMes !== null && i.pctMes !== undefined) {
+      const notas = [];
+      if (i.pctSemana !== null && i.pctSemana !== undefined) notas.push('sem ' + i.pctSemana + '%');
+      if (i.pctDia !== null && i.pctDia !== undefined) notas.push('dia ' + i.pctDia + '%');
+      return { label: 'Indisponibilidade (mês)', val: i.pctMes + '%', cls: 'k-sos',
+               nota: notas.join(' · ') };
+    }
     if (i.pctDia !== null && i.pctDia !== undefined) {
-      return { label: 'Indisponibilidade (dia ' + i.dia + ')', val: i.pctDia + '%', cls: 'k-sos',
-               nota: i.pctMes !== null && i.pctMes !== undefined ? 'mês ' + i.pctMes + '%' : '' };
+      return { label: 'Indisponibilidade (dia ' + i.dia + ')', val: i.pctDia + '%', cls: 'k-sos', nota: '' };
     }
     if (i.pctSemana !== null && i.pctSemana !== undefined) {
       const s = i.serieSemanal || [];

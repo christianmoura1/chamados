@@ -1364,7 +1364,11 @@ return { totalPedidos, pedidosProcessados, pecasComRastreio };
       // diaria: so' existe quando o mes esta selecionado no grafico do BI
       dia: confiavel ? ultimoDia.dia : null,
       pctDia: confiavel ? ultimoDia.pct : null,
-      pctMes: confiavel ? mesIndisp.pct : null,
+      // MENSAL: publica sempre que o BI trouxe a coluna "Total" -- e' o
+      // numero que bate com o Power BI (14% em Out/26). Antes vinha nulo
+      // quando a leitura diaria nao era "confiavel", e o painel caia no
+      // semanal (16%) que nao batia com o BI.
+      pctMes: mesIndisp ? mesIndisp.pct : null,
       serie: confiavel ? diasComDado : [],
       // semanal: sobrevive ao reload, entao e' a que sempre vem
       semana: ultimaSemana ? ultimaSemana.semana : null,
