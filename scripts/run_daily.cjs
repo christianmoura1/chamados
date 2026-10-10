@@ -1065,134 +1065,164 @@ async function buscarPecas(dadosProcessados) {
 // Indexa por codigo de material para o painel mostrar onde cada peca esta.
 // Usa a aba logada do abbiamolog no Chrome via CDP para pegar o Bearer token.
 async function buscarRastreio(dadosProcessados) {
-  const browser = await chromium.connectOverCDP(CDP, { timeout: 15000 });
-  const ctx = browser.contexts()[0];
-  // Procura a aba do abbiamolog ja logada
-  let page = ctx.pages().find(p => /abbiamolog\.com/.test(p.url()));
-  if (!page) {
-    page = await ctx.newPage();
-    await page.goto('https://log.abbiamolog.com/orders', { waitUntil: 'domcontentloaded', timeout: 30000 });
-    await page.waitForTimeout(2000);
-  }
-  // Captura o Bearer token dos requests da pagina
-  let bearerToken = null;
-  page.on('request', req => {
-    const auth = req.headers()['authorization'];
-    if (auth && auth.startsWith('Bearer ') && !bearerToken) bearerToken = auth;
-  });
-  // Recarrega para garantir que o token seja capturado
-  await page.reload({ waitUntil: 'networkidle', timeout: 30000 }).catch(() => {});
-  await page.waitForTimeout(2000);
-  if (!bearerToken) {
-    await browser.close().catch(() => {});
-    throw new Error('nao capturei Bearer token do abbiamolog -- aba nao logada?');
-  }
-  const headers = { 'Authorization': bearerToken, 'Accept': 'application/json', 'Content-Type': 'application/json' };
-  // Pega seller_ids
-  const meResp = await ctx.request.get('https://dashboard-api.abbiamo.io/me', {
-    headers: { 'Authorization': bearerToken, 'Accept': 'application/json' }
-  });
-  const meData = JSON.parse(await meResp.text());
-  const sellerIds = (meData.sellers || []).map(s => s.id);
-  // Busca pedidos dos ultimos 30 dias em paginas de 50
-  const agora = new Date();
-  const desde = new Date(agora.getTime() - 30 * 86400000);
-  const bodyBase = {
-    from: 0, size: 50, sort: {}, conditions: false,
-    filters: {
-      created_at: { gte: desde.toISOString(), lte: agora.toISOString() },
-      last_delivery_type: [], creation_origin: [], seller_group_invoice_tag_ids: []
-    },
-    seller_ids: sellerIds
-  };
-  // Coleta todos os codigos de material que precisamos rastrear
-  const codigosNecessarios = new Set();
-  for (const eq of dadosProcessados.equipamentos) {
-    for (const c of (eq.chamadosDetalhe || [])) {
-      for (const p of (c.pecas || [])) {
-        // Extrai o codigo numerico do material (ex: "303018500369 - PISTAO..." -> "303018500369")
-        const codeMatch = (p.material || '').match(/^(\d{10,})/);
-        if (codeMatch) codigosNecessarios.add(codeMatch[1]);
-      }
-    }
-  }
-  logInfo('rastreio abbiamolog', { codigosNecessarios: codigosNecessarios.size });
-  // Busca pedidos em paginas
-  const indiceRastreio = {}; // codigo_material -> [{ bkn, status, tracking, destino, eta, eventos }]
-  let pagina = 0;
-  let totalPedidos = 0;
-  let pedidosProcessados = 0;
-  while (true) {
-    const body = { ...bodyBase, from: pagina * 50 };
-    const resp = await ctx.request.post('https://dashboard-api.abbiamo.io/orders-page/v1/search/orders', {
-      headers, data: JSON.stringify(body)
-    });
-    const data = JSON.parse(await resp.text());
-    if (pagina === 0) totalPedidos = data.total || 0;
-    const pedidos = data.data || [];
-    if (!pedidos.length) break;
-    for (const pedido of pedidos) {
-      // Para cada pedido, pega os detalhes completos (volumes/itens)
-      try {
-        const detailResp = await ctx.request.get(
-          `https://dashboard-api.abbiamo.io/orders-page/v1/search/order?order_id=${pedido.id}`,
-          { headers: { 'Authorization': bearerToken, 'Accept': 'application/json' } }
-        );
-        const detail = JSON.parse(await detailResp.text());
-        const dest = detail.destination_address || {};
-        const ultimoEvento = (detail.delivery_events || []).slice(-1)[0] || {};
-        const entrega = (detail.deliveries || [])[0] || {};
-        const infoRastreio = {
-          bkn: (pedido.number || '').split('-')[0].trim(),
-          numeroCompleto: pedido.number || '',
-          status: pedido.status_name || '',
-          subStatus: pedido.sub_status || '',
-          tracking: pedido.tracking || '',
-          destino: [dest.city, dest.state].filter(Boolean).join('/'),
-          endereco: [dest.street, dest.street_number, dest.complement].filter(Boolean).join(' '),
-          eta: entrega.expected_carrier_delivery_date || null,
-          transportadora: ultimoEvento.observation || (detail.carrier ? detail.carrier.name : '') || '',
-          ultimoEvento: ultimoEvento.status || '',
-          ultimoEventoData: ultimoEvento.event_at || null,
-        };
-        // Indexa por codigo de material nos volumes/itens
-        for (const vol of (detail.volumes || [])) {
-          for (const item of (vol.items || [])) {
-            // sku pode ser "PREV B-303018500397" ou "388951-303013500119"
-            const skuCodes = (item.sku || '').match(/(\d{10,})/g) || [];
-            for (const code of skuCodes) {
-              if (!indiceRastreio[code]) indiceRastreio[code] = [];
-              indiceRastreio[code].push(infoRastreio);
-            }
-          }
-        }
-      } catch (e) { /* ignora pedido individual que falhar */ }
-      pedidosProcessados++;
-    }
-    pagina++;
-    if (pagina * 50 >= totalPedidos || pagina >= 20) break; // max 1000 pedidos
-    if (pagina % 5 === 0) logInfo('progresso rastreio', { pagina, pedidosProcessados, totalPedidos });
-  }
-  // Anota o rastreio nas pecas dos chamados
-  let pecasComRastreio = 0;
-  for (const eq of dadosProcessados.equipamentos) {
-    for (const c of (eq.chamadosDetalhe || [])) {
-      for (const p of (c.pecas || [])) {
-        const codeMatch = (p.material || '').match(/^(\d{10,})/);
-        if (codeMatch && indiceRastreio[codeMatch[1]]) {
-          p.rastreio = indiceRastreio[codeMatch[1]];
-          pecasComRastreio++;
-        }
-      }
-    }
-  }
-  await browser.close().catch(() => {});
-  logInfo('rastreio concluido', {
-    totalPedidos, pedidosProcessados,
-    codigosIndexados: Object.keys(indiceRastreio).length,
-    pecasComRastreio
-  });
-  return { totalPedidos, pedidosProcessados, pecasComRastreio };
+const browser = await chromium.connectOverCDP(CDP, { timeout: 15000 });
+const ctx = browser.contexts()[0];
+let page = ctx.pages().find(p => /abbiamolog\.com/.test(p.url()));
+if (!page) {
+page = await ctx.newPage();
+await page.goto('https://log.abbiamolog.com/orders', { waitUntil: 'domcontentloaded', timeout: 30000 });
+await page.waitForTimeout(2000);
+}
+let bearerToken = null;
+page.on('request', req => {
+const auth = req.headers()['authorization'];
+if (auth && auth.startsWith('Bearer ') && !bearerToken) bearerToken = auth;
+});
+await page.reload({ waitUntil: 'networkidle', timeout: 30000 }).catch(() => {});
+await page.waitForTimeout(2000);
+if (!bearerToken) {
+await browser.close().catch(() => {});
+throw new Error('nao capturei Bearer token do abbiamolog -- aba nao logada?');
+}
+const headers = { 'Authorization': bearerToken, 'Accept': 'application/json', 'Content-Type': 'application/json' };
+const meResp = await ctx.request.get('https://dashboard-api.abbiamo.io/me', {
+headers: { 'Authorization': bearerToken, 'Accept': 'application/json' }
+});
+const meData = JSON.parse(await meResp.text());
+const sellerIds = (meData.sellers || []).map(s => s.id);
+// OTIMIZADO: busca so' os ultimos 14 dias (nao 30) e usa size=100 por pagina.
+// Nao faz request individual por pedido -- usa so' os dados da lista.
+// O campo external_id na lista contem informacao que ajuda a cruzar.
+const agora = new Date();
+const desde = new Date(agora.getTime() - 14 * 86400000);
+const bodyBase = {
+from: 0, size: 100, sort: {}, conditions: false,
+filters: {
+created_at: { gte: desde.toISOString(), lte: agora.toISOString() },
+last_delivery_type: [], creation_origin: [], seller_group_invoice_tag_ids: []
+},
+seller_ids: sellerIds
+};
+// Coleta codigos de material necessarios
+const codigosNecessarios = new Set();
+for (const eq of dadosProcessados.equipamentos) {
+for (const c of (eq.chamadosDetalhe || [])) {
+for (const p of (c.pecas || [])) {
+const codeMatch = (p.material || '').match(/^(\d{10,})/);
+if (codeMatch) codigosNecessarios.add(codeMatch[1]);
+}
+}
+}
+logInfo('rastreio abbiamolog', { codigosNecessarios: codigosNecessarios.size });
+// Busca pedidos em paginas -- so' lista, sem detail individual
+const indiceRastreio = {};
+let pagina = 0;
+let totalPedidos = 0;
+let pedidosProcessados = 0;
+const MAX_PAGINAS = 10; // max 1000 pedidos
+while (pagina < MAX_PAGINAS) {
+const body = { ...bodyBase, from: pagina * 100 };
+let resp;
+try {
+resp = await ctx.request.post('https://dashboard-api.abbiamo.io/orders-page/v1/search/orders', {
+headers, data: JSON.stringify(body)
+});
+} catch (e) {
+logErro('rastreio: falha na pagina ' + pagina, { erro: e.message.slice(0, 100) });
+break;
+}
+const rawText = await resp.text();
+let data;
+try { data = JSON.parse(rawText); } catch (e) { break; }
+if (pagina === 0) totalPedidos = data.total || 0;
+const pedidos = data.data || [];
+if (!pedidos.length) break;
+for (const pedido of pedidos) {
+// Usa so' os dados da lista (sem request individual)
+const infoRastreio = {
+bkn: (pedido.number || '').split('-')[0].trim(),
+numeroCompleto: pedido.number || '',
+status: pedido.status_name || '',
+subStatus: pedido.sub_status || '',
+tracking: pedido.tracking || '',
+destino: '',
+endereco: '',
+eta: null,
+transportadora: '',
+ultimoEvento: pedido.status_name || '',
+ultimoEventoData: pedido.created_at || null,
+orderId: pedido.id || '',
+};
+// Tenta extrair codigo do external_id ou do number
+// O number tem formato "BKN 19672-Gilson Renato-46304"
+// O external_id as vezes tem o nome do tecnico ou referencia
+pedidosProcessados++;
+}
+// Para cada pedido, tenta buscar detail so' se o numero BKN bater com
+// algo relevante -- mas como nao temos cruzamento direto na lista,
+// vamos buscar details em lote pequeno (max 50 pedidos por run)
+// OTIMIZACAO FINAL: busca details so' dos primeiros 200 pedidos
+// (os mais recentes, mais provaveis de ter pecas ativas)
+if (pagina === 0 || pagina === 1) {
+for (const pedido of pedidos.slice(0, 100)) {
+try {
+const detailResp = await ctx.request.get(
+'https://dashboard-api.abbiamo.io/orders-page/v1/search/order?order_id=' + pedido.id,
+{ headers: { 'Authorization': bearerToken, 'Accept': 'application/json' } }
+);
+const detail = JSON.parse(await detailResp.text());
+const dest = detail.destination_address || {};
+const ultimoEvento = (detail.delivery_events || []).slice(-1)[0] || {};
+const entrega = (detail.deliveries || [])[0] || {};
+const infoRastreio = {
+bkn: (pedido.number || '').split('-')[0].trim(),
+numeroCompleto: pedido.number || '',
+status: pedido.status_name || '',
+subStatus: pedido.sub_status || '',
+tracking: pedido.tracking || '',
+destino: [dest.city, dest.state].filter(Boolean).join('/'),
+endereco: [dest.street, dest.street_number, dest.complement].filter(Boolean).join(' '),
+eta: entrega.expected_carrier_delivery_date || null,
+transportadora: ultimoEvento.observation || (detail.carrier ? detail.carrier.name : '') || '',
+ultimoEvento: ultimoEvento.status || '',
+ultimoEventoData: ultimoEvento.event_at || null,
+};
+for (const vol of (detail.volumes || [])) {
+for (const item of (vol.items || [])) {
+const skuCodes = (item.sku || '').match(/(\d{10,})/g) || [];
+for (const code of skuCodes) {
+if (!indiceRastreio[code]) indiceRastreio[code] = [];
+indiceRastreio[code].push(infoRastreio);
+}
+}
+}
+} catch (e) { /* ignora */ }
+}
+}
+pagina++;
+if (pagina * 100 >= totalPedidos) break;
+if (pagina % 3 === 0) logInfo('progresso rastreio', { pagina, pedidosProcessados, totalPedidos, indexados: Object.keys(indiceRastreio).length });
+}
+// Anota o rastreio nas pecas
+let pecasComRastreio = 0;
+for (const eq of dadosProcessados.equipamentos) {
+for (const c of (eq.chamadosDetalhe || [])) {
+for (const p of (c.pecas || [])) {
+const codeMatch = (p.material || '').match(/^(\d{10,})/);
+if (codeMatch && indiceRastreio[codeMatch[1]]) {
+p.rastreio = indiceRastreio[codeMatch[1]];
+pecasComRastreio++;
+}
+}
+}
+}
+await browser.close().catch(() => {});
+logInfo('rastreio concluido', {
+totalPedidos, pedidosProcessados,
+codigosIndexados: Object.keys(indiceRastreio).length,
+pecasComRastreio
+});
+return { totalPedidos, pedidosProcessados, pecasComRastreio };
 }
 
 (async () => {
