@@ -343,6 +343,20 @@ function semAcento(s) {
   return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 }
 
+// Classifica o status de entrega de uma peca a partir do rastreio abbiamolog.
+// Em escopo global para que o filtro por Status Entrega na funcao renderizar
+// consiga chama-la sem ReferenceError (antes estava dentro de renderizar e
+// quebrava o filtro "Entregue", que retornava zero mesmo com pecas SUCCESSFUL).
+function classificarEntrega(p) {
+  if (!p.rastreio || !p.rastreio.length) return 'sem_envio';
+  const s = (p.rastreio[0].status || '').toUpperCase();
+  if (s === 'SUCCESSFUL' || s === 'DELIVERED') return 'entregue';
+  if (s === 'IN_TRANSIT' || s === 'COLLECTED' || s === 'START_DELIVERY') return 'em_rota';
+  if (s === 'DISPATCHED') return 'despachado';
+  if (s.includes('FAIL') || s.includes('CANCEL') || s.includes('RETURN')) return 'falhou';
+  return 'despachado';
+}
+
 function renderizar() {
   const selEquip = document.getElementById('filtroEquipamento');
   const inLoja = document.getElementById('filtroLoja');
@@ -357,17 +371,6 @@ function renderizar() {
   const fPri = selPrioridade.value;
   const fSup = document.getElementById('filtroSupervisor').value;
   const fEntrega = document.getElementById('filtroEntrega').value;
-
-  // Helper: classifica o status de entrega de uma peca
-  function classificarEntrega(p) {
-    if (!p.rastreio || !p.rastreio.length) return 'sem_envio';
-    const s = (p.rastreio[0].status || '').toUpperCase();
-    if (s === 'SUCCESSFUL' || s === 'DELIVERED') return 'entregue';
-    if (s === 'IN_TRANSIT' || s === 'COLLECTED' || s === 'START_DELIVERY') return 'em_rota';
-    if (s === 'DISPATCHED') return 'despachado';
-    if (s.includes('FAIL') || s.includes('CANCEL') || s.includes('RETURN')) return 'falhou';
-    return 'despachado';
-  }
 
   const filtrados = TODOS_CHAMADOS_COM_PECAS.filter(c => {
     if (fEquip && c.equipamento !== fEquip) return false;
@@ -696,11 +699,15 @@ function abrirDetalhe(idx) {
       const r = p.rastreio[0]; // pega o mais recente
       const badgeCls = statusBadgeClass(r.status);
       const etaStr = r.eta ? new Date(r.eta).toLocaleDateString('pt-BR') : '';
+      const rastreioLink = r.orderId
+        ? `<a href="https://log.abbiamolog.com/orders?order_id=${encodeURIComponent(r.orderId)}" target="_blank" rel="noopener" style="color:var(--violet);text-decoration:none;font-weight:600;" title="Abrir rastreio no abbiamolog">🔗 Ver rastreio</a>`
+        : '';
       rastreioHtml = `<div class="rastreio-info">
         <span class="rastreio-badge ${badgeCls}">${statusLabel(r.status, r.subStatus)}</span>
         ${r.transportadora ? ' · ' + escapeHtml(r.transportadora) : ''}
         ${r.destino ? ' → <span class="dest">' + escapeHtml(r.destino) + '</span>' : ''}
         ${etaStr ? ' · <span class="eta">ETA ' + etaStr + '</span>' : ''}
+        ${rastreioLink ? ' · ' + rastreioLink : ''}
         ${r.tracking ? '<br><span class="tracking">Tracking: ' + escapeHtml(r.tracking) + '</span>' : ''}
         ${p.rastreio.length > 1 ? '<br><span class="tracking">+' + (p.rastreio.length - 1) + ' envio(s) adicional(is)</span>' : ''}
       </div>`;
