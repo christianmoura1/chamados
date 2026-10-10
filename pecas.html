@@ -1,761 +1,624 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
 <head>
 <meta charset="utf-8">
 <title>Peças — Sul</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --sidebar:   #1E1B3A;
-    --sidebar-2: #2A2555;
-    --ground:    #F3F1FB;
-    --surface:   #FFFFFF;
-    --surface2:  #F6F4FC;
-    --ink:       #211D3D;
-    --muted:     #726E93;
-    --faint:     #A9A5C6;
-    --line:      #ECEAF6;
-    --violet:    #7C5CFC;
-    --violet-2:  #A78BFA;
-    --pink:      #F472B6;
-    --blue:      #38BDF8;
-    --sos:       #E43F5A;
-    --sos-soft:  rgba(228,63,90,0.10);
-    --alta:      #F5A623;
-    --alta-soft: rgba(245,166,35,0.12);
-    --ok:        #22C08D;
-    --grid:      rgba(33,29,61,0.06);
-    --shadow:    0 1px 2px rgba(33,29,61,.04), 0 12px 28px rgba(33,29,61,.07);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --ground:   #100E22; --surface: #1A1733; --surface2: #211D42;
-      --ink: #ECEAFB; --muted: #A29DC7; --faint: #6C6791; --line: #2C2854;
-      --violet: #9A82FF; --violet-2: #C4B5FD; --pink: #F9A8D4; --blue: #7DD3FC;
-      --sos: #F3697F; --sos-soft: rgba(243,105,127,0.16);
-      --alta: #FBBF56; --alta-soft: rgba(251,191,86,0.16); --ok: #4ADE9E;
-      --grid: rgba(236,234,251,0.07); --shadow: 0 1px 2px rgba(0,0,0,.35), 0 14px 32px rgba(0,0,0,.32);
-    }
-  }
-  :root[data-theme="dark"] {
-    --ground:   #100E22; --surface: #1A1733; --surface2: #211D42;
-    --ink: #ECEAFB; --muted: #A29DC7; --faint: #6C6791; --line: #2C2854;
-    --violet: #9A82FF; --violet-2: #C4B5FD; --pink: #F9A8D4; --blue: #7DD3FC;
-    --sos: #F3697F; --sos-soft: rgba(243,105,127,0.16);
-    --alta: #FBBF56; --alta-soft: rgba(251,191,86,0.16); --ok: #4ADE9E;
-    --grid: rgba(236,234,251,0.07); --shadow: 0 1px 2px rgba(0,0,0,.35), 0 14px 32px rgba(0,0,0,.32);
-  }
-
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; background: var(--ground); color: var(--ink);
-    font-family: "IBM Plex Sans", system-ui, sans-serif; font-size: 15px; line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-  }
-  .num { font-variant-numeric: tabular-nums; }
-  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
-
-  .shell { display: grid; grid-template-columns: 240px minmax(0,1fr); min-height: 100vh; transition: grid-template-columns .22s ease; }
-  .shell.sb-collapsed { grid-template-columns: 0 minmax(0,1fr); }
-  @media (max-width: 860px) { .shell:not(.sb-expanded) { grid-template-columns: 0 minmax(0,1fr); } }
-
-  /* ---------- sidebar ---------- */
-  .side {
-    background: linear-gradient(180deg, var(--sidebar), var(--sidebar-2));
-    padding: 26px 20px; display: flex; flex-direction: column; gap: 30px; color: #EDEAFF;
-    position: relative; overflow: hidden; white-space: nowrap; min-width: 0;
-    transition: opacity .18s ease;
-  }
-  .shell.sb-collapsed .side { opacity: 0; padding-left: 0; padding-right: 0; }
-
-  .side-toggle {
-    position: absolute; top: 22px; right: 14px; width: 26px; height: 26px; border-radius: 999px;
-    background: rgba(255,255,255,0.08); border: none; color: #C6C0EE; cursor: pointer;
-    display: flex; align-items: center; justify-content: center; font-size: 14px; line-height: 1; flex: none;
-  }
-  .side-toggle:hover { background: rgba(255,255,255,0.16); color: #FFFFFF; }
-
-  .side-reopen {
-    display: none; position: fixed; top: 22px; left: 18px; z-index: 40;
-    width: 32px; height: 32px; border-radius: 999px; border: 1px solid var(--line);
-    background: var(--surface); color: var(--muted); box-shadow: var(--shadow); cursor: pointer;
-    align-items: center; justify-content: center; font-size: 15px; line-height: 1;
-  }
-  .side-reopen:hover { color: var(--violet); }
-  .shell.sb-collapsed .side-reopen { display: flex; }
-
-  .brand { display: flex; align-items: center; gap: 11px; padding-right: 24px; }
-  .brand .mark {
-    width: 34px; height: 34px; border-radius: 10px;
-    background: linear-gradient(135deg, var(--violet), var(--pink));
-    display: flex; align-items: center; justify-content: center;
-    font-family: "Archivo", sans-serif; font-weight: 800; font-size: 15px; color: white; flex: none;
-  }
-  .brand .name { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
-  .brand .sub { font-size: 11px; color: #A79FE0; }
-
-  .navgroup { display: flex; flex-direction: column; gap: 3px; }
-  .navlabel { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #7A72B8; padding: 0 12px; margin: 14px 0 6px; }
-  .navitem {
-    display: flex; align-items: center; gap: 11px; padding: 9px 12px; border-radius: 10px;
-    color: #C6C0EE; font-size: 13.5px; font-weight: 500; text-decoration: none;
-  }
-  a.navitem:hover { background: rgba(255,255,255,0.06); color: #FFFFFF; }
-  .navitem .dot { width: 7px; height: 7px; border-radius: 999px; background: currentColor; opacity: .55; flex: none; }
-  .navitem.active { background: rgba(255,255,255,0.08); color: #FFFFFF; }
-  .navitem.active .dot { background: var(--pink); opacity: 1; }
-
-  .side-foot { margin-top: auto; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 11.5px; color: #8B84C4; }
-
-  /* ---------- main ---------- */
-  .main { padding: clamp(18px,3vw,34px) clamp(16px,3.5vw,40px) 60px; }
-  .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 22px; flex-wrap: wrap; }
-  .eyebrow { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--violet); margin: 0 0 6px; }
-  h1 { font-family: "Archivo", sans-serif; font-weight: 800; font-size: clamp(24px,3.4vw,32px); letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
-  .stamp-pill {
-    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--muted);
-    background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; box-shadow: var(--shadow);
-  }
-
-  .kpis { display: grid; grid-template-columns: repeat(4,1fr); gap: 13px; margin: 22px 0 30px; }
-  @media (max-width: 1080px) { .kpis { grid-template-columns: repeat(2,1fr); } }
-  @media (max-width: 640px) { .kpis { grid-template-columns: 1fr; } }
-  .kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px 17px 14px; box-shadow: var(--shadow); }
-  .kpi .label { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); display:block; margin-bottom: 7px; }
-  .kpi .val { font-family: "Archivo", sans-serif; font-weight: 800; font-size: clamp(20px,2.6vw,25px); letter-spacing: -0.01em; }
-  .kpi.k-violet .val { color: var(--violet); }
-  .kpi.k-pink .val { color: var(--pink); }
-  .kpi.k-blue .val { color: var(--blue); }
-
-  section { margin-top: 34px; }
-  .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin-bottom: 15px; flex-wrap: wrap; }
-  h2 { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 17px; letter-spacing: -0.01em; margin: 0; }
-  .sec-note { font-size: 12px; color: var(--faint); font-family: "IBM Plex Mono", monospace; }
-
-  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px 16px; box-shadow: var(--shadow); }
-
-  /* ---------- filtros ---------- */
-  .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
-  .filter-field { display: flex; flex-direction: column; gap: 4px; min-width: 168px; flex: 1; }
-  .filter-field label {
-    font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--faint);
-  }
-  .filter-field select, .filter-field input[type="text"] {
-    font-family: "IBM Plex Sans", sans-serif; font-size: 13px; color: var(--ink); background: var(--surface2);
-    border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; appearance: none; width: 100%;
-  }
-  .filter-field input[type="text"]:focus { outline: 2px solid var(--violet); outline-offset: -1px; }
-  .filter-combo { position: relative; }
-  .filter-combo-lista {
-    position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 30; max-height: 240px; overflow: auto;
-    background: var(--surface); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); padding: 4px;
-  }
-  .filter-combo-item { padding: 7px 10px; border-radius: 7px; font-size: 13px; color: var(--ink); cursor: pointer; }
-  .filter-combo-item:hover, .filter-combo-item.ativo { background: var(--surface2); }
-  .filter-combo-vazio { padding: 7px 10px; font-size: 12.5px; color: var(--faint); }
-  .filter-clear {
-    font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--violet); background: none; border: none;
-    cursor: pointer; padding: 8px 4px; white-space: nowrap; align-self: flex-end;
-  }
-  .filter-clear:hover { text-decoration: underline; }
-  .filter-count { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--muted); margin-bottom: 10px; }
-  .filter-table-wrap { max-height: 600px; overflow: auto; border-radius: 12px; }
-  .filter-empty { padding: 30px 0; text-align: center; color: var(--faint); font-size: 12.5px; }
-
-  /* ---------- tabela ---------- */
-  .detail-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
-  .detail-table th {
-    text-align: left; font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .05em; text-transform: uppercase;
-    color: var(--faint); padding: 8px 10px; position: sticky; top: 0; background: var(--surface);
-  }
-  .detail-table td { padding: 8px 10px; border-top: 1px solid var(--line); vertical-align: top; }
-  .detail-table tr:hover td { background: var(--surface2); }
-  .tag { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; font-weight: 600; border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
-  .tag-sos { background: var(--sos-soft); color: var(--sos); }
-  .tag-alta { background: var(--alta-soft); color: var(--alta); }
-  .tag-normal { background: var(--surface2); color: var(--muted); }
-
-  /* ---------- cards de chamado com pecas ---------- */
-  .chamado-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 16px; }
-  .chamado-card {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
-    padding: 16px 18px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 10px;
-  }
-  .chamado-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-  .chamado-numero { font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: 13px; color: var(--violet); }
-  .chamado-loja { font-weight: 600; font-size: 13.5px; }
-  .chamado-equip { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--faint); text-transform: uppercase; letter-spacing: .04em; }
-  .chamado-problema { font-size: 12px; color: var(--muted); line-height: 1.4; }
-  .chamado-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 11.5px; color: var(--faint); }
-  .chamado-meta .tecnico { color: var(--muted); }
-  .peca-lista { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; padding-top: 8px; border-top: 1px solid var(--line); }
-  .peca-item { display: flex; align-items: center; gap: 8px; font-size: 12px; }
-  .peca-incl { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--faint); flex: none; min-width: 80px; }
-  .peca-material { color: var(--ink); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .peca-qtd { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--muted); flex: none; }
-  .peca-total { font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 600; color: var(--ink); flex: none; }
-
-  footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--faint); font-size: 12px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-  .msg-carregando, .msg-erro { padding: 40px 0; text-align: center; color: var(--muted); font-family: "IBM Plex Mono", monospace; font-size: 13px; }
-  .msg-erro { color: var(--sos); }
-
-  /* toggle visao: cards vs tabela */
-  .view-toggle { display: inline-flex; gap: 2px; background: var(--surface2); border-radius: 8px; padding: 2px; }
-  .view-btn { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .04em; text-transform: uppercase; border: 0; background: transparent; color: var(--faint); padding: 5px 12px; border-radius: 6px; cursor: pointer; transition: background .12s ease, color .12s ease; }
-  .view-btn:hover { color: var(--muted); }
-  .view-btn.ativo { background: var(--surface); color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
-
-  /* ---------- modal de detalhes ---------- */
-  .modal-overlay {
-    display: none; position: fixed; inset: 0; z-index: 100;
-    background: rgba(16,14,34,0.55); backdrop-filter: blur(4px);
-    align-items: center; justify-content: center; padding: 24px;
-  }
-  .modal-overlay.aberto { display: flex; }
-  .modal-box {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 20px;
-    box-shadow: 0 8px 40px rgba(33,29,61,.18); max-width: 640px; width: 100%;
-    max-height: 85vh; overflow: auto; padding: 28px 28px 22px;
-    animation: modalIn .18s ease;
-  }
-  @keyframes modalIn { from { opacity: 0; transform: translateY(12px) scale(.97); } to { opacity: 1; transform: none; } }
-  .modal-close {
-    float: right; width: 30px; height: 30px; border-radius: 999px; border: 1px solid var(--line);
-    background: var(--surface2); color: var(--muted); cursor: pointer; font-size: 16px; line-height: 1;
-    display: flex; align-items: center; justify-content: center; margin: -4px -4px 0 0;
-  }
-  .modal-close:hover { background: var(--sos-soft); color: var(--sos); border-color: var(--sos); }
-  .modal-header { margin-bottom: 18px; }
-  .modal-numero { font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: 15px; color: var(--violet); }
-  .modal-loja { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 18px; margin: 4px 0 2px; }
-  .modal-equip { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--faint); text-transform: uppercase; letter-spacing: .04em; }
-  .modal-problema { font-size: 13px; color: var(--muted); margin-top: 8px; line-height: 1.45; }
-  .modal-meta { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 10px; font-size: 12px; color: var(--faint); }
-  .modal-meta .tecnico { color: var(--muted); }
-  .modal-peca-titulo {
-    font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase;
-    color: var(--faint); margin: 20px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line);
-  }
-  .modal-peca-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .modal-peca-table th {
-    text-align: left; font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .05em;
-    text-transform: uppercase; color: var(--faint); padding: 6px 8px; border-bottom: 1px solid var(--line);
-  }
-  .modal-peca-table td { padding: 9px 8px; border-bottom: 1px solid var(--line); vertical-align: middle; }
-  .modal-peca-table tr:last-child td { border-bottom: none; }
-  .modal-peca-table tr:hover td { background: var(--surface2); }
-  .modal-peca-incl { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--faint); }
-  .modal-peca-material { color: var(--ink); font-weight: 500; }
-  .modal-peca-qtd { font-family: "IBM Plex Mono", monospace; text-align: center; color: var(--muted); }
-  .modal-peca-custo { font-family: "IBM Plex Mono", monospace; text-align: right; color: var(--muted); }
-  .modal-peca-total { font-family: "IBM Plex Mono", monospace; text-align: right; font-weight: 700; color: var(--ink); }
-  .modal-total-geral {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-top: 14px; padding: 12px 14px; background: var(--surface2); border-radius: 12px;
-  }
-  .modal-total-label { font-family: "IBM Plex Mono", monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--faint); }
-  .modal-total-valor { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 20px; color: var(--violet); }
-  .chamado-card { cursor: pointer; transition: box-shadow .15s ease, transform .15s ease; }
-  .chamado-card:hover { box-shadow: 0 4px 20px rgba(124,92,252,.12); transform: translateY(-2px); }
-  /* ---------- rastreio no modal ---------- */
-  .rastreio-badge { display: inline-flex; align-items: center; gap: 5px; font-family: "IBM Plex Mono", monospace; font-size: 10px; font-weight: 600; border-radius: 999px; padding: 2px 8px; white-space: nowrap; }
-  .rastreio-badge.dispatched { background: rgba(56,189,248,0.12); color: var(--blue); }
-  .rastreio-badge.in_transit { background: rgba(245,166,35,0.12); color: var(--alta); }
-  .rastreio-badge.delivered { background: rgba(34,192,141,0.12); color: var(--ok); }
-  .rastreio-badge.collected { background: rgba(124,92,252,0.12); color: var(--violet); }
-  .rastreio-badge.failed { background: var(--sos-soft); color: var(--sos); }
-  .rastreio-badge.default { background: var(--surface2); color: var(--muted); }
-  .rastreio-info { margin-top: 4px; padding: 8px 10px; background: var(--surface2); border-radius: 8px; font-size: 11.5px; color: var(--muted); line-height: 1.5; }
-  .rastreio-info .dest { color: var(--ink); font-weight: 500; }
-  .rastreio-info .tracking { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--faint); }
-  .rastreio-info .eta { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--violet); }
+:root {
+--cobalto: #1e3bff;
+--laranja: #ff6b00;
+--laranja-bg: #fff4ee;
+--rosa: #ff3366;
+--verde: #00c853;
+--verde-bg: #e8fdf0;
+--amarelo: #ffcc00;
+--amarelo-bg: #fffef0;
+--cinza: #6b7280;
+--cinza-bg: #f3f4f6;
+--surface: #ffffff;
+--bg: #f8f9fc;
+--text: #111827;
+--text-2: #374151;
+--text-3: #9ca3af;
+--border: #e5e7eb;
+--shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.05);
+--r: 10px; --r-lg: 16px; --r-xl: 20px;
+--sidebar-w: 220px;
+--ink: var(--text);
+--muted: var(--text-3);
+--faint: var(--text-3);
+--line: var(--border);
+--ground: var(--bg);
+--surface2: var(--cinza-bg);
+--violet: var(--cobalto);
+--violet-2: var(--cobalto);
+--pink: var(--rosa);
+--blue: var(--cobalto);
+--sos: var(--rosa);
+--sos-soft: rgba(255,51,102,0.10);
+--alta: var(--laranja);
+--alta-soft: rgba(255,107,0,0.12);
+--ok: var(--verde);
+--grid: rgba(0,0,0,0.06);
+}
+[data-theme="dark"] {
+--surface: #1a1d2e; --bg: #0f1120; --text: #f1f5f9; --text-2: #94a3b8; --text-3: #475569;
+--border: #2d3148; --shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 12px rgba(0,0,0,.2);
+--cinza-bg: #1f2235; --verde-bg: #0d2e1a; --laranja-bg: #2d1a0d;
+--rosa-bg: #2d0d1a; --amarelo-bg: #2d2a0d;
+--sos-soft: rgba(255,51,102,0.16); --alta-soft: rgba(255,107,0,0.16);
+--grid: rgba(255,255,255,0.07);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; transition: background .25s, color .25s; }
+.num { font-variant-numeric: tabular-nums; }
+.mono { font-family: 'Inter', monospace; }
+header { background: var(--surface); border-bottom: 2px solid var(--cobalto); padding: 12px 24px; display: flex; align-items: center; gap: 14px; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow); }
+.brand-mark { width: 38px; height: 38px; background: var(--cobalto); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: 900; flex-shrink: 0; }
+.header-title { flex: 1; }
+.header-title h1 { font-size: 18px; font-weight: 800; color: var(--text); line-height: 1.1; }
+.header-title span { font-size: 11px; font-weight: 500; color: var(--text-3); text-transform: uppercase; letter-spacing: .5px; }
+.carimbo { background: var(--cobalto); color: white; font-size: 11px; font-weight: 700; padding: 5px 11px; border-radius: 20px; white-space: nowrap; }
+.theme-btn { background: var(--bg); border: 1.5px solid var(--border); border-radius: 8px; width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; transition: background .2s; }
+.theme-btn:hover { background: var(--border); }
+.layout { display: flex; flex: 1; }
+aside { width: var(--sidebar-w); background: var(--surface); border-right: 1.5px solid var(--border); padding: 18px 14px; display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
+aside .s-header { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--text-3); padding: 0 8px; margin-bottom: 4px; }
+aside a, aside .navitem-static { display: flex; align-items: center; gap: 9px; padding: 8px 10px; border-radius: var(--r); color: var(--text-2); text-decoration: none; font-size: 13px; font-weight: 500; transition: background .15s, color .15s; cursor: pointer; }
+aside a:hover, aside .navitem-static:hover { background: var(--bg); color: var(--text); }
+aside a.active { background: var(--cobalto); color: white; }
+aside .s-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: .7; flex: none; }
+aside a.active .s-dot { background: white; opacity: 1; }
+.side-foot { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-3); padding-left: 8px; }
+main { flex: 1; padding: 22px 24px; overflow-y: auto; }
+.kpis { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-bottom: 18px; }
+@media (max-width: 1080px) { .kpis { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 640px) { .kpis { grid-template-columns: 1fr; } }
+.kpi { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r-lg); padding: 16px 18px; box-shadow: var(--shadow); }
+.kpi .label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; color: var(--text-3); display: block; margin-bottom: 7px; }
+.kpi .val { font-size: clamp(22px,2.6vw,30px); font-weight: 900; letter-spacing: -1px; }
+.kpi.k-sos .val { color: var(--rosa); }
+.kpi.k-alta .val { color: var(--laranja); }
+.kpi.k-violet .val { color: var(--cobalto); }
+.kpi.k-pink .val { color: var(--rosa); }
+.kpi.k-blue .val { color: var(--cobalto); }
+.kpi.k-ok .val { color: var(--verde); }
+section { margin-top: 28px; }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin-bottom: 12px; flex-wrap: wrap; }
+h2 { font-size: 15px; font-weight: 700; margin: 0; }
+.sec-note { font-size: 11px; color: var(--text-3); }
+.card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r-lg); padding: 18px 20px 16px; box-shadow: var(--shadow); }
+.filter-bar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
+.filter-field { display: flex; flex-direction: column; gap: 4px; min-width: 168px; flex: 1; }
+.filter-field label { font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-3); }
+.filter-field select, .filter-field input[type="text"] {
+font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text); background: var(--cinza-bg);
+border: 1.5px solid var(--border); border-radius: var(--r); padding: 8px 10px; appearance: none; width: 100%;
+}
+.filter-field input[type="text"]:focus { outline: 2px solid var(--cobalto); outline-offset: -1px; }
+.filter-combo { position: relative; }
+.filter-combo-lista {
+position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 30; max-height: 240px; overflow: auto;
+background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r); box-shadow: var(--shadow); padding: 4px;
+}
+.filter-combo-item { padding: 7px 10px; border-radius: 7px; font-size: 13px; color: var(--text); cursor: pointer; }
+.filter-combo-item:hover, .filter-combo-item.ativo { background: var(--cinza-bg); }
+.filter-combo-vazio { padding: 7px 10px; font-size: 12.5px; color: var(--text-3); }
+.filter-clear {
+font-size: 11.5px; color: var(--cobalto); background: none; border: none;
+cursor: pointer; padding: 8px 4px; white-space: nowrap; align-self: flex-end;
+}
+.filter-clear:hover { text-decoration: underline; }
+.filter-count { font-size: 12px; color: var(--text-2); margin-bottom: 10px; }
+.filter-table-wrap { max-height: 600px; overflow: auto; border-radius: 12px; }
+.filter-empty { padding: 30px 0; text-align: center; color: var(--text-3); font-size: 12.5px; }
+.detail-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.detail-table th {
+text-align: left; font-size: 10px; letter-spacing: .05em; text-transform: uppercase;
+color: var(--text-3); padding: 8px 10px; position: sticky; top: 0; background: var(--surface);
+}
+.detail-table td { padding: 8px 10px; border-top: 1px solid var(--border); vertical-align: top; }
+.detail-table tr:hover td { background: var(--cinza-bg); }
+.tag { font-size: 10.5px; font-weight: 600; border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
+.tag-sos { background: var(--sos-soft); color: var(--rosa); }
+.tag-alta { background: var(--alta-soft); color: var(--laranja); }
+.tag-normal { background: var(--cinza-bg); color: var(--text-2); }
+.chamado-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 16px; }
+.chamado-card {
+background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r-lg);
+padding: 16px 18px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 10px;
+cursor: pointer; transition: box-shadow .15s ease, transform .15s ease;
+}
+.chamado-card:hover { box-shadow: 0 4px 20px rgba(30,59,255,.12); transform: translateY(-2px); }
+.chamado-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.chamado-numero { font-family: 'Inter', monospace; font-weight: 600; font-size: 13px; color: var(--cobalto); }
+.chamado-loja { font-weight: 600; font-size: 13.5px; }
+.chamado-equip { font-family: 'Inter', monospace; font-size: 10px; color: var(--text-3); text-transform: uppercase; letter-spacing: .04em; }
+.chamado-problema { font-size: 12px; color: var(--text-2); line-height: 1.4; }
+.chamado-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 11.5px; color: var(--text-3); }
+.chamado-meta .tecnico { color: var(--text-2); }
+.peca-lista { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; padding-top: 8px; border-top: 1px solid var(--border); }
+.peca-item { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+.peca-incl { font-family: 'Inter', monospace; font-size: 10px; color: var(--text-3); flex: none; min-width: 80px; }
+.peca-material { color: var(--text); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.peca-qtd { font-family: 'Inter', monospace; font-size: 11px; color: var(--text-2); flex: none; }
+.peca-total { font-family: 'Inter', monospace; font-size: 11px; font-weight: 600; color: var(--text); flex: none; }
+footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--text-3); font-size: 12px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.msg-carregando, .msg-erro { padding: 40px 0; text-align: center; color: var(--text-2); font-size: 13px; }
+.msg-erro { color: var(--rosa); }
+.view-toggle { display: inline-flex; gap: 2px; background: var(--cinza-bg); border-radius: 8px; padding: 2px; }
+.view-btn { font-size: 10px; letter-spacing: .04em; text-transform: uppercase; border: 0; background: transparent; color: var(--text-3); padding: 5px 12px; border-radius: 6px; cursor: pointer; transition: background .12s ease, color .12s ease; }
+.view-btn:hover { color: var(--text-2); }
+.view-btn.ativo { background: var(--surface); color: var(--text); font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+.modal-overlay {
+display: none; position: fixed; inset: 0; z-index: 100;
+background: rgba(0,0,0,0.55); backdrop-filter: blur(2px);
+align-items: center; justify-content: center; padding: 24px;
+}
+.modal-overlay.aberto { display: flex; }
+.modal-box {
+background: var(--surface); border-radius: var(--r-xl);
+box-shadow: var(--shadow); max-width: 640px; width: 100%;
+max-height: 85vh; overflow: auto; padding: 28px 28px 22px;
+}
+.modal-close {
+float: right; width: 30px; height: 30px; border-radius: 999px; border: 1px solid var(--border);
+background: var(--cinza-bg); color: var(--text-2); cursor: pointer; font-size: 16px; line-height: 1;
+display: flex; align-items: center; justify-content: center; margin: -4px -4px 0 0;
+}
+.modal-close:hover { background: var(--sos-soft); color: var(--rosa); border-color: var(--rosa); }
+.modal-header { margin-bottom: 18px; }
+.modal-numero { font-family: 'Inter', monospace; font-weight: 600; font-size: 15px; color: var(--cobalto); }
+.modal-loja { font-weight: 700; font-size: 18px; margin: 4px 0 2px; }
+.modal-equip { font-family: 'Inter', monospace; font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: .04em; }
+.modal-problema { font-size: 13px; color: var(--text-2); margin-top: 8px; line-height: 1.45; }
+.modal-meta { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 10px; font-size: 12px; color: var(--text-3); }
+.modal-meta .tecnico { color: var(--text-2); }
+.modal-peca-titulo {
+font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase;
+color: var(--text-3); margin: 20px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border);
+}
+.modal-peca-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.modal-peca-table th {
+text-align: left; font-size: 10px; letter-spacing: .05em;
+text-transform: uppercase; color: var(--text-3); padding: 6px 8px; border-bottom: 1px solid var(--border);
+}
+.modal-peca-table td { padding: 9px 8px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.modal-peca-table tr:last-child td { border-bottom: none; }
+.modal-peca-table tr:hover td { background: var(--cinza-bg); }
+.modal-peca-incl { font-family: 'Inter', monospace; font-size: 11px; color: var(--text-3); }
+.modal-peca-material { color: var(--text); font-weight: 500; }
+.modal-peca-qtd { font-family: 'Inter', monospace; text-align: center; color: var(--text-2); }
+.modal-peca-custo { font-family: 'Inter', monospace; text-align: right; color: var(--text-2); }
+.modal-peca-total { font-family: 'Inter', monospace; text-align: right; font-weight: 700; color: var(--text); }
+.modal-total-geral {
+display: flex; justify-content: space-between; align-items: center;
+margin-top: 14px; padding: 12px 14px; background: var(--cinza-bg); border-radius: 12px;
+}
+.modal-total-label { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-3); }
+.modal-total-valor { font-weight: 800; font-size: 20px; color: var(--cobalto); }
+.rastreio-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 600; border-radius: 999px; padding: 2px 8px; white-space: nowrap; }
+.rastreio-badge.dispatched { background: rgba(30,59,255,0.12); color: var(--cobalto); }
+.rastreio-badge.in_transit { background: rgba(255,107,0,0.12); color: var(--laranja); }
+.rastreio-badge.delivered { background: rgba(0,200,83,0.12); color: var(--verde); }
+.rastreio-badge.collected { background: rgba(30,59,255,0.12); color: var(--cobalto); }
+.rastreio-badge.failed { background: var(--sos-soft); color: var(--rosa); }
+.rastreio-badge.default { background: var(--cinza-bg); color: var(--text-2); }
+.rastreio-info { margin-top: 4px; padding: 8px 10px; background: var(--cinza-bg); border-radius: 8px; font-size: 11.5px; color: var(--text-2); line-height: 1.5; }
+.rastreio-info .dest { color: var(--text); font-weight: 500; }
+.rastreio-info .tracking { font-family: 'Inter', monospace; font-size: 10.5px; color: var(--text-3); }
+.rastreio-info .eta { font-family: 'Inter', monospace; font-size: 10.5px; color: var(--cobalto); }
+@media (max-width: 900px) { :root { --sidebar-w: 0px; } aside { display: none; } }
+@media (max-width: 600px) { main { padding: 14px; } }
 </style>
 </head>
 <body>
-<div class="shell">
-  <aside class="side">
-    <button class="side-toggle" id="sideToggle" type="button" aria-label="Recolher menu">‹</button>
-    <div class="brand">
-      <div class="mark">Z</div>
-      <div><div class="name">Manutenção Sul</div><div class="sub">Zamp · BK Brasil</div></div>
-    </div>
-    <div class="navgroup">
-      <a class="navitem" href="index.html"><span class="dot"></span>Backlog</a>
-      <a class="navitem" href="tecnicos.html"><span class="dot"></span>Técnicos</a>
-      <div class="navlabel">Painéis</div>
-      <a class="navitem" href="perda.html"><span class="dot"></span>Perda de Receita</a>
-      <a class="navitem" href="risco.html"><span class="dot"></span>Gestão de Risco</a>
-      <a class="navitem" href="campo.html"><span class="dot"></span>Acompanhamento Campo</a>
-      <a class="navitem" href="preventivas.html"><span class="dot"></span>Preventivas</a>
-      <a class="navitem" href="sorvete.html"><span class="dot"></span>Máquina de Sorvete</a>
-      <div class="navitem active"><span class="dot"></span>Peças / Materiais</div>
-      <div class="navlabel">Fonte</div>
-      <div class="navitem"><span class="dot"></span>ServiceNow · SOMA</div>
-    </div>
-    <div class="side-foot">Atualização automática diária</div>
-  </aside>
-  <button class="side-reopen" id="sideReopen" type="button" aria-label="Abrir menu">›</button>
-
-  <main class="main">
-    <div class="topbar">
-      <div>
-        <p class="eyebrow">Regional Sul · Materiais & Serviços</p>
-        <h1>Peças</h1>
-      </div>
-      <div class="stamp-pill" id="stamp">carregando…</div>
-    </div>
-    <div id="conteudo"><div class="msg-carregando">carregando data/dados.json…</div></div>
-  </main>
+<header>
+<div class="brand-mark">Z</div>
+<div class="header-title"><h1>Peças / Materiais</h1><span>Manutenção Sul · Regional Sul</span></div>
+<div class="carimbo" id="stamp">carregando…</div>
+<button class="theme-btn" onclick="toggleTheme()" title="Alternar tema">&#9788;</button>
+</header>
+<div class="layout">
+<aside>
+<div class="s-header">Navegação</div>
+<a href="index.html"><span class="s-dot"></span> Backlog</a>
+<a href="tecnicos.html"><span class="s-dot"></span> Técnicos</a>
+<div class="s-header" style="margin-top:12px">Painéis</div>
+<a href="perda.html"><span class="s-dot" style="color:var(--laranja)"></span> Perda de Receita</a>
+<a href="risco.html"><span class="s-dot" style="color:var(--rosa)"></span> Gestão de Risco</a>
+<a href="campo.html"><span class="s-dot" style="color:var(--cobalto)"></span> Acompanhamento Campo</a>
+<a href="preventivas.html"><span class="s-dot" style="color:var(--verde)"></span> Preventivas</a>
+<a href="sorvete.html"><span class="s-dot" style="color:var(--amarelo)"></span> Máquina de Sorvete</a>
+<a class="active" href="pecas.html"><span class="s-dot" style="color:var(--cinza)"></span> Peças / Materiais</a>
+<div class="s-header" style="margin-top:12px">Fonte</div>
+<div class="navitem-static"><span class="s-dot"></span> ServiceNow · SOMA</div>
+<div class="side-foot">Atualização automática diária</div>
+</aside>
+<main>
+<div id="conteudo"><div class="msg-carregando">carregando data/dados.json…</div></div>
+</main>
 </div>
-
-<!-- Modal de detalhes do chamado -->
 <div class="modal-overlay" id="modalOverlay">
-  <div class="modal-box" id="modalBox">
-    <button class="modal-close" id="modalClose" type="button" aria-label="Fechar">×</button>
-    <div id="modalConteudo"></div>
-  </div>
+<div class="modal-box" id="modalBox">
+<button class="modal-close" id="modalClose" type="button" aria-label="Fechar">&times;</button>
+<div id="modalConteudo"></div>
 </div>
-
+</div>
 <script>
+function toggleTheme() {
+var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+document.documentElement.setAttribute('data-theme', next);
+localStorage.setItem('pecas-theme', next);
+}
+(function() {
+var saved = localStorage.getItem('pecas-theme');
+if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
 const brl0 = n => n.toLocaleString('pt-BR');
-
 function escapeHtml(s) {
-  return String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+return String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
 }
-
 const tagClsPrioridade = p => p === 'SOS' ? 'tag-sos' : (p === 'Alta' ? 'tag-alta' : 'tag-normal');
-
-// sidebar toggle
-document.getElementById('sideToggle').addEventListener('click', () => {
-  document.querySelector('.shell').classList.toggle('sb-collapsed');
-});
-document.getElementById('sideReopen').addEventListener('click', () => {
-  document.querySelector('.shell').classList.remove('sb-collapsed');
-});
-
 let TODOS_CHAMADOS_COM_PECAS = [];
-let MODO_VISUALIZACAO = 'cards'; // 'cards' ou 'tabela'
-
+let MODO_VISUALIZACAO = 'cards';
 function semAcento(s) {
-  return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 }
-
-// Classifica o status de entrega de uma peca a partir do rastreio abbiamolog.
-// Em escopo global para que o filtro por Status Entrega na funcao renderizar
-// consiga chama-la sem ReferenceError (antes estava dentro de renderizar e
-// quebrava o filtro "Entregue", que retornava zero mesmo com pecas SUCCESSFUL).
 function classificarEntrega(p) {
-  if (!p.rastreio || !p.rastreio.length) return 'sem_envio';
-  const s = (p.rastreio[0].status || '').toUpperCase();
-  if (s === 'SUCCESSFUL' || s === 'DELIVERED') return 'entregue';
-  if (s === 'IN_TRANSIT' || s === 'COLLECTED' || s === 'START_DELIVERY') return 'em_rota';
-  if (s === 'DISPATCHED') return 'despachado';
-  if (s.includes('FAIL') || s.includes('CANCEL') || s.includes('RETURN')) return 'falhou';
-  return 'despachado';
+if (!p.rastreio || !p.rastreio.length) return 'sem_envio';
+const s = (p.rastreio[0].status || '').toUpperCase();
+if (s === 'SUCCESSFUL' || s === 'DELIVERED') return 'entregue';
+if (s === 'IN_TRANSIT' || s === 'COLLECTED' || s === 'START_DELIVERY') return 'em_rota';
+if (s === 'DISPATCHED') return 'despachado';
+if (s.includes('FAIL') || s.includes('CANCEL') || s.includes('RETURN')) return 'falhou';
+return 'despachado';
 }
-
 function renderizar() {
-  const selEquip = document.getElementById('filtroEquipamento');
-  const inLoja = document.getElementById('filtroLoja');
-  const inMaterial = document.getElementById('filtroMaterial');
-  const inChamado = document.getElementById('filtroChamado');
-  const selPrioridade = document.getElementById('filtroPrioridade');
-
-  const fEquip = selEquip.value;
-  const fLoja = semAcento(inLoja.value.trim());
-  const fMaterial = semAcento(inMaterial.value.trim());
-  const fChamado = semAcento(inChamado.value.trim());
-  const fPri = selPrioridade.value;
-  const fSup = document.getElementById('filtroSupervisor').value;
-  const fEntrega = document.getElementById('filtroEntrega').value;
-
-  const filtrados = TODOS_CHAMADOS_COM_PECAS.filter(c => {
-    if (fEquip && c.equipamento !== fEquip) return false;
-    if (fLoja && !semAcento(c.loja).includes(fLoja)) return false;
-    if (fChamado && !semAcento(c.numero).includes(fChamado)) return false;
-    if (fPri && c.prioridade !== fPri) return false;
-    if (fSup && c.supervisor !== fSup) return false;
-    if (fMaterial) {
-      const temMaterial = (c.pecas || []).some(p => semAcento(p.material || '').includes(fMaterial));
-      if (!temMaterial) return false;
-    }
-    if (fEntrega) {
-      const temPecaComStatus = (c.pecas || []).some(p => classificarEntrega(p) === fEntrega);
-      if (!temPecaComStatus) return false;
-    }
-    return true;
-  });
-
-  const totalPecasFiltradas = filtrados.reduce((s, c) => s + (c.pecas || []).length, 0);
-  document.getElementById('filtroContagem').textContent =
-    `${filtrados.length} chamado(s) com peça · ${totalPecasFiltradas} item(ns) de material`;
-
-  const alvo = document.getElementById('resultadoPecas');
-
-  if (!filtrados.length) {
-    alvo.innerHTML = '<div class="filter-empty">Nenhum chamado com peça encontrado com esses filtros.</div>';
-    return;
-  }
-
-  if (MODO_VISUALIZACAO === 'cards') {
-    alvo.innerHTML = '<div class="chamado-grid">' + filtrados.map(c => {
-      const pecasHtml = (c.pecas || []).map(p =>
-        `<div class="peca-item">
-          <span class="peca-incl">${escapeHtml(p.numero)}</span>
-          <span class="peca-material" title="${escapeHtml(p.material)}">${escapeHtml(p.material)}</span>
-          ${p.quantidade != null ? `<span class="peca-qtd">×${p.quantidade}</span>` : ''}
-          ${p.total ? `<span class="peca-total">${escapeHtml(p.total)}</span>` : ''}
-        </div>`
-      ).join('');
-
-      const idx = TODOS_CHAMADOS_COM_PECAS.indexOf(c);
-      return `<div class="chamado-card" onclick="abrirDetalhe(${idx})">
-        <div class="chamado-head">
-          <span class="chamado-numero">${escapeHtml(c.numero)}</span>
-          <span class="tag ${tagClsPrioridade(c.prioridade)}">${escapeHtml(c.prioridade)}</span>
-        </div>
-        <div class="chamado-loja">${escapeHtml(c.loja)}</div>
-        <div class="chamado-equip">${escapeHtml(c.equipamento)}</div>
-        <div class="chamado-problema">${escapeHtml(c.problema) || '—'}</div>
-        <div class="chamado-meta">
-          <span class="num">${c.dias}d</span>
-          <span class="tecnico">${escapeHtml(c.tecnico) || '—'}</span>
-        </div>
-        <div class="peca-lista">${pecasHtml}</div>
-      </div>`;
-    }).join('') + '</div>';
-  } else {
-    // modo tabela
-    let linhas = '';
-    filtrados.forEach(c => {
-      (c.pecas || []).forEach((p, i) => {
-        linhas += `<tr>
-          <td class="mono">${escapeHtml(c.numero)}</td>
-          <td>${escapeHtml(c.equipamento)}</td>
-          <td>${escapeHtml(c.loja)}</td>
-          <td><span class="tag ${tagClsPrioridade(c.prioridade)}">${escapeHtml(c.prioridade)}</span></td>
-          <td class="num">${c.dias}d</td>
-          <td class="mono">${escapeHtml(p.numero)}</td>
-          <td>${escapeHtml(p.material)}</td>
-          <td class="num">${p.quantidade != null ? p.quantidade : '—'}</td>
-          <td class="num">${p.total || '—'}</td>
-          <td>${escapeHtml(c.tecnico) || '—'}</td>
-        </tr>`;
-      });
-    });
-    alvo.innerHTML = `<div class="filter-table-wrap">
-      <table class="detail-table">
-        <thead><tr>
-          <th>Chamado</th><th>Equipamento</th><th>Loja</th><th>Prioridade</th><th>Dias</th>
-          <th>Nº Peça</th><th>Material</th><th>Qtd</th><th>Total</th><th>Técnico</th>
-        </tr></thead>
-        <tbody>${linhas}</tbody>
-      </table>
-    </div>`;
-  }
+const selEquip = document.getElementById('filtroEquipamento');
+const inLoja = document.getElementById('filtroLoja');
+const inMaterial = document.getElementById('filtroMaterial');
+const inChamado = document.getElementById('filtroChamado');
+const selPrioridade = document.getElementById('filtroPrioridade');
+const fEquip = selEquip.value;
+const fLoja = semAcento(inLoja.value.trim());
+const fMaterial = semAcento(inMaterial.value.trim());
+const fChamado = semAcento(inChamado.value.trim());
+const fPri = selPrioridade.value;
+const fSup = document.getElementById('filtroSupervisor').value;
+const fEntrega = document.getElementById('filtroEntrega').value;
+const filtrados = TODOS_CHAMADOS_COM_PECAS.filter(c => {
+if (fEquip && c.equipamento !== fEquip) return false;
+if (fLoja && !semAcento(c.loja).includes(fLoja)) return false;
+if (fChamado && !semAcento(c.numero).includes(fChamado)) return false;
+if (fPri && c.prioridade !== fPri) return false;
+if (fSup && c.supervisor !== fSup) return false;
+if (fMaterial) {
+const temMaterial = (c.pecas || []).some(p => semAcento(p.material || '').includes(fMaterial));
+if (!temMaterial) return false;
 }
-
+if (fEntrega) {
+const temPecaComStatus = (c.pecas || []).some(p => classificarEntrega(p) === fEntrega);
+if (!temPecaComStatus) return false;
+}
+return true;
+});
+const totalPecasFiltradas = filtrados.reduce((s, c) => s + (c.pecas || []).length, 0);
+document.getElementById('filtroContagem').textContent =
+`${filtrados.length} chamado(s) com peça · ${totalPecasFiltradas} item(ns) de material`;
+const alvo = document.getElementById('resultadoPecas');
+if (!filtrados.length) {
+alvo.innerHTML = '<div class="filter-empty">Nenhum chamado com peça encontrado com esses filtros.</div>';
+return;
+}
+if (MODO_VISUALIZACAO === 'cards') {
+alvo.innerHTML = '<div class="chamado-grid">' + filtrados.map(c => {
+const pecasHtml = (c.pecas || []).map(p =>
+`<div class="peca-item">
+<span class="peca-incl">${escapeHtml(p.numero)}</span>
+<span class="peca-material" title="${escapeHtml(p.material)}">${escapeHtml(p.material)}</span>
+${p.quantidade != null ? `<span class="peca-qtd">×${p.quantidade}</span>` : ''}
+${p.total ? `<span class="peca-total">${escapeHtml(p.total)}</span>` : ''}
+</div>`
+).join('');
+const idx = TODOS_CHAMADOS_COM_PECAS.indexOf(c);
+return `<div class="chamado-card" onclick="abrirDetalhe(${idx})">
+<div class="chamado-head">
+<span class="chamado-numero">${escapeHtml(c.numero)}</span>
+<span class="tag ${tagClsPrioridade(c.prioridade)}">${escapeHtml(c.prioridade)}</span>
+</div>
+<div class="chamado-loja">${escapeHtml(c.loja)}</div>
+<div class="chamado-equip">${escapeHtml(c.equipamento)}</div>
+<div class="chamado-problema">${escapeHtml(c.problema) || '—'}</div>
+<div class="chamado-meta">
+<span class="num">${c.dias}d</span>
+<span class="tecnico">${escapeHtml(c.tecnico) || '—'}</span>
+</div>
+<div class="peca-lista">${pecasHtml}</div>
+</div>`;
+}).join('') + '</div>';
+} else {
+let linhas = '';
+filtrados.forEach(c => {
+(c.pecas || []).forEach((p, pi) => {
+linhas += `<tr>
+${pi === 0 ? `<td rowspan="${(c.pecas||[]).length}" class="mono">${escapeHtml(c.numero)}</td>` : ''}
+${pi === 0 ? `<td rowspan="${(c.pecas||[]).length}">${escapeHtml(c.loja)}</td>` : ''}
+${pi === 0 ? `<td rowspan="${(c.pecas||[]).length}">${escapeHtml(c.equipamento)}</td>` : ''}
+<td class="mono">${escapeHtml(p.numero)}</td>
+<td>${escapeHtml(p.material)}</td>
+<td class="num">${p.quantidade != null ? p.quantidade : '—'}</td>
+<td class="num">${escapeHtml(p.total || '—')}</td>
+${pi === 0 ? `<td rowspan="${(c.pecas||[]).length}"><span class="tag ${tagClsPrioridade(c.prioridade)}">${escapeHtml(c.prioridade)}</span></td>` : ''}
+${pi === 0 ? `<td rowspan="${(c.pecas||[]).length}" class="num">${c.dias}d</td>` : ''}
+${pi === 0 ? `<td rowspan="${(c.pecas||[]).length}">${escapeHtml(c.tecnico) || '—'}</td>` : ''}
+</tr>`;
+});
+});
+alvo.innerHTML = `<div class="filter-table-wrap"><table class="detail-table">
+<thead><tr><th>Chamado</th><th>Loja</th><th>Equipamento</th><th>Incl.</th><th>Material</th><th class="num">Qtd</th><th class="num">Total</th><th>Prioridade</th><th class="num">Dias</th><th>Técnico</th></tr></thead>
+<tbody>${linhas}</tbody></table></div>`;
+}
+}
 function trocarModo(modo) {
-  MODO_VISUALIZACAO = modo;
-  document.querySelectorAll('.view-btn').forEach(b => b.classList.toggle('ativo', b.dataset.modo === modo));
-  renderizar();
+MODO_VISUALIZACAO = modo;
+document.querySelectorAll('.view-btn').forEach(b => b.classList.toggle('ativo', b.dataset.modo === modo));
+renderizar();
 }
-
 async function iniciar() {
-  const el = document.getElementById('conteudo');
-  let D;
-  try {
-    const r = await fetch('data/dados.json', { cache: 'no-store' });
-    if (!r.ok) throw new Error('HTTP ' + r.status);
-    D = await r.json();
-  } catch (e) {
-    el.innerHTML = `<div class="msg-erro">Não consegui carregar os dados (${e.message}).</div>`;
-    return;
-  }
-
-  const dt = new Date(D.atualizadoEm);
-  document.getElementById('stamp').textContent = 'Atualizado ' + dt.toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
-
-  // Construir mapa numero -> supervisor a partir dos dados de supervisores
-  const mapaSupervisor = {};
-  for (const sup of (D.supervisores || [])) {
-    for (const c of (sup.chamadosDetalhe || [])) {
-      mapaSupervisor[c.numero] = sup.nome;
-    }
-  }
-
-  // Coletar todos os chamados que têm peças
-  TODOS_CHAMADOS_COM_PECAS = [];
-  for (const eq of (D.equipamentos || [])) {
-    for (const c of (eq.chamadosDetalhe || [])) {
-      if (c.pecas && c.pecas.length > 0) {
-        TODOS_CHAMADOS_COM_PECAS.push({ ...c, equipamento: eq.nome, supervisor: mapaSupervisor[c.numero] || '' });
-      }
-    }
-  }
-
-  const totalChamadosComPeca = TODOS_CHAMADOS_COM_PECAS.length;
-  const totalItensPeca = TODOS_CHAMADOS_COM_PECAS.reduce((s, c) => s + (c.pecas || []).length, 0);
-  const totalChamadosEquip = D.equipamentos.reduce((s, e) => s + e.chamados, 0);
-  const pctComPeca = totalChamadosEquip > 0 ? Math.round(totalChamadosComPeca / totalChamadosEquip * 100) : 0;
-
-  // Equipamentos distintos com peça
-  const equipsComPeca = [...new Set(TODOS_CHAMADOS_COM_PECAS.map(c => c.equipamento))].length;
-
-  const kpisHtml = [
-    { label: 'Chamados com Peça', val: brl0(totalChamadosComPeca), cls: 'k-violet' },
-    { label: 'Itens de Material', val: brl0(totalItensPeca), cls: 'k-pink' },
-    { label: 'Equipamentos Afetados', val: brl0(equipsComPeca) + ' de ' + D.equipamentos.length, cls: 'k-blue' },
-    { label: '% Chamados c/ Peça', val: pctComPeca + '%', cls: 'k-violet' },
-  ].map(k => `<div class="kpi ${k.cls}"><span class="label">${k.label}</span><div class="val num">${k.val}</div></div>`).join('');
-
-  // Popular filtros
-  const equipamentos = [...new Set(TODOS_CHAMADOS_COM_PECAS.map(c => c.equipamento))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
-  const prioridades = [...new Set(TODOS_CHAMADOS_COM_PECAS.map(c => c.prioridade).filter(Boolean))]
-    .sort((a, b) => {
-      const ordem = ['SOS', 'Alta', 'Normal', 'Baixa'];
-      const ia = ordem.indexOf(a), ib = ordem.indexOf(b);
-      return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib) || a.localeCompare(b, 'pt-BR');
-    });
-
-  el.innerHTML = `
-    <div class="kpis">${kpisHtml}</div>
-
-    <section>
-      <div class="sec-head">
-        <h2>Chamados com Peças / Materiais</h2>
-        <div style="display:flex;align-items:center;gap:12px;">
-          <span class="sec-note">fonte: SOMA · aba Materiais/Serviços</span>
-          <div class="view-toggle">
-            <button type="button" class="view-btn ativo" data-modo="cards" onclick="trocarModo('cards')">Cards</button>
-            <button type="button" class="view-btn" data-modo="tabela" onclick="trocarModo('tabela')">Tabela</button>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="filter-bar">
-          <div class="filter-field">
-            <label for="filtroEquipamento">Equipamento</label>
-            <select id="filtroEquipamento"><option value="">Todos</option></select>
-          </div>
-          <div class="filter-field filter-combo">
-            <label for="filtroLoja">Loja</label>
-            <input type="text" id="filtroLoja" placeholder="Todas" autocomplete="off">
-            <div class="filter-combo-lista" id="filtroLojaLista" hidden></div>
-          </div>
-          <div class="filter-field">
-            <label for="filtroMaterial">Material / Peça</label>
-            <input type="text" id="filtroMaterial" placeholder="Buscar nome ou código..." autocomplete="off">
-          </div>
-          <div class="filter-field" style="flex:0 1 140px;min-width:120px;">
-            <label for="filtroChamado">Chamado</label>
-            <input type="text" id="filtroChamado" placeholder="WOT..." autocomplete="off">
-          </div>
-          <div class="filter-field" style="flex:0 1 130px;min-width:110px;">
-            <label for="filtroPrioridade">Prioridade</label>
-            <select id="filtroPrioridade"><option value="">Todas</option></select>
-          </div>
-          <div class="filter-field" style="flex:0 1 160px;min-width:130px;">
-            <label for="filtroSupervisor">Supervisor</label>
-            <select id="filtroSupervisor"><option value="">Todos</option></select>
-          </div>
-          <div class="filter-field" style="flex:0 1 180px;min-width:150px;">
-            <label for="filtroEntrega">Status Entrega</label>
-            <select id="filtroEntrega">
-              <option value="">Todos</option>
-              <option value="sem_envio">Ainda não entregue à transportadora</option>
-              <option value="em_rota">Em rota / Em trânsito</option>
-              <option value="entregue">Entregue</option>
-              <option value="despachado">Despachado</option>
-              <option value="coletado">Coletado</option>
-              <option value="falhou">Falhou / Cancelado</option>
-            </select>
-          </div>
-          <button class="filter-clear" id="filtroLimpar" type="button">Limpar filtros</button>
-        </div>
-        <div class="filter-count" id="filtroContagem"></div>
-        <div id="resultadoPecas"></div>
-      </div>
-    </section>
-
-    <footer>
-      <span>Fonte: SOMA (ServiceNow) · Materiais/Serviços · Visão Sul</span>
-      <span class="mono">${brl0(totalChamadosComPeca)} chamados · ${brl0(totalItensPeca)} itens</span>
-    </footer>
-  `;
-
-  // Popular selects
-  const selEquip = document.getElementById('filtroEquipamento');
-  equipamentos.forEach(v => {
-    const opt = document.createElement('option');
-    opt.value = v; opt.textContent = v;
-    selEquip.appendChild(opt);
-  });
-  const selPri = document.getElementById('filtroPrioridade');
-  prioridades.forEach(v => {
-    const opt = document.createElement('option');
-    opt.value = v; opt.textContent = v;
-    selPri.appendChild(opt);
-  });
-
-  // Combobox de loja
-  const lojas = [...new Set(TODOS_CHAMADOS_COM_PECAS.map(c => c.loja).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
-  const inLoja = document.getElementById('filtroLoja');
-  const listaLoja = document.getElementById('filtroLojaLista');
-
-  function mostrarListaLoja() {
-    const busca = semAcento(inLoja.value.trim());
-    const opcoes = (busca ? lojas.filter(l => semAcento(l).includes(busca)) : lojas).slice(0, 40);
-    listaLoja.innerHTML = opcoes.length
-      ? opcoes.map(l => `<div class="filter-combo-item">${escapeHtml(l)}</div>`).join('')
-      : `<div class="filter-combo-vazio">Nenhuma loja encontrada</div>`;
-    listaLoja.hidden = false;
-  }
-  inLoja.addEventListener('input', () => { mostrarListaLoja(); renderizar(); });
-  inLoja.addEventListener('focus', mostrarListaLoja);
-  listaLoja.addEventListener('mousedown', (ev) => {
-    const item = ev.target.closest('.filter-combo-item');
-    if (!item) return;
-    ev.preventDefault();
-    inLoja.value = item.textContent;
-    listaLoja.hidden = true;
-    renderizar();
-  });
-  document.addEventListener('click', (ev) => {
-    if (ev.target !== inLoja && !listaLoja.contains(ev.target)) listaLoja.hidden = true;
-  });
-
-  // Popular select de supervisor
-  const supervisores = [...new Set(TODOS_CHAMADOS_COM_PECAS.map(c => c.supervisor).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
-  const selSup = document.getElementById('filtroSupervisor');
-  supervisores.forEach(v => {
-    const opt = document.createElement('option');
-    opt.value = v; opt.textContent = v;
-    selSup.appendChild(opt);
-  });
-
-  // Listeners dos filtros
-  selEquip.addEventListener('change', renderizar);
-  selPri.addEventListener('change', renderizar);
-  selSup.addEventListener('change', renderizar);
-  document.getElementById('filtroEntrega').addEventListener('change', renderizar);
-  document.getElementById('filtroMaterial').addEventListener('input', renderizar);
-  document.getElementById('filtroChamado').addEventListener('input', renderizar);
-  document.getElementById('filtroLimpar').addEventListener('click', () => {
-    selEquip.value = ''; inLoja.value = '';
-    document.getElementById('filtroMaterial').value = '';
-    document.getElementById('filtroChamado').value = '';
-    selPri.value = '';
-    selSup.value = '';
-    document.getElementById('filtroEntrega').value = '';
-    listaLoja.hidden = true;
-    renderizar();
-  });
-
-  renderizar();
+const el = document.getElementById('conteudo');
+let D;
+try {
+const r = await fetch('data/dados.json', { cache: 'no-store' });
+if (!r.ok) throw new Error('HTTP ' + r.status);
+D = await r.json();
+} catch (e) {
+el.innerHTML = `<div class="msg-erro">Não consegui carregar os dados (${e.message}).</div>`;
+return;
 }
-
-// ---------- Modal de detalhes ----------
+const dt = new Date(D.atualizadoEm);
+document.getElementById('stamp').textContent = 'Atualizado ' + dt.toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
+TODOS_CHAMADOS_COM_PECAS = (D.chamadosComPecas || []);
+const totalChamadosComPeca = TODOS_CHAMADOS_COM_PECAS.length;
+const totalItensPeca = TODOS_CHAMADOS_COM_PECAS.reduce((s, c) => s + (c.pecas || []).length, 0);
+const totalChamadosEquip = D.equipamentos.reduce((s, e) => s + e.chamados, 0);
+const pctComPeca = totalChamadosEquip > 0 ? Math.round(totalChamadosComPeca / totalChamadosEquip * 100) : 0;
+const equipsComPeca = [...new Set(TODOS_CHAMADOS_COM_PECAS.map(c => c.equipamento))].length;
+const kpisHtml = [
+{ label: 'Chamados com Peça', val: brl0(totalChamadosComPeca), cls: 'k-violet' },
+{ label: 'Itens de Material', val: brl0(totalItensPeca), cls: 'k-pink' },
+{ label: 'Equipamentos Afetados', val: brl0(equipsComPeca) + ' de ' + D.equipamentos.length, cls: 'k-blue' },
+{ label: '% Chamados c/ Peça', val: pctComPeca + '%', cls: 'k-violet' },
+].map(k => `<div class="kpi ${k.cls}"><span class="label">${k.label}</span><div class="val num">${k.val}</div></div>`).join('');
+const equipamentos = [...new Set(TODOS_CHAMADOS_COM_PECAS.map(c => c.equipamento))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+const prioridades = [...new Set(TODOS_CHAMADOS_COM_PECAS.map(c => c.prioridade).filter(Boolean))]
+.sort((a, b) => {
+const ordem = ['SOS', 'Alta', 'Normal', 'Baixa'];
+const ia = ordem.indexOf(a), ib = ordem.indexOf(b);
+return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib) || a.localeCompare(b, 'pt-BR');
+});
+el.innerHTML = `
+<div class="kpis">${kpisHtml}</div>
+<section>
+<div class="sec-head">
+<h2>Chamados com Peças / Materiais</h2>
+<div style="display:flex;align-items:center;gap:12px;">
+<span class="sec-note">fonte: SOMA · aba Materiais/Serviços</span>
+<div class="view-toggle">
+<button type="button" class="view-btn ativo" data-modo="cards" onclick="trocarModo('cards')">Cards</button>
+<button type="button" class="view-btn" data-modo="tabela" onclick="trocarModo('tabela')">Tabela</button>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="filter-bar">
+<div class="filter-field">
+<label for="filtroEquipamento">Equipamento</label>
+<select id="filtroEquipamento"><option value="">Todos</option></select>
+</div>
+<div class="filter-field filter-combo">
+<label for="filtroLoja">Loja</label>
+<input type="text" id="filtroLoja" placeholder="Todas" autocomplete="off">
+<div class="filter-combo-lista" id="filtroLojaLista" hidden></div>
+</div>
+<div class="filter-field">
+<label for="filtroMaterial">Material / Peça</label>
+<input type="text" id="filtroMaterial" placeholder="Buscar nome ou código..." autocomplete="off">
+</div>
+<div class="filter-field" style="flex:0 1 140px;min-width:120px;">
+<label for="filtroChamado">Chamado</label>
+<input type="text" id="filtroChamado" placeholder="WOT..." autocomplete="off">
+</div>
+<div class="filter-field" style="flex:0 1 130px;min-width:110px;">
+<label for="filtroPrioridade">Prioridade</label>
+<select id="filtroPrioridade"><option value="">Todas</option></select>
+</div>
+<div class="filter-field" style="flex:0 1 160px;min-width:130px;">
+<label for="filtroSupervisor">Supervisor</label>
+<select id="filtroSupervisor"><option value="">Todos</option></select>
+</div>
+<div class="filter-field" style="flex:0 1 180px;min-width:150px;">
+<label for="filtroEntrega">Status Entrega</label>
+<select id="filtroEntrega">
+<option value="">Todos</option>
+<option value="sem_envio">Ainda não entregue à transportadora</option>
+<option value="em_rota">Em rota / Em trânsito</option>
+<option value="entregue">Entregue</option>
+<option value="despachado">Despachado</option>
+<option value="coletado">Coletado</option>
+<option value="falhou">Falhou / Cancelado</option>
+</select>
+</div>
+<button class="filter-clear" id="filtroLimpar" type="button">Limpar filtros</button>
+</div>
+<div class="filter-count" id="filtroContagem"></div>
+<div id="resultadoPecas"></div>
+</div>
+</section>
+<footer>
+<span>Fonte: SOMA (ServiceNow) · Materiais/Serviços · Visão Sul</span>
+<span class="mono">${brl0(totalChamadosComPeca)} chamados · ${brl0(totalItensPeca)} itens</span>
+</footer>
+`;
+const selEquip = document.getElementById('filtroEquipamento');
+equipamentos.forEach(v => {
+const opt = document.createElement('option');
+opt.value = v; opt.textContent = v;
+selEquip.appendChild(opt);
+});
+const selPri = document.getElementById('filtroPrioridade');
+prioridades.forEach(v => {
+const opt = document.createElement('option');
+opt.value = v; opt.textContent = v;
+selPri.appendChild(opt);
+});
+const lojas = [...new Set(TODOS_CHAMADOS_COM_PECAS.map(c => c.loja).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+const inLoja = document.getElementById('filtroLoja');
+const listaLoja = document.getElementById('filtroLojaLista');
+function mostrarListaLoja() {
+const busca = semAcento(inLoja.value.trim());
+const opcoes = (busca ? lojas.filter(l => semAcento(l).includes(busca)) : lojas).slice(0, 40);
+listaLoja.innerHTML = opcoes.length
+? opcoes.map(l => `<div class="filter-combo-item">${escapeHtml(l)}</div>`).join('')
+: `<div class="filter-combo-vazio">Nenhuma loja encontrada</div>`;
+listaLoja.hidden = false;
+}
+inLoja.addEventListener('input', () => { mostrarListaLoja(); renderizar(); });
+inLoja.addEventListener('focus', mostrarListaLoja);
+listaLoja.addEventListener('mousedown', (ev) => {
+const item = ev.target.closest('.filter-combo-item');
+if (!item) return;
+ev.preventDefault();
+inLoja.value = item.textContent;
+listaLoja.hidden = true;
+renderizar();
+});
+document.addEventListener('click', (ev) => {
+if (ev.target !== inLoja && !listaLoja.contains(ev.target)) listaLoja.hidden = true;
+});
+const supervisores = [...new Set(TODOS_CHAMADOS_COM_PECAS.map(c => c.supervisor).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+const selSup = document.getElementById('filtroSupervisor');
+supervisores.forEach(v => {
+const opt = document.createElement('option');
+opt.value = v; opt.textContent = v;
+selSup.appendChild(opt);
+});
+selEquip.addEventListener('change', renderizar);
+selPri.addEventListener('change', renderizar);
+selSup.addEventListener('change', renderizar);
+document.getElementById('filtroEntrega').addEventListener('change', renderizar);
+document.getElementById('filtroMaterial').addEventListener('input', renderizar);
+document.getElementById('filtroChamado').addEventListener('input', renderizar);
+document.getElementById('filtroLimpar').addEventListener('click', () => {
+selEquip.value = ''; inLoja.value = '';
+document.getElementById('filtroMaterial').value = '';
+document.getElementById('filtroChamado').value = '';
+selPri.value = '';
+selSup.value = '';
+document.getElementById('filtroEntrega').value = '';
+listaLoja.hidden = true;
+renderizar();
+});
+renderizar();
+}
 function parseBrl(s) {
-  if (s == null) return 0;
-  const n = parseFloat(String(s).replace(/[^\d,.-]/g, '').replace(/\./g, '').replace(',', '.'));
-  return isNaN(n) ? 0 : n;
+if (s == null) return 0;
+const n = parseFloat(String(s).replace(/[^\d,.-]/g, '').replace(/\./g, '').replace(',', '.'));
+return isNaN(n) ? 0 : n;
 }
 function fmtBrl(n) {
-  return n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+return n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
 function statusBadgeClass(status) {
-  const s = (status || '').toUpperCase();
-  if (s === 'DISPATCHED') return 'dispatched';
-  if (s === 'IN_TRANSIT' || s === 'COLLECTED') return 'in_transit';
-  if (s === 'SUCCESSFUL' || s === 'DELIVERED') return 'delivered';
-  if (s.includes('FAIL') || s.includes('CANCEL') || s.includes('RETURN')) return 'failed';
-  return 'default';
+const s = (status || '').toUpperCase();
+if (s === 'DISPATCHED') return 'dispatched';
+if (s === 'IN_TRANSIT' || s === 'COLLECTED') return 'in_transit';
+if (s === 'SUCCESSFUL' || s === 'DELIVERED') return 'delivered';
+if (s.includes('FAIL') || s.includes('CANCEL') || s.includes('RETURN')) return 'failed';
+return 'default';
 }
 function statusLabel(status, sub) {
-  const map = {
-    'DISPATCHED': 'Despachado', 'IN_TRANSIT': 'Em trânsito', 'COLLECTED': 'Coletado',
-    'SUCCESSFUL': 'Entregue', 'DELIVERED': 'Entregue', 'PENDING': 'Pendente',
-    'CREATED': 'Criado', 'ORDER_FAILED': 'Falhou', 'CANCELED': 'Cancelado',
-    'RETURNING': 'Retornando', 'RETURNED': 'Devolvido', 'START_DELIVERY': 'Iniciando entrega',
-  };
-  return map[(status || '').toUpperCase()] || status || '—';
+const map = {
+'DISPATCHED': 'Despachado', 'IN_TRANSIT': 'Em trânsito', 'COLLECTED': 'Coletado',
+'SUCCESSFUL': 'Entregue', 'DELIVERED': 'Entregue', 'PENDING': 'Pendente',
+'CREATED': 'Criado', 'ORDER_FAILED': 'Falhou', 'CANCELED': 'Cancelado',
+'RETURNING': 'Retornando', 'RETURNED': 'Devolvido', 'START_DELIVERY': 'Iniciando entrega',
+};
+return map[(status || '').toUpperCase()] || status || '—';
 }
 function abrirDetalhe(idx) {
-  const c = TODOS_CHAMADOS_COM_PECAS[idx];
-  if (!c) return;
-  const pecas = c.pecas || [];
-  let totalGeral = 0;
-  const linhas = pecas.map(p => {
-    const totalPeca = parseBrl(p.total);
-    totalGeral += totalPeca;
-    // Rastreio: se a peca tem dados do abbiamolog, mostra badge + info.
-    // Se nao tem, mostra "sem envio recente" para nao parecer que faltou dado.
-    let rastreioHtml = '';
-    if (p.rastreio && p.rastreio.length > 0) {
-      const r = p.rastreio[0]; // pega o mais recente
-      const badgeCls = statusBadgeClass(r.status);
-      const etaStr = r.eta ? new Date(r.eta).toLocaleDateString('pt-BR') : '';
-      const rastreioLink = r.orderId
-        ? `<a href="https://log.abbiamolog.com/orders?order_id=${encodeURIComponent(r.orderId)}" target="_blank" rel="noopener" style="color:var(--violet);text-decoration:none;font-weight:600;" title="Abrir rastreio no abbiamolog">🔗 Ver rastreio</a>`
-        : '';
-      rastreioHtml = `<div class="rastreio-info">
-        <span class="rastreio-badge ${badgeCls}">${statusLabel(r.status, r.subStatus)}</span>
-        ${r.transportadora ? ' · ' + escapeHtml(r.transportadora) : ''}
-        ${r.destino ? ' → <span class="dest">' + escapeHtml(r.destino) + '</span>' : ''}
-        ${etaStr ? ' · <span class="eta">ETA ' + etaStr + '</span>' : ''}
-        ${rastreioLink ? ' · ' + rastreioLink : ''}
-        ${r.tracking ? '<br><span class="tracking">Tracking: ' + escapeHtml(r.tracking) + '</span>' : ''}
-        ${p.rastreio.length > 1 ? '<br><span class="tracking">+' + (p.rastreio.length - 1) + ' envio(s) adicional(is)</span>' : ''}
-      </div>`;
-    } else {
-      rastreioHtml = `<div class="rastreio-info"><span class="rastreio-badge default">⚠ Ainda não entregue à transportadora</span></div>`;
-    }
-    return `<tr class="modal-peca-row">
-      <td class="modal-peca-incl">${escapeHtml(p.numero)}</td>
-      <td class="modal-peca-material">${escapeHtml(p.material)}${rastreioHtml}</td>
-      <td class="modal-peca-qtd">${p.quantidade != null ? p.quantidade : '—'}</td>
-      <td class="modal-peca-total">${p.total ? escapeHtml(p.total) : '—'}</td>
-    </tr>`;
-  }).join('');
-  document.getElementById('modalConteudo').innerHTML = `
-    <div class="modal-header">
-      <div class="modal-numero">${escapeHtml(c.numero)}</div>
-      <div class="modal-loja">${escapeHtml(c.loja)}</div>
-      <div class="modal-equip">${escapeHtml(c.equipamento)} · <span class="tag ${tagClsPrioridade(c.prioridade)}">${escapeHtml(c.prioridade)}</span></div>
-      <div class="modal-problema">${escapeHtml(c.problema) || '—'}</div>
-      <div class="modal-meta">
-        <span class="num">${c.dias} dias aberto</span>
-        <span class="tecnico">${escapeHtml(c.tecnico) || 'sem técnico'}</span>
-        <span>abertura ${escapeHtml(c.abertura) || '—'}</span>
-      </div>
-    </div>
-    <div class="modal-peca-titulo">Peças / Materiais solicitados (${pecas.length})</div>
-    ${pecas.length ? `
-      <table class="modal-peca-table">
-        <thead><tr><th>Nº</th><th>Material</th><th>Qtd</th><th style="text-align:right">Total</th></tr></thead>
-        <tbody>${linhas}</tbody>
-      </table>
-      <div class="modal-total-geral">
-        <span class="modal-total-label">Total geral</span>
-        <span class="modal-total-valor num">${fmtBrl(totalGeral)}</span>
-      </div>
-    ` : '<div class="filter-empty">Nenhuma peça registrada para este chamado.</div>'}
-  `;
-  document.getElementById('modalOverlay').classList.add('aberto');
+const c = TODOS_CHAMADOS_COM_PECAS[idx];
+if (!c) return;
+const pecas = c.pecas || [];
+let totalGeral = 0;
+const linhas = pecas.map(p => {
+const totalPeca = parseBrl(p.total);
+totalGeral += totalPeca;
+let rastreioHtml = '';
+if (p.rastreio && p.rastreio.length > 0) {
+const r = p.rastreio[0];
+const badgeCls = statusBadgeClass(r.status);
+const etaStr = r.eta ? new Date(r.eta).toLocaleDateString('pt-BR') : '';
+const rastreioLink = r.orderId
+? `<a href="https://log.abbiamolog.com/orders?order_id=${encodeURIComponent(r.orderId)}" target="_blank" rel="noopener" style="color:var(--cobalto);text-decoration:none;font-weight:600;" title="Abrir rastreio no abbiamolog">🔗 Ver rastreio</a>`
+: '';
+rastreioHtml = `<div class="rastreio-info">
+<span class="rastreio-badge ${badgeCls}">${statusLabel(r.status, r.subStatus)}</span>
+${r.transportadora ? ' · ' + escapeHtml(r.transportadora) : ''}
+${r.destino ? ' → <span class="dest">' + escapeHtml(r.destino) + '</span>' : ''}
+${etaStr ? ' · <span class="eta">ETA ' + etaStr + '</span>' : ''}
+${rastreioLink ? ' · ' + rastreioLink : ''}
+${r.tracking ? '<br><span class="tracking">Tracking: ' + escapeHtml(r.tracking) + '</span>' : ''}
+${p.rastreio.length > 1 ? '<br><span class="tracking">+' + (p.rastreio.length - 1) + ' envio(s) adicional(is)</span>' : ''}
+</div>`;
+} else {
+rastreioHtml = `<div class="rastreio-info"><span class="rastreio-badge default">⚠ Ainda não entregue à transportadora</span></div>`;
+}
+return `<tr class="modal-peca-row">
+<td class="modal-peca-incl">${escapeHtml(p.numero)}</td>
+<td class="modal-peca-material">${escapeHtml(p.material)}${rastreioHtml}</td>
+<td class="modal-peca-qtd">${p.quantidade != null ? p.quantidade : '—'}</td>
+<td class="modal-peca-total">${p.total ? escapeHtml(p.total) : '—'}</td>
+</tr>`;
+}).join('');
+document.getElementById('modalConteudo').innerHTML = `
+<div class="modal-header">
+<div class="modal-numero">${escapeHtml(c.numero)}</div>
+<div class="modal-loja">${escapeHtml(c.loja)}</div>
+<div class="modal-equip">${escapeHtml(c.equipamento)} · <span class="tag ${tagClsPrioridade(c.prioridade)}">${escapeHtml(c.prioridade)}</span></div>
+<div class="modal-problema">${escapeHtml(c.problema) || '—'}</div>
+<div class="modal-meta">
+<span class="num">${c.dias} dias aberto</span>
+<span class="tecnico">${escapeHtml(c.tecnico) || 'sem técnico'}</span>
+<span>abertura ${escapeHtml(c.abertura) || '—'}</span>
+</div>
+</div>
+<div class="modal-peca-titulo">Peças / Materiais solicitados (${pecas.length})</div>
+${pecas.length ? `
+<table class="modal-peca-table">
+<thead><tr><th>Nº</th><th>Material</th><th>Qtd</th><th style="text-align:right">Total</th></tr></thead>
+<tbody>${linhas}</tbody>
+</table>
+<div class="modal-total-geral">
+<span class="modal-total-label">Total geral</span>
+<span class="modal-total-valor num">${fmtBrl(totalGeral)}</span>
+</div>
+` : '<div class="filter-empty">Nenhuma peça registrada para este chamado.</div>'}
+`;
+document.getElementById('modalOverlay').classList.add('aberto');
 }
 function fecharModal() {
-  document.getElementById('modalOverlay').classList.remove('aberto');
+document.getElementById('modalOverlay').classList.remove('aberto');
 }
 document.getElementById('modalClose').addEventListener('click', fecharModal);
 document.getElementById('modalOverlay').addEventListener('click', (ev) => {
-  if (ev.target.id === 'modalOverlay') fecharModal();
+if (ev.target.id === 'modalOverlay') fecharModal();
 });
 document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') fecharModal(); });
-
 iniciar();
 </script>
 </body>
