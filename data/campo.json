@@ -1,5 +1,5 @@
 {
- "atualizadoEm": "2026-10-10T20:40:11.530Z",
+ "atualizadoEm": "2026-10-10T21:00:24.506Z",
  "janelaDias": 3,
  "resumo": {
   "emExecucao": 10,
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-10",
-   "abertos": 11,
-   "fechados": 11
+   "abertos": 12,
+   "fechados": 12
   }
  ],
  "itens": [
+  {
+   "numero": "WO0067388",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "26839 FS CURITIBA - AV SILVA JARDIM",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "10/10/2026 17:58:33",
+   "fechamento": "",
+   "principal": "BK099900 - EXAUSTOR",
+   "secundario": "EXA - NÃO LIGA",
+   "sigla": "EXA",
+   "tecnico": "",
+   "descricao": "BK099900 - EXAUSTOR | EXA - NÃO LIGA",
+   "tarefas": [
+    "WOT0067938"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0067376",
    "marca": "BKB",
@@ -112,29 +135,6 @@
    "descricao": "BK071407 - COIFA | COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
    "tarefas": [
     "WOT0067867"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0067146",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "18443 - SHOP CENTER LAR",
-   "status": "Trabalho em andamento",
-   "fase": "Iniciado",
-   "abertura": "10/10/2026 10:25:40",
-   "fechamento": "",
-   "principal": "TOSTADEIRA 220V 3290W 66A71GRC",
-   "secundario": "TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
-   "sigla": "TST",
-   "tecnico": "",
-   "descricao": "TOSTADEIRA 220V 3290W 66A71GRC | TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
-   "tarefas": [
-    "WOT0067690"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
