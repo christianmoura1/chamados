@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-10T13:20:19.808Z",
+ "atualizadoEm": "2026-10-10T13:40:09.924Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 8,
+  "emExecucao": 10,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 8
+  "total": 10
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-10-10",
-   "abertos": 1,
+   "abertos": 3,
    "fechados": 2
   }
  ],
  "itens": [
+  {
+   "numero": "WO0067147",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "25676 - FS CURITIBA - RUA DOMINGOS STRAPASSON",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "10/10/2026 10:26:09",
+   "fechamento": "",
+   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
+   "secundario": "SCI - CO² DISPARADO",
+   "sigla": "SCI",
+   "tecnico": "",
+   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - CO² DISPARADO",
+   "tarefas": [
+    "WOT0067691"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0067146",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "18443 - SHOP CENTER LAR",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "10/10/2026 10:25:40",
+   "fechamento": "",
+   "principal": "TOSTADEIRA 220V 3290W 66A71GRC",
+   "secundario": "TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
+   "sigla": "TST",
+   "tecnico": "",
+   "descricao": "TOSTADEIRA 220V 3290W 66A71GRC | TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
+   "tarefas": [
+    "WOT0067690"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0067027",
    "marca": "BKB",
