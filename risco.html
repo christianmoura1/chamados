@@ -1,347 +1,241 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
 <head>
 <meta charset="utf-8">
 <title>Gestão de Risco — Sul</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --sidebar:   #1E1B3A;
-    --sidebar-2: #2A2555;
-    --ground:    #F3F1FB;
-    --surface:   #FFFFFF;
-    --surface2:  #F6F4FC;
-    --ink:       #211D3D;
-    --muted:     #726E93;
-    --faint:     #A9A5C6;
-    --line:      #ECEAF6;
-    --violet:    #7C5CFC;
-    --violet-2:  #A78BFA;
-    --pink:      #F472B6;
-    --blue:      #38BDF8;
-    --sos:       #E43F5A;
-    --sos-soft:  rgba(228,63,90,0.10);
-    --alta:      #F5A623;
-    --alta-soft: rgba(245,166,35,0.12);
-    --ok:        #22C08D;
-    --grid:      rgba(33,29,61,0.06);
-    --shadow:    0 1px 2px rgba(33,29,61,.04), 0 12px 28px rgba(33,29,61,.07);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --ground:   #100E22; --surface: #1A1733; --surface2: #211D42;
-      --ink: #ECEAFB; --muted: #A29DC7; --faint: #6C6791; --line: #2C2854;
-      --violet: #9A82FF; --violet-2: #C4B5FD; --pink: #F9A8D4; --blue: #7DD3FC;
-      --sos: #F3697F; --sos-soft: rgba(243,105,127,0.16);
-      --alta: #FBBF56; --alta-soft: rgba(251,191,86,0.16); --ok: #4ADE9E;
-      --grid: rgba(236,234,251,0.07); --shadow: 0 1px 2px rgba(0,0,0,.35), 0 14px 32px rgba(0,0,0,.32);
-    }
-  }
-  :root[data-theme="dark"] {
-    --ground:   #100E22; --surface: #1A1733; --surface2: #211D42;
-    --ink: #ECEAFB; --muted: #A29DC7; --faint: #6C6791; --line: #2C2854;
-    --violet: #9A82FF; --violet-2: #C4B5FD; --pink: #F9A8D4; --blue: #7DD3FC;
-    --sos: #F3697F; --sos-soft: rgba(243,105,127,0.16);
-    --alta: #FBBF56; --alta-soft: rgba(251,191,86,0.16); --ok: #4ADE9E;
-    --grid: rgba(236,234,251,0.07); --shadow: 0 1px 2px rgba(0,0,0,.35), 0 14px 32px rgba(0,0,0,.32);
-  }
+:root {
+  --cobalto: #1e3bff;
+  --laranja: #ff6b00;
+  --laranja-bg: #fff4ee;
+  --rosa: #ff3366;
+  --verde: #00c853;
+  --verde-bg: #e8fdf0;
+  --amarelo: #ffcc00;
+  --amarelo-bg: #fffef0;
+  --cinza: #6b7280;
+  --cinza-bg: #f3f4f6;
+  --surface: #ffffff;
+  --bg: #f8f9fc;
+  --text: #111827;
+  --text-2: #374151;
+  --text-3: #9ca3af;
+  --border: #e5e7eb;
+  --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.05);
+  --r: 10px; --r-lg: 16px; --r-xl: 20px;
+  --sidebar-w: 220px;
+  /* aliases usados pelo JS existente */
+  --ink: var(--text);
+  --muted: var(--text-3);
+  --faint: var(--text-3);
+  --line: var(--border);
+  --ground: var(--bg);
+  --surface2: var(--cinza-bg);
+  --violet: var(--cobalto);
+  --violet-2: var(--cobalto);
+  --pink: var(--rosa);
+  --blue: var(--cobalto);
+  --sos: var(--rosa);
+  --sos-soft: rgba(255,51,102,0.10);
+  --alta: var(--laranja);
+  --alta-soft: rgba(255,107,0,0.12);
+  --ok: var(--verde);
+  --grid: rgba(0,0,0,0.06);
+}
+[data-theme="dark"] {
+  --surface: #1a1d2e; --bg: #0f1120; --text: #f1f5f9; --text-2: #94a3b8; --text-3: #475569;
+  --border: #2d3148; --shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 12px rgba(0,0,0,.2);
+  --cinza-bg: #1f2235; --verde-bg: #0d2e1a; --laranja-bg: #2d1a0d;
+  --rosa-bg: #2d0d1a; --amarelo-bg: #2d2a0d;
+  --sos-soft: rgba(255,51,102,0.16); --alta-soft: rgba(255,107,0,0.16);
+  --grid: rgba(255,255,255,0.07);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; transition: background .25s, color .25s; }
+.num { font-variant-numeric: tabular-nums; }
+.mono { font-family: 'Inter', monospace; }
 
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; background: var(--ground); color: var(--ink);
-    font-family: "IBM Plex Sans", system-ui, sans-serif; font-size: 15px; line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-  }
-  .num { font-variant-numeric: tabular-nums; }
-  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+header { background: var(--surface); border-bottom: 2px solid var(--cobalto); padding: 12px 24px; display: flex; align-items: center; gap: 14px; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow); }
+.brand-mark { width: 38px; height: 38px; background: var(--cobalto); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: 900; flex-shrink: 0; }
+.header-title { flex: 1; }
+.header-title h1 { font-size: 18px; font-weight: 800; color: var(--text); line-height: 1.1; }
+.header-title span { font-size: 11px; font-weight: 500; color: var(--text-3); text-transform: uppercase; letter-spacing: .5px; }
+.carimbo { background: var(--cobalto); color: white; font-size: 11px; font-weight: 700; padding: 5px 11px; border-radius: 20px; white-space: nowrap; }
+.theme-btn { background: var(--bg); border: 1.5px solid var(--border); border-radius: 8px; width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; transition: background .2s; }
+.theme-btn:hover { background: var(--border); }
 
-  .shell { display: grid; grid-template-columns: 240px minmax(0,1fr); min-height: 100vh; transition: grid-template-columns .22s ease; }
-  .shell.sb-collapsed { grid-template-columns: 0 minmax(0,1fr); }
-  @media (max-width: 860px) { .shell:not(.sb-expanded) { grid-template-columns: 0 minmax(0,1fr); } }
+.layout { display: flex; flex: 1; }
+aside { width: var(--sidebar-w); background: var(--surface); border-right: 1.5px solid var(--border); padding: 18px 14px; display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
+aside .s-header { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--text-3); padding: 0 8px; margin-bottom: 4px; }
+aside a, aside .navitem-static { display: flex; align-items: center; gap: 9px; padding: 8px 10px; border-radius: var(--r); color: var(--text-2); text-decoration: none; font-size: 13px; font-weight: 500; transition: background .15s, color .15s; cursor: pointer; }
+aside a:hover, aside .navitem-static:hover { background: var(--bg); color: var(--text); }
+aside a.active { background: var(--cobalto); color: white; }
+aside .s-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: .7; flex: none; }
+aside a.active .s-dot { background: white; opacity: 1; }
+.side-foot { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-3); padding-left: 8px; }
+main { flex: 1; padding: 22px 24px; overflow-y: auto; }
 
-  .side {
-    background: linear-gradient(180deg, var(--sidebar), var(--sidebar-2));
-    padding: 26px 20px; display: flex; flex-direction: column; gap: 30px; color: #EDEAFF;
-    position: relative; overflow: hidden; white-space: nowrap; min-width: 0;
-    transition: opacity .18s ease;
-  }
-  .shell.sb-collapsed .side { opacity: 0; padding-left: 0; padding-right: 0; }
+.kpis { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-bottom: 18px; }
+@media (max-width: 1080px) { .kpis { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 640px) { .kpis { grid-template-columns: 1fr; } }
+.kpi { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r-lg); padding: 16px 18px; box-shadow: var(--shadow); }
+.kpi .label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; color: var(--text-3); display: block; margin-bottom: 7px; }
+.kpi .val { font-size: clamp(22px,2.6vw,30px); font-weight: 900; letter-spacing: -1px; }
+.kpi.k-sos .val { color: var(--rosa); }
+.kpi.k-alta .val { color: var(--laranja); }
+.kpi.k-violet .val { color: var(--cobalto); }
+.kpi.k-ok .val { color: var(--verde); }
 
-  .side-toggle {
-    position: absolute; top: 22px; right: 14px; width: 26px; height: 26px; border-radius: 999px;
-    background: rgba(255,255,255,0.08); border: none; color: #C6C0EE; cursor: pointer;
-    display: flex; align-items: center; justify-content: center; font-size: 14px; line-height: 1; flex: none;
-  }
-  .side-toggle:hover { background: rgba(255,255,255,0.16); color: #FFFFFF; }
+section { margin-top: 28px; }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin-bottom: 12px; flex-wrap: wrap; }
+h2 { font-size: 15px; font-weight: 700; margin: 0; }
+.sec-note { font-size: 11px; color: var(--text-3); }
 
-  .side-reopen {
-    display: none; position: fixed; top: 22px; left: 18px; z-index: 40;
-    width: 32px; height: 32px; border-radius: 999px; border: 1px solid var(--line);
-    background: var(--surface); color: var(--muted); box-shadow: var(--shadow); cursor: pointer;
-    align-items: center; justify-content: center; font-size: 15px; line-height: 1;
-  }
-  .side-reopen:hover { color: var(--violet); }
-  .shell.sb-collapsed .side-reopen { display: flex; }
+.equip-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; align-items: start; }
+@media (max-width: 1180px) { .equip-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 640px) { .equip-grid { grid-template-columns: minmax(0,1fr); } }
+.ecard { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r-lg); padding: 18px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 14px; cursor: pointer; transition: transform .12s ease, box-shadow .12s ease; text-align: left; }
+.ecard:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,.08), 0 18px 34px rgba(0,0,0,.10); }
+.ecard:focus-visible { outline: 2px solid var(--cobalto); outline-offset: 2px; }
+.ecard .ehead { display: flex; align-items: center; justify-content: space-between; }
+.ecard .etitle { font-weight: 700; font-size: 14px; }
+.ecard .eopen { font-size: 10px; color: var(--text-3); }
+.donut-row { display: flex; align-items: center; gap: 16px; }
+.donut-wrap { position: relative; width: 92px; height: 92px; flex: none; }
+.donut-wrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.donut-wrap .center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.donut-wrap .pctv { font-weight: 800; font-size: 17px; }
+.donut-wrap .pctl { font-size: 8.5px; color: var(--text-3); letter-spacing: .04em; text-transform: uppercase; }
+.estats { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.estat { background: var(--cinza-bg); border-radius: var(--r); padding: 8px 10px; }
+.estat .n { font-weight: 700; font-size: 16px; }
+.estat .l { font-size: 9px; color: var(--text-3); text-transform: uppercase; letter-spacing: .04em; }
+.estat.crit .n { color: var(--rosa); }
+.estat.ok .n { color: var(--verde); }
+.esos-label { font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-3); display: flex; align-items: center; gap: 6px; }
+.esos-label::before { content: "●"; font-size: 8px; }
+.esos-list { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
+.esos-item { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 11.5px; }
+.esos-item .loja { color: var(--text); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.esos-item .loja-col { display: flex; flex-direction: column; min-width: 0; }
+.esos-item .ref { font-size: 10px; color: var(--text-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.esos-empty { font-size: 11.5px; color: var(--text-3); }
 
-  .brand { display: flex; align-items: center; gap: 11px; padding-right: 24px; }
-  .brand .mark {
-    width: 34px; height: 34px; border-radius: 10px;
-    background: linear-gradient(135deg, var(--violet), var(--pink));
-    display: flex; align-items: center; justify-content: center;
-    font-family: "Archivo", sans-serif; font-weight: 800; font-size: 15px; color: white; flex: none;
-  }
-  .brand .name { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
-  .brand .sub { font-size: 11px; color: #A79FE0; }
+.cons-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 780px) { .cons-grid { grid-template-columns: 1fr; } }
+.card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r-lg); padding: 18px 20px 16px; box-shadow: var(--shadow); }
+.card h3 { font-weight: 700; font-size: 13.5px; margin: 0 0 14px; }
+.hbar-row { display: grid; grid-template-columns: 108px 1fr 40px; align-items: center; gap: 10px; margin-bottom: 9px; font-size: 12px; }
+.hbar-row .lbl { color: var(--text-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hbar-track { background: var(--cinza-bg); border-radius: 999px; height: 9px; overflow: hidden; }
+.hbar-fill { height: 100%; border-radius: 999px; }
+.hbar-row .v { text-align: right; font-family: 'Inter', monospace; font-weight: 600; }
 
-  .navgroup { display: flex; flex-direction: column; gap: 3px; }
-  .navlabel { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #7A72B8; padding: 0 12px; margin: 14px 0 6px; }
-  .navitem {
-    display: flex; align-items: center; gap: 11px; padding: 9px 12px; border-radius: 10px;
-    color: #C6C0EE; font-size: 13.5px; font-weight: 500; text-decoration: none;
-  }
-  a.navitem:hover { background: rgba(255,255,255,0.06); color: #FFFFFF; }
-  .navitem .dot { width: 7px; height: 7px; border-radius: 999px; background: currentColor; opacity: .55; flex: none; }
-  .navitem.active { background: rgba(255,255,255,0.08); color: #FFFFFF; }
-  .navitem.active .dot { background: var(--pink); opacity: 1; }
+footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--text-3); font-size: 12px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.msg-carregando, .msg-erro { padding: 40px 0; text-align: center; color: var(--text-2); font-size: 13px; }
+.msg-erro { color: var(--rosa); }
 
-  .side-foot { margin-top: auto; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 11.5px; color: #8B84C4; }
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.55); backdrop-filter: blur(2px); display: flex; align-items: center; justify-content: center; padding: 24px; z-index: 50; }
+.modal-overlay[hidden] { display: none; }
+.modal-panel { background: var(--surface); border-radius: var(--r-xl); box-shadow: var(--shadow); width: min(560px, 100%); max-height: min(640px, 88vh); display: flex; flex-direction: column; overflow: hidden; }
+.modal-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; border-bottom: 1.5px solid var(--border); flex: none; }
+.modal-head h3 { font-weight: 700; font-size: 16.5px; margin: 0; }
+.modal-close { appearance: none; border: none; background: var(--cinza-bg); color: var(--text-2); width: 30px; height: 30px; border-radius: 999px; font-size: 17px; line-height: 1; cursor: pointer; }
+.modal-close:hover { color: var(--text); }
+.modal-sub { padding: 12px 22px 0; font-size: 12px; color: var(--text-3); flex: none; }
+.modal-body { overflow: auto; padding: 14px 22px 20px; }
+.detail-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.detail-table th { text-align: left; font-size: 10px; letter-spacing: .05em; text-transform: uppercase; color: var(--text-3); padding: 8px 10px; position: sticky; top: 0; background: var(--surface); }
+.detail-table td { padding: 8px 10px; border-top: 1px solid var(--border); vertical-align: top; }
+.detail-table tr:hover td { background: var(--cinza-bg); }
+.tag { font-size: 10.5px; font-weight: 600; border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
+.tag-sos { background: var(--sos-soft); color: var(--rosa); }
+.tag-normal { background: var(--cinza-bg); color: var(--text-2); }
+.filter-table-wrap { max-height: 420px; overflow: auto; border-radius: 12px; }
+.filter-empty { padding: 24px 0; text-align: center; color: var(--text-3); font-size: 12.5px; }
+.risco-subhead { display: flex; align-items: center; gap: 10px; margin: 22px 0 10px; font-weight: 700; font-size: 14px; }
+.risco-subhead .cnt { font-size: 11px; font-weight: 600; border-radius: 999px; padding: 2px 10px; }
+.risco-subhead .cnt.vencido { background: var(--sos-soft); color: var(--rosa); }
+.risco-subhead .cnt.avencer { background: var(--verde); color: white; }
+.risco-subhead .btn-zap { margin-left: auto; font-size: 11px; font-weight: 600; cursor: pointer; border: 1px solid var(--border); background: var(--surface); color: var(--text-2); border-radius: 7px; padding: 4px 11px; transition: all .15s; }
+.risco-subhead .btn-zap:hover { color: var(--text); border-color: var(--text-3); }
+.risco-subhead .btn-zap.copiado { background: var(--verde); border-color: var(--verde); color: #fff; }
+.filter-bar { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 16px; }
+.filter-field { display: flex; flex-direction: column; gap: 4px; min-width: 168px; }
+.filter-field label { font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-3); }
+.filter-field select { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text); background: var(--cinza-bg); border: 1.5px solid var(--border); border-radius: var(--r); padding: 8px 10px; appearance: none; width: 100%; }
+.filter-field.combo { position: relative; min-width: 268px; }
+.combo-input { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text); background: var(--cinza-bg); border: 1.5px solid var(--border); border-radius: var(--r); padding: 8px 30px 8px 10px; width: 100%; }
+.combo-input::placeholder { color: var(--text-3); }
+.combo-input:focus { outline: 2px solid var(--cobalto); outline-offset: -1px; }
+.combo-x { position: absolute; right: 8px; bottom: 7px; width: 20px; height: 20px; line-height: 18px; text-align: center; border: 0; border-radius: 50%; background: var(--border); color: var(--text); font-size: 14px; cursor: pointer; padding: 0; }
+.combo-x:hover { background: var(--sos-soft); color: var(--rosa); }
+.combo-lista { position: absolute; top: 100%; left: 0; right: 0; z-index: 60; margin: 4px 0 0; padding: 4px; list-style: none; max-height: 262px; overflow-y: auto; background: var(--cinza-bg); border: 1.5px solid var(--border); border-radius: var(--r); box-shadow: 0 10px 26px rgba(0,0,0,.14); }
+.combo-lista[hidden] { display: none; }
+.combo-lista li { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text); padding: 7px 10px; border-radius: 7px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.combo-lista li.ativo { background: var(--cobalto); color: #fff; }
+.combo-lista li.todas { font-weight: 600; }
+.combo-lista li.vazio { color: var(--text-3); cursor: default; }
+.combo-lista li.vazio.ativo { background: none; color: var(--text-3); }
+.resp-select { font-family: 'Inter', sans-serif; font-size: 12.5px; color: var(--text); background: var(--cinza-bg); border: 1.5px solid var(--border); border-radius: 8px; padding: 4px 7px; min-width: 118px; cursor: pointer; }
+.resp-select:focus { outline: 2px solid var(--cobalto); outline-offset: -1px; }
+.prev-date { font-family: 'Inter', monospace; font-size: 12px; color: var(--text); background: var(--cinza-bg); border: 1.5px solid var(--border); border-radius: 8px; padding: 4px 7px; min-width: 128px; cursor: pointer; }
+.prev-date:focus { outline: 2px solid var(--cobalto); outline-offset: -1px; }
+.prev-date.vencida { border-color: #E5352B; background: #FDECEB; color: #B22119; font-weight: 700; }
+.prev-date.hoje { border-color: #F0A31B; background: #FFF6E6; color: #8A5B06; font-weight: 700; }
+.aviso-atrib { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; padding: 11px 18px; text-align: center; line-height: 1.45; box-shadow: 0 2px 10px rgba(0,0,0,.14); }
+.aviso-atrib.erro { background: #FDECEB; color: #B22119; border-bottom: 2px solid #E5352B; }
+.aviso-atrib.pendente { background: #FFF6E6; color: #8A5B06; border-bottom: 2px solid #F0A31B; }
+.aviso-atrib[hidden] { display: none; }
+.filtro-limpar { font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 600; color: var(--text-2); background: var(--cinza-bg); border: 1.5px solid var(--border); border-radius: var(--r); padding: 9px 14px; cursor: pointer; }
+.filtro-limpar:hover { color: var(--text); }
+.filtro-conta { font-size: 11.5px; color: var(--text-3); padding-bottom: 10px; }
 
-  .main { padding: clamp(18px,3vw,34px) clamp(16px,3.5vw,40px) 60px; }
-  .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 22px; flex-wrap: wrap; }
-  .eyebrow { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--violet); margin: 0 0 6px; }
-  h1 { font-family: "Archivo", sans-serif; font-weight: 800; font-size: clamp(24px,3.4vw,32px); letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
-  .stamp-pill {
-    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--muted);
-    background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; box-shadow: var(--shadow);
-  }
+.fechados-lista { display: flex; flex-direction: column; }
+.fechado-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 2px; border-bottom: 1px solid var(--border); }
+.fechado-item:last-child { border-bottom: none; }
+.fechado-confete { font-size: 17px; line-height: 1; flex: none; }
+.fechado-txt { font-size: 14px; }
+.fechado-txt strong { font-variant-numeric: tabular-nums; }
+.fechado-sup { font-weight: 600; }
+.fechado-prob { display: block; margin-top: 2px; font-size: 12.5px; color: var(--text-2); }
+.fechado-loja { font-weight: 600; color: var(--text); }
+.fechado-meta { margin-left: auto; display: flex; align-items: center; gap: 16px; flex: none; }
+.fechado-dias { font-size: 12.5px; color: var(--text-2); font-variant-numeric: tabular-nums; white-space: nowrap; min-width: 46px; text-align: right; }
+.fechado-hora { font-size: 12.5px; font-weight: 600; opacity: .85; font-variant-numeric: tabular-nums; white-space: nowrap; }
 
-  .kpis { display: grid; grid-template-columns: repeat(4,1fr); gap: 13px; margin: 22px 0 30px; }
-  @media (max-width: 1080px) { .kpis { grid-template-columns: repeat(2,1fr); } }
-  .kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px 17px 14px; box-shadow: var(--shadow); }
-  .kpi .label { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); display:block; margin-bottom: 7px; }
-  .kpi .val { font-family: "Archivo", sans-serif; font-weight: 800; font-size: clamp(20px,2.6vw,25px); letter-spacing: -0.01em; }
-  .kpi.k-sos .val { color: var(--sos); }
-  .kpi.k-alta .val { color: var(--alta); }
-  .kpi.k-violet .val { color: var(--violet); }
-  .kpi.k-ok .val { color: var(--ok); }
-
-  section { margin-top: 34px; }
-  .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin-bottom: 15px; flex-wrap: wrap; }
-  h2 { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 17px; letter-spacing: -0.01em; margin: 0; }
-  .sec-note { font-size: 12px; color: var(--faint); font-family: "IBM Plex Mono", monospace; }
-
-  .equip-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; align-items: start; }
-  @media (max-width: 1180px) { .equip-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
-  @media (max-width: 640px) { .equip-grid { grid-template-columns: minmax(0,1fr); } }
-
-  .ecard { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 18px 18px 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 14px; cursor: pointer; transition: transform .12s ease, box-shadow .12s ease; text-align: left; }
-  .ecard:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(33,29,61,.08), 0 18px 34px rgba(33,29,61,.10); }
-  .ecard:focus-visible { outline: 2px solid var(--violet); outline-offset: 2px; }
-  .ecard .ehead { display: flex; align-items: center; justify-content: space-between; }
-  .ecard .etitle { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 14.5px; }
-  .ecard .eopen { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--faint); }
-
-  .donut-row { display: flex; align-items: center; gap: 16px; }
-  .donut-wrap { position: relative; width: 92px; height: 92px; flex: none; }
-  .donut-wrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
-  .donut-wrap .center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-  .donut-wrap .pctv { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 17px; }
-  .donut-wrap .pctl { font-family: "IBM Plex Mono", monospace; font-size: 8.5px; color: var(--faint); letter-spacing: .04em; text-transform: uppercase; }
-
-  .estats { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .estat { background: var(--surface2); border-radius: 10px; padding: 8px 10px; }
-  .estat .n { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 16px; }
-  .estat .l { font-family: "IBM Plex Mono", monospace; font-size: 9px; color: var(--faint); text-transform: uppercase; letter-spacing: .04em; }
-  .estat.crit .n { color: var(--sos); }
-  .estat.ok .n { color: var(--ok); }
-
-  .esos-label { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); display: flex; align-items: center; gap: 6px; }
-  .esos-label::before { content: "●"; font-size: 8px; }
-  .esos-list { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
-  .esos-item { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 11.5px; }
-  .esos-item .loja { color: var(--ink); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
-  .esos-item .loja-col { display: flex; flex-direction: column; min-width: 0; }
-  .esos-item .ref { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .esos-empty { font-size: 11.5px; color: var(--faint); }
-
-  .cons-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 780px) { .cons-grid { grid-template-columns: 1fr; } }
-  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px 16px; box-shadow: var(--shadow); }
-  .card h3 { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 13.5px; margin: 0 0 14px; }
-  .hbar-row { display: grid; grid-template-columns: 108px 1fr 40px; align-items: center; gap: 10px; margin-bottom: 9px; font-size: 12px; }
-  .hbar-row .lbl { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .hbar-track { background: var(--surface2); border-radius: 999px; height: 9px; overflow: hidden; }
-  .hbar-fill { height: 100%; border-radius: 999px; }
-  .hbar-row .v { text-align: right; font-family: "IBM Plex Mono", monospace; font-weight: 600; }
-
-  footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--faint); font-size: 12px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-  .msg-carregando, .msg-erro { padding: 40px 0; text-align: center; color: var(--muted); font-family: "IBM Plex Mono", monospace; font-size: 13px; }
-  .msg-erro { color: var(--sos); }
-
-  .modal-overlay {
-    position: fixed; inset: 0; background: rgba(16,14,34,0.55); backdrop-filter: blur(2px);
-    display: flex; align-items: center; justify-content: center; padding: 24px; z-index: 50;
-  }
-  .modal-overlay[hidden] { display: none; }
-  .modal-panel {
-    background: var(--surface); border-radius: 20px; box-shadow: var(--shadow);
-    width: min(560px, 100%); max-height: min(640px, 88vh); display: flex; flex-direction: column; overflow: hidden;
-  }
-  .modal-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; border-bottom: 1px solid var(--line); flex: none; }
-  .modal-head h3 { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 16.5px; margin: 0; }
-  .modal-close {
-    appearance: none; border: none; background: var(--surface2); color: var(--muted); width: 30px; height: 30px;
-    border-radius: 999px; font-size: 17px; line-height: 1; cursor: pointer;
-  }
-  .modal-close:hover { color: var(--ink); }
-  .modal-sub { padding: 12px 22px 0; font-size: 12px; color: var(--faint); font-family: "IBM Plex Mono", monospace; flex: none; }
-  .modal-body { overflow: auto; padding: 14px 22px 20px; }
-  .detail-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
-  .detail-table th {
-    text-align: left; font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .05em; text-transform: uppercase;
-    color: var(--faint); padding: 8px 10px; position: sticky; top: 0; background: var(--surface);
-  }
-  .detail-table td { padding: 8px 10px; border-top: 1px solid var(--line); vertical-align: top; }
-  .detail-table tr:hover td { background: var(--surface2); }
-  .tag { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; font-weight: 600; border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
-  .tag-sos { background: var(--sos-soft); color: var(--sos); }
-  .tag-normal { background: var(--surface2); color: var(--muted); }
-  .filter-table-wrap { max-height: 420px; overflow: auto; border-radius: 12px; }
-  .filter-empty { padding: 24px 0; text-align: center; color: var(--faint); font-size: 12.5px; }
-  .risco-subhead { display: flex; align-items: center; gap: 10px; margin: 22px 0 10px; font-family: "Archivo", sans-serif; font-weight: 700; font-size: 14px; }
-  .risco-subhead .cnt { font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 600; border-radius: 999px; padding: 2px 10px; }
-  .risco-subhead .cnt.vencido { background: var(--sos-soft); color: var(--sos); }
-  .risco-subhead .cnt.avencer { background: var(--ok); color: white; }
-.risco-subhead .btn-zap { margin-left: auto; font-family: "Archivo", sans-serif; font-size: 11px;
-  font-weight: 600; cursor: pointer; border: 1px solid var(--line); background: var(--card);
-  color: var(--muted); border-radius: 7px; padding: 4px 11px; transition: all .15s; }
-.risco-subhead .btn-zap:hover { color: var(--ink); border-color: var(--muted); }
-.risco-subhead .btn-zap.copiado { background: var(--ok); border-color: var(--ok); color: #fff; }
-  .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 16px; }
-  .filter-field { display: flex; flex-direction: column; gap: 4px; min-width: 168px; }
-  .filter-field label {
-    font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--faint);
-  }
-  .filter-field select {
-    font-family: "IBM Plex Sans", sans-serif; font-size: 13px; color: var(--ink); background: var(--surface2);
-    border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; appearance: none; width: 100%;
-  }
-  /* combo de loja com busca por texto: 28 lojas num <select> nativo obrigava
-     rolar ate' achar. Aqui o campo e' um input que filtra a lista enquanto
-     digita (aceita o codigo "20410" ou pedaco do nome "torres"). */
-  .filter-field.combo { position: relative; min-width: 268px; }
-  .combo-input {
-    font-family: "IBM Plex Sans", sans-serif; font-size: 13px; color: var(--ink); background: var(--surface2);
-    border: 1px solid var(--line); border-radius: 10px; padding: 8px 30px 8px 10px; width: 100%;
-  }
-  .combo-input::placeholder { color: var(--muted); }
-  .combo-input:focus { outline: 2px solid var(--violet); outline-offset: -1px; }
-  .combo-x {
-    position: absolute; right: 8px; bottom: 7px; width: 20px; height: 20px; line-height: 18px; text-align: center;
-    border: 0; border-radius: 50%; background: var(--line); color: var(--ink); font-size: 14px; cursor: pointer; padding: 0;
-  }
-  .combo-x:hover { background: var(--sos-soft); color: var(--sos); }
-  .combo-lista {
-    position: absolute; top: 100%; left: 0; right: 0; z-index: 60; margin: 4px 0 0; padding: 4px; list-style: none;
-    max-height: 262px; overflow-y: auto; background: var(--surface2);
-    border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 10px 26px rgba(0,0,0,.14);
-  }
-  .combo-lista[hidden] { display: none; }
-  .combo-lista li {
-    font-family: "IBM Plex Sans", sans-serif; font-size: 13px; color: var(--ink);
-    padding: 7px 10px; border-radius: 7px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  }
-  .combo-lista li.ativo { background: var(--violet); color: #fff; }
-  .combo-lista li.todas { font-weight: 600; }
-  .combo-lista li.vazio { color: var(--faint); cursor: default; }
-  .combo-lista li.vazio.ativo { background: none; color: var(--faint); }
-  .resp-select {
-    font-family: "IBM Plex Sans", sans-serif; font-size: 12.5px; color: var(--ink); background: var(--surface2);
-    border: 1px solid var(--line); border-radius: 8px; padding: 4px 7px; min-width: 118px; cursor: pointer;
-  }
-  .resp-select:focus { outline: 2px solid var(--violet); outline-offset: -1px; }
-  .prev-date {
-    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink); background: var(--surface2);
-    border: 1px solid var(--line); border-radius: 8px; padding: 4px 7px; min-width: 128px; cursor: pointer;
-  }
-  .prev-date:focus { outline: 2px solid var(--violet); outline-offset: -1px; }
-  /* previsao de termino ja passou: precisa saltar aos olhos */
-  .prev-date.vencida {
-    border-color: #E5352B; background: #FDECEB; color: #B22119; font-weight: 700;
-  }
-  .prev-date.hoje { border-color: #F0A31B; background: #FFF6E6; color: #8A5B06; font-weight: 700; }
-  /* aviso de responsaveis/prazos nao salvos -- fica fixo no topo porque a
-     falha anterior era SILENCIOSA e custou dados digitados */
-  .aviso-atrib {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
-    font-family: "IBM Plex Sans", sans-serif; font-size: 13px; font-weight: 600;
-    padding: 11px 18px; text-align: center; line-height: 1.45;
-    box-shadow: 0 2px 10px rgba(0,0,0,.14);
-  }
-  .aviso-atrib.erro { background: #FDECEB; color: #B22119; border-bottom: 2px solid #E5352B; }
-  .aviso-atrib.pendente { background: #FFF6E6; color: #8A5B06; border-bottom: 2px solid #F0A31B; }
-  .aviso-atrib[hidden] { display: none; }
-  .filtro-limpar {
-    font-family: "IBM Plex Sans", sans-serif; font-size: 12.5px; font-weight: 600; color: var(--muted);
-    background: var(--surface2); border: 1px solid var(--line); border-radius: 10px; padding: 9px 14px; cursor: pointer;
-  }
-  .filtro-limpar:hover { color: var(--ink); }
-  .filtro-conta { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--faint); padding-bottom: 10px; }
-
-    /* Ultimos chamados de risco fechados */
-    .fechados-lista { display: flex; flex-direction: column; }
-    .fechado-item { display: flex; align-items: flex-start; gap: 10px;
-      padding: 9px 2px; border-bottom: 1px solid rgba(0,0,0,.06); }
-    .fechado-item:last-child { border-bottom: none; }
-    .fechado-confete { font-size: 17px; line-height: 1; flex: none; }
-    .fechado-txt { font-size: 14px; }
-    .fechado-txt strong { font-variant-numeric: tabular-nums; }
-    .fechado-sup { font-weight: 600; }
-    .fechado-prob { display: block; margin-top: 2px; font-size: 12.5px; color: var(--muted); }
-    .fechado-loja { font-weight: 600; color: var(--text); }
-    .fechado-meta { margin-left: auto; display: flex; align-items: center; gap: 16px; flex: none; }
-    .fechado-dias { font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums;
-      white-space: nowrap; min-width: 46px; text-align: right; }
-    .fechado-hora { font-size: 12.5px; font-weight: 600; opacity: .85;
-      font-variant-numeric: tabular-nums; white-space: nowrap; }
-  </style>
+@media (max-width: 900px) { :root { --sidebar-w: 0px; } aside { display: none; } }
+@media (max-width: 600px) { main { padding: 14px; } }
+</style>
 </head>
 <body>
-<div class="shell">
-  <aside class="side">
-    <button class="side-toggle" id="sideToggle" type="button" aria-label="Recolher menu">‹</button>
-    <div class="brand">
-      <div class="mark">Z</div>
-      <div><div class="name">Manutenção Sul</div><div class="sub">Zamp · BK Brasil</div></div>
-    </div>
-    <div class="navgroup">
-      <a class="navitem" href="index.html"><span class="dot"></span>Backlog</a>
-      <a class="navitem" href="tecnicos.html"><span class="dot"></span>Técnicos</a>
-      <div class="navlabel">Painéis</div>
-      <a class="navitem" href="perda.html"><span class="dot"></span>Perda de Receita</a>
-      <a class="navitem active" href="risco.html"><span class="dot"></span>Gestão de Risco</a>
-      <a class="navitem" href="campo.html"><span class="dot"></span>Acompanhamento Campo</a>
-      <a class="navitem" href="preventivas.html"><span class="dot"></span>Preventivas</a>
-      <a class="navitem" href="sorvete.html"><span class="dot"></span>Máquina de Sorvete</a>
-<a class="navitem" href="pecas.html"><span class="dot"></span>PeÃ§as / Materiais</a>
-      <div class="navlabel">Fonte</div>
-      <div class="navitem"><span class="dot"></span>ServiceNow · SOMA</div>
-    </div>
+<header>
+  <div class="brand-mark">Z</div>
+  <div class="header-title"><h1>Gestão de Risco</h1><span>Manutenção Sul · Regional Sul</span></div>
+  <div class="carimbo" id="stamp">carregando…</div>
+  <button class="theme-btn" onclick="toggleTheme()" title="Alternar tema">&#9788;</button>
+</header>
+<div class="layout">
+  <aside>
+    <div class="s-header">Navegação</div>
+    <a href="index.html"><span class="s-dot"></span> Backlog</a>
+    <a href="tecnicos.html"><span class="s-dot"></span> Técnicos</a>
+    <div class="s-header" style="margin-top:12px">Painéis</div>
+    <a href="perda.html"><span class="s-dot" style="color:var(--laranja)"></span> Perda de Receita</a>
+    <a class="active" href="risco.html"><span class="s-dot" style="color:var(--rosa)"></span> Gestão de Risco</a>
+    <a href="campo.html"><span class="s-dot" style="color:var(--cobalto)"></span> Acompanhamento Campo</a>
+    <a href="preventivas.html"><span class="s-dot" style="color:var(--verde)"></span> Preventivas</a>
+    <a href="sorvete.html"><span class="s-dot" style="color:var(--amarelo)"></span> Máquina de Sorvete</a>
+    <a href="pecas.html"><span class="s-dot" style="color:var(--cinza)"></span> Peças / Materiais</a>
+    <div class="s-header" style="margin-top:12px">Fonte</div>
+    <div class="navitem-static"><span class="s-dot"></span> ServiceNow · SOMA</div>
     <div class="side-foot">Atualização diária · fonte Power BI</div>
   </aside>
-  <button class="side-reopen" id="sideReopen" type="button" aria-label="Abrir menu">›</button>
-
-  <main class="main">
-    <div class="topbar">
-      <div>
-        <p class="eyebrow">Regional Sul · Gestão de Risco</p>
-        <h1>Gestão de Risco</h1>
-      </div>
-      <div class="stamp-pill" id="stamp">carregando…</div>
-    </div>
+  <main>
     <div id="conteudo"><div class="msg-carregando">carregando data/risco.json…</div></div>
   </main>
 </div>
@@ -363,6 +257,16 @@
 </div>
 
 <script>
+function toggleTheme() {
+  var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('risco-theme', next);
+}
+(function() {
+  var saved = localStorage.getItem('risco-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+
 const brl0 = n => n.toLocaleString('pt-BR');
 let DADOS_ATUAIS = null;
 
@@ -370,28 +274,22 @@ function escapeHtml(s) {
   return String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
 }
 
-// mesmo esquema de cores do painel de Backlog: vermelho = pior, laranja =
-// medio, verde = bom (consistencia visual entre os paineis, pedido do
-// Christian, 15/09/2026)
 function corPorPctVencido(pct) {
-  if (pct >= 30) return 'var(--sos)';
-  if (pct >= 15) return 'var(--alta)';
-  return 'var(--ok)';
+  if (pct >= 30) return 'var(--rosa)';
+  if (pct >= 15) return 'var(--laranja)';
+  return 'var(--verde)';
 }
 
 function donutSVG(pct, cor) {
   const r = 38, c = 2 * Math.PI * r;
   const dash = (Math.min(pct, 100) / 100) * c;
   return `<svg viewBox="0 0 92 92" width="92" height="92">
-    <circle cx="46" cy="46" r="${r}" style="fill:none;stroke:var(--surface2)" stroke-width="9"/>
+    <circle cx="46" cy="46" r="${r}" style="fill:none;stroke:var(--cinza-bg)" stroke-width="9"/>
     <circle cx="46" cy="46" r="${r}" style="fill:none;stroke:${cor}" stroke-width="9"
       stroke-dasharray="${dash.toFixed(1)} ${c.toFixed(1)}" stroke-linecap="round"/>
   </svg>`;
 }
 
-// "últ. visita 12/08/2026" ou "últ. manut. 03/07/2026 · limpeza de duto".
-// A data vem primeiro: no celular a linha corta no fim. Sem data no BI (item
-// nunca registrado) diz isso em vez de inventar.
 function refAtraso(l) {
   const item = l.itemRef ? l.itemRef.toLowerCase() : '';
   const quando = l.dataRef ? `${l.rotuloRef || 'últ.'} ${l.dataRef}` : (l.diasAtraso != null ? 'sem data registrada' : '');
@@ -417,408 +315,202 @@ const statusRiscoTagCls = s => /atrasad/i.test(s) ? 'tag-sos' : 'tag-normal';
 
 const RESPONSAVEIS = ['Christian', 'Carlos Magno', 'Marcel', 'Gustavo', 'Rafael'];
 function responsavelDoTecnico(tecnico) {
-  const t = (tecnico || '').toUpperCase();
-  return RESPONSAVEIS.find(r => t.includes(r.toUpperCase())) || null;
-}
-
-// atribuicao manual por chamado (responsavel + previsao de termino), guardada
-// num banco compartilhado (nao localStorage -- varias pessoas abrem esse
-// painel e precisam ver a mesma coisa). API roda na propria VPS atras do
-// Caddy (154-64-32-227.sslip.io), pedido do Christian, 15/09/2026.
-const API_ATRIBUICOES = 'https://154-64-32-227.sslip.io/v1/risco-atribuicoes';
-const CACHE_ATRIB = 'risco_atribuicoes_cache';
-const FILA_ATRIB = 'risco_atribuicoes_pendentes';
-let ATRIBUICOES = {};
-
-// 22/09/2026 -- o servidor de atribuicoes ficou 5 dias fora do ar e a pagina
-// nao disse nada: o carregamento caia no catch e assumia {}, entao TUDO
-// aparecia em branco como se nunca tivesse sido preenchido, e o Christian
-// perdeu prazos que tinha acabado de digitar. Pior: o POST nem conferia o
-// resultado -- um 502 do Caddy devolve resposta, nao excecao, entao a falha
-// passava por sucesso.
-//
-// Agora: (1) cache local da ultima copia boa, para nunca mostrar vazio como
-// se fosse verdade; (2) fila de pendentes em localStorage, para o que foi
-// digitado offline subir sozinho depois; (3) aviso na tela enquanto houver
-// coisa nao salva. Nenhuma edicao pode sumir em silencio.
-
-function lerJSONLocal(chave, padrao) {
-  try { return JSON.parse(localStorage.getItem(chave)) || padrao; } catch (e) { return padrao; }
-}
-function gravarJSONLocal(chave, valor) {
-  try { localStorage.setItem(chave, JSON.stringify(valor)); } catch (e) { /* sem storage: segue so' em memoria */ }
-}
-
-function avisoAtribuicoes(texto, tom) {
-  let el = document.getElementById('aviso-atrib');
-  if (!el) {
-    el = document.createElement('div');
-    el.id = 'aviso-atrib';
-    document.body.appendChild(el);
-  }
-  el.className = 'aviso-atrib' + (tom ? ' ' + tom : '');
-  el.textContent = texto || '';
-  el.hidden = !texto;
-}
-
-async function enviarPendentes() {
-  const fila = lerJSONLocal(FILA_ATRIB, {});
-  const numeros = Object.keys(fila);
-  if (!numeros.length) { avisoAtribuicoes(''); return true; }
-  for (const numero of numeros) {
-    try {
-      const r = await fetch(API_ATRIBUICOES, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ numero, ...fila[numero] }),
-      });
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      delete fila[numero];
-    } catch (e) { /* continua tentando os outros; o que falhar fica na fila */ }
-  }
-  gravarJSONLocal(FILA_ATRIB, fila);
-  const restam = Object.keys(fila).length;
-  if (restam) {
-    avisoAtribuicoes(restam + (restam === 1 ? ' alteração ainda não foi salva' : ' alterações ainda não foram salvas')
-      + ' no servidor. Estão guardadas neste navegador e sobem sozinhas quando ele voltar.', 'pendente');
-  } else {
-    avisoAtribuicoes('');
-  }
-  return restam === 0;
-}
-
-async function carregarAtribuicoes() {
-  const cache = lerJSONLocal(CACHE_ATRIB, null);
-  try {
-    const r = await fetch(API_ATRIBUICOES, { cache: 'no-store' });
-    if (!r.ok) throw new Error('HTTP ' + r.status);
-    ATRIBUICOES = await r.json();
-    gravarJSONLocal(CACHE_ATRIB, ATRIBUICOES);
-    await enviarPendentes();
-  } catch (e) {
-    ATRIBUICOES = cache ? { ...cache } : {};
-    // 08/10/2026 -- a faixa vermelha de "sem contato com o servidor" foi
-    // retirada a pedido do Christian: outras pessoas abrem o painel e ela
-    // aparecia para todo mundo. A protecao continua: cache local, fila do que
-    // for editado offline e a faixa amarela, que so' aparece para quem editou
-    // algo que ainda nao subiu.
-    console.warn('servidor de atribuicoes inacessivel (' + (e && e.message) + '); usando ' + (cache ? 'copia local' : 'campos vazios'));
-  }
-  // o que ainda esta' na fila vale mais que o que veio do servidor
-  const fila = lerJSONLocal(FILA_ATRIB, {});
-  for (const numero of Object.keys(fila)) {
-    ATRIBUICOES[numero] = { ...ATRIBUICOES[numero], ...fila[numero] };
-  }
-}
-
-async function salvarCampoAtribuicao(numero, campo, valor) {
-  ATRIBUICOES[numero] = { ...ATRIBUICOES[numero], [campo]: valor };
-  gravarJSONLocal(CACHE_ATRIB, ATRIBUICOES);
-  // entra na fila ANTES de tentar a rede: se a aba fechar no meio, nao se perde
-  const fila = lerJSONLocal(FILA_ATRIB, {});
-  fila[numero] = { ...fila[numero], [campo]: valor };
-  gravarJSONLocal(FILA_ATRIB, fila);
-  await enviarPendentes();
-}
-
-// reinsiste sozinho: se o servidor voltar, a fila esvazia sem ninguem mexer
-setInterval(function () { enviarPendentes(); }, 60000);
-window.addEventListener('online', function () { enviarPendentes(); });
-function responsavelAtual(c) {
-  return ATRIBUICOES[c.numero]?.responsavel || responsavelDoTecnico(c.tecnico) || '';
-}
-function previsaoAtual(c) {
-  return ATRIBUICOES[c.numero]?.previsaoTermino || '';
-}
-
-function parseDataBR(s) {
-  const m = String(s || '').match(/^(\d{2})\/(\d{2})\/(\d{4})/);
-  if (!m) return null;
-  return new Date(Number(m[3]), Number(m[2]) - 1, Number(m[1]));
-}
-function diasVencido(dtAbertura, refDate) {
-  const d = parseDataBR(dtAbertura);
-  if (!d || !refDate) return null;
-  return Math.max(0, Math.round((refDate - d) / 86400000));
-}
-
-const FILTROS_RISCO = { loja: '', assunto: '', resp: '', ordem: 'antigos' };
-
-const assuntoDe = (c) => (c.assuntoSecundario || c.assuntoPrincipal || '').trim();
-
-// Data de previsao vencida fica vermelha; a de hoje, laranja.
-function classePrevisao(previsao) {
-  if (!previsao) return '';
-  const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
-  const d = new Date(previsao + 'T00:00:00');
-  if (isNaN(d)) return '';
-  if (d < hoje) return ' vencida';
-  if (d.getTime() === hoje.getTime()) return ' hoje';
+  if (!tecnico) return '';
+  const t = tecnico.toLowerCase();
+  if (t.includes('christian') || t.includes('moura')) return 'Christian';
+  if (t.includes('magno') || t.includes('carlos')) return 'Carlos Magno';
+  if (t.includes('marcel')) return 'Marcel';
+  if (t.includes('gustavo')) return 'Gustavo';
+  if (t.includes('rafael')) return 'Rafael';
   return '';
 }
 
-function aplicaFiltrosRisco(itens) {
-  return (itens || []).filter((c) =>
-    (!FILTROS_RISCO.loja || c.loja === FILTROS_RISCO.loja) &&
-    (!FILTROS_RISCO.assunto || assuntoDe(c) === FILTROS_RISCO.assunto) &&
-    (!FILTROS_RISCO.resp || responsavelAtual(c) === FILTROS_RISCO.resp));
+const FILTROS_RISCO = { loja: '', assunto: '', resp: '', ordem: '' };
+let ATRIBUICOES = {};
+
+async function carregarAtribuicoes() {
+  try {
+    const r = await fetch('https://154-64-32-227.sslip.io/v1/risco-atribuicoes', { cache: 'no-store' });
+    if (!r.ok) return;
+    ATRIBUICOES = await r.json();
+  } catch (e) { /* silencioso */ }
 }
 
-// lista viva de lojas: quem digita no combo filtra ESTA lista, que muda
-// conforme os chamados que vieram do BI
-let LOJAS_RISCO = [];
+async function salvarCampoAtribuicao(wo, campo, valor) {
+  try {
+    await fetch('https://154-64-32-227.sslip.io/v1/risco-atribuicoes', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ wo, [campo]: valor }),
+    });
+    if (!ATRIBUICOES[wo]) ATRIBUICOES[wo] = {};
+    ATRIBUICOES[wo][campo] = valor;
+  } catch (e) { /* silencioso */ }
+}
 
-function comboLojaHtml(lojas) {
-  const val = FILTROS_RISCO.loja;
-  const rot = 'Todas as lojas (' + lojas.length + ')';
-  return `<div class="filter-field combo" data-combo="loja">
-    <label for="fRiscoLoja">Loja</label>
-    <input type="text" id="fRiscoLoja" class="combo-input" role="combobox" autocomplete="off"
-      aria-expanded="false" aria-autocomplete="list" aria-controls="fRiscoLojaLista"
-      placeholder="${escapeHtml(rot)}" value="${escapeHtml(val)}" data-sel="${escapeHtml(val)}">
-    ${val ? '<button type="button" class="combo-x" id="fRiscoLojaX" aria-label="Limpar loja" title="Limpar loja">&times;</button>' : ''}
-    <ul class="combo-lista" id="fRiscoLojaLista" role="listbox" hidden></ul>
+function parseDataBR(s) {
+  if (!s) return null;
+  const m = String(s).match(/^(\d{2})\/(\d{2})\/(\d{4})/);
+  if (!m) return null;
+  return new Date(Number(m[3]), Number(m[2]) - 1, Number(m[1]));
+}
+
+function barraFiltrosRisco(itens) {
+  const assuntos = [...new Set(itens.map(i => i.assunto).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+  const opcoesAssunto = `<option value="">Todos os assuntos</option>` + assuntos.map(a => `<option value="${escapeHtml(a)}"${a === FILTROS_RISCO.assunto ? ' selected' : ''}>${escapeHtml(a)}</option>`).join('');
+  const opcoesResp = `<option value="">Todos os responsáveis</option>` + RESPONSAVEIS.map(r => `<option value="${escapeHtml(r)}"${r === FILTROS_RISCO.resp ? ' selected' : ''}>${escapeHtml(r)}</option>`).join('');
+  return `<div class="filter-bar">
+    <div class="filter-field combo" data-combo="loja">
+      <label for="fRiscoLoja">Loja</label>
+      <input type="text" id="fRiscoLoja" class="combo-input" placeholder="Buscar loja..." autocomplete="off" data-sel="${escapeHtml(FILTROS_RISCO.loja)}" value="${escapeHtml(FILTROS_RISCO.loja)}">
+      <button type="button" class="combo-x" id="fRiscoLojaX" aria-label="Limpar">&times;</button>
+      <ul class="combo-lista" id="fRiscoLojaLista" hidden></ul>
+    </div>
+    <div class="filter-field">
+      <label for="fRiscoAssunto">Assunto</label>
+      <select id="fRiscoAssunto">${opcoesAssunto}</select>
+    </div>
+    <div class="filter-field">
+      <label for="fRiscoResp">Responsável</label>
+      <select id="fRiscoResp">${opcoesResp}</select>
+    </div>
+    <button type="button" class="filtro-limpar" id="fRiscoLimpar">limpar filtros</button>
   </div>`;
 }
 
-// sem acento e sem caixa: "sao jose" acha "SÃO JOSÉ", "torres" acha "TORRES"
-const chaveBusca = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-
+function abrirListaLoja(filtro) {
+  const ul = document.getElementById('fRiscoLojaLista');
+  if (!ul || !DADOS_ATUAIS) return;
+  const todos = [...(DADOS_ATUAIS.chamadosRisco?.vencidos || []), ...(DADOS_ATUAIS.chamadosRisco?.aVencer || [])];
+  const lojas = [...new Set(todos.map(i => i.loja).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+  const busca = (filtro || '').toLowerCase().trim();
+  const filtradas = busca ? lojas.filter(l => l.toLowerCase().includes(busca)) : lojas;
+  const todas = `<li class="todas" data-valor="">Todas as lojas (${lojas.length})</li>`;
+  ul.innerHTML = filtradas.length
+    ? todas + filtradas.map(l => `<li data-valor="${escapeHtml(l)}"${l === FILTROS_RISCO.loja ? ' class="ativo"' : ''}>${escapeHtml(l)}</li>`).join('')
+    : todas + '<li class="vazio">nenhuma loja com esse texto</li>';
+  ul.hidden = false;
+}
 function fecharListaLoja() {
   const ul = document.getElementById('fRiscoLojaLista');
-  const inp = document.getElementById('fRiscoLoja');
   if (ul) ul.hidden = true;
-  if (inp) inp.setAttribute('aria-expanded', 'false');
 }
-
+function escolherLoja(v) {
+  FILTROS_RISCO.loja = v || '';
+  const inp = document.getElementById('fRiscoLoja');
+  if (inp) { inp.value = v || ''; inp.dataset.sel = v || ''; }
+  fecharListaLoja();
+  renderizarChamadosRisco();
+}
 function marcarAtivoLoja(i) {
   const ul = document.getElementById('fRiscoLojaLista');
   if (!ul) return;
   const itens = [...ul.querySelectorAll('li[data-valor]')];
   if (!itens.length) return;
-  const n = ((i % itens.length) + itens.length) % itens.length;
-  itens.forEach((li, k) => li.classList.toggle('ativo', k === n));
-  itens[n].scrollIntoView({ block: 'nearest' });
+  const k = ((i % itens.length) + itens.length) % itens.length;
+  itens.forEach((li, j) => li.classList.toggle('ativo', j === k));
+  itens[k].scrollIntoView({ block: 'nearest' });
 }
 
-function abrirListaLoja(filtro) {
-  const inp = document.getElementById('fRiscoLoja');
-  const ul = document.getElementById('fRiscoLojaLista');
-  if (!inp || !ul) return;
-  // cada palavra digitada tem que aparecer em algum lugar do nome: assim
-  // "novo hamburgo" e "hamburgo novo" acham a mesma loja
-  const termos = chaveBusca(filtro).split(/\s+/).filter(Boolean);
-  const lista = termos.length
-    ? LOJAS_RISCO.filter((v) => { const a = chaveBusca(v); return termos.every((t) => a.includes(t)); })
-    : LOJAS_RISCO.slice();
-  const todas = `<li role="option" class="todas" data-valor="">Todas as lojas (${LOJAS_RISCO.length})</li>`;
-  ul.innerHTML = lista.length
-    ? todas + lista.map((v) => `<li role="option" data-valor="${escapeHtml(v)}">${escapeHtml(v)}</li>`).join('')
-    : todas + '<li class="vazio">nenhuma loja com esse texto</li>';
-  ul.hidden = false;
-  inp.setAttribute('aria-expanded', 'true');
-  marcarAtivoLoja(termos.length ? 1 : 0);
-}
-
-function escolherLoja(valor) {
-  FILTROS_RISCO.loja = valor || '';
-  fecharListaLoja();
-  renderizarChamadosRisco();
-}
-
-function barraFiltrosRisco(todos) {
-  const unicos = (fn) => [...new Set((todos || []).map(fn).map((v) => (v || '').trim()).filter(Boolean))]
-    .sort((a, b) => a.localeCompare(b, 'pt-BR'));
-  const lojas = unicos((c) => c.loja);
-  LOJAS_RISCO = lojas;
-  const assuntos = unicos(assuntoDe);
-  const visiveis = aplicaFiltrosRisco(todos).length;
-  const opc = (lista, sel, todosRot) => `<option value="">${todosRot}</option>` +
-    lista.map((v) => `<option value="${escapeHtml(v)}"${v === sel ? ' selected' : ''}>${escapeHtml(v)}</option>`).join('');
-  const ativo = FILTROS_RISCO.loja || FILTROS_RISCO.assunto || FILTROS_RISCO.resp;
-  return `<div class="filter-bar">
-    ${comboLojaHtml(lojas)}
-    <div class="filter-field"><label for="fRiscoAssunto">Assunto</label>
-      <select id="fRiscoAssunto">${opc(assuntos, FILTROS_RISCO.assunto, 'Todos os assuntos (' + assuntos.length + ')')}</select></div>
-    <div class="filter-field"><label for="fRiscoResp">Responsável</label>
-      <select id="fRiscoResp">${opc(RESPONSAVEIS, FILTROS_RISCO.resp, 'Todos')}</select></div>
-    <div class="filter-field"><label for="fRiscoOrdem">Ordenar por</label>
-      <select id="fRiscoOrdem">
-        <option value="antigos"${FILTROS_RISCO.ordem === 'antigos' ? ' selected' : ''}>Abertura mais antiga</option>
-        <option value="recentes"${FILTROS_RISCO.ordem === 'recentes' ? ' selected' : ''}>Abertura mais recente</option>
-        <option value="previsao"${FILTROS_RISCO.ordem === 'previsao' ? ' selected' : ''}>Previsão mais próxima</option>
-      </select></div>
-    ${ativo ? '<button type="button" class="filtro-limpar" id="fRiscoLimpar">limpar filtros</button>' : ''}
-    ${ativo ? `<span class="filtro-conta">${visiveis} de ${(todos || []).length} chamados</span>` : ''}
-  </div>`;
-}
-
-function tabelaChamadosRisco(itens, refDate, filtroResp) {
-  const filtrados = aplicaFiltrosRisco(itens);
-  if (!filtrados.length) return `<div class="filter-empty">${FILTROS_RISCO.loja || FILTROS_RISCO.assunto || FILTROS_RISCO.resp ? 'Nenhum chamado bate com o filtro escolhido.' : 'Nenhum chamado nesse grupo.'}</div>`;
-  const comDias = filtrados.map(c => ({ ...c, dias: diasVencido(c.dtAbertura, refDate) }));
-  if (FILTROS_RISCO.ordem === 'recentes') {
-    // menos dias vencido = aberto mais recentemente
-    comDias.sort((a, b) => (a.dias ?? 1e9) - (b.dias ?? 1e9));
-  } else if (FILTROS_RISCO.ordem === 'previsao') {
-    // sem previsao vai para o fim, senao some da vista de quem cobra prazo
-    const p = (c) => previsaoAtual(c) || '9999-12-31';
-    comDias.sort((a, b) => p(a).localeCompare(p(b)));
-  } else {
-    comDias.sort((a, b) => (b.dias ?? -1) - (a.dias ?? -1));
-  }
-  return `<div class="filter-table-wrap"><table class="detail-table">
-    <thead><tr><th>Número</th><th>Item</th><th>Assunto</th><th>Loja</th><th>Setor</th><th>Status</th><th>Vencido há</th><th>Responsável</th><th>Previsão de Término</th></tr></thead>
-    <tbody>${comDias.map(c => {
-      const atual = responsavelAtual(c);
-      const opcoes = ['', ...RESPONSAVEIS].map(r => `<option value="${escapeHtml(r)}" ${r === atual ? 'selected' : ''}>${r ? escapeHtml(r) : '—'}</option>`).join('');
-      const previsao = previsaoAtual(c);
-      return `<tr>
-        <td class="mono">${escapeHtml(c.numero)}</td>
-        <td>${escapeHtml(c.item)}</td>
-        <td>${escapeHtml(c.assuntoSecundario || c.assuntoPrincipal)}</td>
-        <td>${escapeHtml(c.loja)}</td>
-        <td>${escapeHtml(c.setor)}</td>
-        <td><span class="tag ${statusRiscoTagCls(c.statusRisco)}">${escapeHtml(c.status)}</span></td>
-        <td class="num">${c.dias != null ? c.dias + 'd' : '—'}</td>
-        <td><select class="resp-select" data-wo="${escapeHtml(c.numero)}">${opcoes}</select></td>
-        <td><input type="date" class="prev-date${classePrevisao(previsao)}" data-wo="${escapeHtml(c.numero)}" value="${escapeHtml(previsao)}"></td>
-      </tr>`;
-    }).join('')}</tbody>
-  </table></div>`;
-}
-
-
-// ---- copiar a lista de risco para o WhatsApp ----
-// Respeita os filtros da tela: copia o que esta visivel, nao a base inteira.
-function textoRiscoWhats(titulo, itens, refDate) {
-  const filtrados = aplicaFiltrosRisco(itens);
-  const comDias = filtrados.map(c => ({ ...c, dias: diasVencido(c.dtAbertura, refDate) }));
-  // ordem de cobranca: o que vence primeiro vem primeiro. Sem previsao vai para
-  // o fim, porque nao da' pra cobrar prazo de quem nao tem prazo.
-  comDias.sort((a, b) => {
-    const pa = previsaoAtual(a) || '9999-12-31';
-    const pb = previsaoAtual(b) || '9999-12-31';
-    if (pa !== pb) return pa.localeCompare(pb);
-    return (b.dias ?? -1) - (a.dias ?? -1);
-  });
-
-  const ctx = [];
-  if (FILTROS_RISCO.loja) ctx.push('loja: ' + FILTROS_RISCO.loja);
-  if (FILTROS_RISCO.assunto) ctx.push('assunto: ' + FILTROS_RISCO.assunto);
-  if (FILTROS_RISCO.resp) ctx.push('resp: ' + FILTROS_RISCO.resp);
-
-  const L = [];
-  L.push('*' + titulo + ' \u00b7 REGIONAL SUL*');
-  L.push('_' + comDias.length + ' chamado(s)' + (ctx.length ? ' \u00b7 ' + ctx.join(' \u00b7 ') : '')
-    + ' \u00b7 ' + ((DADOS_ATUAIS && DADOS_ATUAIS.atualizadoEm) ? DADOS_ATUAIS.atualizadoEm : '') + '_');
-  L.push('');
-
-  let semPrev = 0;
-  comDias.forEach(function(c) {
-    const resp = responsavelAtual(c) || 'sem responsavel';
-    const prev = previsaoAtual(c);
-    if (!prev) semPrev++;
-    // o WhatsApp nao tem cor no texto; o vermelho sai como emoji, e so' no que
-    // interessa: previsao ja vencida. Hoje leva o amarelo.
-    const hojeISO = new Date().toISOString().slice(0, 10);
-    let prevTxt, marca = '';
-    if (!prev) { prevTxt = 'sem previsao'; marca = '\u26A0 '; }
-    else {
-      prevTxt = '*' + prev.split('-').reverse().slice(0, 2).join('/') + '*';
-      if (prev < hojeISO) marca = '\uD83D\uDD34 ';
-      else if (prev === hojeISO) marca = '\uD83D\uDFE1 ';
+function aplicaFiltrosRisco(itens) {
+  return itens.filter(i => {
+    if (FILTROS_RISCO.loja && i.loja !== FILTROS_RISCO.loja) return false;
+    if (FILTROS_RISCO.assunto && i.assunto !== FILTROS_RISCO.assunto) return false;
+    if (FILTROS_RISCO.resp) {
+      const atr = ATRIBUICOES[i.numero] || {};
+      const resp = atr.responsavel || responsavelDoTecnico(i.tecnico);
+      if (resp !== FILTROS_RISCO.resp) return false;
     }
-    const dias = c.dias != null ? c.dias + 'd' : '\u2014';
-    L.push(marca + c.numero + ' \u2014 ' + c.loja);
-    L.push('  ' + (c.assuntoSecundario || c.assuntoPrincipal));
-    L.push('  ' + resp + ' \u00b7 vencido ha ' + dias + ' \u00b7 prev. ' + prevTxt);
-    L.push('');
+    return true;
   });
-
-  const venc = comDias.filter(c => { const p = previsaoAtual(c); return p && p < new Date().toISOString().slice(0, 10); }).length;
-  L.push('');
-  if (venc) L.push('\uD83D\uDD34 _' + venc + ' com previsao ja vencida_');
-  if (semPrev) L.push('\u26A0 _' + semPrev + ' sem previsao de termino_');
-  return L.join('\n').trim();
 }
 
-function copiarRisco(btn, qual) {
-  const D = DADOS_ATUAIS;
-  if (!D) return;
-  const refDate = parseDataBR(D.atualizadoEm) || new Date();
-  const itens = qual === 'vencido'
-    ? ((D.chamadosRisco && D.chamadosRisco.vencidos) || [])
-    : ((D.chamadosRisco && D.chamadosRisco.aVencer) || []);
-  const titulo = qual === 'vencido' ? 'RISCO VENCIDO' : 'RISCO A VENCER';
-  const texto = textoRiscoWhats(titulo, itens, refDate);
-  function ok() {
-    const antes = btn.textContent;
-    btn.textContent = 'copiado';
-    btn.classList.add('copiado');
-    setTimeout(function() { btn.textContent = antes; btn.classList.remove('copiado'); }, 1800);
-  }
-  function fallback() {
-    const ta = document.createElement('textarea');
-    ta.value = texto;
-    ta.style.position = 'fixed';
-    ta.style.opacity = '0';
-    document.body.appendChild(ta);
-    ta.select();
-    try { document.execCommand('copy'); ok(); } catch (e) { /* nada */ }
-    document.body.removeChild(ta);
-  }
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(texto).then(ok, fallback);
-  } else fallback();
+function tabelaChamadosRisco(itens, refDate) {
+  const filtrados = aplicaFiltrosRisco(itens);
+  if (!filtrados.length) return '<div class="filter-empty">Nenhum chamado com esses filtros.</div>';
+  return '<div class="filter-table-wrap"><table class="detail-table"><thead><tr><th>Número</th><th>Loja</th><th>Assunto</th><th>Previsão</th><th>Responsável</th><th>Dias</th></tr></thead><tbody>' +
+    filtrados.map(i => {
+      const atr = ATRIBUICOES[i.numero] || {};
+      const resp = atr.responsavel || responsavelDoTecnico(i.tecnico);
+      const prev = atr.previsaoTermino || i.previsaoTermino || '';
+      let prevCls = 'prev-date';
+      if (prev) {
+        const dPrev = new Date(prev + 'T00:00:00');
+        const hoje = new Date(); hoje.setHours(0,0,0,0);
+        if (dPrev < hoje) prevCls += ' vencida';
+        else if (dPrev.getTime() === hoje.getTime()) prevCls += ' hoje';
+      }
+      const dias = i.diasAtraso != null ? i.diasAtraso + 'd' : '—';
+      const diasCor = i.diasAtraso != null && i.diasAtraso > 30 ? ' style="color:var(--rosa);font-weight:700"' : '';
+      const respOptions = `<option value="">—</option>` + RESPONSAVEIS.map(r => `<option value="${escapeHtml(r)}"${r === resp ? ' selected' : ''}>${escapeHtml(r)}</option>`).join('');
+      return `<tr>
+        <td class="mono">${escapeHtml(i.numero)}</td>
+        <td>${escapeHtml(i.loja)}</td>
+        <td>${escapeHtml(i.assunto)}</td>
+        <td><input type="date" class="${prevCls}" data-wo="${escapeHtml(i.numero)}" value="${escapeHtml(prev)}"></td>
+        <td><select class="resp-select" data-wo="${escapeHtml(i.numero)}">${respOptions}</select></td>
+        <td class="num"${diasCor}>${dias}</td>
+      </tr>`;
+    }).join('') + '</tbody></table></div>';
 }
 
-// Lista dos ultimos chamados de Gestao de Risco fechados. O recorte e o
-// mesmo assunto que o BI marca como risco (ver scripts/fechados_risco.mjs).
-function montarFechadosRisco(lista) {
-  var esc = function (t) {
-    return String(t == null ? '' : t).replace(/&/g, '&amp;').replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-  };
-  var cls = function (p) { return p === 'SOS' ? 'tag-sos' : (p === 'Alta' ? 'tag-alta' : 'tag-normal'); };
-  var hora = function (x) {
-    var m = String(x || '').match(/^(\d{2})\/(\d{2})\/\d{4}\s+(\d{2}):(\d{2})/);
-    return m ? m[1] + '/' + m[2] + ' ' + m[3] + ':' + m[4] : String(x || '');
-  };
-  var itens = (lista || []).filter(function (f) { return f && f.numero; });
-  if (!itens.length) return '<div class="chart-note">sem fechamentos recentes.</div>';
-  return '<div class="fechados-lista">' + itens.map(function (f) {
-    var quem = f.fechadoPor ? esc(f.fechadoPor) : 'sem registro de quem fechou';
-    var q = hora(f.fechadoEm);
-    return '<div class="fechado-item">'
-      + '<span class="fechado-confete" aria-hidden="true">\u{1F389}</span>'
-      + '<span class="fechado-txt"><strong>' + esc(f.numero) + '</strong>'
-      + ' \u2014 \u00faltimo chamado fechado por <span class="fechado-sup">' + quem + '</span>'
-      + ((f.loja || f.problema)
-          ? '<span class="fechado-prob">'
-            + (f.loja ? '<span class="fechado-loja">' + esc(f.loja) + '</span>' : '')
-            + (f.loja && f.problema ? ' \u00b7 ' : '')
-            + (f.problema ? esc(f.problema) : '')
-            + '</span>'
-          : '')
-      + '</span>'
-      + '<span class="fechado-meta">'
-      + (f.prioridade ? '<span class="tag ' + cls(f.prioridade) + '" >' + esc(f.prioridade) + '</span>' : '')
-      + '<span class="fechado-dias" title="dias em aberto at\u00e9 o fechamento">'
-          + (f.dias == null ? '' : f.dias + 'd') + '</span>'
-      + (q ? '<span class="fechado-hora" title="fechado em">' + esc(q) + '</span>' : '')
-      + '</span>'
-      + '</div>';
-  }).join('') + '</div>';
-}
-
+function copiarRisco(botao, grupo) {
+  const itens = grupo === 'vencido'
+    ? aplicaFiltrosRisco(DADOS_ATUAIS?.chamadosRisco?.vencidos || [])
+    : aplicaFiltrosRisco(DADOS_ATUAIS?.chamadosRisco?.aVencer || []);
+  if (!itens.length) return;
+  const linhas = [`*RISCO ${grupo === 'vencido' ? 'VENCIDO' : 'A VENCER'} — SUL*`, `_${itens.length} chamado(s)_`, ''];
+  itens.forEach(i => {
+    const atr = ATRIBUICOES[i.numero] || {};
+    const resp = atr.responsavel || responsavelDoTecnico(i.tecnico) || 'sem responsável';
+    const prev = atr.previsaoTermino || i.previsaoTermino || '';
+    linhas.push(`• *${i.numero}* · ${i.loja} · ${i.assunto} · ${resp}${prev ? ' · prev ' + prev.split('-').reverse().join('/') : ''}${i.diasAtraso != null ? ' · ' + i.diasAtraso + 'd' : ''}`);
+  });
+  const texto = linhas.join('\n');
+  navigator.clipboard.writeText(texto).then(() => {
+    botao.classList.add('copiado');
+    botao.textContent = '✓ copiado';
+    setTimeout(() => { botao.classList.remove('copiado'); botao.textContent = 'copiar p/ WhatsApp'; }, 2200);
+  }).catch(() => {});
+}
+
+function montarFechadosRisco(lista) {
+  const itens = (lista || []).filter(f => f && f.numero);
+  if (!itens.length) return '<div class="sec-note">sem fechamentos recentes.</div>';
+  const hora = (x) => {
+    const m = String(x || '').match(/^(\d{2})\/(\d{2})\/\d{4}\s+(\d{2}):(\d{2})/);
+    return m ? m[1] + '/' + m[2] + ' ' + m[3] + ':' + m[4] : String(x || '');
+  };
+  return '<div class="fechados-lista">' + itens.map(f => {
+    const quem = f.fechadoPor ? escapeHtml(f.fechadoPor) : 'sem registro de quem fechou';
+    const q = hora(f.fechadoEm);
+    return '<div class="fechado-item">'
+      + '<span class="fechado-confete" aria-hidden="true">\u{1F389}</span>'
+      + '<span class="fechado-txt"><strong>' + escapeHtml(f.numero) + '</strong>'
+      + ' — último chamado de risco fechado por <span class="fechado-sup">' + quem + '</span>'
+      + ((f.loja || f.problema)
+        ? '<span class="fechado-prob">'
+          + (f.loja ? '<span class="fechado-loja">' + escapeHtml(f.loja) + '</span>' : '')
+          + (f.loja && f.problema ? ' · ' : '')
+          + (f.problema ? escapeHtml(f.problema) : '')
+          + '</span>'
+        : '')
+      + '</span>'
+      + '<span class="fechado-meta">'
+        + (f.prioridade ? '<span class="tag tag-sos">' + escapeHtml(f.prioridade) + '</span>' : '')
+        + '<span class="fechado-dias" title="dias em aberto até o fechamento">' + (f.dias == null ? '' : f.dias + 'd') + '</span>'
+        + (q ? '<span class="fechado-hora" title="fechado em">' + escapeHtml(q) + '</span>' : '')
+      + '</span>'
+      + '</div>';
+  }).join('') + '</div>';
+}
+
 function renderizarChamadosRisco() {
   const D = DADOS_ATUAIS;
   if (!D) return;
   const refDate = parseDataBR(D.atualizadoEm) || new Date();
   const vencidos = (D.chamadosRisco?.vencidos || []);
   const aVencer = (D.chamadosRisco?.aVencer || []);
-  // as listas dos filtros saem dos DOIS grupos juntos, senao um assunto que so'
-  // existe em "a vencer" sumiria da lista enquanto o outro grupo esta em tela
   const barra = document.getElementById('barraFiltrosRisco');
   if (barra) barra.innerHTML = barraFiltrosRisco([...vencidos, ...aVencer]);
   document.getElementById('cntVencido').textContent = aplicaFiltrosRisco(vencidos).length;
@@ -894,22 +586,19 @@ async function iniciar() {
     </div>`;
   }).join('');
 
-  // "Em Aberto por Item" -- vem como bruto (nomes seguidos dos numeros de
-  // atrasado) direto da leitura do Power BI; time seguro = so' os 6 itens
-  // conhecidos do grafico, na ordem em que aparecem.
   const itens = (D.abertoPorItemBruto || []).slice(0, 6);
   const numeros = (D.abertoPorItemBruto || []).slice(6, 6 + itens.length).map(Number);
   const paresItem = itens.map((nome, i) => ({ nome, atrasado: numeros[i] || 0 })).sort((a, b) => b.atrasado - a.atrasado);
   const maxItem = Math.max(...paresItem.map(p => p.atrasado), 1);
   const barsItem = paresItem.map(p => `<div class="hbar-row">
       <span class="lbl">${escapeHtml(p.nome)}</span>
-      <div class="hbar-track"><div class="hbar-fill" style="width:${(p.atrasado/maxItem*100).toFixed(0)}%;background:linear-gradient(90deg,var(--pink),var(--sos))"></div></div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:${(p.atrasado/maxItem*100).toFixed(0)}%;background:linear-gradient(90deg,var(--laranja),var(--rosa))"></div></div>
       <span class="v num">${p.atrasado}</span>
     </div>`).join('');
 
   const barsCategoria = catOrdenadas.map(c => `<div class="hbar-row">
       <span class="lbl">${escapeHtml(c.nome)}</span>
-      <div class="hbar-track"><div class="hbar-fill" style="width:${c.pctVencido}%;background:linear-gradient(90deg,var(--violet-2),var(--violet))"></div></div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:${c.pctVencido}%;background:linear-gradient(90deg,var(--cobalto),var(--cobalto))"></div></div>
       <span class="v num">${c.pctVencido}%</span>
     </div>`).join('');
 
@@ -940,12 +629,12 @@ async function iniciar() {
       </div>
     </section>
 
-    <section>
-  <div class="sec-head"><h2>\u00daltimos chamados de risco fechados</h2><span class="sec-note">os 10 mais recentes \u00b7 quem deu baixa no SOMA</span></div>
-  <div class="card">${montarFechadosRisco(D.ultimosFechados)}</div>
-</section>
-
-<footer>
+    <section>
+      <div class="sec-head"><h2>Últimos chamados de risco fechados</h2><span class="sec-note">os 10 mais recentes · quem deu baixa no SOMA</span></div>
+      <div class="card">${montarFechadosRisco(D.ultimosFechados)}</div>
+    </section>
+
+    <footer>
       <span>Fonte: Power BI (Gestão de Risco / Rota de Segurança · Visão Sul)</span>
       <span class="mono">${brl0(D.totalLojasAvaliadas)} lojas avaliadas</span>
     </footer>
@@ -953,23 +642,15 @@ async function iniciar() {
 }
 iniciar();
 
-// delegado no document (as linhas da tabela sao recriadas a cada filtro),
-// pra caixa de selecao/data de cada chamado gravar a escolha no banco
-// compartilhado e atualizar contagens
 document.addEventListener('change', (ev) => {
-  // fRiscoLoja fica de fora de proposito: virou input, e o 'change' dele no
-  // blur gravaria o texto cru digitado como se fosse o nome de uma loja
   const mapa = { fRiscoAssunto: 'assunto', fRiscoResp: 'resp', fRiscoOrdem: 'ordem' };
   const chave = mapa[ev.target.id];
   if (chave) { FILTROS_RISCO[chave] = ev.target.value; renderizarChamadosRisco(); }
 });
-// ----- combo de loja: digitar para filtrar -----
 document.addEventListener('input', (ev) => {
   if (ev.target.id === 'fRiscoLoja') abrirListaLoja(ev.target.value);
 });
 document.addEventListener('focusin', (ev) => {
-  // ao focar, abre a lista inteira e seleciona o texto: digitar por cima ja
-  // comeca uma busca nova sem precisar apagar
   if (ev.target.id === 'fRiscoLoja') { ev.target.select(); abrirListaLoja(''); }
 });
 document.addEventListener('focusout', (ev) => {
@@ -978,11 +659,9 @@ document.addEventListener('focusout', (ev) => {
     const inp = document.getElementById('fRiscoLoja');
     if (!inp || document.activeElement === inp) return;
     fecharListaLoja();
-    // texto digitado sem escolher nada nao vira filtro: volta o que valia
     inp.value = inp.dataset.sel || '';
   }, 120);
 });
-// mousedown e nao click: o click chegaria depois do blur ja ter fechado a lista
 document.addEventListener('mousedown', (ev) => {
   const li = ev.target.closest('#fRiscoLojaLista li[data-valor]');
   if (li) { ev.preventDefault(); escolherLoja(li.dataset.valor); return; }
@@ -1024,28 +703,6 @@ document.addEventListener('change', async (ev) => {
   const dt = ev.target.closest('.prev-date');
   if (dt) { await salvarCampoAtribuicao(dt.dataset.wo, 'previsaoTermino', dt.value); return; }
 });
-
-(function () {
-  const shell = document.querySelector('.shell');
-  const CHAVE = 'chamados_sidebar_collapsed';
-  function aplicar(colapsado) {
-    shell.classList.toggle('sb-collapsed', colapsado);
-    shell.classList.toggle('sb-expanded', !colapsado);
-  }
-  let salvo = null;
-  try { salvo = localStorage.getItem(CHAVE); } catch (e) {}
-  const colapsado = salvo === null ? window.innerWidth <= 860 : salvo === '1';
-  aplicar(colapsado);
-
-  document.getElementById('sideToggle').addEventListener('click', () => {
-    aplicar(true);
-    try { localStorage.setItem(CHAVE, '1'); } catch (e) {}
-  });
-  document.getElementById('sideReopen').addEventListener('click', () => {
-    aplicar(false);
-    try { localStorage.setItem(CHAVE, '0'); } catch (e) {}
-  });
-})();
 </script>
 </body>
 </html>

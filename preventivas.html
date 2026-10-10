@@ -1,1086 +1,735 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
 <head>
 <meta charset="utf-8">
 <title>Preventivas — Sul</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-
-  :root {
-    --sidebar:   #1E1B3A;
-    --sidebar-2: #2A2555;
-    --ground:    #F3F1FB;
-    --surface:   #FFFFFF;
-    --surface2:  #F6F4FC;
-    --ink:       #211D3D;
-    --muted:     #726E93;
-    --faint:     #A9A5C6;
-    --line:      #ECEAF6;
-    --violet:    #7C5CFC;
-    --violet-2:  #A78BFA;
-    --pink:      #F472B6;
-    --blue:      #38BDF8;
-    --sos:       #E43F5A;
-    --sos-soft:  rgba(228,63,90,0.10);
-    --alta:      #F5A623;
-    --alta-soft: rgba(245,166,35,0.12);
-    --ok:        #22C08D;
-    --grid:      rgba(33,29,61,0.06);
-    --shadow:    0 1px 2px rgba(33,29,61,.04), 0 12px 28px rgba(33,29,61,.07);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --ground:   #100E22; --surface: #1A1733; --surface2: #211D42;
-      --ink: #ECEAFB; --muted: #A29DC7; --faint: #6C6791; --line: #2C2854;
-      --violet: #9A82FF; --violet-2: #C4B5FD; --pink: #F9A8D4; --blue: #7DD3FC;
-      --sos: #F3697F; --sos-soft: rgba(243,105,127,0.16);
-      --alta: #FBBF56; --alta-soft: rgba(251,191,86,0.16); --ok: #4ADE9E;
-      --grid: rgba(236,234,251,0.07); --shadow: 0 1px 2px rgba(0,0,0,.35), 0 14px 32px rgba(0,0,0,.32);
-    }
-  }
-  :root[data-theme="dark"] {
-    --ground:   #100E22; --surface: #1A1733; --surface2: #211D42;
-    --ink: #ECEAFB; --muted: #A29DC7; --faint: #6C6791; --line: #2C2854;
-    --violet: #9A82FF; --violet-2: #C4B5FD; --pink: #F9A8D4; --blue: #7DD3FC;
-    --sos: #F3697F; --sos-soft: rgba(243,105,127,0.16);
-    --alta: #FBBF56; --alta-soft: rgba(251,191,86,0.16); --ok: #4ADE9E;
-    --grid: rgba(236,234,251,0.07); --shadow: 0 1px 2px rgba(0,0,0,.35), 0 14px 32px rgba(0,0,0,.32);
-  }
-
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; background: var(--ground); color: var(--ink);
-    font-family: "IBM Plex Sans", system-ui, sans-serif; font-size: 15px; line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-  }
-  .num { font-variant-numeric: tabular-nums; }
-  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
-
-  .shell { display: grid; grid-template-columns: 240px minmax(0,1fr); min-height: 100vh; transition: grid-template-columns .22s ease; }
-  .shell.sb-collapsed { grid-template-columns: 0 minmax(0,1fr); }
-  @media (max-width: 860px) { .shell:not(.sb-expanded) { grid-template-columns: 0 minmax(0,1fr); } }
-
-  .side {
-    background: linear-gradient(180deg, var(--sidebar), var(--sidebar-2));
-    padding: 26px 20px; display: flex; flex-direction: column; gap: 30px; color: #EDEAFF;
-    position: relative; overflow: hidden; white-space: nowrap; min-width: 0;
-    transition: opacity .18s ease;
-  }
-  .shell.sb-collapsed .side { opacity: 0; padding-left: 0; padding-right: 0; }
-
-  .side-toggle {
-    position: absolute; top: 22px; right: 14px; width: 26px; height: 26px; border-radius: 999px;
-    background: rgba(255,255,255,0.08); border: none; color: #C6C0EE; cursor: pointer;
-    display: flex; align-items: center; justify-content: center; font-size: 14px; line-height: 1; flex: none;
-  }
-  .side-toggle:hover { background: rgba(255,255,255,0.16); color: #FFFFFF; }
-
-  .side-reopen {
-    display: none; position: fixed; top: 22px; left: 18px; z-index: 40;
-    width: 32px; height: 32px; border-radius: 999px; border: 1px solid var(--line);
-    background: var(--surface); color: var(--muted); box-shadow: var(--shadow); cursor: pointer;
-    align-items: center; justify-content: center; font-size: 15px; line-height: 1;
-  }
-  .side-reopen:hover { color: var(--violet); }
-  .shell.sb-collapsed .side-reopen { display: flex; }
-
-  .brand { display: flex; align-items: center; gap: 11px; padding-right: 24px; }
-  .brand .mark {
-    width: 34px; height: 34px; border-radius: 10px;
-    background: linear-gradient(135deg, var(--violet), var(--pink));
-    display: flex; align-items: center; justify-content: center;
-    font-family: "Archivo", sans-serif; font-weight: 800; font-size: 15px; color: white; flex: none;
-  }
-  .brand .name { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
-  .brand .sub { font-size: 11px; color: #A79FE0; }
-
-  .navgroup { display: flex; flex-direction: column; gap: 3px; }
-  .navlabel { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #7A72B8; padding: 0 12px; margin: 14px 0 6px; }
-  .navitem {
-    display: flex; align-items: center; gap: 11px; padding: 9px 12px; border-radius: 10px;
-    color: #C6C0EE; font-size: 13.5px; font-weight: 500; text-decoration: none;
-  }
-  a.navitem:hover { background: rgba(255,255,255,0.06); color: #FFFFFF; }
-  .navitem .dot { width: 7px; height: 7px; border-radius: 999px; background: currentColor; opacity: .55; flex: none; }
-  .navitem.active { background: rgba(255,255,255,0.08); color: #FFFFFF; }
-  .navitem.active .dot { background: var(--pink); opacity: 1; }
-
-  .side-foot { margin-top: auto; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 11.5px; color: #8B84C4; }
-
-  .main { padding: clamp(18px,3vw,34px) clamp(16px,3.5vw,40px) 60px; }
-  .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 22px; flex-wrap: wrap; }
-  .eyebrow { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--violet); margin: 0 0 6px; }
-  h1 { font-family: "Archivo", sans-serif; font-weight: 800; font-size: clamp(24px,3.4vw,32px); letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
-  .stamp-pill {
-    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--muted);
-    background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; box-shadow: var(--shadow);
-  }
-
-  .kpis { display: grid; grid-template-columns: repeat(4,1fr); gap: 13px; margin: 22px 0 30px; }
-  @media (max-width: 1080px) { .kpis { grid-template-columns: repeat(2,1fr); } }
-  .kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px 17px 14px; box-shadow: var(--shadow); }
-  .kpi .label { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); display:block; margin-bottom: 7px; }
-  .kpi .val { font-family: "Archivo", sans-serif; font-weight: 800; font-size: clamp(20px,2.6vw,25px); letter-spacing: -0.01em; }
-  .kpi.k-sos .val { color: var(--sos); }
-  .kpi.k-alta .val { color: var(--alta); }
-  .kpi.k-violet .val { color: var(--violet); }
-  .kpi.k-ok .val { color: var(--ok); }
-
-  section { margin-top: 34px; }
-  .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin-bottom: 15px; flex-wrap: wrap; }
-  h2 { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 17px; letter-spacing: -0.01em; margin: 0; }
-  .sec-note { font-size: 12px; color: var(--faint); font-family: "IBM Plex Mono", monospace; }
-
-  .equip-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; align-items: start; }
-  @media (max-width: 1180px) { .equip-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
-  @media (max-width: 640px) { .equip-grid { grid-template-columns: minmax(0,1fr); } }
-
-  .ecard { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 18px 18px 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 14px; cursor: pointer; transition: transform .12s ease, box-shadow .12s ease; text-align: left; }
-  .ecard:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(33,29,61,.08), 0 18px 34px rgba(33,29,61,.10); }
-  .ecard:focus-visible { outline: 2px solid var(--violet); outline-offset: 2px; }
-  .ecard .ehead { display: flex; align-items: center; justify-content: space-between; }
-  .ecard .etitle { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 14.5px; }
-  .ecard .eopen { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--faint); }
-
-  .donut-row { display: flex; align-items: center; gap: 16px; }
-  .donut-wrap { position: relative; width: 92px; height: 92px; flex: none; }
-  .donut-wrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
-  .donut-wrap .center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-  .donut-wrap .pctv { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 17px; }
-  .donut-wrap .pctl { font-family: "IBM Plex Mono", monospace; font-size: 8.5px; color: var(--faint); letter-spacing: .04em; text-transform: uppercase; }
-
-  .estats { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .estat { background: var(--surface2); border-radius: 10px; padding: 8px 10px; }
-  .estat .n { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 16px; }
-  .estat .l { font-family: "IBM Plex Mono", monospace; font-size: 9px; color: var(--faint); text-transform: uppercase; letter-spacing: .04em; }
-  .estat.crit .n { color: var(--sos); }
-  .estat.ok .n { color: var(--ok); }
-
-  .esos-label { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); display: flex; align-items: center; gap: 6px; }
-  .esos-label::before { content: "●"; font-size: 8px; }
-  .esos-list { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
-  .esos-item { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 11.5px; }
-  .esos-item .loja { color: var(--ink); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
-  .esos-empty { font-size: 11.5px; color: var(--faint); }
-
-  .cons-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 780px) { .cons-grid { grid-template-columns: 1fr; } }
-  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px 16px; box-shadow: var(--shadow); }
-  .card h3 { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 13.5px; margin: 0 0 14px; }
-  .hbar-row { display: grid; grid-template-columns: 108px 1fr 40px; align-items: center; gap: 10px; margin-bottom: 9px; font-size: 12px; }
-  .hbar-row .lbl { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .hbar-track { background: var(--surface2); border-radius: 999px; height: 9px; overflow: hidden; }
-  .hbar-fill { height: 100%; border-radius: 999px; }
-  .hbar-row .v { text-align: right; font-family: "IBM Plex Mono", monospace; font-weight: 600; }
-
-  footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--faint); font-size: 12px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-  .msg-carregando, .msg-erro { padding: 40px 0; text-align: center; color: var(--muted); font-family: "IBM Plex Mono", monospace; font-size: 13px; }
-  .msg-erro { color: var(--sos); }
-
-  .modal-overlay {
-    position: fixed; inset: 0; background: rgba(16,14,34,0.55); backdrop-filter: blur(2px);
-    display: flex; align-items: center; justify-content: center; padding: 24px; z-index: 50;
-  }
-  .modal-overlay[hidden] { display: none; }
-  .modal-panel {
-    background: var(--surface); border-radius: 20px; box-shadow: var(--shadow);
-    width: min(560px, 100%); max-height: min(640px, 88vh); display: flex; flex-direction: column; overflow: hidden;
-  }
-  .modal-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; border-bottom: 1px solid var(--line); flex: none; }
-  .modal-head h3 { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 16.5px; margin: 0; }
-  .modal-close {
-    appearance: none; border: none; background: var(--surface2); color: var(--muted); width: 30px; height: 30px;
-    border-radius: 999px; font-size: 17px; line-height: 1; cursor: pointer;
-  }
-  .modal-close:hover { color: var(--ink); }
-  .modal-sub { padding: 12px 22px 0; font-size: 12px; color: var(--faint); font-family: "IBM Plex Mono", monospace; flex: none; }
-  .modal-body { overflow: auto; padding: 14px 22px 20px; }
-  .detail-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
-  .detail-table th {
-    text-align: left; font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .05em; text-transform: uppercase;
-    color: var(--faint); padding: 8px 10px; position: sticky; top: 0; background: var(--surface);
-  }
-  .detail-table td { padding: 8px 10px; border-top: 1px solid var(--line); vertical-align: top; }
-  .detail-table tr:hover td { background: var(--surface2); }
-  .tag { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; font-weight: 600; border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
-  .tag-sos { background: var(--sos-soft); color: var(--sos); }
-  .tag-normal { background: var(--surface2); color: var(--muted); }
-  .filter-table-wrap { max-height: 420px; overflow: auto; border-radius: 12px; }
-  .filter-empty { padding: 24px 0; text-align: center; color: var(--faint); font-size: 12.5px; }
-  .risco-subhead { display: flex; align-items: center; gap: 10px; margin: 22px 0 10px; font-family: "Archivo", sans-serif; font-weight: 700; font-size: 14px; }
-  .risco-subhead .cnt { font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 600; border-radius: 999px; padding: 2px 10px; }
-  .risco-subhead .cnt.vencido { background: var(--sos-soft); color: var(--sos); }
-  .risco-subhead .cnt.avencer { background: var(--ok); color: white; }
-  .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 16px; }
-  .filter-field { display: flex; flex-direction: column; gap: 4px; min-width: 168px; }
-  .filter-field label {
-    font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--faint);
-  }
-  .filter-field select {
-    font-family: "IBM Plex Sans", sans-serif; font-size: 13px; color: var(--ink); background: var(--surface2);
-    border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; appearance: none; width: 100%;
-  }
-  /* combo de loja com busca por texto: 28 lojas num <select> nativo obrigava
-     rolar ate' achar. Aqui o campo e' um input que filtra a lista enquanto
-     digita (aceita o codigo "20410" ou pedaco do nome "torres"). */
-  .filter-field.combo { position: relative; min-width: 268px; }
-  .combo-input {
-    font-family: "IBM Plex Sans", sans-serif; font-size: 13px; color: var(--ink); background: var(--surface2);
-    border: 1px solid var(--line); border-radius: 10px; padding: 8px 30px 8px 10px; width: 100%;
-  }
-  .combo-input::placeholder { color: var(--muted); }
-  .combo-input:focus { outline: 2px solid var(--violet); outline-offset: -1px; }
-  .combo-x {
-    position: absolute; right: 8px; bottom: 7px; width: 20px; height: 20px; line-height: 18px; text-align: center;
-    border: 0; border-radius: 50%; background: var(--line); color: var(--ink); font-size: 14px; cursor: pointer; padding: 0;
-  }
-  .combo-x:hover { background: var(--sos-soft); color: var(--sos); }
-  .combo-lista {
-    position: absolute; top: 100%; left: 0; right: 0; z-index: 60; margin: 4px 0 0; padding: 4px; list-style: none;
-    max-height: 262px; overflow-y: auto; background: var(--surface2);
-    border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 10px 26px rgba(0,0,0,.14);
-  }
-  .combo-lista[hidden] { display: none; }
-  .combo-lista li {
-    font-family: "IBM Plex Sans", sans-serif; font-size: 13px; color: var(--ink);
-    padding: 7px 10px; border-radius: 7px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  }
-  .combo-lista li.ativo { background: var(--violet); color: #fff; }
-  .combo-lista li.todas { font-weight: 600; }
-  .combo-lista li.vazio { color: var(--faint); cursor: default; }
-  .combo-lista li.vazio.ativo { background: none; color: var(--faint); }
-  .resp-select {
-    font-family: "IBM Plex Sans", sans-serif; font-size: 12.5px; color: var(--ink); background: var(--surface2);
-    border: 1px solid var(--line); border-radius: 8px; padding: 4px 7px; min-width: 118px; cursor: pointer;
-  }
-  .resp-select:focus { outline: 2px solid var(--violet); outline-offset: -1px; }
-  .prev-date {
-    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink); background: var(--surface2);
-    border: 1px solid var(--line); border-radius: 8px; padding: 4px 7px; min-width: 128px; cursor: pointer;
-  }
-  .prev-date:focus { outline: 2px solid var(--violet); outline-offset: -1px; }
-  /* previsao de termino ja passou: precisa saltar aos olhos */
-  .prev-date.vencida {
-    border-color: #E5352B; background: #FDECEB; color: #B22119; font-weight: 700;
-  }
-  .prev-date.hoje { border-color: #F0A31B; background: #FFF6E6; color: #8A5B06; font-weight: 700; }
-  /* aviso de responsaveis/prazos nao salvos -- fica fixo no topo porque a
-     falha anterior era SILENCIOSA e custou dados digitados */
-  .aviso-atrib {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
-    font-family: "IBM Plex Sans", sans-serif; font-size: 13px; font-weight: 600;
-    padding: 11px 18px; text-align: center; line-height: 1.45;
-    box-shadow: 0 2px 10px rgba(0,0,0,.14);
-  }
-  .aviso-atrib.erro { background: #FDECEB; color: #B22119; border-bottom: 2px solid #E5352B; }
-  .aviso-atrib.pendente { background: #FFF6E6; color: #8A5B06; border-bottom: 2px solid #F0A31B; }
-  .aviso-atrib[hidden] { display: none; }
-  .filtro-limpar {
-    font-family: "IBM Plex Sans", sans-serif; font-size: 12.5px; font-weight: 600; color: var(--muted);
-    background: var(--surface2); border: 1px solid var(--line); border-radius: 10px; padding: 9px 14px; cursor: pointer;
-  }
-  .filtro-limpar:hover { color: var(--ink); }
-  .filtro-conta { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--faint); padding-bottom: 10px; }
-
-
-  /* ---- especifico do painel de Preventivas ---- */
-  .kpi .hint { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--faint); margin-top: 2px; }
-  .card-sub {
-    font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--faint);
-    margin: -4px 0 12px;
-  }
-  .abas { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
-  .aba {
-    font-family: "IBM Plex Sans", sans-serif; font-size: 13px; font-weight: 600; color: var(--muted);
-    background: var(--surface2); border: 1px solid var(--line); border-radius: 999px;
-    padding: 7px 16px; cursor: pointer;
-  }
-  .aba:hover { color: var(--ink); }
-  .aba.on { background: var(--violet); border-color: var(--violet); color: #fff; }
-
-  /* grafico de barras: abertura x conclusao por dia */
-  .glegend {
-    display: flex; gap: 14px; margin-bottom: 8px;
-    font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--faint);
-  }
-  .glegend span { display: flex; align-items: center; gap: 5px; }
-  .sw { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
-  .sw-abre { background: var(--violet); }
-  .sw-fecha { background: var(--ok); }
-  .grafico {
-    display: flex; gap: 3px; align-items: flex-end; height: 132px;
-    overflow-x: auto; padding-bottom: 2px;
-  }
-  .gcol { flex: 1 0 15px; display: flex; flex-direction: column; align-items: center; gap: 3px; }
-  .gpar { display: flex; gap: 2px; align-items: flex-end; height: 108px; width: 100%; justify-content: center; }
-  .gbar { width: 6px; border-radius: 3px 3px 0 0; min-height: 2px; }
-  .gb-abre { background: var(--violet); }
-  .gb-fecha { background: var(--ok); }
-  .glab { font-family: "IBM Plex Mono", monospace; font-size: 9px; color: var(--faint); }
-
-  /* percentual de conclusao com semaforo -- mesmo criterio dos outros paineis */
-  .pct {
-    font-family: "IBM Plex Mono", monospace; font-size: 11.5px; font-weight: 600;
-    border-radius: 999px; padding: 2px 9px;
-  }
-  .pct-ok { background: rgba(34,192,141,.13); color: var(--ok); }
-  .pct-alta { background: var(--alta-soft); color: var(--alta); }
-  .pct-sos { background: var(--sos-soft); color: var(--sos); }
-  .detail-table td.forte { font-weight: 700; }
-  .detail-table td.ruim { color: var(--sos); font-weight: 700; }
-
-  .tag.t-sos { background: var(--sos-soft); color: var(--sos); }
-  .tag.t-ok { background: rgba(34,192,141,.13); color: var(--ok); }
-  .tag.t-violet { background: rgba(124,92,252,.13); color: var(--violet); }
-  .tag.t-faint { background: var(--surface2); color: var(--faint); }
-
-  .filter-check {
-    display: flex; align-items: center; gap: 7px; padding-bottom: 9px;
-    font-family: "IBM Plex Sans", sans-serif; font-size: 13px; color: var(--muted); cursor: pointer;
-  }
-  .filter-check input { accent-color: var(--violet); width: 15px; height: 15px; cursor: pointer; }
-  .filter-table-wrap.alto { max-height: 620px; }
-
-  /* ---- farol da carteira por tecnico (mesmo velocimetro do Backlog) ---- */
-  .gauge-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; align-items: start; }
-  @media (max-width: 1180px) { .gauge-grid { grid-template-columns: repeat(3,minmax(0,1fr)); } }
-  @media (max-width: 860px) { .gauge-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
-  @media (max-width: 520px) { .gauge-grid { grid-template-columns: minmax(0,1fr); } }
-  .gcard {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
-    padding: 16px 16px 14px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 6px;
-    cursor: pointer; transition: transform .12s ease, box-shadow .12s ease; text-align: left; width: 100%;
-  }
-  .gcard:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(33,29,61,.08), 0 18px 34px rgba(33,29,61,.10); }
-  .gcard:focus-visible { outline: 2px solid var(--violet); outline-offset: 2px; }
-  .gcard.sel { border-color: var(--violet); box-shadow: 0 0 0 2px rgba(124,92,252,.22); }
-  .ghead { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 2px; }
-  .ghead > div { min-width: 0; }
-  .gname { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 13.5px; display: block; }
-  .gsetor { font-family: "IBM Plex Mono", monospace; font-size: 9.5px; color: var(--faint); text-transform: uppercase; letter-spacing: .04em; display: block; margin-top: 1px; }
-  .gdetalhe { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--faint); white-space: nowrap; flex: none; }
-  .ggauge { margin: 0 -4px; }
-  .gval { display: flex; flex-direction: column; align-items: center; margin-top: -34px; }
-  .gnum { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 26px; }
-  .glabel { font-family: "IBM Plex Mono", monospace; font-size: 9px; color: var(--faint); text-transform: uppercase; letter-spacing: .04em; }
-  .gstats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-top: 6px; }
-  .gstats .estat { padding: 6px 6px; text-align: center; }
-  .gstats .estat .n { font-size: 14px; }
-  .gstats .estat .l { font-size: 8px; }
-  .farol-legenda {
-    display: flex; gap: 16px; flex-wrap: wrap; margin: -4px 0 14px;
-    font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--faint);
-  }
-  .farol-legenda span { display: flex; align-items: center; gap: 6px; }
-  .farol-legenda i { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
-
-  /* ---- farol em rosca (teste do layout de aderencia) ---- */
-  .ader-wrap { display: grid; grid-template-columns: minmax(200px, 240px) minmax(0, 1fr); gap: 18px; align-items: start; }
-  @media (max-width: 1000px) { .ader-wrap { grid-template-columns: minmax(0,1fr); } }
-  .ader-total {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
-    padding: 18px 16px 16px; box-shadow: var(--shadow); text-align: center;
-  }
-  .ader-total h4 {
-    font-family: "Archivo", sans-serif; font-weight: 700; font-size: 13.5px; margin: 0 0 10px;
-  }
-  .ader-legenda {
-    display: flex; gap: 14px; justify-content: center; margin-top: 10px;
-    font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--faint);
-  }
-  .ader-legenda span { display: flex; align-items: center; gap: 5px; }
-  .ader-legenda i { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
-  .ader-grid {
-    display: grid; gap: 14px;
-    grid-template-columns: repeat(auto-fill, minmax(158px, 1fr));
-  }
-  .dcard {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
-    padding: 14px 12px 12px; box-shadow: var(--shadow); cursor: pointer; text-align: center;
-    display: flex; flex-direction: column; gap: 6px; width: 100%;
-    transition: transform .12s ease, box-shadow .12s ease;
-  }
-  .dcard:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(33,29,61,.08), 0 18px 34px rgba(33,29,61,.10); }
-  .dcard:focus-visible { outline: 2px solid var(--violet); outline-offset: 2px; }
-  .dcard.sel { border-color: var(--violet); box-shadow: 0 0 0 2px rgba(124,92,252,.22); }
-  .dnome {
-    font-family: "Archivo", sans-serif; font-weight: 700; font-size: 12.5px; line-height: 1.25;
-    min-height: 2.5em; display: flex; align-items: center; justify-content: center;
-    /* sem isto, um nome comprido empurra a coluna e a grade se desfaz */
-    overflow-wrap: anywhere; hyphens: auto; text-align: center;
-  }
-  .dsub { font-family: "IBM Plex Mono", monospace; font-size: 9px; color: var(--faint); text-transform: uppercase; letter-spacing: .04em; }
-  .dstats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; margin-top: 2px; }
-  .dstats .estat { padding: 5px 4px; text-align: center; }
-  .dstats .estat .n { font-size: 13px; }
-  .dstats .estat .l { font-size: 7.5px; }
-  /* ---- acompanhamento mes a mes ---- */
-  .mes-kpis { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; margin: 14px 0 4px; }
-  @media (max-width: 620px) { .mes-kpis { grid-template-columns: minmax(0,1fr); } }
-  .mes-kpi { background: var(--surface2); border-radius: 14px; padding: 16px 18px; }
-  .mes-kpi .l {
-    font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .06em;
-    text-transform: uppercase; color: var(--faint);
-  }
-  .mes-kpi .n { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 34px; line-height: 1.1; }
-  .mes-kpi .h { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--muted); margin-top: 2px; }
-  .mes-kpi.aberto .n { color: var(--violet); }
-  .mes-kpi.fechado .n { color: var(--ok); }
-  .mes-kpi.atrasado .n { color: var(--sos); }
-  .mes-kpi.ok .n { color: var(--ok); }
-  .mes-kpi.alta .n { color: var(--alta); }
-  .mes-kpi.ruim .n { color: var(--sos); }
-  .mes-linha {
-    display: flex; gap: 20px; flex-wrap: wrap; margin-top: 12px;
-    font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--muted);
-  }
-  .mes-linha b { color: var(--ink); font-weight: 600; }
-  .hist-tabela { margin-top: 18px; }
-  .hist-tabela h4 {
-    font-family: "Archivo", sans-serif; font-weight: 700; font-size: 12px; margin: 0 0 8px;
-  }
-
-  /* ---- copiar para o WhatsApp ---- */
-  .zap-linha { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: -4px 0 12px; }
-  .btn-zap {
-    font-family: "IBM Plex Sans", sans-serif; font-size: 12.5px; font-weight: 600;
-    color: #fff; background: #25D366; border: 0; border-radius: 10px;
-    padding: 9px 15px; cursor: pointer; display: inline-flex; align-items: center; gap: 7px;
-  }
-  .btn-zap:hover { filter: brightness(.94); }
-  .btn-zap:disabled { opacity: .55; cursor: default; }
-  .btn-zap.ok { background: var(--ok); }
-  .zap-aviso { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--faint); }
-  .zap-aviso.alerta { color: var(--alta); }
-
-  .farol-zerados {
-    font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--faint);
-    margin: 14px 0 0; line-height: 1.5;
-  }
-
+:root {
+--cobalto: #1e3bff;
+--laranja: #ff6b00;
+--laranja-bg: #fff4ee;
+--rosa: #ff3366;
+--verde: #00c853;
+--verde-bg: #e8fdf0;
+--amarelo: #ffcc00;
+--amarelo-bg: #fffef0;
+--cinza: #6b7280;
+--cinza-bg: #f3f4f6;
+--surface: #ffffff;
+--bg: #f8f9fc;
+--text: #111827;
+--text-2: #374151;
+--text-3: #9ca3af;
+--border: #e5e7eb;
+--shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.05);
+--r: 10px; --r-lg: 16px; --r-xl: 20px;
+--sidebar-w: 220px;
+/* aliases usados pelo JS existente */
+--ink: var(--text);
+--muted: var(--text-3);
+--faint: var(--text-3);
+--line: var(--border);
+--ground: var(--bg);
+--surface2: var(--cinza-bg);
+--violet: var(--cobalto);
+--violet-2: var(--cobalto);
+--pink: var(--rosa);
+--blue: var(--cobalto);
+--sos: var(--rosa);
+--sos-soft: rgba(255,51,102,0.10);
+--alta: var(--laranja);
+--alta-soft: rgba(255,107,0,0.12);
+--ok: var(--verde);
+--grid: rgba(0,0,0,0.06);
+}
+[data-theme="dark"] {
+--surface: #1a1d2e; --bg: #0f1120; --text: #f1f5f9; --text-2: #94a3b8; --text-3: #475569;
+--border: #2d3148; --shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 12px rgba(0,0,0,.2);
+--cinza-bg: #1f2235; --verde-bg: #0d2e1a; --laranja-bg: #2d1a0d;
+--rosa-bg: #2d0d1a; --amarelo-bg: #2d2a0d;
+--sos-soft: rgba(255,51,102,0.16); --alta-soft: rgba(255,107,0,0.16);
+--grid: rgba(255,255,255,0.07);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; transition: background .25s, color .25s; }
+.num { font-variant-numeric: tabular-nums; }
+.mono { font-family: 'Inter', monospace; }
+header { background: var(--surface); border-bottom: 2px solid var(--cobalto); padding: 12px 24px; display: flex; align-items: center; gap: 14px; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow); }
+.brand-mark { width: 38px; height: 38px; background: var(--cobalto); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: 900; flex-shrink: 0; }
+.header-title { flex: 1; }
+.header-title h1 { font-size: 18px; font-weight: 800; color: var(--text); line-height: 1.1; }
+.header-title span { font-size: 11px; font-weight: 500; color: var(--text-3); text-transform: uppercase; letter-spacing: .5px; }
+.carimbo { background: var(--cobalto); color: white; font-size: 11px; font-weight: 700; padding: 5px 11px; border-radius: 20px; white-space: nowrap; }
+.theme-btn { background: var(--bg); border: 1.5px solid var(--border); border-radius: 8px; width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; transition: background .2s; }
+.theme-btn:hover { background: var(--border); }
+.layout { display: flex; flex: 1; }
+aside { width: var(--sidebar-w); background: var(--surface); border-right: 1.5px solid var(--border); padding: 18px 14px; display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
+aside .s-header { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--text-3); padding: 0 8px; margin-bottom: 4px; }
+aside a, aside .navitem-static { display: flex; align-items: center; gap: 9px; padding: 8px 10px; border-radius: var(--r); color: var(--text-2); text-decoration: none; font-size: 13px; font-weight: 500; transition: background .15s, color .15s; cursor: pointer; }
+aside a:hover, aside .navitem-static:hover { background: var(--bg); color: var(--text); }
+aside a.active { background: var(--cobalto); color: white; }
+aside .s-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: .7; flex: none; }
+aside a.active .s-dot { background: white; opacity: 1; }
+.side-foot { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-3); padding-left: 8px; }
+main { flex: 1; padding: 22px 24px; overflow-y: auto; }
+.kpis { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-bottom: 18px; }
+@media (max-width: 1080px) { .kpis { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 640px) { .kpis { grid-template-columns: 1fr; } }
+.kpi { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r-lg); padding: 16px 18px; box-shadow: var(--shadow); }
+.kpi .label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; color: var(--text-3); display: block; margin-bottom: 7px; }
+.kpi .val { font-size: clamp(22px,2.6vw,30px); font-weight: 900; letter-spacing: -1px; }
+.kpi .hint { font-size: 10px; color: var(--text-3); margin-top: 2px; }
+.kpi.k-sos .val { color: var(--rosa); }
+.kpi.k-alta .val { color: var(--laranja); }
+.kpi.k-violet .val { color: var(--cobalto); }
+.kpi.k-ok .val { color: var(--verde); }
+section { margin-top: 28px; }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin-bottom: 12px; flex-wrap: wrap; }
+h2 { font-size: 15px; font-weight: 700; margin: 0; }
+.sec-note { font-size: 11px; color: var(--text-3); }
+.card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r-lg); padding: 18px 20px 16px; box-shadow: var(--shadow); }
+.card h3 { font-weight: 700; font-size: 13.5px; margin: 0 0 14px; }
+.card-sub { font-size: 11px; color: var(--text-3); margin: -4px 0 12px; }
+.abas { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+.aba { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: var(--text-2); background: var(--cinza-bg); border: 1.5px solid var(--border); border-radius: 999px; padding: 7px 16px; cursor: pointer; }
+.aba:hover { color: var(--text); }
+.aba.on { background: var(--cobalto); border-color: var(--cobalto); color: #fff; }
+/* grafico de barras */
+.glegend { display: flex; gap: 14px; margin-bottom: 8px; font-size: 10.5px; color: var(--text-3); }
+.glegend span { display: flex; align-items: center; gap: 5px; }
+.sw { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
+.sw-abre { background: var(--cobalto); }
+.sw-fecha { background: var(--verde); }
+.grafico { display: flex; gap: 3px; align-items: flex-end; height: 132px; overflow-x: auto; padding-bottom: 2px; }
+.gcol { flex: 1 0 15px; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.gpar { display: flex; gap: 2px; align-items: flex-end; height: 108px; width: 100%; justify-content: center; }
+.gbar { width: 6px; border-radius: 3px 3px 0 0; min-height: 2px; }
+.gb-abre { background: var(--cobalto); }
+.gb-fecha { background: var(--verde); }
+.glab { font-size: 9px; color: var(--text-3); }
+/* percentual com semaforo */
+.pct { font-size: 11.5px; font-weight: 600; border-radius: 999px; padding: 2px 9px; }
+.pct-ok { background: rgba(0,200,83,.13); color: var(--verde); }
+.pct-alta { background: var(--alta-soft); color: var(--laranja); }
+.pct-sos { background: var(--sos-soft); color: var(--rosa); }
+.detail-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.detail-table th { text-align: left; font-size: 10px; letter-spacing: .05em; text-transform: uppercase; color: var(--text-3); padding: 8px 10px; position: sticky; top: 0; background: var(--surface); }
+.detail-table td { padding: 8px 10px; border-top: 1px solid var(--border); vertical-align: top; }
+.detail-table tr:hover td { background: var(--cinza-bg); }
+.detail-table td.forte { font-weight: 700; }
+.detail-table td.ruim { color: var(--rosa); font-weight: 700; }
+.tag { font-size: 10.5px; font-weight: 600; border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
+.tag.t-sos { background: var(--sos-soft); color: var(--rosa); }
+.tag.t-ok { background: rgba(0,200,83,.13); color: var(--verde); }
+.tag.t-violet { background: rgba(30,59,255,.13); color: var(--cobalto); }
+.tag.t-faint { background: var(--cinza-bg); color: var(--text-3); }
+.filter-table-wrap { max-height: 420px; overflow: auto; border-radius: 12px; }
+.filter-table-wrap.alto { max-height: 620px; }
+.filter-empty { padding: 24px 0; text-align: center; color: var(--text-3); font-size: 12.5px; }
+.filter-bar { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 16px; }
+.filter-field { display: flex; flex-direction: column; gap: 4px; min-width: 168px; }
+.filter-field label { font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-3); }
+.filter-field select { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text); background: var(--cinza-bg); border: 1.5px solid var(--border); border-radius: var(--r); padding: 8px 10px; appearance: none; width: 100%; }
+.filter-field.combo { position: relative; min-width: 268px; }
+.combo-input { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text); background: var(--cinza-bg); border: 1.5px solid var(--border); border-radius: var(--r); padding: 8px 30px 8px 10px; width: 100%; }
+.combo-input::placeholder { color: var(--text-3); }
+.combo-input:focus { outline: 2px solid var(--cobalto); outline-offset: -1px; }
+.combo-x { position: absolute; right: 8px; bottom: 7px; width: 20px; height: 20px; line-height: 18px; text-align: center; border: 0; border-radius: 50%; background: var(--border); color: var(--text); font-size: 14px; cursor: pointer; padding: 0; }
+.combo-x:hover { background: var(--sos-soft); color: var(--rosa); }
+.combo-lista { position: absolute; top: 100%; left: 0; right: 0; z-index: 60; margin: 4px 0 0; padding: 4px; list-style: none; max-height: 262px; overflow-y: auto; background: var(--cinza-bg); border: 1.5px solid var(--border); border-radius: var(--r); box-shadow: 0 10px 26px rgba(0,0,0,.14); }
+.combo-lista[hidden] { display: none; }
+.combo-lista li { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text); padding: 7px 10px; border-radius: 7px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.combo-lista li.ativo { background: var(--cobalto); color: #fff; }
+.combo-lista li.todas { font-weight: 600; }
+.combo-lista li.vazio { color: var(--text-3); cursor: default; }
+.combo-lista li.vazio.ativo { background: none; color: var(--text-3); }
+.filter-check { display: flex; align-items: center; gap: 7px; padding-bottom: 9px; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text-2); cursor: pointer; }
+.filter-check input { accent-color: var(--cobalto); width: 15px; height: 15px; cursor: pointer; }
+.filtro-limpar { font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 600; color: var(--text-2); background: var(--cinza-bg); border: 1.5px solid var(--border); border-radius: var(--r); padding: 9px 14px; cursor: pointer; }
+.filtro-limpar:hover { color: var(--text); }
+.filtro-conta { font-size: 11.5px; color: var(--text-3); padding-bottom: 10px; }
+/* mes a mes */
+.mes-kpis { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; margin: 14px 0 4px; }
+@media (max-width: 620px) { .mes-kpis { grid-template-columns: minmax(0,1fr); } }
+.mes-kpi { background: var(--cinza-bg); border-radius: 14px; padding: 16px 18px; }
+.mes-kpi .l { font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-3); }
+.mes-kpi .n { font-weight: 800; font-size: 34px; line-height: 1.1; }
+.mes-kpi .h { font-size: 10.5px; color: var(--text-2); margin-top: 2px; }
+.mes-kpi.aberto .n { color: var(--cobalto); }
+.mes-kpi.fechado .n { color: var(--verde); }
+.mes-kpi.atrasado .n { color: var(--rosa); }
+.mes-kpi.ok .n { color: var(--verde); }
+.mes-kpi.alta .n { color: var(--laranja); }
+.mes-kpi.ruim .n { color: var(--rosa); }
+.mes-linha { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 12px; font-size: 11.5px; color: var(--text-2); }
+.mes-linha b { color: var(--text); font-weight: 600; }
+/* farol aderencia */
+.ader-wrap { display: grid; grid-template-columns: minmax(200px, 240px) minmax(0, 1fr); gap: 18px; align-items: start; }
+@media (max-width: 1000px) { .ader-wrap { grid-template-columns: minmax(0,1fr); } }
+.ader-total { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r-lg); padding: 18px 16px 16px; box-shadow: var(--shadow); text-align: center; }
+.ader-total h4 { font-weight: 700; font-size: 13.5px; margin: 0 0 10px; }
+.ader-legenda { display: flex; gap: 14px; justify-content: center; margin-top: 10px; font-size: 10px; color: var(--text-3); }
+.ader-legenda span { display: flex; align-items: center; gap: 5px; }
+.ader-legenda i { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
+.ader-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(158px, 1fr)); }
+.dcard { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r-lg); padding: 14px 12px 12px; box-shadow: var(--shadow); cursor: pointer; text-align: center; display: flex; flex-direction: column; gap: 6px; width: 100%; transition: transform .12s ease, box-shadow .12s ease; }
+.dcard:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,.08), 0 18px 34px rgba(0,0,0,.10); }
+.dcard:focus-visible { outline: 2px solid var(--cobalto); outline-offset: 2px; }
+.dcard.sel { border-color: var(--cobalto); box-shadow: 0 0 0 2px rgba(30,59,255,.22); }
+.dnome { font-weight: 700; font-size: 12.5px; line-height: 1.25; min-height: 2.5em; display: flex; align-items: center; justify-content: center; overflow-wrap: anywhere; hyphens: auto; text-align: center; }
+.dsub { font-size: 9px; color: var(--text-3); text-transform: uppercase; letter-spacing: .04em; }
+.dstats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; margin-top: 2px; }
+.dstats .estat { padding: 5px 4px; text-align: center; background: var(--cinza-bg); border-radius: var(--r); }
+.dstats .estat .n { font-weight: 700; font-size: 13px; }
+.dstats .estat .l { font-size: 7.5px; color: var(--text-3); text-transform: uppercase; letter-spacing: .04em; }
+.dstats .estat.crit .n { color: var(--rosa); }
+.dstats .estat.ok .n { color: var(--verde); }
+/* zap */
+.zap-linha { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: -4px 0 12px; }
+.btn-zap { font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 600; color: #fff; background: #25D366; border: 0; border-radius: 10px; padding: 9px 15px; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; }
+.btn-zap:hover { filter: brightness(.94); }
+.btn-zap:disabled { opacity: .55; cursor: default; }
+.btn-zap.ok { background: var(--verde); }
+.zap-aviso { font-size: 11px; color: var(--text-3); }
+.zap-aviso.alerta { color: var(--laranja); }
+.farol-zerados { font-size: 10.5px; color: var(--text-3); margin: 14px 0 0; line-height: 1.5; }
+footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--text-3); font-size: 12px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.msg-carregando, .msg-erro { padding: 40px 0; text-align: center; color: var(--text-2); font-size: 13px; }
+.msg-erro { color: var(--rosa); }
+@media (max-width: 900px) { :root { --sidebar-w: 0px; } aside { display: none; } }
+@media (max-width: 600px) { main { padding: 14px; } }
 </style>
 </head>
 <body>
-<div class="shell">
-  <aside class="side">
-    <button class="side-toggle" id="sideToggle" type="button" aria-label="Recolher menu">‹</button>
-    <div class="brand">
-      <div class="mark">Z</div>
-      <div><div class="name">Manutenção Sul</div><div class="sub">Zamp · BK Brasil</div></div>
-    </div>
-    <div class="navgroup">
-      <a class="navitem" href="index.html"><span class="dot"></span>Backlog</a>
-      <a class="navitem" href="tecnicos.html"><span class="dot"></span>Técnicos</a>
-      <div class="navlabel">Painéis</div>
-      <a class="navitem" href="perda.html"><span class="dot"></span>Perda de Receita</a>
-      <a class="navitem" href="risco.html"><span class="dot"></span>Gestão de Risco</a>
-      <a class="navitem" href="campo.html"><span class="dot"></span>Acompanhamento Campo</a>
-      <a class="navitem active" href="preventivas.html"><span class="dot"></span>Preventivas</a>
-      <a class="navitem" href="sorvete.html"><span class="dot"></span>Máquina de Sorvete</a>
-<a class="navitem" href="pecas.html"><span class="dot"></span>PeÃ§as / Materiais</a>
-      <div class="navlabel">Fonte</div>
-      <div class="navitem"><span class="dot"></span>ServiceNow · SOMA</div>
-    </div>
-    <div class="side-foot">Atualização diária · fonte SOMA (wm_task)</div>
-  </aside>
-  <button class="side-reopen" id="sideReopen" type="button" aria-label="Abrir menu">›</button>
-
-  <main class="main">
-    <div class="topbar">
-      <div>
-        <p class="eyebrow">Regional Sul · Manutenção Preventiva</p>
-        <h1>Preventivas</h1>
-      </div>
-      <div class="stamp-pill" id="stamp">carregando…</div>
-    </div>
-    <div id="conteudo"><div class="msg-carregando">carregando data/preventivas.json…</div></div>
-  </main>
+<header>
+<div class="brand-mark">Z</div>
+<div class="header-title"><h1>Preventivas</h1><span>Manutenção Sul · Regional Sul</span></div>
+<div class="carimbo" id="stamp">carregando…</div>
+<button class="theme-btn" onclick="toggleTheme()" title="Alternar tema">&#9788;</button>
+</header>
+<div class="layout">
+<aside>
+<div class="s-header">Navegação</div>
+<a href="index.html"><span class="s-dot"></span> Backlog</a>
+<a href="tecnicos.html"><span class="s-dot"></span> Técnicos</a>
+<div class="s-header" style="margin-top:12px">Painéis</div>
+<a href="perda.html"><span class="s-dot" style="color:var(--laranja)"></span> Perda de Receita</a>
+<a href="risco.html"><span class="s-dot" style="color:var(--rosa)"></span> Gestão de Risco</a>
+<a href="campo.html"><span class="s-dot" style="color:var(--cobalto)"></span> Acompanhamento Campo</a>
+<a class="active" href="preventivas.html"><span class="s-dot" style="color:var(--verde)"></span> Preventivas</a>
+<a href="sorvete.html"><span class="s-dot" style="color:var(--amarelo)"></span> Máquina de Sorvete</a>
+<a href="pecas.html"><span class="s-dot" style="color:var(--cinza)"></span> Peças / Materiais</a>
+<div class="s-header" style="margin-top:12px">Fonte</div>
+<div class="navitem-static"><span class="s-dot"></span> ServiceNow · SOMA</div>
+<div class="side-foot">Atualização diária · fonte SOMA (wm_task)</div>
+</aside>
+<main>
+<div id="conteudo"><div class="msg-carregando">carregando data/preventivas.json…</div></div>
+</main>
 </div>
-
 <script>
+function toggleTheme() {
+var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+document.documentElement.setAttribute('data-theme', next);
+localStorage.setItem('preventivas-theme', next);
+}
+(function() {
+var saved = localStorage.getItem('preventivas-theme');
+if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
 let DADOS = null;
 const VISTA = { aba: 'tecnico', farol: 'tecnico', mes: null };
 const FILTROS = { loja: '', tecnico: '', setor: '', estado: '', equipamento: '', soAtrasadas: false };
 let LOJAS_LISTA = [];
-
 function escapeHtml(s) {
-  return String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+return String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
 }
 const chaveBusca = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 const n = (v) => (v == null ? '—' : String(v));
-
-// ---------- barra lateral ----------
-(function () {
-  const shell = document.querySelector('.shell');
-  const fechar = () => shell.classList.add('side-collapsed');
-  const abrir = () => shell.classList.remove('side-collapsed');
-  document.getElementById('sideToggle')?.addEventListener('click', fechar);
-  document.getElementById('sideReopen')?.addEventListener('click', abrir);
-})();
-
-// ---------- KPIs ----------
 function kpis(t) {
-  const c = (rotulo, valor, cls, nota) => `<div class="kpi ${cls || ''}">
-    <div class="label">${escapeHtml(rotulo)}</div>
-    <div class="val num">${escapeHtml(String(valor))}</div>
-    ${nota ? `<div class="hint">${escapeHtml(nota)}</div>` : ''}
-  </div>`;
-  return `<div class="kpis">
-    ${c('Preventivas em aberto', t.abertas, 'k-violet', t.total + ' na janela de ' + DADOS.janelaDias + ' dias')}
-    ${c('Atrasadas', t.atrasadas, 'k-sos', t.pctAtraso + '% das abertas')}
-    ${c('Concluídas', t.concluidas, 'k-ok', t.pctConclusao + '% de conclusão')}
-    ${c('Mais antiga em aberto', t.maisAntigaDias + 'd', 'k-alta', 'média ' + t.mediaDiasAberta + 'd')}
-  </div>
-  <div class="kpis">
-    ${c('Lojas com preventiva', t.lojas, '', 'na regional Sul')}
-    ${c('Equipamentos', t.equipamentos ?? '—', '', 'tipos distintos em preventiva')}
-    ${c('Canceladas', t.canceladas, '', 'fora do cálculo de conclusão')}
-    ${c('Total no período', t.total, '', 'abertas + concluídas + canceladas')}
-  </div>`;
+const c = (rotulo, valor, cls, nota) => `<div class="kpi ${cls || ''}">
+<div class="label">${escapeHtml(rotulo)}</div>
+<div class="val num">${escapeHtml(String(valor))}</div>
+${nota ? `<div class="hint">${escapeHtml(nota)}</div>` : ''}
+</div>`;
+return `<div class="kpis">
+${c('Preventivas em aberto', t.abertas, 'k-violet', t.total + ' na janela de ' + DADOS.janelaDias + ' dias')}
+${c('Atrasadas', t.atrasadas, 'k-sos', t.pctAtraso + '% das abertas')}
+${c('Concluídas', t.concluidas, 'k-ok', t.pctConclusao + '% de conclusão')}
+${c('Mais antiga em aberto', t.maisAntigaDias + 'd', 'k-alta', 'média ' + t.mediaDiasAberta + 'd')}
+</div>
+<div class="kpis">
+${c('Lojas com preventiva', t.lojas, '', 'na regional Sul')}
+${c('Equipamentos', t.equipamentos ?? '—', '', 'tipos distintos em preventiva')}
+${c('Canceladas', t.canceladas, '', 'fora do cálculo de conclusão')}
+${c('Total no período', t.total, '', 'abertas + concluídas + canceladas')}
+</div>`;
 }
-
-// ---------- gráfico de abertura x conclusão ----------
 function grafico(serie) {
-  if (!serie || !serie.length) return '';
-  const max = Math.max(1, ...serie.map(d => Math.max(d.abertas, d.concluidas)));
-  const barras = serie.map(d => {
-    const [ano, mes, dia] = d.dia.split('-');
-    return `<div class="gcol" title="${escapeHtml(dia + '/' + mes)} · ${d.abertas} abertas · ${d.concluidas} concluídas">
-      <div class="gpar">
-        <div class="gbar gb-abre" style="height:${Math.round(d.abertas / max * 100)}%"></div>
-        <div class="gbar gb-fecha" style="height:${Math.round(d.concluidas / max * 100)}%"></div>
-      </div>
-      <div class="glab">${escapeHtml(dia)}</div>
-    </div>`;
-  }).join('');
-  return `<div class="card">
-    <h3>Abertura × conclusão por dia</h3>
-    <p class="card-sub">últimos ${serie.length} dias com movimento · pico de ${max} no dia</p>
-    <div class="glegend">
-      <span><i class="sw sw-abre"></i>abertas</span><span><i class="sw sw-fecha"></i>concluídas</span>
-    </div>
-    <div class="grafico">${barras}</div>
-  </div>`;
+if (!serie || !serie.length) return '';
+const max = Math.max(1, ...serie.map(d => Math.max(d.abertas, d.concluidas)));
+const barras = serie.map(d => {
+const [ano, mes, dia] = d.dia.split('-');
+return `<div class="gcol" title="${escapeHtml(dia + '/' + mes)} · ${d.abertas} abertas · ${d.concluidas} concluídas">
+<div class="gpar">
+<div class="gbar gb-abre" style="height:${Math.round(d.abertas / max * 100)}%"></div>
+<div class="gbar gb-fecha" style="height:${Math.round(d.concluidas / max * 100)}%"></div>
+</div>
+<div class="glab">${escapeHtml(dia)}</div>
+</div>`;
+}).join('');
+return `<div class="card">
+<h3>Abertura × conclusão por dia</h3>
+<p class="card-sub">últimos ${serie.length} dias com movimento · pico de ${max} no dia</p>
+<div class="glegend">
+<span><i class="sw sw-abre"></i>abertas</span><span><i class="sw sw-fecha"></i>concluídas</span>
+</div>
+<div class="grafico">${barras}</div>
+</div>`;
 }
-
-// ---------- acompanhamento mês a mês ----------
-// Aberto / fechado / atrasado com uma aba por mês. As contagens saem do
-// SOMA, que só enxerga preventiva a partir de agosto/2026 -- o histórico
-// mais antigo existe só no Power BI e entra como percentual, na tabela de
-// baixo, com a fonte dita em cada coluna.
 const MES_NOME = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
 function rotuloMes(iso) {
-  const m = String(iso || '').match(/^(\d{4})-(\d{2})$/);
-  if (!m) return iso || '—';
-  const nome = MES_NOME[+m[2] - 1] || '?';
-  return nome.charAt(0).toUpperCase() + nome.slice(1) + '/' + m[1].slice(2);
+const m = String(iso || '').match(/^(\d{4})-(\d{2})$/);
+if (!m) return iso || '—';
+const nome = MES_NOME[+m[2] - 1] || '?';
+return nome.charAt(0).toUpperCase() + nome.slice(1) + '/' + m[1].slice(2);
 }
-
 function blocoMeses() {
-  const meses = DADOS.porMes || [];
-  if (!meses.length) return '';
-  if (!VISTA.mes || !meses.some(m => m.mes === VISTA.mes)) VISTA.mes = meses[0].mes;
-  const atual = meses.find(m => m.mes === VISTA.mes) || meses[0];
-
-  const abas = meses.map(m =>
-    `<button type="button" class="aba${m.mes === VISTA.mes ? ' on' : ''}" data-mes="${m.mes}">${escapeHtml(rotuloMes(m.mes))}</button>`).join('');
-
-  const kpi = (cls, rotulo, valor, hint) => `<div class="mes-kpi ${cls}">
-    <div class="l">${escapeHtml(rotulo)}</div>
-    <div class="n num">${valor}</div>
-    <div class="h">${escapeHtml(hint)}</div>
-  </div>`;
-
-  const bi = DADOS.bi && !DADOS.bi.erro ? DADOS.bi : null;
-
-  // segunda fileira do mês: os percentuais, do mesmo tamanho dos números de
-  // cima. O % de execução e o de lojas vêm do Power BI (régua oficial); o
-  // 'já fechou' é a minha conta de coorte sobre o que abriu no mês.
-  const pctNum = (p) => parseInt(String(p).replace(',', '.'), 10);
-  const semaforo = (p) => (pctNum(p) >= 60 ? ' ok' : pctNum(p) >= 35 ? ' alta' : ' ruim');
-  const cardPct = (rotulo, valor, hint) => `<div class="mes-kpi${semaforo(valor)}">
-    <div class="l">${escapeHtml(rotulo)}</div>
-    <div class="n num">${escapeHtml(String(valor))}</div>
-    <div class="h">${escapeHtml(hint)}</div>
-  </div>`;
-  const pcts = [
-    cardPct('Do que abriu, já fechou', atual.pct + '%', 'minha contagem no SOMA'),
-    atual.pctExecucaoBI ? cardPct('% execução', atual.pctExecucaoBI, 'fonte Power BI') : '',
-    atual.pctLojasBI ? cardPct('Lojas com preventiva fechada', atual.pctLojasBI, 'fonte Power BI') : '',
-  ].filter(Boolean).join('');
-
-  const linha = [
-    `<span>ainda em aberto hoje <b>${atual.emAberto}</b></span>`,
-    atual.canceladas ? `<span>canceladas <b>${atual.canceladas}</b></span>` : '',
-  ].filter(Boolean).join('');
-
-  // a tabela de 21 meses saiu a pedido do Christian: o percentual dos meses
-  // que interessam ja fica nos KPIs do topo. Se o BI falhar, aviso aqui.
-  const hist = (DADOS.bi && DADOS.bi.erro)
-    ? `<p class="farol-zerados">Série do Power BI não entrou nesta rodada: ${escapeHtml(DADOS.bi.erro)}.</p>`
-    : '';
-  const ordens = (DADOS.ordensFechadasPorMes || {})[atual.mes];
-  const notaOrdens = ordens
-    ? `<p class="farol-zerados">No mês, o SOMA fechou <b>${ordens.total}</b> ordens de preventiva (${ordens.concluidas} concluídas, ${ordens.canceladas} canceladas). A ordem agrupa as tarefas de uma mesma visita, por isso o número é menor que o de tarefas fechadas.</p>`
-    : '';
-
-  return `<div class="card">
-    <h3>Acompanhamento mês a mês</h3>
-    <div class="abas">${abas}</div>
-    <p class="card-sub">aberto = abriu no mês · fechado = foi encerrado no mês, tenha aberto quando tiver · atrasado = abriu no mês e segue vencido hoje</p>
-    <div class="mes-kpis">
-      ${kpi('aberto', 'Abertos no mês', atual.abertas, 'preventivas criadas em ' + rotuloMes(atual.mes))}
-      ${kpi('fechado', 'Fechados no mês', atual.fechadas, 'encerradas dentro do mês')}
-      ${kpi('atrasado', 'Atrasados', atual.atrasadas, 'abertos no mês e vencidos hoje')}
-    </div>
-    <div class="mes-kpis">${pcts}</div>
-    <div class="mes-linha">${linha}</div>
-    ${notaOrdens}
-    ${hist}
-  </div>`;
+const meses = DADOS.porMes || [];
+if (!meses.length) return '';
+if (!VISTA.mes || !meses.some(m => m.mes === VISTA.mes)) VISTA.mes = meses[0].mes;
+const atual = meses.find(m => m.mes === VISTA.mes) || meses[0];
+const abas = meses.map(m =>
+`<button type="button" class="aba${m.mes === VISTA.mes ? ' on' : ''}" data-mes="${m.mes}">${escapeHtml(rotuloMes(m.mes))}</button>`).join('');
+const kpi = (cls, rotulo, valor, hint) => `<div class="mes-kpi ${cls}">
+<div class="l">${escapeHtml(rotulo)}</div>
+<div class="n num">${valor}</div>
+<div class="h">${escapeHtml(hint)}</div>
+</div>`;
+const bi = DADOS.bi && !DADOS.bi.erro ? DADOS.bi : null;
+const pctNum = (p) => parseInt(String(p).replace(',', '.'), 10);
+const semaforo = (p) => (pctNum(p) >= 60 ? ' ok' : pctNum(p) >= 35 ? ' alta' : ' ruim');
+const cardPct = (rotulo, valor, hint) => `<div class="mes-kpi${semaforo(valor)}">
+<div class="l">${escapeHtml(rotulo)}</div>
+<div class="n num">${escapeHtml(String(valor))}</div>
+<div class="h">${escapeHtml(hint)}</div>
+</div>`;
+const pcts = [
+cardPct('Do que abriu, já fechou', atual.pct + '%', 'minha contagem no SOMA'),
+atual.pctExecucaoBI ? cardPct('% execução', atual.pctExecucaoBI, 'fonte Power BI') : '',
+atual.pctLojasBI ? cardPct('Lojas com preventiva fechada', atual.pctLojasBI, 'fonte Power BI') : '',
+].filter(Boolean).join('');
+const linha = [
+`<span>ainda em aberto hoje <b>${atual.emAberto}</b></span>`,
+atual.canceladas ? `<span>canceladas <b>${atual.canceladas}</b></span>` : '',
+].filter(Boolean).join('');
+const hist = (DADOS.bi && DADOS.bi.erro)
+? `<p class="farol-zerados">Série do Power BI não entrou nesta rodada: ${escapeHtml(DADOS.bi.erro)}.</p>`
+: '';
+const ordens = (DADOS.ordensFechadasPorMes || {})[atual.mes];
+const notaOrdens = ordens
+? `<p class="farol-zerados">No mês, o SOMA fechou <b>${ordens.total}</b> ordens de preventiva (${ordens.concluidas} concluídas, ${ordens.canceladas} canceladas). A ordem agrupa as tarefas de uma mesma visita, por isso o número é menor que o de tarefas fechadas.</p>`
+: '';
+return `<div class="card">
+<h3>Acompanhamento mês a mês</h3>
+<div class="abas">${abas}</div>
+<p class="card-sub">aberto = abriu no mês · fechado = foi encerrado no mês, tenha aberto quando tiver · atrasado = abriu no mês e segue vencido hoje</p>
+<div class="mes-kpis">
+${kpi('aberto', 'Abertos no mês', atual.abertas, 'preventivas criadas em ' + rotuloMes(atual.mes))}
+${kpi('fechado', 'Fechados no mês', atual.fechadas, 'encerradas dentro do mês')}
+${kpi('atrasado', 'Atrasados', atual.atrasadas, 'abertos no mês e vencidos hoje')}
+</div>
+<div class="mes-kpis">${pcts}</div>
+<div class="mes-linha">${linha}</div>
+${notaOrdens}
+${hist}
+</div>`;
 }
-
-// ---------- farol da carteira ----------
-
-// Duas visões na mesma moldura: aderência por TÉCNICO (quem está segurando) e
-// por EQUIPAMENTO (o que está parado).
 const FAROIS = {
-  tecnico: {
-    rotulo: 'Por técnico',
-    dados: () => (DADOS.porTecnico || []).filter(x => x.nome !== '(sem tecnico)'),
-    filtro: 'tecnico',
-  },
-  equipamento: {
-    rotulo: 'Por equipamento',
-    dados: () => (DADOS.porEquipamento || []).filter(x => x.nome !== '(sem equipamento)'),
-    filtro: 'equipamento',
-  },
+tecnico: { rotulo: 'Por técnico', dados: () => (DADOS.porTecnico || []).filter(x => x.nome !== '(sem tecnico)'), filtro: 'tecnico' },
+equipamento: { rotulo: 'Por equipamento', dados: () => (DADOS.porEquipamento || []).filter(x => x.nome !== '(sem equipamento)'), filtro: 'equipamento' },
 };
-
-// Rosca de aderência, no lugar do velocímetro (layout que o Christian trouxe
-// do relatório de aderência de manutenção). O velocímetro mostrava TAMANHO
-// da carteira; a rosca mostra PROPORÇÃO -- quanto do que entrou no período já
-// foi fechado. São perguntas diferentes, e a contagem continua nas caixinhas
-// embaixo para não se perder.
-//
-// fill/stroke vão em style="" e não como atributo de apresentação: no Edge do
-// Christian, var() dentro de stroke="" não resolve e o desenho some. Mesmo
-// motivo do width/height explícito além do viewBox.
 function donutSVG(pct, tamanho, cor) {
-  const p = Math.max(0, Math.min(100, Number(pct) || 0));
-  const r = 42, c = 2 * Math.PI * r;
-  const cheio = (p / 100) * c;
-  const fonte = 24;   // unidades do viewBox (120), NAO pixels da tela
-  return `<svg viewBox="0 0 120 120" width="${tamanho}" height="${tamanho}"
-    style="display:block;margin:0 auto;max-width:100%;height:auto;">
-    <circle cx="60" cy="60" r="${r}" style="fill:none;stroke:var(--line)" stroke-width="16"/>
-    <circle cx="60" cy="60" r="${r}" style="fill:none;stroke:${cor}" stroke-width="16"
-      stroke-dasharray="${cheio.toFixed(1)} ${(c - cheio).toFixed(1)}"
-      stroke-linecap="butt" transform="rotate(-90 60 60)"/>
-    <text x="60" y="60" text-anchor="middle" dominant-baseline="central"
-      style="fill:${cor};font-family:Archivo,sans-serif;font-weight:800;font-size:${fonte}px">${p}%</text>
-  </svg>`;
+const p = Math.max(0, Math.min(100, Number(pct) || 0));
+const r = 42, c = 2 * Math.PI * r;
+const cheio = (p / 100) * c;
+const fonte = 24;
+return `<svg viewBox="0 0 120 120" width="${tamanho}" height="${tamanho}"
+style="display:block;margin:0 auto;max-width:100%;height:auto;">
+<circle cx="60" cy="60" r="${r}" style="fill:none;stroke:var(--line)" stroke-width="16"/>
+<circle cx="60" cy="60" r="${r}" style="fill:none;stroke:${cor}" stroke-width="16"
+stroke-dasharray="${cheio.toFixed(1)} ${(c - cheio).toFixed(1)}"
+stroke-linecap="butt" transform="rotate(-90 60 60)"/>
+<text x="60" y="60" text-anchor="middle" dominant-baseline="central"
+style="fill:${cor};font-family:Inter,sans-serif;font-weight:800;font-size:${fonte}px">${p}%</text>
+</svg>`;
 }
-
-// mesmo semáforo do resto do painel
 function corAderencia(pct) {
-  return pct >= 60 ? 'var(--ok)' : pct >= 35 ? 'var(--alta)' : 'var(--sos)';
+return pct >= 60 ? 'var(--ok)' : pct >= 35 ? 'var(--alta)' : 'var(--sos)';
 }
-
 function blocoFarol() {
-  const chave = VISTA.farol;
-  const cfg = FAROIS[chave];
-  const todos = cfg.dados();
-  const comMovimento = todos.filter(x => x.total > 0).sort((a, b) => a.pct - b.pct || b.abertas - a.abertas);
-
-  const abas = Object.entries(FAROIS).map(([k, c]) =>
-    `<button type="button" class="aba${k === chave ? ' on' : ''}" data-farol="${k}">${escapeHtml(c.rotulo)}</button>`).join('');
-
-  if (!comMovimento.length) {
-    return `<div class="card"><h3>Aderência às preventivas</h3>
-      <div class="abas">${abas}</div>
-      <p class="card-sub">nada no período nesta visão</p></div>`;
-  }
-
-  // aderência total: o mesmo critério dos cards, somado
-  const t = DADOS.totais;
-  const base = t.total - t.canceladas;
-  const pctTotal = base > 0 ? Math.round(t.concluidas / base * 100) : 0;
-
-  const cards = comMovimento.map(x => {
-    const cor = corAderencia(x.pct);
-    const sel = FILTROS[cfg.filtro] === x.nome ? ' sel' : '';
-    const sub = chave === 'equipamento'
-      ? `${x.total} no período · ${n(x.lojas)} lojas`
-      : `${x.total} no período`;
-    return `<button type="button" class="dcard${sel}" data-farol-tipo="${cfg.filtro}" data-farol-valor="${escapeHtml(x.nome)}">
-      <div class="dnome">${escapeHtml(x.nome)}</div>
-      ${donutSVG(x.pct, 96, cor)}
-      <div class="dsub">${escapeHtml(sub)}</div>
-      <div class="dstats">
-        <div class="estat${x.atrasadas ? ' crit' : ''}"><div class="n">${x.atrasadas}</div><div class="l">ATRASADAS</div></div>
-        <div class="estat"><div class="n">${x.abertas}</div><div class="l">ABERTAS</div></div>
-        <div class="estat${x.concluidas ? ' ok' : ''}"><div class="n">${x.concluidas}</div><div class="l">FECHADAS</div></div>
-      </div>
-    </button>`;
-  }).join('');
-
-  return `<div class="card">
-    <h3>Aderência às preventivas</h3>
-    <div class="abas">${abas}</div>
-    <p class="card-sub">fechadas sobre o que entrou no período, fora as canceladas · clique num card para filtrar a tabela abaixo</p>
-    <div class="ader-wrap">
-      <div class="ader-total">
-        <h4>Aderência Total</h4>
-        ${donutSVG(pctTotal, 150, corAderencia(pctTotal))}
-        <div class="ader-legenda">
-          <span><i style="background:${corAderencia(pctTotal)}"></i>fechadas</span>
-          <span><i style="background:var(--line)"></i>em aberto</span>
-        </div>
-        <div class="dsub" style="margin-top:8px">${t.concluidas} de ${base} · ${t.atrasadas} atrasadas</div>
-      </div>
-      <div class="ader-grid">${cards}</div>
-    </div>
-  </div>`;
-}// ---------- tabelas de visão ----------
+const chave = VISTA.farol;
+const cfg = FAROIS[chave];
+const todos = cfg.dados();
+const comMovimento = todos.filter(x => x.total > 0).sort((a, b) => a.pct - b.pct || b.abertas - a.abertas);
+const abas = Object.entries(FAROIS).map(([k, c]) =>
+`<button type="button" class="aba${k === chave ? ' on' : ''}" data-farol="${k}">${escapeHtml(c.rotulo)}</button>`).join('');
+if (!comMovimento.length) {
+return `<div class="card"><h3>Aderência às preventivas</h3>
+<div class="abas">${abas}</div>
+<p class="card-sub">nada no período nesta visão</p></div>`;
+}
+const t = DADOS.totais;
+const base = t.total - t.canceladas;
+const pctTotal = base > 0 ? Math.round(t.concluidas / base * 100) : 0;
+const cards = comMovimento.map(x => {
+const cor = corAderencia(x.pct);
+const sel = FILTROS[cfg.filtro] === x.nome ? ' sel' : '';
+const sub = chave === 'equipamento'
+? `${x.total} no período · ${n(x.lojas)} lojas`
+: `${x.total} no período`;
+return `<button type="button" class="dcard${sel}" data-farol-tipo="${cfg.filtro}" data-farol-valor="${escapeHtml(x.nome)}">
+<div class="dnome">${escapeHtml(x.nome)}</div>
+${donutSVG(x.pct, 96, cor)}
+<div class="dsub">${escapeHtml(sub)}</div>
+<div class="dstats">
+<div class="estat${x.atrasadas ? ' crit' : ''}"><div class="n">${x.atrasadas}</div><div class="l">ATRASADAS</div></div>
+<div class="estat"><div class="n">${x.abertas}</div><div class="l">ABERTAS</div></div>
+<div class="estat${x.concluidas ? ' ok' : ''}"><div class="n">${x.concluidas}</div><div class="l">FECHADAS</div></div>
+</div>
+</button>`;
+}).join('');
+return `<div class="card">
+<h3>Aderência às preventivas</h3>
+<div class="abas">${abas}</div>
+<p class="card-sub">fechadas sobre o que entrou no período, fora as canceladas · clique num card para filtrar a tabela abaixo</p>
+<div class="ader-wrap">
+<div class="ader-total">
+<h4>Aderência Total</h4>
+${donutSVG(pctTotal, 150, corAderencia(pctTotal))}
+<div class="ader-legenda">
+<span><i style="background:${corAderencia(pctTotal)}"></i>fechadas</span>
+<span><i style="background:var(--line)"></i>em aberto</span>
+</div>
+<div class="dsub" style="margin-top:8px">${t.concluidas} de ${base} · ${t.atrasadas} atrasadas</div>
+</div>
+<div class="ader-grid">${cards}</div>
+</div>
+</div>`;
+}
 const COLUNAS = {
-  tecnico: { titulo: 'Técnico', sub: 'quem está com a preventiva atribuída' },
-  setor: { titulo: 'Setor', sub: 'região dentro da regional Sul' },
-  loja: { titulo: 'Loja', sub: 'restaurante onde a preventiva está pendente' },
-  equipamento: { titulo: 'Equipamento', sub: 'tipo de equipamento, lido do ativo da tarefa' },
+tecnico: { titulo: 'Técnico', sub: 'quem está com a preventiva atribuída' },
+setor: { titulo: 'Setor', sub: 'região dentro da regional Sul' },
+loja: { titulo: 'Loja', sub: 'restaurante onde a preventiva está pendente' },
+equipamento: { titulo: 'Equipamento', sub: 'tipo de equipamento, lido do ativo da tarefa' },
 };
-
 function tabelaVisao() {
-  const lista = VISTA.aba === 'tecnico' ? DADOS.porTecnico
-    : VISTA.aba === 'setor' ? DADOS.porSetor
-    : VISTA.aba === 'equipamento' ? (DADOS.porEquipamento || []) : DADOS.porLoja;
-  const col = COLUNAS[VISTA.aba];
-  const extra = (VISTA.aba === 'setor' || VISTA.aba === 'equipamento') ? '<th class="num">Lojas</th>'
-    : VISTA.aba === 'loja' ? '<th>Setor</th><th>Cidade</th>' : '';
-  const linhas = lista.map(x => {
-    const celExtra = (VISTA.aba === 'setor' || VISTA.aba === 'equipamento') ? `<td class="num">${n(x.lojas)}</td>`
-      : VISTA.aba === 'loja' ? `<td>${escapeHtml(x.setor || '—')}</td><td>${escapeHtml((x.cidade || '') + (x.uf ? '/' + x.uf : '') || '—')}</td>` : '';
-    const clsPct = x.pct >= 70 ? 'ok' : x.pct >= 40 ? 'alta' : 'sos';
-    return `<tr>
-      <td>${escapeHtml(x.nome)}</td>
-      ${celExtra}
-      <td class="num">${x.total}</td>
-      <td class="num forte">${x.abertas}</td>
-      <td class="num ${x.atrasadas ? 'ruim' : ''}">${x.atrasadas}</td>
-      <td class="num">${x.concluidas}</td>
-      <td class="num"><span class="pct pct-${clsPct}">${x.pct}%</span></td>
-      <td class="num">${x.mediaDiasAberta}d</td>
-      <td class="num">${x.maisAntigaDias}d</td>
-    </tr>`;
-  }).join('');
-  return `<div class="card">
-    <div class="abas">
-      <button type="button" class="aba${VISTA.aba === 'tecnico' ? ' on' : ''}" data-aba="tecnico">Por técnico</button>
-      <button type="button" class="aba${VISTA.aba === 'setor' ? ' on' : ''}" data-aba="setor">Por setor</button>
-      <button type="button" class="aba${VISTA.aba === 'loja' ? ' on' : ''}" data-aba="loja">Por loja</button>
-      <button type="button" class="aba${VISTA.aba === 'equipamento' ? ' on' : ''}" data-aba="equipamento">Por equipamento</button>
-    </div>
-    <p class="card-sub">${escapeHtml(col.sub)} · ordenado por preventivas em aberto</p>
-    <div class="filter-table-wrap"><table class="detail-table">
-      <thead><tr>
-        <th>${escapeHtml(col.titulo)}</th>${extra}
-        <th class="num">Total</th><th class="num">Abertas</th><th class="num">Atrasadas</th>
-        <th class="num">Concluídas</th><th class="num">% concl.</th>
-        <th class="num">Média aberta</th><th class="num">Mais antiga</th>
-      </tr></thead>
-      <tbody>${linhas || '<tr><td colspan="9" class="filter-empty">sem dados</td></tr>'}</tbody>
-    </table></div>
-  </div>`;
+const lista = VISTA.aba === 'tecnico' ? DADOS.porTecnico
+: VISTA.aba === 'setor' ? DADOS.porSetor
+: VISTA.aba === 'equipamento' ? (DADOS.porEquipamento || []) : DADOS.porLoja;
+const col = COLUNAS[VISTA.aba];
+const extra = (VISTA.aba === 'setor' || VISTA.aba === 'equipamento') ? '<th class="num">Lojas</th>'
+: VISTA.aba === 'loja' ? '<th>Setor</th><th>Cidade</th>' : '';
+const linhas = lista.map(x => {
+const celExtra = (VISTA.aba === 'setor' || VISTA.aba === 'equipamento') ? `<td class="num">${n(x.lojas)}</td>`
+: VISTA.aba === 'loja' ? `<td>${escapeHtml(x.setor || '—')}</td><td>${escapeHtml((x.cidade || '') + (x.uf ? '/' + x.uf : '') || '—')}</td>` : '';
+const clsPct = x.pct >= 70 ? 'ok' : x.pct >= 40 ? 'alta' : 'sos';
+return `<tr>
+<td>${escapeHtml(x.nome)}</td>
+${celExtra}
+<td class="num">${x.total}</td>
+<td class="num forte">${x.abertas}</td>
+<td class="num ${x.atrasadas ? 'ruim' : ''}">${x.atrasadas}</td>
+<td class="num">${x.concluidas}</td>
+<td class="num"><span class="pct pct-${clsPct}">${x.pct}%</span></td>
+<td class="num">${x.mediaDiasAberta}d</td>
+<td class="num">${x.maisAntigaDias}d</td>
+</tr>`;
+}).join('');
+return `<div class="card">
+<div class="abas">
+<button type="button" class="aba${VISTA.aba === 'tecnico' ? ' on' : ''}" data-aba="tecnico">Por técnico</button>
+<button type="button" class="aba${VISTA.aba === 'setor' ? ' on' : ''}" data-aba="setor">Por setor</button>
+<button type="button" class="aba${VISTA.aba === 'loja' ? ' on' : ''}" data-aba="loja">Por loja</button>
+<button type="button" class="aba${VISTA.aba === 'equipamento' ? ' on' : ''}" data-aba="equipamento">Por equipamento</button>
+</div>
+<p class="card-sub">${escapeHtml(col.sub)} · ordenado por preventivas em aberto</p>
+<div class="filter-table-wrap"><table class="detail-table">
+<thead><tr>
+<th>${escapeHtml(col.titulo)}</th>${extra}
+<th class="num">Total</th><th class="num">Abertas</th><th class="num">Atrasadas</th>
+<th class="num">Concluídas</th><th class="num">% concl.</th>
+<th class="num">Média aberta</th><th class="num">Mais antiga</th>
+</tr></thead>
+<tbody>${linhas || '<tr><td colspan="9" class="filter-empty">sem dados</td></tr>'}</tbody>
+</table></div>
+</div>`;
 }
-
-// ---------- detalhe com filtros ----------
 function aplicaFiltros(itens) {
-  return itens.filter(x =>
-    (!FILTROS.loja || x.loja === FILTROS.loja) &&
-    (!FILTROS.tecnico || x.tecnico === FILTROS.tecnico) &&
-    (!FILTROS.setor || x.setor === FILTROS.setor) &&
-    (!FILTROS.estado || x.estado === FILTROS.estado) &&
-    (!FILTROS.equipamento || x.equipamento === FILTROS.equipamento) &&
-    (!FILTROS.soAtrasadas || x.atrasada));
+return itens.filter(x =>
+(!FILTROS.loja || x.loja === FILTROS.loja) &&
+(!FILTROS.tecnico || x.tecnico === FILTROS.tecnico) &&
+(!FILTROS.setor || x.setor === FILTROS.setor) &&
+(!FILTROS.estado || x.estado === FILTROS.estado) &&
+(!FILTROS.equipamento || x.equipamento === FILTROS.equipamento) &&
+(!FILTROS.soAtrasadas || x.atrasada));
 }
-
 function comboLojaHtml(lojas) {
-  const val = FILTROS.loja;
-  return `<div class="filter-field combo" data-combo="loja">
-    <label for="fLoja">Loja</label>
-    <input type="text" id="fLoja" class="combo-input" role="combobox" autocomplete="off"
-      aria-expanded="false" aria-autocomplete="list" aria-controls="fLojaLista"
-      placeholder="Todas as lojas (${lojas.length})" value="${escapeHtml(val)}" data-sel="${escapeHtml(val)}">
-    ${val ? '<button type="button" class="combo-x" id="fLojaX" aria-label="Limpar loja" title="Limpar loja">&times;</button>' : ''}
-    <ul class="combo-lista" id="fLojaLista" role="listbox" hidden></ul>
-  </div>`;
+const val = FILTROS.loja;
+return `<div class="filter-field combo" data-combo="loja">
+<label for="fLoja">Loja</label>
+<input type="text" id="fLoja" class="combo-input" role="combobox" autocomplete="off"
+aria-expanded="false" aria-autocomplete="list" aria-controls="fLojaLista"
+placeholder="Todas as lojas (${lojas.length})" value="${escapeHtml(val)}" data-sel="${escapeHtml(val)}">
+${val ? '<button type="button" class="combo-x" id="fLojaX" aria-label="Limpar loja" title="Limpar loja">&times;</button>' : ''}
+<ul class="combo-lista" id="fLojaLista" role="listbox" hidden></ul>
+</div>`;
 }
 function fecharLista() {
-  const ul = document.getElementById('fLojaLista');
-  const inp = document.getElementById('fLoja');
-  if (ul) ul.hidden = true;
-  if (inp) inp.setAttribute('aria-expanded', 'false');
+const ul = document.getElementById('fLojaLista');
+const inp = document.getElementById('fLoja');
+if (ul) ul.hidden = true;
+if (inp) inp.setAttribute('aria-expanded', 'false');
 }
 function marcarAtivo(i) {
-  const ul = document.getElementById('fLojaLista');
-  if (!ul) return;
-  const itens = [...ul.querySelectorAll('li[data-valor]')];
-  if (!itens.length) return;
-  const k = ((i % itens.length) + itens.length) % itens.length;
-  itens.forEach((li, j) => li.classList.toggle('ativo', j === k));
-  itens[k].scrollIntoView({ block: 'nearest' });
+const ul = document.getElementById('fLojaLista');
+if (!ul) return;
+const itens = [...ul.querySelectorAll('li[data-valor]')];
+if (!itens.length) return;
+const k = ((i % itens.length) + itens.length) % itens.length;
+itens.forEach((li, j) => li.classList.toggle('ativo', j === k));
+itens[k].scrollIntoView({ block: 'nearest' });
 }
 function abrirLista(filtro) {
-  const inp = document.getElementById('fLoja');
-  const ul = document.getElementById('fLojaLista');
-  if (!inp || !ul) return;
-  const termos = chaveBusca(filtro).split(/\s+/).filter(Boolean);
-  const lista = termos.length
-    ? LOJAS_LISTA.filter(v => { const a = chaveBusca(v); return termos.every(t => a.includes(t)); })
-    : LOJAS_LISTA.slice();
-  const todas = `<li role="option" class="todas" data-valor="">Todas as lojas (${LOJAS_LISTA.length})</li>`;
-  ul.innerHTML = lista.length
-    ? todas + lista.map(v => `<li role="option" data-valor="${escapeHtml(v)}">${escapeHtml(v)}</li>`).join('')
-    : todas + '<li class="vazio">nenhuma loja com esse texto</li>';
-  ul.hidden = false;
-  inp.setAttribute('aria-expanded', 'true');
-  marcarAtivo(termos.length ? 1 : 0);
+const inp = document.getElementById('fLoja');
+const ul = document.getElementById('fLojaLista');
+if (!inp || !ul) return;
+const termos = chaveBusca(filtro).split(/\s+/).filter(Boolean);
+const lista = termos.length
+? LOJAS_LISTA.filter(v => { const a = chaveBusca(v); return termos.every(t => a.includes(t)); })
+: LOJAS_LISTA.slice();
+const todas = `<li role="option" class="todas" data-valor="">Todas as lojas (${LOJAS_LISTA.length})</li>`;
+ul.innerHTML = lista.length
+? todas + lista.map(v => `<li role="option" data-valor="${escapeHtml(v)}">${escapeHtml(v)}</li>`).join('')
+: todas + '<li class="vazio">nenhuma loja com esse texto</li>';
+ul.hidden = false;
+inp.setAttribute('aria-expanded', 'true');
+marcarAtivo(termos.length ? 1 : 0);
 }
 function escolherLoja(v) { FILTROS.loja = v || ''; fecharLista(); render(); }
-
 function barraFiltros() {
-  const unicos = (f) => [...new Set(DADOS.itens.map(f).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
-  LOJAS_LISTA = unicos(x => x.loja);
-  const opc = (lista, sel, rotulo) => `<option value="">${rotulo}</option>` +
-    lista.map(v => `<option value="${escapeHtml(v)}"${v === sel ? ' selected' : ''}>${escapeHtml(v)}</option>`).join('');
-  const tecnicos = unicos(x => x.tecnico);
-  const setores = unicos(x => x.setor);
-  const estados = unicos(x => x.estado);
-  const equipamentos = unicos(x => x.equipamento);
-  const ativo = FILTROS.loja || FILTROS.tecnico || FILTROS.setor || FILTROS.estado || FILTROS.equipamento || FILTROS.soAtrasadas;
-  const visiveis = aplicaFiltros(DADOS.itens).length;
-  return `<div class="filter-bar">
-    ${comboLojaHtml(LOJAS_LISTA)}
-    <div class="filter-field"><label for="fTecnico">Técnico</label>
-      <select id="fTecnico">${opc(tecnicos, FILTROS.tecnico, 'Todos os técnicos (' + tecnicos.length + ')')}</select></div>
-    <div class="filter-field"><label for="fSetor">Setor</label>
-      <select id="fSetor">${opc(setores, FILTROS.setor, 'Todos os setores (' + setores.length + ')')}</select></div>
-    <div class="filter-field"><label for="fEquip">Equipamento</label>
-      <select id="fEquip">${opc(equipamentos, FILTROS.equipamento, 'Todos os equipamentos (' + equipamentos.length + ')')}</select></div>
-    <div class="filter-field"><label for="fEstado">Estado</label>
-      <select id="fEstado">${opc(estados, FILTROS.estado, 'Todos os estados')}</select></div>
-    <label class="filter-check"><input type="checkbox" id="fAtrasadas"${FILTROS.soAtrasadas ? ' checked' : ''}> só atrasadas</label>
-    ${ativo ? '<button type="button" class="filtro-limpar" id="fLimpar">limpar filtros</button>' : ''}
-    ${ativo ? `<span class="filtro-conta">${visiveis} de ${DADOS.itens.length} preventivas</span>` : ''}
-  </div>`;
+const unicos = (f) => [...new Set(DADOS.itens.map(f).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+LOJAS_LISTA = unicos(x => x.loja);
+const opc = (lista, sel, rotulo) => `<option value="">${rotulo}</option>` +
+lista.map(v => `<option value="${escapeHtml(v)}"${v === sel ? ' selected' : ''}>${escapeHtml(v)}</option>`).join('');
+const tecnicos = unicos(x => x.tecnico);
+const setores = unicos(x => x.setor);
+const estados = unicos(x => x.estado);
+const equipamentos = unicos(x => x.equipamento);
+const ativo = FILTROS.loja || FILTROS.tecnico || FILTROS.setor || FILTROS.estado || FILTROS.equipamento || FILTROS.soAtrasadas;
+const visiveis = aplicaFiltros(DADOS.itens).length;
+return `<div class="filter-bar">
+${comboLojaHtml(LOJAS_LISTA)}
+<div class="filter-field"><label for="fTecnico">Técnico</label>
+<select id="fTecnico">${opc(tecnicos, FILTROS.tecnico, 'Todos os técnicos (' + tecnicos.length + ')')}</select></div>
+<div class="filter-field"><label for="fSetor">Setor</label>
+<select id="fSetor">${opc(setores, FILTROS.setor, 'Todos os setores (' + setores.length + ')')}</select></div>
+<div class="filter-field"><label for="fEquip">Equipamento</label>
+<select id="fEquip">${opc(equipamentos, FILTROS.equipamento, 'Todos os equipamentos (' + equipamentos.length + ')')}</select></div>
+<div class="filter-field"><label for="fEstado">Estado</label>
+<select id="fEstado">${opc(estados, FILTROS.estado, 'Todos os estados')}</select></div>
+<label class="filter-check"><input type="checkbox" id="fAtrasadas"${FILTROS.soAtrasadas ? ' checked' : ''}> só atrasadas</label>
+${ativo ? '<button type="button" class="filtro-limpar" id="fLimpar">limpar filtros</button>' : ''}
+${ativo ? `<span class="filtro-conta">${visiveis} de ${DADOS.itens.length} preventivas</span>` : ''}
+</div>`;
 }
-
-// Texto para o WhatsApp. Agrupo por loja porque e assim que a conversa
-// acontece ('o que tem pendente na loja X'), e porque uma lista corrida de
-// 400 linhas soltas ninguem le. Negrito do WhatsApp e *asterisco*.
 let ULTIMA_LISTA = [];
-
 function textoWhatsApp(itens) {
-  const t = DADOS.totais;
-  const ctx = [
-    FILTROS.loja ? 'loja: ' + FILTROS.loja : '',
-    FILTROS.tecnico ? 'tecnico: ' + FILTROS.tecnico : '',
-    FILTROS.setor ? 'setor: ' + FILTROS.setor : '',
-    FILTROS.equipamento ? 'equipamento: ' + FILTROS.equipamento : '',
-    FILTROS.estado ? 'estado: ' + FILTROS.estado : '',
-    FILTROS.soAtrasadas ? 'somente atrasadas' : '',
-  ].filter(Boolean).join(' · ');
-
-  const porLoja = new Map();
-  itens.forEach((x) => {
-    if (!porLoja.has(x.loja)) porLoja.set(x.loja, []);
-    porLoja.get(x.loja).push(x);
-  });
-
-  const linhas = ['*PREVENTIVAS - REGIONAL SUL*'];
-  linhas.push('_' + itens.length + ' preventiva(s)' + (ctx ? ' · ' + ctx : '') + '_');
-  linhas.push('_atualizado ' + (DADOS.atualizadoEm || '') + '_');
-
-  [...porLoja.entries()]
-    .sort((a, b) => b[1].length - a[1].length)
-    .forEach(([loja, lista]) => {
-      linhas.push('');
-      linhas.push('*' + loja + '* (' + lista.length + ')');
-      lista.forEach((x) => {
-        // o que ja esta no filtro nao precisa se repetir em cada linha: se a
-        // lista e de um tecnico so, o nome dele em 80 linhas e' so ruido
-        const partes = [x.numero];
-        if (!FILTROS.equipamento) partes.push(x.equipamento);
-        if (!FILTROS.tecnico) partes.push(x.tecnico);
-        const situacao = x.atrasada ? ('ATRASADA ' + x.diasAtraso + 'd')
-          : x.concluida ? 'concluida' : x.cancelada ? 'cancelada' : ('em aberto ' + x.dias + 'd');
-        linhas.push('• ' + partes.join(' · ') + ' — ' + situacao);
-      });
-    });
-  return linhas.join('\n');
+const t = DADOS.totais;
+const ctx = [
+FILTROS.loja ? 'loja: ' + FILTROS.loja : '',
+FILTROS.tecnico ? 'tecnico: ' + FILTROS.tecnico : '',
+FILTROS.setor ? 'setor: ' + FILTROS.setor : '',
+FILTROS.equipamento ? 'equipamento: ' + FILTROS.equipamento : '',
+FILTROS.estado ? 'estado: ' + FILTROS.estado : '',
+FILTROS.soAtrasadas ? 'somente atrasadas' : '',
+].filter(Boolean).join(' · ');
+const porLoja = new Map();
+itens.forEach((x) => {
+if (!porLoja.has(x.loja)) porLoja.set(x.loja, []);
+porLoja.get(x.loja).push(x);
+});
+const linhas = ['*PREVENTIVAS - REGIONAL SUL*'];
+linhas.push('_' + itens.length + ' preventiva(s)' + (ctx ? ' · ' + ctx : '') + '_');
+linhas.push('_atualizado ' + (DADOS.atualizadoEm || '') + '_');
+[...porLoja.entries()]
+.sort((a, b) => b[1].length - a[1].length)
+.forEach(([loja, lista]) => {
+linhas.push('');
+linhas.push('*' + loja + '* (' + lista.length + ')');
+lista.forEach((x) => {
+const partes = [x.numero];
+if (!FILTROS.equipamento) partes.push(x.equipamento);
+if (!FILTROS.tecnico) partes.push(x.tecnico);
+const situacao = x.atrasada ? ('ATRASADA ' + x.diasAtraso + 'd')
+: x.concluida ? 'concluida' : x.cancelada ? 'cancelada' : ('em aberto ' + x.dias + 'd');
+linhas.push('• ' + partes.join(' · ') + ' — ' + situacao);
+});
+});
+return linhas.join('\n');
 }
-
 async function copiarWhatsApp(botao) {
-  const texto = textoWhatsApp(ULTIMA_LISTA);
-  try {
-    await navigator.clipboard.writeText(texto);
-  } catch (e) {
-    // clipboard bloqueado (sem https, permissao negada): caio no textarea
-    const ta = document.createElement('textarea');
-    ta.value = texto;
-    ta.style.position = 'fixed'; ta.style.opacity = '0';
-    document.body.appendChild(ta);
-    ta.select();
-    try { document.execCommand('copy'); } catch (e2) { alert('Nao consegui copiar. Selecione o texto manualmente.'); }
-    ta.remove();
-  }
-  const antes = botao.innerHTML;
-  botao.classList.add('ok');
-  botao.innerHTML = '✓ copiado (' + ULTIMA_LISTA.length + ')';
-  setTimeout(() => { botao.innerHTML = antes; botao.classList.remove('ok'); }, 2500);
+const texto = textoWhatsApp(ULTIMA_LISTA);
+try {
+await navigator.clipboard.writeText(texto);
+} catch (e) {
+const ta = document.createElement('textarea');
+ta.value = texto;
+ta.style.position = 'fixed'; ta.style.opacity = '0';
+document.body.appendChild(ta);
+ta.select();
+try { document.execCommand('copy'); } catch (e2) { alert('Nao consegui copiar. Selecione o texto manualmente.'); }
+ta.remove();
 }
-
+const antes = botao.innerHTML;
+botao.classList.add('ok');
+botao.innerHTML = '✓ copiado (' + ULTIMA_LISTA.length + ')';
+setTimeout(() => { botao.innerHTML = antes; botao.classList.remove('ok'); }, 2500);
+}
 function tabelaDetalhe() {
-  const filtrados = aplicaFiltros(DADOS.itens)
-    .sort((a, b) => (b.atrasada - a.atrasada) || ((b.dias ?? 0) - (a.dias ?? 0)))
-    .slice(0, 400);
-  // o botao copia exatamente o que a tabela mostra
-  ULTIMA_LISTA = filtrados;
-  const linhas = filtrados.map(x => {
-    const tag = x.atrasada ? '<span class="tag t-sos">Atrasada</span>'
-      : x.concluida ? '<span class="tag t-ok">Concluída</span>'
-      : x.cancelada ? '<span class="tag t-faint">Cancelada</span>'
-      : '<span class="tag t-violet">Em aberto</span>';
-    return `<tr>
-      <td class="mono">${escapeHtml(x.numero)}</td>
-      <td class="mono">${escapeHtml(x.wo)}</td>
-      <td>${escapeHtml(x.loja)}</td>
-      <td>${escapeHtml(x.setor)}</td>
-      <td title="${escapeHtml(x.ativo || '')}">${escapeHtml(x.equipamento || '—')}</td>
-      <td>${escapeHtml(x.tecnico)}</td>
-      <td>${escapeHtml(x.estado)}</td>
-      <td>${tag}</td>
-      <td class="num">${n(x.dias)}d</td>
-      <td class="num ${x.diasAtraso ? 'ruim' : ''}">${x.diasAtraso != null ? x.diasAtraso + 'd' : '—'}</td>
-      <td class="mono">${escapeHtml((x.aberturaBR || '').slice(0, 10))}</td>
-    </tr>`;
-  }).join('');
-  return `<div class="card">
-    <h3>Preventivas, uma a uma</h3>
-    <p class="card-sub">atrasadas primeiro, depois as mais antigas · mostrando ${filtrados.length}${filtrados.length === 400 ? ' (limite de 400)' : ''}</p>
-    <div id="barraFiltros">${barraFiltros()}</div>
-    <div class="zap-linha">
-      <button type="button" class="btn-zap" id="btnZap">📋 Copiar para WhatsApp</button>
-      <span class="zap-aviso${filtrados.length > 60 ? ' alerta' : ''}">
-        ${filtrados.length > 60
-          ? 'copia as ' + filtrados.length + ' linhas da tabela — mensagem longa, considere filtrar antes'
-          : 'copia as ' + filtrados.length + ' linhas da tabela, agrupadas por loja'}
-      </span>
-    </div>
-    <div class="filter-table-wrap alto"><table class="detail-table">
-      <thead><tr>
-        <th>Tarefa</th><th>Ordem</th><th>Loja</th><th>Setor</th><th>Equipamento</th><th>Técnico</th>
-        <th>Estado</th><th>Situação</th><th class="num">Em aberto</th><th class="num">Atraso</th><th>Aberta em</th>
-      </tr></thead>
-      <tbody>${linhas || '<tr><td colspan="11" class="filter-empty">Nenhuma preventiva bate com o filtro escolhido.</td></tr>'}</tbody>
-    </table></div>
-  </div>`;
+const filtrados = aplicaFiltros(DADOS.itens)
+.sort((a, b) => (b.atrasada - a.atrasada) || ((b.dias ?? 0) - (a.dias ?? 0)))
+.slice(0, 400);
+ULTIMA_LISTA = filtrados;
+const linhas = filtrados.map(x => {
+const tag = x.atrasada ? '<span class="tag t-sos">Atrasada</span>'
+: x.concluida ? '<span class="tag t-ok">Concluída</span>'
+: x.cancelada ? '<span class="tag t-faint">Cancelada</span>'
+: '<span class="tag t-violet">Em aberto</span>';
+return `<tr>
+<td class="mono">${escapeHtml(x.numero)}</td>
+<td class="mono">${escapeHtml(x.wo)}</td>
+<td>${escapeHtml(x.loja)}</td>
+<td>${escapeHtml(x.setor)}</td>
+<td title="${escapeHtml(x.ativo || '')}">${escapeHtml(x.equipamento || '—')}</td>
+<td>${escapeHtml(x.tecnico)}</td>
+<td>${escapeHtml(x.estado)}</td>
+<td>${tag}</td>
+<td class="num">${n(x.dias)}d</td>
+<td class="num ${x.diasAtraso ? 'ruim' : ''}">${x.diasAtraso != null ? x.diasAtraso + 'd' : '—'}</td>
+<td class="mono">${escapeHtml((x.aberturaBR || '').slice(0, 10))}</td>
+</tr>`;
+}).join('');
+return `<div class="card">
+<h3>Preventivas, uma a uma</h3>
+<p class="card-sub">atrasadas primeiro, depois as mais antigas · mostrando ${filtrados.length}${filtrados.length === 400 ? ' (limite de 400)' : ''}</p>
+<div id="barraFiltros">${barraFiltros()}</div>
+<div class="zap-linha">
+<button type="button" class="btn-zap" id="btnZap">📋 Copiar para WhatsApp</button>
+<span class="zap-aviso${filtrados.length > 60 ? ' alerta' : ''}">
+${filtrados.length > 60
+? 'copia as ' + filtrados.length + ' linhas da tabela — mensagem longa, considere filtrar antes'
+: 'copia as ' + filtrados.length + ' linhas da tabela, agrupadas por loja'}
+</span>
+</div>
+<div class="filter-table-wrap alto"><table class="detail-table">
+<thead><tr>
+<th>Tarefa</th><th>Ordem</th><th>Loja</th><th>Setor</th><th>Equipamento</th><th>Técnico</th>
+<th>Estado</th><th>Situação</th><th class="num">Em aberto</th><th class="num">Atraso</th><th>Aberta em</th>
+</tr></thead>
+<tbody>${linhas || '<tr><td colspan="11" class="filter-empty">Nenhuma preventiva bate com o filtro escolhido.</td></tr>'}</tbody>
+</table></div>
+</div>`;
 }
-
-// ---------- render ----------
 function render() {
-  if (!DADOS) return;
-  document.getElementById('conteudo').innerHTML =
-    kpis(DADOS.totais) + blocoMeses() + blocoFarol() + grafico(DADOS.porDia) + tabelaVisao() + tabelaDetalhe();
+if (!DADOS) return;
+document.getElementById('conteudo').innerHTML =
+kpis(DADOS.totais) + blocoMeses() + blocoFarol() + grafico(DADOS.porDia) + tabelaVisao() + tabelaDetalhe();
 }
-
-// ---------- eventos ----------
 document.addEventListener('click', (ev) => {
-  const zap = ev.target.closest('#btnZap');
-  if (zap) { copiarWhatsApp(zap); return; }
-  const abaMes = ev.target.closest('[data-mes]');
-  if (abaMes) { VISTA.mes = abaMes.dataset.mes; render(); return; }
-  const abaFarol = ev.target.closest('[data-farol]');
-  if (abaFarol) { VISTA.farol = abaFarol.dataset.farol; render(); return; }
-  const card = ev.target.closest('.dcard');
-  if (card) {
-    const campo = card.dataset.farolTipo;
-    const nome = card.dataset.farolValor;
-    FILTROS[campo] = (FILTROS[campo] === nome) ? '' : nome;
-    render();
-    document.querySelector('#barraFiltros')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    return;
-  }
-  const aba = ev.target.closest('.aba');
-  if (aba) { VISTA.aba = aba.dataset.aba; render(); return; }
-  if (ev.target.id === 'fLimpar') {
-    FILTROS.loja = ''; FILTROS.tecnico = ''; FILTROS.setor = ''; FILTROS.estado = '';
-    FILTROS.equipamento = ''; FILTROS.soAtrasadas = false;
-    render();
-  }
+const zap = ev.target.closest('#btnZap');
+if (zap) { copiarWhatsApp(zap); return; }
+const abaMes = ev.target.closest('[data-mes]');
+if (abaMes) { VISTA.mes = abaMes.dataset.mes; render(); return; }
+const abaFarol = ev.target.closest('[data-farol]');
+if (abaFarol) { VISTA.farol = abaFarol.dataset.farol; render(); return; }
+const card = ev.target.closest('.dcard');
+if (card) {
+const campo = card.dataset.farolTipo;
+const nome = card.dataset.farolValor;
+FILTROS[campo] = (FILTROS[campo] === nome) ? '' : nome;
+render();
+document.querySelector('#barraFiltros')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+return;
+}
+const aba = ev.target.closest('.aba');
+if (aba) { VISTA.aba = aba.dataset.aba; render(); return; }
+if (ev.target.id === 'fLimpar') {
+FILTROS.loja = ''; FILTROS.tecnico = ''; FILTROS.setor = ''; FILTROS.estado = '';
+FILTROS.equipamento = ''; FILTROS.soAtrasadas = false;
+render();
+}
 });
 document.addEventListener('change', (ev) => {
-  const mapa = { fTecnico: 'tecnico', fSetor: 'setor', fEstado: 'estado', fEquip: 'equipamento' };
-  const k = mapa[ev.target.id];
-  if (k) { FILTROS[k] = ev.target.value; render(); return; }
-  if (ev.target.id === 'fAtrasadas') { FILTROS.soAtrasadas = ev.target.checked; render(); }
+const mapa = { fTecnico: 'tecnico', fSetor: 'setor', fEstado: 'estado', fEquip: 'equipamento' };
+const k = mapa[ev.target.id];
+if (k) { FILTROS[k] = ev.target.value; render(); return; }
+if (ev.target.id === 'fAtrasadas') { FILTROS.soAtrasadas = ev.target.checked; render(); }
 });
-// combo de loja: mesmo comportamento do painel de risco
 document.addEventListener('input', (ev) => { if (ev.target.id === 'fLoja') abrirLista(ev.target.value); });
 document.addEventListener('focusin', (ev) => { if (ev.target.id === 'fLoja') { ev.target.select(); abrirLista(''); } });
 document.addEventListener('focusout', (ev) => {
-  if (ev.target.id !== 'fLoja') return;
-  setTimeout(() => {
-    const inp = document.getElementById('fLoja');
-    if (!inp || document.activeElement === inp) return;
-    fecharLista();
-    inp.value = inp.dataset.sel || '';
-  }, 120);
+if (ev.target.id !== 'fLoja') return;
+setTimeout(() => {
+const inp = document.getElementById('fLoja');
+if (!inp || document.activeElement === inp) return;
+fecharLista();
+inp.value = inp.dataset.sel || '';
+}, 120);
 });
 document.addEventListener('mousedown', (ev) => {
-  const li = ev.target.closest('#fLojaLista li[data-valor]');
-  if (li) { ev.preventDefault(); escolherLoja(li.dataset.valor); return; }
-  if (ev.target.closest('#fLojaX')) { ev.preventDefault(); escolherLoja(''); return; }
-  if (!ev.target.closest('[data-combo="loja"]')) fecharLista();
+const li = ev.target.closest('#fLojaLista li[data-valor]');
+if (li) { ev.preventDefault(); escolherLoja(li.dataset.valor); return; }
+if (ev.target.closest('#fLojaX')) { ev.preventDefault(); escolherLoja(''); return; }
+if (!ev.target.closest('[data-combo="loja"]')) fecharLista();
 });
 document.addEventListener('keydown', (ev) => {
-  if (ev.target.id !== 'fLoja') return;
-  const ul = document.getElementById('fLojaLista');
-  if (!ul) return;
-  if (ev.key === 'ArrowDown' || ev.key === 'ArrowUp') {
-    ev.preventDefault();
-    if (ul.hidden) { abrirLista(ev.target.value); return; }
-    const itens = [...ul.querySelectorAll('li[data-valor]')];
-    const at = itens.findIndex(li => li.classList.contains('ativo'));
-    marcarAtivo(ev.key === 'ArrowDown' ? at + 1 : at - 1);
-  } else if (ev.key === 'Enter') {
-    ev.preventDefault();
-    const at = ul.querySelector('li.ativo[data-valor]');
-    if (at) escolherLoja(at.dataset.valor);
-  } else if (ev.key === 'Escape') {
-    ev.stopPropagation();
-    fecharLista();
-    ev.target.value = ev.target.dataset.sel || '';
-    ev.target.blur();
-  }
+if (ev.target.id !== 'fLoja') return;
+const ul = document.getElementById('fLojaLista');
+if (!ul) return;
+if (ev.key === 'ArrowDown' || ev.key === 'ArrowUp') {
+ev.preventDefault();
+if (ul.hidden) { abrirLista(ev.target.value); return; }
+const itens = [...ul.querySelectorAll('li[data-valor]')];
+const at = itens.findIndex(li => li.classList.contains('ativo'));
+marcarAtivo(ev.key === 'ArrowDown' ? at + 1 : at - 1);
+} else if (ev.key === 'Enter') {
+ev.preventDefault();
+const at = ul.querySelector('li.ativo[data-valor]');
+if (at) escolherLoja(at.dataset.valor);
+} else if (ev.key === 'Escape') {
+ev.stopPropagation();
+fecharLista();
+ev.target.value = ev.target.dataset.sel || '';
+ev.target.blur();
+}
 });
-
-// ---------- start ----------
 (async function iniciar() {
-  try {
-    const r = await fetch('data/preventivas.json', { cache: 'no-store' });
-    if (!r.ok) throw new Error('HTTP ' + r.status);
-    DADOS = await r.json();
-  } catch (e) {
-    document.getElementById('conteudo').innerHTML =
-      `<div class="msg-erro">Não consegui carregar os dados (${escapeHtml(e.message)}).</div>`;
-    return;
-  }
-  document.getElementById('stamp').textContent = 'Atualizado ' + (DADOS.atualizadoEm || '—');
-  render();
+try {
+const r = await fetch('data/preventivas.json', { cache: 'no-store' });
+if (!r.ok) throw new Error('HTTP ' + r.status);
+DADOS = await r.json();
+} catch (e) {
+document.getElementById('conteudo').innerHTML =
+`<div class="msg-erro">Não consegui carregar os dados (${escapeHtml(e.message)}).</div>`;
+return;
+}
+document.getElementById('stamp').textContent = 'Atualizado ' + (DADOS.atualizadoEm || '—');
+render();
 })();
 </script>
 </body>

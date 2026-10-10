@@ -1,367 +1,199 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
 <head>
 <meta charset="utf-8">
 <title>Acompanhamento Diário Campo — Sul</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --sidebar:   #1E1B3A;
-    --sidebar-2: #2A2555;
-    --ground:    #F3F1FB;
-    --surface:   #FFFFFF;
-    --surface2:  #F6F4FC;
-    --ink:       #211D3D;
-    --muted:     #726E93;
-    --faint:     #A9A5C6;
-    --line:      #ECEAF6;
-    --violet:    #7C5CFC;
-    --violet-2:  #A78BFA;
-    --pink:      #F472B6;
-    --blue:      #38BDF8;
-    --sos:       #E43F5A;
-    --sos-soft:  rgba(228,63,90,0.10);
-    --alta:      #F5A623;
-    --alta-soft: rgba(245,166,35,0.12);
-    --ok:        #22C08D;
-    --grid:      rgba(33,29,61,0.06);
-    --shadow:    0 1px 2px rgba(33,29,61,.04), 0 12px 28px rgba(33,29,61,.07);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --ground:   #100E22; --surface: #1A1733; --surface2: #211D42;
-      --ink: #ECEAFB; --muted: #A29DC7; --faint: #6C6791; --line: #2C2854;
-      --violet: #9A82FF; --violet-2: #C4B5FD; --pink: #F9A8D4; --blue: #7DD3FC;
-      --sos: #F3697F; --sos-soft: rgba(243,105,127,0.16);
-      --alta: #FBBF56; --alta-soft: rgba(251,191,86,0.16); --ok: #4ADE9E;
-      --grid: rgba(236,234,251,0.07); --shadow: 0 1px 2px rgba(0,0,0,.35), 0 14px 32px rgba(0,0,0,.32);
-    }
-  }
-  :root[data-theme="dark"] {
-    --ground:   #100E22; --surface: #1A1733; --surface2: #211D42;
-    --ink: #ECEAFB; --muted: #A29DC7; --faint: #6C6791; --line: #2C2854;
-    --violet: #9A82FF; --violet-2: #C4B5FD; --pink: #F9A8D4; --blue: #7DD3FC;
-    --sos: #F3697F; --sos-soft: rgba(243,105,127,0.16);
-    --alta: #FBBF56; --alta-soft: rgba(251,191,86,0.16); --ok: #4ADE9E;
-    --grid: rgba(236,234,251,0.07); --shadow: 0 1px 2px rgba(0,0,0,.35), 0 14px 32px rgba(0,0,0,.32);
-  }
+:root {
+--cobalto: #1e3bff;
+--laranja: #ff6b00;
+--laranja-bg: #fff4ee;
+--rosa: #ff3366;
+--verde: #00c853;
+--verde-bg: #e8fdf0;
+--amarelo: #ffcc00;
+--amarelo-bg: #fffef0;
+--cinza: #6b7280;
+--cinza-bg: #f3f4f6;
+--surface: #ffffff;
+--bg: #f8f9fc;
+--text: #111827;
+--text-2: #374151;
+--text-3: #9ca3af;
+--border: #e5e7eb;
+--shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.05);
+--r: 10px; --r-lg: 16px; --r-xl: 20px;
+--sidebar-w: 220px;
+/* aliases usados pelo JS existente */
+--ink: var(--text);
+--muted: var(--text-3);
+--faint: var(--text-3);
+--line: var(--border);
+--ground: var(--bg);
+--surface2: var(--cinza-bg);
+--violet: var(--cobalto);
+--violet-2: var(--cobalto);
+--pink: var(--rosa);
+--blue: var(--cobalto);
+--sos: var(--rosa);
+--sos-soft: rgba(255,51,102,0.10);
+--alta: var(--laranja);
+--alta-soft: rgba(255,107,0,0.12);
+--ok: var(--verde);
+--grid: rgba(0,0,0,0.06);
+}
+[data-theme="dark"] {
+--surface: #1a1d2e; --bg: #0f1120; --text: #f1f5f9; --text-2: #94a3b8; --text-3: #475569;
+--border: #2d3148; --shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 12px rgba(0,0,0,.2);
+--cinza-bg: #1f2235; --verde-bg: #0d2e1a; --laranja-bg: #2d1a0d;
+--rosa-bg: #2d0d1a; --amarelo-bg: #2d2a0d;
+--sos-soft: rgba(255,51,102,0.16); --alta-soft: rgba(255,107,0,0.16);
+--grid: rgba(255,255,255,0.07);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; transition: background .25s, color .25s; }
+.num { font-variant-numeric: tabular-nums; }
+.mono { font-family: 'Inter', monospace; }
+header { background: var(--surface); border-bottom: 2px solid var(--cobalto); padding: 12px 24px; display: flex; align-items: center; gap: 14px; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow); }
+.brand-mark { width: 38px; height: 38px; background: var(--cobalto); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: 900; flex-shrink: 0; }
+.header-title { flex: 1; }
+.header-title h1 { font-size: 18px; font-weight: 800; color: var(--text); line-height: 1.1; }
+.header-title span { font-size: 11px; font-weight: 500; color: var(--text-3); text-transform: uppercase; letter-spacing: .5px; }
+.carimbo { background: var(--cobalto); color: white; font-size: 11px; font-weight: 700; padding: 5px 11px; border-radius: 20px; white-space: nowrap; }
+.theme-btn { background: var(--bg); border: 1.5px solid var(--border); border-radius: 8px; width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; transition: background .2s; }
+.theme-btn:hover { background: var(--border); }
+.layout { display: flex; flex: 1; }
+aside { width: var(--sidebar-w); background: var(--surface); border-right: 1.5px solid var(--border); padding: 18px 14px; display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
+aside .s-header { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--text-3); padding: 0 8px; margin-bottom: 4px; }
+aside a, aside .navitem-static { display: flex; align-items: center; gap: 9px; padding: 8px 10px; border-radius: var(--r); color: var(--text-2); text-decoration: none; font-size: 13px; font-weight: 500; transition: background .15s, color .15s; cursor: pointer; }
+aside a:hover, aside .navitem-static:hover { background: var(--bg); color: var(--text); }
+aside a.active { background: var(--cobalto); color: white; }
+aside .s-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: .7; flex: none; }
+aside a.active .s-dot { background: white; opacity: 1; }
+.side-foot { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-3); padding-left: 8px; }
+main { flex: 1; padding: 22px 24px; overflow-y: auto; }
+section { margin-top: 28px; }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin-bottom: 12px; flex-wrap: wrap; }
+h2 { font-size: 15px; font-weight: 700; margin: 0; }
+.sec-note { font-size: 11px; color: var(--text-3); }
+footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--text-3); font-size: 12px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.msg-carregando, .msg-erro { padding: 40px 0; text-align: center; color: var(--text-2); font-size: 13px; }
+.msg-erro { color: var(--rosa); }
 
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; background: var(--ground); color: var(--ink);
-    font-family: "IBM Plex Sans", system-ui, sans-serif; font-size: 15px; line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-  }
-  .num { font-variant-numeric: tabular-nums; }
-  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+/* ---------- statcards (resumo do campo) ---------- */
+.statcards { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 22px; }
+@media (max-width: 1100px) { .statcards { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 680px)  { .statcards { grid-template-columns: repeat(2, 1fr); } }
+.statcard { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r-lg); padding: 0 0 18px; overflow: hidden; box-shadow: var(--shadow); text-align: center; }
+.statcard .cap { display: block; font-size: 10.5px; letter-spacing: .09em; text-transform: uppercase; color: #fff; padding: 9px 10px; font-weight: 700; }
+.statcard .val { display: block; font-weight: 800; font-size: 40px; line-height: 1; padding-top: 18px; color: var(--text); font-variant-numeric: tabular-nums; }
+.sc-exec .cap { background: var(--rosa); }
+.sc-token .cap { background: var(--laranja); }
+.sc-feito .cap { background: var(--verde); }
+.sc-canc .cap { background: var(--cinza); }
+.sc-imp .cap { background: var(--cobalto); }
 
-  .shell { display: grid; grid-template-columns: 240px minmax(0,1fr); min-height: 100vh; transition: grid-template-columns .22s ease; }
-  .shell.sb-collapsed { grid-template-columns: 0 minmax(0,1fr); }
-  @media (max-width: 860px) { .shell:not(.sb-expanded) { grid-template-columns: 0 minmax(0,1fr); } }
+/* ---------- tabela campo ---------- */
+.tbl-wrap { overflow-x: auto; border-radius: var(--r-lg); box-shadow: var(--shadow); background: var(--surface); border: 1.5px solid var(--border); }
+table.campo { border-collapse: collapse; width: 100%; font-size: 12.5px; min-width: 1180px; }
+table.campo th { background: var(--cinza-bg); color: var(--text-2); text-align: left; font-weight: 700; white-space: nowrap; font-size: 10.5px; letter-spacing: .05em; text-transform: uppercase; padding: 11px 12px; border-bottom: 1.5px solid var(--border); position: sticky; top: 0; }
+table.campo td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+table.campo tbody tr:hover { background: var(--bg); }
+table.campo tr.tem-impacto { background: var(--laranja-bg); }
+table.campo tr.tem-impacto:hover { background: #ffe8d6; }
+table.campo tr.encerrado td { color: var(--text-3); }
+.pill { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+.p-exec { background: var(--sos-soft); color: var(--rosa); }
+.p-and  { background: var(--laranja-bg); color: var(--laranja); }
+.p-feito{ background: var(--verde-bg); color: #007a33; }
+.p-canc { background: var(--cinza-bg); color: var(--cinza); }
+.wo { font-family: 'Inter', monospace; font-weight: 700; color: var(--cobalto); white-space: nowrap; }
+td.t-velho { color: var(--rosa); font-weight: 700; }
 
-  .side {
-    background: linear-gradient(180deg, var(--sidebar), var(--sidebar-2));
-    padding: 26px 20px; display: flex; flex-direction: column; gap: 30px; color: #EDEAFF;
-    position: relative; overflow: hidden; white-space: nowrap; min-width: 0;
-    transition: opacity .18s ease;
-  }
-  .shell.sb-collapsed .side { opacity: 0; padding-left: 0; padding-right: 0; }
+/* ---------- filtros ---------- */
+.filter-bar { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 14px; }
+.filter-field { display: flex; flex-direction: column; gap: 4px; min-width: 168px; }
+.filter-field label { font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-3); }
+.filter-field select { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text); background: var(--cinza-bg); border: 1.5px solid var(--border); border-radius: var(--r); padding: 8px 10px; appearance: none; width: 100%; }
+.filter-limpar { font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 600; color: var(--text-2); background: var(--cinza-bg); border: 1.5px solid var(--border); border-radius: var(--r); padding: 9px 14px; cursor: pointer; }
+.filter-limpar:hover { color: var(--text); }
+.filter-conta { font-size: 11.5px; color: var(--text-3); padding-bottom: 10px; }
+.filter-empty { padding: 24px 0; text-align: center; color: var(--text-3); font-size: 12.5px; }
 
-  .side-toggle {
-    position: absolute; top: 22px; right: 14px; width: 26px; height: 26px; border-radius: 999px;
-    background: rgba(255,255,255,0.08); border: none; color: #C6C0EE; cursor: pointer;
-    display: flex; align-items: center; justify-content: center; font-size: 14px; line-height: 1; flex: none;
-  }
-  .side-toggle:hover { background: rgba(255,255,255,0.16); color: #FFFFFF; }
+/* ---------- aviso ---------- */
+.aviso { background: var(--amarelo-bg); border: 1.5px solid #f3e2b0; border-radius: var(--r-lg); padding: 12px 14px; font-size: 12.5px; color: #6b5412; margin-bottom: 20px; line-height: 1.5; }
 
-  .side-reopen {
-    display: none; position: fixed; top: 22px; left: 18px; z-index: 40;
-    width: 32px; height: 32px; border-radius: 999px; border: 1px solid var(--line);
-    background: var(--surface); color: var(--muted); box-shadow: var(--shadow); cursor: pointer;
-    align-items: center; justify-content: center; font-size: 15px; line-height: 1;
-  }
-  .side-reopen:hover { color: var(--violet); }
-  .shell.sb-collapsed .side-reopen { display: flex; }
+/* ---------- card genérico / histórico ---------- */
+.card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r-lg); padding: 18px 20px 16px; box-shadow: var(--shadow); }
+.chart-note { font-size: 12px; color: var(--text-3); margin-top: 10px; }
+.hist-stamp { font-size: 11px; color: var(--text-3); margin-bottom: 12px; }
+.chart-svg-wrap { position: relative; }
+.chart-dot { cursor: pointer; }
+.chart-tooltip { position: absolute; z-index: 20; pointer-events: none; transform: translate(-50%, -100%); background: var(--text); color: var(--surface); border-radius: var(--r); padding: 7px 10px; font-size: 11px; white-space: nowrap; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 2px; align-items: flex-start; }
+.chart-tooltip .ctt-quando { font-size: 9.5px; opacity: .75; }
+.chart-tooltip .ctt-valor { font-weight: 700; font-size: 13px; }
+.hist-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 20px; }
+@media (max-width: 780px) { .hist-stats { grid-template-columns: repeat(2,1fr); } }
+.hstat { background: var(--cinza-bg); border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 3px; }
+.hstat-lbl { display: flex; align-items: center; gap: 6px; font-size: 10.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--text-2); }
+.hstat-dot { width: 8px; height: 8px; border-radius: 999px; flex: none; }
+.hstat-val { font-weight: 800; font-size: 24px; letter-spacing: -0.01em; }
+.hstat-delta { font-size: 11px; color: var(--text-3); }
 
-  .brand { display: flex; align-items: center; gap: 11px; padding-right: 24px; }
-  .brand .mark {
-    width: 34px; height: 34px; border-radius: 10px;
-    background: linear-gradient(135deg, var(--violet), var(--pink));
-    display: flex; align-items: center; justify-content: center;
-    font-family: "Archivo", sans-serif; font-weight: 800; font-size: 15px; color: white; flex: none;
-  }
-  .brand .name { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
-  .brand .sub { font-size: 11px; color: #A79FE0; }
-
-  .navgroup { display: flex; flex-direction: column; gap: 3px; }
-  .navlabel { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #7A72B8; padding: 0 12px; margin: 14px 0 6px; }
-  .navitem {
-    display: flex; align-items: center; gap: 11px; padding: 9px 12px; border-radius: 10px;
-    color: #C6C0EE; font-size: 13.5px; font-weight: 500; text-decoration: none;
-  }
-  a.navitem:hover { background: rgba(255,255,255,0.06); color: #FFFFFF; }
-  .navitem .dot { width: 7px; height: 7px; border-radius: 999px; background: currentColor; opacity: .55; flex: none; }
-  .navitem.active { background: rgba(255,255,255,0.08); color: #FFFFFF; }
-  .navitem.active .dot { background: var(--pink); opacity: 1; }
-
-  .side-foot { margin-top: auto; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 11.5px; color: #8B84C4; }
-
-  .main { padding: clamp(18px,3vw,34px) clamp(16px,3.5vw,40px) 60px; }
-  .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 22px; flex-wrap: wrap; }
-  .eyebrow { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--violet); margin: 0 0 6px; }
-  h1 { font-family: "Archivo", sans-serif; font-weight: 800; font-size: clamp(24px,3.4vw,32px); letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
-  .stamp-pill {
-    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--muted);
-    background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; box-shadow: var(--shadow);
-  }
-
-  .kpis { display: grid; grid-template-columns: repeat(4,1fr); gap: 13px; margin: 22px 0 30px; }
-  @media (max-width: 1080px) { .kpis { grid-template-columns: repeat(2,1fr); } }
-  .kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px 17px 14px; box-shadow: var(--shadow); }
-  .kpi .label { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); display:block; margin-bottom: 7px; }
-  .kpi .val { font-family: "Archivo", sans-serif; font-weight: 800; font-size: clamp(20px,2.6vw,25px); letter-spacing: -0.01em; }
-  .kpi.k-sos .val { color: var(--sos); }
-  .kpi.k-alta .val { color: var(--alta); }
-  .kpi.k-violet .val { color: var(--violet); }
-  .kpi.k-ok .val { color: var(--ok); }
-
-  section { margin-top: 34px; }
-  .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin-bottom: 15px; flex-wrap: wrap; }
-  h2 { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 17px; letter-spacing: -0.01em; margin: 0; }
-  .sec-note { font-size: 12px; color: var(--faint); font-family: "IBM Plex Mono", monospace; }
-
-  .equip-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; align-items: start; }
-  @media (max-width: 1180px) { .equip-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
-  @media (max-width: 640px) { .equip-grid { grid-template-columns: minmax(0,1fr); } }
-
-  .ecard { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 18px 18px 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 14px; cursor: pointer; transition: transform .12s ease, box-shadow .12s ease; text-align: left; }
-  .ecard:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(33,29,61,.08), 0 18px 34px rgba(33,29,61,.10); }
-  .ecard:focus-visible { outline: 2px solid var(--violet); outline-offset: 2px; }
-  .ecard .ehead { display: flex; align-items: center; justify-content: space-between; }
-  .ecard .etitle { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 14.5px; }
-  .ecard .eopen { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--faint); }
-
-  .donut-row { display: flex; align-items: center; gap: 16px; }
-  .donut-wrap { position: relative; width: 92px; height: 92px; flex: none; }
-  .donut-wrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
-  .donut-wrap .center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-  .donut-wrap .pctv { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 17px; }
-  .donut-wrap .pctl { font-family: "IBM Plex Mono", monospace; font-size: 8.5px; color: var(--faint); letter-spacing: .04em; text-transform: uppercase; }
-
-  .estats { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .estat { background: var(--surface2); border-radius: 10px; padding: 8px 10px; }
-  .estat .n { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 16px; }
-  .estat .l { font-family: "IBM Plex Mono", monospace; font-size: 9px; color: var(--faint); text-transform: uppercase; letter-spacing: .04em; }
-  .estat.crit .n { color: var(--sos); }
-  .estat.ok .n { color: var(--ok); }
-
-  .esos-label { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); display: flex; align-items: center; gap: 6px; }
-  .esos-label::before { content: "●"; font-size: 8px; }
-  .esos-list { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
-  .esos-item { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 11.5px; }
-  .esos-item .loja { color: var(--ink); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
-  .esos-empty { font-size: 11.5px; color: var(--faint); }
-
-  .cons-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 780px) { .cons-grid { grid-template-columns: 1fr; } }
-  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px 16px; box-shadow: var(--shadow); }
-  .card h3 { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 13.5px; margin: 0 0 14px; }
-  .hbar-row { display: grid; grid-template-columns: 108px 1fr 40px; align-items: center; gap: 10px; margin-bottom: 9px; font-size: 12px; }
-  .hbar-row .lbl { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .hbar-track { background: var(--surface2); border-radius: 999px; height: 9px; overflow: hidden; }
-  .hbar-fill { height: 100%; border-radius: 999px; }
-  .hbar-row .v { text-align: right; font-family: "IBM Plex Mono", monospace; font-weight: 600; }
-
-  footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--faint); font-size: 12px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-  .msg-carregando, .msg-erro { padding: 40px 0; text-align: center; color: var(--muted); font-family: "IBM Plex Mono", monospace; font-size: 13px; }
-  .msg-erro { color: var(--sos); }
-
-  .modal-overlay {
-    position: fixed; inset: 0; background: rgba(16,14,34,0.55); backdrop-filter: blur(2px);
-    display: flex; align-items: center; justify-content: center; padding: 24px; z-index: 50;
-  }
-  .modal-overlay[hidden] { display: none; }
-  .modal-panel {
-    background: var(--surface); border-radius: 20px; box-shadow: var(--shadow);
-    width: min(560px, 100%); max-height: min(640px, 88vh); display: flex; flex-direction: column; overflow: hidden;
-  }
-  .modal-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; border-bottom: 1px solid var(--line); flex: none; }
-  .modal-head h3 { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 16.5px; margin: 0; }
-  .modal-close {
-    appearance: none; border: none; background: var(--surface2); color: var(--muted); width: 30px; height: 30px;
-    border-radius: 999px; font-size: 17px; line-height: 1; cursor: pointer;
-  }
-  .modal-close:hover { color: var(--ink); }
-  .modal-sub { padding: 12px 22px 0; font-size: 12px; color: var(--faint); font-family: "IBM Plex Mono", monospace; flex: none; }
-  .modal-body { overflow: auto; padding: 14px 22px 20px; }
-  .detail-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
-  .detail-table th {
-    text-align: left; font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .05em; text-transform: uppercase;
-    color: var(--faint); padding: 8px 10px; position: sticky; top: 0; background: var(--surface);
-  }
-  .detail-table td { padding: 8px 10px; border-top: 1px solid var(--line); vertical-align: top; }
-  .detail-table tr:hover td { background: var(--surface2); }
-  .tag { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; font-weight: 600; border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
-  .tag-sos { background: var(--sos-soft); color: var(--sos); }
-  .tag-normal { background: var(--surface2); color: var(--muted); }
-  .filter-table-wrap { max-height: 420px; overflow: auto; border-radius: 12px; }
-  .filter-empty { padding: 24px 0; text-align: center; color: var(--faint); font-size: 12.5px; }
-  .risco-subhead { display: flex; align-items: center; gap: 10px; margin: 22px 0 10px; font-family: "Archivo", sans-serif; font-weight: 700; font-size: 14px; }
-  .risco-subhead .cnt { font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 600; border-radius: 999px; padding: 2px 10px; }
-  .risco-subhead .cnt.vencido { background: var(--sos-soft); color: var(--sos); }
-  .risco-subhead .cnt.avencer { background: var(--ok); color: white; }
-  .filter-limpar {
-    font-family: "IBM Plex Sans", sans-serif; font-size: 12.5px; font-weight: 600; color: var(--muted);
-    background: var(--surface2); border: 1px solid var(--line); border-radius: 10px;
-    padding: 9px 14px; cursor: pointer;
-  }
-  .filter-limpar:hover { color: var(--ink); }
-  .filter-conta { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--faint); padding-bottom: 10px; }
-  .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 16px; }
-  .filter-field { display: flex; flex-direction: column; gap: 4px; min-width: 168px; }
-  .filter-field label {
-    font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--faint);
-  }
-  .filter-field select {
-    font-family: "IBM Plex Sans", sans-serif; font-size: 13px; color: var(--ink); background: var(--surface2);
-    border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; appearance: none; width: 100%;
-  }
-  .resp-select {
-    font-family: "IBM Plex Sans", sans-serif; font-size: 12.5px; color: var(--ink); background: var(--surface2);
-    border: 1px solid var(--line); border-radius: 8px; padding: 4px 7px; min-width: 118px; cursor: pointer;
-  }
-  .resp-select:focus { outline: 2px solid var(--violet); outline-offset: -1px; }
-  .prev-date {
-    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink); background: var(--surface2);
-    border: 1px solid var(--line); border-radius: 8px; padding: 4px 7px; min-width: 128px; cursor: pointer;
-  }
-  .prev-date:focus { outline: 2px solid var(--violet); outline-offset: -1px; }
-</style>
-<style>
-  /* ---------- cards de status do Acompanhamento Diario Campo ---------- */
-  .statcards { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 26px; }
-  @media (max-width: 1100px) { .statcards { grid-template-columns: repeat(3, 1fr); } }
-  @media (max-width: 680px)  { .statcards { grid-template-columns: repeat(2, 1fr); } }
-  .statcard { background: var(--card, #fff); border-radius: 16px; padding: 0 0 18px; overflow: hidden;
-              box-shadow: 0 1px 2px rgba(20,16,60,.06), 0 8px 24px rgba(20,16,60,.05); text-align: center; }
-  .statcard .cap { display: block; font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .09em;
-                   text-transform: uppercase; color: #fff; padding: 9px 10px; font-weight: 600; }
-  .statcard .val { display: block; font-family: "Archivo", sans-serif; font-weight: 800; font-size: 40px;
-                   line-height: 1; padding-top: 18px; color: var(--ink, #1a1836); }
-  .sc-exec .cap { background: #E5352B; }
-  .sc-token .cap { background: #F0A31B; }
-  .sc-feito .cap { background: #22A15B; }
-  .sc-canc .cap { background: #8C8AA3; }
-  .sc-imp .cap { background: #151329; }
-
-  .tbl-wrap { overflow-x: auto; border-radius: 14px; box-shadow: 0 1px 2px rgba(20,16,60,.06), 0 8px 24px rgba(20,16,60,.05); background: #fff; }
-  table.campo { border-collapse: collapse; width: 100%; font-size: 12.5px; min-width: 1180px; }
-  table.campo th { background: #F6F5FC; color: #4a4770; text-align: left; font-weight: 600; white-space: nowrap;
-                   font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .05em; text-transform: uppercase;
-                   padding: 11px 12px; border-bottom: 1px solid #E7E4F5; position: sticky; top: 0; }
-  table.campo td { padding: 10px 12px; border-bottom: 1px solid #F0EEF9; vertical-align: top; }
-  table.campo tbody tr:hover { background: #FAF9FE; }
-  table.campo tr.tem-impacto { background: #FFF5F4; }
-  table.campo tr.tem-impacto:hover { background: #FFECEA; }
-  table.campo tr.encerrado td { color: #8d8ba6; }
-  .pill { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 11px; font-weight: 600; white-space: nowrap; }
-  .p-exec { background: #FDECEB; color: #B22119; }
-  .p-and  { background: #FFF3DF; color: #9A6407; }
-  .p-feito{ background: #E6F6ED; color: #14713E; }
-  .p-canc { background: #EFEFF4; color: #63617a; }
-  .wo { font-family: "IBM Plex Mono", monospace; font-weight: 600; color: #4b31c9; white-space: nowrap; }
-  .filtros { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 14px; }
-  .fbtn { border: 1px solid #E0DCF2; background: #fff; border-radius: 999px; padding: 7px 15px; font-size: 12.5px;
-          font-weight: 600; color: #4a4770; cursor: pointer; font-family: inherit; }
-  .fbtn.on { background: #4b31c9; border-color: #4b31c9; color: #fff; }
-  td.t-velho { color: #B22119; font-weight: 700; }
-  /* ---------- historico (mesmo formato do Backlog) ---------- */
-  .chart-legend { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 10px; }
-  .chart-legend .li { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--muted); }
-  .chart-legend .sw { width: 10px; height: 10px; border-radius: 3px; flex: none; }
-  .chart-note { font-size: 12px; color: var(--faint); font-family: "IBM Plex Mono", monospace; margin-top: 10px; }
-  .hist-stamp { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--faint); margin-bottom: 12px; }
-  .chart-svg-wrap { position: relative; }
-  .chart-dot { cursor: pointer; }
-  .chart-tooltip .ctt-quando { font-size: 9.5px; opacity: .75; }
-  .chart-tooltip .ctt-valor { font-weight: 700; font-size: 13px; }
-  .hist-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 20px; }
-  .hstat { background: var(--surface2); border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 3px; }
-  .hstat-lbl { display: flex; align-items: center; gap: 6px; font-family: "IBM Plex Mono", monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
-  .hstat-dot { width: 8px; height: 8px; border-radius: 999px; flex: none; }
-  .hstat-val { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -0.01em; }
-  .hstat-delta { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--faint); }
-    position: absolute; z-index: 20; pointer-events: none; transform: translate(-50%, -100%);
-    background: var(--ink); color: var(--surface); border-radius: 10px; padding: 7px 10px;
-    font-family: "IBM Plex Mono", monospace; font-size: 11px; white-space: nowrap; box-shadow: var(--shadow);
-    display: flex; flex-direction: column; gap: 2px; align-items: flex-start;
-  }
-  td.t-velho { color: #B22119; font-weight: 700; }
-  /* ---------- evolucao: abertos x fechados ---------- */
-  .evo { background:#fff; border-radius:16px; padding:18px 20px 12px;
-         box-shadow:0 1px 2px rgba(20,16,60,.06), 0 8px 24px rgba(20,16,60,.05); margin-bottom:26px; }
-  .evo-top { display:flex; justify-content:space-between; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:12px; }
-  .evo-leg { display:flex; gap:16px; font-size:12px; color:#4a4770; font-weight:600; }
-  .evo-leg i { display:inline-block; width:10px; height:10px; border-radius:3px; margin-right:6px; vertical-align:-1px; }
-  .evo-saldo { font-family:"IBM Plex Mono",monospace; font-size:12px; color:#63617a; }
-  .evo-saldo b { font-family:"Archivo",sans-serif; font-size:15px; }
-  .evo-pos { color:#B22119; }
-  .evo-neg { color:#14713E; }
-  .aviso { background: #FFF8E6; border: 1px solid #F3E2B0; border-radius: 12px; padding: 12px 14px;
-           font-size: 12.5px; color: #6b5412; margin-bottom: 20px; line-height: 1.5; }
+@media (max-width: 900px) { :root { --sidebar-w: 0px; } aside { display: none; } }
+@media (max-width: 600px) { main { padding: 14px; } }
 </style>
 </head>
 <body>
-<div class="shell">
-  <aside class="side">
-    <button class="side-toggle" id="sideToggle" type="button" aria-label="Recolher menu">&lsaquo;</button>
-    <div class="brand">
-      <div class="mark">Z</div>
-      <div><div class="name">Manutenção Sul</div><div class="sub">Zamp · BK Brasil</div></div>
-    </div>
-    <div class="navgroup">
-      <a class="navitem" href="index.html"><span class="dot"></span>Backlog</a>
-      <a class="navitem" href="tecnicos.html"><span class="dot"></span>Técnicos</a>
-      <div class="navlabel">Painéis</div>
-      <a class="navitem" href="perda.html"><span class="dot"></span>Perda de Receita</a>
-      <a class="navitem" href="risco.html"><span class="dot"></span>Gestão de Risco</a>
-      <a class="navitem active" href="campo.html"><span class="dot"></span>Acompanhamento Campo</a>
-      <a class="navitem" href="preventivas.html"><span class="dot"></span>Preventivas</a>
-      <a class="navitem" href="sorvete.html"><span class="dot"></span>Máquina de Sorvete</a>
-<a class="navitem" href="pecas.html"><span class="dot"></span>PeÃ§as / Materiais</a>
-      <div class="navlabel">Fonte</div>
-      <div class="navitem"><span class="dot"></span>ServiceNow · SOMA</div>
-    </div>
-    <div class="side-foot">Atualização diária · fonte SOMA</div>
-  </aside>
-  <button class="side-reopen" id="sideReopen" type="button" aria-label="Abrir menu">&rsaquo;</button>
-
-  <main class="main">
-    <div class="topbar">
-      <div>
-        <p class="eyebrow">Regional Sul · Chamados Críticos</p>
-        <h1>Acompanhamento Diário Campo</h1>
-      </div>
-      <div class="stamp-pill" id="stamp">carregando…</div>
-    </div>
-    <div id="conteudo"><div class="msg-carregando">carregando data/campo.json…</div></div>
-  </main>
+<header>
+<div class="brand-mark">Z</div>
+<div class="header-title"><h1>Acompanhamento Diário Campo</h1><span>Manutenção Sul · Chamados Críticos</span></div>
+<div class="carimbo" id="stamp">carregando…</div>
+<button class="theme-btn" onclick="toggleTheme()" title="Alternar tema">&#9788;</button>
+</header>
+<div class="layout">
+<aside>
+<div class="s-header">Navegação</div>
+<a href="index.html"><span class="s-dot"></span> Backlog</a>
+<a href="tecnicos.html"><span class="s-dot"></span> Técnicos</a>
+<div class="s-header" style="margin-top:12px">Painéis</div>
+<a href="perda.html"><span class="s-dot" style="color:var(--laranja)"></span> Perda de Receita</a>
+<a href="risco.html"><span class="s-dot" style="color:var(--rosa)"></span> Gestão de Risco</a>
+<a class="active" href="campo.html"><span class="s-dot" style="color:var(--cobalto)"></span> Acompanhamento Campo</a>
+<a href="preventivas.html"><span class="s-dot" style="color:var(--verde)"></span> Preventivas</a>
+<a href="sorvete.html"><span class="s-dot" style="color:var(--amarelo)"></span> Máquina de Sorvete</a>
+<a href="pecas.html"><span class="s-dot" style="color:var(--cinza)"></span> Peças / Materiais</a>
+<div class="s-header" style="margin-top:12px">Fonte</div>
+<div class="navitem-static"><span class="s-dot"></span> ServiceNow · SOMA</div>
+<div class="side-foot">Atualização diária · fonte SOMA</div>
+</aside>
+<main>
+<div id="conteudo"><div class="msg-carregando">carregando data/campo.json…</div></div>
+</main>
 </div>
-
 <script>
+function toggleTheme() {
+var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+document.documentElement.setAttribute('data-theme', next);
+localStorage.setItem('campo-theme', next);
+}
+(function() {
+var saved = localStorage.getItem('campo-theme');
+if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+
 const esc = (s) => String(s == null ? '' : s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-// datas do SOMA chegam como "16/09/2026 12:08:15"
 function dataCurta(s) {
   if (!s) return '—';
   const m = String(s).match(/^(\d{2})\/(\d{2})\/(\d{4})\s+(\d{2}:\d{2})/);
   return m ? `${m[1]}/${m[2]} ${m[4]}` : String(s);
 }
-// tempo em aberto contado de verdade (minuto a minuto), nao em dias corridos
 function tempoAberto(s) {
   const m = String(s || '').match(/^(\d{2})\/(\d{2})\/(\d{4})\s+(\d{2}):(\d{2})/);
   if (!m) return null;
@@ -373,7 +205,6 @@ function tempoAberto(s) {
   const dias = Math.floor(h / 24), hr = h % 24;
   return hr ? dias + 'd ' + hr + 'h' : dias + 'd';
 }
-// acima de 24h o chamado ja passou do dia: destaca
 function classeTempo(s) {
   const m = String(s || '').match(/^(\d{2})\/(\d{2})\/(\d{4})\s+(\d{2}):(\d{2})/);
   if (!m) return '';
@@ -414,19 +245,14 @@ function lineChartSVG(pontos, series) {
   const grid = [0, 0.25, 0.5, 0.75, 1].map(f => {
     const yy = padT + innerH * (1 - f);
     return `<line x1="${padL}" y1="${yy.toFixed(1)}" x2="${W - padR}" y2="${yy.toFixed(1)}" style="stroke:var(--grid)" stroke-width="1"/>
-      <text x="${padL - 6}" y="${(yy + 3).toFixed(1)}" font-size="9" text-anchor="end" style="fill:var(--faint)" font-family="IBM Plex Mono, monospace">${Math.round(maxV * f)}</text>`;
+      <text x="${padL - 6}" y="${(yy + 3).toFixed(1)}" font-size="9" text-anchor="end" style="fill:var(--text-3)" font-family="Inter, monospace">${Math.round(maxV * f)}</text>`;
   }).join('');
 
-  // rotulo do valor atual (ponta da linha) -- espalha verticalmente quando
-  // duas series terminam perto uma da outra, pra nao sobrepor o numero
   const finais = series.map(s => ({ s, v: pontos[n - 1][s.key] })).sort((a, b) => b.v - a.v);
   const minGap = 11;
   finais.forEach((f, i) => { f.yLabel = i === 0 ? y(f.v) : Math.max(y(f.v), finais[i - 1].yLabel + minGap); });
   const yLabelPorChave = Object.fromEntries(finais.map(f => [f.s.key, f.yLabel]));
 
-  // dado de cada bolinha guardado em atributos data-* pra o tooltip (caixa
-  // com o valor exato) ler no hover, sem precisar recalcular nada -- pedido
-  // do Christian, 12/09/2026.
   const dotAttrs = (p, i, s) => {
     const d = new Date(p.quando || (p.data + 'T00:00:00'));
     const quandoFmt = d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' }) + ' ' + d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
@@ -435,7 +261,7 @@ function lineChartSVG(pontos, series) {
 
   const seriesSvg = series.map(s => {
     const valorFinal = pontos[n - 1][s.key];
-    const rotuloFinal = `<text x="${(x(n - 1) + 8).toFixed(1)}" y="${(yLabelPorChave[s.key] + 3).toFixed(1)}" font-size="11" font-weight="700" style="fill:${s.color}" font-family="IBM Plex Mono, monospace">${valorFinal}</text>`;
+    const rotuloFinal = `<text x="${(x(n - 1) + 8).toFixed(1)}" y="${(yLabelPorChave[s.key] + 3).toFixed(1)}" font-size="11" font-weight="700" style="fill:${s.color}" font-family="Inter, monospace">${valorFinal}</text>`;
     if (n === 1) {
       return `<circle cx="${x(0).toFixed(1)}" cy="${y(pontos[0][s.key]).toFixed(1)}" r="5" style="fill:${s.color}" ${dotAttrs(pontos[0], 0, s)}/>${rotuloFinal}`;
     }
@@ -445,24 +271,18 @@ function lineChartSVG(pontos, series) {
     return `<polyline points="${pts}" style="fill:none;stroke:${s.color};pointer-events:none" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>${dotsVisiveis}${dots}${rotuloFinal}`;
   }).join('');
 
-  // rotulo com dia + hora (ex.: "09/09 22h") pra dar pra comparar o mesmo
-  // horario entre dias, agora que cada execucao (a cada 2h) vira um ponto
   const passo = Math.max(1, Math.ceil(n / 7));
   const labels = pontos.map((p, i) => {
     if (i % passo !== 0 && i !== n - 1) return '';
     const d = new Date(p.quando || (p.data + 'T00:00:00'));
     const dataLbl = d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
     const horaLbl = d.toLocaleTimeString('pt-BR', { hour: '2-digit' });
-    return `<text x="${x(i).toFixed(1)}" y="${H - 8}" font-size="9" text-anchor="middle" style="fill:var(--faint)" font-family="IBM Plex Mono, monospace">${dataLbl} ${horaLbl}</text>`;
+    return `<text x="${x(i).toFixed(1)}" y="${H - 8}" font-size="9" text-anchor="middle" style="fill:var(--text-3)" font-family="Inter, monospace">${dataLbl} ${horaLbl}</text>`;
   }).join('');
 
-  // width/height explicitos junto do viewBox: mesmo fix do gaugeSVG (ver
-  // comentario la') pro "height:auto" escalar certo em qualquer navegador.
   return `<div class="chart-svg-wrap"><svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="width:100%;height:auto;display:block;">${grid}${seriesSvg}${labels}</svg><div class="chart-tooltip" id="chartTooltip" hidden></div></div>`;
 }
 
-// monta o bloco de historico no formato do Backlog: carimbo, 4 cartoes com
-// delta em relacao ao dia anterior, e o grafico de linhas com tooltip.
 function blocoHistorico(serie) {
   if (!Array.isArray(serie) || !serie.length) return '';
   const pontos = serie.map((d) => ({
@@ -473,8 +293,8 @@ function blocoHistorico(serie) {
     saldo: d.abertos - d.fechados,
   }));
   const series = [
-    { key: 'abertos', label: 'Abertos', color: 'var(--violet)' },
-    { key: 'fechados', label: 'Fechados', color: 'var(--blue)' },
+    { key: 'abertos', label: 'Abertos', color: 'var(--cobalto)' },
+    { key: 'fechados', label: 'Fechados', color: 'var(--verde)' },
   ];
   const ultimo = pontos[pontos.length - 1];
   const anterior = pontos.length > 1 ? pontos[pontos.length - 2] : null;
@@ -483,10 +303,10 @@ function blocoHistorico(serie) {
   const somaF = pontos.reduce((t, d) => t + d.fechados, 0);
 
   const cartoes = [
-    { lbl: 'Abertos hoje', v: ultimo.abertos, ant: anterior && anterior.abertos, cor: 'var(--violet)' },
-    { lbl: 'Fechados hoje', v: ultimo.fechados, ant: anterior && anterior.fechados, cor: 'var(--blue)' },
-    { lbl: 'Abertos ' + pontos.length + ' dias', v: somaA, ant: null, cor: 'var(--violet)' },
-    { lbl: 'Fechados ' + pontos.length + ' dias', v: somaF, ant: null, cor: 'var(--blue)' },
+    { lbl: 'Abertos hoje', v: ultimo.abertos, ant: anterior && anterior.abertos, cor: 'var(--cobalto)' },
+    { lbl: 'Fechados hoje', v: ultimo.fechados, ant: anterior && anterior.fechados, cor: 'var(--verde)' },
+    { lbl: 'Abertos ' + pontos.length + ' dias', v: somaA, ant: null, cor: 'var(--cobalto)' },
+    { lbl: 'Fechados ' + pontos.length + ' dias', v: somaF, ant: null, cor: 'var(--verde)' },
   ].map((c) => {
     let delta;
     if (c.ant === null || c.ant === undefined) {
@@ -513,8 +333,6 @@ function blocoHistorico(serie) {
     ${nota}`;
 }
 
-// Filtros por loja e por problema. Uso listas montadas a partir dos proprios
-// chamados em tela, entao nunca aparece opcao que nao tem resultado.
 function aplicaFiltros(itens) {
   return itens.filter((i) =>
     (!FILTROS.loja || i.loja === FILTROS.loja) &&
@@ -575,13 +393,12 @@ function linhas(itens) {
 
 function render() {
   const D = DADOS;
-  // concluidos ja saem no extrator; aqui e' so' uma rede de seguranca
   const abertos = D.itens.filter((i) => i.grupo === 'execucao');
   document.getElementById('conteudo').innerHTML = `
     ${cards(D.resumo)}
     <div class="aviso"><strong>Colunas ainda não mapeadas:</strong> Impacto, Abertura Impacto e Solicitação Token
     não existem na ordem de serviço do SOMA — precisam ser localizadas na origem da sua planilha de campo.
-    O card “Chamados com Impacto” fica em “—” até lá, em vez de mostrar um número inventado.</div>
+    O card "Chamados com Impacto" fica em "—" até lá, em vez de mostrar um número inventado.</div>
     <div class="sec-head"><h2>Chamados críticos em aberto · últimos ${D.janelaDias} dias</h2>
       <span class="sec-note">Prioridade 1 · Crítica · fonte: ServiceNow SOMA (wm_order · Regional SUL)</span></div>
     ${barraFiltros(abertos)}
@@ -604,10 +421,6 @@ document.addEventListener('click', (ev) => {
   if (ev.target.id === 'fLimpar') { FILTROS.loja = ''; FILTROS.problema = ''; render(); }
 });
 
-// A VM serve uma copia AO VIVO, regravada a cada ciclo de 20 min. A copia do
-// repositorio so' muda quando o dado muda (para nao gastar deploy da Vercel a
-// toa), entao usar so' ela fazia o carimbo congelar e parecer que a automacao
-// tinha parado. Tenta a VM primeiro; se ela estiver fora, cai no repositorio.
 const FONTE_VIVA = 'https://154-64-32-227.sslip.io/v1/campo';
 
 async function buscarDados() {
@@ -639,17 +452,8 @@ async function iniciar() {
 }
 iniciar();
 
-// Quem deixa o painel aberto na parede nao deve precisar dar F5: revalida
-// sozinho a cada 2 min contra a fonte ao vivo da VM.
 setInterval(() => { iniciar(); }, 120000);
 
-// tooltip do grafico: delegado no `document` (nao no #chartCard) porque o
-// #chartCard so' existe depois que iniciar() monta o conteudo de forma
-// assincrona -- ligar o listener direto nele nesse ponto do script (que
-// roda antes do fetch terminar) achava null e saia em silencio, sem erro
-// nenhum no console. `document` ja existe desde sempre, entao a delegacao
-// funciona nao importa quando o grafico aparece. Pedido do Christian,
-// 12/09/2026: uma caixa com o valor exato ao passar o mouse na bolinha.
 (function () {
   document.addEventListener('mouseover', (ev) => {
     const dot = ev.target.closest('.chart-dot');
@@ -669,29 +473,6 @@ setInterval(() => { iniciar(); }, 120000);
     if (!dot) return;
     const tooltip = dot.closest('.chart-svg-wrap')?.querySelector('#chartTooltip');
     if (tooltip) tooltip.hidden = true;
-  });
-})();
-
-
-(function () {
-  const shell = document.querySelector('.shell');
-  const CHAVE = 'chamados_sidebar_collapsed';
-  function aplicar(colapsado) {
-    shell.classList.toggle('sb-collapsed', colapsado);
-    shell.classList.toggle('sb-expanded', !colapsado);
-  }
-  let salvo = null;
-  try { salvo = localStorage.getItem(CHAVE); } catch (e) {}
-  const colapsado = salvo === null ? window.innerWidth <= 860 : salvo === '1';
-  aplicar(colapsado);
-
-  document.getElementById('sideToggle').addEventListener('click', () => {
-    aplicar(true);
-    try { localStorage.setItem(CHAVE, '1'); } catch (e) {}
-  });
-  document.getElementById('sideReopen').addEventListener('click', () => {
-    aplicar(false);
-    try { localStorage.setItem(CHAVE, '0'); } catch (e) {}
   });
 })();
 </script>
