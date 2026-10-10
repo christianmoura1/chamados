@@ -1249,26 +1249,88 @@ return { totalPedidos, pedidosProcessados, pecasComRastreio };
     dadosProcessados.disponibilidadeBIAtualizadaEm = carimboBI;
     dadosProcessados.ultimosFechados = ultimosFechados(fechadosCsv);
 
+    // PRESERVACAO: le o dados.json anterior para recuperar pecas/rastreio
+    // caso as etapas abaixo falhem (CDP timeout, SOMA deslogado, etc.).
+    // Sem isso, uma falha transiente apaga todos os dados de pecas do painel.
+    let pecasAnteriores = {};
+    try {
+      const jsonAnterior = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'dados.json'), 'utf8'));
+      for (const eq of (jsonAnterior.equipamentos || [])) {
+        for (const c of (eq.chamadosDetalhe || [])) {
+          if (c.pecas && c.pecas.length > 0) {
+            pecasAnteriores[c.numero] = c.pecas;
+          }
+        }
+      }
+      if (Object.keys(pecasAnteriores).length > 0) {
+        logInfo('pecas anteriores carregadas para preservacao', { chamados: Object.keys(pecasAnteriores).length });
+      }
+    } catch (e) { /* primeiro run ou arquivo corrompido -- sem backup */ }
+
     // Busca pecas/materiais dos chamados de equipamento (sorvete, fritadeira,
     // microondas, phu, broiler, tostadeira) diretamente na pagina individual
     // do SOMA. So' para esses ~220 chamados, nao para todos os ~1800 abertos.
     logInfo('etapa iniciada', { etapa: 'buscar_pecas' });
+    let pecasOk = false;
     try {
       const resultadoPecas = await buscarPecas(dadosProcessados);
       logInfo('etapa concluida', { etapa: 'buscar_pecas', ...resultadoPecas });
+      pecasOk = resultadoPecas.comPeca > 0;
     } catch (e) {
-      logErro('buscar_pecas falhou -- continuo sem pecas', { erro: e.message.slice(0, 200) });
+      logErro('buscar_pecas falhou -- tento preservar dados anteriores', { erro: e.message.slice(0, 200) });
+    }
+
+    // Se buscarPecas falhou ou retornou zero pecas, restaura do JSON anterior
+    if (!pecasOk && Object.keys(pecasAnteriores).length > 0) {
+      let restaurados = 0;
+      for (const eq of dadosProcessados.equipamentos) {
+        for (const c of (eq.chamadosDetalhe || [])) {
+          if (pecasAnteriores[c.numero]) {
+            c.pecas = pecasAnteriores[c.numero];
+            restaurados++;
+          }
+        }
+      }
+      logInfo('pecas restauradas do JSON anterior', { chamados: restaurados });
     }
 
     // Busca rastreio das pecas no abbiamolog (log.abbiamolog.com).
     // Cruza o codigo de material SOMA com os pedidos BKN via API, indexando
     // por codigo para o painel mostrar onde cada peca esta.
     logInfo('etapa iniciada', { etapa: 'buscar_rastreio' });
+    let rastreioOk = false;
     try {
       const resultadoRastreio = await buscarRastreio(dadosProcessados);
       logInfo('etapa concluida', { etapa: 'buscar_rastreio', ...resultadoRastreio });
+      rastreioOk = resultadoRastreio.pecasComRastreio > 0;
     } catch (e) {
-      logErro('buscar_rastreio falhou -- continuo sem rastreio', { erro: e.message.slice(0, 200) });
+      logErro('buscar_rastreio falhou -- tento preservar rastreio anterior', { erro: e.message.slice(0, 200) });
+    }
+
+    // Se buscarRastreio falhou, restaura o rastreio do JSON anterior
+    // (so' para pecas que ja tem pecas -- vindas do passo acima ou do atual)
+    if (!rastreioOk && Object.keys(pecasAnteriores).length > 0) {
+      let rastreiosRestaurados = 0;
+      for (const eq of dadosProcessados.equipamentos) {
+        for (const c of (eq.chamadosDetalhe || [])) {
+          const pecasAnt = pecasAnteriores[c.numero];
+          if (!pecasAnt) continue;
+          for (let i = 0; i < (c.pecas || []).length; i++) {
+            const pAtual = c.pecas[i];
+            if (!pAtual.rastreio || pAtual.rastreio.length === 0) {
+              // Tenta achar a peca correspondente no backup pelo numero INCL
+              const pAnt = pecasAnt.find(pa => pa.numero === pAtual.numero);
+              if (pAnt && pAnt.rastreio && pAnt.rastreio.length > 0) {
+                pAtual.rastreio = pAnt.rastreio;
+                rastreiosRestaurados++;
+              }
+            }
+          }
+        }
+      }
+      if (rastreiosRestaurados > 0) {
+        logInfo('rastreio restaurado do JSON anterior', { pecas: rastreiosRestaurados });
+      }
     }
 
     // Indisponibilidade da REGIONAL SUL, lida da matriz do BI (nao calculada).
