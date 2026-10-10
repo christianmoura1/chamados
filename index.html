@@ -862,7 +862,7 @@ async function iniciar() {
     { label: 'Lojas c/ Chamado Aberto', val: brl0(D.totalLojas), cls: 'k-violet' },
     { label: 'Chamados SOS', val: brl0(totalSOS), cls: 'k-sos' },
     { label: 'Chamados Alta', val: brl0(totalAlta), cls: 'k-alta' },
-    { label: 'Tempo Médio (dias)', val: brl0(tempoMedioGeral), cls: 'k-violet' },
+    { label: 'Chamados c/ Materiais', val: brl0(chamadosComPeca.size), cls: 'k-violet' },
     indispKpi(),
   ].map(k => `<div class="kpi ${k.cls}"><span class="label">${k.label}</span><div class="val num">${k.val}</div>`
     + (k.nota ? `<span class="kpi-nota">${k.nota}</span>` : '') + `</div>`).join('');
@@ -963,6 +963,10 @@ async function iniciar() {
           <div class="filter-field">
             <label for="filtroSupervisor">Supervisor</label>
             <select id="filtroSupervisor" title="Filtra pela carteira de lojas do supervisor, não por quem está atribuído no chamado"><option value="">Todos</option></select>
+          </div>
+          <div class="filter-field filter-field-curto">
+            <label for="filtroMateriais">Materiais</label>
+            <select id="filtroMateriais"><option value="">Todos</option><option value="sim">Com materiais</option><option value="nao">Sem materiais</option></select>
           </div>
           <div class="filter-field filter-field-datas">
             <label>Abertura</label>
@@ -1106,6 +1110,7 @@ function montarBuscaChamados(D) {
     const fs = selSetor.value, flBusca = semAcento(inLoja.value.trim()), fsup = selSupervisor.value;
     const fpBusca = semAcento(inProblema.value.trim());
     const fpri = selPrioridade.value;
+    const fmat = document.getElementById('filtroMateriais').value;
     const dataDe = inDataDe.value, dataAte = inDataAte.value;
     const filtrados = ordenaChamados(
       todos.filter(c =>
@@ -1114,6 +1119,7 @@ function montarBuscaChamados(D) {
         && (!fpBusca || semAcento(c.problema).includes(fpBusca))
         && (!fpri || c.prioridade === fpri)
         && (!fsup || supervisorDe(c) === fsup)
+        && (!fmat || (fmat === 'sim' ? chamadosComPeca.has(c.numero) : !chamadosComPeca.has(c.numero)))
         && (!dataDe || (c.abertura && c.abertura >= dataDe))
         && (!dataAte || (c.abertura && c.abertura <= dataAte))
       )
@@ -1157,12 +1163,13 @@ function montarBuscaChamados(D) {
     if (ev.target !== inLoja && !listaLoja.contains(ev.target)) listaLoja.hidden = true;
   });
 
-  [selSetor, selPrioridade, selSupervisor].forEach(sel => sel.addEventListener('change', renderizar));
+  [selSetor, selPrioridade, selSupervisor, document.getElementById('filtroMateriais')].forEach(sel => sel.addEventListener('change', renderizar));
   inProblema.addEventListener('input', renderizar);
   [inDataDe, inDataAte].forEach(el => el.addEventListener('change', renderizar));
   document.getElementById('filtroLimpar').addEventListener('click', () => {
     selSetor.value = ''; inLoja.value = ''; inProblema.value = ''; selSupervisor.value = '';
     selPrioridade.value = '';
+    document.getElementById('filtroMateriais').value = '';
     inDataDe.value = ''; inDataAte.value = '';
     listaLoja.hidden = true;
     renderizar();
