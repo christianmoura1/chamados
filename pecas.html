@@ -356,6 +356,18 @@ function renderizar() {
   const fChamado = semAcento(inChamado.value.trim());
   const fPri = selPrioridade.value;
   const fSup = document.getElementById('filtroSupervisor').value;
+  const fEntrega = document.getElementById('filtroEntrega').value;
+
+  // Helper: classifica o status de entrega de uma peca
+  function classificarEntrega(p) {
+    if (!p.rastreio || !p.rastreio.length) return 'sem_envio';
+    const s = (p.rastreio[0].status || '').toUpperCase();
+    if (s === 'SUCCESSFUL' || s === 'DELIVERED') return 'entregue';
+    if (s === 'IN_TRANSIT' || s === 'COLLECTED' || s === 'START_DELIVERY') return 'em_rota';
+    if (s === 'DISPATCHED') return 'despachado';
+    if (s.includes('FAIL') || s.includes('CANCEL') || s.includes('RETURN')) return 'falhou';
+    return 'despachado';
+  }
 
   const filtrados = TODOS_CHAMADOS_COM_PECAS.filter(c => {
     if (fEquip && c.equipamento !== fEquip) return false;
@@ -366,6 +378,10 @@ function renderizar() {
     if (fMaterial) {
       const temMaterial = (c.pecas || []).some(p => semAcento(p.material || '').includes(fMaterial));
       if (!temMaterial) return false;
+    }
+    if (fEntrega) {
+      const temPecaComStatus = (c.pecas || []).some(p => classificarEntrega(p) === fEntrega);
+      if (!temPecaComStatus) return false;
     }
     return true;
   });
@@ -543,6 +559,18 @@ async function iniciar() {
             <label for="filtroSupervisor">Supervisor</label>
             <select id="filtroSupervisor"><option value="">Todos</option></select>
           </div>
+          <div class="filter-field" style="flex:0 1 180px;min-width:150px;">
+            <label for="filtroEntrega">Status Entrega</label>
+            <select id="filtroEntrega">
+              <option value="">Todos</option>
+              <option value="sem_envio">Ainda não entregue à transportadora</option>
+              <option value="em_rota">Em rota / Em trânsito</option>
+              <option value="entregue">Entregue</option>
+              <option value="despachado">Despachado</option>
+              <option value="coletado">Coletado</option>
+              <option value="falhou">Falhou / Cancelado</option>
+            </select>
+          </div>
           <button class="filter-clear" id="filtroLimpar" type="button">Limpar filtros</button>
         </div>
         <div class="filter-count" id="filtroContagem"></div>
@@ -610,6 +638,7 @@ async function iniciar() {
   selEquip.addEventListener('change', renderizar);
   selPri.addEventListener('change', renderizar);
   selSup.addEventListener('change', renderizar);
+  document.getElementById('filtroEntrega').addEventListener('change', renderizar);
   document.getElementById('filtroMaterial').addEventListener('input', renderizar);
   document.getElementById('filtroChamado').addEventListener('input', renderizar);
   document.getElementById('filtroLimpar').addEventListener('click', () => {
@@ -618,6 +647,7 @@ async function iniciar() {
     document.getElementById('filtroChamado').value = '';
     selPri.value = '';
     selSup.value = '';
+    document.getElementById('filtroEntrega').value = '';
     listaLoja.hidden = true;
     renderizar();
   });
@@ -675,7 +705,7 @@ function abrirDetalhe(idx) {
         ${p.rastreio.length > 1 ? '<br><span class="tracking">+' + (p.rastreio.length - 1) + ' envio(s) adicional(is)</span>' : ''}
       </div>`;
     } else {
-      rastreioHtml = `<div class="rastreio-info"><span class="rastreio-badge default">Sem envio recente</span> <span style="color:var(--faint);font-size:11px">nenhum pedido nos últimos 14 dias</span></div>`;
+      rastreioHtml = `<div class="rastreio-info"><span class="rastreio-badge default">⚠ Ainda não entregue à transportadora</span></div>`;
     }
     return `<tr class="modal-peca-row">
       <td class="modal-peca-incl">${escapeHtml(p.numero)}</td>
