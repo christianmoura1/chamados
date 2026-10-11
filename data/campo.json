@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-11T14:00:33.037Z",
+ "atualizadoEm": "2026-10-11T14:20:16.739Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 11,
+  "emExecucao": 12,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 11
+  "total": 12
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-11",
-   "abertos": 7,
+   "abertos": 8,
    "fechados": 5
   }
  ],
  "itens": [
+  {
+   "numero": "WO0067597",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "27589 - PARK EUROPEU BLUMENAU",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "11/10/2026 11:19:34",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
+   "tarefas": [
+    "WOT0068151"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0067573",
    "marca": "BKB",
