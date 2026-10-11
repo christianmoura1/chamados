@@ -256,6 +256,7 @@
   .tag-sos { background: var(--sos-soft); color: var(--rosa); }
   .tag-alta { background: var(--alta-soft); color: var(--laranja); }
   .tag-pecas { background: rgba(30,59,255,0.10); color: var(--cobalto); font-size: 10px; padding: 1px 7px; margin-left: 4px; vertical-align: middle; }
+  .tag-duplicado { background: rgba(234,88,12,0.12); color: #c2410c; font-size: 10px; padding: 1px 7px; margin-left: 4px; vertical-align: middle; }
   .tag-normal { background: var(--cinza-bg); color: var(--text-2); }
 
   /* ---------- busca de chamados ---------- */
@@ -468,11 +469,14 @@ const tagClsPrioridade = p => p === 'SOS' ? 'tag-sos' : (p === 'Alta' ? 'tag-alt
 let chamadosComPeca = new Set();
 const tagPecas = (numero) => chamadosComPeca.has(numero)
   ? '<span class="tag tag-pecas">Peças</span>' : '';
+let chamadosDuplicados = new Set();
+const tagDuplicado = (numero) => chamadosDuplicados.has(numero)
+  ? '<span class="tag tag-duplicado">Duplicado</span>' : '';
 
 function blocoMaisUrgentes(itens) {
   const top5 = (itens || []).slice(0, 5);
   const html = top5.length
-    ? top5.map(c => `<div class="esos-item"><span class="loja">${escapeHtml(c.loja)}</span><span class="tag ${tagClsPrioridade(c.prioridade)}">${c.dias}d</span>${tagPecas(c.numero)}</div>`).join('')
+    ? top5.map(c => `<div class="esos-item"><span class="loja">${escapeHtml(c.loja)}</span><span class="tag ${tagClsPrioridade(c.prioridade)}">${c.dias}d</span>${tagPecas(c.numero)}${tagDuplicado(c.numero)}</div>`).join('')
     : '<div class="esos-empty">Nenhum chamado em aberto.</div>';
   return `<div>
       <div class="esos-label">Mais urgentes (${top5.length})</div>
@@ -571,7 +575,7 @@ function renderizarModalTabela() {
         <td>${escapeHtml(c.loja)}</td>
         <td>${escapeHtml(c.problema) || '—'}</td>
         <td>${escapeHtml(c.estado)}</td>
-        <td><span class="tag ${tagClsPrioridade(c.prioridade)}">${escapeHtml(c.prioridade)}</span>${tagPecas(c.numero)}</td>
+        <td><span class="tag ${tagClsPrioridade(c.prioridade)}">${escapeHtml(c.prioridade)}</span>${tagPecas(c.numero)}${tagDuplicado(c.numero)}</td>
         <td class="num">${c.dias}d</td>
         <td>${escapeHtml(c.tecnico) || '—'}</td>
       </tr>`).join('')
@@ -838,9 +842,22 @@ async function iniciar() {
   // estiver vazio nesse ponto o card mostra 0. Antes esse preenchimento
   // ficava ~230 linhas abaixo (depois dos KPIs), por isso vinha zerado.
   chamadosComPeca = new Set();
+  const chaveDuplicado = new Map(); // 'equipamento|loja' -> [numeros]
   for (const eq of (D.equipamentos || [])) {
     for (const c of (eq.chamadosDetalhe || [])) {
       if (c.pecas && c.pecas.length > 0) chamadosComPeca.add(c.numero);
+      const loja = (c.loja || '').trim();
+      if (loja) {
+        const k = eq.nome + '|' + loja;
+        if (!chaveDuplicado.has(k)) chaveDuplicado.set(k, []);
+        chaveDuplicado.get(k).push(c.numero);
+      }
+    }
+  }
+  chamadosDuplicados = new Set();
+  for (const [, nums] of chaveDuplicado) {
+    if (nums.length > 1) {
+      for (const n of nums) chamadosDuplicados.add(n);
     }
   }
 
@@ -1149,7 +1166,7 @@ function montarBuscaChamados(D) {
           <td>${escapeHtml(c.loja)}</td>
           <td>${escapeHtml(c.problema) || '—'}</td>
           <td>${escapeHtml(c.estado)}</td>
-          <td><span class="tag ${tagClsPrioridade(c.prioridade)}">${escapeHtml(c.prioridade)}</span>${tagPecas(c.numero)}</td>
+          <td><span class="tag ${tagClsPrioridade(c.prioridade)}">${escapeHtml(c.prioridade)}</span>${tagPecas(c.numero)}${tagDuplicado(c.numero)}</td>
           <td class="num">${c.dias}d</td>
           <td>${escapeHtml(c.tecnico) || '—'}</td>
         </tr>`).join('')
