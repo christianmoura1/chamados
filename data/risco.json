@@ -1,8 +1,8 @@
 {
- "atualizadoEm": "10/10/2026 14:08:11",
- "geradoEm": "2026-10-10T18:32:11.252Z",
+ "atualizadoEm": "10/10/2026 20:05:40",
+ "geradoEm": "2026-10-11T09:04:50.337Z",
  "totalLojasAvaliadas": 71,
- "scoreMedio": 8.39,
+ "scoreMedio": 8.41,
  "categorias": [
   {
    "chave": "sci",
@@ -34,6 +34,14 @@
      "score": 15,
      "diasAtraso": 14,
      "dataRef": "25/09/2026",
+     "rotuloRef": "venceu",
+     "itemRef": null
+    },
+    {
+     "nome": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
+     "score": 15,
+     "diasAtraso": 63,
+     "dataRef": "07/08/2026",
      "rotuloRef": "venceu",
      "itemRef": null
     },
@@ -106,14 +114,6 @@
      "score": 10,
      "diasAtraso": 20,
      "dataRef": "19/09/2026",
-     "rotuloRef": "venceu",
-     "itemRef": null
-    },
-    {
-     "nome": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
-     "score": 10,
-     "diasAtraso": 63,
-     "dataRef": "07/08/2026",
      "rotuloRef": "venceu",
      "itemRef": null
     },
@@ -193,7 +193,7 @@
    "lojasVencidas": [
     {
      "nome": "16988 - SHOP ESTACAO",
-     "score": 19,
+     "score": 14,
      "diasAtraso": 22,
      "dataRef": "18/09/2026",
      "rotuloRef": "últ. visita",
@@ -211,7 +211,7 @@
    "lojasVencidas": [
     {
      "nome": "16988 - SHOP ESTACAO",
-     "score": 19,
+     "score": 14,
      "diasAtraso": 51,
      "dataRef": "20/08/2026",
      "rotuloRef": "últ. visita",
@@ -224,14 +224,16 @@
   "Coifa",
   "Exaustor",
   "Quadro Elétrico",
+  "Central de fumaça",
   "Limpeza",
   "Sensor de gás",
-  "12",
+  "11",
   "4",
   "2",
   "1",
   "1",
-  "3",
+  "1",
+  "5",
   "Atrasado",
   "No Prazo"
  ],
@@ -320,20 +322,6 @@
     "dtAbertura": "17/09/2026",
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
-   },
-   {
-    "numero": "WO0053425",
-    "statusRisco": "Atrasado",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
-    "regional": "SUL",
-    "setor": "CURITIBA OESTE/SC",
-    "loja": "16988 - SHOP ESTACAO",
-    "status": "Pronto Para Envio",
-    "dtAbertura": "18/09/2026",
-    "dtEncerramento": "",
-    "tecnico": "CARLOS MAGNO DA SILVA LIRA"
    },
    {
     "numero": "WO0055039",
@@ -516,6 +504,20 @@
     "dtAbertura": "08/10/2026",
     "dtEncerramento": "",
     "tecnico": "THIAGO DOS SANTOS COELHO"
+   },
+   {
+    "numero": "WO0067394",
+    "statusRisco": "Atrasado",
+    "item": "Central de fumaça",
+    "assuntoPrincipal": "SISTEMA DE INCÊNDIO",
+    "assuntoSecundario": "SCI - ALARME DISPARADO",
+    "regional": "SUL",
+    "setor": "CAPITAL CENTRO RS",
+    "loja": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "10/10/2026",
+    "dtEncerramento": "",
+    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
    }
   ],
   "aVencer": [
@@ -560,6 +562,34 @@
     "dtAbertura": "08/10/2026",
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
+   },
+   {
+    "numero": "WO0067319",
+    "statusRisco": "No Prazo",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
+    "regional": "SUL",
+    "setor": "SUDOESTE RS",
+    "loja": "24741 - FS PELOTAS - AV FERREIRA VIANA",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "10/10/2026",
+    "dtEncerramento": "",
+    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
+   },
+   {
+    "numero": "WO0067366",
+    "statusRisco": "No Prazo",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - COIFA NÃO FUNCIONA",
+    "regional": "SUL",
+    "setor": "CURITIBA NORTE",
+    "loja": "20047 - FS CURITIBA - LINHA VERDE",
+    "status": "Em Andamento",
+    "dtAbertura": "10/10/2026",
+    "dtEncerramento": "",
+    "tecnico": "CARLOS MAGNO DA SILVA LIRA"
    }
   ]
  },
