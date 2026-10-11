@@ -1355,21 +1355,47 @@ return { totalPedidos, pedidosProcessados, pecasComRastreio };
       }
     } catch (e) { /* primeiro run ou arquivo corrompido -- sem backup */ }
 
-    // Busca pecas/materiais dos chamados de equipamento (sorvete, fritadeira,
-    // microondas, phu, broiler, tostadeira) diretamente na pagina individual
-    // do SOMA. So' para esses ~220 chamados, nao para todos os ~1800 abertos.
-    logInfo('etapa iniciada', { etapa: 'buscar_pecas' });
+    // Janela de pecas/rastreio: so' a 1h da manha (horario de Brasilia).
+    // Fora dessa hora, pula a varredura pesada (~1800 chamados no SOMA) e
+    // preserva os dados do JSON anterior. Pedido Christian 11/10/2026: as
+    // pecas demoram muito e so' precisam rodar de madrugada.
+    const horaSP = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' })).getHours();
+    const janelaPecas = horaSP === 1;
     let pecasOk = false;
-    try {
-      const resultadoPecas = await buscarPecas(dadosProcessados);
-      logInfo('etapa concluida', { etapa: 'buscar_pecas', ...resultadoPecas });
-      pecasOk = resultadoPecas.comPeca > 0;
-    } catch (e) {
-      logErro('buscar_pecas falhou -- tento preservar dados anteriores', { erro: e.message.slice(0, 200) });
+    let rastreioOk = false;
+
+    if (!janelaPecas) {
+      logInfo('etapa pulada (fora da janela de pecas)', { etapa: 'buscar_pecas', horaSP, motivo: 'pecas so 1h da manha' });
+      logInfo('etapa pulada (fora da janela de pecas)', { etapa: 'buscar_rastreio', horaSP, motivo: 'pecas so 1h da manha' });
+    } else {
+      // Busca pecas/materiais dos chamados de equipamento (sorvete, fritadeira,
+      // microondas, phu, broiler, tostadeira) diretamente na pagina individual
+      // do SOMA. So' para esses ~220 chamados, nao para todos os ~1800 abertos.
+      logInfo('etapa iniciada', { etapa: 'buscar_pecas' });
+      try {
+        const resultadoPecas = await buscarPecas(dadosProcessados);
+        logInfo('etapa concluida', { etapa: 'buscar_pecas', ...resultadoPecas });
+        pecasOk = resultadoPecas.comPeca > 0;
+      } catch (e) {
+        logErro('buscar_pecas falhou -- tento preservar dados anteriores', { erro: e.message.slice(0, 200) });
+      }
+
+      // Busca rastreio das pecas no abbiamolog (log.abbiamolog.com).
+      // Cruza o codigo de material SOMA com os pedidos BKN via API, indexando
+      // por codigo para o painel mostrar onde cada peca esta.
+      logInfo('etapa iniciada', { etapa: 'buscar_rastreio' });
+      try {
+        const resultadoRastreio = await buscarRastreio(dadosProcessados);
+        logInfo('etapa concluida', { etapa: 'buscar_rastreio', ...resultadoRastreio });
+        rastreioOk = resultadoRastreio.pecasComRastreio > 0;
+      } catch (e) {
+        logErro('buscar_rastreio falhou -- tento preservar rastreio anterior', { erro: e.message.slice(0, 200) });
+      }
     }
 
-    // Se buscarPecas falhou ou retornou zero pecas, restaura do JSON anterior
-    if (!pecasOk && Object.keys(pecasAnteriores).length > 0) {
+    // Preservacao: se pulou a janela OU a busca falhou/retornou zero, restaura
+    // pecas e rastreio do JSON anterior (equipamentos + area interna).
+    if ((!pecasOk || !janelaPecas) && Object.keys(pecasAnteriores).length > 0) {
       let restaurados = 0;
       for (const eq of dadosProcessados.equipamentos) {
         for (const c of (eq.chamadosDetalhe || [])) {
@@ -1386,25 +1412,12 @@ return { totalPedidos, pedidosProcessados, pecasComRastreio };
           restaurados++;
         }
       }
-      logInfo('pecas restauradas do JSON anterior', { chamados: restaurados });
+      if (restaurados > 0) {
+        logInfo('pecas restauradas do JSON anterior', { chamados: restaurados, pulouJanela: !janelaPecas });
+      }
     }
 
-    // Busca rastreio das pecas no abbiamolog (log.abbiamolog.com).
-    // Cruza o codigo de material SOMA com os pedidos BKN via API, indexando
-    // por codigo para o painel mostrar onde cada peca esta.
-    logInfo('etapa iniciada', { etapa: 'buscar_rastreio' });
-    let rastreioOk = false;
-    try {
-      const resultadoRastreio = await buscarRastreio(dadosProcessados);
-      logInfo('etapa concluida', { etapa: 'buscar_rastreio', ...resultadoRastreio });
-      rastreioOk = resultadoRastreio.pecasComRastreio > 0;
-    } catch (e) {
-      logErro('buscar_rastreio falhou -- tento preservar rastreio anterior', { erro: e.message.slice(0, 200) });
-    }
-
-    // Se buscarRastreio falhou, restaura o rastreio do JSON anterior
-    // (so' para pecas que ja tem pecas -- vindas do passo acima ou do atual)
-    if (!rastreioOk && Object.keys(pecasAnteriores).length > 0) {
+    if ((!rastreioOk || !janelaPecas) && Object.keys(pecasAnteriores).length > 0) {
       let rastreiosRestaurados = 0;
       const restaurarRastreioEm = (lista) => {
         for (const c of lista) {
@@ -1426,7 +1439,7 @@ return { totalPedidos, pedidosProcessados, pecasComRastreio };
       // Area interna tambem entra na restauracao de rastreio (pedido Christian 11/10/2026)
       restaurarRastreioEm(dadosProcessados.areaInterna || []);
       if (rastreiosRestaurados > 0) {
-        logInfo('rastreio restaurado do JSON anterior', { pecas: rastreiosRestaurados });
+        logInfo('rastreio restaurado do JSON anterior', { pecas: rastreiosRestaurados, pulouJanela: !janelaPecas });
       }
     }
 
