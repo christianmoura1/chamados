@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-11T10:00:17.211Z",
+ "atualizadoEm": "2026-10-11T11:00:26.909Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 9,
+  "emExecucao": 10,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 9
+  "total": 10
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-11",
-   "abertos": 0,
+   "abertos": 1,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0067487",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "31345 FS CANOAS - AV DR SEZEFREDO A",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "11/10/2026 08:00:00",
+   "fechamento": "",
+   "principal": "ZP137112 - FRITADEIRA",
+   "secundario": "FRI - NÃO LIGA",
+   "sigla": "FRI",
+   "tecnico": "",
+   "descricao": "ZP137112 - FRITADEIRA | FRI - NÃO LIGA",
+   "tarefas": [
+    "WOT0068039"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0067462",
    "marca": "BKB",
