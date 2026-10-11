@@ -155,6 +155,7 @@ footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--border
 .tag { font-size: 10.5px; font-weight: 600; border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
 .tag-sos { background: var(--sos-soft); color: var(--rosa); }
 .tag-normal { background: var(--cinza-bg); color: var(--text-2); }
+.tag-duplicado { background: rgba(234,88,12,0.12); color: #c2410c; font-size: 10px; padding: 1px 7px; margin-left: 4px; vertical-align: middle; }
 .filter-table-wrap { max-height: 420px; overflow: auto; border-radius: 12px; }
 .filter-empty { padding: 24px 0; text-align: center; color: var(--text-3); font-size: 12.5px; }
 .risco-subhead { display: flex; align-items: center; gap: 10px; margin: 22px 0 10px; font-weight: 700; font-size: 14px; }
@@ -412,6 +413,33 @@ function marcarAtivoLoja(i) {
   itens[k].scrollIntoView({ block: 'nearest' });
 }
 
+// Identifica chamados duplicados: mesmo assunto + mesma loja.
+// Preenche o Set global antes de qualquer renderizacao da tabela.
+let chamadosDuplicadosRisco = new Set();
+function preencherDuplicadosRisco() {
+  const todos = [
+    ...(DADOS_ATUAIS?.chamadosRisco?.vencidos || []),
+    ...(DADOS_ATUAIS?.chamadosRisco?.aVencer || []),
+  ];
+  const chaveMap = new Map(); // 'assunto|loja' -> [numeros]
+  for (const i of todos) {
+    const loja = (i.loja || '').trim();
+    const assunto = (i.assunto || '').trim();
+    if (!loja || !assunto) continue;
+    const k = assunto + '|' + loja;
+    if (!chaveMap.has(k)) chaveMap.set(k, []);
+    chaveMap.get(k).push(i.numero);
+  }
+  chamadosDuplicadosRisco = new Set();
+  for (const [, nums] of chaveMap) {
+    if (nums.length > 1) {
+      for (const n of nums) chamadosDuplicadosRisco.add(n);
+    }
+  }
+}
+const tagDuplicadoRisco = (numero) => chamadosDuplicadosRisco.has(numero)
+  ? '<span class="tag tag-duplicado">Duplicado</span>' : '';
+
 function aplicaFiltrosRisco(itens) {
   return itens.filter(i => {
     if (FILTROS_RISCO.loja && i.loja !== FILTROS_RISCO.loja) return false;
@@ -426,6 +454,7 @@ function aplicaFiltrosRisco(itens) {
 }
 
 function tabelaChamadosRisco(itens, refDate) {
+  preencherDuplicadosRisco();
   const filtrados = aplicaFiltrosRisco(itens);
   if (!filtrados.length) return '<div class="filter-empty">Nenhum chamado com esses filtros.</div>';
   return '<div class="filter-table-wrap"><table class="detail-table"><thead><tr><th>Número</th><th>Loja</th><th>Assunto</th><th>Previsão</th><th>Responsável</th><th>Dias</th></tr></thead><tbody>' +
@@ -446,7 +475,7 @@ function tabelaChamadosRisco(itens, refDate) {
       return `<tr>
         <td class="mono">${escapeHtml(i.numero)}</td>
         <td>${escapeHtml(i.loja)}</td>
-        <td>${escapeHtml(i.assunto)}</td>
+        <td>${escapeHtml(i.assunto)}${tagDuplicadoRisco(i.numero)}</td>
         <td><input type="date" class="${prevCls}" data-wo="${escapeHtml(i.numero)}" value="${escapeHtml(prev)}"></td>
         <td><select class="resp-select" data-wo="${escapeHtml(i.numero)}">${respOptions}</select></td>
         <td class="num"${diasCor}>${dias}</td>
