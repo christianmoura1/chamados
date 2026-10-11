@@ -29,10 +29,44 @@ const agora = () => new Date().toISOString();
 // enxerga como erro -> tarefa agendada marca falha" (descoberto 09/09/2026
 // ao migrar essa tarefa pra rodar a cada 2h): como o log agora e' escrito
 // pelo Node, a tarefa so' precisa do exit code do proprio node.exe.
+//
+// ARMADILHA EBUSY (descoberta 11/10/2026): quando um processo node anterior
+// trava segurando o handle do log (ex.: instancia stale de dias atras que
+// nao morreu direito, ou duas instancias concorrendo), o appendFileSync
+// estoura EBUSY e o pipeline inteiro morre na primeira linha de log -- antes
+// mesmo de comecar a trabalhar. Isso derrubou a atualizacao das 07:15 e
+// obrigou intervencao manual. Correcao: retry com backoff curto e, se ainda
+// falhar, renomeia o log travado pra .locked.<ts> e abre um novo. O pipeline
+// NUNCA deve morrer por causa do arquivo de log.
 const LOG_PATH = path.join(ROOT, 'logs', 'run_daily.log');
 function escreveLog(linha) {
   try { fs.mkdirSync(path.dirname(LOG_PATH), { recursive: true }); } catch (e) {}
-  fs.appendFileSync(LOG_PATH, linha + '\n', 'utf8');
+  const payload = linha + '\n';
+  // Tenta ate 3 vezes com pausa curta; EBUSY costuma ser transitorio quando
+  // outra instancia esta terminando de escrever.
+  for (let tentativa = 0; tentativa < 3; tentativa++) {
+    try {
+      fs.appendFileSync(LOG_PATH, payload, 'utf8');
+      return;
+    } catch (e) {
+      if (e && e.code === 'EBUSY' && tentativa < 2) {
+        try { require('child_process').execSync('ping -n 2 127.0.0.1 >nul', { stdio: 'ignore' }); } catch (_) {}
+        continue;
+      }
+      // Ultima tentativa falhou: isola o log travado e abre um novo, pra
+      // nunca perder a execucao por causa de um handle preso.
+      try {
+        const bak = LOG_PATH + '.locked.' + Date.now();
+        fs.renameSync(LOG_PATH, bak);
+        fs.appendFileSync(LOG_PATH, '[log anterior isolado em ' + path.basename(bak) + ' por EBUSY]\n' + payload, 'utf8');
+        return;
+      } catch (e2) {
+        // Se nem renomear der, desiste do arquivo e so' imprime -- o console
+        // ja' recebeu a linha acima, entao a informacao nao se perde.
+        return;
+      }
+    }
+  }
 }
 const logInfo = (msg, extra) => { const l = JSON.stringify({ ts: agora(), level: 'info', msg, ...extra }); console.log(l); escreveLog(l); };
 const logErro = (msg, extra) => { const l = JSON.stringify({ ts: agora(), level: 'error', msg, ...extra }); console.error(l); escreveLog(l); };
