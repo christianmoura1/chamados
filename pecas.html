@@ -278,30 +278,30 @@ return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 }
 function classificarEntrega(p) {
 if (!p.rastreio || !p.rastreio.length) return 'sem_envio';
-// BUG CORRIGIDO 11/10/2026: a logica anterior checava QUALQUER rastreio
-// com SUCCESSFUL/DELIVERED e retornava "entregue" imediatamente -- mesmo
-// que o pedido tivesse sido CANCELADO depois. Exemplo real: WOT0058857
-// mostrou banner verde "PECA ENTREGUE" quando o abbiamolog dizia
-// "FALHA NA SOLICITACAO / Marca Cancelou". Correcao: priorizar o ULTIMO
-// evento. Se o ultimo for cancelamento/falha/retorno, classifica como
-// "cancelado" independente de eventos anteriores de entrega.
+// BUG CORRIGIDO 11/10/2026 (iteracao 2): o Christian reportou que o
+// filtro "Cancelado" retornava 0 mesmo com pedidos que tiveram
+// ORDER_FAILED no historico. Investigacao revelou que 5 pedidos
+// (WOT0058856/58738/58861/58849/58857) tem ORDER_FAILED no PRIMEIRO
+// evento mas START_DELIVERY no ULTIMO (foram reenviados apos falha).
+// A logica anterior so marcava "cancelado" se o ULTIMO evento fosse
+// falha -- entao esses 5 escapavam do filtro.
 //
-// BUG 2 CORRIGIDO 11/10/2026: COLLECTED era mapeado para "em_rota" mas o
-// filtro do painel tem opcao "Coletado" separada. Agora COLLECTED retorna
-// "coletado" para o filtro funcionar.
+// CORRECAO: marcar como "cancelado" se QUALQUER evento do historico
+// tiver FAIL/CANCEL/RETURN/ORDER_FAILED, independente da posicao.
+// Isso captura tanto cancelamentos definitivos (ultimo evento) quanto
+// pedidos que falharam e foram reenviados (evento intermediario).
+const teveFalha = p.rastreio.some(r => {
+const s = (r.status || '').toUpperCase();
+return s.includes('FAIL') || s.includes('CANCEL') || s.includes('RETURN') || s === 'ORDER_FAILED';
+});
+if (teveFalha) return 'cancelado';
 const ultimo = p.rastreio[p.rastreio.length - 1];
 const sUltimo = (ultimo.status || '').toUpperCase();
-// 1) Cancelamento/falha/retorno no ultimo evento -> sempre cancelado,
-//    mesmo que tenha tido SUCCESSFUL antes (ex.: devolvido apos entrega).
-if (sUltimo.includes('FAIL') || sUltimo.includes('CANCEL') || sUltimo.includes('RETURN') || sUltimo === 'ORDER_FAILED') {
-return 'cancelado';
-}
-// 2) Ultimo evento eh entrega confirmada -> entregue.
+// 1) Ultimo evento eh entrega confirmada -> entregue.
 if (sUltimo === 'SUCCESSFUL' || sUltimo === 'DELIVERED') return 'entregue';
-// 3) Verifica se ALGUM evento anterior foi entregue MAS o ultimo nao eh
-//    cancelamento (ja tratado acima) nem entrega -- pode ser "em rota"
-//    apos uma entrega parcial, ou status intermediario. Nesses casos,
-//    usa o ultimo evento como fonte da verdade.
+// 2) Verifica se ALGUM evento anterior foi entregue MAS o ultimo nao eh
+//    entrega -- pode ser "em rota" apos uma entrega parcial, ou status
+//    intermediario. Nesses casos, usa o ultimo evento como fonte da verdade.
 for (const r of p.rastreio) {
 const s = (r.status || '').toUpperCase();
 if (s === 'SUCCESSFUL' || s === 'DELIVERED') {
@@ -311,9 +311,8 @@ return 'em_rota';
 return 'entregue';
 }
 }
-// 4) Sem entrega em nenhum evento -- usa o ultimo status.
-//    COLLECTED agora retorna "coletado" (nao "em_rota") para o filtro
-//    "Coletado" do painel funcionar corretamente.
+// 3) Sem entrega em nenhum evento -- usa o ultimo status.
+//    COLLECTED retorna "coletado" (nao "em_rota") para o filtro funcionar.
 if (sUltimo === 'COLLECTED') return 'coletado';
 if (sUltimo === 'IN_TRANSIT' || sUltimo === 'START_DELIVERY') return 'em_rota';
 if (sUltimo === 'DISPATCHED' || sUltimo === 'CARRIER_CONFIRMED') return 'despachado';
@@ -551,7 +550,7 @@ el.innerHTML = `
 <label for="filtroEntrega">Status Entrega</label>
 <select id="filtroEntrega">
 <option value="">Todos</option>
-<option value="sem_envio">Ainda não entregue à transportadora</option>
+<option value="sem_envio">Solicitado</option>
 <option value="em_rota">Em rota / Em trânsito</option>
 <option value="entregue">Entregue</option>
 <option value="parcial">Entrega Parcial</option>
@@ -683,7 +682,7 @@ ${r.tracking ? '<br><span class="tracking">Tracking: ' + escapeHtml(r.tracking) 
 ${p.rastreio.length > 1 ? '<br><span class="tracking">+' + (p.rastreio.length - 1) + ' envio(s) adicional(is)</span>' : ''}
 </div>`;
 } else {
-rastreioHtml = `<div class="rastreio-info"><span class="rastreio-badge default">⚠ Ainda não entregue à transportadora</span></div>`;
+rastreioHtml = `<div class="rastreio-info"><span class="rastreio-badge default">📋 Solicitado</span></div>`;
 }
 return `<tr class="modal-peca-row">
 <td class="modal-peca-incl">${escapeHtml(p.numero)}</td>
