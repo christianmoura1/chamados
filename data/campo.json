@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-11T00:40:10.006Z",
+ "atualizadoEm": "2026-10-11T01:20:09.998Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 9,
+  "emExecucao": 10,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 9
+  "total": 10
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-10",
-   "abertos": 14,
+   "abertos": 15,
    "fechados": 15
   }
  ],
  "itens": [
+  {
+   "numero": "WO0067453",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "27588 - ATLANTICO SHOP",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "10/10/2026 22:00:26",
+   "fechamento": "",
+   "principal": "AR CONDICIONADO",
+   "secundario": "ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "sigla": "ARC",
+   "tecnico": "",
+   "descricao": "AR CONDICIONADO | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "tarefas": [
+    "WOT0068005"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0067416",
    "marca": "BKB",
