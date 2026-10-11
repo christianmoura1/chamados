@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-10-11T02:00:13.275Z",
+ "atualizadoEm": "2026-10-11T10:00:17.211Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 11,
+  "emExecucao": 9,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 11
+  "total": 9
  },
  "serie": [
-  {
-   "data": "2026-10-08",
-   "abertos": 8,
-   "fechados": 14
-  },
   {
    "data": "2026-10-09",
    "abertos": 8,
@@ -23,6 +18,11 @@
    "data": "2026-10-10",
    "abertos": 16,
    "fechados": 15
+  },
+  {
+   "data": "2026-10-11",
+   "abertos": 0,
+   "fechados": 0
   }
  ],
  "itens": [
@@ -227,52 +227,6 @@
    "descricao": "AR CONDICIONADO | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
    "tarefas": [
     "WOT0067431"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0066316",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "21529 - PARTAGE SHOP RIO GRANDE",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "08/10/2026 14:40:39",
-   "fechamento": "",
-   "principal": "BK037963 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
-   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
-   "sigla": "CMR",
-   "tecnico": "",
-   "descricao": "BK037963 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0066855"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0066144",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL SUL RS",
-   "loja": "26160 - FS CANOAS - AV GETULIO VARGAS 3800",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "08/10/2026 10:44:24",
-   "fechamento": "",
-   "principal": "BK070955 - COIFA",
-   "secundario": "COI - COIFA EM CONTIGÊNCIA",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK070955 - COIFA | COI - COIFA EM CONTIGÊNCIA",
-   "tarefas": [
-    "WOT0066679"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
