@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-11T14:53:41",
+  "atualizadoEm": "2026-10-11T15:02:13",
   "totalRegistros": 4614,
   "totalAbertos": 1828,
   "totalFechados": 2786,
@@ -186,7 +186,7 @@
           "estado": "Trabalho em andamento",
           "prioridade": "Alta",
           "dias": 23,
-          "tecnico": "Marcel Vinicios Rocha Agradem",
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
           "problema": "BK078907 - MAQUINA DE SORVETE; TAYLOR; C712N-33 | MDS - NÃO FUNCIONA 1 LADO",
           "abertura": "2026-09-18",
           "sysId": "ac4d6a9f335f07d01fc9a4bb9d5c7baa"
@@ -373,7 +373,7 @@
           "estado": "Trabalho em andamento",
           "prioridade": "Alta",
           "dias": 23,
-          "tecnico": "Marcel Vinicios Rocha Agradem",
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
           "problema": "BK078907 - MAQUINA DE SORVETE; TAYLOR; C712N-33 | MDS - NÃO FUNCIONA 1 LADO",
           "abertura": "2026-09-18",
           "sysId": "ac4d6a9f335f07d01fc9a4bb9d5c7baa"
@@ -530,251 +530,7 @@
           "tecnico": "Carlos Magno da Silva Lira",
           "problema": "MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-07-31",
-          "sysId": "5da1d2a347de4f9041ed4f62036d430a",
-          "pecas": [
-            {
-              "numero": "INCL0017232",
-              "material": "303018500159 - TAMPA DA CUBA TAYLOR PN X...",
-              "quantidade": 1,
-              "total": "R$ 1.451,88",
-              "rastreio": [
-                {
-                  "bkn": "BKN 31068",
-                  "numeroCompleto": "BKN 31068-4059401-46304",
-                  "status": "START_DELIVERY",
-                  "subStatus": "",
-                  "tracking": "GOYPS9FJWJ9O",
-                  "destino": "Maceio/AL",
-                  "endereco": "Avenida Fernandes de Lima 830 LOJA BURGER KING",
-                  "eta": "2026-10-17T02:59:59.000Z",
-                  "transportadora": "azulCargo (EXPRESSO)",
-                  "ultimoEvento": "START_DELIVERY",
-                  "ultimoEventoData": "2026-10-10T06:04:50.000Z",
-                  "orderId": "f7e993dd-329a-4746-8df3-d2ee03d956e5"
-                }
-              ]
-            },
-            {
-              "numero": "INCL0017233",
-              "material": "303018500369 - PISTAO DO CILINDRO TAYLOR",
-              "quantidade": 1,
-              "total": "R$ 706,15",
-              "rastreio": [
-                {
-                  "bkn": "BKN 19361",
-                  "numeroCompleto": "BKN 19361-4059570-46304",
-                  "status": "DISPATCHED",
-                  "subStatus": "CARRIER_CONFIRMED",
-                  "tracking": "HZQ0CK3THUBY",
-                  "destino": "Brasilia/DF",
-                  "endereco": "Avenida das Araucárias 1525 LOJA BURGER KING DENTRO DO SHOPPING",
-                  "eta": "2026-10-16T02:59:59.000Z",
-                  "transportadora": "correios (sedex)",
-                  "ultimoEvento": "DISPATCHED",
-                  "ultimoEventoData": "2026-10-09T13:46:39.882Z",
-                  "orderId": "2f42fd5e-bcdd-46b9-bde3-4fbc1f128240"
-                },
-                {
-                  "bkn": "BKN 19720",
-                  "numeroCompleto": "BKN 19720-4059566-46304",
-                  "status": "COLLECTED",
-                  "subStatus": "",
-                  "tracking": "A7TQFMGO6OHC",
-                  "destino": "Brasilia/DF",
-                  "endereco": "Quadra CSB 02 LOTE 01-04 S/N LOJA BURGER KING DENTRO DO SHOPPING",
-                  "eta": "2026-10-16T02:59:59.000Z",
-                  "transportadora": "azulCargo (EXPRESSO)",
-                  "ultimoEvento": "COLLECTED",
-                  "ultimoEventoData": "2026-10-09T20:38:59.000Z",
-                  "orderId": "6fc8cac4-ad10-461a-afc3-9c114f50969c"
-                },
-                {
-                  "bkn": "BKN 18441",
-                  "numeroCompleto": "BKN 18441-4059585-46304",
-                  "status": "DISPATCHED",
-                  "subStatus": "CARRIER_CONFIRMED",
-                  "tracking": "CBO3AQNZY2VF",
-                  "destino": "Londrina/PR",
-                  "endereco": "Rua Maranhão 240 LOJA BURGER KING DENTRO DO SHOPPING",
-                  "eta": "2026-10-16T02:59:59.000Z",
-                  "transportadora": "correios (sedex)",
-                  "ultimoEvento": "DISPATCHED",
-                  "ultimoEventoData": "2026-10-09T13:02:59.695Z",
-                  "orderId": "93951545-a711-4cd9-8287-0e3d8a783f75"
-                },
-                {
-                  "bkn": "BKN 16692",
-                  "numeroCompleto": "BKN 16692-4059561-46304",
-                  "status": "DISPATCHED",
-                  "subStatus": "CARRIER_CONFIRMED",
-                  "tracking": "QRXM8TPOQHI4",
-                  "destino": "Aparecida de Goiania/GO",
-                  "endereco": "Avenida Rio Verde Quadra 102 LOJA BURGER KING DENTRO DO SHOPPING",
-                  "eta": "2026-10-16T02:59:59.000Z",
-                  "transportadora": "correios (sedex)",
-                  "ultimoEvento": "DISPATCHED",
-                  "ultimoEventoData": "2026-10-09T13:30:57.621Z",
-                  "orderId": "a9465cfa-3dbb-481f-a83d-7f24053c7fa0"
-                },
-                {
-                  "bkn": "BKN 24744",
-                  "numeroCompleto": "BKN 24744-4058393-46303",
-                  "status": "SUCCESSFUL",
-                  "subStatus": "DELIVERED",
-                  "tracking": "E4ZM5WKS6MQK",
-                  "destino": "Sao Paulo/SP",
-                  "endereco": "Avenida Professor Vicente Rao 1700 LOJA BURGER KING",
-                  "eta": "2026-10-09T02:59:59.000Z",
-                  "transportadora": "stoneLog (normal)",
-                  "ultimoEvento": "SUCCESSFUL",
-                  "ultimoEventoData": "2026-10-08T23:54:49.947Z",
-                  "orderId": "22f39096-53b1-41d0-aba4-ab6f59802944"
-                },
-                {
-                  "bkn": "BKN 23736",
-                  "numeroCompleto": "BKN 23736-4058368-46303",
-                  "status": "COLLECTED",
-                  "subStatus": "",
-                  "tracking": "UD618WAI2FNG",
-                  "destino": "Curitiba/PR",
-                  "endereco": "Rua Martin Afonso S/N LOJA BURGER KING",
-                  "eta": "2026-10-13T02:59:59.000Z",
-                  "transportadora": "correios (sedex)",
-                  "ultimoEvento": "COLLECTED",
-                  "ultimoEventoData": "2026-10-09T19:49:10.000Z",
-                  "orderId": "741f2182-6b5f-42f4-89c2-eade6d35791e"
-                }
-              ]
-            },
-            {
-              "numero": "INCL0017234",
-              "material": "303018500326 - VALVULA PROT BODY SS14 TA...",
-              "quantidade": 1,
-              "total": "R$ 993,70",
-              "rastreio": [
-                {
-                  "bkn": "BKN 19720",
-                  "numeroCompleto": "BKN 19720-4059566-46304",
-                  "status": "COLLECTED",
-                  "subStatus": "",
-                  "tracking": "A7TQFMGO6OHC",
-                  "destino": "Brasilia/DF",
-                  "endereco": "Quadra CSB 02 LOTE 01-04 S/N LOJA BURGER KING DENTRO DO SHOPPING",
-                  "eta": "2026-10-16T02:59:59.000Z",
-                  "transportadora": "azulCargo (EXPRESSO)",
-                  "ultimoEvento": "COLLECTED",
-                  "ultimoEventoData": "2026-10-09T20:38:59.000Z",
-                  "orderId": "6fc8cac4-ad10-461a-afc3-9c114f50969c"
-                },
-                {
-                  "bkn": "BKN 18441",
-                  "numeroCompleto": "BKN 18441-4059585-46304",
-                  "status": "DISPATCHED",
-                  "subStatus": "CARRIER_CONFIRMED",
-                  "tracking": "CBO3AQNZY2VF",
-                  "destino": "Londrina/PR",
-                  "endereco": "Rua Maranhão 240 LOJA BURGER KING DENTRO DO SHOPPING",
-                  "eta": "2026-10-16T02:59:59.000Z",
-                  "transportadora": "correios (sedex)",
-                  "ultimoEvento": "DISPATCHED",
-                  "ultimoEventoData": "2026-10-09T13:02:59.695Z",
-                  "orderId": "93951545-a711-4cd9-8287-0e3d8a783f75"
-                },
-                {
-                  "bkn": "BKN 24744",
-                  "numeroCompleto": "BKN 24744-4058393-46303",
-                  "status": "SUCCESSFUL",
-                  "subStatus": "DELIVERED",
-                  "tracking": "E4ZM5WKS6MQK",
-                  "destino": "Sao Paulo/SP",
-                  "endereco": "Avenida Professor Vicente Rao 1700 LOJA BURGER KING",
-                  "eta": "2026-10-09T02:59:59.000Z",
-                  "transportadora": "stoneLog (normal)",
-                  "ultimoEvento": "SUCCESSFUL",
-                  "ultimoEventoData": "2026-10-08T23:54:49.947Z",
-                  "orderId": "22f39096-53b1-41d0-aba4-ab6f59802944"
-                },
-                {
-                  "bkn": "BKN 23736",
-                  "numeroCompleto": "BKN 23736-4058368-46303",
-                  "status": "COLLECTED",
-                  "subStatus": "",
-                  "tracking": "UD618WAI2FNG",
-                  "destino": "Curitiba/PR",
-                  "endereco": "Rua Martin Afonso S/N LOJA BURGER KING",
-                  "eta": "2026-10-13T02:59:59.000Z",
-                  "transportadora": "correios (sedex)",
-                  "ultimoEvento": "COLLECTED",
-                  "ultimoEventoData": "2026-10-09T19:49:10.000Z",
-                  "orderId": "741f2182-6b5f-42f4-89c2-eade6d35791e"
-                }
-              ]
-            },
-            {
-              "numero": "INCL0017235",
-              "material": "303018500377 - CILINDRO BOMBA MIX SS TAY...",
-              "quantidade": 1,
-              "total": "R$ 5.456,80",
-              "rastreio": [
-                {
-                  "bkn": "BKN 15173",
-                  "numeroCompleto": "BKN 15173-4059853-46304",
-                  "status": "DISPATCHED",
-                  "subStatus": "CARRIER_CONFIRMED",
-                  "tracking": "0GB4LY00GJ7U",
-                  "destino": "Sao Paulo/SP",
-                  "endereco": "Avenida Interlagos 2255 LOJA BURGER KING DENTRO DO SHOPPING",
-                  "eta": "2026-10-10T02:59:59.000Z",
-                  "transportadora": "correios (sedex)",
-                  "ultimoEvento": "DISPATCHED",
-                  "ultimoEventoData": "2026-10-09T13:45:51.426Z",
-                  "orderId": "9e5a4a5b-56b1-4a92-8222-b7bbd67d6e97"
-                },
-                {
-                  "bkn": "BKN 19720",
-                  "numeroCompleto": "BKN 19720-4059566-46304",
-                  "status": "COLLECTED",
-                  "subStatus": "",
-                  "tracking": "A7TQFMGO6OHC",
-                  "destino": "Brasilia/DF",
-                  "endereco": "Quadra CSB 02 LOTE 01-04 S/N LOJA BURGER KING DENTRO DO SHOPPING",
-                  "eta": "2026-10-16T02:59:59.000Z",
-                  "transportadora": "azulCargo (EXPRESSO)",
-                  "ultimoEvento": "COLLECTED",
-                  "ultimoEventoData": "2026-10-09T20:38:59.000Z",
-                  "orderId": "6fc8cac4-ad10-461a-afc3-9c114f50969c"
-                },
-                {
-                  "bkn": "BKN 18441",
-                  "numeroCompleto": "BKN 18441-4059585-46304",
-                  "status": "DISPATCHED",
-                  "subStatus": "CARRIER_CONFIRMED",
-                  "tracking": "CBO3AQNZY2VF",
-                  "destino": "Londrina/PR",
-                  "endereco": "Rua Maranhão 240 LOJA BURGER KING DENTRO DO SHOPPING",
-                  "eta": "2026-10-16T02:59:59.000Z",
-                  "transportadora": "correios (sedex)",
-                  "ultimoEvento": "DISPATCHED",
-                  "ultimoEventoData": "2026-10-09T13:02:59.695Z",
-                  "orderId": "93951545-a711-4cd9-8287-0e3d8a783f75"
-                },
-                {
-                  "bkn": "BKN 23736",
-                  "numeroCompleto": "BKN 23736-4058368-46303",
-                  "status": "COLLECTED",
-                  "subStatus": "",
-                  "tracking": "UD618WAI2FNG",
-                  "destino": "Curitiba/PR",
-                  "endereco": "Rua Martin Afonso S/N LOJA BURGER KING",
-                  "eta": "2026-10-13T02:59:59.000Z",
-                  "transportadora": "correios (sedex)",
-                  "ultimoEvento": "COLLECTED",
-                  "ultimoEventoData": "2026-10-09T19:49:10.000Z",
-                  "orderId": "741f2182-6b5f-42f4-89c2-eade6d35791e"
-                }
-              ]
-            }
-          ]
+          "sysId": "5da1d2a347de4f9041ed4f62036d430a"
         },
         {
           "numero": "WOT0015127",
@@ -829,15 +585,7 @@
           "tecnico": "Ruan Carlos da Silva",
           "problema": "BK052656 - MAQUINA DE SORVETE; TAYLOR; C716-33; M51 | MDS - SORVETE MOLE",
           "abertura": "2026-08-07",
-          "sysId": "30fb91f5972a0bd4a3c1b3c6f053af08",
-          "pecas": [
-            {
-              "numero": "INCL0016129",
-              "material": "102025100006 - TRANSFORMADOR POT 40VA 12...",
-              "quantidade": 1,
-              "total": "R$ 1.659,99"
-            }
-          ]
+          "sysId": "30fb91f5972a0bd4a3c1b3c6f053af08"
         },
         {
           "numero": "WOT0030753",
@@ -881,65 +629,7 @@
           "tecnico": "Ciro Antonio do Nascimento Mello",
           "problema": "BK038075 - MAQUINA DE SORVETE C716 380V | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-20",
-          "sysId": "49ac95464736875041ed4f62036d43d4",
-          "pecas": [
-            {
-              "numero": "INCL0012286",
-              "material": "303018500395 - MOTOREDUTOR TAYLOR PN 369...",
-              "quantidade": 2,
-              "total": "R$ 15.874,97"
-            },
-            {
-              "numero": "INCL0012287",
-              "material": "303018500694 - PORTA DO CILINDRO SEM DES...",
-              "quantidade": 2,
-              "total": "R$ 8.965,35",
-              "rastreio": [
-                {
-                  "bkn": "BKN 26166",
-                  "numeroCompleto": "BKN 26166-4059476-46304",
-                  "status": "DISPATCHED",
-                  "subStatus": "CARRIER_CONFIRMED",
-                  "tracking": "GA3031DZUIEA",
-                  "destino": "Brasilia/DF",
-                  "endereco": "Avenida das Araucárias S/N LOJA BURGER KING DENTRO DO SHOPPING",
-                  "eta": "2026-10-16T02:59:59.000Z",
-                  "transportadora": "correios (sedex)",
-                  "ultimoEvento": "DISPATCHED",
-                  "ultimoEventoData": "2026-10-09T13:07:25.116Z",
-                  "orderId": "a3bb28fe-8348-472b-8077-cac1bba0051f"
-                },
-                {
-                  "bkn": "BKN 16692",
-                  "numeroCompleto": "BKN 16692-4059561-46304",
-                  "status": "DISPATCHED",
-                  "subStatus": "CARRIER_CONFIRMED",
-                  "tracking": "QRXM8TPOQHI4",
-                  "destino": "Aparecida de Goiania/GO",
-                  "endereco": "Avenida Rio Verde Quadra 102 LOJA BURGER KING DENTRO DO SHOPPING",
-                  "eta": "2026-10-16T02:59:59.000Z",
-                  "transportadora": "correios (sedex)",
-                  "ultimoEvento": "DISPATCHED",
-                  "ultimoEventoData": "2026-10-09T13:30:57.621Z",
-                  "orderId": "a9465cfa-3dbb-481f-a83d-7f24053c7fa0"
-                },
-                {
-                  "bkn": "BKN 18460",
-                  "numeroCompleto": "BKN 18460-4059452-46304",
-                  "status": "COLLECTED",
-                  "subStatus": "",
-                  "tracking": "FTNY80DQCSON",
-                  "destino": "Valparaiso de Goias/GO",
-                  "endereco": "Quadra 1 S/N S/N LOJA BURGER KING DENTRO DO SHOPPING",
-                  "eta": "2026-10-17T02:59:59.000Z",
-                  "transportadora": "azulCargo (EXPRESSO)",
-                  "ultimoEvento": "COLLECTED",
-                  "ultimoEventoData": "2026-10-09T18:19:26.000Z",
-                  "orderId": "c4350bf6-54a7-4742-b2be-1afd6463b1d6"
-                }
-              ]
-            }
-          ]
+          "sysId": "49ac95464736875041ed4f62036d43d4"
         },
         {
           "numero": "WOT0037090",
@@ -1989,7 +1679,7 @@
           "estado": "Trabalho em andamento",
           "prioridade": "Alta",
           "dias": 44,
-          "tecnico": "Marcel Vinicios Rocha Agradem",
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
           "problema": "MICROONDAS | MCR - NÃO AQUECE",
           "abertura": "2026-08-28",
           "sysId": "7ba1a920474f8390839576b4f26d4357"
@@ -2046,7 +1736,7 @@
           "estado": "Trabalho em andamento",
           "prioridade": "Alta",
           "dias": 44,
-          "tecnico": "Marcel Vinicios Rocha Agradem",
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
           "problema": "MICROONDAS | MCR - NÃO AQUECE",
           "abertura": "2026-08-28",
           "sysId": "7ba1a920474f8390839576b4f26d4357"
@@ -21157,7 +20847,7 @@
           "estado": "Trabalho em andamento",
           "prioridade": "Alta",
           "dias": 44,
-          "tecnico": "Marcel Vinicios Rocha Agradem",
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
           "problema": "MICROONDAS | MCR - NÃO AQUECE",
           "abertura": "2026-08-28",
           "sysId": "7ba1a920474f8390839576b4f26d4357",
@@ -21193,7 +20883,7 @@
           "estado": "Trabalho em andamento",
           "prioridade": "Alta",
           "dias": 23,
-          "tecnico": "Marcel Vinicios Rocha Agradem",
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
           "problema": "BK078907 - MAQUINA DE SORVETE; TAYLOR; C712N-33 | MDS - NÃO FUNCIONA 1 LADO",
           "abertura": "2026-09-18",
           "sysId": "ac4d6a9f335f07d01fc9a4bb9d5c7baa",
@@ -24777,26 +24467,277 @@
       ]
     },
     {
-      "nome": "Marcel Vinicios Rocha Agradem",
-      "ehSupervisor": true,
-      "lojasAtendidas": 7,
-      "chamados": 10,
-      "alta": 10,
+      "nome": "Cristppher Alencar Pacheco Cruz",
+      "ehSupervisor": false,
+      "lojasAtendidas": 13,
+      "chamados": 21,
+      "alta": 3,
       "sos": 0,
-      "tempoMedioDias": 16,
+      "tempoMedioDias": 34,
       "chamadosDetalhe": [
+        {
+          "numero": "WOT0040477",
+          "loja": "FS CAXIAS DO SUL - R JOÃO NICHELE 2227",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 44,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK087706 - MICROONDAS | MCR - NÃO LIGA",
+          "abertura": "2026-08-28",
+          "sysId": "b8b1ad20474f8390839576b4f26d4316",
+          "equipamento": "Micro-ondas"
+        },
         {
           "numero": "WOT0040473",
           "loja": "CARREFOUR PARTENON",
           "estado": "Trabalho em andamento",
           "prioridade": "Alta",
           "dias": 44,
-          "tecnico": "Marcel Vinicios Rocha Agradem",
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
           "problema": "MICROONDAS | MCR - NÃO AQUECE",
           "abertura": "2026-08-28",
           "sysId": "7ba1a920474f8390839576b4f26d4357",
           "equipamento": "Micro-ondas"
         },
+        {
+          "numero": "WOT0053840",
+          "loja": "BOURBON SHOP SAO LEOPOLDO",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Alta",
+          "dias": 23,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK078907 - MAQUINA DE SORVETE; TAYLOR; C712N-33 | MDS - NÃO FUNCIONA 1 LADO",
+          "abertura": "2026-09-18",
+          "sysId": "ac4d6a9f335f07d01fc9a4bb9d5c7baa",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
+          "numero": "WOT0014502",
+          "loja": "FS PELOTAS - AV FERREIRA VIANA 540",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 74,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK070595 - TOSTADORA VERTICAL; PRINCE CASTLE; DCFT- | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-07-29",
+          "sysId": "87e36047fb9a0f90b0c9fb207eefdcc3",
+          "equipamento": "Tostadeira"
+        },
+        {
+          "numero": "WOT0015064",
+          "loja": "SHOP IGUATEMI PORTO ALEGRE",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 72,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-07-31",
+          "sysId": "47d6072bfbd2c7d0b0c9fb207eefdc2b",
+          "equipamento": "Broiler"
+        },
+        {
+          "numero": "WOT0015499",
+          "loja": "BOURBON SHOP SAO LEOPOLDO",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 69,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK039610 - TOSTADORA VERTICAL; AJ ANTUNES; VCT-2000 | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-03",
+          "sysId": "3e25682897ee0754a3c1b3c6f053af44",
+          "equipamento": "Tostadeira"
+        },
+        {
+          "numero": "WOT0021785",
+          "loja": "SHOP PRACA NOVA SANTA MARIA",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 60,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK055655 - BROILER; NIECO; JF94G; 631-41482 | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-12",
+          "sysId": "511a2c2f47ea8fd4e6d73dc4f26d43a7",
+          "equipamento": "Broiler"
+        },
+        {
+          "numero": "WOT0035833",
+          "loja": "PARTAGE SHOP RIO GRANDE",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 52,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK037999 - BROILER; NIECO; JF93G; 232-32583 | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-20",
+          "sysId": "ecccd5864736875041ed4f62036d43e4",
+          "equipamento": "Broiler"
+        },
+        {
+          "numero": "WOT0042025",
+          "loja": "BOURBON SHOP NOVO HAMBURGO",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 41,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-31",
+          "sysId": "12758129470bc310e6d73dc4f26d431c",
+          "equipamento": "Broiler"
+        },
+        {
+          "numero": "WOT0045060",
+          "loja": "FC CAXIAS DO SUL - VILLAGIO CAXIAS",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 36,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "ZP189359 - MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - MAQUINA COM ALTO RUIDO",
+          "abertura": "2026-09-05",
+          "sysId": "e1901c9347c7c390839576b4f26d437c",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
+          "numero": "WOT0048142",
+          "loja": "CATARATAS JL SHOP",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 32,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK077753 - PHU; PRINCE CASTLE; DHB-BK17DBR; HK 0213732 | PHU - NÃO ACENDE LUZES",
+          "abertura": "2026-09-09",
+          "sysId": "361444e4471f4f10e6d73dc4f26d4380",
+          "equipamento": "PHU"
+        },
+        {
+          "numero": "WOT0047533",
+          "loja": "CATARATAS JL SHOP",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 32,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK043349 - BROILER; NIECO; JF93G; 232-32583 | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-09",
+          "sysId": "b58dcf5c471f0f10839576b4f26d43e4",
+          "equipamento": "Broiler"
+        },
+        {
+          "numero": "WOT0049921",
+          "loja": "SHOP JL CASCAVEL",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 31,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK077757 - FRITADEIRA | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-10",
+          "sysId": "8ba96dbc479b4750839576b4f26d4326",
+          "equipamento": "Fritadeira"
+        },
+        {
+          "numero": "WOT0053020",
+          "loja": "SHOP CENTER LAR",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 24,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-17",
+          "sysId": "912a500ffb9b8b50b0c9fb207eefdca4",
+          "equipamento": "Broiler"
+        },
+        {
+          "numero": "WOT0058849",
+          "loja": "SHOP CENTER LAR",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 13,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK057527 - FRITADEIRA TRIPLA GAS NAT 3X3X2CESTOS | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-28",
+          "sysId": "926687aa33afcb101fc9a4bb9d5c7b75",
+          "equipamento": "Fritadeira"
+        },
+        {
+          "numero": "WOT0058738",
+          "loja": "BOURBON SHOP NOVO HAMBURGO",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 13,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK072150 - FRITADEIRA TRIPLA GAS NAT 3X3X2CESTOS | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-28",
+          "sysId": "0b2c8aae33ab4b101fc9a4bb9d5c7bc9",
+          "equipamento": "Fritadeira"
+        },
+        {
+          "numero": "WOT0058857",
+          "loja": "CARREFOUR PARTENON",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 13,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK076140 - FRITADEIRA; PITCO; SSH60W; G15HA040253 | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-28",
+          "sysId": "9ff94b2a47e74b1041ed4f62036d43ff",
+          "equipamento": "Fritadeira"
+        },
+        {
+          "numero": "WOT0058861",
+          "loja": "PARTAGE SHOP RIO GRANDE",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 13,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "FRITADEIRA | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-28",
+          "sysId": "d2da4b6297634f10a3c1b3c6f053aff1",
+          "equipamento": "Fritadeira"
+        },
+        {
+          "numero": "WOT0058856",
+          "loja": "SHOP PRACA NOVA SANTA MARIA",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 13,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK055683 - FRITADEIRA | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-28",
+          "sysId": "0bc9cbeefb278b10b0c9fb207eefdc85",
+          "equipamento": "Fritadeira"
+        },
+        {
+          "numero": "WOT0058855",
+          "loja": "SHOP PRACA NOVA SANTA MARIA",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 13,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK055655 - BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-28",
+          "sysId": "1f7943aefb278b10b0c9fb207eefdc80",
+          "equipamento": "Broiler"
+        },
+        {
+          "numero": "WOT0067462",
+          "loja": "SHOP ROYAL PLAZA SANTA MARIA",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 2,
+          "tecnico": "Cristppher Alencar Pacheco Cruz",
+          "problema": "BK049846 - MAQUINA DE SORVETE; TAYLOR; C712-33; M50 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-10-09",
+          "sysId": "43add74247ffcb5041ed4f62036d4309",
+          "equipamento": "Máquina de Sorvete"
+        }
+      ]
+    },
+    {
+      "nome": "Marcel Vinicios Rocha Agradem",
+      "ehSupervisor": true,
+      "lojasAtendidas": 6,
+      "chamados": 8,
+      "alta": 8,
+      "sos": 0,
+      "tempoMedioDias": 12,
+      "chamadosDetalhe": [
         {
           "numero": "WOT0050046",
           "loja": "BOURBON SHOP SAO LEOPOLDO",
@@ -24820,18 +24761,6 @@
           "abertura": "2026-09-16",
           "sysId": "959fb3ea9753c750a3c1b3c6f053af4d",
           "equipamento": "PHU"
-        },
-        {
-          "numero": "WOT0053840",
-          "loja": "BOURBON SHOP SAO LEOPOLDO",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Alta",
-          "dias": 23,
-          "tecnico": "Marcel Vinicios Rocha Agradem",
-          "problema": "BK078907 - MAQUINA DE SORVETE; TAYLOR; C712N-33 | MDS - NÃO FUNCIONA 1 LADO",
-          "abertura": "2026-09-18",
-          "sysId": "ac4d6a9f335f07d01fc9a4bb9d5c7baa",
-          "equipamento": "Máquina de Sorvete"
         },
         {
           "numero": "WOT0057937",
@@ -26013,245 +25942,6 @@
           "problema": "BK038075 - MAQUINA DE SORVETE C716 380V | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-08-20",
           "sysId": "49ac95464736875041ed4f62036d43d4",
-          "equipamento": "Máquina de Sorvete"
-        }
-      ]
-    },
-    {
-      "nome": "Cristppher Alencar Pacheco Cruz",
-      "ehSupervisor": false,
-      "lojasAtendidas": 13,
-      "chamados": 19,
-      "alta": 1,
-      "sos": 0,
-      "tempoMedioDias": 34,
-      "chamadosDetalhe": [
-        {
-          "numero": "WOT0040477",
-          "loja": "FS CAXIAS DO SUL - R JOÃO NICHELE 2227",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Alta",
-          "dias": 44,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK087706 - MICROONDAS | MCR - NÃO LIGA",
-          "abertura": "2026-08-28",
-          "sysId": "b8b1ad20474f8390839576b4f26d4316",
-          "equipamento": "Micro-ondas"
-        },
-        {
-          "numero": "WOT0014502",
-          "loja": "FS PELOTAS - AV FERREIRA VIANA 540",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 74,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK070595 - TOSTADORA VERTICAL; PRINCE CASTLE; DCFT- | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-07-29",
-          "sysId": "87e36047fb9a0f90b0c9fb207eefdcc3",
-          "equipamento": "Tostadeira"
-        },
-        {
-          "numero": "WOT0015064",
-          "loja": "SHOP IGUATEMI PORTO ALEGRE",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 72,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-07-31",
-          "sysId": "47d6072bfbd2c7d0b0c9fb207eefdc2b",
-          "equipamento": "Broiler"
-        },
-        {
-          "numero": "WOT0015499",
-          "loja": "BOURBON SHOP SAO LEOPOLDO",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 69,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK039610 - TOSTADORA VERTICAL; AJ ANTUNES; VCT-2000 | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-03",
-          "sysId": "3e25682897ee0754a3c1b3c6f053af44",
-          "equipamento": "Tostadeira"
-        },
-        {
-          "numero": "WOT0021785",
-          "loja": "SHOP PRACA NOVA SANTA MARIA",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 60,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK055655 - BROILER; NIECO; JF94G; 631-41482 | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-12",
-          "sysId": "511a2c2f47ea8fd4e6d73dc4f26d43a7",
-          "equipamento": "Broiler"
-        },
-        {
-          "numero": "WOT0035833",
-          "loja": "PARTAGE SHOP RIO GRANDE",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 52,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK037999 - BROILER; NIECO; JF93G; 232-32583 | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-20",
-          "sysId": "ecccd5864736875041ed4f62036d43e4",
-          "equipamento": "Broiler"
-        },
-        {
-          "numero": "WOT0042025",
-          "loja": "BOURBON SHOP NOVO HAMBURGO",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 41,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-31",
-          "sysId": "12758129470bc310e6d73dc4f26d431c",
-          "equipamento": "Broiler"
-        },
-        {
-          "numero": "WOT0045060",
-          "loja": "FC CAXIAS DO SUL - VILLAGIO CAXIAS",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 36,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "ZP189359 - MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - MAQUINA COM ALTO RUIDO",
-          "abertura": "2026-09-05",
-          "sysId": "e1901c9347c7c390839576b4f26d437c",
-          "equipamento": "Máquina de Sorvete"
-        },
-        {
-          "numero": "WOT0048142",
-          "loja": "CATARATAS JL SHOP",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 32,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK077753 - PHU; PRINCE CASTLE; DHB-BK17DBR; HK 0213732 | PHU - NÃO ACENDE LUZES",
-          "abertura": "2026-09-09",
-          "sysId": "361444e4471f4f10e6d73dc4f26d4380",
-          "equipamento": "PHU"
-        },
-        {
-          "numero": "WOT0047533",
-          "loja": "CATARATAS JL SHOP",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 32,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK043349 - BROILER; NIECO; JF93G; 232-32583 | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-09",
-          "sysId": "b58dcf5c471f0f10839576b4f26d43e4",
-          "equipamento": "Broiler"
-        },
-        {
-          "numero": "WOT0049921",
-          "loja": "SHOP JL CASCAVEL",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 31,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK077757 - FRITADEIRA | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-10",
-          "sysId": "8ba96dbc479b4750839576b4f26d4326",
-          "equipamento": "Fritadeira"
-        },
-        {
-          "numero": "WOT0053020",
-          "loja": "SHOP CENTER LAR",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 24,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-17",
-          "sysId": "912a500ffb9b8b50b0c9fb207eefdca4",
-          "equipamento": "Broiler"
-        },
-        {
-          "numero": "WOT0058849",
-          "loja": "SHOP CENTER LAR",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 13,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK057527 - FRITADEIRA TRIPLA GAS NAT 3X3X2CESTOS | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-28",
-          "sysId": "926687aa33afcb101fc9a4bb9d5c7b75",
-          "equipamento": "Fritadeira"
-        },
-        {
-          "numero": "WOT0058738",
-          "loja": "BOURBON SHOP NOVO HAMBURGO",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 13,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK072150 - FRITADEIRA TRIPLA GAS NAT 3X3X2CESTOS | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-28",
-          "sysId": "0b2c8aae33ab4b101fc9a4bb9d5c7bc9",
-          "equipamento": "Fritadeira"
-        },
-        {
-          "numero": "WOT0058857",
-          "loja": "CARREFOUR PARTENON",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 13,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK076140 - FRITADEIRA; PITCO; SSH60W; G15HA040253 | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-28",
-          "sysId": "9ff94b2a47e74b1041ed4f62036d43ff",
-          "equipamento": "Fritadeira"
-        },
-        {
-          "numero": "WOT0058861",
-          "loja": "PARTAGE SHOP RIO GRANDE",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 13,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "FRITADEIRA | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-28",
-          "sysId": "d2da4b6297634f10a3c1b3c6f053aff1",
-          "equipamento": "Fritadeira"
-        },
-        {
-          "numero": "WOT0058856",
-          "loja": "SHOP PRACA NOVA SANTA MARIA",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 13,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK055683 - FRITADEIRA | FRI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-28",
-          "sysId": "0bc9cbeefb278b10b0c9fb207eefdc85",
-          "equipamento": "Fritadeira"
-        },
-        {
-          "numero": "WOT0058855",
-          "loja": "SHOP PRACA NOVA SANTA MARIA",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 13,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK055655 - BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-28",
-          "sysId": "1f7943aefb278b10b0c9fb207eefdc80",
-          "equipamento": "Broiler"
-        },
-        {
-          "numero": "WOT0067462",
-          "loja": "SHOP ROYAL PLAZA SANTA MARIA",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 2,
-          "tecnico": "Cristppher Alencar Pacheco Cruz",
-          "problema": "BK049846 - MAQUINA DE SORVETE; TAYLOR; C712-33; M50 | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-10-09",
-          "sysId": "43add74247ffcb5041ed4f62036d4309",
           "equipamento": "Máquina de Sorvete"
         }
       ]
