@@ -333,12 +333,14 @@ var busca = (document.getElementById('q') ? document.getElementById('q').value :
 var fReg = (document.getElementById('fReg') ? document.getElementById('fReg').value : '');
 var fStatus = (document.getElementById('fStatus') ? document.getElementById('fStatus').value : '');
 var fPri = (document.getElementById('fPri') ? document.getElementById('fPri').value : '');
+var fProvRes = (document.getElementById('fProvRes') ? document.getElementById('fProvRes').value : '');
 var fLoja = (document.getElementById('fLoja') ? document.getElementById('fLoja').value : '').toLowerCase().trim();
 var fDataDe = (document.getElementById('fDataDe') ? document.getElementById('fDataDe').value : '');
 var fDataAte = (document.getElementById('fDataAte') ? document.getElementById('fDataAte').value : '');
 var iReg = A.cab.indexOf('Regional');
 var iStatus = A.cab.findIndex(function(c) { return /status\s+da\s+m[aá]quina/i.test(c); });
 var iPri = A.cab.findIndex(function(c) { return /prioridade/i.test(c); });
+var iProvRes = A.cab.findIndex(function(c) { return /provavel/i.test(c) && /resolv/i.test(c); });
 var iLoja = A.cab.findIndex(function(c) { return /^loja$/i.test(c); });
 var iAbertura = A.cab.findIndex(function(c) { return /abertura/i.test(c); });
 function dataBRparaISO(s) {
@@ -349,6 +351,12 @@ return A.linhas.filter(function (l) {
 if (fReg && iReg >= 0 && String(l[iReg]) !== fReg) return false;
 if (fStatus && iStatus >= 0 && String(l[iStatus]) !== fStatus) return false;
 if (fPri && iPri >= 0 && String(l[iPri]) !== fPri) return false;
+if (fProvRes && iProvRes >= 0) {
+var val = String(l[iProvRes] || '').trim().toLowerCase();
+var ehSim = /^(sim|yes|true|1|x)$/i.test(val) || /sim/i.test(val);
+if (fProvRes === 'sim' && !ehSim) return false;
+if (fProvRes === 'nao' && ehSim) return false;
+}
 if (fLoja && iLoja >= 0 && semAcento(String(l[iLoja])).indexOf(fLoja) === -1) return false;
 if (fLoja && iLoja < 0 && busca && l.join(' ').toLowerCase().indexOf(fLoja) === -1) return false;
 if (fDataDe && iAbertura >= 0) {
@@ -456,6 +464,11 @@ if (pris.length) {
 h += '<div class="filter-field"><label for="fPri">Prioridade</label><select id="fPri"><option value="">Todas</option>'
 + pris.map(function (p) { return '<option>' + esc(p) + '</option>'; }).join('') + '</select></div>';
 }
+var iProvRes = A.cab.findIndex(function(c) { return /provavel/i.test(c) && /resolv/i.test(c); });
+if (iProvRes >= 0) {
+h += '<div class="filter-field"><label for="fProvRes">Provavelmente resolvido</label><select id="fProvRes">'
++ '<option value="">Todos</option><option value="sim">Sim</option><option value="nao">Não</option></select></div>';
+}
 if (iAbertura >= 0) {
 h += '<div class="filter-field" style="flex:0 1 260px;min-width:220px"><label>Abertura</label>'
 + '<div style="display:flex;align-items:center;gap:6px">'
@@ -503,11 +516,13 @@ var q = document.getElementById('q'); if (q) q.addEventListener('input', renderT
 var fr = document.getElementById('fReg'); if (fr) fr.addEventListener('change', renderTabela);
 var fs = document.getElementById('fStatus'); if (fs) fs.addEventListener('change', renderTabela);
 var fp = document.getElementById('fPri'); if (fp) fp.addEventListener('change', renderTabela);
+var fpr = document.getElementById('fProvRes'); if (fpr) fpr.addEventListener('change', renderTabela);
 var bx = document.getElementById('baixar');
 if (bx) bx.addEventListener('click', baixar);
 document.getElementById('limpar').addEventListener('click', function () {
 if (q) q.value = ''; if (fr) fr.value = '';
 if (fs) fs.value = ''; if (fp) fp.value = '';
+var fpr2 = document.getElementById('fProvRes'); if (fpr2) fpr2.value = '';
 var fl = document.getElementById('fLoja'); if (fl) fl.value = '';
 var fd1 = document.getElementById('fDataDe'); if (fd1) fd1.value = '';
 var fd2 = document.getElementById('fDataAte'); if (fd2) fd2.value = '';
