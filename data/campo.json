@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-11T11:20:12.639Z",
+ "atualizadoEm": "2026-10-11T11:40:11.145Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 9,
+  "emExecucao": 10,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 9
+  "total": 10
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-11",
-   "abertos": 1,
+   "abertos": 2,
    "fechados": 1
   }
  ],
  "itens": [
+  {
+   "numero": "WO0067494",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "25676 - FS CURITIBA - RUA DOMINGOS STRAPASSON",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "11/10/2026 08:36:50",
+   "fechamento": "",
+   "principal": "BK071664 - BROILER",
+   "secundario": "BRO - NÃO ACENDE",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK071664 - BROILER | BRO - NÃO ACENDE",
+   "tarefas": [
+    "WOT0068047"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0067487",
    "marca": "BKB",
