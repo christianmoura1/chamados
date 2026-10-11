@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-10T23:40:12.690Z",
+ "atualizadoEm": "2026-10-11T00:40:10.006Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 11,
+  "emExecucao": 9,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 3,
-  "total": 11
+  "aguardandoToken": 1,
+  "total": 9
  },
  "serie": [
   {
@@ -22,7 +22,7 @@
   {
    "data": "2026-10-10",
    "abertos": 14,
-   "fechados": 13
+   "fechados": 15
   }
  ],
  "itens": [
@@ -165,29 +165,6 @@
    "grupo": "execucao"
   },
   {
-   "numero": "WO0067027",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "OESTE PR",
-   "loja": "25277 - SHOP GUARAPUAVA",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "09/10/2026 21:14:46",
-   "fechamento": "",
-   "principal": "BK066058 - FRITADEIRA; PITCO; SSH60W; G16JB068249",
-   "secundario": "FRI - NENHUMA DAS CUBAS ATINGE TEMPERATURA",
-   "sigla": "FRI",
-   "tecnico": "",
-   "descricao": "BK066058 - FRITADEIRA; PITCO; SSH60W; G16JB068249 | FRI - NENHUMA DAS CUBAS ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0067570"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "10/10/2026 17:14:00",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
    "numero": "WO0066888",
    "marca": "BKB",
    "regional": "SUL",
@@ -207,29 +184,6 @@
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0066763",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "OESTE PR",
-   "loja": "25277 - SHOP GUARAPUAVA",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "09/10/2026 11:59:54",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - GÁS - VAZAMENTO DE GÁS",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - GÁS - VAZAMENTO DE GÁS",
-   "tarefas": [
-    "WOT0067306"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "10/10/2026 17:16:37",
    "contato": "",
    "grupo": "execucao"
   },
