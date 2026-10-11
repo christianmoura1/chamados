@@ -131,8 +131,10 @@ color: var(--text-3); padding: 8px 10px; position: sticky; top: 0; background: v
 .card-banner-entregue { background: linear-gradient(90deg, #16a34a, #22c55e); color: #fff; font-weight: 700; font-size: 13px; padding: 8px 12px; border-radius: 8px 8px 0 0; text-align: center; letter-spacing: 0.3px; margin: -16px -16px 12px -16px; }
 .card-banner-rota { background: linear-gradient(90deg, #ea580c, #f97316); color: #fff; font-weight: 700; font-size: 12.5px; padding: 7px 12px; border-radius: 8px 8px 0 0; text-align: center; margin: -16px -16px 12px -16px; }
 .card-banner-cancelado { background: linear-gradient(90deg, #991b1b, #dc2626); color: #fff; font-weight: 700; font-size: 12.5px; padding: 7px 12px; border-radius: 8px 8px 0 0; text-align: center; margin: -16px -16px 12px -16px; }
+.card-banner-parcial { background: linear-gradient(90deg, #0369a1, #0ea5e9); color: #fff; font-weight: 700; font-size: 12.5px; padding: 7px 12px; border-radius: 8px 8px 0 0; text-align: center; margin: -16px -16px 12px -16px; }
 .chamado-card-entregue { border: 2px solid #16a34a; box-shadow: 0 0 0 3px rgba(22,163,74,0.15); }
 .chamado-card-cancelado { border: 2px solid #dc2626; box-shadow: 0 0 0 3px rgba(220,38,38,0.12); opacity: 0.92; }
+.chamado-card-parcial { border: 2px solid #0ea5e9; box-shadow: 0 0 0 3px rgba(14,165,233,0.12); }
 .chamado-card {
 background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r-lg);
 padding: 16px 18px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 10px;
@@ -283,6 +285,10 @@ if (!p.rastreio || !p.rastreio.length) return 'sem_envio';
 // "FALHA NA SOLICITACAO / Marca Cancelou". Correcao: priorizar o ULTIMO
 // evento. Se o ultimo for cancelamento/falha/retorno, classifica como
 // "cancelado" independente de eventos anteriores de entrega.
+//
+// BUG 2 CORRIGIDO 11/10/2026: COLLECTED era mapeado para "em_rota" mas o
+// filtro do painel tem opcao "Coletado" separada. Agora COLLECTED retorna
+// "coletado" para o filtro funcionar.
 const ultimo = p.rastreio[p.rastreio.length - 1];
 const sUltimo = (ultimo.status || '').toUpperCase();
 // 1) Cancelamento/falha/retorno no ultimo evento -> sempre cancelado,
@@ -299,17 +305,17 @@ if (sUltimo === 'SUCCESSFUL' || sUltimo === 'DELIVERED') return 'entregue';
 for (const r of p.rastreio) {
 const s = (r.status || '').toUpperCase();
 if (s === 'SUCCESSFUL' || s === 'DELIVERED') {
-// Teve entrega em algum momento, mas o ultimo evento nao confirma.
-// Se o ultimo for em transito/despachado, pode ser reenvio -- trata
-// como em_rota. Se for outro status, usa o ultimo.
 if (sUltimo === 'IN_TRANSIT' || sUltimo === 'COLLECTED' || sUltimo === 'START_DELIVERY' || sUltimo === 'DISPATCHED') {
 return 'em_rota';
 }
-return 'entregue'; // fallback: teve entrega e ultimo nao contradiz
+return 'entregue';
 }
 }
 // 4) Sem entrega em nenhum evento -- usa o ultimo status.
-if (sUltimo === 'IN_TRANSIT' || sUltimo === 'COLLECTED' || sUltimo === 'START_DELIVERY') return 'em_rota';
+//    COLLECTED agora retorna "coletado" (nao "em_rota") para o filtro
+//    "Coletado" do painel funcionar corretamente.
+if (sUltimo === 'COLLECTED') return 'coletado';
+if (sUltimo === 'IN_TRANSIT' || sUltimo === 'START_DELIVERY') return 'em_rota';
 if (sUltimo === 'DISPATCHED' || sUltimo === 'CARRIER_CONFIRMED') return 'despachado';
 return 'despachado';
 }
@@ -337,8 +343,19 @@ const temMaterial = (c.pecas || []).some(p => semAcento(p.material || '').includ
 if (!temMaterial) return false;
 }
 if (fEntrega) {
+// "parcial" eh um status do CHAMADO (algumas pecas entregues, outras nao),
+// nao de uma peca individual. Tratar separado dos demais.
+if (fEntrega === 'parcial') {
+const qtdEntregues = (c.pecas || []).filter(p => classificarEntrega(p) === 'entregue').length;
+const qtdTotal = (c.pecas || []).length;
+const todasEntregues = qtdTotal > 0 && qtdEntregues === qtdTotal;
+const algumaCancelada = (c.pecas || []).some(p => classificarEntrega(p) === 'cancelado');
+const ehParcial = !todasEntregues && !algumaCancelada && qtdEntregues > 0 && qtdEntregues < qtdTotal;
+if (!ehParcial) return false;
+} else {
 const temPecaComStatus = (c.pecas || []).some(p => classificarEntrega(p) === fEntrega);
 if (!temPecaComStatus) return false;
+}
 }
 return true;
 });
@@ -368,12 +385,14 @@ const idx = TODOS_CHAMADOS_COM_PECAS.indexOf(c);
 // diz o status individual.
 const todasEntregues = (c.pecas || []).length > 0 && (c.pecas || []).every(p => classificarEntrega(p) === 'entregue');
 const algumaCancelada = (c.pecas || []).some(p => classificarEntrega(p) === 'cancelado');
-const algumaEmRota = !todasEntregues && !algumaCancelada && (c.pecas || []).some(p => { const s = classificarEntrega(p); return s === 'em_rota' || s === 'despachado'; });
+const algumaEmRota = !todasEntregues && !algumaCancelada && (c.pecas || []).some(p => { const s = classificarEntrega(p); return s === 'em_rota' || s === 'despachado' || s === 'coletado'; });
+// PEDIDO DO CHRISTIAN 11/10/2026: quando algumas pecas estao entregues e
+// outras nao, mostrar "ENTREGA PARCIAL" em vez de so' "EM ROTA".
+const qtdEntregues = (c.pecas || []).filter(p => classificarEntrega(p) === 'entregue').length;
+const qtdTotal = (c.pecas || []).length;
+const entregaParcial = !todasEntregues && !algumaCancelada && qtdEntregues > 0 && qtdEntregues < qtdTotal;
 // BUG CORRIGIDO 11/10/2026: se QUALQUER peca foi cancelada, NUNCA mostra
-// banner verde de entregue -- mostra vermelho de cancelado. O caso real
-// WOT0058857 tinha historico DESPACHADO -> FALHA NA SOLICITACAO (Marca
-// Cancelou) mas aparecia com banner verde porque a logica antiga so'
-// olhava se ALGUM evento era SUCCESSFUL sem checar o ultimo.
+// banner verde de entregue -- mostra vermelho de cancelado.
 let bannerEntrega = '';
 let cardCls = '';
 if (algumaCancelada) {
@@ -382,6 +401,9 @@ cardCls = ' chamado-card-cancelado';
 } else if (todasEntregues) {
 bannerEntrega = '<div class="card-banner-entregue">✅ PEÇA ENTREGUE — recebida na loja</div>';
 cardCls = ' chamado-card-entregue';
+} else if (entregaParcial) {
+bannerEntrega = '<div class="card-banner-parcial">📦 ENTREGA PARCIAL — ' + qtdEntregues + ' de ' + qtdTotal + ' peça(s) entregue(s)</div>';
+cardCls = ' chamado-card-parcial';
 } else if (algumaEmRota) {
 bannerEntrega = '<div class="card-banner-rota">🚚 EM ROTA / DESPACHADA — acompanhar rastreio</div>';
 }
@@ -532,9 +554,10 @@ el.innerHTML = `
 <option value="sem_envio">Ainda não entregue à transportadora</option>
 <option value="em_rota">Em rota / Em trânsito</option>
 <option value="entregue">Entregue</option>
-<option value="despachado">Despachado</option>
+<option value="parcial">Entrega Parcial</option>
 <option value="coletado">Coletado</option>
-<option value="falhou">Falhou / Cancelado</option>
+<option value="despachado">Despachado</option>
+<option value="cancelado">Cancelado</option>
 </select>
 </div>
 <button class="filter-clear" id="filtroLimpar" type="button">Limpar filtros</button>
