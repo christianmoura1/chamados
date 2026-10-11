@@ -1,5 +1,5 @@
 {
- "atualizadoEm": "2026-10-11T13:20:16.016Z",
+ "atualizadoEm": "2026-10-11T13:40:21.442Z",
  "janelaDias": 3,
  "resumo": {
   "emExecucao": 10,
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-11",
-   "abertos": 5,
-   "fechados": 4
+   "abertos": 6,
+   "fechados": 5
   }
  ],
  "itens": [
+  {
+   "numero": "WO0067564",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "31345 FS CANOAS - AV DR SEZEFREDO A",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "11/10/2026 10:39:08",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "AEX - REFLUXO",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | AEX - REFLUXO",
+   "tarefas": [
+    "WOT0068118"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0067518",
    "marca": "BKB",
@@ -43,29 +66,6 @@
    "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
    "tarefas": [
     "WOT0068072"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0067487",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "31345 FS CANOAS - AV DR SEZEFREDO A",
-   "status": "Trabalho em andamento",
-   "fase": "Iniciado",
-   "abertura": "11/10/2026 08:00:00",
-   "fechamento": "",
-   "principal": "ZP137112 - FRITADEIRA",
-   "secundario": "FRI - NÃO LIGA",
-   "sigla": "FRI",
-   "tecnico": "",
-   "descricao": "ZP137112 - FRITADEIRA | FRI - NÃO LIGA",
-   "tarefas": [
-    "WOT0068039"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
