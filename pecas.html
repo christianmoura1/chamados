@@ -132,9 +132,11 @@ color: var(--text-3); padding: 8px 10px; position: sticky; top: 0; background: v
 .card-banner-rota { background: linear-gradient(90deg, #ea580c, #f97316); color: #fff; font-weight: 700; font-size: 12.5px; padding: 7px 12px; border-radius: 8px 8px 0 0; text-align: center; margin: -16px -16px 12px -16px; }
 .card-banner-cancelado { background: linear-gradient(90deg, #991b1b, #dc2626); color: #fff; font-weight: 700; font-size: 12.5px; padding: 7px 12px; border-radius: 8px 8px 0 0; text-align: center; margin: -16px -16px 12px -16px; }
 .card-banner-parcial { background: linear-gradient(90deg, #0369a1, #0ea5e9); color: #fff; font-weight: 700; font-size: 12.5px; padding: 7px 12px; border-radius: 8px 8px 0 0; text-align: center; margin: -16px -16px 12px -16px; }
+.card-banner-solicitado { background: linear-gradient(90deg, #475569, #64748b); color: #fff; font-weight: 700; font-size: 13px; padding: 8px 12px; border-radius: 8px 8px 0 0; text-align: center; letter-spacing: 0.3px; margin: -16px -16px 12px -16px; }
 .chamado-card-entregue { border: 2px solid #16a34a; box-shadow: 0 0 0 3px rgba(22,163,74,0.15); }
 .chamado-card-cancelado { border: 2px solid #dc2626; box-shadow: 0 0 0 3px rgba(220,38,38,0.12); opacity: 0.92; }
 .chamado-card-parcial { border: 2px solid #0ea5e9; box-shadow: 0 0 0 3px rgba(14,165,233,0.12); }
+.chamado-card-solicitado { border: 2px solid #64748b; box-shadow: 0 0 0 3px rgba(100,116,139,0.12); }
 .chamado-card {
 background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r-lg);
 padding: 16px 18px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 10px;
@@ -394,6 +396,11 @@ const entregaParcial = !todasEntregues && !algumaCancelada && qtdEntregues > 0 &
 // banner verde de entregue -- mostra vermelho de cancelado.
 let bannerEntrega = '';
 let cardCls = '';
+// PEDIDO DO CHRISTIAN 11/10/2026: "Solicitado" deve aparecer como banner
+// grande no topo do card (igual Entregue/Em Rota/Cancelado/Parcial), nao
+// so como badge pequeno dentro do modal. Detecta quando TODAS as pecas
+// do chamado estao sem_envio (sem rastreio abbiamolog).
+const todasSolicitadas = (c.pecas || []).length > 0 && (c.pecas || []).every(p => classificarEntrega(p) === 'sem_envio');
 if (algumaCancelada) {
 bannerEntrega = '<div class="card-banner-cancelado">❌ PEDIDO CANCELADO — não foi entregue</div>';
 cardCls = ' chamado-card-cancelado';
@@ -403,6 +410,9 @@ cardCls = ' chamado-card-entregue';
 } else if (entregaParcial) {
 bannerEntrega = '<div class="card-banner-parcial">📦 ENTREGA PARCIAL — ' + qtdEntregues + ' de ' + qtdTotal + ' peça(s) entregue(s)</div>';
 cardCls = ' chamado-card-parcial';
+} else if (todasSolicitadas) {
+bannerEntrega = '<div class="card-banner-solicitado">📋 SOLICITADO — aguardando envio à transportadora</div>';
+cardCls = ' chamado-card-solicitado';
 } else if (algumaEmRota) {
 bannerEntrega = '<div class="card-banner-rota">🚚 EM ROTA / DESPACHADA — acompanhar rastreio</div>';
 }
