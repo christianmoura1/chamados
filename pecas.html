@@ -128,6 +128,9 @@ color: var(--text-3); padding: 8px 10px; position: sticky; top: 0; background: v
 .tag-alta { background: var(--alta-soft); color: var(--laranja); }
 .tag-normal { background: var(--cinza-bg); color: var(--text-2); }
 .chamado-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 16px; }
+.card-banner-entregue { background: linear-gradient(90deg, #16a34a, #22c55e); color: #fff; font-weight: 700; font-size: 13px; padding: 8px 12px; border-radius: 8px 8px 0 0; text-align: center; letter-spacing: 0.3px; margin: -16px -16px 12px -16px; }
+.card-banner-rota { background: linear-gradient(90deg, #ea580c, #f97316); color: #fff; font-weight: 700; font-size: 12.5px; padding: 7px 12px; border-radius: 8px 8px 0 0; text-align: center; margin: -16px -16px 12px -16px; }
+.chamado-card-entregue { border: 2px solid #16a34a; box-shadow: 0 0 0 3px rgba(22,163,74,0.15); }
 .chamado-card {
 background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r-lg);
 padding: 16px 18px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 10px;
@@ -335,7 +338,18 @@ ${p.total ? `<span class="peca-total">${escapeHtml(p.total)}</span>` : ''}
 </div>`
 ).join('');
 const idx = TODOS_CHAMADOS_COM_PECAS.indexOf(c);
-return `<div class="chamado-card" onclick="abrirDetalhe(${idx})">
+// PEDIDO DO CHRISTIAN 11/10/2026: aviso GRANDE no card quando a peca foi
+// entregue. So' mostra o banner verde se TODAS as pecas do chamado ja
+// chegaram (classificarEntrega === 'entregue' para todas). Se alguma ainda
+// esta em rota/despachada/sem envio, nao mostra -- o detalhe por peca ja
+// diz o status individual.
+const todasEntregues = (c.pecas || []).length > 0 && (c.pecas || []).every(p => classificarEntrega(p) === 'entregue');
+const algumaEmRota = !todasEntregues && (c.pecas || []).some(p => { const s = classificarEntrega(p); return s === 'em_rota' || s === 'despachado'; });
+const bannerEntrega = todasEntregues
+? '<div class="card-banner-entregue">✅ PEÇA ENTREGUE — recebida na loja</div>'
+: (algumaEmRota ? '<div class="card-banner-rota">🚚 EM ROTA / DESPACHADA — acompanhar rastreio</div>' : '');
+return `<div class="chamado-card${todasEntregues ? ' chamado-card-entregue' : ''}" onclick="abrirDetalhe(${idx})">
+${bannerEntrega}
 <div class="chamado-head">
 <span class="chamado-numero">${escapeHtml(c.numero)}</span>
 <span class="tag ${tagClsPrioridade(c.prioridade)}">${escapeHtml(c.prioridade)}</span>
@@ -402,6 +416,7 @@ mapaSupervisorInit[c.numero] = sup.nome;
 }
 }
 TODOS_CHAMADOS_COM_PECAS = [];
+// 1) equipamentos monitorados (6 categorias)
 for (const eq of (D.equipamentos || [])) {
 for (const c of (eq.chamadosDetalhe || [])) {
 if (c.pecas && c.pecas.length > 0) {
@@ -409,9 +424,15 @@ TODOS_CHAMADOS_COM_PECAS.push({ ...c, equipamento: eq.nome, supervisor: mapaSupe
 }
 }
 }
+// 2) area interna (pedido Christian 11/10/2026: pecas de area interna tambem)
+for (const c of (D.areaInterna || [])) {
+if (c.pecas && c.pecas.length > 0) {
+TODOS_CHAMADOS_COM_PECAS.push({ ...c, equipamento: 'Área Interna', supervisor: mapaSupervisorInit[c.numero] || '' });
+}
+}
 const totalChamadosComPeca = TODOS_CHAMADOS_COM_PECAS.length;
 const totalItensPeca = TODOS_CHAMADOS_COM_PECAS.reduce((s, c) => s + (c.pecas || []).length, 0);
-const totalChamadosEquip = D.equipamentos.reduce((s, e) => s + e.chamados, 0);
+const totalChamadosEquip = D.equipamentos.reduce((s, e) => s + e.chamados, 0) + (D.areaInterna || []).length;
 const pctComPeca = totalChamadosEquip > 0 ? Math.round(totalChamadosComPeca / totalChamadosEquip * 100) : 0;
 const equipsComPeca = [...new Set(TODOS_CHAMADOS_COM_PECAS.map(c => c.equipamento))].length;
 const kpisHtml = [
