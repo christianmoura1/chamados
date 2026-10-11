@@ -1,6 +1,6 @@
 {
- "atualizadoEm": "10/10/2026 20:05:40",
- "geradoEm": "2026-10-11T09:04:50.337Z",
+ "atualizadoEm": "11/10/2026 09:09:11",
+ "geradoEm": "2026-10-11T14:49:43.210Z",
  "totalLojasAvaliadas": 71,
  "scoreMedio": 8.41,
  "categorias": [
@@ -22,18 +22,18 @@
    "pctVencido": 28,
    "lojasVencidas": [
     {
-     "nome": "16647 - FS CURITIBA - R BISPO DOM JOSE 2348",
-     "score": 15,
-     "diasAtraso": 47,
-     "dataRef": "23/08/2026",
+     "nome": "22507 - ILR PORTO ALEGRE - R ANDRADAS 1664",
+     "score": 19,
+     "diasAtraso": 14,
+     "dataRef": "25/09/2026",
      "rotuloRef": "venceu",
      "itemRef": null
     },
     {
-     "nome": "22507 - ILR PORTO ALEGRE - R ANDRADAS 1664",
+     "nome": "16647 - FS CURITIBA - R BISPO DOM JOSE 2348",
      "score": 15,
-     "diasAtraso": 14,
-     "dataRef": "25/09/2026",
+     "diasAtraso": 47,
+     "dataRef": "23/08/2026",
      "rotuloRef": "venceu",
      "itemRef": null
     },
@@ -193,8 +193,8 @@
    "lojasVencidas": [
     {
      "nome": "16988 - SHOP ESTACAO",
-     "score": 14,
-     "diasAtraso": 22,
+     "score": 10,
+     "diasAtraso": 23,
      "dataRef": "18/09/2026",
      "rotuloRef": "últ. visita",
      "itemRef": null
@@ -210,10 +210,10 @@
    "pctVencido": 1,
    "lojasVencidas": [
     {
-     "nome": "16988 - SHOP ESTACAO",
-     "score": 14,
-     "diasAtraso": 51,
-     "dataRef": "20/08/2026",
+     "nome": "22507 - ILR PORTO ALEGRE - R ANDRADAS 1664",
+     "score": 19,
+     "diasAtraso": 50,
+     "dataRef": "22/08/2026",
      "rotuloRef": "últ. visita",
      "itemRef": null
     }
@@ -233,7 +233,7 @@
   "1",
   "1",
   "1",
-  "5",
+  "4",
   "Atrasado",
   "No Prazo"
  ],
@@ -576,24 +576,19 @@
     "dtAbertura": "10/10/2026",
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS"
-   },
-   {
-    "numero": "WO0067366",
-    "statusRisco": "No Prazo",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA NÃO FUNCIONA",
-    "regional": "SUL",
-    "setor": "CURITIBA NORTE",
-    "loja": "20047 - FS CURITIBA - LINHA VERDE",
-    "status": "Em Andamento",
-    "dtAbertura": "10/10/2026",
-    "dtEncerramento": "",
-    "tecnico": "CARLOS MAGNO DA SILVA LIRA"
    }
   ]
  },
  "ultimosFechados": [
+  {
+   "numero": "WO0067366",
+   "fechadoEm": "11/10/2026 08:15:06",
+   "dias": 0,
+   "prioridade": "SOS",
+   "problema": "COI - COIFA NÃO FUNCIONA",
+   "loja": "20047 - FS CURITIBA - LINHA VERDE",
+   "fechadoPor": "Carlos Magno da Silva Lira"
+  },
   {
    "numero": "WO0053425",
    "fechadoEm": "10/10/2026 14:26:23",
@@ -674,15 +669,6 @@
    "problema": "COI - ESTRUTURA DA COIFA COM DEFEITO",
    "loja": "20621 - SHOP PELOTAS",
    "fechadoPor": "Thiago da Silva Gonzalez"
-  },
-  {
-   "numero": "WO0042660",
-   "fechadoEm": "05/10/2026 16:12:33",
-   "dias": 33,
-   "prioridade": "SOS",
-   "problema": "COI - COIFA EM CONTIGÊNCIA",
-   "loja": "26828 - FS CURITIBA - FRANCISCO FRISHMANN 3151",
-   "fechadoPor": ""
   }
  ]
 }
