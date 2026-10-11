@@ -1057,113 +1057,81 @@ async function buscarPecas(dadosProcessados) {
   }
   logInfo('buscando pecas', { totalChamados: chamadosComPeca.length, equipamentos: chamadosComPeca.filter(c=>c.chaveEquip!=='area_interna').length, areaInterna: chamadosComPeca.filter(c=>c.chaveEquip==='area_interna').length });
 
-  // BUG ANTERIOR (descoberto 11/10/2026): o fetch() puro do HTML da pagina
-  // wm_task.do so' trazia os links alm_facility e numeros INCL quando eles
-  // ja estavam renderizados no HTML estatico -- o que acontecia em ~20% dos
-  // chamados. Nos outros 80%, a aba "Materiais/Servicos" carrega via AJAX
-  // lazy-load e so' aparece no DOM depois que o ServiceNow renderiza a
-  // tabela. Resultado: o painel mostrava 11 chamados com peca quando deveria
-  // mostrar 60+. Correcao: navegar ate a pagina real (page.goto), esperar a
-  // tabela wm_task.sm_incidentals.parent_task_table renderizar, e extrair do
-  // DOM vivo em vez do HTML bruto do fetch.
-  //
-  // Navegacao sequencial (CONCURRENCY=1) porque page.goto eh stateful -- nao
-  // da pra paralelizar numa unica aba. Com ~220 chamados e ~3-4s por pagina,
-  // adiciona ~12-15 min ao pipeline. Aceitavel para rodar de madrugada.
+  // REVERTIDO 11/10/2026: a abordagem page.goto sequencial causou regressao
+  // grave (63 -> 22 pecas) porque a conexao CDP caia apos ~20 paginas e a
+  // navegacao era lenta demais. Voltando para fetch() puro + regex no HTML,
+  // que eh rapido (~1.7s/chamado), paralelizavel (CONCURRENCY=5) e estava
+  // funcionando corretamente antes (encontrava 63 chamados com peca).
+  // A diferenca vs o codigo original: agora busca em TODOS os chamados
+  // (equipamentos + area interna), nao so nos 6 equipamentos.
+  const CONCURRENCY = 5;
   let processados = 0;
   let comPeca = 0;
 
-  for (const chamado of chamadosComPeca) {
-    try {
-      const url = `https://soma.zamp.com.br/wm_task.do?sys_id=${chamado.sysId}`;
-      await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
-      // Espera a tabela de materiais renderizar (lazy-load AJAX do ServiceNow).
-      // O seletor wm_task.sm_incidentals.parent_task_table eh a tabela da aba
-      // Materiais/Servicos. Se nao aparecer em 8s, o chamado provavelmente
-      // nao tem pecas solicitadas.
-      let tabelaPronta = false;
+  for (let i = 0; i < chamadosComPeca.length; i += CONCURRENCY) {
+    const lote = chamadosComPeca.slice(i, i + CONCURRENCY);
+    const resultados = await Promise.all(lote.map(async (chamado) => {
       try {
-        await page.waitForSelector('#wm_task\\.sm_incidentals\\.parent_task_table a[href*="alm_facility"], #wm_task\\.sm_incidentals\\.parent_task_table td', { timeout: 8000 });
-        tabelaPronta = true;
-      } catch (_) {
-        // Tabela nao apareceu -- pode ser chamado sem pecas ou sem a aba.
-        // Tenta mesmo assim extrair do DOM atual (vai retornar vazio).
-      }
-      const pecas = await page.evaluate(() => {
-        const resultado = [];
-        // Procura links alm_facility dentro da tabela de materiais
-        const links = document.querySelectorAll('#wm_task\\.sm_incidentals\\.parent_task_table a[href*="alm_facility"], a[href*="alm_facility.do"]');
+        const url = `https://soma.zamp.com.br/wm_task.do?sys_id=${chamado.sysId}`;
+        const html = await page.evaluate(async (u) => {
+          const ctrl = new AbortController();
+          const t = setTimeout(() => ctrl.abort('timeout'), 20000);
+          try {
+            const r = await fetch(u, { credentials: 'include', signal: ctrl.signal });
+            clearTimeout(t);
+            return await r.text();
+          } catch (e) { clearTimeout(t); return null; }
+        }, url);
+        if (!html) return { numero: chamado.numero, pecas: [] };
+        // Extrai pecas da tabela Materiais/Servicos embutida no HTML.
+        // Cada linha tem: numero INCL, material (codigo - nome), qtd, custo, total.
+        // Os links alm_facility dao o nome completo do material.
+        const pecas = [];
+        const linkRegex = /alm_facility\.do\?sys_id=[^"]+">([^<]+)</g;
+        const inclRegex = /INCL\d+/g;
         const materiais = [];
-        links.forEach(a => {
-          const txt = (a.textContent || '').trim();
-          if (txt) materiais.push(txt);
-        });
-        // Procura numeros INCL em celulas da tabela
-        const todasCelulas = document.querySelectorAll('#wm_task\\.sm_incidentals\\.parent_task_table td, #wm_task\\.sm_incidentals\\.parent_task_table span');
-        const inclNumbers = [];
-        todasCelulas.forEach(el => {
-          const t = (el.textContent || '').trim();
-          if (/^INCL\d+$/.test(t)) inclNumbers.push(t);
-        });
-        // Fallback: se nao achou na tabela especifica, procura no body todo
-        if (materiais.length === 0 && inclNumbers.length === 0) {
-          document.querySelectorAll('a[href*="alm_facility.do"]').forEach(a => {
-            const txt = (a.textContent || '').trim();
-            if (txt) materiais.push(txt);
-          });
-          document.querySelectorAll('td, span').forEach(el => {
-            const t = (el.textContent || '').trim();
-            if (/^INCL\d+$/.test(t) && !inclNumbers.includes(t)) inclNumbers.push(t);
+        let m;
+        while ((m = linkRegex.exec(html)) !== null) materiais.push(m[1].trim());
+        const inclNumbers = [...new Set(html.match(inclRegex) || [])];
+        // Para cada INCL, tenta extrair qtd e total das celulas adjacentes no HTML
+        for (let j = 0; j < inclNumbers.length && j < materiais.length; j++) {
+          const idx = html.indexOf(inclNumbers[j]);
+          const bloco = html.substring(idx, idx + 2000);
+          const qtdMatch = bloco.match(/>\s*(\d{1,4})\s*</);
+          const qtd = qtdMatch ? parseInt(qtdMatch[1], 10) : null;
+          const totalMatches = bloco.match(/R\$\s*[\d.,]+/g);
+          const total = totalMatches ? totalMatches[totalMatches.length - 1] : null;
+          pecas.push({
+            numero: inclNumbers[j],
+            material: materiais[j],
+            quantidade: qtd,
+            total: total,
           });
         }
-        // Monta as pecas: para cada INCL, tenta pegar o material correspondente
-        // e extrair qtd/total das celulas adjacentes
-        for (let j = 0; j < Math.max(inclNumbers.length, materiais.length); j++) {
-          const numero = inclNumbers[j] || null;
-          const material = materiais[j] || null;
-          if (!numero && !material) continue;
-          // Tenta encontrar qtd e total nas celulas da mesma linha
-          let qtd = null, total = null;
-          if (numero) {
-            // Procura a celula que contem o INCL e pega as irmãs
-            const allTds = [...document.querySelectorAll('td')];
-            const idxTd = allTds.findIndex(td => (td.textContent || '').trim() === numero);
-            if (idxTd >= 0) {
-              // Pega as proximas 5 celulas apos o INCL para achar qtd e R$
-              for (let k = idxTd + 1; k < Math.min(idxTd + 6, allTds.length); k++) {
-                const cellTxt = (allTds[k].textContent || '').trim();
-                if (!qtd && /^\d{1,4}$/.test(cellTxt)) qtd = parseInt(cellTxt, 10);
-                if (!total) {
-                  const m = cellTxt.match(/R\$\s*[\d.,]+/);
-                  if (m) total = m[0];
-                }
-              }
-            }
-          }
-          resultado.push({ numero, material, quantidade: qtd, total });
-        }
-        return resultado;
-      });
-      if (pecas.length > 0) {
+        return { numero: chamado.numero, pecas };
+      } catch (e) {
+        return { numero: chamado.numero, pecas: [], erro: e.message.slice(0, 100) };
+      }
+    }));
+    // Grava as pecas de volta nos chamadosDetalhe do equipamento correspondente
+    for (const res of resultados) {
+      if (res.pecas && res.pecas.length > 0) {
         comPeca++;
-        // Grava de volta: primeiro nos 6 equipamentos monitorados...
+        // Primeiro nos 6 equipamentos monitorados...
         let gravou = false;
         for (const eq of dadosProcessados.equipamentos) {
-          const det = (eq.chamadosDetalhe || []).find(c => c.numero === chamado.numero);
-          if (det) { det.pecas = pecas; gravou = true; break; }
+          const det = (eq.chamadosDetalhe || []).find(c => c.numero === res.numero);
+          if (det) { det.pecas = res.pecas; gravou = true; break; }
         }
-        // ...e se nao achou, procura no bucket area_interna (pedido do
-        // Christian 11/10/2026: pecas de area interna tambem contam).
+        // ...e se nao achou, procura no bucket area_interna.
         if (!gravou) {
-          const det = (dadosProcessados.areaInterna || []).find(c => c.numero === chamado.numero);
-          if (det) det.pecas = pecas;
+          const det = (dadosProcessados.areaInterna || []).find(c => c.numero === res.numero);
+          if (det) det.pecas = res.pecas;
         }
       }
-    } catch (e) {
-      // Erro num chamado individual nao mata o pipeline inteiro
+      processados++;
     }
-    processados++;
-    if (processados % 20 === 0 || processados === chamadosComPeca.length) {
+    if (i + CONCURRENCY >= chamadosComPeca.length || (i / CONCURRENCY) % 10 === 0) {
       logInfo('progresso pecas', { processados, total: chamadosComPeca.length, comPeca });
     }
   }
