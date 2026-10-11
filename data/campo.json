@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-11T20:40:08.955Z",
+ "atualizadoEm": "2026-10-11T21:40:12.787Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 8,
+  "emExecucao": 9,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 8
+  "total": 9
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-11",
-   "abertos": 12,
+   "abertos": 13,
    "fechados": 13
   }
  ],
  "itens": [
+  {
+   "numero": "WO0067764",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "16687 - SHOP PALLADIUM PONTA GROSSA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "11/10/2026 18:24:06",
+   "fechamento": "",
+   "principal": "BK072114 - BROILER",
+   "secundario": "BRO - NÃO ATINGE TEMPERATURA",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK072114 - BROILER | BRO - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0068318"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0067729",
    "marca": "BKB",
