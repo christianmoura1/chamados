@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-11T15:20:12.205Z",
+ "atualizadoEm": "2026-10-11T16:40:17.229Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 12,
+  "emExecucao": 9,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 0,
-  "total": 12
+  "aguardandoToken": 2,
+  "total": 9
  },
  "serie": [
   {
@@ -22,7 +22,7 @@
   {
    "data": "2026-10-11",
    "abertos": 9,
-   "fechados": 6
+   "fechados": 9
   }
  ],
  "itens": [
@@ -32,8 +32,8 @@
    "regional": "SUL",
    "setor": "GRANDE CURITIBA",
    "loja": "26828 - FS CURITIBA - FRANCISCO FRISHMANN 3151",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
+   "status": "Trabalho em andamento",
+   "fase": "Requisição Completa - Aguardando Token",
    "abertura": "11/10/2026 11:53:32",
    "fechamento": "",
    "principal": "BK088222 - BROILER",
@@ -44,8 +44,8 @@
    "tarefas": [
     "WOT0068169"
    ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
+   "aguardandoToken": 1,
+   "fechadoSemToken": "11/10/2026 13:23:02",
    "contato": "Tentativa de contato: 11/10/2026 11:54:19;\n",
    "grupo": "execucao"
   },
@@ -55,8 +55,8 @@
    "regional": "SUL",
    "setor": "CURITIBA OESTE/SC",
    "loja": "27589 - PARK EUROPEU BLUMENAU",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
+   "status": "Trabalho em andamento",
+   "fase": "Requisição Completa - Aguardando Token",
    "abertura": "11/10/2026 11:19:34",
    "fechamento": "",
    "principal": "Area Interna",
@@ -67,8 +67,8 @@
    "tarefas": [
     "WOT0068151"
    ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
+   "aguardandoToken": 1,
+   "fechadoSemToken": "11/10/2026 13:17:01",
    "contato": "",
    "grupo": "execucao"
   },
@@ -89,29 +89,6 @@
    "descricao": "Area Externa | AEX - REFLUXO",
    "tarefas": [
     "WOT0068118"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0067518",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL NORTE RS",
-   "loja": "25447 - FS POA - AV DA CAVALHADA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "11/10/2026 09:40:45",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
-   "tarefas": [
-    "WOT0068072"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
@@ -181,52 +158,6 @@
    "descricao": "BK066021 - CAMARA DE CONGELADOS; SÃO RAFAEL | CMG - NÃO ATINGE TEMPERATURA",
    "tarefas": [
     "WOT0067966"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0067394",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "10/10/2026 18:19:05",
-   "fechamento": "",
-   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
-   "secundario": "SCI - ALARME DISPARADO",
-   "sigla": "SCI",
-   "tecnico": "",
-   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - ALARME DISPARADO",
-   "tarefas": [
-    "WOT0067944"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0067376",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL NORTE RS",
-   "loja": "23725 - SHOP PRACA NOVA SANTA MARIA",
-   "status": "Atribuído",
-   "fase": "Iniciado",
-   "abertura": "10/10/2026 17:28:26",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - SALÃO - REFLUXO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - SALÃO - REFLUXO",
-   "tarefas": [
-    "WOT0067926"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
