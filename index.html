@@ -315,17 +315,94 @@
   .fechado-dias { font-size: 12.5px; color: var(--text-2); font-variant-numeric: tabular-nums; white-space: nowrap; min-width: 46px; text-align: right; }
   .fechado-hora { padding-left: 0; font-size: 12.5px; font-weight: 600; opacity: .85; font-variant-numeric: tabular-nums; white-space: nowrap; }
 
-  @media (max-width: 900px) { :root { --sidebar-w: 0px; } aside { display: none; } .kpis { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 600px) { .kpis { grid-template-columns: 1fr 1fr; gap: 10px; } main { padding: 14px; } }
+  /* ---------- responsive: tablet ---------- */
+  @media (max-width: 1024px) {
+    :root { --sidebar-w: 0px; }
+    aside { position: fixed; top: 0; left: 0; bottom: 0; width: 260px; z-index: 200; transform: translateX(-100%); transition: transform .25s ease; box-shadow: 4px 0 24px rgba(0,0,0,.15); }
+    aside.open { transform: translateX(0); }
+    .sidebar-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 199; }
+    .sidebar-backdrop.open { display: block; }
+    .menu-btn { display: flex; }
+    .kpis { grid-template-columns: repeat(3, 1fr); }
+    .gauge-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  }
+
+  /* ---------- responsive: mobile ---------- */
+  @media (max-width: 640px) {
+    header { padding: 10px 14px; gap: 10px; }
+    .header-title h1 { font-size: 15px; }
+    .header-title span { font-size: 9px; }
+    .carimbo { font-size: 9px; padding: 4px 8px; }
+    .brand-mark { width: 32px; height: 32px; font-size: 16px; }
+    main { padding: 12px; }
+    .kpis { grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+    .kpi { padding: 12px 14px; }
+    .kpi .val { font-size: 20px; }
+    .kpi .label { font-size: 9px; }
+    .equip-grid { grid-template-columns: 1fr; gap: 12px; }
+    .gauge-grid { grid-template-columns: 1fr; gap: 12px; }
+    .cons-grid { grid-template-columns: 1fr; gap: 12px; }
+    .card { padding: 14px; }
+    .filter-bar { flex-direction: column; align-items: stretch; }
+    .filter-field { min-width: 0; flex: none; width: 100%; }
+    .filter-field-curto { min-width: 0; flex: none; width: 100%; }
+    .filter-field-datas { min-width: 0; width: 100%; }
+    .filter-datas { width: 100%; }
+    .filter-datas input[type="date"] { min-width: 0; }
+    .filter-table-wrap { max-height: none; overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 0 -12px; padding: 0 12px; }
+    .detail-table { min-width: 680px; font-size: 11.5px; }
+    .detail-table th, .detail-table td { padding: 6px 8px; }
+    .hbar-row { grid-template-columns: 80px 1fr 36px; gap: 6px; font-size: 11px; }
+    .hbar-row .lbl { font-size: 10px; }
+    .sec-head { flex-direction: column; align-items: flex-start; gap: 4px; }
+    .sec-note { font-size: 10px; }
+    h2 { font-size: 13px; }
+    section { margin-top: 20px; }
+    .modal-overlay { padding: 0; align-items: flex-end; }
+    .modal-panel { width: 100%; max-height: 92vh; border-radius: var(--r-xl) var(--r-xl) 0 0; }
+    .modal-head { padding: 14px 16px; }
+    .modal-head h3 { font-size: 14px; }
+    .modal-filtros { padding: 10px 16px 0; flex-direction: column; gap: 8px; }
+    .modal-filtros .filter-field { min-width: 0; width: 100%; }
+    .modal-body { padding: 10px 16px 16px; }
+    .modal-sub { padding: 8px 16px 0; font-size: 11px; }
+    .modal-filtro-contagem { padding: 6px 16px 0; }
+    .donut-row { flex-direction: column; align-items: center; gap: 12px; }
+    .donut-wrap { width: 100px; height: 100px; }
+    .estats { width: 100%; }
+    .ecard { padding: 14px; }
+    .gcard { padding: 12px; }
+    .gstats { grid-template-columns: 1fr 1fr 1fr; gap: 4px; }
+    .gstats .estat .n { font-size: 12px; }
+    .gstats .estat .l { font-size: 7px; }
+    .gnum { font-size: 22px; }
+    footer { flex-direction: column; gap: 6px; font-size: 11px; }
+    .fechado-item { flex-direction: column; gap: 4px; }
+    .fechado-meta { margin-left: 0; justify-content: flex-start; gap: 10px; }
+    .hist-stats { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .hstat { padding: 10px 12px; }
+    .hstat-val { font-size: 20px; }
+    .chart-legend { gap: 10px; }
+    .chart-legend .li { font-size: 10px; }
+    .filter-clear, .filter-copy { width: 100%; text-align: center; padding: 10px; }
+    .vis-tabs { width: 100%; }
+    .vis-tab { flex: 1; text-align: center; }
+  }
+
+  /* ---------- menu button (hidden on desktop) ---------- */
+  .menu-btn { display: none; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: var(--bg); border: 1.5px solid var(--border); cursor: pointer; font-size: 18px; color: var(--text-2); flex-shrink: 0; transition: background .2s; }
+  .menu-btn:hover { background: var(--border); }
 </style>
 </head>
 <body>
 <header>
+  <button class="menu-btn" onclick="toggleSidebar()" aria-label="Menu">&#9776;</button>
   <div class="brand-mark">Z</div>
   <div class="header-title"><h1>Backlog</h1><span>Manutenção Sul · Zamp · BK Brasil</span></div>
   <div class="carimbo" id="stamp">carregando…</div>
   <button class="theme-btn" onclick="toggleTheme()" title="Alternar tema">&#9788;</button>
 </header>
+<div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleSidebar()"></div>
 <div class="layout">
   <aside id="sidebar">
     <div class="s-header">Navegação</div>
@@ -394,6 +471,12 @@ function toggleTheme() {
   var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
   document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem('backlog-theme', next);
+}
+function toggleSidebar() {
+  var sb = document.getElementById('sidebar');
+  var bd = document.getElementById('sidebarBackdrop');
+  if (sb) sb.classList.toggle('open');
+  if (bd) bd.classList.toggle('open');
 }
 (function() {
   var saved = localStorage.getItem('backlog-theme');
