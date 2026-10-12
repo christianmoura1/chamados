@@ -89,15 +89,18 @@ log('inicio do pipeline de risco');
   // O aria-label do combobox e' o nome do campo no modelo (brand_name,
   // region_name...) e NAO muda com o idioma da conta -- ao contrario do texto
   // da tela, que ja' quebrou seletor aqui antes.
+  // 12/10/2026: a conta do BI esta em ingles -- "All" e' o equivalente de "Todos".
+  // O guarda aceita ambos para nao bloquear o pipeline quando o idioma muda.
+  const TODOS = ['Todos', 'All'];
   const SLICERS_ESPERADOS = {
     brand_name: 'BKB',
     region_name: 'SUL',
-    sector_name: 'Todos',
-    store_bkn_name: 'Todos',
-    assunto_principal: 'Todos',
-    assunto_secundario: 'Todos',
-    status_gestao_risco: 'Todos',
-    Categoria: 'Todos',
+    sector_name: TODOS,
+    store_bkn_name: TODOS,
+    assunto_principal: TODOS,
+    assunto_secundario: TODOS,
+    status_gestao_risco: TODOS,
+    Categoria: TODOS,
   };
   // 25/09/2026: o relatorio foi redesenhado e os 7 slicers de canvas
   // sumiram -- sobrou so' o "Categoria". O recorte BKB/SUL agora vem do
@@ -160,7 +163,11 @@ log('inicio do pipeline de risco');
     const atual = lidos[campo];
     if (atual === undefined) continue;
     slicersConferidos++;
-    if (atual !== esperado) errados.push(campo + ': esta "' + atual + '", deveria ser "' + esperado + '"');
+    const ok = Array.isArray(esperado) ? esperado.includes(atual) : atual === esperado;
+    if (!ok) {
+      const espTxt = Array.isArray(esperado) ? esperado.join('/') : esperado;
+      errados.push(campo + ': esta "' + atual + '", deveria ser "' + espTxt + '"');
+    }
   }
   // (b) o recorte lido do canvas: marca BKB e SO a regional SUL
   const soSul = recorte.regionais.length === 1 && recorte.regionais[0] === 'SUL';
