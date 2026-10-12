@@ -28,7 +28,6 @@
 --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.05);
 --r: 10px; --r-lg: 16px; --r-xl: 20px;
 --sidebar-w: 220px;
-/* aliases usados pelo JS existente */
 --ink: var(--text);
 --muted: var(--text-3);
 --faint: var(--text-3);
@@ -76,9 +75,9 @@ aside .s-dot { width: 7px; height: 7px; border-radius: 50%; background: currentC
 aside a.active .s-dot { background: white; opacity: 1; }
 .side-foot { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-3); padding-left: 8px; }
 main { flex: 1; padding: 22px 24px; overflow-y: auto; }
-.kpis { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-bottom: 18px; }
-@media (max-width: 1080px) { .kpis { grid-template-columns: repeat(2,1fr); } }
-@media (max-width: 640px) { .kpis { grid-template-columns: 1fr; } }
+.kpis { display: grid; grid-template-columns: repeat(6,1fr); gap: 14px; margin-bottom: 18px; }
+@media (max-width: 1200px) { .kpis { grid-template-columns: repeat(3,1fr); } }
+@media (max-width: 640px) { .kpis { grid-template-columns: repeat(2,1fr); } }
 .kpi { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r-lg); padding: 16px 18px; box-shadow: var(--shadow); }
 .kpi .label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; color: var(--text-3); display: block; margin-bottom: 7px; }
 .kpi .val { font-size: clamp(22px,2.6vw,30px); font-weight: 900; letter-spacing: -1px; }
@@ -90,11 +89,38 @@ section { margin-top: 28px; }
 .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin-bottom: 12px; flex-wrap: wrap; }
 h2 { font-size: 15px; font-weight: 700; margin: 0; }
 .sec-note { font-size: 11px; color: var(--text-3); }
+.farol-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 24px; }
+.farol-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r-lg); padding: 18px; box-shadow: var(--shadow); }
+.farol-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+.farol-nome { font-size: 14px; font-weight: 700; }
+.farol-detalhe { font-size: 11px; color: var(--cobalto); cursor: pointer; }
+.farol-medidor { position: relative; width: 100%; height: 120px; margin-bottom: 12px; }
+.farol-medidor svg { width: 100%; height: 100%; }
+.farol-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+.farol-stat { text-align: center; padding: 8px; background: var(--cinza-bg); border-radius: var(--r); }
+.farol-stat .num { font-size: 16px; font-weight: 700; }
+.farol-stat .lbl { font-size: 9px; text-transform: uppercase; color: var(--text-3); }
+.farol-tempo { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-top: 1px solid var(--border); margin-bottom: 8px; }
+.farol-tempo .lbl { font-size: 11px; color: var(--text-3); }
+.farol-tempo .val { font-size: 14px; font-weight: 700; }
+.farol-tabs { display: flex; gap: 4px; margin-bottom: 8px; }
+.farol-tab { flex: 1; padding: 6px; text-align: center; font-size: 10px; font-weight: 600; text-transform: uppercase; border-radius: var(--r); cursor: pointer; background: var(--cinza-bg); color: var(--text-3); }
+.farol-tab.active { background: var(--cobalto); color: white; }
+.farol-lista { font-size: 11px; }
+.farol-item { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid var(--border); }
+.farol-item:last-child { border-bottom: none; }
+.farol-loja { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.farol-meta { display: flex; gap: 6px; align-items: center; }
+.farol-ch { font-size: 10px; color: var(--text-3); }
+.farol-tag { font-size: 9px; padding: 1px 5px; border-radius: 4px; font-weight: 600; }
+.farol-tag.alta { background: var(--alta-soft); color: var(--laranja); }
+.farol-tag.sos { background: var(--sos-soft); color: var(--rosa); }
+.farol-dias { font-size: 10px; color: var(--text-3); }
 .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 14px; }
-.filter-field { display: flex; flex-direction: column; gap: 4px; min-width: 168px; flex: 1; }
+.filter-field { display: flex; flex-direction: column; gap: 4px; min-width: 140px; flex: 1; }
 .filter-field label { font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-3); }
-.filter-field select, .filter-field input[type="text"] { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text); background: var(--cinza-bg); border: 1.5px solid var(--border); border-radius: var(--r); padding: 8px 10px; appearance: none; width: 100%; }
-.filter-field input[type="text"]:focus, .filter-field select:focus { outline: 2px solid var(--cobalto); outline-offset: -1px; }
+.filter-field select, .filter-field input[type="text"], .filter-field input[type="date"] { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text); background: var(--cinza-bg); border: 1.5px solid var(--border); border-radius: var(--r); padding: 8px 10px; appearance: none; width: 100%; }
+.filter-field input:focus, .filter-field select:focus { outline: 2px solid var(--cobalto); outline-offset: -1px; }
 .filter-clear { font-size: 11.5px; color: var(--cobalto); background: none; border: none; cursor: pointer; padding: 8px 4px; white-space: nowrap; align-self: flex-end; }
 .filter-clear:hover { text-decoration: underline; }
 .filter-count { font-size: 12px; color: var(--text-2); margin-bottom: 10px; }
@@ -109,6 +135,7 @@ tbody tr:hover td { background: var(--cinza-bg); }
 .tag-alta { background: var(--alta-soft); color: var(--laranja); }
 .tag-normal { background: var(--cinza-bg); color: var(--text-2); }
 .tag-ok { background: rgba(0,200,83,0.12); color: var(--verde); }
+.tag-pecas { background: rgba(30,59,255,0.10); color: var(--cobalto); font-size: 10px; padding: 1px 7px; margin-left: 4px; }
 .loja-cell { max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .chamado-link { color: var(--cobalto); font-weight: 600; text-decoration: none; }
 .chamado-link:hover { text-decoration: underline; }
@@ -144,45 +171,76 @@ footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--border
 </aside>
 <main>
 <div class="kpis" id="kpis">
-<div class="kpi k-sos"><span class="label">Chamados Abertos</span><span class="val" id="kpi-total">—</span></div>
+<div class="kpi k-violet"><span class="label">Total de Chamados</span><span class="val" id="kpi-total">—</span></div>
+<div class="kpi k-violet"><span class="label">Lojas c/ Chamado Aberto</span><span class="val" id="kpi-lojas">—</span></div>
+<div class="kpi k-sos"><span class="label">Chamados SOS</span><span class="val" id="kpi-sos">—</span></div>
+<div class="kpi k-alta"><span class="label">Chamados Alta</span><span class="val" id="kpi-alta">—</span></div>
+<div class="kpi k-violet"><span class="label">Chamados c/ Materiais</span><span class="val" id="kpi-materiais">—</span></div>
 <div class="kpi k-alta"><span class="label">Perda Medida (R$)</span><span class="val" id="kpi-perda">—</span></div>
-<div class="kpi k-violet"><span class="label">Param a Venda</span><span class="val" id="kpi-regionais">—</span></div>
-<div class="kpi k-ok"><span class="label">Mais Antigo (dias)</span><span class="val" id="kpi-max">—</span></div>
 </div>
 <section>
 <div class="sec-head">
-<h2>Chamados Abertos com Perda de Receita</h2>
-<span class="sec-note" id="sec-note">chamados corretivos abertos — SOMA</span>
+<h2>Farol por Supervisor</h2>
+<span class="sec-note">Quantidade de chamados nas lojas de cada supervisor</span>
+</div>
+<div class="farol-grid" id="farol-grid"></div>
+</section>
+<section>
+<div class="sec-head">
+<h2>Buscar Chamados</h2>
+<span class="sec-note">Filtre por equipamento, loja, problema, data ou responsável</span>
 </div>
 <div class="filter-bar">
 <div class="filter-field">
-<label for="filtroFamilia">Problema</label>
-<select id="filtroFamilia"><option value="">Todos</option></select>
+<label for="filtroEquipamento">Equipamento</label>
+<select id="filtroEquipamento"><option value="">Todos</option></select>
 </div>
 <div class="filter-field">
-<label for="filtroEstado">Estado</label>
-<select id="filtroEstado"><option value="">Todos</option></select>
+<label for="filtroLoja">Loja</label>
+<select id="filtroLoja"><option value="">Todas</option></select>
 </div>
 <div class="filter-field">
-<label for="filtroBusca">Buscar</label>
-<input type="text" id="filtroBusca" placeholder="Chamado, loja, equipamento, problema…" autocomplete="off">
+<label for="filtroProblema">Problema</label>
+<input type="text" id="filtroProblema" placeholder="Buscar palavra…" autocomplete="off">
 </div>
-<button class="filter-clear" id="filtroLimpar" type="button">Limpar</button>
+<div class="filter-field">
+<label for="filtroPrioridade">Prioridade</label>
+<select id="filtroPrioridade"><option value="">Todas</option></select>
+</div>
+<div class="filter-field">
+<label for="filtroSupervisor">Supervisor</label>
+<select id="filtroSupervisor"><option value="">Todos</option></select>
+</div>
+<div class="filter-field">
+<label for="filtroMateriais">Materiais</label>
+<select id="filtroMateriais"><option value="">Todos</option><option value="sim">Com materiais</option><option value="nao">Sem materiais</option></select>
+</div>
+</div>
+<div class="filter-bar">
+<div class="filter-field">
+<label for="filtroDataDe">Abertura</label>
+<input type="date" id="filtroDataDe">
+</div>
+<div class="filter-field">
+<label for="filtroDataAte">até</label>
+<input type="date" id="filtroDataAte">
+</div>
+<button class="filter-clear" id="filtroLimpar" type="button">Limpar filtros</button>
 </div>
 <div class="filter-count" id="filtroContagem"></div>
 <div class="table-wrap">
 <table>
 <thead>
 <tr>
-<th>Chamado</th>
-<th>Loja</th>
+<th>Número</th>
 <th>Equipamento</th>
+<th>Loja</th>
 <th>Problema</th>
-<th>Família</th>
-<th class="col-num">Dias</th>
-<th class="col-num">Perda (R$)</th>
 <th>Estado</th>
-<th>Abertura</th>
+<th>Prioridade</th>
+<th class="col-num">Dias</th>
+<th>Responsável</th>
+<th class="col-num">Perda (R$)</th>
 </tr>
 </thead>
 <tbody id="tbody">
@@ -213,8 +271,14 @@ var fmtBRL = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL'
 var fmtNum = new Intl.NumberFormat('pt-BR');
 function fmtR(v) { return v != null ? fmtBRL.format(v) : '—'; }
 function fmtN(v) { return v != null ? fmtNum.format(v) : '—'; }
+function tagClsPrioridade(p) {
+if (!p) return 'tag-normal';
+if (/cr[ií]tica/i.test(p)) return 'tag-sos';
+if (/alta/i.test(p)) return 'tag-alta';
+return 'tag-normal';
+}
 function loadData() {
-fetch('data/chamados-abertos-perda.json')
+fetch('data/chamados-abertos-perda.json?_=' + Date.now())
 .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
 .then(function(arr){
 dados = arr || [];
@@ -224,60 +288,132 @@ document.getElementById('footer-stamp').textContent = document.getElementById('s
 popularFiltros();
 aplicarFiltros();
 atualizarKPIs(dados);
+renderFarol(dados);
 })
 .catch(function(e){
 document.getElementById('tbody').innerHTML = '<tr><td colspan="9" class="msg-erro">Erro ao carregar dados: '+e.message+'</td></tr>';
 });
 }
 function popularFiltros() {
-var fams = {}, ests = {};
+var equips = {}, lojas = {}, pris = {}, sups = {};
 dados.forEach(function(x){
-if(x.familia) fams[x.familia] = (fams[x.familia]||0) + 1;
-if(x.estado) ests[x.estado] = true;
+if(x.equipamento) equips[x.equipamento] = true;
+if(x.loja) lojas[x.loja] = true;
+if(x.prioridade) pris[x.prioridade] = true;
+if(x.supervisor) sups[x.supervisor] = true;
 });
-var selFam = document.getElementById('filtroFamilia');
-var criticas = {'Refrigeração':1,'Cocção':1,'Sobremesa':1,'Elétrica':1,'Gás':1,'Incêndio':1};
-Object.keys(fams).sort(function(a,b){
-var ca = criticas[a]?0:1, cb = criticas[b]?0:1;
-return ca - cb || fams[b] - fams[a];
-}).forEach(function(r){
-var o = document.createElement('option');
-o.value = r; o.textContent = r + ' (' + fams[r] + ')' + (criticas[r] ? ' — para a venda' : '');
-selFam.appendChild(o);
+var selEq = document.getElementById('filtroEquipamento');
+Object.keys(equips).sort().forEach(function(e){
+var o = document.createElement('option'); o.value = e; o.textContent = e; selEq.appendChild(o);
 });
-var selEst = document.getElementById('filtroEstado');
-Object.keys(ests).sort().forEach(function(e){
-var o = document.createElement('option'); o.value = e; o.textContent = e; selEst.appendChild(o);
+var selLo = document.getElementById('filtroLoja');
+Object.keys(lojas).sort().forEach(function(l){
+var o = document.createElement('option'); o.value = l; o.textContent = l; selLo.appendChild(o);
+});
+var selPr = document.getElementById('filtroPrioridade');
+Object.keys(pris).sort().forEach(function(p){
+var o = document.createElement('option'); o.value = p; o.textContent = p; selPr.appendChild(o);
+});
+var selSu = document.getElementById('filtroSupervisor');
+Object.keys(sups).sort().forEach(function(s){
+var o = document.createElement('option'); o.value = s; o.textContent = s; selSu.appendChild(o);
 });
 }
 function aplicarFiltros() {
-var fam = document.getElementById('filtroFamilia').value;
-var est = document.getElementById('filtroEstado').value;
-var busca = (document.getElementById('filtroBusca').value || '').toLowerCase().trim();
+var feq = document.getElementById('filtroEquipamento').value;
+var flo = document.getElementById('filtroLoja').value;
+var fpr = document.getElementById('filtroProblema').value.toLowerCase().trim();
+var fpri = document.getElementById('filtroPrioridade').value;
+var fsup = document.getElementById('filtroSupervisor').value;
+var fmat = document.getElementById('filtroMateriais').value;
+var fde = document.getElementById('filtroDataDe').value;
+var fate = document.getElementById('filtroDataAte').value;
 var filtrados = dados.filter(function(x){
-if(fam && x.familia !== fam) return false;
-if(est && x.estado !== est) return false;
-if(busca) {
-var hay = [x.chamado, x.bkn, x.loja, x.setor, x.estado, x.equipamento, x.problema, x.familia, x.descricao].join(' ').toLowerCase();
-if(hay.indexOf(busca) === -1) return false;
-}
+if(feq && x.equipamento !== feq) return false;
+if(flo && x.loja !== flo) return false;
+if(fpr && !(x.problema||'').toLowerCase().includes(fpr) && !(x.descricao||'').toLowerCase().includes(fpr)) return false;
+if(fpri && x.prioridade !== fpri) return false;
+if(fsup && x.supervisor !== fsup) return false;
+if(fmat === 'sim' && !x.temPecas) return false;
+if(fmat === 'nao' && x.temPecas) return false;
+if(fde && x.data < fde) return false;
+if(fate && x.data > fate) return false;
 return true;
 });
 document.getElementById('filtroContagem').textContent = filtrados.length + ' de ' + dados.length + ' chamados';
 renderTabela(filtrados);
 atualizarKPIs(filtrados);
+renderFarol(filtrados);
 }
 function atualizarKPIs(arr) {
 document.getElementById('kpi-total').textContent = fmtN(arr.length);
-var perdaTotal = 0, criticos = 0, maisAntigo = 0;
+var lojasSet = new Set();
+arr.forEach(function(x){ if(x.loja) lojasSet.add(x.loja); });
+document.getElementById('kpi-lojas').textContent = fmtN(lojasSet.size);
+var sos = 0, alta = 0, perdaTotal = 0, comMateriais = 0;
 arr.forEach(function(x){
+if(/cr[ií]tica/i.test(x.prioridade)) sos++;
+if(/alta/i.test(x.prioridade)) alta++;
 perdaTotal += (x.perda || 0);
-if(x.critica) criticos++;
-if((x.dias||0) > maisAntigo) maisAntigo = x.dias||0;
+if(x.temPecas) comMateriais++;
 });
+document.getElementById('kpi-sos').textContent = fmtN(sos);
+document.getElementById('kpi-alta').textContent = fmtN(alta);
+document.getElementById('kpi-materiais').textContent = fmtN(comMateriais);
 document.getElementById('kpi-perda').textContent = fmtR(perdaTotal);
-document.getElementById('kpi-regionais').textContent = fmtN(criticos);
-document.getElementById('kpi-max').textContent = fmtN(maisAntigo);
+}
+function renderFarol(arr) {
+var grid = document.getElementById('farol-grid');
+var supStats = {};
+arr.forEach(function(x){
+var sup = x.supervisor || 'SEM SUPERVISOR';
+if(!supStats[sup]) supStats[sup] = { total:0, criticos:0, perda:0, lojas:new Set(), alta:0, sos:0, diasSum:0, diasCount:0, itens:[] };
+var ss = supStats[sup];
+ss.total++;
+if(x.critica) ss.criticos++;
+ss.perda += (x.perda || 0);
+if(x.loja) ss.lojas.add(x.loja);
+if(/alta/i.test(x.prioridade)) ss.alta++;
+if(/cr[ií]tica/i.test(x.prioridade)) ss.sos++;
+if(x.dias != null) { ss.diasSum += x.dias; ss.diasCount++; }
+ss.itens.push(x);
+});
+var html = '';
+var sorted = Object.entries(supStats).sort(function(a,b){ return b[1].total - a[1].total; });
+sorted.forEach(function(entry){
+var nome = entry[0], ss = entry[1];
+var tempoMedio = ss.diasCount ? Math.round(ss.diasSum / ss.diasCount) : 0;
+var pct = Math.min(100, Math.round((ss.total / Math.max(1, arr.length)) * 100));
+var angle = -90 + (pct / 100) * 180;
+var lojasArr = [...ss.lojas].sort();
+var criticosPorLoja = {};
+ss.itens.forEach(function(x){
+if(!x.loja) return;
+if(!criticosPorLoja[x.loja]) criticosPorLoja[x.loja] = { total:0, alta:0, sos:0, diasMax:0 };
+var cl = criticosPorLoja[x.loja];
+cl.total++;
+if(/alta/i.test(x.prioridade)) cl.alta++;
+if(/cr[ií]tica/i.test(x.prioridade)) cl.sos++;
+if((x.dias||0) > cl.diasMax) cl.diasMax = x.dias||0;
+});
+var lojasCriticas = Object.entries(criticosPorLoja).sort(function(a,b){ return (b[1].sos*1000 + b[1].alta*100 + b[1].diasMax) - (a[1].sos*1000 + a[1].alta*100 + a[1].diasMax); }).slice(0,5);
+html += '<div class="farol-card">';
+html += '<div class="farol-head"><span class="farol-nome">' + nome + '</span><span class="farol-detalhe">detalhe →</span></div>';
+html += '<div class="farol-medidor"><svg viewBox="0 0 200 120"><path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="#e5e7eb" stroke-width="16" stroke-linecap="round"/><path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="url(#grad' + nome.replace(/\s/g,'') + ')" stroke-width="16" stroke-linecap="round" stroke-dasharray="' + (pct * 2.51) + ' 251"/><defs><linearGradient id="grad' + nome.replace(/\s/g,'') + '" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#00c853"/><stop offset="50%" style="stop-color:#ff6b00"/><stop offset="100%" style="stop-color:#ff3366"/></linearGradient></defs><line x1="100" y1="100" x2="' + (100 + 60 * Math.cos(angle * Math.PI / 180)) + '" y2="' + (100 + 60 * Math.sin(angle * Math.PI / 180)) + '" stroke="#111827" stroke-width="3" stroke-linecap="round"/><text x="100" y="95" text-anchor="middle" font-size="24" font-weight="900" fill="' + (pct > 66 ? '#ff3366' : pct > 33 ? '#ff6b00' : '#00c853') + '">' + ss.total + '</text><text x="100" y="115" text-anchor="middle" font-size="10" fill="#9ca3af">CHAMADOS</text></svg></div>';
+html += '<div class="farol-stats"><div class="farol-stat"><div class="num">' + lojasArr.length + '/' + lojasArr.length + '</div><div class="lbl">Lojas</div></div><div class="farol-stat"><div class="num" style="color:var(--laranja)">' + ss.alta + '</div><div class="lbl">Alta</div></div><div class="farol-stat"><div class="num" style="color:var(--rosa)">' + ss.sos + '</div><div class="lbl">SOS</div></div></div>';
+html += '<div class="farol-tempo"><span class="lbl">Tempo médio em aberto</span><span class="val">' + tempoMedio + 'd</span></div>';
+html += '<div class="farol-tabs"><div class="farol-tab active">Restaurantes</div><div class="farol-tab">Chamados</div></div>';
+html += '<div class="farol-lista"><div style="font-size:10px;color:var(--text-3);margin-bottom:4px">• Restaurantes mais críticos (' + Math.min(5, lojasCriticas.length) + ' de ' + lojasArr.length + ')</div>';
+lojasCriticas.forEach(function(entry){
+var loja = entry[0], cl = entry[1];
+var tags = '';
+if(cl.alta > 0) tags += '<span class="farol-tag alta">' + cl.alta + ' alta</span>';
+if(cl.sos > 0) tags += '<span class="farol-tag sos">' + cl.sos + ' sos</span>';
+html += '<div class="farol-item"><span class="farol-loja">' + loja + '</span><span class="farol-meta"><span class="farol-ch">' + cl.total + ' ch</span>' + tags + '<span class="farol-dias">' + cl.diasMax + 'd</span></span></div>';
+});
+html += '</div></div>';
+});
+grid.innerHTML = html || '<div class="msg-carregando">Nenhum supervisor encontrado.</div>';
 }
 function renderTabela(arr) {
 var tbody = document.getElementById('tbody');
@@ -293,33 +429,40 @@ var estLower = (x.estado||'').toLowerCase();
 if(estLower.indexOf('expedi') !== -1) estadoTag = '<span class="tag tag-alta">'+(x.estado||'')+'</span>';
 else if(estLower.indexOf('andamento') !== -1) estadoTag = '<span class="tag tag-sos">'+(x.estado||'')+'</span>';
 else estadoTag = '<span class="tag tag-normal">'+(x.estado||'')+'</span>';
-var famTag = x.critica
-? '<span class="tag tag-sos">'+(x.familia||'')+'</span>'
-: '<span class="tag tag-normal">'+(x.familia||'')+'</span>';
-var diasTxt = (x.dias == null) ? '' : (x.dias > 30
-? '<strong style="color:var(--rosa)">'+x.dias+'</strong>'
-: String(x.dias));
+var priTag = '<span class="tag ' + tagClsPrioridade(x.prioridade) + '">' + (x.prioridade||'') + '</span>';
+if(x.temPecas) priTag += '<span class="tag tag-pecas">Peças</span>';
+var diasTxt = (x.dias == null) ? '' : (x.dias > 30 ? '<strong style="color:var(--rosa)">'+x.dias+'</strong>' : String(x.dias));
 html += '<tr>' +
 '<td><a class="chamado-link" href="https://soma.zamp.com.br/wm_order_list.do?sysparm_query=number%3D'+(x.chamado||'')+'" target="_blank" rel="noopener">'+(x.chamado||'')+'</a></td>' +
-'<td class="loja-cell" title="'+((x.bkn?x.bkn+' · ':'')+(x.setor||'')).replace(/"/g,'&quot;')+'">'+(x.loja||'')+'</td>' +
 '<td style="font-size:11.5px;">'+(x.equipamento||'')+'</td>' +
+'<td class="loja-cell" title="'+((x.bkn?x.bkn+' · ':'')+(x.setor||'')).replace(/"/g,'&quot;')+'">'+(x.loja||'')+'</td>' +
 '<td style="font-size:11.5px;color:var(--muted);" title="'+(x.problema||'').replace(/"/g,'&quot;')+'">'+(x.problema||'')+'</td>' +
-'<td>'+famTag+'</td>' +
-'<td class="col-num">'+diasTxt+'</td>' +
-'<td class="col-num">'+(x.perda != null ? '<strong>'+perdaFmt+'</strong>' : '<span style="color:var(--muted)">—</span>')+'</td>' +
 '<td>'+estadoTag+'</td>' +
-'<td style="font-size:11px;color:var(--muted);">'+(x.abertura||'')+'</td>' +
+'<td>'+priTag+'</td>' +
+'<td class="col-num">'+diasTxt+'</td>' +
+'<td style="font-size:11px;">'+(x.supervisor||'—')+'</td>' +
+'<td class="col-num">'+(x.perda != null ? '<strong>'+perdaFmt+'</strong>' : '<span style="color:var(--muted)">—</span>')+'</td>' +
 '</tr>';
 });
 tbody.innerHTML = html;
 }
-document.getElementById('filtroFamilia').addEventListener('change', aplicarFiltros);
-document.getElementById('filtroEstado').addEventListener('change', aplicarFiltros);
-document.getElementById('filtroBusca').addEventListener('input', aplicarFiltros);
+document.getElementById('filtroEquipamento').addEventListener('change', aplicarFiltros);
+document.getElementById('filtroLoja').addEventListener('change', aplicarFiltros);
+document.getElementById('filtroProblema').addEventListener('input', aplicarFiltros);
+document.getElementById('filtroPrioridade').addEventListener('change', aplicarFiltros);
+document.getElementById('filtroSupervisor').addEventListener('change', aplicarFiltros);
+document.getElementById('filtroMateriais').addEventListener('change', aplicarFiltros);
+document.getElementById('filtroDataDe').addEventListener('change', aplicarFiltros);
+document.getElementById('filtroDataAte').addEventListener('change', aplicarFiltros);
 document.getElementById('filtroLimpar').addEventListener('click', function(){
-document.getElementById('filtroFamilia').value = '';
-document.getElementById('filtroEstado').value = '';
-document.getElementById('filtroBusca').value = '';
+document.getElementById('filtroEquipamento').value = '';
+document.getElementById('filtroLoja').value = '';
+document.getElementById('filtroProblema').value = '';
+document.getElementById('filtroPrioridade').value = '';
+document.getElementById('filtroSupervisor').value = '';
+document.getElementById('filtroMateriais').value = '';
+document.getElementById('filtroDataDe').value = '';
+document.getElementById('filtroDataAte').value = '';
 aplicarFiltros();
 });
 loadData();
