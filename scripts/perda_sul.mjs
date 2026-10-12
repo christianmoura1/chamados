@@ -80,8 +80,16 @@ try {
   if (!brutos.length) fatal('nenhum chamado retornado -- filtro ou sessao suspeitos');
 
   // Preventiva nao perde receita: e' manutencao programada, a loja segue vendendo.
-  const corretivos = brutos.filter((x) => !/preventiva/i.test(x.u_bk_category || ''));
-  log('preventivas descartadas: ' + (brutos.length - corretivos.length) + '  -> corretivos: ' + corretivos.length);
+  // PEDIDO DO CHRISTIAN 12/10/2026: so' CRITICO (1) e ALTO (2) perdem receita.
+  // Baixa (4) e Moderada (3) nao param a venda de forma significativa.
+  const corretivos = brutos.filter((x) => {
+    if (/preventiva/i.test(x.u_bk_category || '')) return false;
+    const p = (x.priority || '').trim();
+    return /^1\s*-|^2\s*-/i.test(p); // 1 - Critica ou 2 - Alta
+  });
+  const descartadosPrev = brutos.filter((x) => /preventiva/i.test(x.u_bk_category || '')).length;
+  const descartadosPri = brutos.length - descartadosPrev - corretivos.length;
+  log('descartados: ' + descartadosPrev + ' preventivas + ' + descartadosPri + ' baixa/moderada -> criticos+altos: ' + corretivos.length);
 
   // Perda em R$ medida pelo Power BI, por chamado. Fica num arquivo separado de
   // proposito: o BI so' cobre uma janela curta, entao a maioria dos chamados
