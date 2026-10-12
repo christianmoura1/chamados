@@ -9,72 +9,50 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root {
---cobalto: #1e3bff;
---laranja: #ff6b00;
---laranja-bg: #fff4ee;
---rosa: #ff3366;
---verde: #00c853;
---verde-bg: #e8fdf0;
---amarelo: #ffcc00;
---amarelo-bg: #fffef0;
---cinza: #6b7280;
---cinza-bg: #f3f4f6;
---surface: #ffffff;
---bg: #f8f9fc;
---text: #111827;
---text-2: #374151;
---text-3: #9ca3af;
---border: #e5e7eb;
---shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.05);
---r: 10px; --r-lg: 16px; --r-xl: 20px;
---sidebar-w: 220px;
---ink: var(--text);
---muted: var(--text-3);
---faint: var(--text-3);
---line: var(--border);
---ground: var(--bg);
---surface2: var(--cinza-bg);
---violet: var(--cobalto);
---violet-2: var(--cobalto);
---pink: var(--rosa);
---blue: var(--cobalto);
---sos: var(--rosa);
---sos-soft: rgba(255,51,102,0.10);
---alta: var(--laranja);
---alta-soft: rgba(255,107,0,0.12);
---ok: var(--verde);
---grid: rgba(0,0,0,0.06);
+  --cobalto: #1e3bff; --laranja: #ff6b00; --laranja-bg: #fff4ee;
+  --rosa: #ff3366; --verde: #00c853; --verde-bg: #e8fdf0;
+  --amarelo: #ffcc00; --amarelo-bg: #fffef0;
+  --cinza: #6b7280; --cinza-bg: #f3f4f6;
+  --surface: #ffffff; --bg: #f8f9fc;
+  --text: #111827; --text-2: #374151; --text-3: #9ca3af;
+  --border: #e5e7eb;
+  --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.05);
+  --r: 10px; --r-lg: 16px; --r-xl: 20px;
+  --sidebar-w: 220px;
+  --sos-soft: rgba(255,51,102,0.10); --alta-soft: rgba(255,107,0,0.12);
 }
 [data-theme="dark"] {
---surface: #1a1d2e; --bg: #0f1120; --text: #f1f5f9; --text-2: #94a3b8; --text-3: #475569;
---border: #2d3148; --shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 12px rgba(0,0,0,.2);
---cinza-bg: #1f2235; --verde-bg: #0d2e1a; --laranja-bg: #2d1a0d;
---rosa-bg: #2d0d1a; --amarelo-bg: #2d2a0d;
---sos-soft: rgba(255,51,102,0.16); --alta-soft: rgba(255,107,0,0.16);
---grid: rgba(255,255,255,0.07);
+  --surface: #1a1d2e; --bg: #0f1120; --text: #f1f5f9; --text-2: #94a3b8; --text-3: #475569;
+  --border: #2d3148; --shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 12px rgba(0,0,0,.2);
+  --cinza-bg: #1f2235; --verde-bg: #0d2e1a; --laranja-bg: #2d1a0d;
+  --sos-soft: rgba(255,51,102,0.16); --alta-soft: rgba(255,107,0,0.16);
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; transition: background .25s, color .25s; }
 .num { font-variant-numeric: tabular-nums; }
-.mono { font-family: 'Inter', monospace; }
+
 header { background: var(--surface); border-bottom: 2px solid var(--cobalto); padding: 12px 24px; display: flex; align-items: center; gap: 14px; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow); }
 .brand-mark { width: 38px; height: 38px; background: var(--cobalto); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: 900; flex-shrink: 0; }
 .header-title { flex: 1; }
 .header-title h1 { font-size: 18px; font-weight: 800; color: var(--text); line-height: 1.1; }
 .header-title span { font-size: 11px; font-weight: 500; color: var(--text-3); text-transform: uppercase; letter-spacing: .5px; }
 .carimbo { background: var(--cobalto); color: white; font-size: 11px; font-weight: 700; padding: 5px 11px; border-radius: 20px; white-space: nowrap; }
-.theme-btn { background: var(--bg); border: 1.5px solid var(--border); border-radius: 8px; width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; transition: background .2s; }
+.theme-btn { background: var(--bg); border: 1.5px solid var(--border); border-radius: 8px; width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
 .theme-btn:hover { background: var(--border); }
+
 .layout { display: flex; flex: 1; }
 aside { width: var(--sidebar-w); background: var(--surface); border-right: 1.5px solid var(--border); padding: 18px 14px; display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
 aside .s-header { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--text-3); padding: 0 8px; margin-bottom: 4px; }
-aside a, aside .navitem-static { display: flex; align-items: center; gap: 9px; padding: 8px 10px; border-radius: var(--r); color: var(--text-2); text-decoration: none; font-size: 13px; font-weight: 500; transition: background .15s, color .15s; cursor: pointer; }
-aside a:hover, aside .navitem-static:hover { background: var(--bg); color: var(--text); }
+aside a { display: flex; align-items: center; gap: 9px; padding: 8px 10px; border-radius: var(--r); color: var(--text-2); text-decoration: none; font-size: 13px; font-weight: 500; transition: background .15s, color .15s; }
+aside a:hover { background: var(--bg); color: var(--text); }
 aside a.active { background: var(--cobalto); color: white; }
 aside .s-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: .7; flex: none; }
 aside a.active .s-dot { background: white; opacity: 1; }
 .side-foot { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-3); padding-left: 8px; }
+
 main { flex: 1; padding: 22px 24px; overflow-y: auto; }
+
+/* KPIs */
 .kpis { display: grid; grid-template-columns: repeat(6,1fr); gap: 14px; margin-bottom: 18px; }
 @media (max-width: 1200px) { .kpis { grid-template-columns: repeat(3,1fr); } }
 @media (max-width: 640px) { .kpis { grid-template-columns: repeat(2,1fr); } }
@@ -84,38 +62,63 @@ main { flex: 1; padding: 22px 24px; overflow-y: auto; }
 .kpi.k-sos .val { color: var(--rosa); }
 .kpi.k-alta .val { color: var(--laranja); }
 .kpi.k-violet .val { color: var(--cobalto); }
-.kpi.k-ok .val { color: var(--verde); }
+
 section { margin-top: 28px; }
 .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin-bottom: 12px; flex-wrap: wrap; }
 h2 { font-size: 15px; font-weight: 700; margin: 0; }
 .sec-note { font-size: 11px; color: var(--text-3); }
-.farol-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 24px; }
-.farol-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r-lg); padding: 18px; box-shadow: var(--shadow); }
-.farol-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
-.farol-nome { font-size: 14px; font-weight: 700; }
-.farol-detalhe { font-size: 11px; color: var(--cobalto); cursor: pointer; }
-.farol-medidor { position: relative; width: 100%; height: 120px; margin-bottom: 12px; }
-.farol-medidor svg { width: 100%; height: 100%; }
-.farol-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
-.farol-stat { text-align: center; padding: 8px; background: var(--cinza-bg); border-radius: var(--r); }
-.farol-stat .num { font-size: 16px; font-weight: 700; }
-.farol-stat .lbl { font-size: 9px; text-transform: uppercase; color: var(--text-3); }
-.farol-tempo { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-top: 1px solid var(--border); margin-bottom: 8px; }
-.farol-tempo .lbl { font-size: 11px; color: var(--text-3); }
-.farol-tempo .val { font-size: 14px; font-weight: 700; }
-.farol-tabs { display: flex; gap: 4px; margin-bottom: 8px; }
-.farol-tab { flex: 1; padding: 6px; text-align: center; font-size: 10px; font-weight: 600; text-transform: uppercase; border-radius: var(--r); cursor: pointer; background: var(--cinza-bg); color: var(--text-3); }
-.farol-tab.active { background: var(--cobalto); color: white; }
-.farol-lista { font-size: 11px; }
-.farol-item { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid var(--border); }
-.farol-item:last-child { border-bottom: none; }
-.farol-loja { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.farol-meta { display: flex; gap: 6px; align-items: center; }
-.farol-ch { font-size: 10px; color: var(--text-3); }
-.farol-tag { font-size: 9px; padding: 1px 5px; border-radius: 4px; font-weight: 600; }
-.farol-tag.alta { background: var(--alta-soft); color: var(--laranja); }
-.farol-tag.sos { background: var(--sos-soft); color: var(--rosa); }
-.farol-dias { font-size: 10px; color: var(--text-3); }
+
+/* ---------- farol por supervisor (mesmo modelo do backlog) ---------- */
+.gauge-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; align-items: start; }
+@media (max-width: 1180px) { .gauge-grid { grid-template-columns: repeat(3,minmax(0,1fr)); } }
+@media (max-width: 860px) { .gauge-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 520px) { .gauge-grid { grid-template-columns: minmax(0,1fr); } }
+.gcard { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r-lg); padding: 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 6px; cursor: pointer; transition: transform .12s ease, box-shadow .12s ease; text-align: left; }
+.gcard:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,.08), 0 18px 34px rgba(0,0,0,.10); }
+.ghead { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 2px; }
+.ghead > div { min-width: 0; }
+.gname { font-weight: 700; font-size: 13.5px; display: block; }
+.gsetor { font-size: 9.5px; color: var(--text-3); text-transform: uppercase; letter-spacing: .04em; display: block; margin-top: 1px; }
+.gdetalhe { font-size: 10px; color: var(--text-3); white-space: nowrap; flex: none; }
+.ggauge { margin: 0 -4px; }
+.gval { display: flex; flex-direction: column; align-items: center; margin-top: -34px; }
+.gnum { font-weight: 800; font-size: 26px; }
+.glabel { font-size: 9px; color: var(--text-3); text-transform: uppercase; letter-spacing: .04em; }
+.gstats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-top: 6px; }
+.gstats .estat { padding: 6px; text-align: center; background: var(--cinza-bg); border-radius: var(--r); }
+.gstats .estat .n { font-size: 14px; font-weight: 700; }
+.gstats .estat .l { font-size: 8px; text-transform: uppercase; color: var(--text-3); }
+.etime { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-top: 1px solid var(--border); font-size: 11px; }
+.etime span { color: var(--text-3); }
+.etime b { font-weight: 700; }
+
+/* restaurantes mais criticos */
+.lcrit-list { display: flex; flex-direction: column; gap: 5px; margin-top: 4px; }
+.lcrit { display: flex; align-items: center; gap: 6px; font-size: 11.5px; }
+.lcrit .pos { font-family: 'Inter', monospace; font-size: 10px; color: var(--text-3); width: 11px; flex: none; }
+.lcrit .loja { color: var(--text); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 1; }
+.lcrit .mini { display: flex; gap: 4px; flex: none; }
+.mtag { font-size: 9.5px; font-weight: 600; border-radius: 4px; padding: 1px 5px; white-space: nowrap; }
+.mtag-ch { background: var(--cinza-bg); color: var(--text-2); }
+.mtag-sos { background: var(--sos-soft); color: var(--rosa); }
+.mtag-alta { background: var(--alta-soft); color: var(--laranja); }
+.mtag-d { background: transparent; color: var(--text-3); padding-left: 2px; padding-right: 0; }
+.esos-label { font-size: 10px; color: var(--text-3); margin-bottom: 4px; }
+.esos-empty { font-size: 11px; color: var(--text-3); padding: 8px 0; }
+
+/* seletor entre as duas visoes */
+.vis-tabs { display: inline-flex; gap: 2px; background: var(--cinza-bg); border-radius: 8px; padding: 2px; margin-bottom: 2px; }
+.vis-tab { font-size: 9.5px; letter-spacing: .04em; text-transform: uppercase; border: 0; background: transparent; color: var(--text-3); padding: 3px 9px; border-radius: 6px; cursor: pointer; transition: background .12s ease, color .12s ease; }
+.vis-tab:hover { color: var(--text-2); }
+.vis-tab.ativo { background: var(--surface); color: var(--text); font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+.vis-painel.oculto { display: none; }
+
+/* mais urgentes (aba Chamados) */
+.esos-list { display: flex; flex-direction: column; gap: 4px; }
+.esos-item { display: flex; align-items: center; gap: 6px; font-size: 11.5px; }
+.esos-item .loja { color: var(--text); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 1; }
+
+/* ---------- filtros ---------- */
 .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 14px; }
 .filter-field { display: flex; flex-direction: column; gap: 4px; min-width: 140px; flex: 1; }
 .filter-field label { font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-3); }
@@ -124,6 +127,8 @@ h2 { font-size: 15px; font-weight: 700; margin: 0; }
 .filter-clear { font-size: 11.5px; color: var(--cobalto); background: none; border: none; cursor: pointer; padding: 8px 4px; white-space: nowrap; align-self: flex-end; }
 .filter-clear:hover { text-decoration: underline; }
 .filter-count { font-size: 12px; color: var(--text-2); margin-bottom: 10px; }
+
+/* ---------- tabela ---------- */
 .table-wrap { overflow-x: auto; border-radius: var(--r-lg); border: 1.5px solid var(--border); background: var(--surface); box-shadow: var(--shadow); }
 table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
 thead th { text-align: left; font-size: 10px; letter-spacing: .05em; text-transform: uppercase; color: var(--text-3); padding: 10px 12px; position: sticky; top: 0; background: var(--surface); border-bottom: 1.5px solid var(--border); z-index: 2; }
@@ -134,11 +139,29 @@ tbody tr:hover td { background: var(--cinza-bg); }
 .tag-sos { background: var(--sos-soft); color: var(--rosa); }
 .tag-alta { background: var(--alta-soft); color: var(--laranja); }
 .tag-normal { background: var(--cinza-bg); color: var(--text-2); }
-.tag-ok { background: rgba(0,200,83,0.12); color: var(--verde); }
 .tag-pecas { background: rgba(30,59,255,0.10); color: var(--cobalto); font-size: 10px; padding: 1px 7px; margin-left: 4px; }
 .loja-cell { max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .chamado-link { color: var(--cobalto); font-weight: 600; text-decoration: none; }
 .chamado-link:hover { text-decoration: underline; }
+
+/* ---------- modal de detalhe (clique no card) ---------- */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.55); backdrop-filter: blur(2px); display: flex; align-items: center; justify-content: center; padding: 24px; z-index: 50; }
+.modal-overlay[hidden] { display: none; }
+.modal-panel { background: var(--surface); border-radius: var(--r-xl); box-shadow: var(--shadow); width: min(820px, 100%); max-height: min(680px, 90vh); display: flex; flex-direction: column; overflow: hidden; }
+.modal-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; border-bottom: 1.5px solid var(--border); flex: none; }
+.modal-head h3 { font-weight: 700; font-size: 16.5px; margin: 0; }
+.modal-close { appearance: none; border: none; background: var(--cinza-bg); color: var(--text-2); width: 30px; height: 30px; border-radius: 999px; font-size: 17px; line-height: 1; cursor: pointer; }
+.modal-close:hover { color: var(--text); }
+.modal-sub { padding: 12px 22px 0; font-size: 12px; color: var(--text-3); flex: none; }
+.modal-filtros { display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-end; padding: 12px 22px 0; flex: none; }
+.modal-filtros .filter-field { min-width: 130px; }
+.modal-filtro-contagem { padding: 8px 22px 0; font-size: 11.5px; color: var(--text-3); flex: none; }
+.modal-body { overflow: auto; padding: 14px 22px 20px; }
+.detail-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.detail-table th { text-align: left; font-size: 10px; letter-spacing: .05em; text-transform: uppercase; color: var(--text-3); padding: 8px 10px; position: sticky; top: 0; background: var(--surface); }
+.detail-table td { padding: 8px 10px; border-top: 1px solid var(--border); vertical-align: top; }
+.detail-table tr:hover td { background: var(--cinza-bg); }
+
 .msg-carregando, .msg-erro { padding: 40px 0; text-align: center; color: var(--text-2); font-size: 13px; }
 .msg-erro { color: var(--rosa); }
 footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--text-3); font-size: 12px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
@@ -148,325 +171,359 @@ footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--border
 </head>
 <body>
 <header>
-<div class="brand-mark">Z</div>
-<div class="header-title"><h1>Perda de Receita</h1><span>Manutenção Sul · Regional Sul</span></div>
-<div class="carimbo" id="stamp">carregando…</div>
-<button class="theme-btn" onclick="toggleTheme()" title="Alternar tema">&#9788;</button>
+  <div class="brand-mark">Z</div>
+  <div class="header-title"><h1>Perda de Receita</h1><span>Manutenção Sul · Regional Sul</span></div>
+  <div class="carimbo" id="stamp">carregando…</div>
+  <button class="theme-btn" onclick="toggleTheme()" title="Alternar tema">&#9788;</button>
 </header>
 <div class="layout">
-<aside>
-<div class="s-header">Navegação</div>
-<a href="index.html"><span class="s-dot"></span> Backlog</a>
-<a href="tecnicos.html"><span class="s-dot"></span> Técnicos</a>
-<div class="s-header" style="margin-top:12px">Painéis</div>
-<a class="active" href="perda.html"><span class="s-dot" style="color:var(--laranja)"></span> Perda de Receita</a>
-<a href="risco.html"><span class="s-dot" style="color:var(--rosa)"></span> Gestão de Risco</a>
-<a href="campo.html"><span class="s-dot" style="color:var(--cobalto)"></span> Acompanhamento Campo</a>
-<a href="preventivas.html"><span class="s-dot" style="color:var(--verde)"></span> Preventivas</a>
-<a href="sorvete.html"><span class="s-dot" style="color:var(--amarelo)"></span> Máquina de Sorvete</a>
-<a href="pecas.html"><span class="s-dot" style="color:var(--cinza)"></span> Peças / Materiais</a>
-<div class="s-header" style="margin-top:12px">Fonte</div>
-<div class="navitem-static"><span class="s-dot"></span> Power BI · Perda de Receita</div>
-<div class="side-foot">Atualização automática diária</div>
-</aside>
-<main>
-<div class="kpis" id="kpis">
-<div class="kpi k-violet"><span class="label">Total de Chamados</span><span class="val" id="kpi-total">—</span></div>
-<div class="kpi k-violet"><span class="label">Lojas c/ Chamado Aberto</span><span class="val" id="kpi-lojas">—</span></div>
-<div class="kpi k-sos"><span class="label">Chamados SOS</span><span class="val" id="kpi-sos">—</span></div>
-<div class="kpi k-alta"><span class="label">Chamados Alta</span><span class="val" id="kpi-alta">—</span></div>
-<div class="kpi k-violet"><span class="label">Chamados c/ Materiais</span><span class="val" id="kpi-materiais">—</span></div>
-<div class="kpi k-alta"><span class="label">Perda Medida (R$)</span><span class="val" id="kpi-perda">—</span></div>
+  <aside>
+    <div class="s-header">Navegação</div>
+    <a href="index.html"><span class="s-dot"></span> Backlog</a>
+    <a href="tecnicos.html"><span class="s-dot"></span> Técnicos</a>
+    <div class="s-header" style="margin-top:12px">Painéis</div>
+    <a class="active" href="perda.html"><span class="s-dot" style="color:var(--laranja)"></span> Perda de Receita</a>
+    <a href="risco.html"><span class="s-dot" style="color:var(--rosa)"></span> Gestão de Risco</a>
+    <a href="campo.html"><span class="s-dot" style="color:var(--cobalto)"></span> Acompanhamento Campo</a>
+    <a href="preventivas.html"><span class="s-dot" style="color:var(--verde)"></span> Preventivas</a>
+    <a href="sorvete.html"><span class="s-dot" style="color:var(--amarelo)"></span> Máquina de Sorvete</a>
+    <a href="pecas.html"><span class="s-dot" style="color:var(--cinza)"></span> Peças / Materiais</a>
+    <div class="side-foot">Atualização automática diária</div>
+  </aside>
+  <main>
+    <div class="kpis" id="kpis"></div>
+
+    <section>
+      <div class="sec-head"><h2>Farol por supervisor</h2><span class="sec-note">Quantidade de chamados nas lojas de cada supervisor</span></div>
+      <div class="gauge-grid" id="farol-grid"></div>
+    </section>
+
+    <section>
+      <div class="sec-head"><h2>Buscar chamados</h2><span class="sec-note">Filtre por equipamento, loja, problema, data ou responsável</span></div>
+      <div class="filter-bar">
+        <div class="filter-field"><label for="filtroEquipamento">Equipamento</label><select id="filtroEquipamento"><option value="">Todos</option></select></div>
+        <div class="filter-field"><label for="filtroLoja">Loja</label><select id="filtroLoja"><option value="">Todas</option></select></div>
+        <div class="filter-field"><label for="filtroProblema">Problema</label><input type="text" id="filtroProblema" placeholder="Buscar palavra…" autocomplete="off"></div>
+        <div class="filter-field"><label for="filtroPrioridade">Prioridade</label><select id="filtroPrioridade"><option value="">Todas</option></select></div>
+        <div class="filter-field"><label for="filtroSupervisor">Supervisor</label><select id="filtroSupervisor"><option value="">Todos</option></select></div>
+        <div class="filter-field"><label for="filtroMateriais">Materiais</label><select id="filtroMateriais"><option value="">Todos</option><option value="sim">Com materiais</option><option value="nao">Sem materiais</option></select></div>
+      </div>
+      <div class="filter-bar">
+        <div class="filter-field"><label for="filtroDataDe">Abertura</label><input type="date" id="filtroDataDe"></div>
+        <div class="filter-field"><label for="filtroDataAte">até</label><input type="date" id="filtroDataAte"></div>
+        <button class="filter-clear" id="filtroLimpar" type="button">Limpar filtros</button>
+      </div>
+      <div class="filter-count" id="filtroContagem"></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th>Número</th><th>Equipamento</th><th>Loja</th><th>Problema</th><th>Estado</th><th>Prioridade</th><th class="col-num">Dias</th><th>Supervisor</th><th class="col-num">Perda (R$)</th>
+          </tr></thead>
+          <tbody id="tbody"><tr><td colspan="9" class="msg-carregando">carregando chamados…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      <span>Fonte: SOMA (chamados abertos do Sul) · perda em R$ do Power BI</span>
+      <span id="footer-stamp"></span>
+    </footer>
+  </main>
 </div>
-<section>
-<div class="sec-head">
-<h2>Farol por Supervisor</h2>
-<span class="sec-note">Quantidade de chamados nas lojas de cada supervisor</span>
+
+<!-- Modal de detalhe do supervisor (abre ao clicar no card) -->
+<div class="modal-overlay" id="modalOverlay" hidden>
+  <div class="modal-panel">
+    <div class="modal-head">
+      <h3 id="modalTitle">Supervisor</h3>
+      <button class="modal-close" onclick="fecharModal()" aria-label="Fechar">&times;</button>
+    </div>
+    <div class="modal-sub" id="modalSub"></div>
+    <div class="modal-filtros">
+      <div class="filter-field"><label for="modalFiltroLoja">Loja</label><input type="text" id="modalFiltroLoja" placeholder="Buscar loja…" autocomplete="off"></div>
+      <div class="filter-field"><label for="modalFiltroProblema">Problema</label><input type="text" id="modalFiltroProblema" placeholder="Buscar…" autocomplete="off"></div>
+      <div class="filter-field"><label for="modalFiltroPrioridade">Prioridade</label><select id="modalFiltroPrioridade"><option value="">Todas</option></select></div>
+    </div>
+    <div class="modal-filtro-contagem" id="modalFiltroContagem"></div>
+    <div class="modal-body">
+      <table class="detail-table">
+        <thead id="modalThead"><tr><th>Número</th><th>Loja</th><th>Problema</th><th>Estado</th><th>Prioridade</th><th>Dias</th><th>Perda</th></tr></thead>
+        <tbody id="modalTbody"></tbody>
+      </table>
+    </div>
+  </div>
 </div>
-<div class="farol-grid" id="farol-grid"></div>
-</section>
-<section>
-<div class="sec-head">
-<h2>Buscar Chamados</h2>
-<span class="sec-note">Filtre por equipamento, loja, problema, data ou responsável</span>
-</div>
-<div class="filter-bar">
-<div class="filter-field">
-<label for="filtroEquipamento">Equipamento</label>
-<select id="filtroEquipamento"><option value="">Todos</option></select>
-</div>
-<div class="filter-field">
-<label for="filtroLoja">Loja</label>
-<select id="filtroLoja"><option value="">Todas</option></select>
-</div>
-<div class="filter-field">
-<label for="filtroProblema">Problema</label>
-<input type="text" id="filtroProblema" placeholder="Buscar palavra…" autocomplete="off">
-</div>
-<div class="filter-field">
-<label for="filtroPrioridade">Prioridade</label>
-<select id="filtroPrioridade"><option value="">Todas</option></select>
-</div>
-<div class="filter-field">
-<label for="filtroSupervisor">Supervisor</label>
-<select id="filtroSupervisor"><option value="">Todos</option></select>
-</div>
-<div class="filter-field">
-<label for="filtroMateriais">Materiais</label>
-<select id="filtroMateriais"><option value="">Todos</option><option value="sim">Com materiais</option><option value="nao">Sem materiais</option></select>
-</div>
-</div>
-<div class="filter-bar">
-<div class="filter-field">
-<label for="filtroDataDe">Abertura</label>
-<input type="date" id="filtroDataDe">
-</div>
-<div class="filter-field">
-<label for="filtroDataAte">até</label>
-<input type="date" id="filtroDataAte">
-</div>
-<button class="filter-clear" id="filtroLimpar" type="button">Limpar filtros</button>
-</div>
-<div class="filter-count" id="filtroContagem"></div>
-<div class="table-wrap">
-<table>
-<thead>
-<tr>
-<th>Número</th>
-<th>Equipamento</th>
-<th>Loja</th>
-<th>Problema</th>
-<th>Estado</th>
-<th>Prioridade</th>
-<th class="col-num">Dias</th>
-<th>Responsável</th>
-<th class="col-num">Perda (R$)</th>
-</tr>
-</thead>
-<tbody id="tbody">
-<tr><td colspan="9" class="msg-carregando">carregando chamados…</td></tr>
-</tbody>
-</table>
-</div>
-</section>
-<footer>
-<span>Fonte: SOMA (chamados abertos do Sul) · perda em R$ do Power BI</span>
-<span id="footer-stamp"></span>
-</footer>
-</main>
-</div>
+
 <script>
 function toggleTheme() {
-var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-document.documentElement.setAttribute('data-theme', next);
-localStorage.setItem('perda-theme', next);
+  var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try { localStorage.setItem('perda-theme', next); } catch(e){}
 }
-(function() {
-var saved = localStorage.getItem('perda-theme');
-if (saved) document.documentElement.setAttribute('data-theme', saved);
-})();
-(function(){
-var dados = [];
-var fmtBRL = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+(function(){ try { var s = localStorage.getItem('perda-theme'); if (s) document.documentElement.setAttribute('data-theme', s); } catch(e){} })();
+
+// ---- gauge SVG (mesmo do backlog) ----
+var FAROL_MAX = 320; // teto do medidor (MARCEL tem ~304)
+var FAROL_ZONAS = [
+  { de: 0, ate: 120, cor: 'var(--verde)' },
+  { de: 120, ate: 220, cor: 'var(--laranja)' },
+  { de: 220, ate: FAROL_MAX, cor: 'var(--rosa)' },
+];
+function corDoFarol(v) {
+  var z = FAROL_ZONAS.find(function(z){ return v < z.ate; }) || FAROL_ZONAS[FAROL_ZONAS.length-1];
+  return z.cor;
+}
+function gaugeSVG(valor, max, zonas) {
+  var cx=100, cy=100, r=80, sw=16;
+  var toRad = function(d){ return d*Math.PI/180; };
+  var angulo = function(v){ return 180 - (Math.min(v,max)/max)*180; };
+  var ponto = function(deg, raio){ var rad=toRad(deg); return { x: cx+raio*Math.cos(rad), y: cy-raio*Math.sin(rad) }; };
+  var arco = function(v0,v1,cor){ var p0=ponto(angulo(v0),r), p1=ponto(angulo(v1),r); return '<path d="M '+p0.x.toFixed(1)+' '+p0.y.toFixed(1)+' A '+r+' '+r+' 0 0 1 '+p1.x.toFixed(1)+' '+p1.y.toFixed(1)+'" style="fill:none;stroke:'+cor+'" stroke-width="'+sw+'"/>'; };
+  var zonasSvg = zonas.map(function(z){ return arco(z.de, z.ate, z.cor); }).join('');
+  var ponta = ponto(angulo(valor), r - sw/2 - 8);
+  var agulha = '<line x1="'+cx+'" y1="'+cy+'" x2="'+ponta.x.toFixed(1)+'" y2="'+ponta.y.toFixed(1)+'" style="stroke:var(--text)" stroke-width="3" stroke-linecap="round"/><circle cx="'+cx+'" cy="'+cy+'" r="6" style="fill:var(--text)"/>';
+  return '<svg viewBox="0 0 200 112" width="200" height="112" style="width:100%;height:auto;display:block;">'+zonasSvg+agulha+'</svg>';
+}
+
+function escapeHtml(s) { return String(s==null?'':s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function tagClsPrioridade(p) { if(!p) return 'tag-normal'; if(/cr[ií]tica/i.test(p)) return 'tag-sos'; if(/alta/i.test(p)) return 'tag-alta'; return 'tag-normal'; }
+var fmtBRL = new Intl.NumberFormat('pt-BR', { style:'currency', currency:'BRL' });
 var fmtNum = new Intl.NumberFormat('pt-BR');
-function fmtR(v) { return v != null ? fmtBRL.format(v) : '—'; }
-function fmtN(v) { return v != null ? fmtNum.format(v) : '—'; }
-function tagClsPrioridade(p) {
-if (!p) return 'tag-normal';
-if (/cr[ií]tica/i.test(p)) return 'tag-sos';
-if (/alta/i.test(p)) return 'tag-alta';
-return 'tag-normal';
+function fmtR(v){ return v!=null ? fmtBRL.format(v) : '—'; }
+function fmtN(v){ return v!=null ? fmtNum.format(v) : '—'; }
+
+var dados = [];
+
+// ---- blocos dentro do card (Restaurantes / Chamados) ----
+function blocoLojasCriticas(itens) {
+  var agg = new Map();
+  (itens||[]).forEach(function(c){
+    var nome = c.loja || '?';
+    var a = agg.get(nome);
+    if (!a) { a = { n:0, sos:0, alta:0, maxd:0 }; agg.set(nome, a); }
+    a.n++;
+    var p = (c.prioridade||'').toUpperCase();
+    if (/CR[IÍ]TICA/.test(p)) a.sos++; else if (/ALTA/.test(p)) a.alta++;
+    if ((c.dias||0) > a.maxd) a.maxd = c.dias||0;
+  });
+  var peso = function(a){ return a.sos*5 + a.alta*2 + (a.n-a.sos-a.alta) + (a.maxd>=30?2:0); };
+  var top = [...agg.entries()].sort(function(x,y){ return peso(y[1])-peso(x[1]) || y[1].maxd-x[1].maxd; }).slice(0,5);
+  var html = top.length
+    ? top.map(function(e,i){ var nome=e[0], a=e[1]; return '<div class="lcrit" title="'+escapeHtml(nome)+' — '+a.n+' chamado(s), '+a.sos+' SOS, '+a.alta+' alta, mais antigo '+a.maxd+'d"><span class="pos">'+(i+1)+'</span><span class="loja">'+escapeHtml(nome)+'</span><span class="mini"><span class="mtag mtag-ch">'+a.n+' ch</span>'+(a.sos?'<span class="mtag mtag-sos">'+a.sos+' SOS</span>':'')+(a.alta?'<span class="mtag mtag-alta">'+a.alta+' alta</span>':'')+'<span class="mtag mtag-d">'+a.maxd+'d</span></span></div>'; }).join('')
+    : '<div class="esos-empty">Nenhum chamado em aberto.</div>';
+  return '<div><div class="esos-label">Restaurantes mais críticos ('+top.length+' de '+agg.size+')</div><div class="lcrit-list">'+html+'</div></div>';
 }
-function loadData() {
-fetch('data/chamados-abertos-perda.json?_=' + Date.now())
-.then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
-.then(function(arr){
-dados = arr || [];
-var agora = new Date();
-document.getElementById('stamp').textContent = agora.toLocaleDateString('pt-BR') + ' ' + agora.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
-document.getElementById('footer-stamp').textContent = document.getElementById('stamp').textContent;
-popularFiltros();
-aplicarFiltros();
-atualizarKPIs(dados);
-renderFarol(dados);
-})
-.catch(function(e){
-document.getElementById('tbody').innerHTML = '<tr><td colspan="9" class="msg-erro">Erro ao carregar dados: '+e.message+'</td></tr>';
-});
+function blocoMaisUrgentes(itens) {
+  var top5 = ordenaChamados(itens||[]).slice(0,5);
+  var html = top5.length
+    ? top5.map(function(c){ return '<div class="esos-item"><span class="loja">'+escapeHtml(c.loja)+'</span><span class="tag '+tagClsPrioridade(c.prioridade)+'">'+(c.dias!=null?c.dias+'d':'')+'</span>'+(c.temPecas?'<span class="tag tag-pecas">Peças</span>':'')+'</div>'; }).join('')
+    : '<div class="esos-empty">Nenhum chamado em aberto.</div>';
+  return '<div><div class="esos-label">Mais urgentes ('+top5.length+')</div><div class="esos-list">'+html+'</div></div>';
 }
-function popularFiltros() {
-var equips = {}, lojas = {}, pris = {}, sups = {};
-dados.forEach(function(x){
-if(x.equipamento) equips[x.equipamento] = true;
-if(x.loja) lojas[x.loja] = true;
-if(x.prioridade) pris[x.prioridade] = true;
-if(x.supervisor) sups[x.supervisor] = true;
-});
-var selEq = document.getElementById('filtroEquipamento');
-Object.keys(equips).sort().forEach(function(e){
-var o = document.createElement('option'); o.value = e; o.textContent = e; selEq.appendChild(o);
-});
-var selLo = document.getElementById('filtroLoja');
-Object.keys(lojas).sort().forEach(function(l){
-var o = document.createElement('option'); o.value = l; o.textContent = l; selLo.appendChild(o);
-});
-var selPr = document.getElementById('filtroPrioridade');
-Object.keys(pris).sort().forEach(function(p){
-var o = document.createElement('option'); o.value = p; o.textContent = p; selPr.appendChild(o);
-});
-var selSu = document.getElementById('filtroSupervisor');
-Object.keys(sups).sort().forEach(function(s){
-var o = document.createElement('option'); o.value = s; o.textContent = s; selSu.appendChild(o);
-});
+function blocoDuasVisoes(itens) {
+  return '<div class="vis-bloco"><div class="vis-tabs" onclick="event.stopPropagation()"><button type="button" class="vis-tab ativo" data-v="lojas" onclick="event.stopPropagation();trocarVisaoFarol(\'lojas\')">Restaurantes</button><button type="button" class="vis-tab" data-v="chamados" onclick="event.stopPropagation();trocarVisaoFarol(\'chamados\')">Chamados</button></div><div class="vis-painel" data-v="lojas">'+blocoLojasCriticas(itens)+'</div><div class="vis-painel oculto" data-v="chamados">'+blocoMaisUrgentes(itens)+'</div></div>';
 }
-function aplicarFiltros() {
-var feq = document.getElementById('filtroEquipamento').value;
-var flo = document.getElementById('filtroLoja').value;
-var fpr = document.getElementById('filtroProblema').value.toLowerCase().trim();
-var fpri = document.getElementById('filtroPrioridade').value;
-var fsup = document.getElementById('filtroSupervisor').value;
-var fmat = document.getElementById('filtroMateriais').value;
-var fde = document.getElementById('filtroDataDe').value;
-var fate = document.getElementById('filtroDataAte').value;
-var filtrados = dados.filter(function(x){
-if(feq && x.equipamento !== feq) return false;
-if(flo && x.loja !== flo) return false;
-if(fpr && !(x.problema||'').toLowerCase().includes(fpr) && !(x.descricao||'').toLowerCase().includes(fpr)) return false;
-if(fpri && x.prioridade !== fpri) return false;
-if(fsup && x.supervisor !== fsup) return false;
-if(fmat === 'sim' && !x.temPecas) return false;
-if(fmat === 'nao' && x.temPecas) return false;
-if(fde && x.data < fde) return false;
-if(fate && x.data > fate) return false;
-return true;
-});
-document.getElementById('filtroContagem').textContent = filtrados.length + ' de ' + dados.length + ' chamados';
-renderTabela(filtrados);
-atualizarKPIs(filtrados);
-renderFarol(filtrados);
+function trocarVisaoFarol(v) {
+  document.querySelectorAll('.vis-bloco').forEach(function(b){
+    b.querySelectorAll('.vis-tab').forEach(function(t){ t.classList.toggle('ativo', t.dataset.v===v); });
+    b.querySelectorAll('.vis-painel').forEach(function(p){ p.classList.toggle('oculto', p.dataset.v!==v); });
+  });
+  try { localStorage.setItem('farolVisao', v); } catch(e){}
 }
-function atualizarKPIs(arr) {
-document.getElementById('kpi-total').textContent = fmtN(arr.length);
-var lojasSet = new Set();
-arr.forEach(function(x){ if(x.loja) lojasSet.add(x.loja); });
-document.getElementById('kpi-lojas').textContent = fmtN(lojasSet.size);
-var sos = 0, alta = 0, perdaTotal = 0, comMateriais = 0;
-arr.forEach(function(x){
-if(/cr[ií]tica/i.test(x.prioridade)) sos++;
-if(/alta/i.test(x.prioridade)) alta++;
-perdaTotal += (x.perda || 0);
-if(x.temPecas) comMateriais++;
-});
-document.getElementById('kpi-sos').textContent = fmtN(sos);
-document.getElementById('kpi-alta').textContent = fmtN(alta);
-document.getElementById('kpi-materiais').textContent = fmtN(comMateriais);
-document.getElementById('kpi-perda').textContent = fmtR(perdaTotal);
+function aplicarVisaoSalva() {
+  var v = 'lojas';
+  try { v = localStorage.getItem('farolVisao') || 'lojas'; } catch(e){}
+  if (v === 'chamados') trocarVisaoFarol('chamados');
 }
+
+var RANK_PRIORIDADE = { 'SOS':0, 'Alta':1, 'Normal':2 };
+function normPri(p){ if(!p) return 'Normal'; if(/cr[ií]tica/i.test(p)) return 'SOS'; if(/alta/i.test(p)) return 'Alta'; return 'Normal'; }
+function ordenaChamados(itens) {
+  return [...itens].sort(function(a,b){ var r=(RANK_PRIORIDADE[normPri(a.prioridade)]??9)-(RANK_PRIORIDADE[normPri(b.prioridade)]??9); return r!==0?r:(b.dias||0)-(a.dias||0); });
+}
+
+// ---- modal (clique no card abre os chamados do supervisor) ----
+var MODAL_ITENS = [];
+function semAcento(s){ return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,''); }
+function renderizarModalTabela() {
+  var fl = semAcento(document.getElementById('modalFiltroLoja').value.trim());
+  var fp = semAcento(document.getElementById('modalFiltroProblema').value.trim());
+  var fpri = document.getElementById('modalFiltroPrioridade').value;
+  var filtrados = ordenaChamados(MODAL_ITENS.filter(function(c){
+    return (!fl || semAcento(c.loja).includes(fl))
+      && (!fp || semAcento(c.problema).includes(fp) || semAcento(c.descricao||'').includes(fp))
+      && (!fpri || normPri(c.prioridade) === fpri);
+  }));
+  document.getElementById('modalFiltroContagem').textContent = filtrados.length + ' de ' + MODAL_ITENS.length + ' chamados';
+  document.getElementById('modalTbody').innerHTML = filtrados.length
+    ? filtrados.map(function(c){
+        return '<tr><td class="mono"><a class="chamado-link" href="https://soma.zamp.com.br/wm_order_list.do?sysparm_query=number%3D'+encodeURIComponent(c.chamado||'')+'" target="_blank" rel="noopener">'+escapeHtml(c.chamado)+'</a></td><td>'+escapeHtml(c.loja)+'</td><td>'+escapeHtml(c.problema||'—')+'</td><td>'+escapeHtml(c.estado||'')+'</td><td><span class="tag '+tagClsPrioridade(c.prioridade)+'">'+escapeHtml(c.prioridade||'')+'</span>'+(c.temPecas?'<span class="tag tag-pecas">Peças</span>':'')+'</td><td class="num">'+(c.dias!=null?c.dias+'d':'')+'</td><td class="num">'+(c.perda!=null?'<strong>'+fmtR(c.perda)+'</strong>':'—')+'</td></tr>';
+      }).join('')
+    : '<tr><td colspan="7" class="esos-empty">Nenhum chamado com esses filtros.</td></tr>';
+}
+function abrirModalSupervisor(nome, itens, stats) {
+  document.getElementById('modalTitle').textContent = nome;
+  document.getElementById('modalSub').textContent = stats.total + ' chamados · ' + stats.lojas.size + ' lojas · perda ' + fmtR(stats.perda) + ' · tempo médio ' + (stats.diasCount?Math.round(stats.diasSum/stats.diasCount):0) + 'd';
+  MODAL_ITENS = itens;
+  document.getElementById('modalFiltroLoja').value = '';
+  document.getElementById('modalFiltroProblema').value = '';
+  var pris = [...new Set(itens.map(function(c){ return normPri(c.prioridade); }))].sort(function(a,b){ return (RANK_PRIORIDADE[a]??9)-(RANK_PRIORIDADE[b]??9); });
+  document.getElementById('modalFiltroPrioridade').innerHTML = '<option value="">Todas</option>' + pris.map(function(p){ return '<option value="'+escapeHtml(p)+'">'+escapeHtml(p)+'</option>'; }).join('');
+  renderizarModalTabela();
+  document.getElementById('modalOverlay').hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+function fecharModal() {
+  document.getElementById('modalOverlay').hidden = true;
+  document.body.style.overflow = '';
+}
+document.getElementById('modalOverlay').addEventListener('click', function(e){ if (e.target === this) fecharModal(); });
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !document.getElementById('modalOverlay').hidden) fecharModal(); });
+document.getElementById('modalFiltroLoja').addEventListener('input', renderizarModalTabela);
+document.getElementById('modalFiltroProblema').addEventListener('input', renderizarModalTabela);
+document.getElementById('modalFiltroPrioridade').addEventListener('change', renderizarModalTabela);
+
+// ---- agregação por supervisor ----
+function agregarPorSupervisor(arr) {
+  var supStats = {};
+  arr.forEach(function(x){
+    var sup = x.supervisor || 'SEM SUPERVISOR';
+    if (!supStats[sup]) supStats[sup] = { total:0, criticos:0, perda:0, lojas:new Set(), totalLojasSet:new Set(), alta:0, sos:0, diasSum:0, diasCount:0, itens:[], setores:new Set() };
+    var ss = supStats[sup];
+    ss.total++;
+    if (x.critica) ss.criticos++;
+    ss.perda += (x.perda || 0);
+    if (x.loja) { ss.lojas.add(x.loja); ss.totalLojasSet.add(x.loja); }
+    if (x.setor) ss.setores.add(x.setor);
+    if (/alta/i.test(x.prioridade)) ss.alta++;
+    if (/cr[ií]tica/i.test(x.prioridade)) ss.sos++;
+    if (x.dias != null) { ss.diasSum += x.dias; ss.diasCount++; }
+    ss.itens.push(x);
+  });
+  return supStats;
+}
+
 function renderFarol(arr) {
-var grid = document.getElementById('farol-grid');
-var supStats = {};
-arr.forEach(function(x){
-var sup = x.supervisor || 'SEM SUPERVISOR';
-if(!supStats[sup]) supStats[sup] = { total:0, criticos:0, perda:0, lojas:new Set(), alta:0, sos:0, diasSum:0, diasCount:0, itens:[] };
-var ss = supStats[sup];
-ss.total++;
-if(x.critica) ss.criticos++;
-ss.perda += (x.perda || 0);
-if(x.loja) ss.lojas.add(x.loja);
-if(/alta/i.test(x.prioridade)) ss.alta++;
-if(/cr[ií]tica/i.test(x.prioridade)) ss.sos++;
-if(x.dias != null) { ss.diasSum += x.dias; ss.diasCount++; }
-ss.itens.push(x);
-});
-var html = '';
-var sorted = Object.entries(supStats).sort(function(a,b){ return b[1].total - a[1].total; });
-sorted.forEach(function(entry){
-var nome = entry[0], ss = entry[1];
-var tempoMedio = ss.diasCount ? Math.round(ss.diasSum / ss.diasCount) : 0;
-var pct = Math.min(100, Math.round((ss.total / Math.max(1, arr.length)) * 100));
-var angle = -90 + (pct / 100) * 180;
-var lojasArr = [...ss.lojas].sort();
-var criticosPorLoja = {};
-ss.itens.forEach(function(x){
-if(!x.loja) return;
-if(!criticosPorLoja[x.loja]) criticosPorLoja[x.loja] = { total:0, alta:0, sos:0, diasMax:0 };
-var cl = criticosPorLoja[x.loja];
-cl.total++;
-if(/alta/i.test(x.prioridade)) cl.alta++;
-if(/cr[ií]tica/i.test(x.prioridade)) cl.sos++;
-if((x.dias||0) > cl.diasMax) cl.diasMax = x.dias||0;
-});
-var lojasCriticas = Object.entries(criticosPorLoja).sort(function(a,b){ return (b[1].sos*1000 + b[1].alta*100 + b[1].diasMax) - (a[1].sos*1000 + a[1].alta*100 + a[1].diasMax); }).slice(0,5);
-html += '<div class="farol-card">';
-html += '<div class="farol-head"><span class="farol-nome">' + nome + '</span><span class="farol-detalhe">detalhe →</span></div>';
-html += '<div class="farol-medidor"><svg viewBox="0 0 200 120"><path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="#e5e7eb" stroke-width="16" stroke-linecap="round"/><path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="url(#grad' + nome.replace(/\s/g,'') + ')" stroke-width="16" stroke-linecap="round" stroke-dasharray="' + (pct * 2.51) + ' 251"/><defs><linearGradient id="grad' + nome.replace(/\s/g,'') + '" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#00c853"/><stop offset="50%" style="stop-color:#ff6b00"/><stop offset="100%" style="stop-color:#ff3366"/></linearGradient></defs><line x1="100" y1="100" x2="' + (100 + 60 * Math.cos(angle * Math.PI / 180)) + '" y2="' + (100 + 60 * Math.sin(angle * Math.PI / 180)) + '" stroke="#111827" stroke-width="3" stroke-linecap="round"/><text x="100" y="95" text-anchor="middle" font-size="24" font-weight="900" fill="' + (pct > 66 ? '#ff3366' : pct > 33 ? '#ff6b00' : '#00c853') + '">' + ss.total + '</text><text x="100" y="115" text-anchor="middle" font-size="10" fill="#9ca3af">CHAMADOS</text></svg></div>';
-html += '<div class="farol-stats"><div class="farol-stat"><div class="num">' + lojasArr.length + '/' + lojasArr.length + '</div><div class="lbl">Lojas</div></div><div class="farol-stat"><div class="num" style="color:var(--laranja)">' + ss.alta + '</div><div class="lbl">Alta</div></div><div class="farol-stat"><div class="num" style="color:var(--rosa)">' + ss.sos + '</div><div class="lbl">SOS</div></div></div>';
-html += '<div class="farol-tempo"><span class="lbl">Tempo médio em aberto</span><span class="val">' + tempoMedio + 'd</span></div>';
-html += '<div class="farol-tabs"><div class="farol-tab active">Restaurantes</div><div class="farol-tab">Chamados</div></div>';
-html += '<div class="farol-lista"><div style="font-size:10px;color:var(--text-3);margin-bottom:4px">• Restaurantes mais críticos (' + Math.min(5, lojasCriticas.length) + ' de ' + lojasArr.length + ')</div>';
-lojasCriticas.forEach(function(entry){
-var loja = entry[0], cl = entry[1];
-var tags = '';
-if(cl.alta > 0) tags += '<span class="farol-tag alta">' + cl.alta + ' alta</span>';
-if(cl.sos > 0) tags += '<span class="farol-tag sos">' + cl.sos + ' sos</span>';
-html += '<div class="farol-item"><span class="farol-loja">' + loja + '</span><span class="farol-meta"><span class="farol-ch">' + cl.total + ' ch</span>' + tags + '<span class="farol-dias">' + cl.diasMax + 'd</span></span></div>';
-});
-html += '</div></div>';
-});
-grid.innerHTML = html || '<div class="msg-carregando">Nenhum supervisor encontrado.</div>';
+  var grid = document.getElementById('farol-grid');
+  var supStats = agregarPorSupervisor(arr);
+  var sorted = Object.entries(supStats).sort(function(a,b){ return b[1].total - a[1].total; });
+  // ajusta o teto do medidor ao maior valor (com folga)
+  var maxVal = sorted.length ? sorted[0][1].total : 0;
+  FAROL_MAX = Math.max(120, Math.ceil(maxVal * 1.15 / 10) * 10);
+  FAROL_ZONAS = [
+    { de: 0, ate: Math.round(FAROL_MAX*0.4), cor: 'var(--verde)' },
+    { de: Math.round(FAROL_MAX*0.4), ate: Math.round(FAROL_MAX*0.75), cor: 'var(--laranja)' },
+    { de: Math.round(FAROL_MAX*0.75), ate: FAROL_MAX, cor: 'var(--rosa)' },
+  ];
+  var html = sorted.map(function(entry){
+    var nome = entry[0], ss = entry[1];
+    var cor = corDoFarol(ss.total);
+    var tempoMedio = ss.diasCount ? Math.round(ss.diasSum/ss.diasCount) : 0;
+    var setores = [...ss.setores].sort();
+    var nomeJs = nome.replace(/'/g, "\\'");
+    return '<div class="gcard" role="button" tabindex="0" aria-label="Ver chamados de '+escapeHtml(nome)+'" onclick="abrirModalSupervisor(\''+nomeJs+'\', window.__SUP_'+CSS.escape?nome.replace(/[^a-z0-9]/gi,'_'):nome.replace(/[^a-z0-9]/gi,'_')+', window.__STAT_'+nome.replace(/[^a-z0-9]/gi,'_')+')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();this.click();}">'
+      + '<div class="ghead"><div><span class="gname">'+escapeHtml(nome)+'</span><span class="gsetor">'+escapeHtml(setores.join(' · ')||'—')+'</span></div><span class="gdetalhe">detalhe →</span></div>'
+      + '<div class="ggauge">'+gaugeSVG(ss.total, FAROL_MAX, FAROL_ZONAS)+'</div>'
+      + '<div class="gval"><span class="gnum num" style="color:'+cor+'">'+ss.total+'</span><span class="glabel">chamados</span></div>'
+      + '<div class="gstats"><div class="estat"><div class="n num">'+ss.lojas.size+'/'+ss.totalLojasSet.size+'</div><div class="l">Lojas</div></div><div class="estat"><div class="n num" style="color:var(--laranja)">'+ss.alta+'</div><div class="l">Alta</div></div><div class="estat"><div class="n num" style="color:var(--rosa)">'+ss.sos+'</div><div class="l">SOS</div></div></div>'
+      + '<div class="etime"><span>Tempo médio em aberto</span><b>'+tempoMedio+'d</b></div>'
+      + blocoDuasVisoes(ss.itens)
+      + '</div>';
+  }).join('');
+  grid.innerHTML = html || '<div class="msg-carregando">Nenhum supervisor encontrado.</div>';
+  // guarda referencia dos itens/stats por supervisor para o onclick do card
+  window.__PERDA_SUP = {};
+  sorted.forEach(function(entry){ var key = entry[0].replace(/[^a-z0-9]/gi,'_'); window.__PERDA_SUP[key] = { itens: entry[1].itens, stats: entry[1] }; });
+  // rebind onclick usando a chave (mais robusto que passar objetos inline)
+  grid.querySelectorAll('.gcard').forEach(function(card, i){
+    var key = sorted[i][0].replace(/[^a-z0-9]/gi,'_');
+    card.onclick = function(){ var d = window.__PERDA_SUP[key]; abrirModalSupervisor(sorted[i][0], d.itens, d.stats); };
+  });
+  aplicarVisaoSalva();
 }
+
+function atualizarKPIs(arr) {
+  var lojasSet = new Set(), perdaTotal = 0, sos = 0, alta = 0, comMat = 0;
+  arr.forEach(function(x){ if(x.loja) lojasSet.add(x.loja); perdaTotal += (x.perda||0); if(/cr[ií]tica/i.test(x.prioridade)) sos++; if(/alta/i.test(x.prioridade)) alta++; if(x.temPecas) comMat++; });
+  document.getElementById('kpis').innerHTML =
+    '<div class="kpi k-violet"><span class="label">Total de Chamados</span><span class="val">'+fmtN(arr.length)+'</span></div>'
+    + '<div class="kpi k-violet"><span class="label">Lojas c/ Chamado Aberto</span><span class="val">'+fmtN(lojasSet.size)+'</span></div>'
+    + '<div class="kpi k-sos"><span class="label">Chamados SOS</span><span class="val">'+fmtN(sos)+'</span></div>'
+    + '<div class="kpi k-alta"><span class="label">Chamados Alta</span><span class="val">'+fmtN(alta)+'</span></div>'
+    + '<div class="kpi k-violet"><span class="label">Chamados c/ Materiais</span><span class="val">'+fmtN(comMat)+'</span></div>'
+    + '<div class="kpi k-alta"><span class="label">Perda Medida (R$)</span><span class="val">'+fmtR(perdaTotal)+'</span></div>';
+}
+
+function popularFiltros() {
+  var equips={}, lojas={}, pris={}, sups={};
+  dados.forEach(function(x){ if(x.equipamento) equips[x.equipamento]=1; if(x.loja) lojas[x.loja]=1; if(x.prioridade) pris[x.prioridade]=1; if(x.supervisor) sups[x.supervisor]=1; });
+  var selEq=document.getElementById('filtroEquipamento'); Object.keys(equips).sort().forEach(function(e){ var o=document.createElement('option'); o.value=e; o.textContent=e; selEq.appendChild(o); });
+  var selLo=document.getElementById('filtroLoja'); Object.keys(lojas).sort().forEach(function(l){ var o=document.createElement('option'); o.value=l; o.textContent=l; selLo.appendChild(o); });
+  var selPr=document.getElementById('filtroPrioridade'); Object.keys(pris).sort().forEach(function(p){ var o=document.createElement('option'); o.value=p; o.textContent=p; selPr.appendChild(o); });
+  var selSu=document.getElementById('filtroSupervisor'); Object.keys(sups).sort().forEach(function(s){ var o=document.createElement('option'); o.value=s; o.textContent=s; selSu.appendChild(o); });
+}
+
+function getFiltrados() {
+  var feq=document.getElementById('filtroEquipamento').value, flo=document.getElementById('filtroLoja').value;
+  var fpr=document.getElementById('filtroProblema').value.toLowerCase().trim(), fpri=document.getElementById('filtroPrioridade').value;
+  var fsup=document.getElementById('filtroSupervisor').value, fmat=document.getElementById('filtroMateriais').value;
+  var fde=document.getElementById('filtroDataDe').value, fate=document.getElementById('filtroDataAte').value;
+  return dados.filter(function(x){
+    if(feq && x.equipamento!==feq) return false;
+    if(flo && x.loja!==flo) return false;
+    if(fpr && !(x.problema||'').toLowerCase().includes(fpr) && !(x.descricao||'').toLowerCase().includes(fpr)) return false;
+    if(fpri && x.prioridade!==fpri) return false;
+    if(fsup && x.supervisor!==fsup) return false;
+    if(fmat==='sim' && !x.temPecas) return false;
+    if(fmat==='nao' && x.temPecas) return false;
+    if(fde && x.data<fde) return false;
+    if(fate && x.data>fate) return false;
+    return true;
+  });
+}
+
+function aplicarFiltros() {
+  var filtrados = getFiltrados();
+  document.getElementById('filtroContagem').textContent = filtrados.length + ' de ' + dados.length + ' chamados';
+  renderTabela(filtrados);
+  atualizarKPIs(filtrados);
+  renderFarol(filtrados);
+}
+
 function renderTabela(arr) {
-var tbody = document.getElementById('tbody');
-if(arr.length === 0) {
-tbody.innerHTML = '<tr><td colspan="9" class="msg-carregando">Nenhum chamado encontrado.</td></tr>';
-return;
+  var tbody = document.getElementById('tbody');
+  if (!arr.length) { tbody.innerHTML = '<tr><td colspan="9" class="msg-carregando">Nenhum chamado encontrado.</td></tr>'; return; }
+  tbody.innerHTML = arr.map(function(x){
+    var estLower=(x.estado||'').toLowerCase();
+    var estadoTag = estLower.indexOf('expedi')!==-1 ? '<span class="tag tag-alta">'+escapeHtml(x.estado)+'</span>' : (estLower.indexOf('andamento')!==-1 ? '<span class="tag tag-sos">'+escapeHtml(x.estado)+'</span>' : '<span class="tag tag-normal">'+escapeHtml(x.estado||'')+'</span>');
+    var priTag = '<span class="tag '+tagClsPrioridade(x.prioridade)+'">'+escapeHtml(x.prioridade||'')+'</span>' + (x.temPecas?'<span class="tag tag-pecas">Peças</span>':'');
+    var diasTxt = (x.dias==null)?'':(x.dias>30?'<strong style="color:var(--rosa)">'+x.dias+'</strong>':String(x.dias));
+    return '<tr><td><a class="chamado-link" href="https://soma.zamp.com.br/wm_order_list.do?sysparm_query=number%3D'+encodeURIComponent(x.chamado||'')+'" target="_blank" rel="noopener">'+escapeHtml(x.chamado||'')+'</a></td><td style="font-size:11.5px;">'+escapeHtml(x.equipamento||'')+'</td><td class="loja-cell" title="'+escapeHtml((x.bkn?x.bkn+' · ':'')+(x.setor||''))+'">'+escapeHtml(x.loja||'')+'</td><td style="font-size:11.5px;color:var(--text-3);" title="'+escapeHtml(x.problema||'')+'">'+escapeHtml(x.problema||'')+'</td><td>'+estadoTag+'</td><td>'+priTag+'</td><td class="col-num">'+diasTxt+'</td><td style="font-size:11px;">'+escapeHtml(x.supervisor||'—')+'</td><td class="col-num">'+(x.perda!=null?'<strong>'+fmtR(x.perda)+'</strong>':'<span style="color:var(--text-3)">—</span>')+'</td></tr>';
+  }).join('');
 }
-var html = '';
-arr.forEach(function(x){
-var perdaFmt = fmtR(x.perda);
-var estadoTag = '';
-var estLower = (x.estado||'').toLowerCase();
-if(estLower.indexOf('expedi') !== -1) estadoTag = '<span class="tag tag-alta">'+(x.estado||'')+'</span>';
-else if(estLower.indexOf('andamento') !== -1) estadoTag = '<span class="tag tag-sos">'+(x.estado||'')+'</span>';
-else estadoTag = '<span class="tag tag-normal">'+(x.estado||'')+'</span>';
-var priTag = '<span class="tag ' + tagClsPrioridade(x.prioridade) + '">' + (x.prioridade||'') + '</span>';
-if(x.temPecas) priTag += '<span class="tag tag-pecas">Peças</span>';
-var diasTxt = (x.dias == null) ? '' : (x.dias > 30 ? '<strong style="color:var(--rosa)">'+x.dias+'</strong>' : String(x.dias));
-html += '<tr>' +
-'<td><a class="chamado-link" href="https://soma.zamp.com.br/wm_order_list.do?sysparm_query=number%3D'+(x.chamado||'')+'" target="_blank" rel="noopener">'+(x.chamado||'')+'</a></td>' +
-'<td style="font-size:11.5px;">'+(x.equipamento||'')+'</td>' +
-'<td class="loja-cell" title="'+((x.bkn?x.bkn+' · ':'')+(x.setor||'')).replace(/"/g,'&quot;')+'">'+(x.loja||'')+'</td>' +
-'<td style="font-size:11.5px;color:var(--muted);" title="'+(x.problema||'').replace(/"/g,'&quot;')+'">'+(x.problema||'')+'</td>' +
-'<td>'+estadoTag+'</td>' +
-'<td>'+priTag+'</td>' +
-'<td class="col-num">'+diasTxt+'</td>' +
-'<td style="font-size:11px;">'+(x.supervisor||'—')+'</td>' +
-'<td class="col-num">'+(x.perda != null ? '<strong>'+perdaFmt+'</strong>' : '<span style="color:var(--muted)">—</span>')+'</td>' +
-'</tr>';
-});
-tbody.innerHTML = html;
-}
-document.getElementById('filtroEquipamento').addEventListener('change', aplicarFiltros);
-document.getElementById('filtroLoja').addEventListener('change', aplicarFiltros);
+
+['filtroEquipamento','filtroLoja','filtroPrioridade','filtroSupervisor','filtroMateriais'].forEach(function(id){ document.getElementById(id).addEventListener('change', aplicarFiltros); });
 document.getElementById('filtroProblema').addEventListener('input', aplicarFiltros);
-document.getElementById('filtroPrioridade').addEventListener('change', aplicarFiltros);
-document.getElementById('filtroSupervisor').addEventListener('change', aplicarFiltros);
-document.getElementById('filtroMateriais').addEventListener('change', aplicarFiltros);
 document.getElementById('filtroDataDe').addEventListener('change', aplicarFiltros);
 document.getElementById('filtroDataAte').addEventListener('change', aplicarFiltros);
 document.getElementById('filtroLimpar').addEventListener('click', function(){
-document.getElementById('filtroEquipamento').value = '';
-document.getElementById('filtroLoja').value = '';
-document.getElementById('filtroProblema').value = '';
-document.getElementById('filtroPrioridade').value = '';
-document.getElementById('filtroSupervisor').value = '';
-document.getElementById('filtroMateriais').value = '';
-document.getElementById('filtroDataDe').value = '';
-document.getElementById('filtroDataAte').value = '';
-aplicarFiltros();
+  ['filtroEquipamento','filtroLoja','filtroPrioridade','filtroSupervisor','filtroMateriais','filtroDataDe','filtroDataAte'].forEach(function(id){ document.getElementById(id).value=''; });
+  document.getElementById('filtroProblema').value='';
+  aplicarFiltros();
 });
-loadData();
-})();
+
+fetch('data/chamados-abertos-perda.json?_=' + Date.now(), { cache: 'no-store' })
+  .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+  .then(function(arr){
+    dados = arr || [];
+    var agora = new Date();
+    var stamp = agora.toLocaleDateString('pt-BR') + ' ' + agora.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+    document.getElementById('stamp').textContent = stamp;
+    document.getElementById('footer-stamp').textContent = stamp;
+    popularFiltros();
+    aplicarFiltros();
+  })
+  .catch(function(e){ document.getElementById('tbody').innerHTML = '<tr><td colspan="9" class="msg-erro">Erro ao carregar dados: '+escapeHtml(e.message)+'</td></tr>'; });
 </script>
 </body>
 </html>
