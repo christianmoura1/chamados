@@ -329,12 +329,12 @@ const saida = {
   vencidos: ch.vencidos.map(c => ({
     ...c,
     assunto: c.assuntoSecundario || c.assuntoPrincipal || c.item || '',
-    diasAtraso: c.dtAbertura ? Math.floor((Date.now() - new Date(c.dtAbertura.split('/').reverse().join('-')).getTime()) / 86400000) : null,
+    diasAtraso: c.dtAbertura ? (() => { const p = c.dtAbertura.split('/'); if (p.length !== 3) return null; const d = new Date(Number(p[2]), Number(p[0]) - 1, Number(p[1])); return isNaN(d.getTime()) ? null : Math.floor((Date.now() - d.getTime()) / 86400000); })() : null,
   })),
   aVencer: ch.aVencer.map(c => ({
     ...c,
     assunto: c.assuntoSecundario || c.assuntoPrincipal || c.item || '',
-    diasAtraso: c.dtAbertura ? Math.floor((Date.now() - new Date(c.dtAbertura.split('/').reverse().join('-')).getTime()) / 86400000) : null,
+    diasAtraso: c.dtAbertura ? (() => { const p = c.dtAbertura.split('/'); if (p.length !== 3) return null; const d = new Date(Number(p[2]), Number(p[0]) - 1, Number(p[1])); return isNaN(d.getTime()) ? null : Math.floor((Date.now() - d.getTime()) / 86400000); })() : null,
   })),
 },
 };
