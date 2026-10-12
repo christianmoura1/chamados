@@ -325,7 +325,18 @@ const saida = {
     }),
   })),
   abertoPorItemBruto: v2.abertoPorItemBruto,
-  chamadosRisco: { vencidos: ch.vencidos, aVencer: ch.aVencer },
+  chamadosRisco: {
+  vencidos: ch.vencidos.map(c => ({
+    ...c,
+    assunto: c.assuntoSecundario || c.assuntoPrincipal || c.item || '',
+    diasAtraso: c.dtAbertura ? Math.floor((Date.now() - new Date(c.dtAbertura.split('/').reverse().join('-')).getTime()) / 86400000) : null,
+  })),
+  aVencer: ch.aVencer.map(c => ({
+    ...c,
+    assunto: c.assuntoSecundario || c.assuntoPrincipal || c.item || '',
+    diasAtraso: c.dtAbertura ? Math.floor((Date.now() - new Date(c.dtAbertura.split('/').reverse().join('-')).getTime()) / 86400000) : null,
+  })),
+},
 };
 fs.writeFileSync(REPO + '/data/risco.json', JSON.stringify(saida, null, 1), 'utf8');
 log('risco.json gravado: score=' + saida.scoreMedio + ' lojas=' + saida.totalLojasAvaliadas
