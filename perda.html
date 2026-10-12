@@ -415,13 +415,20 @@ function renderFarol(arr) {
     { de: Math.round(FAROL_MAX*0.4), ate: Math.round(FAROL_MAX*0.75), cor: 'var(--laranja)' },
     { de: Math.round(FAROL_MAX*0.75), ate: FAROL_MAX, cor: 'var(--rosa)' },
   ];
-  var html = sorted.map(function(entry){
+  // BUG CORRIGIDO 12/10/2026: o onclick inline anterior tinha uma expressao
+  // ternaria malformada (CSS.escape?...) dentro do atributo HTML, o que
+  // quebrava o parser e fazia o grid inteiro sumir. Correcao: gerar os
+  // cards SEM onclick inline, usar data-supkey, e fazer o bind via
+  // addEventListener depois -- mesmo padrao robusto do Backlog.
+  window.__PERDA_SUP = {};
+  var html = sorted.map(function(entry, i){
     var nome = entry[0], ss = entry[1];
     var cor = corDoFarol(ss.total);
     var tempoMedio = ss.diasCount ? Math.round(ss.diasSum/ss.diasCount) : 0;
     var setores = [...ss.setores].sort();
-    var nomeJs = nome.replace(/'/g, "\\'");
-    return '<div class="gcard" role="button" tabindex="0" aria-label="Ver chamados de '+escapeHtml(nome)+'" onclick="abrirModalSupervisor(\''+nomeJs+'\', window.__SUP_'+CSS.escape?nome.replace(/[^a-z0-9]/gi,'_'):nome.replace(/[^a-z0-9]/gi,'_')+', window.__STAT_'+nome.replace(/[^a-z0-9]/gi,'_')+')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();this.click();}">'
+    var key = 'sup_' + i;
+    window.__PERDA_SUP[key] = { nome: nome, itens: ss.itens, stats: ss };
+    return '<div class="gcard" role="button" tabindex="0" data-supkey="'+key+'" aria-label="Ver chamados de '+escapeHtml(nome)+'">'
       + '<div class="ghead"><div><span class="gname">'+escapeHtml(nome)+'</span><span class="gsetor">'+escapeHtml(setores.join(' · ')||'—')+'</span></div><span class="gdetalhe">detalhe →</span></div>'
       + '<div class="ggauge">'+gaugeSVG(ss.total, FAROL_MAX, FAROL_ZONAS)+'</div>'
       + '<div class="gval"><span class="gnum num" style="color:'+cor+'">'+ss.total+'</span><span class="glabel">chamados</span></div>'
@@ -431,13 +438,19 @@ function renderFarol(arr) {
       + '</div>';
   }).join('');
   grid.innerHTML = html || '<div class="msg-carregando">Nenhum supervisor encontrado.</div>';
-  // guarda referencia dos itens/stats por supervisor para o onclick do card
-  window.__PERDA_SUP = {};
-  sorted.forEach(function(entry){ var key = entry[0].replace(/[^a-z0-9]/gi,'_'); window.__PERDA_SUP[key] = { itens: entry[1].itens, stats: entry[1] }; });
-  // rebind onclick usando a chave (mais robusto que passar objetos inline)
-  grid.querySelectorAll('.gcard').forEach(function(card, i){
-    var key = sorted[i][0].replace(/[^a-z0-9]/gi,'_');
-    card.onclick = function(){ var d = window.__PERDA_SUP[key]; abrirModalSupervisor(sorted[i][0], d.itens, d.stats); };
+  // bind dos cliques via data-supkey (sem onclick inline)
+  grid.querySelectorAll('.gcard').forEach(function(card){
+    var d = window.__PERDA_SUP[card.getAttribute('data-supkey')];
+    if (!d) return;
+    var handler = function(ev){
+      // nao abre o modal se o clique foi numa aba Restaurantes/Chamados
+      if (ev.target.closest && ev.target.closest('.vis-tabs')) return;
+      abrirModalSupervisor(d.nome, d.itens, d.stats);
+    };
+    card.addEventListener('click', handler);
+    card.addEventListener('keydown', function(ev){
+      if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); handler(ev); }
+    });
   });
   aplicarVisaoSalva();
 }
