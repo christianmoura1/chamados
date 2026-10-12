@@ -2,20 +2,21 @@
   "name": "Backlog Zamp - Manutencao Sul",
   "short_name": "Backlog Zamp",
   "description": "Painel de acompanhamento de chamados de manutencao - Regional Sul",
-  "start_url": "/",
+  "start_url": "https://sul-blush.vercel.app/",
+  "scope": "https://sul-blush.vercel.app/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#1e3bff",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "icon-192.png",
+      "src": "https://sul-blush.vercel.app/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "icon-512.png",
+      "src": "https://sul-blush.vercel.app/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
