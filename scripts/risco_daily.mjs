@@ -308,7 +308,7 @@ if (dBI) {
 }
 
 const saida = {
-  atualizadoEm: v4.atualizadoEm,
+  atualizadoEm: (() => { const m = v4.atualizadoEm.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})(.*)$/); return m ? m[2] + '/' + m[1] + '/' + m[3] + m[4] : v4.atualizadoEm; })(),
   geradoEm: new Date().toISOString(),
   totalLojasAvaliadas: v4.totalLojasAvaliadas,
   scoreMedio: v4.scoreMedio,
