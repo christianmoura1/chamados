@@ -1,8 +1,8 @@
 {
- "atualizadoEm": "12/10/2026 8:07:02",
- "geradoEm": "2026-10-13T09:01:43.234Z",
+ "atualizadoEm": "13/10/2026 9:11:08",
+ "geradoEm": "2026-10-13T12:58:58.976Z",
  "totalLojasAvaliadas": 71,
- "scoreMedio": 8.25,
+ "scoreMedio": 8.32,
  "categorias": [
   {
    "chave": "sci",
@@ -59,6 +59,14 @@
      "score": 11,
      "diasAtraso": 21,
      "dataRef": "20/09/2026",
+     "rotuloRef": "venceu",
+     "itemRef": null
+    },
+    {
+     "nome": "29084 - FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL 13185",
+     "score": 11,
+     "diasAtraso": 27,
+     "dataRef": "14/09/2026",
      "rotuloRef": "venceu",
      "itemRef": null
     },
@@ -183,14 +191,6 @@
      "itemRef": null
     },
     {
-     "nome": "29084 - FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL 13185",
-     "score": 10,
-     "diasAtraso": 27,
-     "dataRef": "14/09/2026",
-     "rotuloRef": "venceu",
-     "itemRef": null
-    },
-    {
      "nome": "31345 - FS CANOAS - AV DR SEZ AZAMBUJA VIEIRA",
      "score": 10,
      "diasAtraso": 7,
@@ -220,7 +220,7 @@
     {
      "nome": "26839 - FS CURITIBA AV SILVA JARDIM 566",
      "score": 14,
-     "diasAtraso": 50,
+     "diasAtraso": 51,
      "dataRef": "23/08/2026",
      "rotuloRef": "últ. visita",
      "itemRef": null
@@ -233,7 +233,7 @@
   "Exaustor",
   "Quadro Elétrico",
   "Sensor de gás",
-  "9",
+  "11",
   "3",
   "2",
   "1",
@@ -482,12 +482,10 @@
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
     "assunto": "AIN - QUADRO ELÉTRICO - QUADRO ELÉTRICO COM FIOS EXPOSTOS",
     "diasAtraso": 8
-   }
-  ],
-  "aVencer": [
+   },
    {
     "numero": "WO0065247",
-    "statusRisco": "No Prazo",
+    "statusRisco": "Atrasado",
     "item": "Coifa",
     "assuntoPrincipal": "COIFA",
     "assuntoSecundario": "COI - COIFA EM CONTIGÊNCIA",
@@ -503,7 +501,7 @@
    },
    {
     "numero": "WO0065253",
-    "statusRisco": "No Prazo",
+    "statusRisco": "Atrasado",
     "item": "Coifa",
     "assuntoPrincipal": "COIFA",
     "assuntoSecundario": "COI - COIFA EM CONTIGÊNCIA",
@@ -516,7 +514,9 @@
     "tecnico": "MARCEL VINICIOS ROCHA AGRADEM",
     "assunto": "COI - COIFA EM CONTIGÊNCIA",
     "diasAtraso": 7
-   },
+   }
+  ],
+  "aVencer": [
    {
     "numero": "WO0066144",
     "statusRisco": "No Prazo",
@@ -545,9 +545,41 @@
     "status": "Em Andamento",
     "dtAbertura": "10/10/2026",
     "dtEncerramento": "",
-    "tecnico": "Cristppher Alencar Pacheco Cruz",
+    "tecnico": "THIAGO DOS SANTOS COELHO",
     "assunto": "COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
     "diasAtraso": 3
+   },
+   {
+    "numero": "WO0068125",
+    "statusRisco": "No Prazo",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - COIFA NÃO FUNCIONA",
+    "regional": "SUL",
+    "setor": "CURITIBA NORTE",
+    "loja": "29084 - FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL 13185",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "10/12/2026",
+    "dtEncerramento": "",
+    "tecnico": "CARLOS MAGNO DA SILVA LIRA",
+    "assunto": "COI - COIFA NÃO FUNCIONA",
+    "diasAtraso": 1
+   },
+   {
+    "numero": "WO0068126",
+    "statusRisco": "No Prazo",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - ESTRUTURA DA COIFA COM DEFEITO",
+    "regional": "SUL",
+    "setor": "CURITIBA NORTE",
+    "loja": "29084 - FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL 13185",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "10/12/2026",
+    "dtEncerramento": "",
+    "tecnico": "CARLOS MAGNO DA SILVA LIRA",
+    "assunto": "COI - ESTRUTURA DA COIFA COM DEFEITO",
+    "diasAtraso": 1
    }
   ]
  },
