@@ -1,0 +1,808 @@
+{
+  "capturedAt": "2026-10-13T02:21:57.889Z",
+  "wireUrl": "https://zampburgerking.syos.com.br/web/app/wire/502044f82ec205d2c1c15754413a6744",
+  "tempCount": 0,
+  "temps": [],
+  "sensorNames": [
+    {
+      "path": "locals.currentUser.name",
+      "name": "ZAMP SyOS"
+    },
+    {
+      "path": "locals.filters.physicalStores[0].name",
+      "name": "BKB -  15172 - SHOP IBIRAPUERA"
+    },
+    {
+      "path": "locals.filters.physicalStores[1].name",
+      "name": "BKB -  15363 - SHOP VILLA LOBOS"
+    },
+    {
+      "path": "locals.filters.physicalStores[2].name",
+      "name": "BKB -  15374 - FS SP - AV HELIO PELLEGRINO 1072"
+    },
+    {
+      "path": "locals.filters.physicalStores[3].name",
+      "name": "BKB -  15490 - SUPER SHOP OSASCO"
+    },
+    {
+      "path": "locals.filters.physicalStores[4].name",
+      "name": "BKB -  15881 - SHOP ARICANDUVA"
+    },
+    {
+      "path": "locals.filters.physicalStores[5].name",
+      "name": "BKB -  16168 - SHOP SP MARKET"
+    },
+    {
+      "path": "locals.filters.physicalStores[6].name",
+      "name": "BKB -  16353 - SANTANA PARK SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[7].name",
+      "name": "BKB -  17780 - SHOP METRO BOULEVARD TATUAPE"
+    },
+    {
+      "path": "locals.filters.physicalStores[8].name",
+      "name": "BKB -  17973 - FS SBC - AV PRESTES MAIA 1001"
+    },
+    {
+      "path": "locals.filters.physicalStores[9].name",
+      "name": "BKB -  18334 - FS SP - RADIAL LESTE 1884"
+    },
+    {
+      "path": "locals.filters.physicalStores[10].name",
+      "name": "BKB -  18820 - CARREFOUR PESSEGO"
+    },
+    {
+      "path": "locals.filters.physicalStores[11].name",
+      "name": "BKB -  19109 - SHOP METRO TUCURUVI"
+    },
+    {
+      "path": "locals.filters.physicalStores[12].name",
+      "name": "BKB -  19146 - CONTINENTAL SHOP SP"
+    },
+    {
+      "path": "locals.filters.physicalStores[13].name",
+      "name": "BKB -  19523 - FS SP - VIC ROBERT KENNEDY"
+    },
+    {
+      "path": "locals.filters.physicalStores[14].name",
+      "name": "BKB -  19615 - FS SP - AV DOS BANDEIRANTES 3686"
+    },
+    {
+      "path": "locals.filters.physicalStores[15].name",
+      "name": "BKB -  19654 - CARREFOUR ANCHIETA"
+    },
+    {
+      "path": "locals.filters.physicalStores[16].name",
+      "name": "BKB -  19657 - CARREFOUR SANTO ANDRE"
+    },
+    {
+      "path": "locals.filters.physicalStores[17].name",
+      "name": "BKB -  19666 - SHOP VILA OLIMPIA"
+    },
+    {
+      "path": "locals.filters.physicalStores[18].name",
+      "name": "BKB -  20218 - EXTRA INTERLAGOS"
+    },
+    {
+      "path": "locals.filters.physicalStores[19].name",
+      "name": "BKB -  20226 - MAXXI ATACADO VILA GUILHERME"
+    },
+    {
+      "path": "locals.filters.physicalStores[20].name",
+      "name": "BKB -  20624 - ASSAI MOOCA"
+    },
+    {
+      "path": "locals.filters.physicalStores[21].name",
+      "name": "BKB -  21530 - FS SP - MARGINAL TIETE PTE ARICANDUVA"
+    },
+    {
+      "path": "locals.filters.physicalStores[22].name",
+      "name": "BKB -  21584 - ILR POSTO PORTAL DE GUARULHOS"
+    },
+    {
+      "path": "locals.filters.physicalStores[23].name",
+      "name": "BKB -  21786 - WALMART OSASCO"
+    },
+    {
+      "path": "locals.filters.physicalStores[24].name",
+      "name": "BKB -  22502 - SHOP WEST PLAZA II"
+    },
+    {
+      "path": "locals.filters.physicalStores[25].name",
+      "name": "BKB -  22516 - FS SANTO ANDRE - AV DOM PEDRO II 134"
+    },
+    {
+      "path": "locals.filters.physicalStores[26].name",
+      "name": "BKB -  22705 - FS GRU - AV DR TIMOTEO PENTEADO 3975"
+    },
+    {
+      "path": "locals.filters.physicalStores[27].name",
+      "name": "BKB -  22709 - FS SP - AV MARECHAL TITO 5915"
+    },
+    {
+      "path": "locals.filters.physicalStores[28].name",
+      "name": "BKB -  22913 - ILR SP - R BARAO DE ITAPETININGA 99"
+    },
+    {
+      "path": "locals.filters.physicalStores[29].name",
+      "name": "BKB -  23462 - CARREFOUR VILLA LOBOS"
+    },
+    {
+      "path": "locals.filters.physicalStores[30].name",
+      "name": "BKB -  23468 - FS SP - CAETANO ALVARES 3450"
+    },
+    {
+      "path": "locals.filters.physicalStores[31].name",
+      "name": "BKB -  23737 - FS SP - MARGINAL TIETE PTE DAS BANDEIRAS"
+    },
+    {
+      "path": "locals.filters.physicalStores[32].name",
+      "name": "BKB -  23740 - FS SP - AV MOREIRA GUIMARAES 700"
+    },
+    {
+      "path": "locals.filters.physicalStores[33].name",
+      "name": "BKB -  24357 - WALMART PACAEMBU"
+    },
+    {
+      "path": "locals.filters.physicalStores[34].name",
+      "name": "BKB -  24744 - FS SP - AV VICENTE RAO 1700"
+    },
+    {
+      "path": "locals.filters.physicalStores[35].name",
+      "name": "BKB -  24764 - FS SP - AV JUSCELINO KUBITSCHEK 1514"
+    },
+    {
+      "path": "locals.filters.physicalStores[36].name",
+      "name": "BKB -  25031 - FS SP - MARGINAL TIETE PARI"
+    },
+    {
+      "path": "locals.filters.physicalStores[37].name",
+      "name": "BKB -  25039 - ASSAI DUTRA"
+    },
+    {
+      "path": "locals.filters.physicalStores[38].name",
+      "name": "BKB -  25042 - HIPER BERGAMINI"
+    },
+    {
+      "path": "locals.filters.physicalStores[39].name",
+      "name": "BKB -  25043 - FS SP - VIA ANCHIETA 1954"
+    },
+    {
+      "path": "locals.filters.physicalStores[40].name",
+      "name": "BKB -  25437 - FS SP - AV WASHINGTON LUIS 1171"
+    },
+    {
+      "path": "locals.filters.physicalStores[41].name",
+      "name": "BKB -  25442 - ILR SP - RUA XV DE NOVEMBRO 26"
+    },
+    {
+      "path": "locals.filters.physicalStores[42].name",
+      "name": "BKB -  25454 - FS GRU - AV DR TIMOTEO PENTEADO 41"
+    },
+    {
+      "path": "locals.filters.physicalStores[43].name",
+      "name": "BKB -  25673 - ILR SBC - RUA MARECHAL DEODORO 1300"
+    },
+    {
+      "path": "locals.filters.physicalStores[44].name",
+      "name": "BKB -  26433 - FS SANTO ANDRE - AV PRESTES MAIA"
+    },
+    {
+      "path": "locals.filters.physicalStores[45].name",
+      "name": "BKB -  26797 - FS SP - AV PARADA PINTO 2576"
+    },
+    {
+      "path": "locals.filters.physicalStores[46].name",
+      "name": "BKB -  26811 - FS SP - AV RAGUEB CHOHFI 2022"
+    },
+    {
+      "path": "locals.filters.physicalStores[47].name",
+      "name": "BKB -  26853 - FS GRU - ESTR JUSCELINO KUBITSCHEK 2656"
+    },
+    {
+      "path": "locals.filters.physicalStores[48].name",
+      "name": "BKB -  27468 - FS SP - AV SALIM FARAH MALUF"
+    },
+    {
+      "path": "locals.filters.physicalStores[49].name",
+      "name": "BKB -  28208 - FS GRU - ROD PRES DUTRA"
+    },
+    {
+      "path": "locals.filters.physicalStores[50].name",
+      "name": "BKB -  28342 - FS SP   AV JACU PESSEGO 1495"
+    },
+    {
+      "path": "locals.filters.physicalStores[51].name",
+      "name": "BKB -  28345 - FS SP - PÇA PANAMERICANA"
+    },
+    {
+      "path": "locals.filters.physicalStores[52].name",
+      "name": "BKB -  28346 - FS OSASCO   AV DOS AUTONOMISTAS 2870"
+    },
+    {
+      "path": "locals.filters.physicalStores[53].name",
+      "name": "BKB -  28437 - FS SP   AV INTERLAGOS 3650"
+    },
+    {
+      "path": "locals.filters.physicalStores[54].name",
+      "name": "BKB -  31094 - FS SP - AV SAPOPEMBA, 11595"
+    },
+    {
+      "path": "locals.filters.physicalStores[55].name",
+      "name": "BKB -  31302 - FS- GUARULHOS ROD PRESIDENTE DUTRA SN KM 21,5"
+    },
+    {
+      "path": "locals.filters.physicalStores[56].name",
+      "name": "BKB -  32177 - FS SAO PAULO - AV NORDESTINA 3019"
+    },
+    {
+      "path": "locals.filters.physicalStores[57].name",
+      "name": "BKB -  32615 - FS OSASCO - AV PREF HIRANT SANAZAR 1400"
+    },
+    {
+      "path": "locals.filters.physicalStores[58].name",
+      "name": "BKB - 15173 - SHOP INTERLAGOS"
+    },
+    {
+      "path": "locals.filters.physicalStores[59].name",
+      "name": "BKB - 15494 - SHOP GRAND PLAZA"
+    },
+    {
+      "path": "locals.filters.physicalStores[60].name",
+      "name": "BKB - 15511 - BH SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[61].name",
+      "name": "BKB - 15512 - SHOP BARRA SALVADOR"
+    },
+    {
+      "path": "locals.filters.physicalStores[62].name",
+      "name": "BKB - 15639 - MORUMBI SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[63].name",
+      "name": "BKB - 15745 - MINAS SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[64].name",
+      "name": "BKB - 15859 - SHOP CENTRAL PLAZA"
+    },
+    {
+      "path": "locals.filters.physicalStores[65].name",
+      "name": "BKB - 15875 - SHOP MUELLER CURITIBA"
+    },
+    {
+      "path": "locals.filters.physicalStores[66].name",
+      "name": "BKB - 15883 - SHOP RECIFE"
+    },
+    {
+      "path": "locals.filters.physicalStores[67].name",
+      "name": "BKB - 15884 - SHOP MIDWAY MALL NATAL"
+    },
+    {
+      "path": "locals.filters.physicalStores[68].name",
+      "name": "BKB - 15885 - SHOP ELDORADO"
+    },
+    {
+      "path": "locals.filters.physicalStores[69].name",
+      "name": "BKB - 15893 - SHOP IGUATEMI PORTO ALEGRE"
+    },
+    {
+      "path": "locals.filters.physicalStores[70].name",
+      "name": "BKB - 15895 - SHOP FLAMBOYANT"
+    },
+    {
+      "path": "locals.filters.physicalStores[71].name",
+      "name": "BKB - 15903 - SHOP CURITIBA"
+    },
+    {
+      "path": "locals.filters.physicalStores[72].name",
+      "name": "BKB - 15904 - SHOP BOUGAINVILLE"
+    },
+    {
+      "path": "locals.filters.physicalStores[73].name",
+      "name": "BKB - 15905 - PARQUE DOM PEDRO SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[74].name",
+      "name": "BKB - 16025 - SHOP GUARARAPES"
+    },
+    {
+      "path": "locals.filters.physicalStores[75].name",
+      "name": "BKB - 16093 - SHOP IGUATEMI FORTALEZA"
+    },
+    {
+      "path": "locals.filters.physicalStores[76].name",
+      "name": "BKB - 16104 - SHOP MANAIRA"
+    },
+    {
+      "path": "locals.filters.physicalStores[77].name",
+      "name": "BKB - 16116 - FS SALVADOR - AV ACM"
+    },
+    {
+      "path": "locals.filters.physicalStores[78].name",
+      "name": "BKB - 16126 - FS ARACAJU - JARDINS DT"
+    },
+    {
+      "path": "locals.filters.physicalStores[79].name",
+      "name": "BKB - 16133 - SALVADOR SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[80].name",
+      "name": "BKB - 16177 - ITAU POWER SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[81].name",
+      "name": "BKB - 16261 - SHOP PLAZA SUL"
+    },
+    {
+      "path": "locals.filters.physicalStores[82].name",
+      "name": "BKB - 16431 - SHOP LA PLAGE"
+    },
+    {
+      "path": "locals.filters.physicalStores[83].name",
+      "name": "BKB - 16553 - BOURBON SHOP SP"
+    },
+    {
+      "path": "locals.filters.physicalStores[84].name",
+      "name": "BKB - 16613 - SHOP VITORIA"
+    },
+    {
+      "path": "locals.filters.physicalStores[85].name",
+      "name": "BKB - 16619 - SHOP PRAIA DE BELAS"
+    },
+    {
+      "path": "locals.filters.physicalStores[86].name",
+      "name": "BKB - 16626 - SHOP PALLADIUM CURITIBA"
+    },
+    {
+      "path": "locals.filters.physicalStores[87].name",
+      "name": "BKB - 16647 - FS CURITIBA - R BISPO DOM JOSE 2348"
+    },
+    {
+      "path": "locals.filters.physicalStores[88].name",
+      "name": "BKB - 16658 - SHOP PRAIA DA COSTA"
+    },
+    {
+      "path": "locals.filters.physicalStores[89].name",
+      "name": "BKB - 16659 - MARILIA SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[90].name",
+      "name": "BKB - 16666 - LITORAL PLAZA SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[91].name",
+      "name": "BKB - 16667 - FS SOROCABA - AV COMITRE"
+    },
+    {
+      "path": "locals.filters.physicalStores[92].name",
+      "name": "BKB - 16687 - SHOP PALLADIUM PONTA GROSSA"
+    },
+    {
+      "path": "locals.filters.physicalStores[93].name",
+      "name": "BKB - 16688 - BARRA SHOP RJ"
+    },
+    {
+      "path": "locals.filters.physicalStores[94].name",
+      "name": "BKB - 16692 - BURITI SHOP GOIANIA"
+    },
+    {
+      "path": "locals.filters.physicalStores[95].name",
+      "name": "BKB - 16693 - GOIANIA SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[96].name",
+      "name": "BKB - 16852 - SHOP SAO JOSE DOS PINHAIS"
+    },
+    {
+      "path": "locals.filters.physicalStores[97].name",
+      "name": "BKB - 16939 - CATUAI SHOP CENTER"
+    },
+    {
+      "path": "locals.filters.physicalStores[98].name",
+      "name": "BKB - 16987 - SHOP METROPOLE SBC"
+    },
+    {
+      "path": "locals.filters.physicalStores[99].name",
+      "name": "BKB - 16988 - SHOP ESTACAO"
+    },
+    {
+      "path": "locals.filters.physicalStores[100].name",
+      "name": "BKB - 17223 - CANOAS SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[101].name",
+      "name": "BKB - 17235 - SHOP PARALELA"
+    },
+    {
+      "path": "locals.filters.physicalStores[102].name",
+      "name": "BKB - 17251 - SHOP UNIAO OSASCO"
+    },
+    {
+      "path": "locals.filters.physicalStores[103].name",
+      "name": "BKB - 17257 - FS JUNDIAI - AV NOVE DE JULHO"
+    },
+    {
+      "path": "locals.filters.physicalStores[104].name",
+      "name": "BKB - 17261 - SHOP VALE SUL"
+    },
+    {
+      "path": "locals.filters.physicalStores[105].name",
+      "name": "BKB - 17401 - SHOP SAO GONCALO"
+    },
+    {
+      "path": "locals.filters.physicalStores[106].name",
+      "name": "BKB - 17407 - ILS NORTE SHOP RJ"
+    },
+    {
+      "path": "locals.filters.physicalStores[107].name",
+      "name": "BKB - 17498 - FS CAMPINAS - AV BRASIL 761"
+    },
+    {
+      "path": "locals.filters.physicalStores[108].name",
+      "name": "BKB - 17620 - SHOP TAMBORE"
+    },
+    {
+      "path": "locals.filters.physicalStores[109].name",
+      "name": "BKB - 17631 - SHOP BOULEVARD RIO"
+    },
+    {
+      "path": "locals.filters.physicalStores[110].name",
+      "name": "BKB - 17673 - SHOP TABOAO"
+    },
+    {
+      "path": "locals.filters.physicalStores[111].name",
+      "name": "BKB - 17706 - FS FORTALEZA - AV SANTOS DUMONT 1859"
+    },
+    {
+      "path": "locals.filters.physicalStores[112].name",
+      "name": "BKB - 17756 - SHOP AV CENTER MARINGA"
+    },
+    {
+      "path": "locals.filters.physicalStores[113].name",
+      "name": "BKB - 17764 - FS BARUERI - AV ALPHAVILLE"
+    },
+    {
+      "path": "locals.filters.physicalStores[114].name",
+      "name": "BKB - 17770 - CENTERVALE SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[115].name",
+      "name": "BKB - 17782 - SHOP BAURU"
+    },
+    {
+      "path": "locals.filters.physicalStores[116].name",
+      "name": "BKB - 17784 - FS GOIANIA - AV 136"
+    },
+    {
+      "path": "locals.filters.physicalStores[117].name",
+      "name": "BKB - 17785 - SHOP VIA SUL"
+    },
+    {
+      "path": "locals.filters.physicalStores[118].name",
+      "name": "BKB - 17792 - BOURBON SHOP NOVO HAMBURGO"
+    },
+    {
+      "path": "locals.filters.physicalStores[119].name",
+      "name": "BKB - 17925 - SALVADOR NORTE SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[120].name",
+      "name": "BKB - 17933 - CATUAI SHOP MARINGA"
+    },
+    {
+      "path": "locals.filters.physicalStores[121].name",
+      "name": "BKB - 17957 - BOULEVARD SHOP BH"
+    },
+    {
+      "path": "locals.filters.physicalStores[122].name",
+      "name": "BKB - 17969 - SHOP BANGU"
+    },
+    {
+      "path": "locals.filters.physicalStores[123].name",
+      "name": "BKB - 17974 - CAMPINAS SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[124].name",
+      "name": "BKB - 17975 - MAXI SHOP JUNDIAI"
+    },
+    {
+      "path": "locals.filters.physicalStores[125].name",
+      "name": "BKB - 18069 - ILS VIA BRASIL SHOP RJ"
+    },
+    {
+      "path": "locals.filters.physicalStores[126].name",
+      "name": "BKB - 18101 - FS RECIFE - CASA FORTE"
+    },
+    {
+      "path": "locals.filters.physicalStores[127].name",
+      "name": "BKB - 18269 - SHOP RAPOSO"
+    },
+    {
+      "path": "locals.filters.physicalStores[128].name",
+      "name": "BKB - 18288 - MACEIO SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[129].name",
+      "name": "BKB - 18316 - SHOP BOA VISTA SP"
+    },
+    {
+      "path": "locals.filters.physicalStores[130].name",
+      "name": "BKB - 18369 - SHOP MESTRE ALVARO"
+    },
+    {
+      "path": "locals.filters.physicalStores[131].name",
+      "name": "BKB - 18383 - SHOP SERRAMAR"
+    },
+    {
+      "path": "locals.filters.physicalStores[132].name",
+      "name": "BKB - 18408 - SHOP BELLA CITTA"
+    },
+    {
+      "path": "locals.filters.physicalStores[133].name",
+      "name": "BKB - 18412 - PANTANAL SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[134].name",
+      "name": "BKB - 18415 - SHOP CAMPO LIMPO"
+    },
+    {
+      "path": "locals.filters.physicalStores[135].name",
+      "name": "BKB - 18416 - WEST SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[136].name",
+      "name": "BKB - 18417 - ILS SHOP CENTER PENHA SP"
+    },
+    {
+      "path": "locals.filters.physicalStores[137].name",
+      "name": "BKB - 18419 - RECREIO SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[138].name",
+      "name": "BKB - 18420 - CENTER SHOP RIO"
+    },
+    {
+      "path": "locals.filters.physicalStores[139].name",
+      "name": "BKB - 18421 - PRUDEN SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[140].name",
+      "name": "BKB - 18422 - SHOP GRANJA VIANA"
+    },
+    {
+      "path": "locals.filters.physicalStores[141].name",
+      "name": "BKB - 18423 - SHOP PIRACICABA"
+    },
+    {
+      "path": "locals.filters.physicalStores[142].name",
+      "name": "BKB - 18441 - SHOP ROYAL PLAZA LONDRINA"
+    },
+    {
+      "path": "locals.filters.physicalStores[143].name",
+      "name": "BKB - 18443 - SHOP CENTER LAR"
+    },
+    {
+      "path": "locals.filters.physicalStores[144].name",
+      "name": "BKB - 18450 - BOURBON SHOP SAO LEOPOLDO"
+    },
+    {
+      "path": "locals.filters.physicalStores[145].name",
+      "name": "BKB - 18452 - SHOP SANTA URSULA"
+    },
+    {
+      "path": "locals.filters.physicalStores[146].name",
+      "name": "BKB - 18453 - SHOP ITAPEVI CENTER"
+    },
+    {
+      "path": "locals.filters.physicalStores[147].name",
+      "name": "BKB - 18458 - VIA SHOP BARREIRO"
+    },
+    {
+      "path": "locals.filters.physicalStores[148].name",
+      "name": "BKB - 18460 - SHOP SUL VALPARAISO"
+    },
+    {
+      "path": "locals.filters.physicalStores[149].name",
+      "name": "BKB - 18517 - ROAD SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[150].name",
+      "name": "BKB - 18544 - ILS PARQUE SHOP BARUERI"
+    },
+    {
+      "path": "locals.filters.physicalStores[151].name",
+      "name": "BKB - 18545 - SHOP BAY MARKET"
+    },
+    {
+      "path": "locals.filters.physicalStores[152].name",
+      "name": "BKB - 18546 - ILS FRANCA SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[153].name",
+      "name": "BKB - 18547 - TOP SHOP NOVA IGUACU"
+    },
+    {
+      "path": "locals.filters.physicalStores[154].name",
+      "name": "BKB - 18622 - SHOP ESTACAO BH"
+    },
+    {
+      "path": "locals.filters.physicalStores[155].name",
+      "name": "BKB - 18625 - BOURBON SHOP WALLIG"
+    },
+    {
+      "path": "locals.filters.physicalStores[156].name",
+      "name": "BKB - 18643 - GARDEN SHOP CATANDUVA"
+    },
+    {
+      "path": "locals.filters.physicalStores[157].name",
+      "name": "BKB - 18741 - ILS SHOP TIJUCA RJ"
+    },
+    {
+      "path": "locals.filters.physicalStores[158].name",
+      "name": "BKB - 18742 - SHOP PATIOMIX COSTA VERDE"
+    },
+    {
+      "path": "locals.filters.physicalStores[159].name",
+      "name": "BKB - 18749 - ILR RJ - VOLUNTARIOS DA PATRIA 59"
+    },
+    {
+      "path": "locals.filters.physicalStores[160].name",
+      "name": "BKB - 18751 - ILS JARDIM GUADALUPE SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[161].name",
+      "name": "BKB - 18770 - PARTAGE SHOP SAO GONCALO"
+    },
+    {
+      "path": "locals.filters.physicalStores[162].name",
+      "name": "BKB - 18771 - MADUREIRA SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[163].name",
+      "name": "BKB - 18784 - SHOP DIFUSORA CARUARU"
+    },
+    {
+      "path": "locals.filters.physicalStores[164].name",
+      "name": "BKB - 18785 - SHOP RIOMAR RECIFE"
+    },
+    {
+      "path": "locals.filters.physicalStores[165].name",
+      "name": "BKB - 18815 - RIBEIRAO SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[166].name",
+      "name": "BKB - 18816 - SHOP VIC SANTA BARBARA"
+    },
+    {
+      "path": "locals.filters.physicalStores[167].name",
+      "name": "BKB - 18817 - CARREFOUR GIOVANNI GRONCHI SP"
+    },
+    {
+      "path": "locals.filters.physicalStores[168].name",
+      "name": "BKB - 18818 - ILS RIOSUL SHOP RJ"
+    },
+    {
+      "path": "locals.filters.physicalStores[169].name",
+      "name": "BKB - 18822 - SHOP INTERLAR ARICANDUVA"
+    },
+    {
+      "path": "locals.filters.physicalStores[170].name",
+      "name": "BKB - 18823 - ILS SHOP METRO TATUAPE II"
+    },
+    {
+      "path": "locals.filters.physicalStores[171].name",
+      "name": "BKB - 18824 - CARREFOUR OSASCO"
+    },
+    {
+      "path": "locals.filters.physicalStores[172].name",
+      "name": "BKB - 18825 - JUNDIAI SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[173].name",
+      "name": "BKB - 18844 - ITAPETININGA SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[174].name",
+      "name": "BKB - 18847 - PARK SHOP CAMPO GRANDE"
+    },
+    {
+      "path": "locals.filters.physicalStores[175].name",
+      "name": "BKB - 18870 - FS RIB PRETO - AV PORTUGAL 810"
+    },
+    {
+      "path": "locals.filters.physicalStores[176].name",
+      "name": "BKB - 18874 - PREZUNIC CAXIAS"
+    },
+    {
+      "path": "locals.filters.physicalStores[177].name",
+      "name": "BKB - 18908 - CARIOCA SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[178].name",
+      "name": "BKB - 18909 - ILS SHOP PATIOMIX RESENDE"
+    },
+    {
+      "path": "locals.filters.physicalStores[179].name",
+      "name": "BKB - 18910 - ILR RJ - R OUVIDOR"
+    },
+    {
+      "path": "locals.filters.physicalStores[180].name",
+      "name": "BKB - 18911 - LONDRINA NORTE SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[181].name",
+      "name": "BKB - 18913 - ARAGUAIA SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[182].name",
+      "name": "BKB - 18942 - FS SP - AV JACU PESSEGO 8210"
+    },
+    {
+      "path": "locals.filters.physicalStores[183].name",
+      "name": "BKB - 19023 - CAXIAS SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[184].name",
+      "name": "BKB - 19024 - ILHA PLAZA SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[185].name",
+      "name": "BKB - 19025 - BOULEVARD SHOP VILA VELHA"
+    },
+    {
+      "path": "locals.filters.physicalStores[186].name",
+      "name": "BKB - 19027 - SHOP NACOES BAURU"
+    },
+    {
+      "path": "locals.filters.physicalStores[187].name",
+      "name": "BKB - 19028 - SHOP PARQUE DAS BANDEIRAS"
+    },
+    {
+      "path": "locals.filters.physicalStores[188].name",
+      "name": "BKB - 19074 - SHOP NOVA AMERICA"
+    },
+    {
+      "path": "locals.filters.physicalStores[189].name",
+      "name": "BKB - 19075 - VIA VALE GARDEN SHOP"
+    },
+    {
+      "path": "locals.filters.physicalStores[190].name",
+      "name": "BKB - 19102 - FS PIRACICABA - AV INDEPENDENCIA 2677"
+    },
+    {
+      "path": "locals.filters.physicalStores[191].name",
+      "name": "BKB - 19103 - SHOP CENTER RIO CLARO"
+    },
+    {
+      "path": "locals.filters.physicalStores[192].name",
+      "name": "BKB - 19104 - SHOP CENTER LIMEIRA"
+    },
+    {
+      "path": "locals.filters.physicalStores[193].name",
+      "name": "BKB - 19110 - SHOP DEL REY"
+    },
+    {
+      "path": "locals.filters.physicalStores[194].name",
+      "name": "BKB - 19134 - ILR ANAPOLIS - AV S FRAN DE ASSIS 181"
+    },
+    {
+      "path": "locals.filters.physicalStores[195].name",
+      "name": "BKB - 19143 - SHOP BURITI MOGI GUACU"
+    },
+    {
+      "path": "locals.filters.physicalStores[196].name",
+      "name": "BKB - 19172 - CARREFOUR DUTRA"
+    },
+    {
+      "path": "locals.filters.physicalStores[197].name",
+      "name": "BKB - 19173 - FS RIO CLARO - JARDIM CLARET"
+    },
+    {
+      "path": "locals.filters.physicalStores[198].name",
+      "name": "BKB - 19175 - BURITI SHOP"
+    }
+  ]
+}
