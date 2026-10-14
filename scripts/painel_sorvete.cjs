@@ -99,10 +99,17 @@ if (tirados.length) {
 // corrente ja acabou na pratica; em qualquer outra hora o ultimo dia completo
 // e' ontem. Sem isso a execucao das 23:59 ficaria sempre um dia atrasada.
 // Da' para forcar passando a data: painel_sorvete.cjs 2026-10-08
+// CORRECAO 14/10/2026: a serie deve ir SEMPRE ate o dia ANTERIOR ao
+// argumento (ou ao dia atual se nao passar argumento). Se passar
+// 2026-10-14, o ultimo dia da serie e' 13/10, nao 14/10. O dia passado
+// como argumento e' o "dia de referencia" (hoje), e a serie mostra o
+// historico completo ate ontem.
 const agora = new Date();
-const ate = (process.argv[2] && /^\d{4}-\d{2}-\d{2}$/.test(process.argv[2]))
+const ref = (process.argv[2] && /^\d{4}-\d{2}-\d{2}$/.test(process.argv[2]))
   ? new Date(process.argv[2] + 'T12:00:00')
-  : (agora.getHours() >= 23 ? agora : new Date(agora.getTime() - 86400000));
+  : agora;
+// Ultimo dia fechado = sempre o dia anterior ao de referencia.
+const ate = new Date(ref.getTime() - 86400000);
 
 // toISOString() converte para UTC e, num fuso negativo, devolve o dia anterior.
 // Monto a data a partir das partes LOCAIS.
