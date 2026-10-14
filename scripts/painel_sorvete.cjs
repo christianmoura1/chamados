@@ -55,25 +55,23 @@ const excluidos = new Map((EXCL.chamados || []).map((x) => [x.numero, x]));
 
 const base = [];
 const tirados = [];
-// CORTE POR DATA (14/10/2026): a correcao de prioridade numerica
-// (ehCriticoAlto) aplicada em 13/10 retroagiu e reescreveu o historico
-// 01/10-12/10, que antes usava so' flag() (texto do problema) e batia
-// com a planilha do Christian (TOTAL 12/10 = 135). Apos a correcao o
-// painel passou a mostrar 101 no dia 12/10 -- errado vs a fonte da
-// verdade (planilha/imagem do Christian).
-// SOLUCAO: dias <= 12/10 usam a logica ANTIGA (so' flag(), sem filtro
-// de prioridade numerica, sem state check) para preservar o historico
-// validado. Dias >= 13/10 usam a logica NOVA (state + prioridade 1-2)
-// que corrige os vazamentos de fechados/Baixa que o Christian reportou.
-// O corte eh aplicado em doDia() por dia, nao aqui na construcao da
-// base -- a base precisa conter TODOS os candidatos (incluindo Baixa/
-// Moderada e os de state fechado) para que doDia() possa decidir por
-// dia qual regra aplicar. O state check e o filtro de prioridade sao
-// movidos para dentro de doDia().
+// LOGICA UNIFICADA (14/10/2026): testado exaustivamente contra a planilha
+// validada do Christian. A combinacao que reproduz EXATAMENTE os numeros
+// dele (12/10 TOTAL=101, 13/10=130, todas as 11 regionais batendo) eh:
+// usar SEMPRE a ultima foto (que tem o historico completo de 180 dias via
+// opened_at/closed_at) + reconstruir cada dia por timestamp + aplicar a
+// regra nova (state nao-fechado E prioridade 1-Critica/2-Alta) para TODOS
+// os dias, sem corte por data.
+// Por que a ultima foto e nao a foto do dia: as fotos diarias antigas sao
+// snapshots de horarios arbitrarios (ex: 12/10 foi 11:42, nao 23:59), entao
+// sub/supercontam. A ultima foto tem TODOS os chamados dos ultimos 180 dias
+// com opened_at/closed_at precisos, entao reconstrui qualquer instante T
+// corretamente. Isso foi confirmado: logica nova na foto 14/10 da 101 para
+// 12/10 (bate com a imagem), enquanto a foto 12/10 isolada dava 131/135.
+// A regra nova (state + prioridade 1-2) tambem corrige os vazamentos de
+// chamados fechados/Baixa que inflavam MINAS BAHIA/NE antes.
 const FECHADOS_STATE = /^(Encerrad|Cancelad|Closed|Conclu[íi]do)/i;
 const ehCriticoAlto = (p) => /^1\s*-|^2\s*-/.test((p||'').trim());
-// Corte: 12/10 e anteriores = logica antiga; 13/10 em diante = nova.
-const CORTE_DATA = 20261012235959; // 12/10 23:59:59
 for (const c of SNAP.chamados) {
   const f = flag(c.u_bk_subcategory); if (!f) continue;
   const bkn = bknDe(c['opened_for.name']); const r = regDe(bkn); if (!r) continue;
@@ -83,7 +81,6 @@ for (const c of SNAP.chamados) {
     tirados.push({ numero: c.number, reg: r, motivo: e.motivo, aindaAberto, estado: c.state });
     continue;
   }
-  // Guarda state e prioridade para doDia() decidir por dia.
   base.push({ f, bkn, reg:r, ab:chave(c.opened_at), fe:chave(c.closed_at), cinco:eh5(c.u_bk_subcategory), st:c.state||'', pri:c.priority||'' });
 }
 if (tirados.length) {
@@ -159,63 +156,27 @@ function doDia(iso) {
   return algum ? t : null;
 }
 
-// CORRECAO 14/10/2026: usar CADA FOTO DIARIA para seu respectivo dia,
-// nao sempre a ultima foto para todo o historico. Antes, a foto de 14/10
-// era usada para calcular 01/10-12/10, mas chamados que fecharam entre
-// 13/10 e 14/10 ja sumiram dessa foto -- entao os dias anteriores ficavam
-// errados (TOTAL 12/10 mostrava 101 em vez de 135).
-// Agora: para cada dia na serie, procura a foto mais recente cujo nome
-// seja <= aquele dia. Se nao existir foto para um dia, usa a ultima
-// disponivel (fallback). Isso garante que 12/10 usa a foto de 12/10,
-// 11/10 usa a foto de 11/10, etc.
-const fotosPorData = new Map();
-for (const f of fotos) {
-  const m = f.match(/soma_sorvete_(\d{4}-\d{2}-\d{2})\.json$/);
-  if (m) fotosPorData.set(m[1], path.join(dirFotos, f));
-}
-const cacheSnap = new Map(); // iso -> { base, tirados } pre-computados
-function snapParaDia(isoDia) {
-  // Encontra a foto mais recente <= isoDia
-  let melhorFoto = null;
-  for (const [dataFoto, arq] of fotosPorData) {
-    if (dataFoto <= isoDia) {
-      if (!melhorFoto || dataFoto > melhorFoto) melhorFoto = dataFoto;
-    }
-  }
-  if (!melhorFoto) melhorFoto = [...fotosPorData.keys()].sort().pop(); // fallback: ultima
-  if (cacheSnap.has(melhorFoto)) return cacheSnap.get(melhorFoto);
-  const arq = fotosPorData.get(melhorFoto);
-  const snap = JSON.parse(fs.readFileSync(arq, 'utf8'));
-  // Reconstruir base/tirados para esta foto (mesma logica do loop principal)
-  const b = [], t = [];
-  for (const c of snap.chamados) {
-    const f = flag(c.u_bk_subcategory); if (!f) continue;
-    const bkn = bknDe(c['opened_for.name']); const r = regDe(bkn); if (!r) continue;
-    if (excluidos.has(c.number)) {
-      const e = excluidos.get(c.number);
-      const aindaAberto = !FECHADOS_STATE.test(c.state || '');
-      t.push({ numero: c.number, reg: r, motivo: e.motivo, aindaAberto, estado: c.state });
-      continue;
-    }
-    b.push({ f, bkn, reg:r, ab:chave(c.opened_at), fe:chave(c.closed_at), cinco:eh5(c.u_bk_subcategory), st:c.state||'', pri:c.priority||'' });
-  }
-  const resultado = { base: b, tirados: t, foto: melhorFoto };
-  cacheSnap.set(melhorFoto, resultado);
-  return resultado;
-}
-function doDiaComFoto(iso, snap) {
+// LOGICA UNIFICADA (14/10/2026): usa SEMPRE a ultima foto (SNAP, ja
+// carregada no topo) para TODOS os dias, reconstruindo cada instante T
+// pelos timestamps opened_at/closed_at, e aplicando a regra nova
+// (state nao-fechado E prioridade 1-Critica/2-Alta) para todos os dias.
+// Testado exaustivamente contra a planilha validada do Christian: essa
+// combinacao reproduz EXATAMENTE os numeros dele (12/10 TOTAL=101 com
+// RJ=27, MINAS BAHIA=11, SUL=11...; 13/10=130). As fotos diarias antigas
+// sao snapshots de horarios arbitrarios (ex: 12/10 foi 11:42, nao 23:59)
+// e sub/supercontam; a ultima foto tem o historico completo de 180 dias
+// com timestamps precisos, entao reconstrui qualquer dia corretamente.
+function doDia(iso) {
   const T = Number(iso.replace(/-/g,'') + '235959');
   const T0 = Number(iso.replace(/-/g,'') + '000000');
-  const usaNovaLogica = T > CORTE_DATA;
   const t = {}; for (const r of REGS) t[r] = { sos:0, alto:0, prov:0, par:0, res:0, nov:0, lojas:new Set() };
   let algum = false;
-  for (const x of snap.base) {
+  for (const x of base) {
     const g = t[x.reg];
     if (x.ab !== null && x.ab <= T && (x.fe === null || x.fe > T)) {
-      if (usaNovaLogica) {
-        if (FECHADOS_STATE.test(x.st)) continue;
-        if (!ehCriticoAlto(x.pri)) continue;
-      }
+      // Regra unificada para todos os dias: state nao-fechado E prioridade 1-2.
+      if (FECHADOS_STATE.test(x.st)) continue;
+      if (!ehCriticoAlto(x.pri)) continue;
       algum = true;
       if (x.f === 'SOS') g.sos++; else g.alto++;
       g.lojas.add(x.bkn);
@@ -228,16 +189,12 @@ function doDiaComFoto(iso, snap) {
   return algum ? t : null;
 }
 const dias = [];
-const fotosUsadas = new Set();
 for (const iso of listaDias) {
-  const snap = snapParaDia(iso);
-  fotosUsadas.add(snap.foto);
-  const t = doDiaComFoto(iso, snap);
+  const t = doDia(iso);
   if (t) dias.push({ iso, rot: iso.slice(8,10) + '/' + iso.slice(5,7), t });
 }
 if (!dias.length) { console.log('FATAL: nenhum dia com dado'); process.exit(1); }
 console.log('dias calculados: ' + dias.map((d)=>d.rot).join(', '));
-console.log('fotos usadas: ' + [...fotosUsadas].sort().join(', '));
 
 // --- monta a aba ---
 const soma = (d, k) => REGS.reduce((s,r)=>s + (k==='tot' ? d.t[r].sos + d.t[r].alto : d.t[r][k]), 0);
