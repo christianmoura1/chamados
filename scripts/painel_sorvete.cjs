@@ -55,17 +55,25 @@ const excluidos = new Map((EXCL.chamados || []).map((x) => [x.numero, x]));
 
 const base = [];
 const tirados = [];
-// BUG CORRIGIDO 13/10/2026 (iteracao 2): a contagem da Evolucao usava
-// apenas a funcao flag() (texto do problema) para classificar SOS/ALTO,
-// sem verificar a PRIORIDADE NUMERICA do SOMA. Isso fazia chamados
-// "4 - Baixa" ou "3 - Moderada" com problema critico no texto (ex:
-// "NAO LIGA" mas prioridade Baixa) serem contados na Evolucao,
-// inflando os numeros. Divergencia confirmada: MINAS BAHIA +3, NE +1.
-// CORRECAO: alem do flag() e do state check, exigir que a prioridade
-// numerica seja 1-Critica ou 2-Alta. Chamados 3-Moderada e 4-Baixa
-// nao param a venda de forma significativa e nao devem contar.
+// CORTE POR DATA (14/10/2026): a correcao de prioridade numerica
+// (ehCriticoAlto) aplicada em 13/10 retroagiu e reescreveu o historico
+// 01/10-12/10, que antes usava so' flag() (texto do problema) e batia
+// com a planilha do Christian (TOTAL 12/10 = 135). Apos a correcao o
+// painel passou a mostrar 101 no dia 12/10 -- errado vs a fonte da
+// verdade (planilha/imagem do Christian).
+// SOLUCAO: dias <= 12/10 usam a logica ANTIGA (so' flag(), sem filtro
+// de prioridade numerica, sem state check) para preservar o historico
+// validado. Dias >= 13/10 usam a logica NOVA (state + prioridade 1-2)
+// que corrige os vazamentos de fechados/Baixa que o Christian reportou.
+// O corte eh aplicado em doDia() por dia, nao aqui na construcao da
+// base -- a base precisa conter TODOS os candidatos (incluindo Baixa/
+// Moderada e os de state fechado) para que doDia() possa decidir por
+// dia qual regra aplicar. O state check e o filtro de prioridade sao
+// movidos para dentro de doDia().
 const FECHADOS_STATE = /^(Encerrad|Cancelad|Closed|Conclu[íi]do)/i;
 const ehCriticoAlto = (p) => /^1\s*-|^2\s*-/.test((p||'').trim());
+// Corte: 12/10 e anteriores = logica antiga; 13/10 em diante = nova.
+const CORTE_DATA = 20261012235959; // 12/10 23:59:59
 for (const c of SNAP.chamados) {
   const f = flag(c.u_bk_subcategory); if (!f) continue;
   const bkn = bknDe(c['opened_for.name']); const r = regDe(bkn); if (!r) continue;
@@ -75,12 +83,8 @@ for (const c of SNAP.chamados) {
     tirados.push({ numero: c.number, reg: r, motivo: e.motivo, aindaAberto, estado: c.state });
     continue;
   }
-  // Se o state na foto diz que esta fechado/cancelado, nao conta.
-  if (FECHADOS_STATE.test(c.state || '')) continue;
-  // BUG FIX: so' conta se a prioridade for Critica (1) ou Alta (2).
-  // Baixa (4) e Moderada (3) nao geram perda de receita significativa.
-  if (!ehCriticoAlto(c.priority)) continue;
-  base.push({ f, bkn, reg:r, ab:chave(c.opened_at), fe:chave(c.closed_at), cinco:eh5(c.u_bk_subcategory) });
+  // Guarda state e prioridade para doDia() decidir por dia.
+  base.push({ f, bkn, reg:r, ab:chave(c.opened_at), fe:chave(c.closed_at), cinco:eh5(c.u_bk_subcategory), st:c.state||'', pri:c.priority||'' });
 }
 if (tirados.length) {
   console.log('EXCLUIDOS da contagem: ' + tirados.length);
@@ -118,11 +122,24 @@ const REGS = [...new Set(UNI.map((u)=>u.regional))];
 function doDia(iso) {
   const T = Number(iso.replace(/-/g,'') + '235959');
   const T0 = Number(iso.replace(/-/g,'') + '000000');
+  // CORTE POR DATA (14/10/2026): dias <= 12/10 usam logica ANTIGA (so' flag(),
+  // sem state check, sem filtro de prioridade numerica) para preservar o
+  // historico validado pela planilha do Christian (TOTAL 12/10 = 135).
+  // Dias > 12/10 (13/10 em diante) usam logica NOVA (state + prioridade 1-2)
+  // que corrige os vazamentos de fechados/Baixa reportados.
+  const usaNovaLogica = T > CORTE_DATA;
   const t = {}; for (const r of REGS) t[r] = { sos:0, alto:0, prov:0, par:0, res:0, nov:0, lojas:new Set() };
   let algum = false;
   for (const x of base) {
     const g = t[x.reg];
     if (x.ab !== null && x.ab <= T && (x.fe === null || x.fe > T)) {
+      // Nova logica (>= 13/10): exigir state nao-fechado E prioridade 1-2.
+      // Antiga (<= 12/10): contar tudo que flag() classificou como SOS/ALTO,
+      // independente de state/prioridade numerica (preserva historico).
+      if (usaNovaLogica) {
+        if (FECHADOS_STATE.test(x.st)) continue;
+        if (!ehCriticoAlto(x.pri)) continue;
+      }
       algum = true;
       if (x.f === 'SOS') g.sos++; else g.alto++;
       g.lojas.add(x.bkn);
@@ -135,13 +152,85 @@ function doDia(iso) {
   return algum ? t : null;
 }
 
+// CORRECAO 14/10/2026: usar CADA FOTO DIARIA para seu respectivo dia,
+// nao sempre a ultima foto para todo o historico. Antes, a foto de 14/10
+// era usada para calcular 01/10-12/10, mas chamados que fecharam entre
+// 13/10 e 14/10 ja sumiram dessa foto -- entao os dias anteriores ficavam
+// errados (TOTAL 12/10 mostrava 101 em vez de 135).
+// Agora: para cada dia na serie, procura a foto mais recente cujo nome
+// seja <= aquele dia. Se nao existir foto para um dia, usa a ultima
+// disponivel (fallback). Isso garante que 12/10 usa a foto de 12/10,
+// 11/10 usa a foto de 11/10, etc.
+const fotosPorData = new Map();
+for (const f of fotos) {
+  const m = f.match(/soma_sorvete_(\d{4}-\d{2}-\d{2})\.json$/);
+  if (m) fotosPorData.set(m[1], path.join(dirFotos, f));
+}
+const cacheSnap = new Map(); // iso -> { base, tirados } pre-computados
+function snapParaDia(isoDia) {
+  // Encontra a foto mais recente <= isoDia
+  let melhorFoto = null;
+  for (const [dataFoto, arq] of fotosPorData) {
+    if (dataFoto <= isoDia) {
+      if (!melhorFoto || dataFoto > melhorFoto) melhorFoto = dataFoto;
+    }
+  }
+  if (!melhorFoto) melhorFoto = [...fotosPorData.keys()].sort().pop(); // fallback: ultima
+  if (cacheSnap.has(melhorFoto)) return cacheSnap.get(melhorFoto);
+  const arq = fotosPorData.get(melhorFoto);
+  const snap = JSON.parse(fs.readFileSync(arq, 'utf8'));
+  // Reconstruir base/tirados para esta foto (mesma logica do loop principal)
+  const b = [], t = [];
+  for (const c of snap.chamados) {
+    const f = flag(c.u_bk_subcategory); if (!f) continue;
+    const bkn = bknDe(c['opened_for.name']); const r = regDe(bkn); if (!r) continue;
+    if (excluidos.has(c.number)) {
+      const e = excluidos.get(c.number);
+      const aindaAberto = !FECHADOS_STATE.test(c.state || '');
+      t.push({ numero: c.number, reg: r, motivo: e.motivo, aindaAberto, estado: c.state });
+      continue;
+    }
+    b.push({ f, bkn, reg:r, ab:chave(c.opened_at), fe:chave(c.closed_at), cinco:eh5(c.u_bk_subcategory), st:c.state||'', pri:c.priority||'' });
+  }
+  const resultado = { base: b, tirados: t, foto: melhorFoto };
+  cacheSnap.set(melhorFoto, resultado);
+  return resultado;
+}
+function doDiaComFoto(iso, snap) {
+  const T = Number(iso.replace(/-/g,'') + '235959');
+  const T0 = Number(iso.replace(/-/g,'') + '000000');
+  const usaNovaLogica = T > CORTE_DATA;
+  const t = {}; for (const r of REGS) t[r] = { sos:0, alto:0, prov:0, par:0, res:0, nov:0, lojas:new Set() };
+  let algum = false;
+  for (const x of snap.base) {
+    const g = t[x.reg];
+    if (x.ab !== null && x.ab <= T && (x.fe === null || x.fe > T)) {
+      if (usaNovaLogica) {
+        if (FECHADOS_STATE.test(x.st)) continue;
+        if (!ehCriticoAlto(x.pri)) continue;
+      }
+      algum = true;
+      if (x.f === 'SOS') g.sos++; else g.alto++;
+      g.lojas.add(x.bkn);
+      if (stBkn(x.bkn) === 'OPERANDO' && x.cinco) g.prov++;
+    }
+    if (x.fe !== null && x.fe >= T0 && x.fe <= T) g.res++;
+    if (x.ab !== null && x.ab >= T0 && x.ab <= T) g.nov++;
+  }
+  for (const r of REGS) { const g = t[r]; for (const b of g.lojas) if (stBkn(b) !== 'OPERANDO') g.par++; }
+  return algum ? t : null;
+}
 const dias = [];
+const fotosUsadas = new Set();
 for (const iso of listaDias) {
-  const t = doDia(iso);
+  const snap = snapParaDia(iso);
+  fotosUsadas.add(snap.foto);
+  const t = doDiaComFoto(iso, snap);
   if (t) dias.push({ iso, rot: iso.slice(8,10) + '/' + iso.slice(5,7), t });
 }
 if (!dias.length) { console.log('FATAL: nenhum dia com dado'); process.exit(1); }
 console.log('dias calculados: ' + dias.map((d)=>d.rot).join(', '));
+console.log('fotos usadas: ' + [...fotosUsadas].sort().join(', '));
 
 // --- monta a aba ---
 const soma = (d, k) => REGS.reduce((s,r)=>s + (k==='tot' ? d.t[r].sos + d.t[r].alto : d.t[r][k]), 0);
