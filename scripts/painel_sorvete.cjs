@@ -123,7 +123,12 @@ const HISTORICO_FIXO = {
   '2026-10-10': { RJ:51, 'MINAS BAHIA':31, 'SP SUL':17, SUL:18, 'CENTRO OESTE':16, NE:12, 'BK É FOGO LESTE':6, 'SP INTERIOR SUL':7, 'SP INTERIOR NORTE':4, 'BK É FOGO NORTE':12, 'BK É FOGO CENTRO LITORAL':0 },
   '2026-10-11': { RJ:41, 'MINAS BAHIA':26, 'SP SUL':13, SUL:14, 'CENTRO OESTE':12, NE:10, 'BK É FOGO LESTE':7, 'SP INTERIOR SUL':7, 'SP INTERIOR NORTE':4, 'BK É FOGO NORTE':4, 'BK É FOGO CENTRO LITORAL':0 },
   '2026-10-12': { RJ:38, 'MINAS BAHIA':24, 'SP SUL':14, SUL:14, 'CENTRO OESTE':12, NE:10, 'BK É FOGO LESTE':7, 'SP INTERIOR SUL':7, 'SP INTERIOR NORTE':5, 'BK É FOGO NORTE':4, 'BK É FOGO CENTRO LITORAL':0 },
+  '2026-10-13': { RJ:34, 'CENTRO OESTE':15, NE:10, 'BK É FOGO LESTE':9, SUL:9, 'MINAS BAHIA':8, 'SP SUL':7, 'SP INTERIOR NORTE':6, 'SP INTERIOR SUL':5, 'BK É FOGO NORTE':2, 'BK É FOGO CENTRO LITORAL':1 },
 };
+// Dia 13/10 corrigido conforme segunda imagem do Christian (TOTAL=106):
+// RJ=34, CENTRO OESTE=15, NE=10, BK FOGO LESTE=9, SUL=9, MINAS BAHIA=8,
+// SP SUL=7, SP INT NORTE=6, SP INT SUL=5, BK FOGO NORTE=2, BK FOGO CL=1
+// Soma: 34+15+10+9+9+8+7+6+5+2+1 = 106. OK.
 
 // Lista de dias da serie (do dia 1 do mes ate ontem)
 const listaDias = [];
@@ -138,11 +143,11 @@ const emptyTab = () => {
   return t;
 };
 
-// Calcula apenas o dia 13 (ontem) com logica nova (state + prioridade 1-2)
-// Usando a ultima foto disponivel e janela 12/10 23:40 a 13/10 23:49
-function calcDia13() {
-  const T_INI = 20261012234000; // 12/10 23:40
-  const T_FIM = 20261013234900; // 13/10 23:49
+// Calcula o dia mais recente (14/10) com logica nova (state + prioridade 1-2)
+// Usando a ultima foto disponivel e janela 13/10 23:40 a 14/10 23:49
+function calcDiaRecente() {
+  const T_INI = 20261013234000; // 13/10 23:40
+  const T_FIM = 20261014234900; // 14/10 23:49
   const t = emptyTab();
   let algum = false;
 
@@ -174,23 +179,17 @@ const dias = [];
 for (const isoDia of listaDias) {
   let tab;
   if (HISTORICO_FIXO[isoDia]) {
-    // Usa valores hardcodados para dias historicos
+    // Usa valores hardcodados para dias historicos (01-13/10)
     tab = emptyTab();
     const vals = HISTORICO_FIXO[isoDia];
     for (const [reg, val] of Object.entries(vals)) {
       if (tab[reg]) {
-        // Distribui proporcionalmente entre SOS e ALTO baseado na proporcao geral
-        // Como nao temos detalhe SOS/ALTO no historico fixo, assumimos tudo como ALTO
-        // exceto se houver indicacao contraria. Para simplificar e manter consistencia,
-        // colocamos tudo em 'alto' ja que o total bate.
         tab[reg].alto = val;
       }
     }
-    // Preenche outros campos com 0 ou estimativas conservadoras
-    // Nota: res/nov/par/prov nao estao no historico fixo, deixamos 0
-  } else if (isoDia === '2026-10-13') {
-    // Calcula dia 13 com logica nova
-    tab = calcDia13();
+  } else if (isoDia === '2026-10-14') {
+    // Calcula dia 14 com logica nova (janela 13/10 23:40 -> 14/10 23:49)
+    tab = calcDiaRecente();
   } else {
     // Dias futuros ou sem dados: pula
     continue;
@@ -203,8 +202,8 @@ for (const isoDia of listaDias) {
 
 if (!dias.length) { console.log('FATAL: nenhum dia com dado'); process.exit(1); }
 console.log('dias calculados: ' + dias.map((d)=>d.rot).join(', '));
-console.log('historico fixo aplicado para: 01/10 a 12/10');
-console.log('dia 13 calculado com logica nova (state+prioridade 1-2)');
+console.log('historico fixo aplicado para: 01/10 a 13/10');
+console.log('dia 14 calculado com logica nova (state+prioridade 1-2, janela 13/10 23:40->14/10 23:49)');
 
 // --- monta a aba ---
 const soma = (d, k) => REGS.reduce((s,r)=>s + (k==='tot' ? d.t[r].sos + d.t[r].alto : d.t[r][k]), 0);
