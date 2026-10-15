@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-15T17:40:14.934Z",
+ "atualizadoEm": "2026-10-15T18:40:16.931Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 17,
+  "emExecucao": 18,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 3,
-  "total": 17
+  "aguardandoToken": 5,
+  "total": 18
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-15",
-   "abertos": 12,
-   "fechados": 6
+   "abertos": 13,
+   "fechados": 7
   }
  ],
  "itens": [
+  {
+   "numero": "WO0069598",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "21791 - SHOP CIDADE CURITIBA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "15/10/2026 15:19:43",
+   "fechamento": "",
+   "principal": "BK036113 - BROILER",
+   "secundario": "BRO - VAZAMENTO DE GÁS",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK036113 - BROILER | BRO - VAZAMENTO DE GÁS",
+   "tarefas": [
+    "WOT0070161"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0069444",
    "marca": "BKB",
@@ -55,8 +78,8 @@
    "regional": "SUL",
    "setor": "CAPITAL SUL RS",
    "loja": "16619 - SHOP PRAIA DE BELAS",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
+   "status": "Trabalho em andamento",
+   "fase": "Requisição Completa - Aguardando Token",
    "abertura": "15/10/2026 10:49:51",
    "fechamento": "",
    "principal": "BK072058 - FRITADEIRA; PITCO; SSHLV14; G18LB059328",
@@ -67,8 +90,8 @@
    "tarefas": [
     "WOT0069990"
    ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
+   "aguardandoToken": 1,
+   "fechadoSemToken": "15/10/2026 15:12:32",
    "contato": "",
    "grupo": "execucao"
   },
@@ -78,8 +101,8 @@
    "regional": "SUL",
    "setor": "CAPITAL SUL RS",
    "loja": "16619 - SHOP PRAIA DE BELAS",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
+   "status": "Trabalho em andamento",
+   "fase": "Requisição Completa - Aguardando Token",
    "abertura": "15/10/2026 10:47:14",
    "fechamento": "",
    "principal": "BROILER",
@@ -90,8 +113,8 @@
    "tarefas": [
     "WOT0069988"
    ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
+   "aguardandoToken": 1,
+   "fechadoSemToken": "15/10/2026 15:14:21",
    "contato": "Tentativa de contato: 15/10/2026 10:47:43;\n",
    "grupo": "execucao"
   },
