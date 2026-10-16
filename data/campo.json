@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-16T17:00:31.670Z",
+ "atualizadoEm": "2026-10-16T17:40:19.693Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 12,
+  "emExecucao": 13,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 12
+  "total": 13
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-16",
-   "abertos": 3,
-   "fechados": 4
+   "abertos": 4,
+   "fechados": 6
   }
  ],
  "itens": [
+  {
+   "numero": "WO0070095",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "17223 - CANOAS SHOP",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "16/10/2026 14:36:34",
+   "fechamento": "",
+   "principal": "BK049202 - BROILER",
+   "secundario": "BRO - PRINCÍPIO DE INCÊNDIO",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK049202 - BROILER | BRO - PRINCÍPIO DE INCÊNDIO",
+   "tarefas": [
+    "WOT0070662"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0070034",
    "marca": "BKB",
@@ -78,7 +101,7 @@
    "regional": "SUL",
    "setor": "GRANDE CURITIBA",
    "loja": "26828 - FS CURITIBA - FRANCISCO FRISHMANN 3151",
-   "status": "Pronto para Expedição",
+   "status": "Atribuído",
    "fase": "Iniciado",
    "abertura": "16/10/2026 06:08:59",
    "fechamento": "",
