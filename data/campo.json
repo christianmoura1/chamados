@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-16T18:40:19.540Z",
+ "atualizadoEm": "2026-10-16T19:40:19.421Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 11,
+  "emExecucao": 14,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 11
+  "total": 14
  },
  "serie": [
   {
@@ -21,11 +21,80 @@
   },
   {
    "data": "2026-10-16",
-   "abertos": 4,
-   "fechados": 8
+   "abertos": 7,
+   "fechados": 9
   }
  ],
  "itens": [
+  {
+   "numero": "WO0070163",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "16619 - SHOP PRAIA DE BELAS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "16/10/2026 16:31:00",
+   "fechamento": "",
+   "principal": "BK072057 - COIFA LAVADORA; MELTING",
+   "secundario": "COI - COIFA NÃO FUNCIONA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK072057 - COIFA LAVADORA; MELTING | COI - COIFA NÃO FUNCIONA",
+   "tarefas": [
+    "WOT0070732"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0070151",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "18625 - BOURBON SHOP WALLIG",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "16/10/2026 16:14:29",
+   "fechamento": "",
+   "principal": "MICROONDAS",
+   "secundario": "MCR - LOJA SEM NENHUM MICROONDAS FUNCIONANDO",
+   "sigla": "MCR",
+   "tecnico": "",
+   "descricao": "MICROONDAS | MCR - LOJA SEM NENHUM MICROONDAS FUNCIONANDO",
+   "tarefas": [
+    "WOT0070720"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0070148",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "23725 - SHOP PRACA NOVA SANTA MARIA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "16/10/2026 16:08:18",
+   "fechamento": "",
+   "principal": "BK055603 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
+   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMR",
+   "tecnico": "",
+   "descricao": "BK055603 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0070718"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0070095",
    "marca": "BKB",
