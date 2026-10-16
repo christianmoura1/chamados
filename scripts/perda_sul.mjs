@@ -107,6 +107,40 @@ try {
   };
   const soData = (s) => { const m = String(s || '').match(/^(\d{2})\/(\d{2})\/(\d{4})/); return m ? m[3] + '-' + m[2] + '-' + m[1] : ''; };
 
+  // ---- supervisor por SETOR, lido do dados.json do Backlog ----
+  //
+  // O painel (perda.html) espera o campo `supervisor` pronto em cada chamado:
+  // sem ele cai no rotulo "SEM SUPERVISOR" e o farol vira um card so. Essa
+  // etapa nunca existiu aqui -- o enriquecimento vivia no pipeline completo da
+  // perdadereceita, que ficou sem tarefa agendada em 11/10/2026.
+  //
+  // Cruzo por SETOR, nao por nome de loja: o dados.json ja declara os setores
+  // de cada supervisor e o chamado ja traz o setor. Medido em 16/10/2026:
+  // casa 162 de 165. Os 3 restantes vem do SOMA sem setor preenchido.
+  // O metodo antigo (casar nome de loja normalizado) acertava ~76%.
+  const DADOS_BACKLOG = DESTINO.replace(/chamados-abertos-perda\.json$/, 'dados.json');
+  const normSetor = (x) => String(x || '').toUpperCase().replace(/\s+/g, ' ').trim();
+  const mapaSup = {};
+  try {
+    const bl = JSON.parse(fs.readFileSync(DADOS_BACKLOG, 'utf8'));
+    for (const sup of (bl.supervisores || [])) {
+      for (const st of (sup.setores || [])) {
+        const k = normSetor(st);
+        // GRANDE CURITIBA esta cadastrado em DOIS supervisores (Gustavo e
+        // Carlos Magno). O Christian confirmou em 16/10/2026 que e do Carlos
+        // Magno. Fixo aqui para nao depender da ordem do array, que hoje
+        // acerta por acidente -- vence quem vier por ultimo.
+        if (k === 'GRANDE CURITIBA') { mapaSup[k] = 'CARLOS MAGNO'; continue; }
+        if (!mapaSup[k]) mapaSup[k] = sup.nome;
+      }
+    }
+    log('mapa de supervisor: ' + Object.keys(mapaSup).length + ' setor(es) de '
+      + (bl.supervisores || []).length + ' supervisor(es)');
+  } catch (e) {
+    log('ATENCAO: nao li o dados.json do Backlog (' + String(e.message).slice(0, 60)
+      + ') -- os chamados vao SEM supervisor e o farol fica num card so');
+  }
+
   const itens = corretivos.map((c) => {
     const f = classifica(c);
     const bi = perdaBI[c.number];
@@ -116,6 +150,7 @@ try {
       loja: (c['opened_for.name'] || '').replace(/^\s*\d{4,6}\s*-?\s*/, '').trim(),
       bkn: ((c['opened_for.name'] || '').match(/(\d{4,6})/) || [])[1] || '',
       setor: c['opened_for.u_bk_sector'] || '',
+      supervisor: mapaSup[normSetor(c['opened_for.u_bk_sector'])] || '',
       equipamento: f.equipamento,
       problema: f.problema,
       familia: f.familia,
@@ -138,6 +173,9 @@ try {
   for (const i of itens) porFam[i.familia] = (porFam[i.familia] || 0) + 1;
   log('familias: ' + JSON.stringify(porFam));
   log('criticos (param a venda): ' + itens.filter((i) => i.critica).length);
+  const comSup = itens.filter((i) => i.supervisor).length;
+  log('com supervisor: ' + comSup + ' de ' + itens.length
+    + (comSup < itens.length ? '  (sem setor na origem: ' + (itens.length - comSup) + ')' : ''));
   log('com perda medida pelo BI: ' + itens.filter((i) => i.perda != null).length
     + '  somando R$ ' + itens.reduce((a, i) => a + (i.perda || 0), 0).toFixed(2));
 
