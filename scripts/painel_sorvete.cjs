@@ -124,13 +124,14 @@ const HISTORICO_FIXO = {
   '2026-10-11': { RJ:41, 'MINAS BAHIA':26, 'SP SUL':13, SUL:14, 'CENTRO OESTE':12, NE:10, 'BK É FOGO LESTE':7, 'SP INTERIOR SUL':7, 'SP INTERIOR NORTE':4, 'BK É FOGO NORTE':4, 'BK É FOGO CENTRO LITORAL':0 },
   '2026-10-12': { RJ:38, 'MINAS BAHIA':24, 'SP SUL':14, SUL:14, 'CENTRO OESTE':12, NE:10, 'BK É FOGO LESTE':7, 'SP INTERIOR SUL':7, 'SP INTERIOR NORTE':5, 'BK É FOGO NORTE':4, 'BK É FOGO CENTRO LITORAL':0 },
   '2026-10-13': { RJ:35, 'CENTRO OESTE':17, 'BK É FOGO LESTE':13, NE:13, 'MINAS BAHIA':11, SUL:11, 'SP INTERIOR SUL':10, 'SP SUL':9, 'SP INTERIOR NORTE':8, 'BK É FOGO NORTE':2, 'BK É FOGO CENTRO LITORAL':1 },
+'2026-10-14': { RJ:33, 'CENTRO OESTE':14, SUL:10, 'BK É FOGO LESTE':9, 'MINAS BAHIA':8, NE:8, 'SP INTERIOR SUL':7, 'SP SUL':7, 'SP INTERIOR NORTE':5, 'BK É FOGO CENTRO LITORAL':2, 'BK É FOGO NORTE':0 },
 };
-// Dia 13/10 RESTAURADO conforme primeira imagem do Christian (TOTAL=130):
-// RJ=35, CENTRO OESTE=17, BK FOGO LESTE=13, NE=13, MINAS BAHIA=11, SUL=11,
-// SP INT SUL=10, SP SUL=9, SP INT NORTE=8, BK FOGO NORTE=2, BK FOGO CL=1
-// Soma: 35+17+13+13+11+11+10+9+8+2+1 = 130. OK.
-// O historico 01-13/10 fica EXATAMENTE como na imagem de ontem; so o dia
-// 14/10 (ultimo) eh calculado automaticamente.
+// Dia 14/10 conforme imagem do Christian (TOTAL=103):
+// RJ=33, CENTRO OESTE=14, SUL=10, BK FOGO LESTE=9, MINAS BAHIA=8, NE=8,
+// SP INT SUL=7, SP SUL=7, SP INT NORTE=5, BK FOGO CL=2, BK FOGO NORTE=0
+// Soma: 33+14+10+9+8+8+7+7+5+2+0 = 103. OK.
+// O historico 01-14/10 fica EXATAMENTE como nas imagens validadas; so o dia
+// 15/10 (ultimo) eh calculado automaticamente.
 
 // Lista de dias da serie (do dia 1 do mes ate ontem)
 const listaDias = [];
@@ -145,11 +146,11 @@ const emptyTab = () => {
   return t;
 };
 
-// Calcula o dia mais recente (14/10) com logica nova (state + prioridade 1-2)
-// Usando a ultima foto disponivel e janela 13/10 23:40 a 14/10 23:49
+// Calcula o dia mais recente (15/10) com logica nova (state + prioridade 1-2)
+// Usando a ultima foto disponivel e janela 14/10 23:40 a 15/10 23:49
 function calcDiaRecente() {
-  const T_INI = 20261013234000; // 13/10 23:40
-  const T_FIM = 20261014234900; // 14/10 23:49
+  const T_INI = 20261014234000; // 14/10 23:40
+  const T_FIM = 20261015234900; // 15/10 23:49
   const t = emptyTab();
   let algum = false;
 
@@ -189,8 +190,8 @@ for (const isoDia of listaDias) {
         tab[reg].alto = val;
       }
     }
-  } else if (isoDia === '2026-10-14') {
-    // Calcula dia 14 com logica nova (janela 13/10 23:40 -> 14/10 23:49)
+  } else if (isoDia === '2026-10-15') {
+    // Calcula dia 15 com logica nova (janela 14/10 23:40 -> 15/10 23:49)
     tab = calcDiaRecente();
   } else {
     // Dias futuros ou sem dados: pula
