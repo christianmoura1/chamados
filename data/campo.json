@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-16T10:00:27.451Z",
+ "atualizadoEm": "2026-10-16T15:20:17.794Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 13,
+  "emExecucao": 12,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 13
+  "total": 12
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-16",
-   "abertos": 1,
-   "fechados": 0
+   "abertos": 2,
+   "fechados": 3
   }
  ],
  "itens": [
+  {
+   "numero": "WO0069881",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "26839 FS CURITIBA - AV SILVA JARDIM",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "16/10/2026 10:09:02",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - COZINHA - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
+   "tarefas": [
+    "WOT0070447"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0069816",
    "marca": "BKB",
@@ -112,52 +135,6 @@
    "descricao": "Area Interna | AIN - SALÃO - REFLUXO",
    "tarefas": [
     "WOT0069953"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0069378",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "15/10/2026 09:35:27",
-   "fechamento": "",
-   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
-   "secundario": "SCI - TEMPERATURA ELEVADA",
-   "sigla": "SCI",
-   "tecnico": "",
-   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - TEMPERATURA ELEVADA",
-   "tarefas": [
-    "WOT0069937"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0069371",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "15/10/2026 09:30:33",
-   "fechamento": "",
-   "principal": "BK053321 - EXAUSTOR",
-   "secundario": "EXA - SUPERAQUECENDO",
-   "sigla": "EXA",
-   "tecnico": "",
-   "descricao": "BK053321 - EXAUSTOR | EXA - SUPERAQUECENDO",
-   "tarefas": [
-    "WOT0069930"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
