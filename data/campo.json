@@ -1,5 +1,5 @@
 {
- "atualizadoEm": "2026-10-16T19:40:19.421Z",
+ "atualizadoEm": "2026-10-16T20:40:18.946Z",
  "janelaDias": 3,
  "resumo": {
   "emExecucao": 14,
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-16",
-   "abertos": 7,
-   "fechados": 9
+   "abertos": 8,
+   "fechados": 10
   }
  ],
  "itens": [
+  {
+   "numero": "WO0070186",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "23584 - ILR FLORIPA - R JERONIMO COELHO 215",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "16/10/2026 17:11:04",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - COZINHA - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
+   "tarefas": [
+    "WOT0070755"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0070163",
    "marca": "BKB",
@@ -89,29 +112,6 @@
    "descricao": "BK055603 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
    "tarefas": [
     "WOT0070718"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0070095",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL SUL RS",
-   "loja": "17223 - CANOAS SHOP",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "16/10/2026 14:36:34",
-   "fechamento": "",
-   "principal": "BK049202 - BROILER",
-   "secundario": "BRO - PRINCÍPIO DE INCÊNDIO",
-   "sigla": "BRO",
-   "tecnico": "",
-   "descricao": "BK049202 - BROILER | BRO - PRINCÍPIO DE INCÊNDIO",
-   "tarefas": [
-    "WOT0070662"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
@@ -276,7 +276,7 @@
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
-   "contato": "",
+   "contato": "Tentativa de contato: 16/10/2026 17:40:06;\n",
    "grupo": "execucao"
   },
   {
