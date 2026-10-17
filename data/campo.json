@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-16T23:20:19.331Z",
+ "atualizadoEm": "2026-10-17T01:20:19.039Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 17,
+  "emExecucao": 18,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 17
+  "total": 18
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-16",
-   "abertos": 11,
+   "abertos": 12,
    "fechados": 10
   }
  ],
  "itens": [
+  {
+   "numero": "WO0070301",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "27589 - PARK EUROPEU BLUMENAU",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "16/10/2026 21:50:35",
+   "fechamento": "",
+   "principal": "BK080286 - FRITADEIRA TRIPLA GAS NAT 3X3X2CESTOS",
+   "secundario": "FRI - NENHUMA DAS CUBAS ATINGE TEMPERATURA",
+   "sigla": "FRI",
+   "tecnico": "",
+   "descricao": "BK080286 - FRITADEIRA TRIPLA GAS NAT 3X3X2CESTOS | FRI - NENHUMA DAS CUBAS ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0070872"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0070247",
    "marca": "BKB",
