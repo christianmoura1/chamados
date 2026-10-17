@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-17T22:00:24.954Z",
+ "atualizadoEm": "2026-10-17T22:40:16.478Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 15,
+  "emExecucao": 16,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 15
+  "total": 16
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-17",
-   "abertos": 12,
+   "abertos": 13,
    "fechados": 15
   }
  ],
  "itens": [
+  {
+   "numero": "WO0070707",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "24741 - FS PELOTAS - AV FERREIRA VIANA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "17/10/2026 19:25:05",
+   "fechamento": "",
+   "principal": "BK071421 - EXAUSTOR",
+   "secundario": "EXA - NÃO LIGA",
+   "sigla": "EXA",
+   "tecnico": "",
+   "descricao": "BK071421 - EXAUSTOR | EXA - NÃO LIGA",
+   "tarefas": [
+    "WOT0071286"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0070567",
    "marca": "BKB",
