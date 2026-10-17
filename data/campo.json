@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-16T21:20:19.348Z",
+ "atualizadoEm": "2026-10-16T23:20:19.331Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 15,
+  "emExecucao": 17,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 15
+  "total": 17
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-10-16",
-   "abertos": 9,
+   "abertos": 11,
    "fechados": 10
   }
  ],
  "itens": [
+  {
+   "numero": "WO0070247",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "16619 - SHOP PRAIA DE BELAS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "16/10/2026 20:06:57",
+   "fechamento": "",
+   "principal": "BK072058 - FRITADEIRA; PITCO; SSHLV14; G18LB059328",
+   "secundario": "FRI - VAZAMENTO DE OLEO",
+   "sigla": "FRI",
+   "tecnico": "",
+   "descricao": "BK072058 - FRITADEIRA; PITCO; SSHLV14; G18LB059328 | FRI - VAZAMENTO DE OLEO",
+   "tarefas": [
+    "WOT0070818"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0070237",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "26828 - FS CURITIBA - FRANCISCO FRISHMANN 3151",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "16/10/2026 19:44:59",
+   "fechamento": "",
+   "principal": "BK088222 - BROILER",
+   "secundario": "BRO - SUPERAQUECENDO",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK088222 - BROILER | BRO - SUPERAQUECENDO",
+   "tarefas": [
+    "WOT0070808"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0070204",
    "marca": "BKB",
