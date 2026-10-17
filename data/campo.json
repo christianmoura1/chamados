@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-17T16:40:15.124Z",
+ "atualizadoEm": "2026-10-17T18:00:20.273Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 17,
+  "emExecucao": 19,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 4,
-  "total": 17
+  "aguardandoToken": 3,
+  "total": 19
  },
  "serie": [
   {
@@ -21,31 +21,77 @@
   },
   {
    "data": "2026-10-17",
-   "abertos": 8,
-   "fechados": 6
+   "abertos": 11,
+   "fechados": 8
   }
  ],
  "itens": [
   {
-   "numero": "WO0070513",
+   "numero": "WO0070592",
    "marca": "BKB",
    "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "27589 - PARK EUROPEU BLUMENAU",
+   "setor": "OESTE PR",
+   "loja": "23989 - SHOP JL CASCAVEL",
    "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "17/10/2026 12:56:55",
+   "fase": "Iniciado",
+   "abertura": "17/10/2026 14:13:49",
    "fechamento": "",
-   "principal": "BK080286 - FRITADEIRA TRIPLA GAS NAT 3X3X2CESTOS",
-   "secundario": "FRI - SOMENTE 1 CUBA FUNCIONANDO",
-   "sigla": "FRI",
+   "principal": "BK062825 - BROILER",
+   "secundario": "BRO - NÃO ACENDE",
+   "sigla": "BRO",
    "tecnico": "",
-   "descricao": "BK080286 - FRITADEIRA TRIPLA GAS NAT 3X3X2CESTOS | FRI - SOMENTE 1 CUBA FUNCIONANDO",
+   "descricao": "BK062825 - BROILER | BRO - NÃO ACENDE",
    "tarefas": [
-    "WOT0071092"
+    "WOT0071171"
    ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "17/10/2026 13:34:11",
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0070567",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "24766 - SHOP TOTAL POA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "17/10/2026 13:52:06",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - COZINHA - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
+   "tarefas": [
+    "WOT0071146"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0070556",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "21475 - SHOP JARDIM DAS AMERICAS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "17/10/2026 13:41:09",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - COZINHA - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
+   "tarefas": [
+    "WOT0071135"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
    "contato": "",
    "grupo": "execucao"
   },
