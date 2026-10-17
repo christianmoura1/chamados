@@ -41,7 +41,7 @@ log('inicio do pipeline de risco');
 // envelhece quando o dataset atualiza. Se o filtro cair outra vez, a guarda de
 // escopo (>120 lojas) barra a publicacao em vez de publicar o Brasil inteiro.
 {
-  const browser = await chromium.connectOverCDP('http://127.0.0.1:9222', { timeout: 20000 });
+  const browser = await chromium.connectOverCDP('http://127.0.0.1:9222', { timeout: 120000 });
   const ctx = browser.contexts()[0];
   let page = null;
   for (const p of ctx.pages()) if (p.url().includes(ABA)) page = p;
