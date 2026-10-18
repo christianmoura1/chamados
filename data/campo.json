@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-18T21:00:42.987Z",
+ "atualizadoEm": "2026-10-18T22:01:00.174Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 12,
+  "emExecucao": 10,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 2,
-  "total": 12
+  "aguardandoToken": 1,
+  "total": 10
  },
  "serie": [
   {
@@ -22,7 +22,7 @@
   {
    "data": "2026-10-18",
    "abertos": 6,
-   "fechados": 18
+   "fechados": 20
   }
  ],
  "itens": [
@@ -50,29 +50,6 @@
    "grupo": "execucao"
   },
   {
-   "numero": "WO0070772",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "18/10/2026 09:02:06",
-   "fechamento": "",
-   "principal": "BK063681 - TOSTADEIRA",
-   "secundario": "TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
-   "sigla": "TST",
-   "tecnico": "",
-   "descricao": "BK063681 - TOSTADEIRA | TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
-   "tarefas": [
-    "WOT0071351"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
    "numero": "WO0070729",
    "marca": "BKB",
    "regional": "SUL",
@@ -92,29 +69,6 @@
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0070707",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "24741 - FS PELOTAS - AV FERREIRA VIANA",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "17/10/2026 19:25:05",
-   "fechamento": "",
-   "principal": "BK071421 - EXAUSTOR",
-   "secundario": "EXA - NÃO LIGA",
-   "sigla": "EXA",
-   "tecnico": "",
-   "descricao": "BK071421 - EXAUSTOR | EXA - NÃO LIGA",
-   "tarefas": [
-    "WOT0071286"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "18/10/2026 10:56:28",
    "contato": "",
    "grupo": "execucao"
   },
