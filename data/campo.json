@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-10-18T01:20:16.825Z",
+ "atualizadoEm": "2026-10-18T10:00:30.482Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 20,
+  "emExecucao": 19,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 20
+  "total": 19
  },
  "serie": [
-  {
-   "data": "2026-10-15",
-   "abertos": 15,
-   "fechados": 13
-  },
   {
    "data": "2026-10-16",
    "abertos": 12,
@@ -23,9 +18,37 @@
    "data": "2026-10-17",
    "abertos": 17,
    "fechados": 15
+  },
+  {
+   "data": "2026-10-18",
+   "abertos": 1,
+   "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0070752",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "26160 - FS CANOAS - AV GETULIO VARGAS 3800",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "18/10/2026 04:31:07",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "AEX - FALTA DE ÁGUA - CONTA NÃO FOI PAGA",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | AEX - FALTA DE ÁGUA - CONTA NÃO FOI PAGA",
+   "tarefas": [
+    "WOT0071331"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0070733",
    "marca": "BKB",
@@ -434,52 +457,6 @@
    "descricao": "Area Externa | AEX - REFLUXO",
    "tarefas": [
     "WOT0070602"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0069781",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "18443 - SHOP CENTER LAR",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "15/10/2026 22:16:55",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - COZINHA - REFLUXO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
-   "tarefas": [
-    "WOT0070344"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0069352",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "29095 FS CURITIBA - CARLOS KLEMTZ",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "15/10/2026 09:00:53",
-   "fechamento": "",
-   "principal": "AR CONDICIONADO",
-   "secundario": "ARC - LOJA SEM AR CONDICIONADO",
-   "sigla": "ARC",
-   "tecnico": "",
-   "descricao": "AR CONDICIONADO | ARC - LOJA SEM AR CONDICIONADO",
-   "tarefas": [
-    "WOT0069911"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
