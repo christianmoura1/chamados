@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-18T10:00:30.482Z",
+ "atualizadoEm": "2026-10-18T12:20:17.050Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 19,
+  "emExecucao": 20,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 19
+  "total": 20
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-18",
-   "abertos": 1,
+   "abertos": 2,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0070772",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "18/10/2026 09:02:06",
+   "fechamento": "",
+   "principal": "BK063681 - TOSTADEIRA",
+   "secundario": "TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
+   "sigla": "TST",
+   "tecnico": "",
+   "descricao": "BK063681 - TOSTADEIRA | TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
+   "tarefas": [
+    "WOT0071351"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0070752",
    "marca": "BKB",
