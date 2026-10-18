@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-18T01:00:27.706Z",
+ "atualizadoEm": "2026-10-18T01:20:16.825Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 19,
+  "emExecucao": 20,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 19
+  "total": 20
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-17",
-   "abertos": 16,
+   "abertos": 17,
    "fechados": 15
   }
  ],
  "itens": [
+  {
+   "numero": "WO0070733",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "15875 - SHOP MUELLER CURITIBA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "17/10/2026 22:01:52",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "AEX - REFLUXO",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | AEX - REFLUXO",
+   "tarefas": [
+    "WOT0071312"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0070731",
    "marca": "BKB",
