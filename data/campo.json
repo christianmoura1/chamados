@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-19T19:20:16.085Z",
+ "atualizadoEm": "2026-10-19T21:00:21.902Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 12,
+  "emExecucao": 13,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 12
+  "total": 13
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-19",
-   "abertos": 11,
+   "abertos": 12,
    "fechados": 13
   }
  ],
  "itens": [
+  {
+   "numero": "WO0071427",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "23721 - PARK SHOP CANOAS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "19/10/2026 17:55:25",
+   "fechamento": "",
+   "principal": "BK066453 - COIFA LAVADORA; MELTING",
+   "secundario": "COI - COIFA COM VAZAMENTO",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK066453 - COIFA LAVADORA; MELTING | COI - COIFA COM VAZAMENTO",
+   "tarefas": [
+    "WOT0072008"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0071347",
    "marca": "BKB",
