@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-10-19T01:00:38.277Z",
+ "atualizadoEm": "2026-10-19T10:00:45.608Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 10,
+  "emExecucao": 8,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 10
+  "total": 8
  },
  "serie": [
-  {
-   "data": "2026-10-16",
-   "abertos": 12,
-   "fechados": 10
-  },
   {
    "data": "2026-10-17",
    "abertos": 17,
@@ -23,9 +18,60 @@
    "data": "2026-10-18",
    "abertos": 7,
    "fechados": 21
+  },
+  {
+   "data": "2026-10-19",
+   "abertos": 2,
+   "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0071018",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "",
+   "loja": "33697  - FS COLOMBO - ESTRADA DA RIBEIRA 3700",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "19/10/2026 01:12:11",
+   "fechamento": "",
+   "principal": "ZP191527 - BROILER",
+   "secundario": "BRO - NÃO ACENDE",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "ZP191527 - BROILER | BRO - NÃO ACENDE",
+   "tarefas": [
+    "WOT0071601"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0071015",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "20047 - FS CURITIBA - LINHA VERDE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "19/10/2026 00:45:54",
+   "fechamento": "",
+   "principal": "BK034373 - COIFA",
+   "secundario": "COI - COIFA NÃO FUNCIONA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK034373 - COIFA | COI - COIFA NÃO FUNCIONA",
+   "tarefas": [
+    "WOT0071598"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0071002",
    "marca": "BKB",
@@ -158,98 +204,6 @@
    "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
    "tarefas": [
     "WOT0070965"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0070247",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL SUL RS",
-   "loja": "16619 - SHOP PRAIA DE BELAS",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "16/10/2026 20:06:57",
-   "fechamento": "",
-   "principal": "BK072058 - FRITADEIRA; PITCO; SSHLV14; G18LB059328",
-   "secundario": "FRI - VAZAMENTO DE OLEO",
-   "sigla": "FRI",
-   "tecnico": "",
-   "descricao": "BK072058 - FRITADEIRA; PITCO; SSHLV14; G18LB059328 | FRI - VAZAMENTO DE OLEO",
-   "tarefas": [
-    "WOT0070818"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0070186",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "23584 - ILR FLORIPA - R JERONIMO COELHO 215",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "16/10/2026 17:11:04",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - COZINHA - REFLUXO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
-   "tarefas": [
-    "WOT0070755"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0070163",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL SUL RS",
-   "loja": "16619 - SHOP PRAIA DE BELAS",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "16/10/2026 16:31:00",
-   "fechamento": "",
-   "principal": "BK072057 - COIFA LAVADORA; MELTING",
-   "secundario": "COI - COIFA NÃO FUNCIONA",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK072057 - COIFA LAVADORA; MELTING | COI - COIFA NÃO FUNCIONA",
-   "tarefas": [
-    "WOT0070732"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0070148",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL NORTE RS",
-   "loja": "23725 - SHOP PRACA NOVA SANTA MARIA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "16/10/2026 16:08:18",
-   "fechamento": "",
-   "principal": "BK055603 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
-   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
-   "sigla": "CMR",
-   "tecnico": "",
-   "descricao": "BK055603 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0070718"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
