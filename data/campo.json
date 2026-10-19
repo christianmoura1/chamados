@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-19T12:01:31.595Z",
+ "atualizadoEm": "2026-10-19T16:00:36.210Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 8,
+  "emExecucao": 11,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 8
+  "total": 11
  },
  "serie": [
   {
@@ -21,28 +21,120 @@
   },
   {
    "data": "2026-10-19",
-   "abertos": 3,
-   "fechados": 1
+   "abertos": 8,
+   "fechados": 6
   }
  ],
  "itens": [
   {
-   "numero": "WO0071065",
+   "numero": "WO0071259",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "23584 - ILR FLORIPA - R JERONIMO COELHO 215",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "19/10/2026 12:48:44",
+   "fechamento": "",
+   "principal": "BROILER",
+   "secundario": "BRO - NÃO ATINGE TEMPERATURA",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BROILER | BRO - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0071842"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0071165",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "OESTE PR",
+   "loja": "23989 - SHOP JL CASCAVEL",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "19/10/2026 11:07:20",
+   "fechamento": "",
+   "principal": "BK062833 - COIFA LAVADORA; MELTING",
+   "secundario": "COI - COIFA EM CONTIGÊNCIA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK062833 - COIFA LAVADORA; MELTING | COI - COIFA EM CONTIGÊNCIA",
+   "tarefas": [
+    "WOT0071749"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0071133",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "21659 - BOURBON SHOP PORTO ALEGRE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "19/10/2026 10:35:18",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - MESA PRINCIPAL - PRINCÍPIO DE INCÊNDIO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - MESA PRINCIPAL - PRINCÍPIO DE INCÊNDIO",
+   "tarefas": [
+    "WOT0071717"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0071131",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "15893 - SHOP IGUATEMI PORTO ALEGRE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "19/10/2026 10:30:58",
+   "fechamento": "",
+   "principal": "BK063525 - COIFA LAVADORA; MELTING",
+   "secundario": "COI - COIFA EM CONTIGÊNCIA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK063525 - COIFA LAVADORA; MELTING | COI - COIFA EM CONTIGÊNCIA",
+   "tarefas": [
+    "WOT0071715"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0071121",
    "marca": "BKB",
    "regional": "SUL",
    "setor": "OESTE PR",
    "loja": "26837 - FS CASCAVEL - AV BRASIL 1580",
    "status": "Pronto para Expedição",
    "fase": "Iniciado",
-   "abertura": "19/10/2026 08:56:47",
+   "abertura": "19/10/2026 10:17:35",
    "fechamento": "",
-   "principal": "BK079003 - BROILER",
-   "secundario": "BRO - NÃO ACENDE",
-   "sigla": "BRO",
+   "principal": "BK079001 - COIFA WASH PULL HTVK 2800 X 1200 +Q.E",
+   "secundario": "COI - COIFA EM CONTIGÊNCIA",
+   "sigla": "COI",
    "tecnico": "",
-   "descricao": "BK079003 - BROILER | BRO - NÃO ACENDE",
+   "descricao": "BK079001 - COIFA WASH PULL HTVK 2800 X 1200 +Q.E | COI - COIFA EM CONTIGÊNCIA",
    "tarefas": [
-    "WOT0071649"
+    "WOT0071705"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
@@ -161,29 +253,6 @@
    ],
    "aguardandoToken": 1,
    "fechadoSemToken": "18/10/2026 14:33:33",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0070556",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "21475 - SHOP JARDIM DAS AMERICAS",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "17/10/2026 13:41:09",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - COZINHA - REFLUXO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
-   "tarefas": [
-    "WOT0071135"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
    "contato": "",
    "grupo": "execucao"
   },
