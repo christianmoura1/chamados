@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-19T16:20:14.855Z",
+ "atualizadoEm": "2026-10-19T18:00:23.320Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 10,
+  "emExecucao": 13,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 10
+  "total": 13
  },
  "serie": [
   {
@@ -21,11 +21,80 @@
   },
   {
    "data": "2026-10-19",
-   "abertos": 8,
+   "abertos": 11,
    "fechados": 9
   }
  ],
  "itens": [
+  {
+   "numero": "WO0071347",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "17223 - CANOAS SHOP",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "19/10/2026 14:57:51",
+   "fechamento": "",
+   "principal": "BK049202 - BROILER; NIECO; MPB94; 331-33553",
+   "secundario": "BRO - NÃO ATINGE TEMPERATURA",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK049202 - BROILER; NIECO; MPB94; 331-33553 | BRO - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0071930"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0071342",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "OESTE PR",
+   "loja": "22536 - Shopping Palladium Foz do Iguaçu ",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "19/10/2026 14:48:33",
+   "fechamento": "",
+   "principal": "BK048156 - COIFA LAVADORA; MELTING",
+   "secundario": "COI - COIFA EM CONTIGÊNCIA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK048156 - COIFA LAVADORA; MELTING | COI - COIFA EM CONTIGÊNCIA",
+   "tarefas": [
+    "WOT0071925"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0071335",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "OESTE PR",
+   "loja": "21702 - CATARATAS JL SHOP",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "19/10/2026 14:37:28",
+   "fechamento": "",
+   "principal": "BK043351 - COIFA",
+   "secundario": "COI - COIFA EM CONTIGÊNCIA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK043351 - COIFA | COI - COIFA EM CONTIGÊNCIA",
+   "tarefas": [
+    "WOT0071918"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0071259",
    "marca": "BKB",
