@@ -124,6 +124,12 @@ h2 { font-size: 15px; font-weight: 700; margin: 0; }
 .filter-field label { font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-3); }
 .filter-field select, .filter-field input[type="text"], .filter-field input[type="date"] { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text); background: var(--cinza-bg); border: 1.5px solid var(--border); border-radius: var(--r); padding: 8px 10px; appearance: none; width: 100%; }
 .filter-field input:focus, .filter-field select:focus { outline: 2px solid var(--cobalto); outline-offset: -1px; }
+/* autocomplete de loja (mesmo padrao do Backlog) */
+.filter-combo { position: relative; }
+.filter-combo-lista { position: absolute; top: calc(100% + 4px); left: 0; right: 0; max-height: 260px; overflow-y: auto; background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r); box-shadow: 0 8px 24px rgba(0,0,0,.12); z-index: 30; padding: 4px; }
+.filter-combo-item { padding: 7px 10px; font-size: 12.5px; border-radius: 6px; cursor: pointer; color: var(--text-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.filter-combo-item:hover, .filter-combo-item.foco { background: var(--cinza-bg); color: var(--text); }
+.filter-combo-vazio { padding: 10px; font-size: 12px; color: var(--text-3); text-align: center; }
 .filter-clear { font-size: 11.5px; color: var(--cobalto); background: none; border: none; cursor: pointer; padding: 8px 4px; white-space: nowrap; align-self: flex-end; }
 .filter-clear:hover { text-decoration: underline; }
 .filter-count { font-size: 12px; color: var(--text-2); margin-bottom: 10px; }
@@ -202,7 +208,7 @@ footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--border
       <div class="sec-head"><h2>Buscar chamados</h2><span class="sec-note">Filtre por equipamento, loja, problema, data ou responsável</span></div>
       <div class="filter-bar">
         <div class="filter-field"><label for="filtroEquipamento">Equipamento</label><select id="filtroEquipamento"><option value="">Todos</option></select></div>
-        <div class="filter-field"><label for="filtroLoja">Loja</label><select id="filtroLoja"><option value="">Todas</option></select></div>
+        <div class="filter-field filter-combo"><label for="filtroLoja">Loja</label><input type="text" id="filtroLoja" placeholder="Todas" autocomplete="off"><div class="filter-combo-lista" id="filtroLojaLista" hidden></div></div>
         <div class="filter-field"><label for="filtroProblema">Problema</label><input type="text" id="filtroProblema" placeholder="Buscar palavra…" autocomplete="off"></div>
         <div class="filter-field"><label for="filtroPrioridade">Prioridade</label><select id="filtroPrioridade"><option value="">Todas</option></select></div>
         <div class="filter-field"><label for="filtroSupervisor">Supervisor</label><select id="filtroSupervisor"><option value="">Todos</option></select></div>
@@ -467,23 +473,57 @@ function atualizarKPIs(arr) {
     + '<div class="kpi k-alta"><span class="label">Perda Medida (R$)</span><span class="val">'+fmtR(perdaTotal)+'</span></div>';
 }
 
+var LOJAS_TODAS = []; // lista global para o autocomplete
 function popularFiltros() {
   var equips={}, lojas={}, pris={}, sups={};
   dados.forEach(function(x){ if(x.equipamento) equips[x.equipamento]=1; if(x.loja) lojas[x.loja]=1; if(x.prioridade) pris[x.prioridade]=1; if(x.supervisor) sups[x.supervisor]=1; });
   var selEq=document.getElementById('filtroEquipamento'); Object.keys(equips).sort().forEach(function(e){ var o=document.createElement('option'); o.value=e; o.textContent=e; selEq.appendChild(o); });
-  var selLo=document.getElementById('filtroLoja'); Object.keys(lojas).sort().forEach(function(l){ var o=document.createElement('option'); o.value=l; o.textContent=l; selLo.appendChild(o); });
+  // Loja agora eh input com autocomplete (nao mais select)
+  LOJAS_TODAS = Object.keys(lojas).sort();
   var selPr=document.getElementById('filtroPrioridade'); Object.keys(pris).sort().forEach(function(p){ var o=document.createElement('option'); o.value=p; o.textContent=p; selPr.appendChild(o); });
   var selSu=document.getElementById('filtroSupervisor'); Object.keys(sups).sort().forEach(function(s){ var o=document.createElement('option'); o.value=s; o.textContent=s; selSu.appendChild(o); });
+  // Inicializa o autocomplete de loja
+  iniciarAutocompleteLoja();
+}
+function semAcento(s){ return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,''); }
+function iniciarAutocompleteLoja() {
+  var input = document.getElementById('filtroLoja');
+  var lista = document.getElementById('filtroLojaLista');
+  if (!input || !lista) return;
+  function mostrarLista() {
+    var busca = semAcento(input.value.trim());
+    var opcoes = (busca ? LOJAS_TODAS.filter(function(l){ return semAcento(l).includes(busca); }) : LOJAS_TODAS).slice(0, 40);
+    lista.innerHTML = opcoes.length
+      ? opcoes.map(function(l){ return '<div class="filter-combo-item">'+escapeHtml(l)+'</div>'; }).join('')
+      : '<div class="filter-combo-vazio">Nenhuma loja encontrada</div>';
+    lista.hidden = false;
+    // bind clique nos itens
+    lista.querySelectorAll('.filter-combo-item').forEach(function(item){
+      item.addEventListener('mousedown', function(e){
+        e.preventDefault(); // nao perder foco do input
+        input.value = item.textContent;
+        lista.hidden = true;
+        aplicarFiltros();
+      });
+    });
+  }
+  input.addEventListener('focus', mostrarLista);
+  input.addEventListener('input', function(){ mostrarLista(); aplicarFiltros(); });
+  input.addEventListener('blur', function(){ setTimeout(function(){ lista.hidden = true; }, 150); });
+  // ESC limpa
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') { input.value = ''; lista.hidden = true; aplicarFiltros(); }
+  });
 }
 
 function getFiltrados() {
-  var feq=document.getElementById('filtroEquipamento').value, flo=document.getElementById('filtroLoja').value;
+  var feq=document.getElementById('filtroEquipamento').value, flo=document.getElementById('filtroLoja').value.toLowerCase().trim();
   var fpr=document.getElementById('filtroProblema').value.toLowerCase().trim(), fpri=document.getElementById('filtroPrioridade').value;
   var fsup=document.getElementById('filtroSupervisor').value, fmat=document.getElementById('filtroMateriais').value;
   var fde=document.getElementById('filtroDataDe').value, fate=document.getElementById('filtroDataAte').value;
   return dados.filter(function(x){
     if(feq && x.equipamento!==feq) return false;
-    if(flo && x.loja!==flo) return false;
+    if(flo && !(x.loja||'').toLowerCase().includes(flo)) return false;
     if(fpr && !(x.problema||'').toLowerCase().includes(fpr) && !(x.descricao||'').toLowerCase().includes(fpr)) return false;
     if(fpri && x.prioridade!==fpri) return false;
     if(fsup && x.supervisor!==fsup) return false;
