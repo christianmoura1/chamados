@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-10-20T00:00:23.508Z",
+ "atualizadoEm": "2026-10-20T10:00:25.671Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 13,
+  "emExecucao": 10,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 1,
-  "total": 13
+  "aguardandoToken": 0,
+  "total": 10
  },
  "serie": [
-  {
-   "data": "2026-10-17",
-   "abertos": 17,
-   "fechados": 15
-  },
   {
    "data": "2026-10-18",
    "abertos": 7,
@@ -23,6 +18,11 @@
    "data": "2026-10-19",
    "abertos": 13,
    "fechados": 15
+  },
+  {
+   "data": "2026-10-20",
+   "abertos": 0,
+   "fechados": 0
   }
  ],
  "itens": [
@@ -250,75 +250,6 @@
    "descricao": "BK079001 - COIFA WASH PULL HTVK 2800 X 1200 +Q.E | COI - COIFA EM CONTIGÊNCIA",
    "tarefas": [
     "WOT0071705"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0070729",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "21787 - CARREFOUR PARTENON",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "17/10/2026 21:24:26",
-   "fechamento": "",
-   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
-   "secundario": "SCI - ALARME DISPARADO",
-   "sigla": "SCI",
-   "tecnico": "",
-   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - ALARME DISPARADO",
-   "tarefas": [
-    "WOT0071308"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0070567",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "24766 - SHOP TOTAL POA",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "17/10/2026 13:52:06",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - COZINHA - REFLUXO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
-   "tarefas": [
-    "WOT0071146"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "18/10/2026 14:33:33",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0070392",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA NORTE",
-   "loja": "29084 FS PINHAIS PEDRO JACOMEL 13",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "17/10/2026 10:02:54",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - COZINHA - REFLUXO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
-   "tarefas": [
-    "WOT0070965"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
