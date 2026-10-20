@@ -1,5 +1,5 @@
 {
- "atualizadoEm": "2026-10-20T17:20:19.219Z",
+ "atualizadoEm": "2026-10-20T19:00:38.587Z",
  "janelaDias": 3,
  "resumo": {
   "emExecucao": 13,
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-20",
-   "abertos": 4,
-   "fechados": 3
+   "abertos": 5,
+   "fechados": 4
   }
  ],
  "itens": [
+  {
+   "numero": "WO0072619",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "23584 - ILR FLORIPA - R JERONIMO COELHO 215",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "20/10/2026 15:57:22",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - QUADRO ELÉTRICO - FALTA DE ACRÍLICO DE PROTEÇÃO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - FALTA DE ACRÍLICO DE PROTEÇÃO",
+   "tarefas": [
+    "WOT0073204"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0072541",
    "marca": "BKB",
@@ -69,29 +92,6 @@
    ],
    "aguardandoToken": 1,
    "fechadoSemToken": "20/10/2026 14:09:04",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0071631",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "18450 - BOURBON SHOP SAO LEOPOLDO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "20/10/2026 10:03:30",
-   "fechamento": "",
-   "principal": "BK038105 - COIFA",
-   "secundario": "COI - COIFA EM CONTIGÊNCIA",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK038105 - COIFA | COI - COIFA EM CONTIGÊNCIA",
-   "tarefas": [
-    "WOT0072211"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
    "contato": "",
    "grupo": "execucao"
   },
