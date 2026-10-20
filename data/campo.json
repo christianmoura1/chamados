@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-20T22:20:19.495Z",
+ "atualizadoEm": "2026-10-20T23:20:19.767Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 9,
+  "emExecucao": 10,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 9
+  "total": 10
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-20",
-   "abertos": 5,
+   "abertos": 6,
    "fechados": 9
   }
  ],
  "itens": [
+  {
+   "numero": "WO0072898",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "15875 - SHOP MUELLER CURITIBA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "20/10/2026 20:18:43",
+   "fechamento": "",
+   "principal": "BROILER",
+   "secundario": "BRO - NÃO ATINGE TEMPERATURA",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BROILER | BRO - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0073490"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0072619",
    "marca": "BKB",
