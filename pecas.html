@@ -344,17 +344,31 @@ const temMaterial = (c.pecas || []).some(p => semAcento(p.material || '').includ
 if (!temMaterial) return false;
 }
 if (fEntrega) {
-// "parcial" eh um status do CHAMADO (algumas pecas entregues, outras nao),
-// nao de uma peca individual. Tratar separado dos demais.
-if (fEntrega === 'parcial') {
-const qtdEntregues = (c.pecas || []).filter(p => classificarEntrega(p) === 'entregue').length;
-const qtdTotal = (c.pecas || []).length;
+// BUG CORRIGIDO 20/10/2026: o filtro "Entregue" usava some() -- bastava
+// UMA peca entregue para o chamado aparecer, entao chamados com entrega
+// parcial (1 de 2) ou com uma peca entregue e outra cancelada tambem
+// apareciam quando o Christian filtrava por "Entregue". Ele quer ver
+// SOMENTE os chamados totalmente entregues.
+// Correcao: tratar "entregue" como status do CHAMADO (todas as pecas
+// entregues E nenhuma cancelada), igual ao banner verde e ao filtro
+// "parcial". Os demais status (em_rota/despachado/coletado/cancelado/
+// sem_envio) continuam no nivel da peca com some(), porque faz sentido
+// mostrar o chamado se QUALQUER peca dele estiver nesse estado.
+const pecas = c.pecas || [];
+const qtdEntregues = pecas.filter(p => classificarEntrega(p) === 'entregue').length;
+const qtdTotal = pecas.length;
 const todasEntregues = qtdTotal > 0 && qtdEntregues === qtdTotal;
-const algumaCancelada = (c.pecas || []).some(p => classificarEntrega(p) === 'cancelado');
+const algumaCancelada = pecas.some(p => classificarEntrega(p) === 'cancelado');
+if (fEntrega === 'entregue') {
+// So' chamados com TODAS as pecas entregues e NENHUMA cancelada.
+if (!todasEntregues || algumaCancelada) return false;
+} else if (fEntrega === 'parcial') {
+// Algumas entregues, outras nao, e nenhuma cancelada.
 const ehParcial = !todasEntregues && !algumaCancelada && qtdEntregues > 0 && qtdEntregues < qtdTotal;
 if (!ehParcial) return false;
 } else {
-const temPecaComStatus = (c.pecas || []).some(p => classificarEntrega(p) === fEntrega);
+// em_rota / despachado / coletado / cancelado / sem_envio: nivel da peca.
+const temPecaComStatus = pecas.some(p => classificarEntrega(p) === fEntrega);
 if (!temPecaComStatus) return false;
 }
 }
