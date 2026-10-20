@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-20T10:00:25.671Z",
+ "atualizadoEm": "2026-10-20T14:40:19.928Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 10,
+  "emExecucao": 12,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 10
+  "total": 12
  },
  "serie": [
   {
@@ -21,11 +21,80 @@
   },
   {
    "data": "2026-10-20",
-   "abertos": 0,
-   "fechados": 0
+   "abertos": 3,
+   "fechados": 2
   }
  ],
  "itens": [
+  {
+   "numero": "WO0071674",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "OESTE PR",
+   "loja": "25277 - SHOP GUARAPUAVA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "20/10/2026 10:43:34",
+   "fechamento": "",
+   "principal": "BK066057 - COIFA",
+   "secundario": "COI - COIFA EM CONTIGÊNCIA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK066057 - COIFA | COI - COIFA EM CONTIGÊNCIA",
+   "tarefas": [
+    "WOT0072255"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0071631",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "18450 - BOURBON SHOP SAO LEOPOLDO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "20/10/2026 10:03:30",
+   "fechamento": "",
+   "principal": "BK038105 - COIFA",
+   "secundario": "COI - COIFA EM CONTIGÊNCIA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK038105 - COIFA | COI - COIFA EM CONTIGÊNCIA",
+   "tarefas": [
+    "WOT0072211"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0071606",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "20/10/2026 09:30:20",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "FALTA DE ÁGUA - CORTE DE ÁGUA NA REGIÃO",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | FALTA DE ÁGUA - CORTE DE ÁGUA NA REGIÃO",
+   "tarefas": [
+    "WOT0072186"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0071467",
    "marca": "BKB",
@@ -47,29 +116,6 @@
    "aguardandoToken": 0,
    "fechadoSemToken": "",
    "contato": "Tentativa de contato: 19/10/2026 19:23:27;\n",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0071427",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL SUL RS",
-   "loja": "23721 - PARK SHOP CANOAS",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "19/10/2026 17:55:25",
-   "fechamento": "",
-   "principal": "BK066453 - COIFA LAVADORA; MELTING",
-   "secundario": "COI - COIFA COM VAZAMENTO",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK066453 - COIFA LAVADORA; MELTING | COI - COIFA COM VAZAMENTO",
-   "tarefas": [
-    "WOT0072008"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
    "grupo": "execucao"
   },
   {
