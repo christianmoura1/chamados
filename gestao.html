@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta charset="utf-8">
+<title>Gestão Total — Sul</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--cobalto:#1e3bff;--laranja:#ff6b00;--rosa:#ff3366;--verde:#00c853;--amarelo:#ffcc00;--cinza:#6b7280;--surface:#fff;--bg:#f8f9fc;--text:#111827;--text-2:#374151;--text-3:#9ca3af;--border:#e5e7eb;--shadow:0 1px 3px rgba(0,0,0,.08),0 4px 12px rgba(0,0,0,.05);--r:10px}
+[data-theme=dark]{--surface:#1f2937;--bg:#111827;--text:#f9fafb;--text-2:#d1d5db;--text-3:#6b7280;--border:#374151;--shadow:0 1px 3px rgba(0,0,0,.3)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+header{background:var(--surface);border-bottom:1px solid var(--border);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:var(--shadow)}
+header h1{font-size:20px;font-weight:700}
+header .meta{font-size:13px;color:var(--text-3)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:16px}
+main{max-width:1400px;margin:0 auto;padding:24px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:24px}
+.kpi{background:var(--surface);border-radius:var(--r);padding:20px;box-shadow:var(--shadow);border:1px solid var(--border)}
+.kpi .label{font-size:12px;color:var(--text-3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.kpi .value{font-size:28px;font-weight:800;color:var(--cobalto)}
+.kpi.warn .value{color:var(--laranja)}
+.kpi.danger .value{color:var(--rosa)}
+.filters{background:var(--surface);border-radius:var(--r);padding:16px;margin-bottom:16px;box-shadow:var(--shadow);border:1px solid var(--border);display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.filters input,.filters select{padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;background:var(--bg);color:var(--text)}
+.filters input{flex:1;min-width:200px}
+.table-wrap{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);border:1px solid var(--border);overflow:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:var(--bg);padding:12px;text-align:left;font-weight:600;color:var(--text-2);border-bottom:2px solid var(--border);position:sticky;top:0;white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+tr:hover td{background:rgba(30,59,255,.04)}
+.mono{font-family:'SF Mono',Consolas,monospace;font-size:12px}
+.tag{display:inline-block;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600}
+.tag-critica{background:#fee2e2;color:#dc2626}
+.tag-alta{background:#ffedd5;color:#ea580c}
+.tag-moderada{background:#fef3c7;color:#d97706}
+.tag-baixa{background:#dcfce7;color:#16a34a}
+.tag-preventiva{background:#dbeafe;color:#2563eb}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+a.soma-link{color:var(--cobalto);font-weight:600;text-decoration:none}
+a.soma-link:hover{text-decoration:underline}
+.empty{text-align:center;padding:40px;color:var(--text-3)}
+.loading{text-align:center;padding:60px;color:var(--text-3);font-size:16px}
+@media(max-width:768px){main{padding:12px}.kpis{grid-template-columns:repeat(2,1fr)}table{font-size:12px}th,td{padding:8px}}
+</style>
+</head>
+<body>
+<header>
+<div>
+<h1>📋 Gestão Total — Regional Sul</h1>
+<div class="meta" id="metaInfo">carregando...</div>
+</div>
+<button class="theme-btn" onclick="toggleTheme()" title="Alternar tema">☀</button>
+</header>
+<main>
+<div class="kpis" id="kpis"><div class="loading">carregando dados...</div></div>
+<div class="filters">
+<input type="text" id="searchInput" placeholder="Buscar por chamado, loja, equipamento, problema, técnico...">
+<select id="filterPrioridade"><option value="">Todas prioridades</option></select>
+<select id="filterFamilia"><option value="">Todas famílias</option></select>
+<select id="filterSupervisor"><option value="">Todos supervisores</option></select>
+<select id="filterEstado"><option value="">Todos estados</option></select>
+<span id="countInfo" style="margin-left:auto;font-size:13px;color:var(--text-3)"></span>
+</div>
+<div class="table-wrap">
+<table>
+<thead><tr>
+<th>Número</th><th>Loja</th><th>Equipamento</th><th>Problema</th>
+<th>Prioridade</th><th>Estado</th><th>Fase</th><th class="num">Dias</th>
+<th>Técnico</th><th>Supervisor</th><th>Família</th>
+</tr></thead>
+<tbody id="tbody"><tr><td colspan="11" class="loading">carregando...</td></tr></tbody>
+</table>
+</div>
+</main>
+<script>
+let dados = null;
+let filtrados = [];
+const SOMA_BASE = 'https://soma.zamp.com.br/wm_task.do?sysparm_query=number=';
+function toggleTheme(){
+const t = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+document.documentElement.dataset.theme = t;
+localStorage.setItem('gestao_theme', t);
+}
+(function(){ const s = localStorage.getItem('gestao_theme'); if(s) document.documentElement.dataset.theme = s; })();
+function tagCls(p){
+if(!p) return '';
+const pl = p.toLowerCase();
+if(pl.includes('critic') || pl.startsWith('1')) return 'tag-critica';
+if(pl.includes('alta') || pl.startsWith('2')) return 'tag-alta';
+if(pl.includes('moder') || pl.startsWith('3')) return 'tag-moderada';
+if(pl.includes('baixa') || pl.startsWith('4')) return 'tag-baixa';
+if(pl.includes('prevent')) return 'tag-preventiva';
+return '';
+}
+function escapeHtml(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function somaLink(numero){
+return '<a class="soma-link mono" href="' + SOMA_BASE + encodeURIComponent(numero) + '" target="_blank" rel="noopener">' + escapeHtml(numero) + '</a>';
+}
+function renderKPIs(){
+if(!dados) return;
+const ch = dados.chamados || [];
+const total = ch.length;
+const criticos = ch.filter(c => c.critica).length;
+const alta = ch.filter(c => /^2\s*-/i.test(c.prioridade||'')).length;
+const preventivas = ch.filter(c => /preventiva/i.test(c.categoria||'')).length;
+const semTecnico = ch.filter(c => !c.tecnico).length;
+const diasMedio = ch.length ? Math.round(ch.reduce((a,c) => a + (c.dias||0), 0) / ch.length) : 0;
+const atrasados = ch.filter(c => (c.dias||0) > 30).length;
+document.getElementById('kpis').innerHTML = `
+<div class="kpi"><div class="label">Total Abertos</div><div class="value">${total}</div></div>
+<div class="kpi danger"><div class="label">Críticos</div><div class="value">${criticos}</div></div>
+<div class="kpi warn"><div class="label">Alta</div><div class="value">${alta}</div></div>
+<div class="kpi"><div class="label">Preventivas</div><div class="value">${preventivas}</div></div>
+<div class="kpi warn"><div class="label">Sem Técnico</div><div class="value">${semTecnico}</div></div>
+<div class="kpi danger"><div class="label">+30 dias</div><div class="value">${atrasados}</div></div>
+<div class="kpi"><div class="label">Dias Médio</div><div class="value">${diasMedio}d</div></div>
+`;
+document.getElementById('metaInfo').textContent = 'Atualizado em ' + (dados.atualizadoEm || '?') + ' · ' + total + ' chamados';
+}
+function populateFilters(){
+if(!dados) return;
+const ch = dados.chamados || [];
+const pris = [...new Set(ch.map(c => c.prioridade).filter(Boolean))].sort();
+const fams = [...new Set(ch.map(c => c.familia).filter(Boolean))].sort();
+const sups = [...new Set(ch.map(c => c.supervisor).filter(Boolean))].sort();
+const ests = [...new Set(ch.map(c => c.estado).filter(Boolean))].sort();
+const selP = document.getElementById('filterPrioridade');
+const selF = document.getElementById('filterFamilia');
+const selS = document.getElementById('filterSupervisor');
+const selE = document.getElementById('filterEstado');
+pris.forEach(p => { const o = document.createElement('option'); o.value = p; o.textContent = p; selP.appendChild(o); });
+fams.forEach(f => { const o = document.createElement('option'); o.value = f; o.textContent = f; selF.appendChild(o); });
+sups.forEach(s => { const o = document.createElement('option'); o.value = s; o.textContent = s; selS.appendChild(o); });
+ests.forEach(e => { const o = document.createElement('option'); o.value = e; o.textContent = e; selE.appendChild(o); });
+}
+function applyFilters(){
+if(!dados) return;
+const q = document.getElementById('searchInput').value.toLowerCase().trim();
+const fp = document.getElementById('filterPrioridade').value;
+const ff = document.getElementById('filterFamilia').value;
+const fs = document.getElementById('filterSupervisor').value;
+const fe = document.getElementById('filterEstado').value;
+filtrados = (dados.chamados || []).filter(c => {
+if(fp && c.prioridade !== fp) return false;
+if(ff && c.familia !== ff) return false;
+if(fs && c.supervisor !== fs) return false;
+if(fe && c.estado !== fe) return false;
+if(q){
+const hay = [c.chamado, c.loja, c.equipamento, c.problema, c.tecnico, c.supervisor, c.setor, c.descricao].join(' ').toLowerCase();
+if(!hay.includes(q)) return false;
+}
+return true;
+});
+renderTable();
+}
+function renderTable(){
+const tbody = document.getElementById('tbody');
+document.getElementById('countInfo').textContent = filtrados.length + ' de ' + (dados ? dados.totalChamados : 0) + ' chamados';
+if(!filtrados.length){
+tbody.innerHTML = '<tr><td colspan="11" class="empty">Nenhum chamado com esses filtros.</td></tr>';
+return;
+}
+tbody.innerHTML = filtrados.map(c => `<tr>
+<td>${somaLink(c.chamado)}</td>
+<td>${escapeHtml(c.loja)}</td>
+<td>${escapeHtml(c.equipamento)}</td>
+<td>${escapeHtml(c.problema) || '—'}</td>
+<td><span class="tag ${tagCls(c.prioridade)}">${escapeHtml(c.prioridade)}</span></td>
+<td>${escapeHtml(c.estado)}</td>
+<td>${escapeHtml(c.fase)}</td>
+<td class="num">${c.dias != null ? c.dias + 'd' : '—'}</td>
+<td>${escapeHtml(c.tecnico) || '—'}</td>
+<td>${escapeHtml(c.supervisor) || '—'}</td>
+<td>${escapeHtml(c.familia)}</td>
+</tr>`).join('');
+}
+async function loadDados(){
+try {
+const r = await fetch('/api/data?file=gestao&t=' + Date.now(), { credentials: 'same-origin' });
+if(r.status === 401){
+document.getElementById('tbody').innerHTML = '<tr><td colspan="11" class="empty">Não autorizado. Faça login primeiro.</td></tr>';
+return;
+}
+dados = await r.json();
+renderKPIs();
+populateFilters();
+applyFilters();
+} catch(e){
+// fallback: tenta carregar direto (sem auth) para desenvolvimento local
+try {
+const r2 = await fetch('/data/gestao-total.json?t=' + Date.now());
+dados = await r2.json();
+renderKPIs();
+populateFilters();
+applyFilters();
+} catch(e2){
+document.getElementById('tbody').innerHTML = '<tr><td colspan="11" class="empty">Erro ao carregar dados: ' + escapeHtml(e2.message) + '</td></tr>';
+}
+}
+}
+document.getElementById('searchInput').addEventListener('input', applyFilters);
+document.getElementById('filterPrioridade').addEventListener('change', applyFilters);
+document.getElementById('filterFamilia').addEventListener('change', applyFilters);
+document.getElementById('filterSupervisor').addEventListener('change', applyFilters);
+document.getElementById('filterEstado').addEventListener('change', applyFilters);
+loadDados();
+</script>
+</body>
+</html>

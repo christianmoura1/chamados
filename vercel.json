@@ -1,0 +1,27 @@
+{
+"functions": {
+"api/data.js": {
+"includeFiles": "data/**"
+}
+},
+"routes": [
+{ "src": "/data/dados\\.json", "dest": "/api/data?file=dados" },
+{ "src": "/data/historico\\.json", "dest": "/api/data?file=historico" },
+{ "src": "/data/risco\\.json", "dest": "/api/data?file=risco" },
+{ "src": "/data/preventivas\\.json", "dest": "/api/data?file=preventivas" },
+{ "src": "/data/campo\\.json", "dest": "/api/data?file=campo" },
+{ "src": "/data/sorvete\\.json", "dest": "/api/data?file=sorvete" },
+{ "src": "/data/chamados-abertos-perda\\.json", "dest": "/api/data?file=perda" },
+{ "src": "/data/gestao-total\\.json", "dest": "/api/data?file=gestao" },
+{
+"src": "/(.*)",
+"headers": {
+"X-Frame-Options": "DENY",
+"X-Content-Type-Options": "nosniff",
+"Referrer-Policy": "no-referrer"
+},
+"continue": true
+},
+{ "handle": "filesystem" }
+]
+}
