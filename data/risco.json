@@ -1,8 +1,8 @@
 {
- "atualizadoEm": "20/10/2026 7:10:42",
- "geradoEm": "2026-10-20T12:12:27.215Z",
+ "atualizadoEm": "20/10/2026 12:10:05",
+ "geradoEm": "2026-10-20T16:25:34.950Z",
  "totalLojasAvaliadas": 71,
- "scoreMedio": 8.49,
+ "scoreMedio": 8.44,
  "categorias": [
   {
    "chave": "sci",
@@ -14,7 +14,7 @@
    "lojasVencidas": [
     {
      "nome": "18450 - BOURBON SHOP SAO LEOPOLDO",
-     "score": 10,
+     "score": 11,
      "diasAtraso": 4,
      "dataRef": "16/10/2026",
      "rotuloRef": "venceu",
@@ -67,14 +67,6 @@
      "score": 15,
      "diasAtraso": 36,
      "dataRef": "14/09/2026",
-     "rotuloRef": "venceu",
-     "itemRef": null
-    },
-    {
-     "nome": "23721 - PARK SHOP CANOAS",
-     "score": 11,
-     "diasAtraso": 1,
-     "dataRef": "19/10/2026",
      "rotuloRef": "venceu",
      "itemRef": null
     },
@@ -175,6 +167,14 @@
      "itemRef": null
     },
     {
+     "nome": "23721 - PARK SHOP CANOAS",
+     "score": 10,
+     "diasAtraso": 1,
+     "dataRef": "19/10/2026",
+     "rotuloRef": "venceu",
+     "itemRef": null
+    },
+    {
      "nome": "23726 - PASSO FUNDO SHOP",
      "score": 10,
      "diasAtraso": 1,
@@ -248,11 +248,11 @@
   "Exaustor",
   "Quadro Elétrico",
   "Central de fumaça",
-  "12",
+  "11",
   "3",
   "2",
   "1",
-  "7",
+  "8",
   "Atrasado",
   "No Prazo"
  ],
@@ -283,22 +283,6 @@
     "regional": "SUL",
     "setor": "SUDOESTE RS",
     "loja": "20049 - SHOP PRACA RIO GRANDE",
-    "status": "Em Andamento",
-    "dtAbertura": "9/13/2026",
-    "dtEncerramento": "",
-    "tecnico": "THIAGO DA SILVA GONZALEZ",
-    "assunto": "COI - COIFA EM CONTIGÊNCIA",
-    "diasAtraso": 37
-   },
-   {
-    "numero": "WO0050833",
-    "statusRisco": "Atrasado",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA EM CONTIGÊNCIA",
-    "regional": "SUL",
-    "setor": "SUDOESTE RS",
-    "loja": "20621 - SHOP PELOTAS",
     "status": "Em Andamento",
     "dtAbertura": "9/13/2026",
     "dtEncerramento": "",
@@ -645,24 +629,49 @@
     "diasAtraso": 1
    },
    {
-    "numero": "WO0071427",
+    "numero": "WO0071631",
     "statusRisco": "No Prazo",
     "item": "Coifa",
     "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA COM VAZAMENTO",
+    "assuntoSecundario": "COI - COIFA EM CONTIGÊNCIA",
     "regional": "SUL",
-    "setor": "CAPITAL SUL RS",
-    "loja": "23721 - PARK SHOP CANOAS",
+    "setor": "VALE DOS SINOS",
+    "loja": "18450 - BOURBON SHOP SAO LEOPOLDO",
     "status": "Pronto Para Envio",
-    "dtAbertura": "10/19/2026",
+    "dtAbertura": "10/20/2026",
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
-    "assunto": "COI - COIFA COM VAZAMENTO",
-    "diasAtraso": 1
+    "assunto": "COI - COIFA EM CONTIGÊNCIA",
+    "diasAtraso": 0
+   },
+   {
+    "numero": "WO0071674",
+    "statusRisco": "No Prazo",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - COIFA EM CONTIGÊNCIA",
+    "regional": "SUL",
+    "setor": "OESTE PR",
+    "loja": "25277 - SHOP GUARAPUAVA",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "10/20/2026",
+    "dtEncerramento": "",
+    "tecnico": "CARLOS MAGNO DA SILVA LIRA",
+    "assunto": "COI - COIFA EM CONTIGÊNCIA",
+    "diasAtraso": 0
    }
   ]
  },
  "ultimosFechados": [
+  {
+   "numero": "WO0071427",
+   "fechadoEm": "20/10/2026 11:21:37",
+   "dias": 0,
+   "prioridade": "SOS",
+   "problema": "COI - COIFA COM VAZAMENTO",
+   "loja": "23721 - PARK SHOP CANOAS",
+   "fechadoPor": "Cristiano Cezar"
+  },
   {
    "numero": "WO0050833",
    "fechadoEm": "20/10/2026 08:49:52",
@@ -743,15 +752,6 @@
    "problema": "COI - COIFA NÃO FUNCIONA",
    "loja": "29084 FS PINHAIS PEDRO JACOMEL 13",
    "fechadoPor": ""
-  },
-  {
-   "numero": "WO0066300",
-   "fechadoEm": "12/10/2026 18:43:18",
-   "dias": 4,
-   "prioridade": "Alta",
-   "problema": "Presença de incrustações de gordura <2mm",
-   "loja": "25677 - FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
-   "fechadoPor": "Thiago Dos Santos Coelho"
   }
  ]
 }
