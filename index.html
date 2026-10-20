@@ -787,7 +787,7 @@ function renderizarModalTabela() {
   const colspan = MODAL_MOSTRA_EQUIP ? 8 : 7;
   document.getElementById('modalTbody').innerHTML = filtrados.length
     ? filtrados.map(c => `<tr>
-        <td class="mono">${escapeHtml(c.numero)}</td>
+        <td class="mono"><a href="https://soma.zamp.com.br/wm_task.do?sysparm_query=number=${encodeURIComponent(c.numero)}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">${escapeHtml(c.numero)}</a></td>
         ${MODAL_MOSTRA_EQUIP ? `<td>${escapeHtml(c.equipamento)}</td>` : ''}
         <td>${escapeHtml(c.loja)}</td>
         <td>${escapeHtml(c.problema) || '—'}</td>
@@ -1378,7 +1378,7 @@ function montarBuscaChamados(D) {
     contagem.textContent = `${filtrados.length} de ${todos.length} chamados`;
     tbody.innerHTML = filtrados.length
       ? filtrados.map(c => `<tr>
-          <td class="mono">${escapeHtml(c.numero)}</td>
+          <td class="mono"><a href="https://soma.zamp.com.br/wm_task.do?sysparm_query=number=${encodeURIComponent(c.numero)}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">${escapeHtml(c.numero)}</a></td>
           <td>${escapeHtml(c.equipamento)}</td>
           <td>${escapeHtml(c.loja)}</td>
           <td>${escapeHtml(c.problema) || '—'}</td>
