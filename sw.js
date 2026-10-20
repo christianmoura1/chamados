@@ -1,4 +1,4 @@
-const CACHE_NAME = 'backlog-zamp-v4';
+const CACHE_NAME = 'backlog-zamp-v5';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -47,7 +47,20 @@ self.addEventListener('fetch', event => {
     );
     return;
   }
-  // Cache-first para o resto (HTML, CSS, JS)
+  // Network-first para HTML (sempre fresco; cache so como fallback offline)
+  if (event.request.url.endsWith('.html') || event.request.url.endsWith('/')) {
+    event.respondWith(
+      fetch(event.request)
+        .then(response => {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+          return response;
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
+  // Cache-first para o resto (CSS, JS, imagens)
   event.respondWith(
     caches.match(event.request)
       .then(response => response || fetch(event.request))
