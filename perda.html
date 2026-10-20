@@ -565,6 +565,14 @@ document.getElementById('filtroLimpar').addEventListener('click', function(){
   aplicarFiltros();
 });
 
+// Forca atualizacao do Service Worker (invalida cache v4 -> v5)
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistration().then(function(reg) {
+    if (reg) { reg.update(); }
+    else { navigator.serviceWorker.register('/sw.js'); }
+  });
+}
+
 fetch('data/chamados-abertos-perda.json?_=' + Date.now(), { cache: 'no-store' })
   .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
   .then(function(arr){
