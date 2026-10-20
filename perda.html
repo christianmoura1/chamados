@@ -253,7 +253,7 @@ footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--border
     <div class="modal-filtro-contagem" id="modalFiltroContagem"></div>
     <div class="modal-body">
       <table class="detail-table">
-        <thead id="modalThead"><tr><th>Número</th><th>Loja</th><th>Problema</th><th>Estado</th><th>Prioridade</th><th>Dias</th><th>Perda</th></tr></thead>
+        <thead id="modalThead"><tr><th>Número</th><th>Loja</th><th>Equipamento</th><th>Problema</th><th>Estado</th><th>Prioridade</th><th>Dias</th><th>Perda</th></tr></thead>
         <tbody id="modalTbody"></tbody>
       </table>
     </div>
@@ -363,9 +363,9 @@ function renderizarModalTabela() {
   document.getElementById('modalFiltroContagem').textContent = filtrados.length + ' de ' + MODAL_ITENS.length + ' chamados';
   document.getElementById('modalTbody').innerHTML = filtrados.length
     ? filtrados.map(function(c){
-        return '<tr><td class="mono"><a class="chamado-link" href="https://soma.zamp.com.br/wm_order_list.do?sysparm_query=number%3D'+encodeURIComponent(c.chamado||'')+'" target="_blank" rel="noopener">'+escapeHtml(c.chamado)+'</a></td><td>'+escapeHtml(c.loja)+'</td><td>'+escapeHtml(c.problema||'—')+'</td><td>'+escapeHtml(c.estado||'')+'</td><td><span class="tag '+tagClsPrioridade(c.prioridade)+'">'+escapeHtml(c.prioridade||'')+'</span>'+(c.temPecas?'<span class="tag tag-pecas">Peças</span>':'')+'</td><td class="num">'+(c.dias!=null?c.dias+'d':'')+'</td><td class="num">'+(c.perda!=null?'<strong>'+fmtR(c.perda)+'</strong>':'—')+'</td></tr>';
+        return '<tr><td class="mono"><a class="chamado-link" href="https://soma.zamp.com.br/wm_order_list.do?sysparm_query=number%3D'+encodeURIComponent(c.chamado||'')+'" target="_blank" rel="noopener">'+escapeHtml(c.chamado)+'</a></td><td>'+escapeHtml(c.loja)+'</td><td>'+escapeHtml(c.equipamento||'—')+'</td><td>'+escapeHtml(c.problema||'—')+'</td><td>'+escapeHtml(c.estado||'')+'</td><td><span class="tag '+tagClsPrioridade(c.prioridade)+'">'+escapeHtml(c.prioridade||'')+'</span>'+(c.temPecas?'<span class="tag tag-pecas">Peças</span>':'')+'</td><td class="num">'+(c.dias!=null?c.dias+'d':'')+'</td><td class="num">'+(c.perda!=null?'<strong>'+fmtR(c.perda)+'</strong>':'—')+'</td></tr>';
       }).join('')
-    : '<tr><td colspan="7" class="esos-empty">Nenhum chamado com esses filtros.</td></tr>';
+    : '<tr><td colspan="8" class="esos-empty">Nenhum chamado com esses filtros.</td></tr>';
 }
 function abrirModalSupervisor(nome, itens, stats) {
   document.getElementById('modalTitle').textContent = nome;
