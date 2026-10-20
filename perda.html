@@ -565,12 +565,44 @@ document.getElementById('filtroLimpar').addEventListener('click', function(){
   aplicarFiltros();
 });
 
-// Forca atualizacao do Service Worker (invalida cache v4 -> v5)
-if ('serviceWorker' in navigator) {
+// Forca atualizacao agressiva do Service Worker (invalida cache v4 -> v5)
+// Sessao unica: so recarrega uma vez para nao entrar em loop
+if ('serviceWorker' in navigator && !sessionStorage.getItem('sw_v5_ok')) {
   navigator.serviceWorker.getRegistration().then(function(reg) {
-    if (reg) { reg.update(); }
-    else { navigator.serviceWorker.register('/sw.js'); }
-  });
+    if (!reg) {
+      navigator.serviceWorker.register('/sw.js').then(function() {
+        sessionStorage.setItem('sw_v5_ok', '1');
+        location.reload();
+      });
+      return;
+    }
+    // Verifica se o SW ativo e o velho (v4) comparando o script
+    var swUrl = reg.active ? reg.active.scriptURL : '';
+    fetch('/sw.js?_=' + Date.now(), { cache: 'no-store' }).then(function(r) { return r.text(); }).then(function(txt) {
+      var novo = txt.indexOf('backlog-zamp-v5') !== -1;
+      if (!novo) { sessionStorage.setItem('sw_v5_ok', '1'); return; }
+      // SW novo existe no servidor. Forca ativacao imediata.
+      reg.update().then(function(updated) {
+        if (updated && updated.waiting) {
+          updated.waiting.postMessage({ type: 'SKIP_WAITING' });
+        }
+        // Limpa caches velhos explicitamente
+        caches.keys().then(function(keys) {
+          keys.forEach(function(k) { if (k !== 'backlog-zamp-v5') caches.delete(k); });
+        });
+        sessionStorage.setItem('sw_v5_ok', '1');
+        // Recarrega apos o novo SW assumir
+        navigator.serviceWorker.addEventListener('controllerchange', function() {
+          location.reload();
+        }, { once: true });
+        // Fallback: se controllerchange nao disparar em 3s, recarrega mesmo assim
+        setTimeout(function() { location.reload(); }, 3000);
+      });
+    }).catch(function() { sessionStorage.setItem('sw_v5_ok', '1'); });
+  }).catch(function() { sessionStorage.setItem('sw_v5_ok', '1'); });
+} else if ('serviceWorker' in navigator) {
+  // Ja passou pela migracao; so mantem o SW atualizado em background
+  navigator.serviceWorker.getRegistration().then(function(reg) { if (reg) reg.update(); });
 }
 
 fetch('data/chamados-abertos-perda.json?_=' + Date.now(), { cache: 'no-store' })
