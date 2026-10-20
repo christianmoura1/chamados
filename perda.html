@@ -223,7 +223,7 @@ footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--border
       <div class="table-wrap">
         <table>
           <thead><tr>
-            <th>Número</th><th>Equipamento</th><th>Loja</th><th>Problema</th><th>Estado</th><th>Prioridade</th><th class="col-num">Dias</th><th>Supervisor</th><th class="col-num">Perda (R$)</th>
+            <th>Número</th><th>Loja</th><th>Equipamento</th><th>Problema</th><th>Estado</th><th>Prioridade</th><th class="col-num">Dias</th><th>Supervisor</th><th class="col-num">Perda (R$)</th>
           </tr></thead>
           <tbody id="tbody"><tr><td colspan="9" class="msg-carregando">carregando chamados…</td></tr></tbody>
         </table>
@@ -551,7 +551,7 @@ function renderTabela(arr) {
     var estadoTag = estLower.indexOf('expedi')!==-1 ? '<span class="tag tag-alta">'+escapeHtml(x.estado)+'</span>' : (estLower.indexOf('andamento')!==-1 ? '<span class="tag tag-sos">'+escapeHtml(x.estado)+'</span>' : '<span class="tag tag-normal">'+escapeHtml(x.estado||'')+'</span>');
     var priTag = '<span class="tag '+tagClsPrioridade(x.prioridade)+'">'+escapeHtml(x.prioridade||'')+'</span>' + (x.temPecas?'<span class="tag tag-pecas">Peças</span>':'');
     var diasTxt = (x.dias==null)?'':(x.dias>30?'<strong style="color:var(--rosa)">'+x.dias+'</strong>':String(x.dias));
-    return '<tr><td><a class="chamado-link" href="https://soma.zamp.com.br/wm_order_list.do?sysparm_query=number%3D'+encodeURIComponent(x.chamado||'')+'" target="_blank" rel="noopener">'+escapeHtml(x.chamado||'')+'</a></td><td style="font-size:11.5px;">'+escapeHtml(x.equipamento||'')+'</td><td class="loja-cell" title="'+escapeHtml((x.bkn?x.bkn+' · ':'')+(x.setor||''))+'">'+escapeHtml(x.loja||'')+'</td><td style="font-size:11.5px;color:var(--text-3);" title="'+escapeHtml(x.problema||'')+'">'+escapeHtml(x.problema||'')+'</td><td>'+estadoTag+'</td><td>'+priTag+'</td><td class="col-num">'+diasTxt+'</td><td style="font-size:11px;">'+escapeHtml(x.supervisor||'—')+'</td><td class="col-num">'+(x.perda!=null?'<strong>'+fmtR(x.perda)+'</strong>':'<span style="color:var(--text-3)">—</span>')+'</td></tr>';
+    return '<tr><td><a class="chamado-link" href="https://soma.zamp.com.br/wm_order_list.do?sysparm_query=number%3D'+encodeURIComponent(x.chamado||'')+'" target="_blank" rel="noopener">'+escapeHtml(x.chamado||'')+'</a></td><td class="loja-cell" title="'+escapeHtml((x.bkn?x.bkn+' · ':'')+(x.setor||''))+'">'+escapeHtml(x.loja||'')+'</td><td style="font-size:11.5px;">'+escapeHtml(x.equipamento||'')+'</td><td style="font-size:11.5px;color:var(--text-3);" title="'+escapeHtml(x.problema||'')+'">'+escapeHtml(x.problema||'')+'</td><td>'+estadoTag+'</td><td>'+priTag+'</td><td class="col-num">'+diasTxt+'</td><td style="font-size:11px;">'+escapeHtml(x.supervisor||'—')+'</td><td class="col-num">'+(x.perda!=null?'<strong>'+fmtR(x.perda)+'</strong>':'<span style="color:var(--text-3)">—</span>')+'</td></tr>';
   }).join('');
 }
 
