@@ -145,7 +145,7 @@ function parseCSV(texto) {
 }
 
 async function buscarCSVUmaVez() {
-  const browser = await chromium.connectOverCDP(CDP, { timeout: 15000 });
+  const browser = await chromium.connectOverCDP(CDP, { timeout: 120000 });
   const ctx = browser.contexts()[0];
 
   // A aba do SOMA degrada com o tempo (ja travou o fetch duas vezes em
@@ -260,7 +260,7 @@ function parseCarimboBI(carimbo) {
 }
 
 async function buscarDisponibilidadeBI() {
-  const browser = await chromium.connectOverCDP(CDP, { timeout: 15000 });
+  const browser = await chromium.connectOverCDP(CDP, { timeout: 120000 });
   const ctx = browser.contexts()[0];
   let page = null;
   for (const p of ctx.pages()) {
@@ -450,18 +450,18 @@ async function buscarDisponibilidadeBI() {
   // Tentativas repetidas de extrair via CDP (aria-pressed, rolagem, matriz)
   // devolveram valores SEMANAIS (34/32/45...) ou nada, e o painel publicou
   // numero errado com cara de certo. O Christian confirmou os valores
-  // MENSAIS corretos em 10/10/2026 (print da pagina do BI):
-  //   BROILER 10% | FRITADEIRA 18% | MAQUINA DE SORVETE 31%
-  //   MICROONDAS 12% | PHU 8% | TOSTADEIRA 4%
+  // MENSAIS corretos em 20/10/2026 (print da pagina do BI):
+  //   BROILER 10% | FRITADEIRA 15% | MAQUINA DE SORVETE 23%
+  //   MICROONDAS 10% | PHU 6% | TOSTADEIRA 2%
   // Ate' encontrarmos uma tabela DOM legivel, usamos esses valores como
   // fonte da verdade. Quando o BI mudar, atualizar aqui.
   const DISPONIBILIDADE_MENSAL_FIXA = {
     broiler: 10,
-    fritadeira: 18,
-    sorvete: 31,
-    microondas: 12,
-    phu: 8,
-    tostadeira: 4,
+    fritadeira: 15,
+    sorvete: 23,
+    microondas: 10,
+    phu: 6,
+    tostadeira: 2,
   };
 
   const disponibilidade = {};
@@ -1018,7 +1018,7 @@ function rodar(rotulo, cmd, args) {
 // ~1800 abertos. Com ~220 chamados e paralelismo de 5, adiciona ~75s ao
 // pipeline diario (que hoje leva ~2-3 min). Viavel.
 async function buscarPecas(dadosProcessados) {
-  const browser = await chromium.connectOverCDP(CDP, { timeout: 15000 });
+  const browser = await chromium.connectOverCDP(CDP, { timeout: 120000 });
   const ctx = browser.contexts()[0];
   // Fecha abas velhas do SOMA para evitar degradacao (mesmo padrao do buscarCSV)
   for (const p of ctx.pages()) { if (/soma\.zamp\.com\.br/.test(p.url())) await p.close().catch(() => {}); }
@@ -1147,7 +1147,7 @@ async function buscarPecas(dadosProcessados) {
 // Indexa por codigo de material para o painel mostrar onde cada peca esta.
 // Usa a aba logada do abbiamolog no Chrome via CDP para pegar o Bearer token.
 async function buscarRastreio(dadosProcessados) {
-const browser = await chromium.connectOverCDP(CDP, { timeout: 15000 });
+const browser = await chromium.connectOverCDP(CDP, { timeout: 120000 });
 const ctx = browser.contexts()[0];
 let page = ctx.pages().find(p => /abbiamolog\.com/.test(p.url()));
 if (!page) {
@@ -1359,8 +1359,12 @@ return { totalPedidos, pedidosProcessados, pecasComRastreio };
     // Fora dessa hora, pula a varredura pesada (~1800 chamados no SOMA) e
     // preserva os dados do JSON anterior. Pedido Christian 11/10/2026: as
     // pecas demoram muito e so' precisam rodar de madrugada.
+    // BUG FIX 13/10/2026: adicionar override via env var FORCAR_PECAS=1
+    // para permitir execucao manual fora da janela quando necessario
+    // (ex.: recuperar rastreio perdido apos restauracao de dados).
     const horaSP = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' })).getHours();
-    const janelaPecas = horaSP === 1;
+    const forcarPecas = process.env.FORCAR_PECAS === '1';
+    const janelaPecas = horaSP === 1 || forcarPecas;
     let pecasOk = false;
     let rastreioOk = false;
 

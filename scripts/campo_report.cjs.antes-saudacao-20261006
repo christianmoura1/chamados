@@ -1,0 +1,403 @@
+// Report de Acompanhamento Diario Campo - SUL, de 2 em 2 horas.
+// Le a aba [PCP] Monitoria Manutencao no Chrome da VPS, confere o recorte,
+// atualiza os numeros e monta o texto para o WhatsApp.
+//
+//   node campo_report.cjs              -> so' mostra o texto, nao envia
+//   node campo_report.cjs --enviar     -> envia para o numero PESSOAL
+//   node campo_report.cjs --enviar --grupo  -> envia para o GRUPO (CAMPO_DEST_NUMBER)
+//
+// O grupo exige a flag explicita de proposito: mensagem em grupo nao se apaga.
+// carregado sob demanda: o modo --teste nao abre navegador e nao precisa dele
+const abrePlaywright = () => require('C:/projetos/certponto-report/node_modules/playwright').chromium;
+const fs = require('fs');
+const https = require('https');
+
+const REPORT = '1cfa2020-a0a9-47da-93da-e3bee67b3df6';
+const ESTADO = 'C:/projetos/tmp/campo_report_estado.json';
+const ENVIAR = process.argv.includes('--enviar');
+const GRUPO = process.argv.includes('--grupo');
+const SOFOTO = process.argv.includes('--so-foto');  // captura e salva, nao envia
+const pausa = (ms) => new Promise((r) => setTimeout(r, ms));
+const hojeISO = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+
+// O Node grava o proprio log em UTF-8. Redirecionar a saida pelo cmd grava na
+// codepage do console e come os acentos, o que ja' atrapalhou diagnostico aqui.
+const LOG = 'C:/projetos/logs/campo_report.log';
+function log(msg) {
+  const linha = String(msg == null ? '' : msg);
+  console.log(linha);
+  try { fs.appendFileSync(LOG, linha + '\r\n', { encoding: 'utf8' }); } catch (e) { /* log nao pode derrubar o envio */ }
+}
+function sai(msg, cod) { log(msg); process.exit(cod); }
+
+
+// --teste: percorre os cenarios de movimento sem abrir navegador nem enviar.
+if (process.argv.includes('--teste')) {
+  const casos = [
+    ['abertura do dia',        { emExecucao: 6, token: 0, impacto: 0 }, { inicio: 6,  ultimo: null, ultimoH: null }, true,  8],
+    ['subiu desde a anterior', { emExecucao: 9, token: 0, impacto: 0 }, { inicio: 6,  ultimo: 7,    ultimoH: 12 },  false, 14],
+    ['caiu, meio do dia',      { emExecucao: 4, token: 1, impacto: 0 }, { inicio: 15, ultimo: 9,    ultimoH: 14 },  false, 16],
+    ['parado',                 { emExecucao: 7, token: 0, impacto: 1 }, { inicio: 7,  ultimo: 7,    ultimoH: 16 },  false, 18],
+    ['subiu mas abaixo da abertura', { emExecucao: 9, token: 0, impacto: 0 }, { inicio: 15, ultimo: 7, ultimoH: 16 }, false, 18],
+    ['reta final, caiu',       { emExecucao: 3, token: 0, impacto: 0 }, { inicio: 15, ultimo: 6,    ultimoH: 18 },  false, 20],
+    ['reta final, parado',     { emExecucao: 5, token: 0, impacto: 0 }, { inicio: 5,  ultimo: 5,    ultimoH: 20 },  false, 22],
+    ['zerou',                  { emExecucao: 0, token: 0, impacto: 0 }, { inicio: 12, ultimo: 3,    ultimoH: 20 },  false, 22],
+  ];
+  casos.forEach(([nome, c, est, prim, h]) => {
+    console.log('');
+    console.log('######## ' + nome + '  (abertura ' + est.inicio + ', anterior ' + est.ultimo + ', agora ' + c.emExecucao + ')');
+    console.log(montaTexto(c, est, prim, h));
+  });
+  process.exit(0);
+}
+
+// Monta o texto do report. Fora da rotina do navegador de proposito: assim o
+// modo --teste exercita ESTE codigo, e nao uma copia dele.
+// Tudo que fala de numero e' comparativo: abertura x agora, e agora x rodada
+// anterior. Nada de frase fixa.
+function montaTexto(c, est, primeira, hora) {
+  const h = hora;
+  const plural = (n, s, p) => n + ' ' + (n === 1 ? s : p);
+  const n = c.emExecucao;
+  const T = [];
+  T.push('*Sul ' + h + 'h:*');
+  T.push(plural(n, 'chamado', 'chamados'));
+  T.push(c.token + ' aguardando token');
+  T.push('*' + c.impacto + ' impacto*');
+  T.push('');
+
+  if (primeira) {
+    T.push('Começamos o dia com ' + plural(n, 'chamado', 'chamados') + '.');
+    T.push('');
+    T.push(n === 0
+      ? 'Bom dia, equipe. Começamos zerados, bora segurar assim.'
+      : 'Bom dia, equipe. Bora pra cima.');
+    return T.join('\n');
+  }
+
+  const ini = est.inicio;
+  const saldo = ini - n;                                   // >0 caiu no dia
+  const mov = est.ultimo == null ? null : est.ultimo - n;  // >0 caiu na rodada
+  const desde = est.ultimoH == null ? '' : ' desde as ' + est.ultimoH + 'h';
+  const fim = h >= 20;                                     // reta final
+
+  // linha do dia: sempre compara a abertura com o agora
+  if (n === ini) {
+    T.push('Começamos o dia com ' + plural(ini, 'chamado', 'chamados') + ' e seguimos no mesmo número.');
+  } else {
+    T.push('Começamos o dia com ' + plural(ini, 'chamado', 'chamados') + ' e agora estamos com ' + n + '.');
+  }
+  T.push('');
+
+  // linha de ação: varia com o movimento desde a rodada anterior
+  if (n === 0) {
+    T.push(saldo > 0
+      ? '*Zeramos!* Fechamos os ' + ini + ' do dia. Missão cumprida.'
+      : '*Zeramos!* Dia encerrado com missão cumprida.');
+  } else if (mov == null) {
+    T.push(fim
+      ? 'Bora acelerar e fechar esse ' + n + ' para encerrar o dia com missão cumprida'
+      : 'Bora atacar esse ' + n + ' e derrubar o número até o fim do dia.');
+  } else if (mov > 0) {
+    T.push('Fechamos ' + plural(mov, 'chamado', 'chamados') + desde + '.');
+    T.push(fim
+      ? 'Faltam ' + n + ' para encerrar o dia com missão cumprida. Bora.'
+      : 'Restam ' + n + '. Bora manter esse ritmo.');
+  } else if (mov < 0) {
+    T.push('Entraram ' + plural(-mov, 'chamado', 'chamados') + desde + '.');
+    if (fim) T.push('Bora acelerar e fechar esse ' + n + ' para encerrar o dia com missão cumprida');
+    else if (saldo > 0) T.push('Mesmo assim seguimos ' + saldo + ' abaixo da abertura. Bora segurar a maré.');
+    else T.push('Bora atacar agora, antes de acumular.');
+  } else {
+    T.push('Sem movimentação' + desde + '.');
+    T.push(fim
+      ? 'Bora acelerar e fechar esse ' + n + ' para encerrar o dia com missão cumprida'
+      : 'Bora destravar esses ' + n + '.');
+  }
+  return T.join('\n');
+}
+
+(async () => {
+  const chromium = abrePlaywright();
+  const b = await chromium.connectOverCDP('http://127.0.0.1:9222', { timeout: 60000 });
+  const pgs = [];
+  for (const c of b.contexts()) for (const p of c.pages()) pgs.push(p);
+  const aba = pgs.find((p) => p.url().indexOf(REPORT) >= 0);
+  if (!aba) sai('ABORTADO: a aba do relatorio de Monitoria nao esta aberta', 2);
+
+  // O Power BI ignora clique em aba de fundo. Sempre trazer para frente antes.
+  await aba.bringToFront();
+  await pausa(1500);
+
+  const lerTela = () => aba.evaluate(() => {
+    const L = (s) => (s || '').replace(/\s+/g, ' ').trim();
+    const marcados = (rot) => [...document.querySelectorAll('[role="option"], [role="button"], .slicerItemContainer, [class*="slicerItem"]')]
+      .filter((e) => e.offsetParent)
+      .filter((e) => {
+        const s = e.getAttribute('aria-selected') || e.getAttribute('aria-checked') || e.getAttribute('aria-pressed');
+        return s === 'true';
+      })
+      .map((e) => L(e.innerText))
+      .filter((t) => t && t.length < 34 && rot.indexOf(t.toUpperCase()) >= 0);
+
+    const REGIONAIS = ['BK E FOGO CENTRO LITORAL', 'BK E FOGO LESTE', 'BK E FOGO NORTE', 'CENTRO OESTE',
+      'MINAS BAHIA', 'NE', 'RJ', 'SP INTERIOR NORTE', 'SP INTERIOR SUL', 'SP SUL', 'SUL'];
+    const regs = [...document.querySelectorAll('[role="option"], [role="button"], .slicerItemContainer, [class*="slicerItem"]')]
+      .filter((e) => e.offsetParent)
+      .map((e) => ({ t: L(e.innerText).toUpperCase(), s: e.getAttribute('aria-selected') || e.getAttribute('aria-checked') || e.getAttribute('aria-pressed') }))
+      .filter((x) => REGIONAIS.indexOf(x.t) >= 0);
+    const regSel = regs.filter((x) => x.s === 'true').map((x) => x.t);
+
+    // cartoes: rotulo folha + o numero no bloco pai mais proximo
+    const quero = { 'EM EXECUÇÃO': 'emExecucao', 'AGUARDANDO TOKEN': 'token', 'EXECUTADOS': 'executados', 'CANCELADOS': 'cancelados', 'CHAMADOS COM IMPACTO': 'impacto' };
+    const out = {};
+    [...document.querySelectorAll('*')].forEach((e) => {
+      if (e.children.length) return;
+      const t = L(e.textContent).toUpperCase();
+      const chave = quero[t];
+      if (!chave || out[chave] != null) return;
+      let n = e, k = 0;
+      while (n && k < 6) {
+        n = n.parentElement; k++;
+        if (!n) break;
+        const m = L(n.innerText).match(/(?:^|\s)(\d{1,4})(?:\s|$)/);
+        if (m) { out[chave] = Number(m[1]); break; }
+      }
+    });
+
+    const carimbo = [...document.querySelectorAll('*')].map((e) => L(e.textContent))
+      .filter((t) => /Dados atualizados em/i.test(t) && t.length < 60)[0] || '';
+    return { regSel: regSel, cartoes: out, carimbo: carimbo };
+  });
+
+  // Atualiza os dados. Recarregar e' o unico jeito garantido de nao ler numero
+  // velho -- e depois a guarda confere se os filtros sobreviveram.
+  // NAO usar waitUntil 'networkidle': o Power BI fica em telemetria constante e
+  // a rede nunca fica ociosa, entao ele espera o timeout inteiro a toa.
+  await aba.reload({ waitUntil: 'domcontentloaded', timeout: 90000 }).catch(() => {});
+
+  // Espera os cartoes aparecerem, em vez de chutar um tempo fixo.
+  let tela = null;
+  for (let i = 0; i < 30; i++) {
+    await pausa(4000);
+    tela = await lerTela().catch(() => null);
+    if (tela && tela.cartoes && tela.cartoes.emExecucao != null && tela.regSel.length) break;
+  }
+  if (!tela) sai('ABORTADO: a pagina nao respondeu depois do reload', 4);
+
+  // GUARDA 1: o recorte tem que ser exatamente SUL. Se o filtro se perdeu no
+  // reload, conserta uma vez e confere de novo.
+  if (!(tela.regSel.length === 1 && tela.regSel[0] === 'SUL')) {
+    log('filtro fora do lugar (' + JSON.stringify(tela.regSel) + '), tentando corrigir');
+    const ok = await aba.evaluate(() => {
+      const L = (s) => (s || '').replace(/\s+/g, ' ').trim().toUpperCase();
+      const els = [...document.querySelectorAll('[role="option"], [role="button"], .slicerItemContainer, [class*="slicerItem"]')]
+        .filter((e) => e.offsetParent);
+      // casamento EXATO: 'SUL' e nunca 'SP SUL' ou 'SP INTERIOR SUL'
+      const exato = els.filter((e) => L(e.innerText) === 'SUL');
+      if (exato.length !== 1) return false;
+      exato[0].click();
+      return true;
+    });
+    if (!ok) sai('ABORTADO: nao consegui mirar SUL com seguranca', 3);
+    await pausa(9000);
+    tela = await lerTela();
+  }
+  if (!(tela.regSel.length === 1 && tela.regSel[0] === 'SUL')) {
+    sai('ABORTADO: o recorte nao ficou em SUL (' + JSON.stringify(tela.regSel) + ')', 3);
+  }
+
+  // GUARDA 2: os cartoes tem que ter vindo. Zero e' valido; ausente nao e'.
+  const c = tela.cartoes;
+  const faltando = ['emExecucao', 'token', 'impacto'].filter((k) => c[k] == null);
+  if (faltando.length) sai('ABORTADO: nao li os cartoes ' + faltando.join(', '), 4);
+
+  log('recorte conferido: SUL');
+  log('carimbo: ' + tela.carimbo);
+  log('cartoes: ' + JSON.stringify(c));
+
+  // ---- baseline do dia: quantos chamados tinha na primeira rodada ----
+  let est = { dia: '', inicio: null, ultimo: null, ultimoH: null };
+  try { est = JSON.parse(fs.readFileSync(ESTADO, 'utf8')); } catch (e) { /* primeiro uso */ }
+  const hoje = hojeISO();
+  const primeira = est.dia !== hoje || est.inicio == null;
+  if (primeira) {
+    est = { dia: hoje, inicio: c.emExecucao, ultimo: null, ultimoH: null };
+    log('primeira rodada do dia: baseline = ' + c.emExecucao);
+  }
+
+// Monta o texto do report. Fora da rotina do navegador de proposito: assim o
+// modo --teste exercita ESTE codigo, e nao uma copia dele.
+
+
+  const horaAgora = new Date().getHours();
+  const texto = montaTexto(c, est, primeira, horaAgora);
+
+  est.ultimo = c.emExecucao;
+  est.ultimoH = horaAgora;
+  fs.writeFileSync(ESTADO, JSON.stringify(est, null, 1), 'utf8');
+
+  // ---- foto do painel: do titulo do bloco ate' o fim da tabela ----
+  // O bloco (titulo + cartoes + tabela) mede ~1200x2250 e a janela do Chrome tem
+  // 1422x748: nao cabe. Por isso a foto saia cortada. A saida e' ampliar o
+  // viewport so' durante a captura e devolver ao normal no finally -- sem isso a
+  // tela do Christian fica gigante e os outros pipelines leem torto.
+  let imagem = null;
+  let cdp = null;
+  try {
+    cdp = await aba.context().newCDPSession(aba);
+    await cdp.send('Emulation.setDeviceMetricsOverride', {
+      width: 2400, height: 1900, deviceScaleFactor: 1, mobile: false,
+    });
+    await pausa(6000); // o Power BI precisa refazer o layout inteiro
+    // PASSO 1: rolar ate' o bloco. O titulo certo e' o que traz a regional no
+    // nome ("... Campo - SUL"); o outro e' o banner do topo da pagina, e foi
+    // justamente ele que eu fotografei errado da primeira vez.
+    const achou = await aba.evaluate(() => {
+      const L = (s) => (s || '').replace(/\s+/g, ' ').trim();
+      const todos = [...document.querySelectorAll('*')]
+        .filter((e) => !e.children.length && e.offsetParent && /Acompanhamento Di[aá]rio Campo/i.test(L(e.textContent)));
+      const comRegional = todos.filter((e) => /Campo\s*-\s*\S/i.test(L(e.textContent)));
+      const alvo = comRegional[0] || null;
+      if (!alvo) return false;
+      alvo.setAttribute('data-alvo-foto', '1');
+      alvo.scrollIntoView({ block: 'start', behavior: 'instant' });
+      return true;
+    });
+    if (!achou) throw new Error('nao achei o titulo do bloco com a regional');
+
+    // PASSO 2: deixar o scroll assentar e so' entao medir
+    await pausa(2500);
+    const caixa = await aba.evaluate(() => {
+      const L = (s) => (s || '').replace(/\s+/g, ' ').trim();
+      const tit = document.querySelector('[data-alvo-foto="1"]');
+      if (!tit) return null;
+      // O recorte se fecha nos VISUAIS do relatorio, nunca na janela: assim o
+      // menu lateral do portal fica de fora.
+      const visual = (e) => (e.closest ? (e.closest('.visualContainer') || e.parentElement) : e.parentElement);
+      const caixas = [];
+      // Descarta o que for largo demais para ser um visual: sao os containers do
+      // portal (cabecalho, menu lateral), e foi por eles que a foto veio com a
+      // pagina inteira em volta.
+      const LIMITE = window.innerWidth * 0.85;
+      const poe = (el) => {
+        if (!el) return;
+        const b = el.getBoundingClientRect();
+        if (b.width > 40 && b.height > 20 && b.width < LIMITE) caixas.push(b);
+      };
+
+      // A barra cinza do titulo define onde a foto COMECA: sem isso o recorte
+      // sobe ate' os filtros do relatorio, que nao interessam no report.
+      const boxTit = (() => {
+        const v = visual(tit);
+        const b = v ? v.getBoundingClientRect() : tit.getBoundingClientRect();
+        return b.width < LIMITE && b.width > 100 ? b : tit.getBoundingClientRect();
+      })();
+      caixas.push(boxTit);
+      // os cinco cartoes
+      [...document.querySelectorAll('*')]
+        .filter((e) => !e.children.length && e.offsetParent
+          && /^(EM EXECU|AGUARDANDO TOKEN|EXECUTADOS|CANCELADOS|CHAMADOS COM IMPACTO)/i.test(L(e.textContent).toUpperCase()))
+        .forEach((e) => poe(visual(e)));
+
+      // a tabela: fecha na ULTIMA LINHA COM DADO, nao no container -- ele e'
+      // bem mais alto que as linhas e deixaria um vazio enorme na foto.
+      const tabela = [...document.querySelectorAll('div')]
+        .filter((e) => {
+          const t = L(e.innerText);
+          return /N[uú]mero/i.test(t) && /Loja/i.test(t) && /Abertura/i.test(t) && t.length < 9000;
+        })
+        .sort((a, b) => b.getBoundingClientRect().height - a.getBoundingClientRect().height)[0];
+      let fimLinhas = null;
+      if (tabela) {
+        const rt2 = tabela.getBoundingClientRect();
+        if (rt2.width < LIMITE) caixas.push({ left: rt2.left, right: rt2.right, top: rt2.top, bottom: rt2.top + 60 });
+        const linhas = [...tabela.querySelectorAll('[role="row"], .row')]
+          .filter((r) => L(r.innerText).length > 8)
+          .map((r) => r.getBoundingClientRect())
+          .filter((b) => b.height > 6);
+        if (linhas.length) fimLinhas = Math.max(...linhas.map((b) => b.bottom));
+      }
+
+      if (!caixas.length) return null;
+      // margem folgada nas laterais: com 10px o "W" de WO00580xx ficava cortado
+      const esq = Math.max(0, Math.min(...caixas.map((b) => b.left)) - 28);
+      const dir = Math.min(window.innerWidth, Math.max(...caixas.map((b) => b.right)) + 28);
+      const topo = Math.max(0, boxTit.top - 58); // a barra cinza sobe acima do texto
+      const baseVisuais = Math.max(...caixas.map((b) => b.bottom));
+      const base = Math.min(window.innerHeight, (fimLinhas || baseVisuais) + 12);
+      tit.removeAttribute('data-alvo-foto');
+      return {
+        x: Math.round(esq), y: Math.round(topo),
+        width: Math.round(dir - esq), height: Math.round(base - topo),
+        linhas: fimLinhas != null, janela: window.innerWidth + 'x' + window.innerHeight,
+      };
+    });
+    if (!caixa || caixa.width < 200 || caixa.height < 150) throw new Error('bloco medido pequeno demais');
+    log('recorte da foto: ' + JSON.stringify(caixa));
+    const buf = await aba.screenshot({ clip: { x: caixa.x, y: caixa.y, width: caixa.width, height: caixa.height }, type: 'png' });
+    imagem = buf.toString('base64');
+    // guarda em disco para conferencia visual antes de confiar no envio
+    fs.writeFileSync('C:/projetos/logs/campo_report_foto.png', buf);
+    log('foto: ' + caixa.width + 'x' + caixa.height + ', ' + Math.round(buf.length / 1024) + ' KB');
+  } catch (e) {
+    log('falhou a foto (' + String(e.message).slice(0, 90) + ') -- vai sem foto');
+  } finally {
+    // Devolver a janela ao tamanho real, sempre. Se isso falhar, a tela da VPS
+    // fica com 2400px emulados e os outros pipelines passam a ler torto.
+    if (cdp) {
+      try { await cdp.send('Emulation.clearDeviceMetricsOverride'); await pausa(2500); log('viewport restaurado'); }
+      catch (e2) { log('ATENCAO: nao consegui restaurar o viewport (' + String(e2.message).slice(0, 70) + ')'); }
+      try { await cdp.detach(); } catch (e3) { /* nada */ }
+    }
+  }
+  if (SOFOTO) { log('(modo so-foto: nada enviado)'); process.exit(0); }
+
+  log('');
+  log('================ MENSAGEM ================');
+  log(texto);
+  log('==========================================');
+
+  if (!ENVIAR) { log(''); log('(simulacao -- nada enviado. use --enviar)'); process.exit(0); }
+
+  const pessoal = process.env.MORDOMO_OWNER_NUMBER || '5541992572743';
+  const grupo = process.env.CAMPO_DEST_NUMBER || '';
+  const dest = GRUPO ? grupo : pessoal;
+  if (GRUPO && !grupo) sai('ABORTADO: CAMPO_DEST_NUMBER nao esta configurada', 5);
+  if (!GRUPO && /@g\.us/.test(dest)) sai('ABORTADO: destino pessoal aponta para grupo', 5);
+
+  const url = (process.env.UAZAPI_URL || '').replace(/\/+$/, '');
+  const tok = process.env.UAZAPI_TOKEN || '';
+  if (!url || !tok) sai('ABORTADO: UAZAPI nao configurada', 6);
+
+  function posta(rota, carga) {
+    const corpo = JSON.stringify(carga);
+    const u = new URL(url + rota);
+    return new Promise((res, rej) => {
+      const rq = https.request({
+        hostname: u.hostname, path: u.pathname, method: 'POST',
+        headers: { token: tok, 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': Buffer.byteLength(corpo) },
+        timeout: 90000,
+      }, (r) => { let d = ''; r.on('data', (x) => { d += x; }); r.on('end', () => res({ st: r.statusCode, body: d.slice(0, 250) })); });
+      rq.on('error', rej); rq.on('timeout', () => { rq.destroy(new Error('timeout')); });
+      rq.write(corpo); rq.end();
+    });
+  }
+
+  // Com foto, o texto vai como legenda da imagem -- uma mensagem so'.
+  // Sem foto, manda so' o texto: o report nao pode deixar de sair por causa dela.
+  let resp;
+  if (imagem) {
+    resp = await posta('/send/media', { number: dest, type: 'image', file: 'data:image/png;base64,' + imagem, text: texto });
+    if (resp.st >= 300) {
+      log('a imagem falhou (status ' + resp.st + ': ' + resp.body + ') -- mandando so\' o texto');
+      resp = await posta('/send/text', { number: dest, text: texto });
+    }
+  } else {
+    resp = await posta('/send/text', { number: dest, text: texto });
+  }
+  log('');
+  log('enviado para ' + dest + (imagem ? ' (com foto)' : ' (sem foto)') + ' -- status ' + resp.st);
+  if (resp.st >= 300) { log('resposta: ' + resp.body); process.exit(7); }
+  process.exit(0);
+})().catch((e) => { log('FALHOU: ' + (e.stack || e.message || '').slice(0, 300)); process.exit(1); });

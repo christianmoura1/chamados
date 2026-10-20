@@ -3,7 +3,7 @@ const require = createRequire(import.meta.url);
 const { chromium } = require('C:/projetos/certponto-report/node_modules/playwright');
 const fs = require('fs');
 
-const browser = await chromium.connectOverCDP('http://127.0.0.1:9222', { timeout: 20000 });
+const browser = await chromium.connectOverCDP('http://127.0.0.1:9222', { timeout: 120000 });
 const ctx = browser.contexts()[0];
 let page = null;
 for (const p of ctx.pages()) {

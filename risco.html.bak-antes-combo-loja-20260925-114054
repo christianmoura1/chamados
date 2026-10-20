@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Gestão de Risco — Sul</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --sidebar:   #1E1B3A;
+    --sidebar-2: #2A2555;
+    --ground:    #F3F1FB;
+    --surface:   #FFFFFF;
+    --surface2:  #F6F4FC;
+    --ink:       #211D3D;
+    --muted:     #726E93;
+    --faint:     #A9A5C6;
+    --line:      #ECEAF6;
+    --violet:    #7C5CFC;
+    --violet-2:  #A78BFA;
+    --pink:      #F472B6;
+    --blue:      #38BDF8;
+    --sos:       #E43F5A;
+    --sos-soft:  rgba(228,63,90,0.10);
+    --alta:      #F5A623;
+    --alta-soft: rgba(245,166,35,0.12);
+    --ok:        #22C08D;
+    --grid:      rgba(33,29,61,0.06);
+    --shadow:    0 1px 2px rgba(33,29,61,.04), 0 12px 28px rgba(33,29,61,.07);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:   #100E22; --surface: #1A1733; --surface2: #211D42;
+      --ink: #ECEAFB; --muted: #A29DC7; --faint: #6C6791; --line: #2C2854;
+      --violet: #9A82FF; --violet-2: #C4B5FD; --pink: #F9A8D4; --blue: #7DD3FC;
+      --sos: #F3697F; --sos-soft: rgba(243,105,127,0.16);
+      --alta: #FBBF56; --alta-soft: rgba(251,191,86,0.16); --ok: #4ADE9E;
+      --grid: rgba(236,234,251,0.07); --shadow: 0 1px 2px rgba(0,0,0,.35), 0 14px 32px rgba(0,0,0,.32);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:   #100E22; --surface: #1A1733; --surface2: #211D42;
+    --ink: #ECEAFB; --muted: #A29DC7; --faint: #6C6791; --line: #2C2854;
+    --violet: #9A82FF; --violet-2: #C4B5FD; --pink: #F9A8D4; --blue: #7DD3FC;
+    --sos: #F3697F; --sos-soft: rgba(243,105,127,0.16);
+    --alta: #FBBF56; --alta-soft: rgba(251,191,86,0.16); --ok: #4ADE9E;
+    --grid: rgba(236,234,251,0.07); --shadow: 0 1px 2px rgba(0,0,0,.35), 0 14px 32px rgba(0,0,0,.32);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--ground); color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif; font-size: 15px; line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .num { font-variant-numeric: tabular-nums; }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+
+  .shell { display: grid; grid-template-columns: 240px minmax(0,1fr); min-height: 100vh; transition: grid-template-columns .22s ease; }
+  .shell.sb-collapsed { grid-template-columns: 0 minmax(0,1fr); }
+  @media (max-width: 860px) { .shell:not(.sb-expanded) { grid-template-columns: 0 minmax(0,1fr); } }
+
+  .side {
+    background: linear-gradient(180deg, var(--sidebar), var(--sidebar-2));
+    padding: 26px 20px; display: flex; flex-direction: column; gap: 30px; color: #EDEAFF;
+    position: relative; overflow: hidden; white-space: nowrap; min-width: 0;
+    transition: opacity .18s ease;
+  }
+  .shell.sb-collapsed .side { opacity: 0; padding-left: 0; padding-right: 0; }
+
+  .side-toggle {
+    position: absolute; top: 22px; right: 14px; width: 26px; height: 26px; border-radius: 999px;
+    background: rgba(255,255,255,0.08); border: none; color: #C6C0EE; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; font-size: 14px; line-height: 1; flex: none;
+  }
+  .side-toggle:hover { background: rgba(255,255,255,0.16); color: #FFFFFF; }
+
+  .side-reopen {
+    display: none; position: fixed; top: 22px; left: 18px; z-index: 40;
+    width: 32px; height: 32px; border-radius: 999px; border: 1px solid var(--line);
+    background: var(--surface); color: var(--muted); box-shadow: var(--shadow); cursor: pointer;
+    align-items: center; justify-content: center; font-size: 15px; line-height: 1;
+  }
+  .side-reopen:hover { color: var(--violet); }
+  .shell.sb-collapsed .side-reopen { display: flex; }
+
+  .brand { display: flex; align-items: center; gap: 11px; padding-right: 24px; }
+  .brand .mark {
+    width: 34px; height: 34px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--violet), var(--pink));
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Archivo", sans-serif; font-weight: 800; font-size: 15px; color: white; flex: none;
+  }
+  .brand .name { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
+  .brand .sub { font-size: 11px; color: #A79FE0; }
+
+  .navgroup { display: flex; flex-direction: column; gap: 3px; }
+  .navlabel { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #7A72B8; padding: 0 12px; margin: 14px 0 6px; }
+  .navitem {
+    display: flex; align-items: center; gap: 11px; padding: 9px 12px; border-radius: 10px;
+    color: #C6C0EE; font-size: 13.5px; font-weight: 500; text-decoration: none;
+  }
+  a.navitem:hover { background: rgba(255,255,255,0.06); color: #FFFFFF; }
+  .navitem .dot { width: 7px; height: 7px; border-radius: 999px; background: currentColor; opacity: .55; flex: none; }
+  .navitem.active { background: rgba(255,255,255,0.08); color: #FFFFFF; }
+  .navitem.active .dot { background: var(--pink); opacity: 1; }
+
+  .side-foot { margin-top: auto; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 11.5px; color: #8B84C4; }
+
+  .main { padding: clamp(18px,3vw,34px) clamp(16px,3.5vw,40px) 60px; }
+  .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 22px; flex-wrap: wrap; }
+  .eyebrow { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--violet); margin: 0 0 6px; }
+  h1 { font-family: "Archivo", sans-serif; font-weight: 800; font-size: clamp(24px,3.4vw,32px); letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+  .stamp-pill {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--muted);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; box-shadow: var(--shadow);
+  }
+
+  .kpis { display: grid; grid-template-columns: repeat(4,1fr); gap: 13px; margin: 22px 0 30px; }
+  @media (max-width: 1080px) { .kpis { grid-template-columns: repeat(2,1fr); } }
+  .kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px 17px 14px; box-shadow: var(--shadow); }
+  .kpi .label { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); display:block; margin-bottom: 7px; }
+  .kpi .val { font-family: "Archivo", sans-serif; font-weight: 800; font-size: clamp(20px,2.6vw,25px); letter-spacing: -0.01em; }
+  .kpi.k-sos .val { color: var(--sos); }
+  .kpi.k-alta .val { color: var(--alta); }
+  .kpi.k-violet .val { color: var(--violet); }
+  .kpi.k-ok .val { color: var(--ok); }
+
+  section { margin-top: 34px; }
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin-bottom: 15px; flex-wrap: wrap; }
+  h2 { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 17px; letter-spacing: -0.01em; margin: 0; }
+  .sec-note { font-size: 12px; color: var(--faint); font-family: "IBM Plex Mono", monospace; }
+
+  .equip-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; align-items: start; }
+  @media (max-width: 1180px) { .equip-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+  @media (max-width: 640px) { .equip-grid { grid-template-columns: minmax(0,1fr); } }
+
+  .ecard { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 18px 18px 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 14px; cursor: pointer; transition: transform .12s ease, box-shadow .12s ease; text-align: left; }
+  .ecard:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(33,29,61,.08), 0 18px 34px rgba(33,29,61,.10); }
+  .ecard:focus-visible { outline: 2px solid var(--violet); outline-offset: 2px; }
+  .ecard .ehead { display: flex; align-items: center; justify-content: space-between; }
+  .ecard .etitle { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 14.5px; }
+  .ecard .eopen { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--faint); }
+
+  .donut-row { display: flex; align-items: center; gap: 16px; }
+  .donut-wrap { position: relative; width: 92px; height: 92px; flex: none; }
+  .donut-wrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .donut-wrap .center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .donut-wrap .pctv { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 17px; }
+  .donut-wrap .pctl { font-family: "IBM Plex Mono", monospace; font-size: 8.5px; color: var(--faint); letter-spacing: .04em; text-transform: uppercase; }
+
+  .estats { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .estat { background: var(--surface2); border-radius: 10px; padding: 8px 10px; }
+  .estat .n { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 16px; }
+  .estat .l { font-family: "IBM Plex Mono", monospace; font-size: 9px; color: var(--faint); text-transform: uppercase; letter-spacing: .04em; }
+  .estat.crit .n { color: var(--sos); }
+  .estat.ok .n { color: var(--ok); }
+
+  .esos-label { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); display: flex; align-items: center; gap: 6px; }
+  .esos-label::before { content: "●"; font-size: 8px; }
+  .esos-list { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
+  .esos-item { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 11.5px; }
+  .esos-item .loja { color: var(--ink); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+  .esos-empty { font-size: 11.5px; color: var(--faint); }
+
+  .cons-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 780px) { .cons-grid { grid-template-columns: 1fr; } }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px 16px; box-shadow: var(--shadow); }
+  .card h3 { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 13.5px; margin: 0 0 14px; }
+  .hbar-row { display: grid; grid-template-columns: 108px 1fr 40px; align-items: center; gap: 10px; margin-bottom: 9px; font-size: 12px; }
+  .hbar-row .lbl { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hbar-track { background: var(--surface2); border-radius: 999px; height: 9px; overflow: hidden; }
+  .hbar-fill { height: 100%; border-radius: 999px; }
+  .hbar-row .v { text-align: right; font-family: "IBM Plex Mono", monospace; font-weight: 600; }
+
+  footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--faint); font-size: 12px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .msg-carregando, .msg-erro { padding: 40px 0; text-align: center; color: var(--muted); font-family: "IBM Plex Mono", monospace; font-size: 13px; }
+  .msg-erro { color: var(--sos); }
+
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(16,14,34,0.55); backdrop-filter: blur(2px);
+    display: flex; align-items: center; justify-content: center; padding: 24px; z-index: 50;
+  }
+  .modal-overlay[hidden] { display: none; }
+  .modal-panel {
+    background: var(--surface); border-radius: 20px; box-shadow: var(--shadow);
+    width: min(560px, 100%); max-height: min(640px, 88vh); display: flex; flex-direction: column; overflow: hidden;
+  }
+  .modal-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; border-bottom: 1px solid var(--line); flex: none; }
+  .modal-head h3 { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 16.5px; margin: 0; }
+  .modal-close {
+    appearance: none; border: none; background: var(--surface2); color: var(--muted); width: 30px; height: 30px;
+    border-radius: 999px; font-size: 17px; line-height: 1; cursor: pointer;
+  }
+  .modal-close:hover { color: var(--ink); }
+  .modal-sub { padding: 12px 22px 0; font-size: 12px; color: var(--faint); font-family: "IBM Plex Mono", monospace; flex: none; }
+  .modal-body { overflow: auto; padding: 14px 22px 20px; }
+  .detail-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  .detail-table th {
+    text-align: left; font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .05em; text-transform: uppercase;
+    color: var(--faint); padding: 8px 10px; position: sticky; top: 0; background: var(--surface);
+  }
+  .detail-table td { padding: 8px 10px; border-top: 1px solid var(--line); vertical-align: top; }
+  .detail-table tr:hover td { background: var(--surface2); }
+  .tag { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; font-weight: 600; border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
+  .tag-sos { background: var(--sos-soft); color: var(--sos); }
+  .tag-normal { background: var(--surface2); color: var(--muted); }
+  .filter-table-wrap { max-height: 420px; overflow: auto; border-radius: 12px; }
+  .filter-empty { padding: 24px 0; text-align: center; color: var(--faint); font-size: 12.5px; }
+  .risco-subhead { display: flex; align-items: center; gap: 10px; margin: 22px 0 10px; font-family: "Archivo", sans-serif; font-weight: 700; font-size: 14px; }
+  .risco-subhead .cnt { font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 600; border-radius: 999px; padding: 2px 10px; }
+  .risco-subhead .cnt.vencido { background: var(--sos-soft); color: var(--sos); }
+  .risco-subhead .cnt.avencer { background: var(--ok); color: white; }
+  .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 16px; }
+  .filter-field { display: flex; flex-direction: column; gap: 4px; min-width: 168px; }
+  .filter-field label {
+    font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--faint);
+  }
+  .filter-field select {
+    font-family: "IBM Plex Sans", sans-serif; font-size: 13px; color: var(--ink); background: var(--surface2);
+    border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; appearance: none; width: 100%;
+  }
+  .resp-select {
+    font-family: "IBM Plex Sans", sans-serif; font-size: 12.5px; color: var(--ink); background: var(--surface2);
+    border: 1px solid var(--line); border-radius: 8px; padding: 4px 7px; min-width: 118px; cursor: pointer;
+  }
+  .resp-select:focus { outline: 2px solid var(--violet); outline-offset: -1px; }
+  .prev-date {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink); background: var(--surface2);
+    border: 1px solid var(--line); border-radius: 8px; padding: 4px 7px; min-width: 128px; cursor: pointer;
+  }
+  .prev-date:focus { outline: 2px solid var(--violet); outline-offset: -1px; }
+  /* previsao de termino ja passou: precisa saltar aos olhos */
+  .prev-date.vencida {
+    border-color: #E5352B; background: #FDECEB; color: #B22119; font-weight: 700;
+  }
+  .prev-date.hoje { border-color: #F0A31B; background: #FFF6E6; color: #8A5B06; font-weight: 700; }
+  /* aviso de responsaveis/prazos nao salvos -- fica fixo no topo porque a
+     falha anterior era SILENCIOSA e custou dados digitados */
+  .aviso-atrib {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+    font-family: "IBM Plex Sans", sans-serif; font-size: 13px; font-weight: 600;
+    padding: 11px 18px; text-align: center; line-height: 1.45;
+    box-shadow: 0 2px 10px rgba(0,0,0,.14);
+  }
+  .aviso-atrib.erro { background: #FDECEB; color: #B22119; border-bottom: 2px solid #E5352B; }
+  .aviso-atrib.pendente { background: #FFF6E6; color: #8A5B06; border-bottom: 2px solid #F0A31B; }
+  .aviso-atrib[hidden] { display: none; }
+  .filtro-limpar {
+    font-family: "IBM Plex Sans", sans-serif; font-size: 12.5px; font-weight: 600; color: var(--muted);
+    background: var(--surface2); border: 1px solid var(--line); border-radius: 10px; padding: 9px 14px; cursor: pointer;
+  }
+  .filtro-limpar:hover { color: var(--ink); }
+  .filtro-conta { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--faint); padding-bottom: 10px; }
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <button class="side-toggle" id="sideToggle" type="button" aria-label="Recolher menu">‹</button>
+    <div class="brand">
+      <div class="mark">Z</div>
+      <div><div class="name">Manutenção Sul</div><div class="sub">Zamp · BK Brasil</div></div>
+    </div>
+    <div class="navgroup">
+      <a class="navitem" href="index.html"><span class="dot"></span>Backlog</a>
+      <a class="navitem" href="tecnicos.html"><span class="dot"></span>Técnicos</a>
+      <div class="navlabel">Painéis</div>
+      <div class="navitem"><span class="dot"></span>Perda de Receita</div>
+      <a class="navitem active" href="risco.html"><span class="dot"></span>Gestão de Risco</a>
+      <a class="navitem" href="campo.html"><span class="dot"></span>Acompanhamento Campo</a>
+      <div class="navlabel">Fonte</div>
+      <div class="navitem"><span class="dot"></span>ServiceNow · SOMA</div>
+    </div>
+    <div class="side-foot">Atualização diária · fonte Power BI</div>
+  </aside>
+  <button class="side-reopen" id="sideReopen" type="button" aria-label="Abrir menu">›</button>
+
+  <main class="main">
+    <div class="topbar">
+      <div>
+        <p class="eyebrow">Regional Sul · Gestão de Risco</p>
+        <h1>Gestão de Risco</h1>
+      </div>
+      <div class="stamp-pill" id="stamp">carregando…</div>
+    </div>
+    <div id="conteudo"><div class="msg-carregando">carregando data/risco.json…</div></div>
+  </main>
+</div>
+
+<div class="modal-overlay" id="modalOverlay" hidden>
+  <div class="modal-panel">
+    <div class="modal-head">
+      <h3 id="modalTitle"></h3>
+      <button class="modal-close" id="modalClose" aria-label="Fechar" type="button">&times;</button>
+    </div>
+    <div class="modal-sub" id="modalSub"></div>
+    <div class="modal-body">
+      <table class="detail-table">
+        <thead><tr><th>Loja</th><th>Dias em Atraso</th></tr></thead>
+        <tbody id="modalTbody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+const brl0 = n => n.toLocaleString('pt-BR');
+let DADOS_ATUAIS = null;
+
+function escapeHtml(s) {
+  return String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+}
+
+// mesmo esquema de cores do painel de Backlog: vermelho = pior, laranja =
+// medio, verde = bom (consistencia visual entre os paineis, pedido do
+// Christian, 15/09/2026)
+function corPorPctVencido(pct) {
+  if (pct >= 30) return 'var(--sos)';
+  if (pct >= 15) return 'var(--alta)';
+  return 'var(--ok)';
+}
+
+function donutSVG(pct, cor) {
+  const r = 38, c = 2 * Math.PI * r;
+  const dash = (Math.min(pct, 100) / 100) * c;
+  return `<svg viewBox="0 0 92 92" width="92" height="92">
+    <circle cx="46" cy="46" r="${r}" style="fill:none;stroke:var(--surface2)" stroke-width="9"/>
+    <circle cx="46" cy="46" r="${r}" style="fill:none;stroke:${cor}" stroke-width="9"
+      stroke-dasharray="${dash.toFixed(1)} ${c.toFixed(1)}" stroke-linecap="round"/>
+  </svg>`;
+}
+
+function blocoMaisUrgentes(itens) {
+  const top5 = (itens || []).slice(0, 5);
+  const html = top5.length
+    ? top5.map(l => `<div class="esos-item"><span class="loja">${escapeHtml(l.nome)}</span><span class="tag tag-sos">${l.diasAtraso != null ? l.diasAtraso + 'd' : '—'}</span></div>`).join('')
+    : '<div class="esos-empty">Nenhuma loja vencida nessa categoria.</div>';
+  return `<div>
+      <div class="esos-label">Mais críticas (${top5.length}${itens && itens.length > 5 ? ' de ' + itens.length : ''})</div>
+      <div class="esos-list">${html}</div>
+    </div>`;
+}
+
+const statusRiscoTagCls = s => /atrasad/i.test(s) ? 'tag-sos' : 'tag-normal';
+
+const RESPONSAVEIS = ['Christian', 'Carlos Magno', 'Marcel', 'Gustavo', 'Rafael'];
+function responsavelDoTecnico(tecnico) {
+  const t = (tecnico || '').toUpperCase();
+  return RESPONSAVEIS.find(r => t.includes(r.toUpperCase())) || null;
+}
+
+// atribuicao manual por chamado (responsavel + previsao de termino), guardada
+// num banco compartilhado (nao localStorage -- varias pessoas abrem esse
+// painel e precisam ver a mesma coisa). API roda na propria VPS atras do
+// Caddy (154-64-32-227.sslip.io), pedido do Christian, 15/09/2026.
+const API_ATRIBUICOES = 'https://154-64-32-227.sslip.io/v1/risco-atribuicoes';
+const CACHE_ATRIB = 'risco_atribuicoes_cache';
+const FILA_ATRIB = 'risco_atribuicoes_pendentes';
+let ATRIBUICOES = {};
+
+// 22/09/2026 -- o servidor de atribuicoes ficou 5 dias fora do ar e a pagina
+// nao disse nada: o carregamento caia no catch e assumia {}, entao TUDO
+// aparecia em branco como se nunca tivesse sido preenchido, e o Christian
+// perdeu prazos que tinha acabado de digitar. Pior: o POST nem conferia o
+// resultado -- um 502 do Caddy devolve resposta, nao excecao, entao a falha
+// passava por sucesso.
+//
+// Agora: (1) cache local da ultima copia boa, para nunca mostrar vazio como
+// se fosse verdade; (2) fila de pendentes em localStorage, para o que foi
+// digitado offline subir sozinho depois; (3) aviso na tela enquanto houver
+// coisa nao salva. Nenhuma edicao pode sumir em silencio.
+
+function lerJSONLocal(chave, padrao) {
+  try { return JSON.parse(localStorage.getItem(chave)) || padrao; } catch (e) { return padrao; }
+}
+function gravarJSONLocal(chave, valor) {
+  try { localStorage.setItem(chave, JSON.stringify(valor)); } catch (e) { /* sem storage: segue so' em memoria */ }
+}
+
+function avisoAtribuicoes(texto, tom) {
+  let el = document.getElementById('aviso-atrib');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'aviso-atrib';
+    document.body.appendChild(el);
+  }
+  el.className = 'aviso-atrib' + (tom ? ' ' + tom : '');
+  el.textContent = texto || '';
+  el.hidden = !texto;
+}
+
+async function enviarPendentes() {
+  const fila = lerJSONLocal(FILA_ATRIB, {});
+  const numeros = Object.keys(fila);
+  if (!numeros.length) { avisoAtribuicoes(''); return true; }
+  for (const numero of numeros) {
+    try {
+      const r = await fetch(API_ATRIBUICOES, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ numero, ...fila[numero] }),
+      });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      delete fila[numero];
+    } catch (e) { /* continua tentando os outros; o que falhar fica na fila */ }
+  }
+  gravarJSONLocal(FILA_ATRIB, fila);
+  const restam = Object.keys(fila).length;
+  if (restam) {
+    avisoAtribuicoes(restam + (restam === 1 ? ' alteração ainda não foi salva' : ' alterações ainda não foram salvas')
+      + ' no servidor. Estão guardadas neste navegador e sobem sozinhas quando ele voltar.', 'pendente');
+  } else {
+    avisoAtribuicoes('');
+  }
+  return restam === 0;
+}
+
+async function carregarAtribuicoes() {
+  const cache = lerJSONLocal(CACHE_ATRIB, null);
+  try {
+    const r = await fetch(API_ATRIBUICOES, { cache: 'no-store' });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    ATRIBUICOES = await r.json();
+    gravarJSONLocal(CACHE_ATRIB, ATRIBUICOES);
+    await enviarPendentes();
+  } catch (e) {
+    ATRIBUICOES = cache ? { ...cache } : {};
+    avisoAtribuicoes(cache
+      ? 'Sem contato com o servidor de responsáveis e prazos. Mostrando a última cópia salva neste navegador — o que você editar fica guardado e sobe sozinho.'
+      : 'Sem contato com o servidor de responsáveis e prazos, e não há cópia neste navegador. Os campos aparecem vazios, mas isso NÃO quer dizer que foram apagados. Evite editar agora.', 'erro');
+  }
+  // o que ainda esta' na fila vale mais que o que veio do servidor
+  const fila = lerJSONLocal(FILA_ATRIB, {});
+  for (const numero of Object.keys(fila)) {
+    ATRIBUICOES[numero] = { ...ATRIBUICOES[numero], ...fila[numero] };
+  }
+}
+
+async function salvarCampoAtribuicao(numero, campo, valor) {
+  ATRIBUICOES[numero] = { ...ATRIBUICOES[numero], [campo]: valor };
+  gravarJSONLocal(CACHE_ATRIB, ATRIBUICOES);
+  // entra na fila ANTES de tentar a rede: se a aba fechar no meio, nao se perde
+  const fila = lerJSONLocal(FILA_ATRIB, {});
+  fila[numero] = { ...fila[numero], [campo]: valor };
+  gravarJSONLocal(FILA_ATRIB, fila);
+  await enviarPendentes();
+}
+
+// reinsiste sozinho: se o servidor voltar, a fila esvazia sem ninguem mexer
+setInterval(function () { enviarPendentes(); }, 60000);
+window.addEventListener('online', function () { enviarPendentes(); });
+function responsavelAtual(c) {
+  return ATRIBUICOES[c.numero]?.responsavel || responsavelDoTecnico(c.tecnico) || '';
+}
+function previsaoAtual(c) {
+  return ATRIBUICOES[c.numero]?.previsaoTermino || '';
+}
+
+function parseDataBR(s) {
+  const m = String(s || '').match(/^(\d{2})\/(\d{2})\/(\d{4})/);
+  if (!m) return null;
+  return new Date(Number(m[3]), Number(m[2]) - 1, Number(m[1]));
+}
+function diasVencido(dtAbertura, refDate) {
+  const d = parseDataBR(dtAbertura);
+  if (!d || !refDate) return null;
+  return Math.max(0, Math.round((refDate - d) / 86400000));
+}
+
+const FILTROS_RISCO = { loja: '', assunto: '', resp: '', ordem: 'antigos' };
+
+const assuntoDe = (c) => (c.assuntoSecundario || c.assuntoPrincipal || '').trim();
+
+// Data de previsao vencida fica vermelha; a de hoje, laranja.
+function classePrevisao(previsao) {
+  if (!previsao) return '';
+  const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
+  const d = new Date(previsao + 'T00:00:00');
+  if (isNaN(d)) return '';
+  if (d < hoje) return ' vencida';
+  if (d.getTime() === hoje.getTime()) return ' hoje';
+  return '';
+}
+
+function aplicaFiltrosRisco(itens) {
+  return (itens || []).filter((c) =>
+    (!FILTROS_RISCO.loja || c.loja === FILTROS_RISCO.loja) &&
+    (!FILTROS_RISCO.assunto || assuntoDe(c) === FILTROS_RISCO.assunto) &&
+    (!FILTROS_RISCO.resp || responsavelAtual(c) === FILTROS_RISCO.resp));
+}
+
+function barraFiltrosRisco(todos) {
+  const unicos = (fn) => [...new Set((todos || []).map(fn).map((v) => (v || '').trim()).filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b, 'pt-BR'));
+  const lojas = unicos((c) => c.loja);
+  const assuntos = unicos(assuntoDe);
+  const visiveis = aplicaFiltrosRisco(todos).length;
+  const opc = (lista, sel, todosRot) => `<option value="">${todosRot}</option>` +
+    lista.map((v) => `<option value="${escapeHtml(v)}"${v === sel ? ' selected' : ''}>${escapeHtml(v)}</option>`).join('');
+  const ativo = FILTROS_RISCO.loja || FILTROS_RISCO.assunto || FILTROS_RISCO.resp;
+  return `<div class="filter-bar">
+    <div class="filter-field"><label for="fRiscoLoja">Loja</label>
+      <select id="fRiscoLoja">${opc(lojas, FILTROS_RISCO.loja, 'Todas as lojas (' + lojas.length + ')')}</select></div>
+    <div class="filter-field"><label for="fRiscoAssunto">Assunto</label>
+      <select id="fRiscoAssunto">${opc(assuntos, FILTROS_RISCO.assunto, 'Todos os assuntos (' + assuntos.length + ')')}</select></div>
+    <div class="filter-field"><label for="fRiscoResp">Responsável</label>
+      <select id="fRiscoResp">${opc(RESPONSAVEIS, FILTROS_RISCO.resp, 'Todos')}</select></div>
+    <div class="filter-field"><label for="fRiscoOrdem">Ordenar por</label>
+      <select id="fRiscoOrdem">
+        <option value="antigos"${FILTROS_RISCO.ordem === 'antigos' ? ' selected' : ''}>Abertura mais antiga</option>
+        <option value="recentes"${FILTROS_RISCO.ordem === 'recentes' ? ' selected' : ''}>Abertura mais recente</option>
+        <option value="previsao"${FILTROS_RISCO.ordem === 'previsao' ? ' selected' : ''}>Previsão mais próxima</option>
+      </select></div>
+    ${ativo ? '<button type="button" class="filtro-limpar" id="fRiscoLimpar">limpar filtros</button>' : ''}
+    ${ativo ? `<span class="filtro-conta">${visiveis} de ${(todos || []).length} chamados</span>` : ''}
+  </div>`;
+}
+
+function tabelaChamadosRisco(itens, refDate, filtroResp) {
+  const filtrados = aplicaFiltrosRisco(itens);
+  if (!filtrados.length) return `<div class="filter-empty">${FILTROS_RISCO.loja || FILTROS_RISCO.assunto || FILTROS_RISCO.resp ? 'Nenhum chamado bate com o filtro escolhido.' : 'Nenhum chamado nesse grupo.'}</div>`;
+  const comDias = filtrados.map(c => ({ ...c, dias: diasVencido(c.dtAbertura, refDate) }));
+  if (FILTROS_RISCO.ordem === 'recentes') {
+    // menos dias vencido = aberto mais recentemente
+    comDias.sort((a, b) => (a.dias ?? 1e9) - (b.dias ?? 1e9));
+  } else if (FILTROS_RISCO.ordem === 'previsao') {
+    // sem previsao vai para o fim, senao some da vista de quem cobra prazo
+    const p = (c) => previsaoAtual(c) || '9999-12-31';
+    comDias.sort((a, b) => p(a).localeCompare(p(b)));
+  } else {
+    comDias.sort((a, b) => (b.dias ?? -1) - (a.dias ?? -1));
+  }
+  return `<div class="filter-table-wrap"><table class="detail-table">
+    <thead><tr><th>Número</th><th>Item</th><th>Assunto</th><th>Loja</th><th>Setor</th><th>Status</th><th>Vencido há</th><th>Responsável</th><th>Previsão de Término</th></tr></thead>
+    <tbody>${comDias.map(c => {
+      const atual = responsavelAtual(c);
+      const opcoes = ['', ...RESPONSAVEIS].map(r => `<option value="${escapeHtml(r)}" ${r === atual ? 'selected' : ''}>${r ? escapeHtml(r) : '—'}</option>`).join('');
+      const previsao = previsaoAtual(c);
+      return `<tr>
+        <td class="mono">${escapeHtml(c.numero)}</td>
+        <td>${escapeHtml(c.item)}</td>
+        <td>${escapeHtml(c.assuntoSecundario || c.assuntoPrincipal)}</td>
+        <td>${escapeHtml(c.loja)}</td>
+        <td>${escapeHtml(c.setor)}</td>
+        <td><span class="tag ${statusRiscoTagCls(c.statusRisco)}">${escapeHtml(c.status)}</span></td>
+        <td class="num">${c.dias != null ? c.dias + 'd' : '—'}</td>
+        <td><select class="resp-select" data-wo="${escapeHtml(c.numero)}">${opcoes}</select></td>
+        <td><input type="date" class="prev-date${classePrevisao(previsao)}" data-wo="${escapeHtml(c.numero)}" value="${escapeHtml(previsao)}"></td>
+      </tr>`;
+    }).join('')}</tbody>
+  </table></div>`;
+}
+
+function renderizarChamadosRisco() {
+  const D = DADOS_ATUAIS;
+  if (!D) return;
+  const refDate = parseDataBR(D.atualizadoEm) || new Date();
+  const vencidos = (D.chamadosRisco?.vencidos || []);
+  const aVencer = (D.chamadosRisco?.aVencer || []);
+  // as listas dos filtros saem dos DOIS grupos juntos, senao um assunto que so'
+  // existe em "a vencer" sumiria da lista enquanto o outro grupo esta em tela
+  const barra = document.getElementById('barraFiltrosRisco');
+  if (barra) barra.innerHTML = barraFiltrosRisco([...vencidos, ...aVencer]);
+  document.getElementById('cntVencido').textContent = aplicaFiltrosRisco(vencidos).length;
+  document.getElementById('cntAVencer').textContent = aplicaFiltrosRisco(aVencer).length;
+  document.getElementById('tabelaVencido').innerHTML = tabelaChamadosRisco(vencidos, refDate);
+  document.getElementById('tabelaAVencer').innerHTML = tabelaChamadosRisco(aVencer, refDate);
+}
+
+function abrirModalCategoria(chave) {
+  const c = DADOS_ATUAIS?.categorias.find(x => x.chave === chave);
+  if (!c) return;
+  document.getElementById('modalTitle').textContent = c.nome;
+  document.getElementById('modalSub').textContent = `${c.vencido} de ${c.total} lojas com item vencido (${c.pctVencido}%)`;
+  document.getElementById('modalTbody').innerHTML = c.lojasVencidas.length
+    ? c.lojasVencidas.map(l => `<tr><td>${escapeHtml(l.nome)}</td><td class="num">${l.diasAtraso != null ? l.diasAtraso + 'd' : '—'}</td></tr>`).join('')
+    : `<tr><td colspan="2" class="esos-empty">Nenhuma loja vencida nessa categoria.</td></tr>`;
+  document.getElementById('modalOverlay').hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+function fecharModal() {
+  document.getElementById('modalOverlay').hidden = true;
+  document.body.style.overflow = '';
+}
+document.getElementById('modalClose').addEventListener('click', fecharModal);
+document.getElementById('modalOverlay').addEventListener('click', (ev) => { if (ev.target.id === 'modalOverlay') fecharModal(); });
+document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape' && !document.getElementById('modalOverlay').hidden) fecharModal(); });
+
+async function iniciar() {
+  const el = document.getElementById('conteudo');
+  let D;
+  try {
+    const [rDados] = await Promise.all([
+      fetch('data/risco.json', { cache: 'no-store' }),
+      carregarAtribuicoes(),
+    ]);
+    if (!rDados.ok) throw new Error('HTTP ' + rDados.status);
+    D = await rDados.json();
+  } catch (e) {
+    el.innerHTML = `<div class="msg-erro">Não consegui carregar os dados (${e.message}).</div>`;
+    return;
+  }
+
+  DADOS_ATUAIS = D;
+  document.getElementById('stamp').textContent = 'Atualizado ' + escapeHtml(D.atualizadoEm || '—');
+  const refDate = parseDataBR(D.atualizadoEm) || new Date();
+
+  const totalVencido = D.categorias.reduce((s, c) => s + c.vencido, 0);
+  const piorCategoria = [...D.categorias].sort((a, b) => b.pctVencido - a.pctVencido)[0];
+
+  const kpisHtml = [
+    { label: 'Score Médio', val: D.scoreMedio != null ? D.scoreMedio.toLocaleString('pt-BR') : '—', cls: 'k-violet' },
+    { label: 'Itens Vencidos', val: brl0(totalVencido), cls: 'k-sos' },
+    { label: 'Categoria Mais Crítica', val: piorCategoria ? `${piorCategoria.nome} · ${piorCategoria.pctVencido}%` : '—', cls: 'k-alta' },
+    { label: 'Chamados Vencidos', val: brl0((D.chamadosRisco?.vencidos || []).length), cls: 'k-sos' },
+  ].map(k => `<div class="kpi ${k.cls}"><span class="label">${k.label}</span><div class="val num">${k.val}</div></div>`).join('');
+
+  const catOrdenadas = [...D.categorias].sort((a, b) => b.pctVencido - a.pctVencido);
+  const catCards = catOrdenadas.map((c) => {
+    const cor = corPorPctVencido(c.pctVencido);
+    return `<div class="ecard" role="button" tabindex="0" aria-label="Ver lojas vencidas em ${escapeHtml(c.nome)}"
+        onclick="abrirModalCategoria('${c.chave}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirModalCategoria('${c.chave}');}">
+      <div class="ehead"><span class="etitle">${escapeHtml(c.nome)}</span><span class="eopen">detalhe →</span></div>
+      <div class="donut-row">
+        <div class="donut-wrap">${donutSVG(c.pctVencido, cor)}
+          <div class="center"><span class="pctv num" style="color:${cor}">${c.pctVencido}%</span><span class="pctl">vencido</span></div>
+        </div>
+        <div class="estats">
+          <div class="estat crit"><div class="n num">${c.vencido}</div><div class="l">Vencidas</div></div>
+          <div class="estat ok"><div class="n num">${c.emDia}</div><div class="l">Em dia</div></div>
+        </div>
+      </div>
+      ${blocoMaisUrgentes(c.lojasVencidas)}
+    </div>`;
+  }).join('');
+
+  // "Em Aberto por Item" -- vem como bruto (nomes seguidos dos numeros de
+  // atrasado) direto da leitura do Power BI; time seguro = so' os 6 itens
+  // conhecidos do grafico, na ordem em que aparecem.
+  const itens = (D.abertoPorItemBruto || []).slice(0, 6);
+  const numeros = (D.abertoPorItemBruto || []).slice(6, 6 + itens.length).map(Number);
+  const paresItem = itens.map((nome, i) => ({ nome, atrasado: numeros[i] || 0 })).sort((a, b) => b.atrasado - a.atrasado);
+  const maxItem = Math.max(...paresItem.map(p => p.atrasado), 1);
+  const barsItem = paresItem.map(p => `<div class="hbar-row">
+      <span class="lbl">${escapeHtml(p.nome)}</span>
+      <div class="hbar-track"><div class="hbar-fill" style="width:${(p.atrasado/maxItem*100).toFixed(0)}%;background:linear-gradient(90deg,var(--pink),var(--sos))"></div></div>
+      <span class="v num">${p.atrasado}</span>
+    </div>`).join('');
+
+  const barsCategoria = catOrdenadas.map(c => `<div class="hbar-row">
+      <span class="lbl">${escapeHtml(c.nome)}</span>
+      <div class="hbar-track"><div class="hbar-fill" style="width:${c.pctVencido}%;background:linear-gradient(90deg,var(--violet-2),var(--violet))"></div></div>
+      <span class="v num">${c.pctVencido}%</span>
+    </div>`).join('');
+
+  el.innerHTML = `
+    <div class="kpis">${kpisHtml}</div>
+
+    <section>
+      <div class="sec-head"><h2>Itens em risco por categoria</h2><span class="sec-note">Matriz de Risco · fonte: Power BI (Gestão de Risco · Sul)</span></div>
+      <div class="equip-grid">${catCards}</div>
+    </section>
+
+    <section>
+      <div class="sec-head"><h2>Visão consolidada</h2></div>
+      <div class="cons-grid">
+        <div class="card"><h3>% vencido por categoria</h3>${barsCategoria}</div>
+        <div class="card"><h3>Chamados atrasados por item</h3>${barsItem}</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head"><h2>Chamados de Gestão de Risco</h2><span class="sec-note">Coifa, Broiler, Exaustor, Sensor de gás, Quadro Elétrico · fonte: Power BI (Gestão de Risco · Sul)</span></div>
+      <div class="card">
+        <div id="barraFiltrosRisco">${barraFiltrosRisco([...(D.chamadosRisco?.vencidos || []), ...(D.chamadosRisco?.aVencer || [])])}</div>
+        <div class="risco-subhead"><span>Risco Vencido</span><span class="cnt vencido" id="cntVencido">${(D.chamadosRisco?.vencidos || []).length}</span></div>
+        <div id="tabelaVencido">${tabelaChamadosRisco(D.chamadosRisco?.vencidos, refDate)}</div>
+        <div class="risco-subhead"><span>Risco a Vencer</span><span class="cnt avencer" id="cntAVencer">${(D.chamadosRisco?.aVencer || []).length}</span></div>
+        <div id="tabelaAVencer">${tabelaChamadosRisco(D.chamadosRisco?.aVencer, refDate)}</div>
+      </div>
+    </section>
+
+    <footer>
+      <span>Fonte: Power BI (Gestão de Risco / Rota de Segurança · Visão Sul)</span>
+      <span class="mono">${brl0(D.totalLojasAvaliadas)} lojas avaliadas</span>
+    </footer>
+  `;
+}
+iniciar();
+
+// delegado no document (as linhas da tabela sao recriadas a cada filtro),
+// pra caixa de selecao/data de cada chamado gravar a escolha no banco
+// compartilhado e atualizar contagens
+document.addEventListener('change', (ev) => {
+  const mapa = { fRiscoLoja: 'loja', fRiscoAssunto: 'assunto', fRiscoResp: 'resp', fRiscoOrdem: 'ordem' };
+  const chave = mapa[ev.target.id];
+  if (chave) { FILTROS_RISCO[chave] = ev.target.value; renderizarChamadosRisco(); }
+});
+document.addEventListener('click', (ev) => {
+  if (ev.target.id === 'fRiscoLimpar') {
+    FILTROS_RISCO.loja = ''; FILTROS_RISCO.assunto = ''; FILTROS_RISCO.resp = '';
+    renderizarChamadosRisco();
+  }
+});
+
+document.addEventListener('change', async (ev) => {
+  const sel = ev.target.closest('.resp-select');
+  if (sel) { await salvarCampoAtribuicao(sel.dataset.wo, 'responsavel', sel.value); renderizarChamadosRisco(); return; }
+  const dt = ev.target.closest('.prev-date');
+  if (dt) { await salvarCampoAtribuicao(dt.dataset.wo, 'previsaoTermino', dt.value); return; }
+});
+
+(function () {
+  const shell = document.querySelector('.shell');
+  const CHAVE = 'chamados_sidebar_collapsed';
+  function aplicar(colapsado) {
+    shell.classList.toggle('sb-collapsed', colapsado);
+    shell.classList.toggle('sb-expanded', !colapsado);
+  }
+  let salvo = null;
+  try { salvo = localStorage.getItem(CHAVE); } catch (e) {}
+  const colapsado = salvo === null ? window.innerWidth <= 860 : salvo === '1';
+  aplicar(colapsado);
+
+  document.getElementById('sideToggle').addEventListener('click', () => {
+    aplicar(true);
+    try { localStorage.setItem(CHAVE, '1'); } catch (e) {}
+  });
+  document.getElementById('sideReopen').addEventListener('click', () => {
+    aplicar(false);
+    try { localStorage.setItem(CHAVE, '0'); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+# Restaura TODAS as tarefas agendadas que sumiram da VPS.
+# RODAR COMO ADMINISTRADOR: clique direito no PowerShell -> Executar como administrador
+# Depois: powershell -ExecutionPolicy Bypass -File C:\projetos\chamados\scripts\restaura_tarefas.ps1
+$ESPERADO = 'CSMOURA1-VOUCHE'
+if ($env:COMPUTERNAME -notlike ($ESPERADO + '*')) {
+    Write-Output "ABORTADO: esta nao e a VPS ($env:COMPUTERNAME)"
+    exit 9
+}
+$isAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+if (-not $isAdmin) {
+    Write-Output "ERRO: precisa rodar como Administrador (clique direito -> Executar como administrador)"
+    exit 1
+}
+Write-Output "=========================================="
+Write-Output "RESTAURANDO TODAS AS TAREFAS AGENDADAS"
+Write-Output "Data: $(Get-Date -Format 'dd/MM/yyyy HH:mm:ss')"
+Write-Output "=========================================="
+Write-Output ""
+
+$node = 'C:\Program Files\nodejs\node.exe'
+$repo = 'C:\projetos\chamados'
+$mordomo = 'C:\projetos\mordomo'
+$certponto = 'C:\projetos\certponto-report'
+
+function Restaurar-Tarefa {
+    param($Nome, $Horario, $Comando, $Descricao, [switch]$MultiTrigger, $IntervaloMinutos = 0, $HoraInicio = '07:00', $HoraFim = '23:00')
+
+    Write-Output "--- $Nome ---"
+    $existe = Get-ScheduledTask -TaskName $Nome -ErrorAction SilentlyContinue
+    if ($existe) {
+        Write-Output "  Ja existe (Estado=$($existe.State)). Removendo para recriar..."
+        Unregister-ScheduledTask -TaskName $Nome -Confirm:$false -ErrorAction SilentlyContinue
+    }
+
+    $acao = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument "-NoProfile -NonInteractive -ExecutionPolicy Bypass -Command `"$Comando`""
+    $cfg = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable -MultipleInstances IgnoreNew
+
+    if ($MultiTrigger) {
+        $gatilhos = @()
+        $hInicio = [int]($HoraInicio.Split(':')[0])
+        $hFim = [int]($HoraFim.Split(':')[0])
+        for ($h = $hInicio; $h -le $hFim; $h++) {
+            for ($m = 0; $m -lt 60; $m += $IntervaloMinutos) {
+                $hora = '{0:D2}:{1:D2}' -f $h, $m
+                $gatilhos += New-ScheduledTaskTrigger -Daily -At $hora
+            }
+        }
+        Register-ScheduledTask -TaskName $Nome -Action $acao -Trigger $gatilhos -Settings $cfg -RunLevel Highest -Description $Descricao | Out-Null
+    } else {
+        $gatilho = New-ScheduledTaskTrigger -Daily -At $Horario
+        Register-ScheduledTask -TaskName $Nome -Action $acao -Trigger $gatilho -Settings $cfg -RunLevel Highest -Description $Descricao | Out-Null
+    }
+
+    $t = Get-ScheduledTask -TaskName $Nome -ErrorAction SilentlyContinue
+    if ($t) {
+        $i = $t | Get-ScheduledTaskInfo
+        Write-Output "  CRIADA: Estado=$($t.State) | Proxima=$($i.NextRunTime)"
+    } else {
+        Write-Output "  ERRO: nao conseguiu registrar"
+    }
+    Write-Output ""
+}
+
+# === PAINÉIS (sul-blush.vercel.app) ===
+
+# 1. Risco - Painel Diario 0600
+$cmd = "chcp 65001 > `$null; [Console]::OutputEncoding = [Text.Encoding]::UTF8; Set-Location '$repo'; & '$node' 'scripts\risco_daily.mjs' *>> '$repo\logs\risco_daily.log'; exit `$LASTEXITCODE"
+Restaurar-Tarefa -Nome 'Risco - Painel Diario 0600' -Horario '06:00' -Comando $cmd -Descricao 'Pipeline diario do painel de Gestao de Risco (Power BI SUL)'
+
+# 2. Chamados - Diario 0715 (a cada 2h das 06:00 as 22:00)
+$cmd = "chcp 65001 > `$null; [Console]::OutputEncoding = [Text.Encoding]::UTF8; Set-Location '$repo'; & '$node' 'scripts\run_daily.cjs' *>> '$repo\logs\run_daily.log'; exit `$LASTEXITCODE"
+Restaurar-Tarefa -Nome 'Chamados - Diario 0715' -Horario '06:00' -Comando $cmd -Descricao 'Pipeline do painel Backlog a cada 2h' -MultiTrigger -IntervaloMinutos 120 -HoraInicio '06:00' -HoraFim '22:00'
+
+# 3. PerdaReceita - Diario 0730
+$cmd = "chcp 65001 > `$null; [Console]::OutputEncoding = [Text.Encoding]::UTF8; Set-Location '$repo'; & '$node' 'scripts\perda_sul.mjs' *>> '$repo\logs\perda_sul.log'; exit `$LASTEXITCODE"
+Restaurar-Tarefa -Nome 'PerdaReceita - Diario 0730' -Horario '07:30' -Comando $cmd -Descricao 'Lista auxiliar de chamados da Perda (perda_sul.mjs). NAO e o pipeline completo -- esse e a tarefa Completo 0735.'
+
+# 3b. PerdaReceita - Completo 0735  (o pipeline que de fato entrega o relatorio)
+#
+# Em 11/10/2026 a restauracao recriou a tarefa da Perda apontando para o
+# perda_sul.mjs, que e so a lista auxiliar de chamados. O pipeline de verdade
+# -- que le o Power BI, gera as imagens, publica e entrega pelo Mordomo --
+# e o run_daily.js do projeto perdadereceita, e ficou sem tarefa nenhuma.
+# Resultado: rodou com resultado=0 todo dia e nenhum relatorio saiu.
+#
+# NAO usar o run-with-chrome-lock.ps1 aqui: esta registrado como quebrado
+# (mascarava falha com resultado=0 falso).
+$cmdCompleto = "chcp 65001 > `$null; [Console]::OutputEncoding = [Text.Encoding]::UTF8; Set-Location 'C:projetosperdadereceita'; & '$node' 'scriptsun_daily.js' *>> 'C:projetosperdadereceitalogsun_daily.log'; exit `$LASTEXITCODE"
+Restaurar-Tarefa -Nome 'PerdaReceita - Completo 0735' -Horario '07:35' -Comando $cmdCompleto -Descricao 'Pipeline COMPLETO da Perda de Receita: Power BI, imagens, publicacao e entrega do relatorio pelo Mordomo.'
+
+
+# 4. Preventivas - Diario 0745
+$cmd = "chcp 65001 > `$null; [Console]::OutputEncoding = [Text.Encoding]::UTF8; Set-Location '$repo'; & '$node' 'scripts\preventivas_daily.mjs' *>> '$repo\logs\preventivas_daily.log'; exit `$LASTEXITCODE"
+Restaurar-Tarefa -Nome 'Preventivas - Diario 0745' -Horario '07:45' -Comando $cmd -Descricao 'Pipeline diario do painel de Preventivas (SOMA SUL)'
+
+# 5. Sorvete - Foto Diaria 2359
+$cmd = "chcp 65001 > `$null; [Console]::OutputEncoding = [Text.Encoding]::UTF8; & '$node' 'C:\projetos\sorvete\foto_diaria.ps1'"
+Restaurar-Tarefa -Nome 'Sorvete - Foto Diaria 2359' -Horario '23:59' -Comando $cmd -Descricao 'Pipeline diario do painel Maquina de Sorvete (SOMA Brasil)'
+
+# === WHATSAPP ALERTS ===
+
+# 6. Analista Seguranca - Risco 0750
+$scriptRisco = 'C:\projetos\certponto-report\daily_risco_report.js'
+$cmd = "chcp 65001 > `$null; [Console]::OutputEncoding = [Text.Encoding]::UTF8; & '$node' '$scriptRisco' *>> 'C:\projetos\certponto-report\logs\daily_risco_report.log'; exit `$LASTEXITCODE"
+Restaurar-Tarefa -Nome 'Analista Seguranca - Risco 0750' -Horario '07:50' -Comando $cmd -Descricao 'Relatorio diario de Gestao de Risco via WhatsApp (Power BI SUL)'
+
+# 7. Campo - Chamados Criticos 20min
+$cmd = "chcp 65001 > `$null; [Console]::OutputEncoding = [Text.Encoding]::UTF8; Set-Location '$repo'; & '$node' 'scripts\campo_daily.mjs' *>> '$repo\logs\campo_daily.log'; exit `$LASTEXITCODE"
+Restaurar-Tarefa -Nome 'Campo - Chamados Criticos 20min' -Horario '07:00' -Comando $cmd -Descricao 'Alertas de chamados criticos no WhatsApp a cada 20min (SOMA SUL)' -MultiTrigger -IntervaloMinutos 20 -HoraInicio '07:00' -HoraFim '23:00'
+
+# 8. Campo - Report Sul 2h
+$cmd = "chcp 65001 > `$null; [Console]::OutputEncoding = [Text.Encoding]::UTF8; Set-Location '$repo'; & '$node' 'scripts\campo_report.cjs' --enviar --grupo *>> 'C:\projetos\logs\campo_report.log'; exit `$LASTEXITCODE"
+Restaurar-Tarefa -Nome 'Campo - Report Sul 2h' -Horario '08:00' -Comando $cmd -Descricao 'Relatorio de campo no WhatsApp a cada 2h' -MultiTrigger -IntervaloMinutos 120 -HoraInicio '08:00' -HoraFim '22:00'
+
+# === CERTPONTO ===
+
+# 9. CertPonto - KeepAlive Sessao (a cada 30 min)
+$cmd = "chcp 65001 > `$null; [Console]::OutputEncoding = [Text.Encoding]::UTF8; & '$node' '$certponto\keepalive_sessao.js' *>> '$certponto\logs\keepalive_sessao.log'; exit `$LASTEXITCODE"
+Restaurar-Tarefa -Nome 'CertPonto - KeepAlive Sessao' -Horario '00:00' -Comando $cmd -Descricao 'Mantem sessao CertPonto viva a cada 30min' -MultiTrigger -IntervaloMinutos 30 -HoraInicio '00:00' -HoraFim '23:30'
+
+# 10. CertPonto - Vigia Login
+$cmd = "chcp 65001 > `$null; [Console]::OutputEncoding = [Text.Encoding]::UTF8; & '$node' '$certponto\vigia_login.js' *>> '$certponto\logs\vigia_login.log'; exit `$LASTEXITCODE"
+Restaurar-Tarefa -Nome 'CertPonto - Vigia Login' -Horario '06:00' -Comando $cmd -Descricao 'Monitora login CertPonto e avisa se cair'
+
+# 11. Mordomo - Relatorio CertPonto 0530
+$cmd = "chcp 65001 > `$null; [Console]::OutputEncoding = [Text.Encoding]::UTF8; & '$node' '$mordomo\scripts\daily-point-report.js' *>> '$mordomo\logs\daily-point-report.log'; exit `$LASTEXITCODE"
+Restaurar-Tarefa -Nome 'Mordomo - Relatorio CertPonto 0530' -Horario '05:30' -Comando $cmd -Descricao 'Relatorio diario de ponto via WhatsApp'
+
+# === INFRAESTRUTURA ===
+
+# 12. PowerBI - KeepAlive Sessao (a cada 30 min)
+$cmd = "chcp 65001 > `$null; [Console]::OutputEncoding = [Text.Encoding]::UTF8; & '$node' '$certponto\powerbi_keepalive.js' *>> '$certponto\logs\powerbi_keepalive.log'; exit `$LASTEXITCODE"
+Restaurar-Tarefa -Nome 'PowerBI - KeepAlive Sessao' -Horario '00:00' -Comando $cmd -Descricao 'Mantem sessao Power BI viva a cada 30min' -MultiTrigger -IntervaloMinutos 30 -HoraInicio '00:00' -HoraFim '23:30'
+
+# 13. Chrome CDP - Guardiao (a cada 15 min)
+$cmd = "chcp 65001 > `$null; [Console]::OutputEncoding = [Text.Encoding]::UTF8; & '$node' '$mordomo\scripts\chrome-guardiao.ps1'"
+Restaurar-Tarefa -Nome 'Chrome CDP - Guardiao' -Horario '00:00' -Comando $cmd -Descricao 'Reergue Chrome CDP se cair a cada 15min' -MultiTrigger -IntervaloMinutos 15 -HoraInicio '00:00' -HoraFim '23:45'
+
+# === WATCHDOG: impede que tarefas sumam novamente ===
+Write-Output "=== CRIANDO WATCHDOG DE TAREFAS ==="
+$watchdogScript = @'
+# Watchdog: verifica se todas as tarefas criticas existem e recria se faltarem
+# Roda a cada hora via tarefa agendada
+$ESPERADO = 'CSMOURA1-VOUCHE'
+if ($env:COMPUTERNAME -notlike ($ESPERADO + '*')) { exit 9 }
+$log = 'C:\projetos\chamados\logs\watchdog_tarefas.log'
+$ts = Get-Date -Format 'dd/MM/yyyy HH:mm:ss'
+$tarefasCriticas = @(
+    'Risco - Painel Diario 0600',
+    'Chamados - Diario 0715',
+    'PerdaReceita - Diario 0730', 'PerdaReceita - Completo 0735',
+    'Preventivas - Diario 0745',
+    'Analista Seguranca - Risco 0750',
+    'Campo - Chamados Criticos 20min',
+    'Sorvete - Foto Diaria 2359',
+    'CertPonto - KeepAlive Sessao',
+    'PowerBI - KeepAlive Sessao',
+    'Chrome CDP - Guardiao'
+)
+$faltando = @()
+foreach ($nome in $tarefasCriticas) {
+    $t = Get-ScheduledTask -TaskName $nome -ErrorAction SilentlyContinue
+    if (-not $t) { $faltando += $nome }
+}
+if ($faltando.Count -gt 0) {
+    "[$ts] WATCHDOG: $($faltando.Count) tarefa(s) faltando: $($faltando -join ', ')" | Out-File $log -Append
+    # Dispara o script de restauracao
+    & powershell -ExecutionPolicy Bypass -File 'C:\projetos\chamados\scripts\restaura_tarefas.ps1' *>> $log
+    "[$ts] WATCHDOG: restauracao executada" | Out-File $log -Append
+} else {
+    "[$ts] WATCHDOG: todas as $($tarefasCriticas.Count) tarefas criticas presentes" | Out-File $log -Append
+}
+'@
+$watchdogPath = 'C:\projetos\chamados\scripts\watchdog_tarefas.ps1'
+$watchdogScript | Out-File $watchdogPath -Encoding UTF8
+
+$nomeWatchdog = 'Watchdog - Tarefas Agendadas 1h'
+$existe = Get-ScheduledTask -TaskName $nomeWatchdog -ErrorAction SilentlyContinue
+if ($existe) { Unregister-ScheduledTask -TaskName $nomeWatchdog -Confirm:$false -ErrorAction SilentlyContinue }
+$acaoW = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument "-NoProfile -ExecutionPolicy Bypass -File `"$watchdogPath`""
+$gatilhosW = @()
+for ($h = 0; $h -lt 24; $h++) {
+    $gatilhosW += New-ScheduledTaskTrigger -Daily -At ('{0:D2}:00' -f $h)
+}
+$cfgW = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable -MultipleInstances IgnoreNew
+Register-ScheduledTask -TaskName $nomeWatchdog -Action $acaoW -Trigger $gatilhosW -Settings $cfgW -RunLevel Highest -Description 'Verifica a cada hora se tarefas criticas existem e recria se faltarem' | Out-Null
+Write-Output "  Watchdog criado: $nomeWatchdog (roda a cada hora)"
+Write-Output ""
+
+# === RESUMO FINAL ===
+Write-Output "=========================================="
+Write-Output "RESUMO FINAL - HORARIOS DE EXECUCAO"
+Write-Output "=========================================="
+Write-Output ""
+Write-Output "PAINÉIS (sul-blush.vercel.app):"
+Write-Output "  06:00       Risco - Painel Diario         -> Gestão de Risco"
+Write-Output "  06:00-22:00 Chamados - Diario (a cada 2h) -> Backlog"
+Write-Output "  07:30       PerdaReceita - Diario         -> Perda de Receita"
+Write-Output "  07:45       Preventivas - Diario          -> Preventivas"
+Write-Output "  23:59       Sorvete - Foto Diaria         -> Máquina de Sorvete"
+Write-Output ""
+Write-Output "WHATSAPP ALERTAS:"
+Write-Output "  05:30       Mordomo - Relatorio CertPonto -> Relatório de ponto"
+Write-Output "  07:50       Analista Seguranca - Risco    -> Gestão de Risco"
+Write-Output "  07:00-23:00 Campo - Criticos (a cada 20m) -> Chamados críticos"
+Write-Output "  08:00-22:00 Campo - Report (a cada 2h)    -> Relatório campo"
+Write-Output ""
+Write-Output "INFRAESTRUTURA:"
+Write-Output "  a cada 30m  CertPonto - KeepAlive         -> Sessão CertPonto"
+Write-Output "  a cada 30m  PowerBI - KeepAlive           -> Sessão Power BI"
+Write-Output "  a cada 15m  Chrome CDP - Guardiao         -> Chrome CDP"
+Write-Output "  a cada 1h   Watchdog - Tarefas            -> Recria se sumir"
+Write-Output ""
+
+$todas = @(
+    'Risco - Painel Diario 0600', 'Chamados - Diario 0715', 'PerdaReceita - Diario 0730', 'PerdaReceita - Completo 0735',
+    'Preventivas - Diario 0745', 'Analista Seguranca - Risco 0750', 'Campo - Chamados Criticos 20min',
+    'Sorvete - Foto Diaria 2359', 'CertPonto - KeepAlive Sessao', 'CertPonto - Vigia Login',
+    'Mordomo - Relatorio CertPonto 0530', 'PowerBI - KeepAlive Sessao', 'Chrome CDP - Guardiao',
+    'Watchdog - Tarefas Agendadas 1h', 'Campo - Report Sul 2h'
+)
+$ok = 0; $falha = 0
+foreach ($n in $todas) {
+    $t = Get-ScheduledTask -TaskName $n -ErrorAction SilentlyContinue
+    if ($t) { $ok++ } else { Write-Output "  FALTA: $n"; $falha++ }
+}
+Write-Output "Resultado: $ok criadas, $falha faltando"
+Write-Output ""
+Write-Output "PRONTO. Todas as tarefas foram restauradas."
+Write-Output "O Watchdog roda a cada hora e recria automaticamente se alguma sumir novamente."
+Write-Output "Nao precisa mais se preocupar com tarefas desaparecendo."

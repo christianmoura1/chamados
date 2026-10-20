@@ -1,0 +1,31 @@
+﻿# Watchdog: verifica se todas as tarefas criticas existem e recria se faltarem
+# Roda a cada hora via tarefa agendada
+$ESPERADO = 'CSMOURA1-VOUCHE'
+if ($env:COMPUTERNAME -notlike ($ESPERADO + '*')) { exit 9 }
+$log = 'C:\projetos\chamados\logs\watchdog_tarefas.log'
+$ts = Get-Date -Format 'dd/MM/yyyy HH:mm:ss'
+$tarefasCriticas = @(
+    'Risco - Painel Diario 0600',
+    'Chamados - Diario 0715',
+    'PerdaReceita - Diario 0730',
+    'Preventivas - Diario 0745',
+    'Analista Seguranca - Risco 0750',
+    'Campo - Chamados Criticos 20min',
+    'Sorvete - Foto Diaria 2359',
+    'CertPonto - KeepAlive Sessao',
+    'PowerBI - KeepAlive Sessao',
+    'Chrome CDP - Guardiao'
+)
+$faltando = @()
+foreach ($nome in $tarefasCriticas) {
+    $t = Get-ScheduledTask -TaskName $nome -ErrorAction SilentlyContinue
+    if (-not $t) { $faltando += $nome }
+}
+if ($faltando.Count -gt 0) {
+    "[$ts] WATCHDOG: $($faltando.Count) tarefa(s) faltando: $($faltando -join ', ')" | Out-File $log -Append
+    # Dispara o script de restauracao
+    & powershell -ExecutionPolicy Bypass -File 'C:\projetos\chamados\scripts\restaura_tarefas.ps1' *>> $log
+    "[$ts] WATCHDOG: restauracao executada" | Out-File $log -Append
+} else {
+    "[$ts] WATCHDOG: todas as $($tarefasCriticas.Count) tarefas criticas presentes" | Out-File $log -Append
+}

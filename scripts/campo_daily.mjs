@@ -2,6 +2,7 @@ import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
 const { chromium } = require('C:/projetos/certponto-report/node_modules/playwright');
 const fs = require('fs');
+const { supervisorDe } = require('./campo_supervisor.cjs');
 
 const REPO = 'C:/projetos/chamados';
 const ts = () => new Date().toLocaleString('pt-BR');
@@ -42,7 +43,7 @@ function objetos(csv) {
   return l.slice(1).map((r) => Object.fromEntries(h.map((k, i) => [k, r[i] || ''])));
 }
 
-const browser = await chromium.connectOverCDP('http://127.0.0.1:9222', { timeout: 15000 });
+const browser = await chromium.connectOverCDP('http://127.0.0.1:9222', { timeout: 120000 });
 const ctx = browser.contexts()[0];
 for (const p of ctx.pages()) if (/soma\.zamp\.com\.br/.test(p.url())) await p.close().catch(() => {});
 const page = await ctx.newPage();
@@ -223,6 +224,63 @@ if (!semMudanca) {
   log('campo.json gravado com ' + abertos.length + ' chamados em aberto (houve mudanca)');
 }
 
+// ---------- Impacto: vem do BI, nao do SOMA ----------
+// Nao existe campo de impacto no wm_order. Testei o dicionario de dados (403,
+// sem permissao) e depois os nomes candidatos um por um: so' `impact` e
+// `urgency` existem, e os dois estao em "3 - Baixo(a)" em TODOS os chamados --
+// sao campos padrao do ServiceNow que a Zamp nao preenche. Quem sabe de impacto
+// e' o painel [PCP] Monitoria Manutencao, que tem a coluna Impacto (0/1) por
+// chamado, ao lado de Abertura Impacto.
+//
+// Leitura pura de DOM na aba que o guardiao do Chrome ja mantem aberta: nenhum
+// clique, nenhum filtro, nada que mexa na sessao do Christian. Valida o
+// cabecalho antes de confiar na grade, porque ha varias abas de Power BI
+// abertas e a ordem das colunas nao e' garantida -- foi assim que o report de
+// risco pegou a aba de Disponibilidade por engano em setembro.
+//
+// Falha MACIA de proposito: sem o BI o alerta sai sem o selo de impacto, mas
+// sai. Chamado critico atrasar porque o BI piscou seria pior que o selo faltar.
+async function impactoDoBI() {
+  const prazo = (promessa, ms) => Promise.race([
+    promessa,
+    new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), ms)),
+  ]);
+  try {
+    for (const c of browser.contexts()) {
+      for (const p of c.pages()) {
+        if (!/app\.powerbi\.com/i.test(p.url())) continue;
+        let achado = null;
+        try {
+          achado = await prazo(p.evaluate(() => {
+            const vis = (e) => e.getBoundingClientRect().height > 0;
+            for (const g of [...document.querySelectorAll('[role="grid"]')].filter(vis)) {
+              const cab = [...g.querySelectorAll('[role="columnheader"]')].map((h) => h.textContent.trim());
+              const iNum = cab.findIndex((h) => /^N[uú]mero$/i.test(h));
+              const iImp = cab.findIndex((h) => /^Impacto$/i.test(h));
+              if (iNum < 0 || iImp < 0) continue;
+              const mapa = {};
+              for (const linha of [...g.querySelectorAll('[role="row"]')].slice(1)) {
+                const cels = [...linha.querySelectorAll('[role="gridcell"],[role="rowheader"]')]
+                  .map((x) => x.textContent.trim());
+                const num = cels[iNum];
+                if (!/^WO\d+$/.test(num || '')) continue;
+                mapa[num] = Number(String(cels[iImp]).replace(/[^0-9-]/g, '')) || 0;
+              }
+              if (Object.keys(mapa).length) return mapa;
+            }
+            return null;
+          }), 20000);
+        } catch (e) {
+          log('aba do BI nao respondeu (' + e.message + ') -- tento a proxima');
+          continue;
+        }
+        if (achado) return achado;
+      }
+    }
+  } catch (e) { log('nao consegui ler Impacto do BI: ' + e.message); }
+  return null;
+}
+
 // ---------- WhatsApp: primeira vez a lista toda, depois so' os novos ----------
 // O estado fica FORA do repo, para nao virar commit a cada 20 min.
 const ESTADO = 'C:/projetos/climapro-bot/campo_notificados.json';
@@ -254,28 +312,55 @@ const conhecidos = new Set(primeiraVez ? [] : jaAvisados.numeros.map((x) => x.nu
 // nao gera aviso (ja nao exige acao quando a mensagem chegaria).
 const novos = abertos.filter((i) => !conhecidos.has(i.numero));
 
+// Cinco sirenes, sempre -- pedido do Christian em 06/10. Vale tambem quando
+// nenhum chamado tem impacto: a faixa diz que a mensagem e' critica, nao e' um
+// indicador de gravidade que varia.
+const SIRENES = '\u{1F6A8}\u{1F6A8}\u{1F6A8}\u{1F6A8}\u{1F6A8}';
+
+// Supervisor e impacto por chamado -- preenchido mais abaixo, so' na hora de
+// montar a mensagem. O comentario de la' explica por que nao vai para o JSON.
+const extra = new Map();
+
+// @todos so' existe em grupo; numa conversa individual viraria texto solto.
+const ehGrupo = /@g\.us$/.test(DEST);
+
 function monta(lista, ehPrimeira) {
-  const cab = ehPrimeira
+  const cab = SIRENES + '\n' + (ehPrimeira
     ? '*CHAMADOS CRITICOS - SUL*\n_lista inicial - ' + lista.length + ' em aberto_\n'
-    : '*NOVO CHAMADO CRITICO - SUL*' + (lista.length > 1 ? ' (' + lista.length + ')' : '') + '\n';
+    : '*NOVO CHAMADO CRITICO - SUL*' + (lista.length > 1 ? ' (' + lista.length + ')' : '') + '\n');
   const corpo = lista.map((i) => {
     const desc = (i.secundario || i.descricao || '').trim();
+    const e = extra.get(i.numero) || {};
     return '\n*' + i.numero + '* - ' + i.loja
       + '\n' + (i.principal || '-') + ' | ' + desc
-      + '\n_' + i.setor + ' - aberto ha ' + tempoAberto(i.abertura) + '_\n';
+      + '\n_' + i.setor + ' - aberto ha ' + tempoAberto(i.abertura) + '_'
+      + (e.supervisor ? '\n*Supervisor:* ' + e.supervisor : '')
+      + (e.impacto > 0 ? '\n⚠️ *COM IMPACTO NA OPERACAO*' : '')
+      + '\n';
   }).join('');
-  return cab + corpo;
+  return cab + corpo + (ehGrupo ? '\n@todos' : '');
 }
 
-async function enviar(texto) {
+// comMencao=true manda o @todos junto. Se a API recusar a mencao, reenvia SEM
+// ela em vez de desistir: um alerta critico sem @todos ainda avisa; alerta
+// nenhum, nao. Mencao individual e' impossivel aqui -- o uazapi devolve os
+// participantes do grupo so' como @lid, sem nome, entao nao da' para escolher
+// quem marcar.
+async function enviar(texto, comMencao) {
   if (!UAZAPI_URL || !UAZAPI_TOKEN) { log('UAZAPI nao configurada -- pulei o WhatsApp'); return false; }
+  const carga = { number: DEST, text: texto };
+  if (comMencao) carga.mentions = '@todos';
   try {
     const r = await fetch(UAZAPI_URL + '/send/text', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', token: UAZAPI_TOKEN },
-      body: JSON.stringify({ number: DEST, text: texto }),
+      body: JSON.stringify(carga),
     });
-    log('WhatsApp status ' + r.status + ' para ' + DEST);
+    log('WhatsApp status ' + r.status + ' para ' + DEST + (comMencao ? ' (com @todos)' : ''));
+    if (!r.ok && comMencao) {
+      log('a API recusou a mencao -- reenvio sem @todos');
+      return await enviar(texto, false);
+    }
     return r.ok;
   } catch (e) { log('WhatsApp falhou: ' + e.message); return false; }
 }
@@ -283,11 +368,31 @@ async function enviar(texto) {
 if (novos.length === 0) {
   log('nenhum chamado novo -- nao mandei WhatsApp');
 } else {
+  // Supervisor e impacto entram SO' na mensagem, nunca no campo.json. Se
+  // entrassem no JSON publicado, uma oscilacao do BI mudaria o arquivo e cada
+  // ciclo viraria um commit + um deploy na Vercel -- exatamente o que a
+  // comparacao `semMudanca` existe para evitar (o limite de 100 deploys/dia e'
+  // da conta inteira). O BI tambem so' e' consultado quando ha chamado novo,
+  // para nao bater nele 72 vezes por dia de graca.
+  const impactoBI = await impactoDoBI();
+  log(impactoBI
+    ? ('impacto lido do BI para ' + Object.keys(impactoBI).length + ' chamados')
+    : 'impacto indisponivel no BI -- o alerta sai sem o selo');
+  for (const i of novos) {
+    extra.set(i.numero, {
+      supervisor: supervisorDe(i.loja, i.setor),
+      impacto: impactoBI ? (impactoBI[i.numero] || 0) : null,
+    });
+  }
+  const semSup = novos.filter((i) => !extra.get(i.numero).supervisor);
+  if (semSup.length) log('ATENCAO: sem supervisor na carteira: ' + semSup.map((i) => i.loja).join(' ; '));
+  log('com impacto: ' + novos.filter((i) => extra.get(i.numero).impacto > 0).length + ' de ' + novos.length);
+
   // Em lotes de 8 para a mensagem nao ficar gigante na primeira carga.
   let enviouTudo = true;
   for (let i = 0; i < novos.length; i += 8) {
     const lote = novos.slice(i, i + 8);
-    const ok = await enviar(monta(lote, primeiraVez));
+    const ok = await enviar(monta(lote, primeiraVez), ehGrupo);
     if (!ok) { enviouTudo = false; break; }
   }
   if (enviouTudo) {

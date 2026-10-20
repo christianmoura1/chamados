@@ -1,0 +1,125 @@
+﻿// Keep-alive da sessao do SOMA (ServiceNow) no Chrome da VM.
+//
+// POR QUE EXISTE: em 21/09/2026 o Backlog e o Acompanhamento Campo amanheceram
+// parados com "FATAL: SOMA em tela de login". A causa nao foi o Conditional
+// Access: as duas tarefas que tocam o SOMA tem JANELA de 16h (Campo 07:00-23:00,
+// Backlog 06:00-22:05). Entre 23:00 e 06:00 ninguem toca na sessao, e o
+// ServiceNow expira por ociosidade. Este script cobre o buraco: roda 24h,
+// de 30 em 30 minutos, e mantem a sessao viva.
+//
+// Como toca: faz um fetch autenticado BARATO dentro da aba logada (uma consulta
+// de 1 linha). Isso renova a sessao NO SERVIDOR, que e' onde o timeout mora --
+// rolar a pagina nao renova nada.
+//
+// Se encontrar a sessao caida, avisa UMA vez no WhatsApp (relogin exige humano).
+// Estado em data/soma-keepalive.json evita repetir o aviso a cada 30 min.
+//
+// Uso: node scripts\soma_keepalive.js
+
+const { chromium } = require('C:/projetos/certponto-report/node_modules/playwright');
+const fs = require('fs');
+const path = require('path');
+
+const CDP = 'http://127.0.0.1:9222';
+const ESTADO = path.join('C:', 'projetos', 'mordomo', 'data', 'soma-keepalive.json');
+const BASE = 'https://soma.zamp.com.br';
+// consulta minima: 1 linha, 1 coluna. So' serve para renovar a sessao.
+// consulta que NAO casa com nada: volta so' o cabecalho do CSV (~8 bytes).
+// sysparm_limit NAO limita o export CSV do ServiceNow -- com uma query normal
+// isso baixaria 500 KB a cada 30 min. Casar zero linhas e' o jeito barato.
+const PING = BASE + '/wm_order_list.do?CSV&sysparm_fields=number&sysparm_query=numberSTARTSWITHZZZZZZZZ';
+
+const ts = () => new Date().toISOString();
+const info = (msg, extra) => console.log(JSON.stringify({ ts: ts(), level: 'info', msg, ...extra }));
+const erro = (msg, extra) => console.error(JSON.stringify({ ts: ts(), level: 'error', msg, ...extra }));
+
+function lerEstado() {
+  try { return JSON.parse(fs.readFileSync(ESTADO, 'utf8')); } catch { return {}; }
+}
+function salvarEstado(e) {
+  fs.mkdirSync(path.dirname(ESTADO), { recursive: true });
+  fs.writeFileSync(ESTADO, JSON.stringify(e, null, 2));
+}
+
+async function avisar(texto) {
+  const url = (process.env.UAZAPI_URL || '').replace(/\/+$/, '');
+  const token = process.env.UAZAPI_TOKEN;
+  const dest = process.env.MORDOMO_OWNER_NUMBER;
+  if (!url || !token || !dest) { erro('sem credenciais para avisar'); return; }
+  await fetch(url + '/send/text', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', token },
+    body: JSON.stringify({ number: dest, text: texto }),
+  }).catch((e) => erro('falha ao avisar', { erro: e.message }));
+}
+
+(async () => {
+  const estado = lerEstado();
+  let browser;
+  for (let t = 1; t <= 3 && !browser; t++) {
+    try { browser = await chromium.connectOverCDP(CDP, { timeout: 60000 }); }
+    catch (e) {
+      if (t === 3) { erro('Chrome com CDP nao respondeu', { erro: e.message }); process.exit(1); }
+      await new Promise((r) => setTimeout(r, 10000));
+    }
+  }
+
+  const paginas = [];
+  for (const c of browser.contexts()) for (const p of c.pages()) paginas.push(p);
+
+  const pg = paginas.find((p) => /soma\.zamp\.com\.br/i.test(p.url()));
+  let caida = null;
+  let ok = false;
+
+  if (!pg) {
+    caida = 'nenhuma aba do SOMA esta aberta';
+  } else {
+    try {
+      const r = await pg.evaluate(async (u) => {
+        const resp = await fetch(u, { credentials: 'include', redirect: 'follow' });
+        const txt = await resp.text();
+        return { status: resp.status, url: resp.url, ini: txt.slice(0, 200), tam: txt.length };
+      }, PING);
+
+      if (/login\.microsoftonline|saml2|\/login\.do/i.test(r.url) || /SAMLRequest|Entrar em sua conta/i.test(r.ini)) {
+        caida = 'a sessao caiu para a tela de login';
+      } else if (r.status !== 200) {
+        caida = 'o SOMA respondeu HTTP ' + r.status;
+      } else if (!/number/i.test(r.ini)) {
+        caida = 'resposta inesperada do SOMA: ' + r.ini.slice(0, 80).replace(/\s+/g, ' ');
+      } else {
+        ok = true;
+        info('sessao viva', { status: r.status, bytes: r.tam });
+      }
+    } catch (e) {
+      caida = 'erro ao consultar: ' + String(e.message).slice(0, 90);
+    }
+  }=> {});
+
+  if (caida) {
+    if (!estado.caida) {
+      estado.caida = { desde: ts(), motivo: caida };
+      salvarEstado(estado);
+      await avisar([
+        '*Supervisor*',
+        '',
+        'A sessao do SOMA (ServiceNow) caiu:',
+        '',
+        '- ' + caida,
+        '',
+        'Sem ela o painel de Backlog e o Acompanhamento Campo param.',
+        'Entre por RDP (154.64.32.227:3389) e reloge em:',
+        'https://soma.zamp.com.br/wm_task_list.do',
+        '',
+        'Nao vou repetir este aviso.',
+      ].join('\n'));
+    }
+    erro('sessao do SOMA caida', { motivo: caida });
+    process.exit(1);
+  }
+
+  if (estado.caida) { info('sessao voltou', { estava: estado.caida.motivo }); delete estado.caida; }
+  salvarEstado(estado);
+  info('keepalive concluido', { vivas: ok ? 1 : 0 });
+  process.exit(0);
+})().catch((e) => { erro('keepalive falhou', { erro: e.message }); process.exit(1); });
