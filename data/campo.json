@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-20T14:40:19.928Z",
+ "atualizadoEm": "2026-10-20T16:40:19.479Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 12,
+  "emExecucao": 13,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 12
+  "total": 13
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-20",
-   "abertos": 3,
-   "fechados": 2
+   "abertos": 4,
+   "fechados": 3
   }
  ],
  "itens": [
+  {
+   "numero": "WO0072541",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "22507 - ILR PORTO ALEGRE - R ANDRADAS 1664",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "20/10/2026 13:21:21",
+   "fechamento": "",
+   "principal": "BK049862 - BROILER",
+   "secundario": "BRO - NÃO AQUECE",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK049862 - BROILER | BRO - NÃO AQUECE",
+   "tarefas": [
+    "WOT0073125"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0071674",
    "marca": "BKB",
