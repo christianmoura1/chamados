@@ -217,7 +217,8 @@
       </div>
       <div class="filter-field">
         <label for="filterLoja">Loja</label>
-        <select id="filterLoja"><option value="">Todas</option></select>
+        <input type="text" id="filterLoja" list="lojaOptions" placeholder="Digite ou selecione..." autocomplete="off">
+        <datalist id="lojaOptions"></datalist>
       </div>
       <div class="filter-field">
         <label for="filterPrioridade">Prioridade</label>
@@ -322,13 +323,13 @@ function populateFilters() {
   const sups = [...new Set(ch.map(c => c.supervisor).filter(Boolean))].sort();
   const ests = [...new Set(ch.map(c => c.estado).filter(Boolean))].sort();
 
-  const selL = document.getElementById('filterLoja');
+  const datalistL = document.getElementById('lojaOptions');
   const selP = document.getElementById('filterPrioridade');
   const selF = document.getElementById('filterFamilia');
   const selS = document.getElementById('filterSupervisor');
   const selE = document.getElementById('filterEstado');
 
-  lojas.forEach(l => { const o = document.createElement('option'); o.value = l; o.textContent = l; selL.appendChild(o); });
+  lojas.forEach(l => { const o = document.createElement('option'); o.value = l; datalistL.appendChild(o); });
   pris.forEach(p => { const o = document.createElement('option'); o.value = p; o.textContent = p; selP.appendChild(o); });
   fams.forEach(f => { const o = document.createElement('option'); o.value = f; o.textContent = f; selF.appendChild(o); });
   sups.forEach(s => { const o = document.createElement('option'); o.value = s; o.textContent = s; selS.appendChild(o); });
@@ -344,8 +345,9 @@ function applyFilters() {
   const fs = document.getElementById('filterSupervisor').value;
   const fe = document.getElementById('filterEstado').value;
 
+  const flLower = fl.toLowerCase().trim();
   filtrados = (dados.chamados || []).filter(c => {
-    if (fl && c.loja !== fl) return false;
+    if (flLower && !(c.loja || '').toLowerCase().includes(flLower)) return false;
     if (fp && c.prioridade !== fp) return false;
     if (ff && c.familia !== ff) return false;
     if (fs && c.supervisor !== fs) return false;
@@ -395,7 +397,7 @@ async function loadDados() {
 }
 
 document.getElementById('searchInput').addEventListener('input', applyFilters);
-document.getElementById('filterLoja').addEventListener('change', applyFilters);
+document.getElementById('filterLoja').addEventListener('input', applyFilters);
 document.getElementById('filterPrioridade').addEventListener('change', applyFilters);
 document.getElementById('filterFamilia').addEventListener('change', applyFilters);
 document.getElementById('filterSupervisor').addEventListener('change', applyFilters);
