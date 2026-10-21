@@ -1,10 +1,10 @@
 {
- "atualizadoEm": "2026-10-20T22:43:25.393Z",
- "totalChamados": 1640,
+ "atualizadoEm": "2026-10-21T00:09:59.220Z",
+ "totalChamados": 1642,
  "resumo": {
   "porFamilia": {
    "Elétrica": 78,
-   "Cocção": 207,
+   "Cocção": 209,
    "Refrigeração": 188,
    "Gás": 3,
    "Sobremesa": 55,
@@ -19,15 +19,15 @@
   "porPrioridade": {
    "4 - Baixa": 1191,
    "3 - Moderada": 314,
-   "2 - Alta": 98,
-   "1 - Crítica": 37
+   "2 - Alta": 99,
+   "1 - Crítica": 38
   },
   "porSupervisor": {
-   "GUSTAVO": 421,
+   "GUSTAVO": 422,
    "MARCEL": 455,
    "RAFAEL": 347,
    "CARLOS MAGNO": 406,
-   "SEM SUPERVISOR": 11
+   "SEM SUPERVISOR": 12
   }
  },
  "chamados": [
@@ -11778,6 +11778,50 @@
    "descricao": "ZP137112 - FRITADEIRA | FRI - FILTRAGEM NÃO FUNCIONA",
    "categoria": "ZP137112 - FRITADEIRA",
    "subcategory": "FRI - FILTRAGEM NÃO FUNCIONA"
+  },
+  {
+   "chamado": "WO0072905",
+   "regional": "SUL",
+   "loja": "FS COLOMBO - ESTRADA DA RIBEIRA 3700",
+   "bkn": "33697",
+   "setor": "",
+   "supervisor": "",
+   "equipamento": "FRITADEIRA GAS LP AI 32LBS 17KW/H PITCO",
+   "problema": "FILTRAGEM NÃO FUNCIONA",
+   "familia": "Cocção",
+   "critica": 1,
+   "prioridade": "2 - Alta",
+   "estado": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "20/10/2026 21:04:06",
+   "data": "2026-10-20",
+   "dias": 1,
+   "tecnico": "",
+   "descricao": "ZP191542 - FRITADEIRA GAS LP AI 32LBS 17KW/H PITCO | FRI - FILTRAGEM NÃO FUNCIONA",
+   "categoria": "ZP191542 - FRITADEIRA GAS LP AI 32LBS 17KW/H PITCO",
+   "subcategory": "FRI - FILTRAGEM NÃO FUNCIONA"
+  },
+  {
+   "chamado": "WO0072898",
+   "regional": "SUL",
+   "loja": "SHOP MUELLER CURITIBA",
+   "bkn": "15875",
+   "setor": "CURITIBA NORTE",
+   "supervisor": "GUSTAVO",
+   "equipamento": "BROILER",
+   "problema": "NÃO ATINGE TEMPERATURA",
+   "familia": "Cocção",
+   "critica": 1,
+   "prioridade": "1 - Crítica",
+   "estado": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "20/10/2026 20:18:43",
+   "data": "2026-10-20",
+   "dias": 1,
+   "tecnico": "",
+   "descricao": "BROILER | BRO - NÃO ATINGE TEMPERATURA",
+   "categoria": "BROILER",
+   "subcategory": "BRO - NÃO ATINGE TEMPERATURA"
   },
   {
    "chamado": "WO0072874",
