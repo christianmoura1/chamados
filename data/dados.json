@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-20T23:43:49",
+  "atualizadoEm": "2026-10-20T23:57:01",
   "totalRegistros": 4953,
   "totalAbertos": 1856,
   "totalFechados": 3097,
@@ -1552,7 +1552,7 @@
           "loja": "SHOP GRAVATAI",
           "estado": "Trabalho em andamento",
           "prioridade": "Normal",
-          "dias": 21,
+          "dias": 22,
           "tecnico": "Emanuel dos Santos Silva",
           "problema": "MÁQUINA DE SORVETE | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-09-29",
@@ -9386,7 +9386,7 @@
           "loja": "PARK SHOP CANOAS",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 6,
+          "dias": 7,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "BK066414 - MICROONDAS; MENUMASTER; OC24BKB; 1603180 | MCR - ACESSÓRIOS DANIFICADOS OU EM FALTA",
           "abertura": "2026-10-14",
@@ -9817,7 +9817,7 @@
           "loja": "SHOP IGUATEMI PORTO ALEGRE",
           "estado": "Trabalho em andamento",
           "prioridade": "Alta",
-          "dias": 11,
+          "dias": 12,
           "tecnico": "Thiago Dos Santos Coelho",
           "problema": "BK063544 - PHU; DUKE; HS2-34-2306T2R-BR; 07186701 | PHU - NÃO LIGA",
           "abertura": "2026-10-09",
@@ -9924,7 +9924,7 @@
           "loja": "SHOP IGUATEMI PORTO ALEGRE",
           "estado": "Trabalho em andamento",
           "prioridade": "Alta",
-          "dias": 11,
+          "dias": 12,
           "tecnico": "Thiago Dos Santos Coelho",
           "problema": "BK063544 - PHU; DUKE; HS2-34-2306T2R-BR; 07186701 | PHU - NÃO LIGA",
           "abertura": "2026-10-09",
@@ -10213,6 +10213,17 @@
           "sysId": "d98f6ed747fb871041ed4f62036d43d2"
         },
         {
+          "numero": "WOT0069442",
+          "loja": "PARK SHOP CANOAS",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 7,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "BK066495 - PHU; PRINCE CASTLE; EHB34A-BR; FMGK20025 | PHU - NÃO ACENDE LUZES",
+          "abertura": "2026-10-14",
+          "sysId": "fce108f34737c750839576b4f26d433d"
+        },
+        {
           "numero": "WOT0069263",
           "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
           "estado": "Atribuído",
@@ -10224,15 +10235,15 @@
           "sysId": "c3eb9faf97330350a3c1b3c6f053af90"
         },
         {
-          "numero": "WOT0069442",
-          "loja": "PARK SHOP CANOAS",
+          "numero": "WOT0070537",
+          "loja": "ANGELONI AGUA VERDE",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 6,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "BK066495 - PHU; PRINCE CASTLE; EHB34A-BR; FMGK20025 | PHU - NÃO ACENDE LUZES",
-          "abertura": "2026-10-14",
-          "sysId": "fce108f34737c750839576b4f26d433d"
+          "dias": 5,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "PHU; DUKE; FWM3-34MB1-230; 94ABJB0018 | PHU - NÃO ACENDE LUZES",
+          "abertura": "2026-10-16",
+          "sysId": "6603d25497cc5390a3c1b3c6f053afd9"
         },
         {
           "numero": "WOT0070696",
@@ -10244,17 +10255,6 @@
           "problema": "PHU; DUKE; FWM3-34MB1-230; 94ABJB0018 | PHU - NÃO ACENDE LUZES",
           "abertura": "2026-10-16",
           "sysId": "43a9435833089f501fc9a4bb9d5c7ba5"
-        },
-        {
-          "numero": "WOT0070537",
-          "loja": "ANGELONI AGUA VERDE",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 4,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "PHU; DUKE; FWM3-34MB1-230; 94ABJB0018 | PHU - NÃO ACENDE LUZES",
-          "abertura": "2026-10-16",
-          "sysId": "6603d25497cc5390a3c1b3c6f053afd9"
         },
         {
           "numero": "WOT0072091",
@@ -13058,6 +13058,240 @@
           ]
         },
         {
+          "numero": "WOT0035936",
+          "loja": "FS PELOTAS - AV FERREIRA VIANA 540",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 61,
+          "tecnico": "Thiago da Silva Gonzalez",
+          "problema": "BK071404 - BROILER; NIECO; JF93G; 232-32583 | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-20",
+          "sysId": "2f3d510e4736875041ed4f62036d43e7",
+          "pecas": [
+            {
+              "numero": "INCL0012747",
+              "material": "303014500045 - MODULO DE IGNICAO NIECO J...",
+              "quantidade": null,
+              "total": null,
+              "rastreio": [
+                {
+                  "bkn": "BKN 21800",
+                  "numeroCompleto": "BKN 21800-4061228-46311",
+                  "status": "SUCCESSFUL",
+                  "subStatus": "DELIVERED",
+                  "tracking": "3ONISNGZGJXZ",
+                  "destino": "Sao Paulo/SP",
+                  "endereco": "Avenida Giovanni Gronchi 0 LOJA BURGER KING DENTRO DO SHOPPING JARDIM SUL",
+                  "eta": "2026-10-17T02:59:59.000Z",
+                  "transportadora": "stoneLog (normal)",
+                  "ultimoEvento": "SUCCESSFUL",
+                  "ultimoEventoData": "2026-10-16T23:01:44.228Z",
+                  "orderId": "1bdc4521-dc13-4672-91f1-4baea2830b16"
+                },
+                {
+                  "bkn": "BKN 28352",
+                  "numeroCompleto": "BKN 28352-4062482-46310",
+                  "status": "DISPATCHED",
+                  "subStatus": "ROUTE_PLANNED",
+                  "tracking": "HDD33U39ANZE",
+                  "destino": "Centro de Assis/SP",
+                  "endereco": "Rua 13 de Maio 67 LOJA BURGER KING",
+                  "eta": null,
+                  "transportadora": "",
+                  "ultimoEvento": "DISPATCHED",
+                  "ultimoEventoData": "2026-10-15T11:48:01.329Z",
+                  "orderId": "15e49579-30e9-49c4-b17e-e8b8984b9827"
+                }
+              ]
+            },
+            {
+              "numero": "INCL0012748",
+              "material": "306213000010 - MANGUEIRA FLEXIVEL AI NAT...",
+              "quantidade": null,
+              "total": null,
+              "rastreio": [
+                {
+                  "bkn": "BKN 27590",
+                  "numeroCompleto": "BKN 27590-4061433-46314",
+                  "status": "DISPATCHED",
+                  "subStatus": "CARRIER_CONFIRMED",
+                  "tracking": "D6VJMF2JMFZC",
+                  "destino": "Porto Belo/SC",
+                  "endereco": "Rodovia BR-101 Km 159 0 LOJA BURGER KING",
+                  "eta": "2026-10-27T02:59:59.000Z",
+                  "transportadora": "correios (sedex)",
+                  "ultimoEvento": "DISPATCHED",
+                  "ultimoEventoData": "2026-10-19T11:21:14.982Z",
+                  "orderId": "fc20d5c3-c645-4b3f-a17e-2cc0df9f0a8c"
+                },
+                {
+                  "bkn": "BKN 19171",
+                  "numeroCompleto": "BKN 19171-4062276-46314",
+                  "status": "DISPATCHED",
+                  "subStatus": "CARRIER_CONFIRMED",
+                  "tracking": "1N8TVGILRP5H",
+                  "destino": "Pocos de Caldas/MG",
+                  "endereco": "Avenida Silvio Monteiro dos Santos 180 LOJA BURGER KING DENTRO DO SHOPPING",
+                  "eta": "2026-10-26T02:59:59.000Z",
+                  "transportadora": "correios (sedex)",
+                  "ultimoEvento": "DISPATCHED",
+                  "ultimoEventoData": "2026-10-19T11:20:29.873Z",
+                  "orderId": "b7e2d3b2-d9aa-444a-863d-fc070de9826a"
+                },
+                {
+                  "bkn": "BKN 16852",
+                  "numeroCompleto": "BKN 16852-4061733-46314",
+                  "status": "DISPATCHED",
+                  "subStatus": "CARRIER_CONFIRMED",
+                  "tracking": "QPZAKUAOYJ8P",
+                  "destino": "Sao Jose dos Pinhais/PR",
+                  "endereco": "Rua Izabel A Redentora 1434 LOJA BURGER KING DENTRO DO SHOPPING",
+                  "eta": "2026-10-24T02:59:59.000Z",
+                  "transportadora": "correios (sedex)",
+                  "ultimoEvento": "DISPATCHED",
+                  "ultimoEventoData": "2026-10-19T11:20:16.029Z",
+                  "orderId": "2857ff85-2305-4615-a300-a808de03b70b"
+                },
+                {
+                  "bkn": "BKN 26839",
+                  "numeroCompleto": "BKN 26839-4062446-46311",
+                  "status": "DISPATCHED",
+                  "subStatus": "CARRIER_CONFIRMED",
+                  "tracking": "PG29263CCJQI",
+                  "destino": "Curitiba/PR",
+                  "endereco": "Avenida Silva Jardim 566 LOJA BURGER KING",
+                  "eta": "2026-10-21T02:59:59.000Z",
+                  "transportadora": "correios (sedex)",
+                  "ultimoEvento": "DISPATCHED",
+                  "ultimoEventoData": "2026-10-16T14:45:37.323Z",
+                  "orderId": "41889ae0-d28b-42fd-b883-43e91abc4ecd"
+                },
+                {
+                  "bkn": "BKN 25848",
+                  "numeroCompleto": "BKN 25848-4062520-46311",
+                  "status": "DISPATCHED",
+                  "subStatus": "CARRIER_CONFIRMED",
+                  "tracking": "FV5AALOT9631",
+                  "destino": "Sao Paulo/SP",
+                  "endereco": "Rua São Bento 0 LOJA BURGER KING",
+                  "eta": "2026-10-17T02:59:59.000Z",
+                  "transportadora": "stoneLog (normal)",
+                  "ultimoEvento": "DISPATCHED",
+                  "ultimoEventoData": "2026-10-16T15:39:22.497Z",
+                  "orderId": "be295193-e3dc-43a9-ab93-1644f5c19dce"
+                },
+                {
+                  "bkn": "BKN 26828",
+                  "numeroCompleto": "BKN 26828-4061987-46311",
+                  "status": "SUCCESSFUL",
+                  "subStatus": "DELIVERED",
+                  "tracking": "9SMHBKIV57ML",
+                  "destino": "Curitiba/PR",
+                  "endereco": "Rua Francisco Frishmann  3151 LOJA BURGER KING",
+                  "eta": "2026-10-21T02:59:59.000Z",
+                  "transportadora": "correios (sedex)",
+                  "ultimoEvento": "SUCCESSFUL",
+                  "ultimoEventoData": "2026-10-17T14:48:35.000Z",
+                  "orderId": "71e4cd7a-fc88-4be5-8018-35aa4b6f1429"
+                },
+                {
+                  "bkn": "BKN 22763",
+                  "numeroCompleto": "BKN 22763-4060998-46311",
+                  "status": "COLLECTED",
+                  "subStatus": "",
+                  "tracking": "OIBNGLMB44S7",
+                  "destino": "Fortaleza/CE",
+                  "endereco": "Avenida Bezerra de Menezes 2450 LOJA BURGER KING DENTRO DO SHOPPING",
+                  "eta": "2026-10-24T02:59:59.000Z",
+                  "transportadora": "azulCargo (EXPRESSO)",
+                  "ultimoEvento": "COLLECTED",
+                  "ultimoEventoData": "2026-10-16T17:55:53.000Z",
+                  "orderId": "0bded198-7253-4c44-ba2e-6086034664a5"
+                },
+                {
+                  "bkn": "BKN 19661",
+                  "numeroCompleto": "BKN 19661-4061026-46311",
+                  "status": "SUCCESSFUL",
+                  "subStatus": "DELIVERED",
+                  "tracking": "JNSQ16SZ0GEP",
+                  "destino": "Betim/MG",
+                  "endereco": "Rodovia BR-381 Fernão Dias S/N LOJA BURGER KING DENTRO DO SHOPPING",
+                  "eta": "2026-10-23T02:59:59.000Z",
+                  "transportadora": "correios (sedex)",
+                  "ultimoEvento": "SUCCESSFUL",
+                  "ultimoEventoData": "2026-10-19T18:13:13.000Z",
+                  "orderId": "9d5dca74-a077-4fdf-a571-910d719ac812"
+                },
+                {
+                  "bkn": "BKN 16988",
+                  "numeroCompleto": "BKN 16988-4061735-46311",
+                  "status": "SUCCESSFUL",
+                  "subStatus": "DELIVERED",
+                  "tracking": "FY14R1NVDRX1",
+                  "destino": "Curitiba/PR",
+                  "endereco": "Avenida Sete De Setembro 2775 LOJA BURGER KING DENTRO DO SHOPPING",
+                  "eta": "2026-10-21T02:59:59.000Z",
+                  "transportadora": "correios (sedex)",
+                  "ultimoEvento": "SUCCESSFUL",
+                  "ultimoEventoData": "2026-10-19T16:34:07.000Z",
+                  "orderId": "3afa178b-a1d9-468e-8689-9cfb5d536a66"
+                },
+                {
+                  "bkn": "BKN 15875",
+                  "numeroCompleto": "BKN 15875-4061745-46311",
+                  "status": "SUCCESSFUL",
+                  "subStatus": "DELIVERED",
+                  "tracking": "VOCNYJ4ME1BR",
+                  "destino": "Curitiba/PR",
+                  "endereco": "Avenida Cândido De Abreu 127 LOJA BURGER KING DENTRO DO SHOPPING",
+                  "eta": "2026-10-21T02:59:59.000Z",
+                  "transportadora": "correios (sedex)",
+                  "ultimoEvento": "SUCCESSFUL",
+                  "ultimoEventoData": "2026-10-19T18:21:01.000Z",
+                  "orderId": "88478c39-c2d2-4503-b99a-627bb26b044d"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "numero": "WOT0035833",
+          "loja": "PARTAGE SHOP RIO GRANDE",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 61,
+          "tecnico": "Thiago da Silva Gonzalez",
+          "problema": "BK037999 - BROILER; NIECO; JF93G; 232-32583 | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-08-20",
+          "sysId": "ecccd5864736875041ed4f62036d43e4",
+          "pecas": [
+            {
+              "numero": "INCL0012567",
+              "material": "303012600004 - CORRENTE ALIMENT 17GOMOS ...",
+              "quantidade": null,
+              "total": null
+            },
+            {
+              "numero": "INCL0012568",
+              "material": "303012600002 - TENSIONADOR LADO ESQ NIEC...",
+              "quantidade": null,
+              "total": null
+            },
+            {
+              "numero": "INCL0012569",
+              "material": "303014500178 - TENSIONADOR NIECO PN 22296",
+              "quantidade": null,
+              "total": null
+            },
+            {
+              "numero": "INCL0012570",
+              "material": "303014500177 - BRACADEIRA NIECO PN 10627",
+              "quantidade": null,
+              "total": null
+            }
+          ]
+        },
+        {
           "numero": "WOT0035649",
           "loja": "FS CURITIBA - R MARTIN AFONSO",
           "estado": "Trabalho em andamento",
@@ -13377,240 +13611,6 @@
                   "orderId": "88478c39-c2d2-4503-b99a-627bb26b044d"
                 }
               ]
-            }
-          ]
-        },
-        {
-          "numero": "WOT0035936",
-          "loja": "FS PELOTAS - AV FERREIRA VIANA 540",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 61,
-          "tecnico": "Thiago da Silva Gonzalez",
-          "problema": "BK071404 - BROILER; NIECO; JF93G; 232-32583 | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-20",
-          "sysId": "2f3d510e4736875041ed4f62036d43e7",
-          "pecas": [
-            {
-              "numero": "INCL0012747",
-              "material": "303014500045 - MODULO DE IGNICAO NIECO J...",
-              "quantidade": null,
-              "total": null,
-              "rastreio": [
-                {
-                  "bkn": "BKN 21800",
-                  "numeroCompleto": "BKN 21800-4061228-46311",
-                  "status": "SUCCESSFUL",
-                  "subStatus": "DELIVERED",
-                  "tracking": "3ONISNGZGJXZ",
-                  "destino": "Sao Paulo/SP",
-                  "endereco": "Avenida Giovanni Gronchi 0 LOJA BURGER KING DENTRO DO SHOPPING JARDIM SUL",
-                  "eta": "2026-10-17T02:59:59.000Z",
-                  "transportadora": "stoneLog (normal)",
-                  "ultimoEvento": "SUCCESSFUL",
-                  "ultimoEventoData": "2026-10-16T23:01:44.228Z",
-                  "orderId": "1bdc4521-dc13-4672-91f1-4baea2830b16"
-                },
-                {
-                  "bkn": "BKN 28352",
-                  "numeroCompleto": "BKN 28352-4062482-46310",
-                  "status": "DISPATCHED",
-                  "subStatus": "ROUTE_PLANNED",
-                  "tracking": "HDD33U39ANZE",
-                  "destino": "Centro de Assis/SP",
-                  "endereco": "Rua 13 de Maio 67 LOJA BURGER KING",
-                  "eta": null,
-                  "transportadora": "",
-                  "ultimoEvento": "DISPATCHED",
-                  "ultimoEventoData": "2026-10-15T11:48:01.329Z",
-                  "orderId": "15e49579-30e9-49c4-b17e-e8b8984b9827"
-                }
-              ]
-            },
-            {
-              "numero": "INCL0012748",
-              "material": "306213000010 - MANGUEIRA FLEXIVEL AI NAT...",
-              "quantidade": null,
-              "total": null,
-              "rastreio": [
-                {
-                  "bkn": "BKN 27590",
-                  "numeroCompleto": "BKN 27590-4061433-46314",
-                  "status": "DISPATCHED",
-                  "subStatus": "CARRIER_CONFIRMED",
-                  "tracking": "D6VJMF2JMFZC",
-                  "destino": "Porto Belo/SC",
-                  "endereco": "Rodovia BR-101 Km 159 0 LOJA BURGER KING",
-                  "eta": "2026-10-27T02:59:59.000Z",
-                  "transportadora": "correios (sedex)",
-                  "ultimoEvento": "DISPATCHED",
-                  "ultimoEventoData": "2026-10-19T11:21:14.982Z",
-                  "orderId": "fc20d5c3-c645-4b3f-a17e-2cc0df9f0a8c"
-                },
-                {
-                  "bkn": "BKN 19171",
-                  "numeroCompleto": "BKN 19171-4062276-46314",
-                  "status": "DISPATCHED",
-                  "subStatus": "CARRIER_CONFIRMED",
-                  "tracking": "1N8TVGILRP5H",
-                  "destino": "Pocos de Caldas/MG",
-                  "endereco": "Avenida Silvio Monteiro dos Santos 180 LOJA BURGER KING DENTRO DO SHOPPING",
-                  "eta": "2026-10-26T02:59:59.000Z",
-                  "transportadora": "correios (sedex)",
-                  "ultimoEvento": "DISPATCHED",
-                  "ultimoEventoData": "2026-10-19T11:20:29.873Z",
-                  "orderId": "b7e2d3b2-d9aa-444a-863d-fc070de9826a"
-                },
-                {
-                  "bkn": "BKN 16852",
-                  "numeroCompleto": "BKN 16852-4061733-46314",
-                  "status": "DISPATCHED",
-                  "subStatus": "CARRIER_CONFIRMED",
-                  "tracking": "QPZAKUAOYJ8P",
-                  "destino": "Sao Jose dos Pinhais/PR",
-                  "endereco": "Rua Izabel A Redentora 1434 LOJA BURGER KING DENTRO DO SHOPPING",
-                  "eta": "2026-10-24T02:59:59.000Z",
-                  "transportadora": "correios (sedex)",
-                  "ultimoEvento": "DISPATCHED",
-                  "ultimoEventoData": "2026-10-19T11:20:16.029Z",
-                  "orderId": "2857ff85-2305-4615-a300-a808de03b70b"
-                },
-                {
-                  "bkn": "BKN 26839",
-                  "numeroCompleto": "BKN 26839-4062446-46311",
-                  "status": "DISPATCHED",
-                  "subStatus": "CARRIER_CONFIRMED",
-                  "tracking": "PG29263CCJQI",
-                  "destino": "Curitiba/PR",
-                  "endereco": "Avenida Silva Jardim 566 LOJA BURGER KING",
-                  "eta": "2026-10-21T02:59:59.000Z",
-                  "transportadora": "correios (sedex)",
-                  "ultimoEvento": "DISPATCHED",
-                  "ultimoEventoData": "2026-10-16T14:45:37.323Z",
-                  "orderId": "41889ae0-d28b-42fd-b883-43e91abc4ecd"
-                },
-                {
-                  "bkn": "BKN 25848",
-                  "numeroCompleto": "BKN 25848-4062520-46311",
-                  "status": "DISPATCHED",
-                  "subStatus": "CARRIER_CONFIRMED",
-                  "tracking": "FV5AALOT9631",
-                  "destino": "Sao Paulo/SP",
-                  "endereco": "Rua São Bento 0 LOJA BURGER KING",
-                  "eta": "2026-10-17T02:59:59.000Z",
-                  "transportadora": "stoneLog (normal)",
-                  "ultimoEvento": "DISPATCHED",
-                  "ultimoEventoData": "2026-10-16T15:39:22.497Z",
-                  "orderId": "be295193-e3dc-43a9-ab93-1644f5c19dce"
-                },
-                {
-                  "bkn": "BKN 26828",
-                  "numeroCompleto": "BKN 26828-4061987-46311",
-                  "status": "SUCCESSFUL",
-                  "subStatus": "DELIVERED",
-                  "tracking": "9SMHBKIV57ML",
-                  "destino": "Curitiba/PR",
-                  "endereco": "Rua Francisco Frishmann  3151 LOJA BURGER KING",
-                  "eta": "2026-10-21T02:59:59.000Z",
-                  "transportadora": "correios (sedex)",
-                  "ultimoEvento": "SUCCESSFUL",
-                  "ultimoEventoData": "2026-10-17T14:48:35.000Z",
-                  "orderId": "71e4cd7a-fc88-4be5-8018-35aa4b6f1429"
-                },
-                {
-                  "bkn": "BKN 22763",
-                  "numeroCompleto": "BKN 22763-4060998-46311",
-                  "status": "COLLECTED",
-                  "subStatus": "",
-                  "tracking": "OIBNGLMB44S7",
-                  "destino": "Fortaleza/CE",
-                  "endereco": "Avenida Bezerra de Menezes 2450 LOJA BURGER KING DENTRO DO SHOPPING",
-                  "eta": "2026-10-24T02:59:59.000Z",
-                  "transportadora": "azulCargo (EXPRESSO)",
-                  "ultimoEvento": "COLLECTED",
-                  "ultimoEventoData": "2026-10-16T17:55:53.000Z",
-                  "orderId": "0bded198-7253-4c44-ba2e-6086034664a5"
-                },
-                {
-                  "bkn": "BKN 19661",
-                  "numeroCompleto": "BKN 19661-4061026-46311",
-                  "status": "SUCCESSFUL",
-                  "subStatus": "DELIVERED",
-                  "tracking": "JNSQ16SZ0GEP",
-                  "destino": "Betim/MG",
-                  "endereco": "Rodovia BR-381 Fernão Dias S/N LOJA BURGER KING DENTRO DO SHOPPING",
-                  "eta": "2026-10-23T02:59:59.000Z",
-                  "transportadora": "correios (sedex)",
-                  "ultimoEvento": "SUCCESSFUL",
-                  "ultimoEventoData": "2026-10-19T18:13:13.000Z",
-                  "orderId": "9d5dca74-a077-4fdf-a571-910d719ac812"
-                },
-                {
-                  "bkn": "BKN 16988",
-                  "numeroCompleto": "BKN 16988-4061735-46311",
-                  "status": "SUCCESSFUL",
-                  "subStatus": "DELIVERED",
-                  "tracking": "FY14R1NVDRX1",
-                  "destino": "Curitiba/PR",
-                  "endereco": "Avenida Sete De Setembro 2775 LOJA BURGER KING DENTRO DO SHOPPING",
-                  "eta": "2026-10-21T02:59:59.000Z",
-                  "transportadora": "correios (sedex)",
-                  "ultimoEvento": "SUCCESSFUL",
-                  "ultimoEventoData": "2026-10-19T16:34:07.000Z",
-                  "orderId": "3afa178b-a1d9-468e-8689-9cfb5d536a66"
-                },
-                {
-                  "bkn": "BKN 15875",
-                  "numeroCompleto": "BKN 15875-4061745-46311",
-                  "status": "SUCCESSFUL",
-                  "subStatus": "DELIVERED",
-                  "tracking": "VOCNYJ4ME1BR",
-                  "destino": "Curitiba/PR",
-                  "endereco": "Avenida Cândido De Abreu 127 LOJA BURGER KING DENTRO DO SHOPPING",
-                  "eta": "2026-10-21T02:59:59.000Z",
-                  "transportadora": "correios (sedex)",
-                  "ultimoEvento": "SUCCESSFUL",
-                  "ultimoEventoData": "2026-10-19T18:21:01.000Z",
-                  "orderId": "88478c39-c2d2-4503-b99a-627bb26b044d"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "numero": "WOT0035833",
-          "loja": "PARTAGE SHOP RIO GRANDE",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 61,
-          "tecnico": "Thiago da Silva Gonzalez",
-          "problema": "BK037999 - BROILER; NIECO; JF93G; 232-32583 | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-08-20",
-          "sysId": "ecccd5864736875041ed4f62036d43e4",
-          "pecas": [
-            {
-              "numero": "INCL0012567",
-              "material": "303012600004 - CORRENTE ALIMENT 17GOMOS ...",
-              "quantidade": null,
-              "total": null
-            },
-            {
-              "numero": "INCL0012568",
-              "material": "303012600002 - TENSIONADOR LADO ESQ NIEC...",
-              "quantidade": null,
-              "total": null
-            },
-            {
-              "numero": "INCL0012569",
-              "material": "303014500178 - TENSIONADOR NIECO PN 22296",
-              "quantidade": null,
-              "total": null
-            },
-            {
-              "numero": "INCL0012570",
-              "material": "303014500177 - BRACADEIRA NIECO PN 10627",
-              "quantidade": null,
-              "total": null
             }
           ]
         },
@@ -15773,7 +15773,7 @@
           "loja": "SHOP CIDADE DOS LAGOS",
           "estado": "Trabalho em andamento",
           "prioridade": "Normal",
-          "dias": 26,
+          "dias": 27,
           "tecnico": "Cristppher Alencar Pacheco Cruz",
           "problema": "BK066068 - BROILER; NIECO; JF94G; 631-41482 | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-09-24",
@@ -16720,6 +16720,69 @@
           ]
         },
         {
+          "numero": "WOT0066981",
+          "loja": "FS CURITIBA - R CARLOS KLEMTZ 1994",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 12,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-10-08",
+          "sysId": "7b6b3179fb734b50b0c9fb207eefdc6a",
+          "pecas": [
+            {
+              "numero": "INCL0017224",
+              "material": "303014500071 - SUPRESSOR DE CHAMAS NIECO...",
+              "quantidade": null,
+              "total": null,
+              "rastreio": [
+                {
+                  "bkn": "BKN 29095",
+                  "numeroCompleto": "BKN 29095-4061435-46314",
+                  "status": "DISPATCHED",
+                  "subStatus": "CARRIER_CONFIRMED",
+                  "tracking": "H005ROFTY2BT",
+                  "destino": "Curitiba/PR",
+                  "endereco": "Rua Carlos Klemtz 1994 LOJA BURGER KING",
+                  "eta": "2026-10-24T02:59:59.000Z",
+                  "transportadora": "correios (sedex)",
+                  "ultimoEvento": "DISPATCHED",
+                  "ultimoEventoData": "2026-10-19T11:21:27.732Z",
+                  "orderId": "1f81d2cf-fb0d-4e1c-99f7-59bbe46c677b"
+                },
+                {
+                  "bkn": "BKN 26828",
+                  "numeroCompleto": "BKN 26828-4062604-46311",
+                  "status": "SUCCESSFUL",
+                  "subStatus": "DELIVERED",
+                  "tracking": "C9R3T52RRQHE",
+                  "destino": "Curitiba/PR",
+                  "endereco": "Rua Francisco Frishmann  3151 LOJA BURGER KING",
+                  "eta": "2026-10-21T02:59:59.000Z",
+                  "transportadora": "correios (sedex)",
+                  "ultimoEvento": "SUCCESSFUL",
+                  "ultimoEventoData": "2026-10-19T15:15:52.000Z",
+                  "orderId": "4c6f0933-4108-42c7-bd5b-3a824be56992"
+                },
+                {
+                  "bkn": "BKN 16659",
+                  "numeroCompleto": "BKN 16659-4062480-46310",
+                  "status": "DISPATCHED",
+                  "subStatus": "ROUTE_PLANNED",
+                  "tracking": "D7DR9Y2SM43P",
+                  "destino": "Marilia/SP",
+                  "endereco": "Rua Tucunarés 500 LOJA BURGER KING DENTRO DO SHOPPING",
+                  "eta": null,
+                  "transportadora": "",
+                  "ultimoEvento": "DISPATCHED",
+                  "ultimoEventoData": "2026-10-15T11:48:01.329Z",
+                  "orderId": "605ebb40-5fb0-48ec-8688-c53d190080a4"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "numero": "WOT0067258",
           "loja": "PORTO BELO OUTLET",
           "estado": "Trabalho em andamento",
@@ -17037,69 +17100,6 @@
                   "ultimoEvento": "SUCCESSFUL",
                   "ultimoEventoData": "2026-10-19T18:21:01.000Z",
                   "orderId": "88478c39-c2d2-4503-b99a-627bb26b044d"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "numero": "WOT0066981",
-          "loja": "FS CURITIBA - R CARLOS KLEMTZ 1994",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 12,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-10-08",
-          "sysId": "7b6b3179fb734b50b0c9fb207eefdc6a",
-          "pecas": [
-            {
-              "numero": "INCL0017224",
-              "material": "303014500071 - SUPRESSOR DE CHAMAS NIECO...",
-              "quantidade": null,
-              "total": null,
-              "rastreio": [
-                {
-                  "bkn": "BKN 29095",
-                  "numeroCompleto": "BKN 29095-4061435-46314",
-                  "status": "DISPATCHED",
-                  "subStatus": "CARRIER_CONFIRMED",
-                  "tracking": "H005ROFTY2BT",
-                  "destino": "Curitiba/PR",
-                  "endereco": "Rua Carlos Klemtz 1994 LOJA BURGER KING",
-                  "eta": "2026-10-24T02:59:59.000Z",
-                  "transportadora": "correios (sedex)",
-                  "ultimoEvento": "DISPATCHED",
-                  "ultimoEventoData": "2026-10-19T11:21:27.732Z",
-                  "orderId": "1f81d2cf-fb0d-4e1c-99f7-59bbe46c677b"
-                },
-                {
-                  "bkn": "BKN 26828",
-                  "numeroCompleto": "BKN 26828-4062604-46311",
-                  "status": "SUCCESSFUL",
-                  "subStatus": "DELIVERED",
-                  "tracking": "C9R3T52RRQHE",
-                  "destino": "Curitiba/PR",
-                  "endereco": "Rua Francisco Frishmann  3151 LOJA BURGER KING",
-                  "eta": "2026-10-21T02:59:59.000Z",
-                  "transportadora": "correios (sedex)",
-                  "ultimoEvento": "SUCCESSFUL",
-                  "ultimoEventoData": "2026-10-19T15:15:52.000Z",
-                  "orderId": "4c6f0933-4108-42c7-bd5b-3a824be56992"
-                },
-                {
-                  "bkn": "BKN 16659",
-                  "numeroCompleto": "BKN 16659-4062480-46310",
-                  "status": "DISPATCHED",
-                  "subStatus": "ROUTE_PLANNED",
-                  "tracking": "D7DR9Y2SM43P",
-                  "destino": "Marilia/SP",
-                  "endereco": "Rua Tucunarés 500 LOJA BURGER KING DENTRO DO SHOPPING",
-                  "eta": null,
-                  "transportadora": "",
-                  "ultimoEvento": "DISPATCHED",
-                  "ultimoEventoData": "2026-10-15T11:48:01.329Z",
-                  "orderId": "605ebb40-5fb0-48ec-8688-c53d190080a4"
                 }
               ]
             }
@@ -18313,7 +18313,7 @@
           "loja": "BOURBON SHOP PORTO ALEGRE",
           "estado": "Trabalho em andamento",
           "prioridade": "Normal",
-          "dias": 83,
+          "dias": 84,
           "tecnico": "Ruan Carlos da Silva",
           "problema": "BK027746 - TOSTADORA VERTICAL; AJ ANTUNES; VCT-2000 | TST - NÃO ATINGE TEMPERATURA",
           "abertura": "2026-07-29",
@@ -18434,7 +18434,7 @@
           "loja": "BOURBON SHOP PORTO ALEGRE",
           "estado": "Trabalho em andamento",
           "prioridade": "Normal",
-          "dias": 83,
+          "dias": 84,
           "tecnico": "Ruan Carlos da Silva",
           "problema": "BK027746 - TOSTADORA VERTICAL; AJ ANTUNES; VCT-2000 | TST - NÃO ATINGE TEMPERATURA",
           "abertura": "2026-07-29",
@@ -18792,30 +18792,11 @@
           "sysId": "d858ae4f47bfc31041ed4f62036d4323"
         },
         {
-          "numero": "WOT0068899",
-          "loja": "SHOP ROYAL PLAZA SANTA MARIA",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 7,
-          "tecnico": "Marcel Vinicios Rocha Agradem",
-          "problema": "BK036560 - MESA DA TOSTADORA | MDT - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-10-13",
-          "sysId": "671f7e53fbbfc710b0c9fb207eefdccf",
-          "pecas": [
-            {
-              "numero": "INCL0017624",
-              "material": "303012900008 - ENGRENAGEM ESTEIRA AJ ANT...",
-              "quantidade": null,
-              "total": null
-            }
-          ]
-        },
-        {
           "numero": "WOT0069447",
           "loja": "PARK SHOP CANOAS",
           "estado": "Trabalho em andamento",
           "prioridade": "Normal",
-          "dias": 6,
+          "dias": 7,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "BK066475 - TOSTADORA VERTICAL; AJ ANTUNES; VCT-2000 | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-10-14",
@@ -18880,6 +18861,25 @@
           ]
         },
         {
+          "numero": "WOT0068899",
+          "loja": "SHOP ROYAL PLAZA SANTA MARIA",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 7,
+          "tecnico": "Marcel Vinicios Rocha Agradem",
+          "problema": "BK036560 - MESA DA TOSTADORA | MDT - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-10-13",
+          "sysId": "671f7e53fbbfc710b0c9fb207eefdccf",
+          "pecas": [
+            {
+              "numero": "INCL0017624",
+              "material": "303012900008 - ENGRENAGEM ESTEIRA AJ ANT...",
+              "quantidade": null,
+              "total": null
+            }
+          ]
+        },
+        {
           "numero": "WOT0071393",
           "loja": "FS POA - AV DR NILO PECANHA 1715",
           "estado": "Trabalho em andamento",
@@ -18938,6 +18938,17 @@
     }
   ],
   "areaInterna": [
+    {
+      "numero": "WOT0014698",
+      "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
+      "estado": "Trabalho em andamento",
+      "prioridade": "Normal",
+      "dias": 82,
+      "tecnico": "Marcel Vinicios Rocha Agradem",
+      "problema": "BK052492 - DISPENSADOR DE BATATAS CONGELADAS; FRANK | DSP - NÃO DISPENSA",
+      "abertura": "2026-07-30",
+      "sysId": "70397cd747124b9041ed4f62036d434b"
+    },
     {
       "numero": "WOT0071146",
       "loja": "SHOP TOTAL POA",
@@ -19197,7 +19208,7 @@
       "loja": "WALMART BIG TORRES",
       "estado": "Trabalho em andamento",
       "prioridade": "Normal",
-      "dias": 18,
+      "dias": 19,
       "tecnico": "Carlos Magno da Silva Lira",
       "problema": "BK085964 - PIA DE LAVAGEM MOP; TOPEMA | PIM - VAZAMENTO MANGUERIA/ESGUICHO",
       "abertura": "2026-10-02",
@@ -19390,15 +19401,15 @@
       ]
     },
     {
-      "numero": "WOT0061334",
-      "loja": "FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
+      "numero": "WOT0039143",
+      "loja": "FC CAXIAS DO SUL - VILLAGIO CAXIAS",
       "estado": "Trabalho em andamento",
       "prioridade": "Normal",
-      "dias": 19,
+      "dias": 56,
       "tecnico": "Thiago Dos Santos Coelho",
-      "problema": "Preventiva",
-      "abertura": "2026-10-01",
-      "sysId": "ec995563976f4790a3c1b3c6f053af4e"
+      "problema": "ZP189391 - ESTUFA BATATA | ETB - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+      "abertura": "2026-08-26",
+      "sysId": "25d94f3347fe4350839576b4f26d43a8"
     },
     {
       "numero": "WOT0029576",
@@ -19421,31 +19432,6 @@
       "problema": "Area Externa | AEX - ALAGAMENTO - FATORES EXTERNOS",
       "abertura": "2026-08-31",
       "sysId": "130c3d6947cf431041ed4f62036d4365"
-    },
-    {
-      "numero": "WOT0054309",
-      "loja": "FS CURITIBA - R MARTIN AFONSO",
-      "estado": "Trabalho em andamento",
-      "prioridade": "Normal",
-      "dias": 31,
-      "tecnico": "Carlos Magno da Silva Lira",
-      "problema": "Area Interna | AIN - PIA DE LAVAGEM MOP - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-      "abertura": "2026-09-19",
-      "sysId": "7d44a72ffb530f90b0c9fb207eefdc34",
-      "pecas": [
-        {
-          "numero": "INCL0017219",
-          "material": "106210000029 - TORNEIRA MISTURADORA C/ E...",
-          "quantidade": null,
-          "total": null
-        },
-        {
-          "numero": "INCL0017220",
-          "material": "106210000031 - TORNEIRA MISTURADORA C/ B...",
-          "quantidade": null,
-          "total": null
-        }
-      ]
     },
     {
       "numero": "WOT0067847",
@@ -19622,6 +19608,54 @@
       "sysId": "46a2c6044776cf90839576b4f26d4370"
     },
     {
+      "numero": "WOT0061334",
+      "loja": "FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
+      "estado": "Trabalho em andamento",
+      "prioridade": "Normal",
+      "dias": 19,
+      "tecnico": "Thiago Dos Santos Coelho",
+      "problema": "Preventiva",
+      "abertura": "2026-10-01",
+      "sysId": "ec995563976f4790a3c1b3c6f053af4e"
+    },
+    {
+      "numero": "WOT0035784",
+      "loja": "SHOP PRACA RIO GRANDE",
+      "estado": "Trabalho em andamento",
+      "prioridade": "Normal",
+      "dias": 61,
+      "tecnico": "Thiago da Silva Gonzalez",
+      "problema": "BK021332 - DISPENSADOR DE BATATAS CONGELADAS; FRANK | DSP - NÃO DISPENSA",
+      "abertura": "2026-08-20",
+      "sysId": "8a8cd9064736875041ed4f62036d43de",
+      "pecas": [
+        {
+          "numero": "INCL0012504",
+          "material": "303012800022 - FUNDO REMOVIVEL FRANKE F3D3",
+          "quantidade": null,
+          "total": null
+        },
+        {
+          "numero": "INCL0012505",
+          "material": "303015600012 - MENBRANA FRANKE PN 19004324",
+          "quantidade": null,
+          "total": null
+        },
+        {
+          "numero": "INCL0012506",
+          "material": "303012800018 - GAXETA LARANJA RESERV FRA...",
+          "quantidade": null,
+          "total": null
+        },
+        {
+          "numero": "INCL0012507",
+          "material": "303015600016 - CACAMBA FRANKE PN 1900272",
+          "quantidade": null,
+          "total": null
+        }
+      ]
+    },
+    {
       "numero": "WOT0053039",
       "loja": "FS CURITIBA - LINHA VERDE",
       "estado": "Trabalho em andamento",
@@ -19642,28 +19676,6 @@
       "problema": "BK068719 - COIFA | COI - COIFA EM CONTIGÊNCIA",
       "abertura": "2026-08-31",
       "sysId": "a5f2826947074710e6d73dc4f26d43b3"
-    },
-    {
-      "numero": "WOT0014815",
-      "loja": "FS CURITIBA - LINHA VERDE",
-      "estado": "Trabalho em andamento",
-      "prioridade": "Alta",
-      "dias": 82,
-      "tecnico": "Wilson Charles Philistin",
-      "problema": "BK086013 - MEAT FREEZER | MFR - NÃO LIGA",
-      "abertura": "2026-07-30",
-      "sysId": "f8428e9b47164b94839576b4f26d4324"
-    },
-    {
-      "numero": "WOT0052475",
-      "loja": "FS CURITIBA - LINHA VERDE",
-      "estado": "Trabalho em andamento",
-      "prioridade": "Normal",
-      "dias": 35,
-      "tecnico": "Wilson Charles Philistin",
-      "problema": "BK033664 - ESTUFA DE RETENÇÃO DE LANCHES; TOPEMA | ETR - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-      "abertura": "2026-09-16",
-      "sysId": "aef3ce664793075041ed4f62036d43f2"
     },
     {
       "numero": "WOT0067867",
@@ -19708,43 +19720,6 @@
       "problema": "AR CONDICIONADO | ARC - NÃO LIGA",
       "abertura": "2026-10-13",
       "sysId": "acce5863473b4b1041ed4f62036d4316"
-    },
-    {
-      "numero": "WOT0035784",
-      "loja": "SHOP PRACA RIO GRANDE",
-      "estado": "Trabalho em andamento",
-      "prioridade": "Normal",
-      "dias": 61,
-      "tecnico": "Thiago da Silva Gonzalez",
-      "problema": "BK021332 - DISPENSADOR DE BATATAS CONGELADAS; FRANK | DSP - NÃO DISPENSA",
-      "abertura": "2026-08-20",
-      "sysId": "8a8cd9064736875041ed4f62036d43de",
-      "pecas": [
-        {
-          "numero": "INCL0012504",
-          "material": "303012800022 - FUNDO REMOVIVEL FRANKE F3D3",
-          "quantidade": null,
-          "total": null
-        },
-        {
-          "numero": "INCL0012505",
-          "material": "303015600012 - MENBRANA FRANKE PN 19004324",
-          "quantidade": null,
-          "total": null
-        },
-        {
-          "numero": "INCL0012506",
-          "material": "303012800018 - GAXETA LARANJA RESERV FRA...",
-          "quantidade": null,
-          "total": null
-        },
-        {
-          "numero": "INCL0012507",
-          "material": "303015600016 - CACAMBA FRANKE PN 1900272",
-          "quantidade": null,
-          "total": null
-        }
-      ]
     },
     {
       "numero": "WOT0067871",
@@ -19813,6 +19788,28 @@
       "sysId": "da2d2850474b8310e6d73dc4f26d43b9"
     },
     {
+      "numero": "WOT0014815",
+      "loja": "FS CURITIBA - LINHA VERDE",
+      "estado": "Trabalho em andamento",
+      "prioridade": "Alta",
+      "dias": 82,
+      "tecnico": "Wilson Charles Philistin",
+      "problema": "BK086013 - MEAT FREEZER | MFR - NÃO LIGA",
+      "abertura": "2026-07-30",
+      "sysId": "f8428e9b47164b94839576b4f26d4324"
+    },
+    {
+      "numero": "WOT0052475",
+      "loja": "FS CURITIBA - LINHA VERDE",
+      "estado": "Trabalho em andamento",
+      "prioridade": "Normal",
+      "dias": 35,
+      "tecnico": "Wilson Charles Philistin",
+      "problema": "BK033664 - ESTUFA DE RETENÇÃO DE LANCHES; TOPEMA | ETR - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+      "abertura": "2026-09-16",
+      "sysId": "aef3ce664793075041ed4f62036d43f2"
+    },
+    {
       "numero": "WOT0064165",
       "loja": "SHOP BELLA CITTA",
       "estado": "Trabalho em andamento",
@@ -19871,6 +19868,31 @@
       "sysId": "01b7c8a047724f18e6d73dc4f26d4302"
     },
     {
+      "numero": "WOT0064249",
+      "loja": "SHOP JARDIM DAS AMERICAS",
+      "estado": "Trabalho em andamento",
+      "prioridade": "Normal",
+      "dias": 18,
+      "tecnico": "Carlos Magno da Silva Lira",
+      "problema": "BK066037 - BANCADA DE LAVAGEM C/ 3 CUBAS | BTC - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+      "abertura": "2026-10-02",
+      "sysId": "52111ab3fb6bc390b0c9fb207eefdc9b",
+      "pecas": [
+        {
+          "numero": "INCL0016718",
+          "material": "106210000029 - TORNEIRA MISTURADORA C/ E...",
+          "quantidade": null,
+          "total": null
+        },
+        {
+          "numero": "INCL0016719",
+          "material": "106210000031 - TORNEIRA MISTURADORA C/ B...",
+          "quantidade": null,
+          "total": null
+        }
+      ]
+    },
+    {
       "numero": "WOT0035394",
       "loja": "CANOAS SHOP",
       "estado": "Trabalho em andamento",
@@ -19907,42 +19929,6 @@
       ]
     },
     {
-      "numero": "WOT0064249",
-      "loja": "SHOP JARDIM DAS AMERICAS",
-      "estado": "Trabalho em andamento",
-      "prioridade": "Normal",
-      "dias": 18,
-      "tecnico": "Carlos Magno da Silva Lira",
-      "problema": "BK066037 - BANCADA DE LAVAGEM C/ 3 CUBAS | BTC - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-      "abertura": "2026-10-02",
-      "sysId": "52111ab3fb6bc390b0c9fb207eefdc9b",
-      "pecas": [
-        {
-          "numero": "INCL0016718",
-          "material": "106210000029 - TORNEIRA MISTURADORA C/ E...",
-          "quantidade": null,
-          "total": null
-        },
-        {
-          "numero": "INCL0016719",
-          "material": "106210000031 - TORNEIRA MISTURADORA C/ B...",
-          "quantidade": null,
-          "total": null
-        }
-      ]
-    },
-    {
-      "numero": "WOT0039143",
-      "loja": "FC CAXIAS DO SUL - VILLAGIO CAXIAS",
-      "estado": "Trabalho em andamento",
-      "prioridade": "Normal",
-      "dias": 56,
-      "tecnico": "Thiago Dos Santos Coelho",
-      "problema": "ZP189391 - ESTUFA BATATA | ETB - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-      "abertura": "2026-08-26",
-      "sysId": "25d94f3347fe4350839576b4f26d43a8"
-    },
-    {
       "numero": "WOT0014619",
       "loja": "FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL",
       "estado": "Trabalho em andamento",
@@ -19965,6 +19951,31 @@
       "sysId": "2e7ccbab479e8f9041ed4f62036d4378"
     },
     {
+      "numero": "WOT0054309",
+      "loja": "FS CURITIBA - R MARTIN AFONSO",
+      "estado": "Trabalho em andamento",
+      "prioridade": "Normal",
+      "dias": 31,
+      "tecnico": "Carlos Magno da Silva Lira",
+      "problema": "Area Interna | AIN - PIA DE LAVAGEM MOP - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+      "abertura": "2026-09-19",
+      "sysId": "7d44a72ffb530f90b0c9fb207eefdc34",
+      "pecas": [
+        {
+          "numero": "INCL0017219",
+          "material": "106210000029 - TORNEIRA MISTURADORA C/ E...",
+          "quantidade": null,
+          "total": null
+        },
+        {
+          "numero": "INCL0017220",
+          "material": "106210000031 - TORNEIRA MISTURADORA C/ B...",
+          "quantidade": null,
+          "total": null
+        }
+      ]
+    },
+    {
       "numero": "WOT0058768",
       "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
       "estado": "Trabalho em andamento",
@@ -19985,17 +19996,6 @@
       "problema": "BK052664 - ESTUFA DE BATATAS | ETB - NÃO ATINGE TEMPERATURA",
       "abertura": "2026-08-13",
       "sysId": "ec878df3472e8318e6d73dc4f26d4381"
-    },
-    {
-      "numero": "WOT0014698",
-      "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
-      "estado": "Trabalho em andamento",
-      "prioridade": "Normal",
-      "dias": 82,
-      "tecnico": "Marcel Vinicios Rocha Agradem",
-      "problema": "BK052492 - DISPENSADOR DE BATATAS CONGELADAS; FRANK | DSP - NÃO DISPENSA",
-      "abertura": "2026-07-30",
-      "sysId": "70397cd747124b9041ed4f62036d434b"
     },
     {
       "numero": "WOT0036130",
@@ -20068,77 +20068,11 @@
       "loja": "FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL",
       "estado": "Aceito",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Renato Carlos Santa Rosa",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
       "sysId": "34bde43ffb2acbd4b0c9fb207eefdc42"
-    },
-    {
-      "numero": "WOT0067996",
-      "loja": "BOURBON SHOP NOVO HAMBURGO",
-      "estado": "Aceito",
-      "prioridade": "Normal",
-      "dias": 10,
-      "tecnico": "System Administrator",
-      "problema": "Transferência de Equipamento/Material",
-      "abertura": "2026-10-10",
-      "sysId": "7ac395e6973f8390a3c1b3c6f053af36"
-    },
-    {
-      "numero": "WOT0025884",
-      "loja": "COLOMBO PARK SHOP",
-      "estado": "Aceito",
-      "prioridade": "Normal",
-      "dias": 68,
-      "tecnico": "Renato Carlos Santa Rosa",
-      "problema": "Preventiva",
-      "abertura": "2026-08-13",
-      "sysId": "2e607df3fb2a4fd4b0c9fb207eefdc65"
-    },
-    {
-      "numero": "WOT0025885",
-      "loja": "COLOMBO PARK SHOP",
-      "estado": "Aceito",
-      "prioridade": "Normal",
-      "dias": 68,
-      "tecnico": "Renato Carlos Santa Rosa",
-      "problema": "Preventiva",
-      "abertura": "2026-08-13",
-      "sysId": "5760b137fb2a4fd4b0c9fb207eefdcea"
-    },
-    {
-      "numero": "WOT0065997",
-      "loja": "FS PONTA GROSSA - RUA BALDUINO TAQUES 1530",
-      "estado": "Aceito",
-      "prioridade": "Normal",
-      "dias": 14,
-      "tecnico": "Lucas Gabryel Dreunicki",
-      "problema": "BK017749 - BANCADA DE LAVAGEM C/ 3 CUBAS | BTC - VAZAMENTO",
-      "abertura": "2026-10-06",
-      "sysId": "180f5f8dfb3f4f10b0c9fb207eefdc70"
-    },
-    {
-      "numero": "WOT0020417",
-      "loja": "CARREFOUR PASSO D'AREIA",
-      "estado": "Aceito",
-      "prioridade": "Normal",
-      "dias": 70,
-      "tecnico": "System Administrator",
-      "problema": "Transferência de Equipamento/Material",
-      "abertura": "2026-08-11",
-      "sysId": "07670fc3fb6e43d4b0c9fb207eefdce2"
-    },
-    {
-      "numero": "WOT0027327",
-      "loja": "PARK SHOP CANOAS",
-      "estado": "Aceito",
-      "prioridade": "Normal",
-      "dias": 68,
-      "tecnico": "Cristiano Cezar",
-      "problema": "Preventiva",
-      "abertura": "2026-08-13",
-      "sysId": "39119ab347660f90839576b4f26d437b"
     },
     {
       "numero": "WOT0022294",
@@ -20152,28 +20086,6 @@
       "sysId": "2d4a30af47a6c790839576b4f26d43fe"
     },
     {
-      "numero": "WOT0023402",
-      "loja": "CANOAS SHOP",
-      "estado": "Aceito",
-      "prioridade": "Normal",
-      "dias": 68,
-      "tecnico": "Cristiano Cezar",
-      "problema": "Preventiva",
-      "abertura": "2026-08-13",
-      "sysId": "ff9dacf397aa8b98a3c1b3c6f053af01"
-    },
-    {
-      "numero": "WOT0048586",
-      "loja": "FS PELOTAS - AV FERREIRA VIANA 540",
-      "estado": "Aceito",
-      "prioridade": "Normal",
-      "dias": 41,
-      "tecnico": "Thiago da Silva Gonzalez",
-      "problema": "Preventiva",
-      "abertura": "2026-09-09",
-      "sysId": "ff60f42c4753cf10e6d73dc4f26d435e"
-    },
-    {
       "numero": "WOT0024430",
       "loja": "FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL",
       "estado": "Aceito",
@@ -20185,15 +20097,59 @@
       "sysId": "de7e91fb4766c318e6d73dc4f26d4368"
     },
     {
-      "numero": "WOT0059121",
-      "loja": "SHOP GRAVATAI",
+      "numero": "WOT0025884",
+      "loja": "COLOMBO PARK SHOP",
       "estado": "Aceito",
       "prioridade": "Normal",
-      "dias": 22,
-      "tecnico": "Emanuel dos Santos Silva",
-      "problema": "Area Interna | AIN - COZINHA - LÂMPADA NÃO ACENDE",
-      "abertura": "2026-09-29",
-      "sysId": "290e2a7e47e38f10839576b4f26d436d"
+      "dias": 68,
+      "tecnico": "Renato Carlos Santa Rosa",
+      "problema": "Preventiva",
+      "abertura": "2026-08-13",
+      "sysId": "2e607df3fb2a4fd4b0c9fb207eefdc65"
+    },
+    {
+      "numero": "WOT0020417",
+      "loja": "CARREFOUR PASSO D'AREIA",
+      "estado": "Aceito",
+      "prioridade": "Normal",
+      "dias": 70,
+      "tecnico": "System Administrator",
+      "problema": "Transferência de Equipamento/Material",
+      "abertura": "2026-08-11",
+      "sysId": "07670fc3fb6e43d4b0c9fb207eefdce2"
+    },
+    {
+      "numero": "WOT0065997",
+      "loja": "FS PONTA GROSSA - RUA BALDUINO TAQUES 1530",
+      "estado": "Aceito",
+      "prioridade": "Normal",
+      "dias": 14,
+      "tecnico": "Lucas Gabryel Dreunicki",
+      "problema": "BK017749 - BANCADA DE LAVAGEM C/ 3 CUBAS | BTC - VAZAMENTO",
+      "abertura": "2026-10-06",
+      "sysId": "180f5f8dfb3f4f10b0c9fb207eefdc70"
+    },
+    {
+      "numero": "WOT0025885",
+      "loja": "COLOMBO PARK SHOP",
+      "estado": "Aceito",
+      "prioridade": "Normal",
+      "dias": 68,
+      "tecnico": "Renato Carlos Santa Rosa",
+      "problema": "Preventiva",
+      "abertura": "2026-08-13",
+      "sysId": "5760b137fb2a4fd4b0c9fb207eefdcea"
+    },
+    {
+      "numero": "WOT0027327",
+      "loja": "PARK SHOP CANOAS",
+      "estado": "Aceito",
+      "prioridade": "Normal",
+      "dias": 68,
+      "tecnico": "Cristiano Cezar",
+      "problema": "Preventiva",
+      "abertura": "2026-08-13",
+      "sysId": "39119ab347660f90839576b4f26d437b"
     },
     {
       "numero": "WOT0025929",
@@ -20207,6 +20163,50 @@
       "sysId": "bc81397b47aacb90839576b4f26d43ef"
     },
     {
+      "numero": "WOT0067996",
+      "loja": "BOURBON SHOP NOVO HAMBURGO",
+      "estado": "Aceito",
+      "prioridade": "Normal",
+      "dias": 10,
+      "tecnico": "System Administrator",
+      "problema": "Transferência de Equipamento/Material",
+      "abertura": "2026-10-10",
+      "sysId": "7ac395e6973f8390a3c1b3c6f053af36"
+    },
+    {
+      "numero": "WOT0023402",
+      "loja": "CANOAS SHOP",
+      "estado": "Aceito",
+      "prioridade": "Normal",
+      "dias": 69,
+      "tecnico": "Cristiano Cezar",
+      "problema": "Preventiva",
+      "abertura": "2026-08-13",
+      "sysId": "ff9dacf397aa8b98a3c1b3c6f053af01"
+    },
+    {
+      "numero": "WOT0059121",
+      "loja": "SHOP GRAVATAI",
+      "estado": "Aceito",
+      "prioridade": "Normal",
+      "dias": 22,
+      "tecnico": "Emanuel dos Santos Silva",
+      "problema": "Area Interna | AIN - COZINHA - LÂMPADA NÃO ACENDE",
+      "abertura": "2026-09-29",
+      "sysId": "290e2a7e47e38f10839576b4f26d436d"
+    },
+    {
+      "numero": "WOT0048586",
+      "loja": "FS PELOTAS - AV FERREIRA VIANA 540",
+      "estado": "Aceito",
+      "prioridade": "Normal",
+      "dias": 41,
+      "tecnico": "Thiago da Silva Gonzalez",
+      "problema": "Preventiva",
+      "abertura": "2026-09-09",
+      "sysId": "ff60f42c4753cf10e6d73dc4f26d435e"
+    },
+    {
       "numero": "WOT0025887",
       "loja": "JOCKEY PLAZA SHOP",
       "estado": "Aceito",
@@ -20218,15 +20218,15 @@
       "sysId": "64703d3b972a4f98a3c1b3c6f053af4b"
     },
     {
-      "numero": "WOT0023381",
-      "loja": "FS POA - AV DA CAVALHADA",
+      "numero": "WOT0063779",
+      "loja": "CANOAS SHOP",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
-      "tecnico": "Rafael Wagner Barbosa de Jesus",
+      "dias": 19,
+      "tecnico": "Cristiano Cezar",
       "problema": "Preventiva",
-      "abertura": "2026-08-13",
-      "sysId": "cf7d24f347a28318e6d73dc4f26d430e"
+      "abertura": "2026-10-01",
+      "sysId": "c4234e67fbab8f50b0c9fb207eefdc38"
     },
     {
       "numero": "WOT0029476",
@@ -20376,7 +20376,7 @@
       "loja": "SHOP JARDIM DAS AMERICAS",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Carlos Magno da Silva Lira",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -21157,7 +21157,7 @@
       "loja": "FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 6,
+      "dias": 7,
       "tecnico": "Carlos Magno da Silva Lira",
       "problema": "BK229799 - COIFA | COI - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
       "abertura": "2026-10-14",
@@ -21245,7 +21245,7 @@
       "loja": "SHOP JL CASCAVEL",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Carlos Magno da Silva Lira",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -21498,7 +21498,7 @@
       "loja": "SHOP CIDADE DOS LAGOS",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Carlos Magno da Silva Lira",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -21773,7 +21773,7 @@
       "loja": "SHOP CENTER LAR",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Rafael Wagner Barbosa de Jesus",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -21784,7 +21784,7 @@
       "loja": "SHOP CENTER LAR",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Rafael Wagner Barbosa de Jesus",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -22191,7 +22191,7 @@
       "loja": "SHOP PRACA NOVA SANTA MARIA",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Diego Bachmann Druziam",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -22510,7 +22510,7 @@
       "loja": "ILR PORTO ALEGRE - R ANDRADAS 1664",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Cristiano Cezar",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -22521,7 +22521,7 @@
       "loja": "ILR PORTO ALEGRE - R ANDRADAS 1664",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 50,
+      "dias": 51,
       "tecnico": "Rafael Wagner Barbosa de Jesus",
       "problema": "Area Interna | AIN - COZINHA - DEFEITOS NO REVESTIMENTO E REJUNTE DO PISO",
       "abertura": "2026-08-31",
@@ -22785,7 +22785,7 @@
       "loja": "ILR PORTO ALEGRE - R ANDRADAS 1664",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 50,
+      "dias": 51,
       "tecnico": "Rafael Wagner Barbosa de Jesus",
       "problema": "BK049822 - DISPENSADOR BATATAS CONGELADA; AUTOMATED | DSP - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
       "abertura": "2026-08-31",
@@ -22895,7 +22895,7 @@
       "loja": "ILR PORTO ALEGRE - R ANDRADAS 1664",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 50,
+      "dias": 51,
       "tecnico": "Rafael Wagner Barbosa de Jesus",
       "problema": "Area Interna | AIN - BANHEIRO - LÂMPADA NÃO ACENDE",
       "abertura": "2026-08-31",
@@ -23005,7 +23005,7 @@
       "loja": "ILR PORTO ALEGRE - R ANDRADAS 1664",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 50,
+      "dias": 51,
       "tecnico": "Rafael Wagner Barbosa de Jesus",
       "problema": "Area Interna | AIN - BANHEIRO - IRREGULARIDADES NA ESTRUTURA / DANOS",
       "abertura": "2026-08-31",
@@ -23203,7 +23203,7 @@
       "loja": "FS SJP - AV DAS TORRES",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Pedro Henrique Pereira Da Silva",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -23247,7 +23247,7 @@
       "loja": "SHOP SÃO JOSE DOS PINHAIS",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 32,
+      "dias": 33,
       "tecnico": "Carlos Magno da Silva Lira",
       "problema": "BK072137 - FREEZER DE MESA | FDM - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
       "abertura": "2026-09-18",
@@ -23379,7 +23379,7 @@
       "loja": "SHOP SÃO JOSE DOS PINHAIS",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 22,
+      "dias": 23,
       "tecnico": "Carlos Magno da Silva Lira",
       "problema": "BK066867 - CÂMARA DE CONGELADOS | CMG - SEM ILUMINAÇÃO",
       "abertura": "2026-09-28",
@@ -23478,7 +23478,7 @@
       "loja": "SHOP SÃO JOSE DOS PINHAIS",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Pedro Henrique Pereira Da Silva",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -23984,7 +23984,7 @@
       "loja": "FS POA - AV DR NILO PECANHA 1715",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Rafael Wagner Barbosa de Jesus",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -24248,7 +24248,7 @@
       "loja": "SHOP PALLADIUM CURITIBA",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Pedro Henrique Pereira Da Silva",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -24897,7 +24897,7 @@
       "loja": "FS PONTA GROSSA - RUA BALDUINO TAQUES 1530",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Lucas Gabryel Dreunicki",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -25271,7 +25271,7 @@
       "loja": "SHOP ROYAL PLAZA SANTA MARIA",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Diego Bachmann Druziam",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -25414,7 +25414,7 @@
       "loja": "SHOP PRAIA DE BELAS",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Lucas Dantas de Rubim Costa",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -25722,7 +25722,7 @@
       "loja": "BOURBON SHOP WALLIG",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Cristiano Cezar",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -25942,7 +25942,7 @@
       "loja": "PARK SHOP CANOAS",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 6,
+      "dias": 7,
       "tecnico": "Rafael Wagner Barbosa de Jesus",
       "problema": "BK066404 - FREEZER DE MESA | FDM - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
       "abertura": "2026-10-14",
@@ -26371,7 +26371,7 @@
       "loja": "SHOP PALLADIUM FOZ DO IGUACU",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Carlos Magno da Silva Lira",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -26525,7 +26525,7 @@
       "loja": "SHOP PALLADIUM FOZ DO IGUACU",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 14,
+      "dias": 15,
       "tecnico": "Carlos Magno da Silva Lira",
       "problema": "Area Externa | AEX - DEFEITOS NO REVESTIMENTO E REJUNTE DA PAREDE",
       "abertura": "2026-10-06",
@@ -26536,7 +26536,7 @@
       "loja": "PASSO FUNDO SHOP",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Ciro Antonio do Nascimento Mello",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -27317,7 +27317,7 @@
       "loja": "ILR FLORIPA - R JERONIMO COELHO 215",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 57,
+      "dias": 58,
       "tecnico": "Carlos Magno da Silva Lira",
       "problema": "Area Externa | AEX - ESTRUTURA EXTERNA - PISO COM RACHADURAS OU BURACOS",
       "abertura": "2026-08-24",
@@ -27339,7 +27339,7 @@
       "loja": "ILR FLORIPA - R JERONIMO COELHO 215",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 38,
+      "dias": 39,
       "tecnico": "Carlos Magno da Silva Lira",
       "problema": "Area Interna | AIN - ESTOQUE SECO - DEFEITOS NO REVESTIMENTO E REJUNTE DA PAREDE",
       "abertura": "2026-09-12",
@@ -28230,7 +28230,7 @@
       "loja": "FS CURITIBA - R BISPO DOM JOSE 2348",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 82,
+      "dias": 83,
       "tecnico": "Carlos Magno da Silva Lira",
       "problema": "CÂMARA DE CONGELADOS | CMG - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
       "abertura": "2026-07-30",
@@ -28296,7 +28296,7 @@
       "loja": "PARTAGE SHOP RIO GRANDE",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 42,
+      "dias": 43,
       "tecnico": "Thiago da Silva Gonzalez",
       "problema": "Preventiva",
       "abertura": "2026-09-08",
@@ -28417,7 +28417,7 @@
       "loja": "SHOP IGUATEMI PORTO ALEGRE",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Cristiano Cezar",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -28923,7 +28923,7 @@
       "loja": "FS CURITIBA - FRANCISCO FRISHMANN 3151",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Pedro Henrique Pereira Da Silva",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -29027,39 +29027,6 @@
       "problema": "Area Interna | AIN - BANHEIRO - VAZAMENTO NO TETO",
       "abertura": "2026-10-13",
       "sysId": "13e53a1b473b8f10839576b4f26d433d"
-    },
-    {
-      "numero": "WOT0021279",
-      "loja": "SHOP PRACA RIO GRANDE",
-      "estado": "Atribuído",
-      "prioridade": "Normal",
-      "dias": 69,
-      "tecnico": "Thiago da Silva Gonzalez",
-      "problema": "Preventiva",
-      "abertura": "2026-08-12",
-      "sysId": "75cdd8e3972ac398a3c1b3c6f053af08"
-    },
-    {
-      "numero": "WOT0028958",
-      "loja": "SHOP PRACA RIO GRANDE",
-      "estado": "Atribuído",
-      "prioridade": "Normal",
-      "dias": 67,
-      "tecnico": "Rafael Wagner Barbosa de Jesus",
-      "problema": "Preventiva",
-      "abertura": "2026-08-14",
-      "sysId": "4bd18a40477acb1041ed4f62036d43b5"
-    },
-    {
-      "numero": "WOT0023420",
-      "loja": "SHOP PRACA RIO GRANDE",
-      "estado": "Atribuído",
-      "prioridade": "Normal",
-      "dias": 68,
-      "tecnico": "Thiago da Silva Gonzalez",
-      "problema": "Preventiva",
-      "abertura": "2026-08-13",
-      "sysId": "40cde83ffb2acbd4b0c9fb207eefdc12"
     },
     {
       "numero": "WOT0022823",
@@ -29198,7 +29165,7 @@
       "loja": "CARREFOUR PARTENON",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Rafael Wagner Barbosa de Jesus",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -29528,7 +29495,7 @@
       "loja": "FS CASCAVEL - AV BRASIL 1580",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Carlos Magno da Silva Lira",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -29913,7 +29880,7 @@
       "loja": "FS PELOTAS - AV FERREIRA VIANA 540",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Thiago da Silva Gonzalez",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -30023,7 +29990,7 @@
       "loja": "ANGELONI AGUA VERDE",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Carlos Magno da Silva Lira",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -30188,7 +30155,7 @@
       "loja": "BOURBON SHOP NOVO HAMBURGO",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 4,
+      "dias": 5,
       "tecnico": "Rafael Wagner Barbosa de Jesus",
       "problema": "Area Interna | AIN - SALÃO - PISO COM RACHADURAS OU BURACOS",
       "abertura": "2026-10-16",
@@ -30342,7 +30309,7 @@
       "loja": "SHOP ESTACAO",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Carlos Magno da Silva Lira",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -30606,7 +30573,7 @@
       "loja": "SHOP SAN PELEGRINO",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Hernando Jose Rivero Bravo",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -30694,7 +30661,7 @@
       "loja": "SHOP SAN PELEGRINO",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 12,
+      "dias": 13,
       "tecnico": "Rafael Wagner Barbosa de Jesus",
       "problema": "BK021213 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - VAZAMENTO",
       "abertura": "2026-10-08",
@@ -30793,7 +30760,7 @@
       "loja": "FS CAXIAS DO SUL - R JOÃO NICHELE 2227",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Hernando Jose Rivero Bravo",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -30958,7 +30925,7 @@
       "loja": "BOURBON SHOP SAO LEOPOLDO",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 36,
+      "dias": 37,
       "tecnico": "Rafael Wagner Barbosa de Jesus",
       "problema": "Area Interna | AIN - ESTOQUE SECO - DEFEITOS NO REVESTIMENTO E REJUNTE DA PAREDE",
       "abertura": "2026-09-14",
@@ -31057,7 +31024,7 @@
       "loja": "SHOP LAJEADO",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Hernando Jose Rivero Bravo",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -31288,7 +31255,7 @@
       "loja": "SHOP CIDADE CURITIBA",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 47,
+      "dias": 48,
       "tecnico": "Carlos Magno da Silva Lira",
       "problema": "BK076871 - AR CONDICIONADO | ARC - VAZAMENTO",
       "abertura": "2026-09-03",
@@ -31684,7 +31651,7 @@
       "loja": "CATARATAS JL SHOP",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Carlos Magno da Silva Lira",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -31871,7 +31838,7 @@
       "loja": "SHOP TOTAL POA",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Lucas Dantas de Rubim Costa",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -32252,11 +32219,22 @@
       "sysId": "239cf280473a03d0839576b4f26d43f3"
     },
     {
+      "numero": "WOT0023381",
+      "loja": "FS POA - AV DA CAVALHADA",
+      "estado": "Atribuído",
+      "prioridade": "Normal",
+      "dias": 69,
+      "tecnico": "Rafael Wagner Barbosa de Jesus",
+      "problema": "Preventiva",
+      "abertura": "2026-08-13",
+      "sysId": "cf7d24f347a28318e6d73dc4f26d430e"
+    },
+    {
       "numero": "WOT0058601",
       "loja": "FS POA - AV DA CAVALHADA",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 22,
+      "dias": 23,
       "tecnico": "Rafael Wagner Barbosa de Jesus",
       "problema": "Area Interna | AIN - BANHEIRO - DEFEITOS EM CAMPAINHAS",
       "abertura": "2026-09-28",
@@ -32399,7 +32377,7 @@
       "loja": "FS POA - AV DA CAVALHADA",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 22,
+      "dias": 23,
       "tecnico": "Rafael Wagner Barbosa de Jesus",
       "problema": "Area Externa | AEX - BOTTOM - BOTTOM COM LOGO DESBOTADO",
       "abertura": "2026-09-28",
@@ -32410,7 +32388,7 @@
       "loja": "FS POA - AV DA CAVALHADA",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 22,
+      "dias": 23,
       "tecnico": "Rafael Wagner Barbosa de Jesus",
       "problema": "Area Externa | AEX - ESTRUTURA EXTERNA - PISO COM RACHADURAS OU BURACOS",
       "abertura": "2026-09-28",
@@ -32443,7 +32421,7 @@
       "loja": "FS POA - AV DA CAVALHADA",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 19,
+      "dias": 20,
       "tecnico": "Rafael Wagner Barbosa de Jesus",
       "problema": "Area Interna | AIN - FREEZER REFRIGERADOS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
       "abertura": "2026-10-01",
@@ -33125,7 +33103,7 @@
       "loja": "SHOP DO VALE",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 71,
+      "dias": 72,
       "tecnico": "Rafael Wagner Barbosa de Jesus",
       "problema": "Area Interna | AIN - GERÊNCIA - DEFEITOS NO REVESTIMENTO E REJUNTE DO PISO",
       "abertura": "2026-08-10",
@@ -33576,7 +33554,7 @@
       "loja": "FC CAXIAS DO SUL - VILLAGIO CAXIAS",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Hernando Jose Rivero Bravo",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -33906,7 +33884,7 @@
       "loja": "FS FOZ DO IGUACU - AV JORGE SCHIMMELPFENG 50",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Carlos Magno da Silva Lira",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -34170,7 +34148,7 @@
       "loja": "SHOP CURITIBA",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Carlos Magno da Silva Lira",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -34181,7 +34159,7 @@
       "loja": "SHOP CURITIBA",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Carlos Magno da Silva Lira",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -34373,17 +34351,6 @@
       "problema": "Preventiva",
       "abertura": "2026-09-30",
       "sysId": "3fc5e95797a30390a3c1b3c6f053aff1"
-    },
-    {
-      "numero": "WOT0063779",
-      "loja": "CANOAS SHOP",
-      "estado": "Atribuído",
-      "prioridade": "Normal",
-      "dias": 19,
-      "tecnico": "Cristiano Cezar",
-      "problema": "Preventiva",
-      "abertura": "2026-10-01",
-      "sysId": "c4234e67fbab8f50b0c9fb207eefdc38"
     },
     {
       "numero": "WOT0068828",
@@ -34687,7 +34654,7 @@
       "loja": "FS CURITIBA - AV SILVA JARDIM",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Carlos Magno da Silva Lira",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -34973,7 +34940,7 @@
       "loja": "SHOP BELLA CITTA",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Ciro Antonio do Nascimento Mello",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -35662,6 +35629,39 @@
       "sysId": "3b61952097ee8754a3c1b3c6f053aff9"
     },
     {
+      "numero": "WOT0021279",
+      "loja": "SHOP PRACA RIO GRANDE",
+      "estado": "Atribuído",
+      "prioridade": "Normal",
+      "dias": 69,
+      "tecnico": "Thiago da Silva Gonzalez",
+      "problema": "Preventiva",
+      "abertura": "2026-08-12",
+      "sysId": "75cdd8e3972ac398a3c1b3c6f053af08"
+    },
+    {
+      "numero": "WOT0028958",
+      "loja": "SHOP PRACA RIO GRANDE",
+      "estado": "Atribuído",
+      "prioridade": "Normal",
+      "dias": 67,
+      "tecnico": "Rafael Wagner Barbosa de Jesus",
+      "problema": "Preventiva",
+      "abertura": "2026-08-14",
+      "sysId": "4bd18a40477acb1041ed4f62036d43b5"
+    },
+    {
+      "numero": "WOT0023420",
+      "loja": "SHOP PRACA RIO GRANDE",
+      "estado": "Atribuído",
+      "prioridade": "Normal",
+      "dias": 69,
+      "tecnico": "Thiago da Silva Gonzalez",
+      "problema": "Preventiva",
+      "abertura": "2026-08-13",
+      "sysId": "40cde83ffb2acbd4b0c9fb207eefdc12"
+    },
+    {
       "numero": "WOT0041073",
       "loja": "FS CANOAS - AV GETULIO VARGAS 3800",
       "estado": "Atribuído",
@@ -35765,7 +35765,7 @@
       "loja": "FS CANOAS - AV GETULIO VARGAS 3800",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Cristiano Cezar",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -36392,7 +36392,7 @@
       "loja": "CARREFOUR PASSO D'AREIA",
       "estado": "Atribuído",
       "prioridade": "Normal",
-      "dias": 68,
+      "dias": 69,
       "tecnico": "Cristiano Cezar",
       "problema": "Preventiva",
       "abertura": "2026-08-13",
@@ -36465,149 +36465,6 @@
       "sysId": "520b151997405310a3c1b3c6f053afb0"
     },
     {
-      "numero": "WOT0046635",
-      "loja": "SHOP CIDADE CURITIBA",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 42,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-09-08",
-      "sysId": "b3ea0b8447530b10e6d73dc4f26d43a1"
-    },
-    {
-      "numero": "WOT0033471",
-      "loja": "COLOMBO PARK SHOP",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 64,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-17",
-      "sysId": "d0a3958197764710a3c1b3c6f053af68"
-    },
-    {
-      "numero": "WOT0063768",
-      "loja": "SHOP CIDADE CURITIBA",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 19,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-10-01",
-      "sysId": "43f24627fbab8f50b0c9fb207eefdcb5"
-    },
-    {
-      "numero": "WOT0046648",
-      "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 42,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-09-08",
-      "sysId": "571b4f8447134b10839576b4f26d43a8"
-    },
-    {
-      "numero": "WOT0033593",
-      "loja": "FS CAXIAS DO SUL - R JOÃO NICHELE 2227",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 64,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-17",
-      "sysId": "b7b4d94147fa0b10e6d73dc4f26d4317"
-    },
-    {
-      "numero": "WOT0044301",
-      "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 46,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-09-04",
-      "sysId": "9a457a32fb830f50b0c9fb207eefdcd8"
-    },
-    {
-      "numero": "WOT0033328",
-      "loja": "CARREFOUR PARTENON",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 65,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-17",
-      "sysId": "4a4215c597364710a3c1b3c6f053af52"
-    },
-    {
-      "numero": "WOT0033618",
-      "loja": "FS CURITIBA - FRANCISCO FRISHMANN 3151",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 64,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-17",
-      "sysId": "040559c147fa0b10e6d73dc4f26d43e0"
-    },
-    {
-      "numero": "WOT0033677",
-      "loja": "BOURBON SHOP WALLIG",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 64,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-17",
-      "sysId": "0e855d8997b64710a3c1b3c6f053af4f"
-    },
-    {
-      "numero": "WOT0031125",
-      "loja": "SHOP CURITIBA",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 67,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-14",
-      "sysId": "bde35f4c973ac7d8a3c1b3c6f053aff9"
-    },
-    {
-      "numero": "WOT0033412",
-      "loja": "ILR PORTO ALEGRE - R ANDRADAS 1664",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 65,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-17",
-      "sysId": "0e0391c147be071041ed4f62036d437a"
-    },
-    {
-      "numero": "WOT0032601",
-      "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 65,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-17",
-      "sysId": "e8d489c5fbfa0710b0c9fb207eefdcb4"
-    },
-    {
-      "numero": "WOT0063535",
-      "loja": "FS CURITIBA - LINHA VERDE",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 19,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-10-01",
-      "sysId": "96ef3d27336307901fc9a4bb9d5c7beb"
-    },
-    {
       "numero": "WOT0033429",
       "loja": "SHOP PRACA NOVA SANTA MARIA",
       "estado": "Expedição pendente",
@@ -36617,226 +36474,6 @@
       "problema": "Preventiva",
       "abertura": "2026-08-17",
       "sysId": "d833998d97364710a3c1b3c6f053afda"
-    },
-    {
-      "numero": "WOT0034027",
-      "loja": "SHOP CIDADE CURITIBA",
-      "estado": "Expedição pendente",
-      "prioridade": "Alta",
-      "dias": 64,
-      "tecnico": "",
-      "problema": "BK076872 - AR CONDICIONADO | ARC - NÃO LIGA",
-      "abertura": "2026-08-17",
-      "sysId": "d0628ec5fb768710b0c9fb207eefdc58"
-    },
-    {
-      "numero": "WOT0044372",
-      "loja": "FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 46,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-09-04",
-      "sysId": "a356b6ba470b8f50839576b4f26d4300"
-    },
-    {
-      "numero": "WOT0033561",
-      "loja": "SHOP SÃO JOSE DOS PINHAIS",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 64,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-17",
-      "sysId": "e1745dcd47ba0b10e6d73dc4f26d43b3"
-    },
-    {
-      "numero": "WOT0044588",
-      "loja": "FS CURITIBA - LINHA VERDE",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 46,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-09-04",
-      "sysId": "3646e77e97034f90a3c1b3c6f053afb3"
-    },
-    {
-      "numero": "WOT0044928",
-      "loja": "FS POA - AV DA CAVALHADA",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 45,
-      "tecnico": "",
-      "problema": "Area Externa | AEX - TETO COM RACHADURAS OU BURACOS",
-      "abertura": "2026-09-05",
-      "sysId": "d3325303474b8f50e6d73dc4f26d43da"
-    },
-    {
-      "numero": "WOT0033812",
-      "loja": "SHOP ESTACAO",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 64,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-17",
-      "sysId": "aab6d545473e0b10e6d73dc4f26d434a"
-    },
-    {
-      "numero": "WOT0033311",
-      "loja": "FS CURITIBA - LINHA VERDE",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 65,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-17",
-      "sysId": "4a221d4d477e071041ed4f62036d43a3"
-    },
-    {
-      "numero": "WOT0033489",
-      "loja": "FS SJP - AV DAS TORRES",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 64,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-17",
-      "sysId": "f3c3954947ba0b10e6d73dc4f26d4343"
-    },
-    {
-      "numero": "WOT0055995",
-      "loja": "SHOP SÃO JOSE DOS PINHAIS",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 28,
-      "tecnico": "",
-      "problema": "BK072133 - MEAT-FREEZER HORIZONTAL | MFR - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-      "abertura": "2026-09-23",
-      "sysId": "4a2d07bc472b4b5041ed4f62036d43ec"
-    },
-    {
-      "numero": "WOT0044414",
-      "loja": "SHOP MUELLER CURITIBA",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 46,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-09-04",
-      "sysId": "6ff6fa36fbc30f50b0c9fb207eefdc13"
-    },
-    {
-      "numero": "WOT0033446",
-      "loja": "PASSO FUNDO SHOP",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 65,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-17",
-      "sysId": "80635d0197764710a3c1b3c6f053af9b"
-    },
-    {
-      "numero": "WOT0033815",
-      "loja": "SHOP PALLADIUM CURITIBA",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 64,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-17",
-      "sysId": "44c6518197f64710a3c1b3c6f053af65"
-    },
-    {
-      "numero": "WOT0033741",
-      "loja": "FS POA - AV DR NILO PECANHA 1715",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 64,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-17",
-      "sysId": "ae169d01fbf24710b0c9fb207eefdc50"
-    },
-    {
-      "numero": "WOT0028626",
-      "loja": "SHOP CURITIBA",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 68,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-14",
-      "sysId": "9a44fd0047b2cb1041ed4f62036d434f"
-    },
-    {
-      "numero": "WOT0033299",
-      "loja": "SHOP LAJEADO",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 65,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-17",
-      "sysId": "e0125d41fb724710b0c9fb207eefdcda"
-    },
-    {
-      "numero": "WOT0033185",
-      "loja": "FS CANOAS - AV GETULIO VARGAS 3800",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 65,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-17",
-      "sysId": "723199c5477e071041ed4f62036d436a"
-    },
-    {
-      "numero": "WOT0033294",
-      "loja": "SHOP SAN PELEGRINO",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 65,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-17",
-      "sysId": "8a02190597364710a3c1b3c6f053afff"
-    },
-    {
-      "numero": "WOT0033180",
-      "loja": "SHOP IGUATEMI PORTO ALEGRE",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 65,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-17",
-      "sysId": "54315541477a0b10e6d73dc4f26d43ad"
-    },
-    {
-      "numero": "WOT0036450",
-      "loja": "FS POA - AV DA CAVALHADA",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 60,
-      "tecnico": "",
-      "problema": "Area Externa | AEX - DEPÓSITO DE LIXO - PINTURA DE PAREDE DESGASTADA",
-      "abertura": "2026-08-21",
-      "sysId": "1eb80a5a47fe4b90e6d73dc4f26d4333"
-    },
-    {
-      "numero": "WOT0033353",
-      "loja": "ANGELONI AGUA VERDE",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 65,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-17",
-      "sysId": "e7725d0d477a0b10e6d73dc4f26d434f"
     },
     {
       "numero": "WOT0033179",
@@ -36850,125 +36487,26 @@
       "sysId": "6321190547fe4710839576b4f26d4371"
     },
     {
-      "numero": "WOT0033821",
-      "loja": "FC CAXIAS DO SUL - VILLAGIO CAXIAS",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 64,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-17",
-      "sysId": "efc65909fbf24710b0c9fb207eefdcbc"
-    },
-    {
-      "numero": "WOT0029483",
-      "loja": "SHOP CURITIBA",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 67,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-14",
-      "sysId": "d9260ec847bacb1041ed4f62036d43e8"
-    },
-    {
-      "numero": "WOT0019461",
-      "loja": "SHOP PRAIA DE BELAS",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 71,
-      "tecnico": "",
-      "problema": "BK072062 - BANCADA DE LAVAGEM C/ 3 CUBAS | BTC - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-      "abertura": "2026-08-10",
-      "sysId": "8f0ce9fa97ae0358a3c1b3c6f053afe1"
-    },
-    {
-      "numero": "WOT0063548",
-      "loja": "SHOP CURITIBA",
+      "numero": "WOT0062175",
+      "loja": "FS CURITIBA - LINHA VERDE",
       "estado": "Expedição pendente",
       "prioridade": "Normal",
       "dias": 19,
       "tecnico": "",
       "problema": "Preventiva",
       "abertura": "2026-10-01",
-      "sysId": "ec10c227476f8f50839576b4f26d43b7"
+      "sysId": "c911f9abfb238f50b0c9fb207eefdc2a"
     },
     {
-      "numero": "WOT0063776",
-      "loja": "SHOP CURITIBA",
+      "numero": "WOT0063535",
+      "loja": "FS CURITIBA - LINHA VERDE",
       "estado": "Expedição pendente",
       "prioridade": "Normal",
       "dias": 19,
       "tecnico": "",
       "problema": "Preventiva",
       "abertura": "2026-10-01",
-      "sysId": "ed1302274723cf50839576b4f26d4332"
-    },
-    {
-      "numero": "WOT0033369",
-      "loja": "SHOP ROYAL PLAZA SANTA MARIA",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 65,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-17",
-      "sysId": "d9a2558147328710839576b4f26d4353"
-    },
-    {
-      "numero": "WOT0033758",
-      "loja": "FS CASCAVEL - AV BRASIL 1580",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 64,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-17",
-      "sysId": "1946d1cd97b64710a3c1b3c6f053af97"
-    },
-    {
-      "numero": "WOT0033740",
-      "loja": "FS POA - AV DA CAVALHADA",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 64,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-17",
-      "sysId": "2916d10147b28710839576b4f26d437d"
-    },
-    {
-      "numero": "WOT0062853",
-      "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 19,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-10-01",
-      "sysId": "ad28f963472b8f50839576b4f26d432b"
-    },
-    {
-      "numero": "WOT0018247",
-      "loja": "FS CANOAS - AV GETULIO VARGAS 3800",
-      "estado": "Expedição pendente",
-      "prioridade": "Alta",
-      "dias": 74,
-      "tecnico": "",
-      "problema": "Area Externa | AEX - LETREIRO ILUMINAÇÃO ACENDE PARCIAL/NÃO ACENDE",
-      "abertura": "2026-08-08",
-      "sysId": "647a1e4e47e6035441ed4f62036d4322"
-    },
-    {
-      "numero": "WOT0033315",
-      "loja": "CARREFOUR PASSO D'AREIA",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 65,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-08-17",
-      "sysId": "5322994d47fe4710839576b4f26d43bf"
+      "sysId": "96ef3d27336307901fc9a4bb9d5c7beb"
     },
     {
       "numero": "WOT0043743",
@@ -36982,70 +36520,48 @@
       "sysId": "b0e7ad2afb8f4750b0c9fb207eefdc99"
     },
     {
-      "numero": "WOT0063307",
-      "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 19,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-10-01",
-      "sysId": "272d396b9767c790a3c1b3c6f053afa9"
-    },
-    {
-      "numero": "WOT0062175",
-      "loja": "FS CURITIBA - LINHA VERDE",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 19,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-10-01",
-      "sysId": "c911f9abfb238f50b0c9fb207eefdc2a"
-    },
-    {
-      "numero": "WOT0068378",
-      "loja": "SHOP PRACA NOVA SANTA MARIA",
-      "estado": "Expedição pendente",
-      "prioridade": "Alta",
-      "dias": 9,
-      "tecnico": "",
-      "problema": "BOILER | BOI - FALTA DE ÁGUA QUENTE",
-      "abertura": "2026-10-11",
-      "sysId": "754cf6fe97b7c310a3c1b3c6f053afd7"
-    },
-    {
-      "numero": "WOT0036665",
-      "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
-      "estado": "Expedição pendente",
-      "prioridade": "Alta",
-      "dias": 60,
-      "tecnico": "",
-      "problema": "Area Interna | AIN - BANHEIRO - DEFEITOS EM CORRIMÃO/ BARRA DE APOIO",
-      "abertura": "2026-08-21",
-      "sysId": "33edf69e97764390a3c1b3c6f053af4a"
-    },
-    {
-      "numero": "WOT0063539",
-      "loja": "SHOP CIDADE CURITIBA",
-      "estado": "Expedição pendente",
-      "prioridade": "Normal",
-      "dias": 19,
-      "tecnico": "",
-      "problema": "Preventiva",
-      "abertura": "2026-10-01",
-      "sysId": "fdffb567472b8f5041ed4f62036d431a"
-    },
-    {
-      "numero": "WOT0033178",
-      "loja": "PARK SHOP CANOAS",
+      "numero": "WOT0033618",
+      "loja": "FS CURITIBA - FRANCISCO FRISHMANN 3151",
       "estado": "Expedição pendente",
       "prioridade": "Normal",
       "dias": 65,
       "tecnico": "",
       "problema": "Preventiva",
       "abertura": "2026-08-17",
-      "sysId": "9b2195c5477e071041ed4f62036d43c9"
+      "sysId": "040559c147fa0b10e6d73dc4f26d43e0"
+    },
+    {
+      "numero": "WOT0036450",
+      "loja": "FS POA - AV DA CAVALHADA",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 60,
+      "tecnico": "",
+      "problema": "Area Externa | AEX - DEPÓSITO DE LIXO - PINTURA DE PAREDE DESGASTADA",
+      "abertura": "2026-08-21",
+      "sysId": "1eb80a5a47fe4b90e6d73dc4f26d4333"
+    },
+    {
+      "numero": "WOT0044928",
+      "loja": "FS POA - AV DA CAVALHADA",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 45,
+      "tecnico": "",
+      "problema": "Area Externa | AEX - TETO COM RACHADURAS OU BURACOS",
+      "abertura": "2026-09-05",
+      "sysId": "d3325303474b8f50e6d73dc4f26d43da"
+    },
+    {
+      "numero": "WOT0033489",
+      "loja": "FS SJP - AV DAS TORRES",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 65,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-17",
+      "sysId": "f3c3954947ba0b10e6d73dc4f26d4343"
     },
     {
       "numero": "WOT0044407",
@@ -37059,6 +36575,380 @@
       "sysId": "d0e6f67e9783cb90a3c1b3c6f053af70"
     },
     {
+      "numero": "WOT0033294",
+      "loja": "SHOP SAN PELEGRINO",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 65,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-17",
+      "sysId": "8a02190597364710a3c1b3c6f053afff"
+    },
+    {
+      "numero": "WOT0033178",
+      "loja": "PARK SHOP CANOAS",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 65,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-17",
+      "sysId": "9b2195c5477e071041ed4f62036d43c9"
+    },
+    {
+      "numero": "WOT0044301",
+      "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 46,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-09-04",
+      "sysId": "9a457a32fb830f50b0c9fb207eefdcd8"
+    },
+    {
+      "numero": "WOT0032601",
+      "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 65,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-17",
+      "sysId": "e8d489c5fbfa0710b0c9fb207eefdcb4"
+    },
+    {
+      "numero": "WOT0036665",
+      "loja": "FS CACHOEIRINHA - AV FLORES DA CUNHA",
+      "estado": "Expedição pendente",
+      "prioridade": "Alta",
+      "dias": 60,
+      "tecnico": "",
+      "problema": "Area Interna | AIN - BANHEIRO - DEFEITOS EM CORRIMÃO/ BARRA DE APOIO",
+      "abertura": "2026-08-21",
+      "sysId": "33edf69e97764390a3c1b3c6f053af4a"
+    },
+    {
+      "numero": "WOT0033821",
+      "loja": "FC CAXIAS DO SUL - VILLAGIO CAXIAS",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 64,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-17",
+      "sysId": "efc65909fbf24710b0c9fb207eefdcbc"
+    },
+    {
+      "numero": "WOT0033369",
+      "loja": "SHOP ROYAL PLAZA SANTA MARIA",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 65,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-17",
+      "sysId": "d9a2558147328710839576b4f26d4353"
+    },
+    {
+      "numero": "WOT0044372",
+      "loja": "FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 46,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-09-04",
+      "sysId": "a356b6ba470b8f50839576b4f26d4300"
+    },
+    {
+      "numero": "WOT0033315",
+      "loja": "CARREFOUR PASSO D'AREIA",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 65,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-17",
+      "sysId": "5322994d47fe4710839576b4f26d43bf"
+    },
+    {
+      "numero": "WOT0033561",
+      "loja": "SHOP SÃO JOSE DOS PINHAIS",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 65,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-17",
+      "sysId": "e1745dcd47ba0b10e6d73dc4f26d43b3"
+    },
+    {
+      "numero": "WOT0018247",
+      "loja": "FS CANOAS - AV GETULIO VARGAS 3800",
+      "estado": "Expedição pendente",
+      "prioridade": "Alta",
+      "dias": 74,
+      "tecnico": "",
+      "problema": "Area Externa | AEX - LETREIRO ILUMINAÇÃO ACENDE PARCIAL/NÃO ACENDE",
+      "abertura": "2026-08-08",
+      "sysId": "647a1e4e47e6035441ed4f62036d4322"
+    },
+    {
+      "numero": "WOT0055995",
+      "loja": "SHOP SÃO JOSE DOS PINHAIS",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 28,
+      "tecnico": "",
+      "problema": "BK072133 - MEAT-FREEZER HORIZONTAL | MFR - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+      "abertura": "2026-09-23",
+      "sysId": "4a2d07bc472b4b5041ed4f62036d43ec"
+    },
+    {
+      "numero": "WOT0033353",
+      "loja": "ANGELONI AGUA VERDE",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 65,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-17",
+      "sysId": "e7725d0d477a0b10e6d73dc4f26d434f"
+    },
+    {
+      "numero": "WOT0033299",
+      "loja": "SHOP LAJEADO",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 65,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-17",
+      "sysId": "e0125d41fb724710b0c9fb207eefdcda"
+    },
+    {
+      "numero": "WOT0033740",
+      "loja": "FS POA - AV DA CAVALHADA",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 65,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-17",
+      "sysId": "2916d10147b28710839576b4f26d437d"
+    },
+    {
+      "numero": "WOT0033185",
+      "loja": "FS CANOAS - AV GETULIO VARGAS 3800",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 65,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-17",
+      "sysId": "723199c5477e071041ed4f62036d436a"
+    },
+    {
+      "numero": "WOT0062853",
+      "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 19,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-10-01",
+      "sysId": "ad28f963472b8f50839576b4f26d432b"
+    },
+    {
+      "numero": "WOT0033593",
+      "loja": "FS CAXIAS DO SUL - R JOÃO NICHELE 2227",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 65,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-17",
+      "sysId": "b7b4d94147fa0b10e6d73dc4f26d4317"
+    },
+    {
+      "numero": "WOT0034027",
+      "loja": "SHOP CIDADE CURITIBA",
+      "estado": "Expedição pendente",
+      "prioridade": "Alta",
+      "dias": 64,
+      "tecnico": "",
+      "problema": "BK076872 - AR CONDICIONADO | ARC - NÃO LIGA",
+      "abertura": "2026-08-17",
+      "sysId": "d0628ec5fb768710b0c9fb207eefdc58"
+    },
+    {
+      "numero": "WOT0063307",
+      "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 19,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-10-01",
+      "sysId": "272d396b9767c790a3c1b3c6f053afa9"
+    },
+    {
+      "numero": "WOT0033412",
+      "loja": "ILR PORTO ALEGRE - R ANDRADAS 1664",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 65,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-17",
+      "sysId": "0e0391c147be071041ed4f62036d437a"
+    },
+    {
+      "numero": "WOT0033758",
+      "loja": "FS CASCAVEL - AV BRASIL 1580",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 65,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-17",
+      "sysId": "1946d1cd97b64710a3c1b3c6f053af97"
+    },
+    {
+      "numero": "WOT0033180",
+      "loja": "SHOP IGUATEMI PORTO ALEGRE",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 65,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-17",
+      "sysId": "54315541477a0b10e6d73dc4f26d43ad"
+    },
+    {
+      "numero": "WOT0019461",
+      "loja": "SHOP PRAIA DE BELAS",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 71,
+      "tecnico": "",
+      "problema": "BK072062 - BANCADA DE LAVAGEM C/ 3 CUBAS | BTC - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+      "abertura": "2026-08-10",
+      "sysId": "8f0ce9fa97ae0358a3c1b3c6f053afe1"
+    },
+    {
+      "numero": "WOT0033741",
+      "loja": "FS POA - AV DR NILO PECANHA 1715",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 65,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-17",
+      "sysId": "ae169d01fbf24710b0c9fb207eefdc50"
+    },
+    {
+      "numero": "WOT0044414",
+      "loja": "SHOP MUELLER CURITIBA",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 46,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-09-04",
+      "sysId": "6ff6fa36fbc30f50b0c9fb207eefdc13"
+    },
+    {
+      "numero": "WOT0063539",
+      "loja": "SHOP CIDADE CURITIBA",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 19,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-10-01",
+      "sysId": "fdffb567472b8f5041ed4f62036d431a"
+    },
+    {
+      "numero": "WOT0046635",
+      "loja": "SHOP CIDADE CURITIBA",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 42,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-09-08",
+      "sysId": "b3ea0b8447530b10e6d73dc4f26d43a1"
+    },
+    {
+      "numero": "WOT0028626",
+      "loja": "SHOP CURITIBA",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 68,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-14",
+      "sysId": "9a44fd0047b2cb1041ed4f62036d434f"
+    },
+    {
+      "numero": "WOT0033446",
+      "loja": "PASSO FUNDO SHOP",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 65,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-17",
+      "sysId": "80635d0197764710a3c1b3c6f053af9b"
+    },
+    {
+      "numero": "WOT0063768",
+      "loja": "SHOP CIDADE CURITIBA",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 19,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-10-01",
+      "sysId": "43f24627fbab8f50b0c9fb207eefdcb5"
+    },
+    {
+      "numero": "WOT0029483",
+      "loja": "SHOP CURITIBA",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 67,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-14",
+      "sysId": "d9260ec847bacb1041ed4f62036d43e8"
+    },
+    {
+      "numero": "WOT0063548",
+      "loja": "SHOP CURITIBA",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 19,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-10-01",
+      "sysId": "ec10c227476f8f50839576b4f26d43b7"
+    },
+    {
+      "numero": "WOT0046648",
+      "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 42,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-09-08",
+      "sysId": "571b4f8447134b10839576b4f26d43a8"
+    },
+    {
       "numero": "WOT0029611",
       "loja": "FS PELOTAS - AV FERREIRA VIANA 540",
       "estado": "Expedição pendente",
@@ -37068,6 +36958,116 @@
       "problema": "Preventiva",
       "abertura": "2026-08-14",
       "sysId": "4e37ce4847b6cf90839576b4f26d431b"
+    },
+    {
+      "numero": "WOT0033812",
+      "loja": "SHOP ESTACAO",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 64,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-17",
+      "sysId": "aab6d545473e0b10e6d73dc4f26d434a"
+    },
+    {
+      "numero": "WOT0044588",
+      "loja": "FS CURITIBA - LINHA VERDE",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 46,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-09-04",
+      "sysId": "3646e77e97034f90a3c1b3c6f053afb3"
+    },
+    {
+      "numero": "WOT0063776",
+      "loja": "SHOP CURITIBA",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 19,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-10-01",
+      "sysId": "ed1302274723cf50839576b4f26d4332"
+    },
+    {
+      "numero": "WOT0033815",
+      "loja": "SHOP PALLADIUM CURITIBA",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 64,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-17",
+      "sysId": "44c6518197f64710a3c1b3c6f053af65"
+    },
+    {
+      "numero": "WOT0068378",
+      "loja": "SHOP PRACA NOVA SANTA MARIA",
+      "estado": "Expedição pendente",
+      "prioridade": "Alta",
+      "dias": 9,
+      "tecnico": "",
+      "problema": "BOILER | BOI - FALTA DE ÁGUA QUENTE",
+      "abertura": "2026-10-11",
+      "sysId": "754cf6fe97b7c310a3c1b3c6f053afd7"
+    },
+    {
+      "numero": "WOT0031125",
+      "loja": "SHOP CURITIBA",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 67,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-14",
+      "sysId": "bde35f4c973ac7d8a3c1b3c6f053aff9"
+    },
+    {
+      "numero": "WOT0033311",
+      "loja": "FS CURITIBA - LINHA VERDE",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 65,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-17",
+      "sysId": "4a221d4d477e071041ed4f62036d43a3"
+    },
+    {
+      "numero": "WOT0033471",
+      "loja": "COLOMBO PARK SHOP",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 65,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-17",
+      "sysId": "d0a3958197764710a3c1b3c6f053af68"
+    },
+    {
+      "numero": "WOT0033328",
+      "loja": "CARREFOUR PARTENON",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 65,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-17",
+      "sysId": "4a4215c597364710a3c1b3c6f053af52"
+    },
+    {
+      "numero": "WOT0033677",
+      "loja": "BOURBON SHOP WALLIG",
+      "estado": "Expedição pendente",
+      "prioridade": "Normal",
+      "dias": 65,
+      "tecnico": "",
+      "problema": "Preventiva",
+      "abertura": "2026-08-17",
+      "sysId": "0e855d8997b64710a3c1b3c6f053af4f"
     }
   ],
   "supervisores": [
@@ -37150,7 +37150,7 @@
           "loja": "SHOP IGUATEMI PORTO ALEGRE",
           "estado": "Trabalho em andamento",
           "prioridade": "Alta",
-          "dias": 11,
+          "dias": 12,
           "tecnico": "Thiago Dos Santos Coelho",
           "problema": "BK063544 - PHU; DUKE; HS2-34-2306T2R-BR; 07186701 | PHU - NÃO LIGA",
           "abertura": "2026-10-09",
@@ -38125,7 +38125,7 @@
           "loja": "BOURBON SHOP PORTO ALEGRE",
           "estado": "Trabalho em andamento",
           "prioridade": "Normal",
-          "dias": 83,
+          "dias": 84,
           "tecnico": "Ruan Carlos da Silva",
           "problema": "BK027746 - TOSTADORA VERTICAL; AJ ANTUNES; VCT-2000 | TST - NÃO ATINGE TEMPERATURA",
           "abertura": "2026-07-29",
@@ -38325,6 +38325,18 @@
           "equipamento": "Fritadeira"
         },
         {
+          "numero": "WOT0059138",
+          "loja": "SHOP GRAVATAI",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 22,
+          "tecnico": "Emanuel dos Santos Silva",
+          "problema": "MÁQUINA DE SORVETE | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-29",
+          "sysId": "d56176b647678f10839576b4f26d4396",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
           "numero": "WOT0058845",
           "loja": "SHOP GRAVATAI",
           "estado": "Atribuído",
@@ -38347,18 +38359,6 @@
           "abertura": "2026-09-28",
           "sysId": "b82547a6972f0f10a3c1b3c6f053af59",
           "equipamento": "Broiler"
-        },
-        {
-          "numero": "WOT0059138",
-          "loja": "SHOP GRAVATAI",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 21,
-          "tecnico": "Emanuel dos Santos Silva",
-          "problema": "MÁQUINA DE SORVETE | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-29",
-          "sysId": "d56176b647678f10839576b4f26d4396",
-          "equipamento": "Máquina de Sorvete"
         },
         {
           "numero": "WOT0059981",
@@ -38553,23 +38553,11 @@
           "equipamento": "Máquina de Sorvete"
         },
         {
-          "numero": "WOT0069814",
-          "loja": "FS CANOAS - AV DR SEZEFREDO AZAMBUJA VIEIRA 1033",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 6,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "MICROONDAS | MCR - ACESSÓRIOS DANIFICADOS OU EM FALTA",
-          "abertura": "2026-10-14",
-          "sysId": "141aedb333bf43501fc9a4bb9d5c7bf2",
-          "equipamento": "Micro-ondas"
-        },
-        {
           "numero": "WOT0069437",
           "loja": "PARK SHOP CANOAS",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 6,
+          "dias": 7,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "BK066414 - MICROONDAS; MENUMASTER; OC24BKB; 1603180 | MCR - ACESSÓRIOS DANIFICADOS OU EM FALTA",
           "abertura": "2026-10-14",
@@ -38581,7 +38569,7 @@
           "loja": "PARK SHOP CANOAS",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 6,
+          "dias": 7,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "BK066495 - PHU; PRINCE CASTLE; EHB34A-BR; FMGK20025 | PHU - NÃO ACENDE LUZES",
           "abertura": "2026-10-14",
@@ -38593,12 +38581,24 @@
           "loja": "PARK SHOP CANOAS",
           "estado": "Trabalho em andamento",
           "prioridade": "Normal",
-          "dias": 6,
+          "dias": 7,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "BK066475 - TOSTADORA VERTICAL; AJ ANTUNES; VCT-2000 | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-10-14",
           "sysId": "4e4240f74737c750839576b4f26d43fa",
           "equipamento": "Tostadeira"
+        },
+        {
+          "numero": "WOT0069814",
+          "loja": "FS CANOAS - AV DR SEZEFREDO AZAMBUJA VIEIRA 1033",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 6,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "MICROONDAS | MCR - ACESSÓRIOS DANIFICADOS OU EM FALTA",
+          "abertura": "2026-10-14",
+          "sysId": "141aedb333bf43501fc9a4bb9d5c7bf2",
+          "equipamento": "Micro-ondas"
         },
         {
           "numero": "WOT0070413",
@@ -39629,6 +39629,18 @@
           "equipamento": "Máquina de Sorvete"
         },
         {
+          "numero": "WOT0070537",
+          "loja": "ANGELONI AGUA VERDE",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 5,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "PHU; DUKE; FWM3-34MB1-230; 94ABJB0018 | PHU - NÃO ACENDE LUZES",
+          "abertura": "2026-10-16",
+          "sysId": "6603d25497cc5390a3c1b3c6f053afd9",
+          "equipamento": "PHU"
+        },
+        {
           "numero": "WOT0070270",
           "loja": "FS CURITIBA - RUA DOMINGOS STRAPASSON",
           "estado": "Atribuído",
@@ -39651,18 +39663,6 @@
           "abertura": "2026-10-15",
           "sysId": "f751e64097885f50a3c1b3c6f053afee",
           "equipamento": "Fritadeira"
-        },
-        {
-          "numero": "WOT0070537",
-          "loja": "ANGELONI AGUA VERDE",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 4,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "PHU; DUKE; FWM3-34MB1-230; 94ABJB0018 | PHU - NÃO ACENDE LUZES",
-          "abertura": "2026-10-16",
-          "sysId": "6603d25497cc5390a3c1b3c6f053afd9",
-          "equipamento": "PHU"
         },
         {
           "numero": "WOT0070723",
@@ -40314,18 +40314,6 @@
           "equipamento": "Máquina de Sorvete"
         },
         {
-          "numero": "WOT0067258",
-          "loja": "PORTO BELO OUTLET",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 12,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "BK080251 - BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-10-09",
-          "sysId": "8b278642fb3b0f50b0c9fb207eefdc4c",
-          "equipamento": "Broiler"
-        },
-        {
           "numero": "WOT0066981",
           "loja": "FS CURITIBA - R CARLOS KLEMTZ 1994",
           "estado": "Trabalho em andamento",
@@ -40335,6 +40323,18 @@
           "problema": "BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-10-08",
           "sysId": "7b6b3179fb734b50b0c9fb207eefdc6a",
+          "equipamento": "Broiler"
+        },
+        {
+          "numero": "WOT0067258",
+          "loja": "PORTO BELO OUTLET",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 12,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "BK080251 - BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-10-09",
+          "sysId": "8b278642fb3b0f50b0c9fb207eefdc4c",
           "equipamento": "Broiler"
         },
         {
@@ -40542,6 +40542,18 @@
           "equipamento": "Fritadeira"
         },
         {
+          "numero": "WOT0070537",
+          "loja": "ANGELONI AGUA VERDE",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 5,
+          "tecnico": "Carlos Magno da Silva Lira",
+          "problema": "PHU; DUKE; FWM3-34MB1-230; 94ABJB0018 | PHU - NÃO ACENDE LUZES",
+          "abertura": "2026-10-16",
+          "sysId": "6603d25497cc5390a3c1b3c6f053afd9",
+          "equipamento": "PHU"
+        },
+        {
           "numero": "WOT0070723",
           "loja": "SHOP PARK EUROPEU",
           "estado": "Trabalho em andamento",
@@ -40552,18 +40564,6 @@
           "abertura": "2026-10-16",
           "sysId": "d6b25f18334c9f501fc9a4bb9d5c7b58",
           "equipamento": "Máquina de Sorvete"
-        },
-        {
-          "numero": "WOT0070537",
-          "loja": "ANGELONI AGUA VERDE",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 4,
-          "tecnico": "Carlos Magno da Silva Lira",
-          "problema": "PHU; DUKE; FWM3-34MB1-230; 94ABJB0018 | PHU - NÃO ACENDE LUZES",
-          "abertura": "2026-10-16",
-          "sysId": "6603d25497cc5390a3c1b3c6f053afd9",
-          "equipamento": "PHU"
         },
         {
           "numero": "WOT0071155",
@@ -40880,7 +40880,7 @@
           "loja": "BOURBON SHOP PORTO ALEGRE",
           "estado": "Trabalho em andamento",
           "prioridade": "Normal",
-          "dias": 83,
+          "dias": 84,
           "tecnico": "Ruan Carlos da Silva",
           "problema": "BK027746 - TOSTADORA VERTICAL; AJ ANTUNES; VCT-2000 | TST - NÃO ATINGE TEMPERATURA",
           "abertura": "2026-07-29",
@@ -41694,12 +41694,36 @@
           "loja": "PARK SHOP CANOAS",
           "estado": "Atribuído",
           "prioridade": "Normal",
-          "dias": 6,
+          "dias": 7,
           "tecnico": "Rafael Wagner Barbosa de Jesus",
           "problema": "BK066414 - MICROONDAS; MENUMASTER; OC24BKB; 1603180 | MCR - ACESSÓRIOS DANIFICADOS OU EM FALTA",
           "abertura": "2026-10-14",
           "sysId": "79a0c4b747f3c750839576b4f26d43f1",
           "equipamento": "Micro-ondas"
+        },
+        {
+          "numero": "WOT0069442",
+          "loja": "PARK SHOP CANOAS",
+          "estado": "Atribuído",
+          "prioridade": "Normal",
+          "dias": 7,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "BK066495 - PHU; PRINCE CASTLE; EHB34A-BR; FMGK20025 | PHU - NÃO ACENDE LUZES",
+          "abertura": "2026-10-14",
+          "sysId": "fce108f34737c750839576b4f26d433d",
+          "equipamento": "PHU"
+        },
+        {
+          "numero": "WOT0069447",
+          "loja": "PARK SHOP CANOAS",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 7,
+          "tecnico": "Rafael Wagner Barbosa de Jesus",
+          "problema": "BK066475 - TOSTADORA VERTICAL; AJ ANTUNES; VCT-2000 | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-10-14",
+          "sysId": "4e4240f74737c750839576b4f26d43fa",
+          "equipamento": "Tostadeira"
         },
         {
           "numero": "WOT0069814",
@@ -41738,18 +41762,6 @@
           "equipamento": "Micro-ondas"
         },
         {
-          "numero": "WOT0069442",
-          "loja": "PARK SHOP CANOAS",
-          "estado": "Atribuído",
-          "prioridade": "Normal",
-          "dias": 6,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "BK066495 - PHU; PRINCE CASTLE; EHB34A-BR; FMGK20025 | PHU - NÃO ACENDE LUZES",
-          "abertura": "2026-10-14",
-          "sysId": "fce108f34737c750839576b4f26d433d",
-          "equipamento": "PHU"
-        },
-        {
           "numero": "WOT0069789",
           "loja": "FS POA - AV DR NILO PECANHA 1715",
           "estado": "Atribuído",
@@ -41772,18 +41784,6 @@
           "abertura": "2026-10-14",
           "sysId": "bef8c97333f343501fc9a4bb9d5c7b8b",
           "equipamento": "Broiler"
-        },
-        {
-          "numero": "WOT0069447",
-          "loja": "PARK SHOP CANOAS",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 6,
-          "tecnico": "Rafael Wagner Barbosa de Jesus",
-          "problema": "BK066475 - TOSTADORA VERTICAL; AJ ANTUNES; VCT-2000 | TST - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-10-14",
-          "sysId": "4e4240f74737c750839576b4f26d43fa",
-          "equipamento": "Tostadeira"
         },
         {
           "numero": "WOT0070413",
@@ -41905,6 +41905,18 @@
           "equipamento": "Máquina de Sorvete"
         },
         {
+          "numero": "WOT0059138",
+          "loja": "SHOP GRAVATAI",
+          "estado": "Trabalho em andamento",
+          "prioridade": "Normal",
+          "dias": 22,
+          "tecnico": "Emanuel dos Santos Silva",
+          "problema": "MÁQUINA DE SORVETE | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
+          "abertura": "2026-09-29",
+          "sysId": "d56176b647678f10839576b4f26d4396",
+          "equipamento": "Máquina de Sorvete"
+        },
+        {
           "numero": "WOT0058845",
           "loja": "SHOP GRAVATAI",
           "estado": "Atribuído",
@@ -41927,18 +41939,6 @@
           "abertura": "2026-09-28",
           "sysId": "b82547a6972f0f10a3c1b3c6f053af59",
           "equipamento": "Broiler"
-        },
-        {
-          "numero": "WOT0059138",
-          "loja": "SHOP GRAVATAI",
-          "estado": "Trabalho em andamento",
-          "prioridade": "Normal",
-          "dias": 21,
-          "tecnico": "Emanuel dos Santos Silva",
-          "problema": "MÁQUINA DE SORVETE | MDS - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
-          "abertura": "2026-09-29",
-          "sysId": "d56176b647678f10839576b4f26d4396",
-          "equipamento": "Máquina de Sorvete"
         }
       ]
     },
@@ -42208,7 +42208,7 @@
           "loja": "SHOP CIDADE DOS LAGOS",
           "estado": "Trabalho em andamento",
           "prioridade": "Normal",
-          "dias": 26,
+          "dias": 27,
           "tecnico": "Cristppher Alencar Pacheco Cruz",
           "problema": "BK066068 - BROILER; NIECO; JF94G; 631-41482 | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
           "abertura": "2026-09-24",
@@ -42546,7 +42546,7 @@
       "chamados": 12,
       "alta": 3,
       "sos": 0,
-      "tempoMedioDias": 31,
+      "tempoMedioDias": 32,
       "chamadosDetalhe": [
         {
           "numero": "WOT0052698",
@@ -42565,7 +42565,7 @@
           "loja": "SHOP IGUATEMI PORTO ALEGRE",
           "estado": "Trabalho em andamento",
           "prioridade": "Alta",
-          "dias": 11,
+          "dias": 12,
           "tecnico": "Thiago Dos Santos Coelho",
           "problema": "BK063544 - PHU; DUKE; HS2-34-2306T2R-BR; 07186701 | PHU - NÃO LIGA",
           "abertura": "2026-10-09",
