@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-22T21:00:30.408Z",
+ "atualizadoEm": "2026-10-22T22:20:16.527Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 15,
+  "emExecucao": 13,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 15
+  "total": 13
  },
  "serie": [
   {
@@ -22,7 +22,7 @@
   {
    "data": "2026-10-22",
    "abertos": 9,
-   "fechados": 7
+   "fechados": 9
   }
  ],
  "itens": [
@@ -33,7 +33,7 @@
    "setor": "CAPITAL CENTRO RS",
    "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
    "status": "Trabalho em andamento",
-   "fase": "Iniciado",
+   "fase": "Aguardando Aprovação",
    "abertura": "22/10/2026 16:56:20",
    "fechamento": "",
    "principal": "BROILER",
@@ -43,29 +43,6 @@
    "descricao": "BROILER | BRO - NÃO ACENDE",
    "tarefas": [
     "WOT0074290"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0073660",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA NORTE",
-   "loja": "26806 - JOCKEY PLAZA SHOP",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "22/10/2026 16:09:40",
-   "fechamento": "",
-   "principal": "MICROONDAS - SALA BREAK",
-   "secundario": "MCR - LOJA SEM NENHUM MICROONDAS FUNCIONANDO",
-   "sigla": "MCR",
-   "tecnico": "",
-   "descricao": "MICROONDAS - SALA BREAK | MCR - LOJA SEM NENHUM MICROONDAS FUNCIONANDO",
-   "tarefas": [
-    "WOT0074265"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
@@ -135,29 +112,6 @@
    "descricao": "BK087698 - FRITADEIRA | FRI - SOMENTE 1 CUBA FUNCIONANDO",
    "tarefas": [
     "WOT0074130"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0073487",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "26828 - FS CURITIBA - FRANCISCO FRISHMANN 3151",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "22/10/2026 11:11:59",
-   "fechamento": "",
-   "principal": "BK088222 - BROILER",
-   "secundario": "BRO - NÃO ACENDE",
-   "sigla": "BRO",
-   "tecnico": "",
-   "descricao": "BK088222 - BROILER | BRO - NÃO ACENDE",
-   "tarefas": [
-    "WOT0074088"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
