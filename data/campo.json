@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-22T15:30:18.537Z",
+ "atualizadoEm": "2026-10-22T16:00:18.726Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 16,
+  "emExecucao": 18,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 2,
-  "total": 16
+  "total": 18
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-10-22",
-   "abertos": 5,
-   "fechados": 1
+   "abertos": 7,
+   "fechados": 2
   }
  ],
  "itens": [
+  {
+   "numero": "WO0073552",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "22/10/2026 12:47:35",
+   "fechamento": "",
+   "principal": "BK035191 - AR CONDICIONADO",
+   "secundario": "ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "sigla": "ARC",
+   "tecnico": "",
+   "descricao": "BK035191 - AR CONDICIONADO | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "tarefas": [
+    "WOT0074152"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0073548",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "16988 - SHOP ESTACAO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "22/10/2026 12:39:40",
+   "fechamento": "",
+   "principal": "BK071580 - COIFA LAVADORA; MELTING",
+   "secundario": "COI - COIFA NÃO FUNCIONA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK071580 - COIFA LAVADORA; MELTING | COI - COIFA NÃO FUNCIONA",
+   "tarefas": [
+    "WOT0074148"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0073530",
    "marca": "BKB",
