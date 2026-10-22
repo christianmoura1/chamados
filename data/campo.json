@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-22T19:20:16.542Z",
+ "atualizadoEm": "2026-10-22T21:00:30.408Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 14,
+  "emExecucao": 15,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 14
+  "total": 15
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-22",
-   "abertos": 8,
+   "abertos": 9,
    "fechados": 7
   }
  ],
  "itens": [
+  {
+   "numero": "WO0073685",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
+   "status": "Trabalho em andamento",
+   "fase": "Iniciado",
+   "abertura": "22/10/2026 16:56:20",
+   "fechamento": "",
+   "principal": "BROILER",
+   "secundario": "BRO - NÃO ACENDE",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BROILER | BRO - NÃO ACENDE",
+   "tarefas": [
+    "WOT0074290"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0073660",
    "marca": "BKB",
