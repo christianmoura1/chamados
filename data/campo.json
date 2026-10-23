@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-23T11:00:43.490Z",
+ "atualizadoEm": "2026-10-23T13:00:46.259Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 14,
+  "emExecucao": 16,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 2,
-  "total": 14
+  "total": 16
  },
  "serie": [
   {
@@ -21,28 +21,74 @@
   },
   {
    "data": "2026-10-23",
-   "abertos": 1,
-   "fechados": 0
+   "abertos": 4,
+   "fechados": 1
   }
  ],
  "itens": [
   {
-   "numero": "WO0073804",
+   "numero": "WO0073883",
    "marca": "BKB",
    "regional": "SUL",
-   "setor": "",
-   "loja": "33697  - FS COLOMBO - ESTRADA DA RIBEIRA 3700",
+   "setor": "GRANDE CURITIBA",
+   "loja": "16852 - SHOP SAO JOSE DOS PINHAIS",
    "status": "Pronto para Expedição",
    "fase": "Iniciado",
-   "abertura": "23/10/2026 05:14:00",
+   "abertura": "23/10/2026 09:58:05",
    "fechamento": "",
-   "principal": "10295094 - AREA INTERNA",
-   "secundario": "AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
+   "principal": "Area Interna",
+   "secundario": "AIN - COZINHA - REFLUXO",
    "sigla": "AIN",
    "tecnico": "",
-   "descricao": "10295094 - AREA INTERNA | AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
+   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
    "tarefas": [
-    "WOT0074409"
+    "WOT0074490"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0073878",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "18625 - BOURBON SHOP WALLIG",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "23/10/2026 09:48:26",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - GÁS - VAZAMENTO DE GÁS",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - GÁS - VAZAMENTO DE GÁS",
+   "tarefas": [
+    "WOT0074484"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0073851",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "27589 - PARK EUROPEU BLUMENAU",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "23/10/2026 09:09:42",
+   "fechamento": "",
+   "principal": "BK080288 - BROILER GAS NATURAL ALTA PERFORMANCE",
+   "secundario": "BRO - NÃO ATINGE TEMPERATURA",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK080288 - BROILER GAS NATURAL ALTA PERFORMANCE | BRO - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0074457"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
@@ -102,7 +148,7 @@
    "setor": "CAPITAL CENTRO RS",
    "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
    "status": "Trabalho em andamento",
-   "fase": "Aguardando Aprovação",
+   "fase": "Request Approved",
    "abertura": "22/10/2026 16:56:20",
    "fechamento": "",
    "principal": "BROILER",
