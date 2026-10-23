@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-23T19:00:49.081Z",
+ "atualizadoEm": "2026-10-23T19:20:21.307Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 21,
+  "emExecucao": 22,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 3,
-  "total": 21
+  "aguardandoToken": 4,
+  "total": 22
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-23",
-   "abertos": 13,
-   "fechados": 6
+   "abertos": 14,
+   "fechados": 7
   }
  ],
  "itens": [
+  {
+   "numero": "WO0074433",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "OESTE PR",
+   "loja": "32610 FC CATUAI CASCAVEL",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "23/10/2026 16:05:57",
+   "fechamento": "",
+   "principal": "COIFA",
+   "secundario": "COI - PRINCÍPIO DE INCÊNDIO",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "COIFA | COI - PRINCÍPIO DE INCÊNDIO",
+   "tarefas": [
+    "WOT0075046"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0074418",
    "marca": "BKB",
@@ -378,7 +401,7 @@
    "setor": "CAPITAL SUL RS",
    "loja": "19618 - SHOP GRAVATAI",
    "status": "Trabalho em andamento",
-   "fase": "Iniciado",
+   "fase": "Requisição Completa - Aguardando Token",
    "abertura": "21/10/2026 16:02:28",
    "fechamento": "",
    "principal": "BK021563 - BROILER; NIECO; JF93G; 332-34116",
@@ -389,8 +412,8 @@
    "tarefas": [
     "WOT0073814"
    ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
+   "aguardandoToken": 1,
+   "fechadoSemToken": "23/10/2026 16:10:24",
    "contato": "",
    "grupo": "execucao"
   },
