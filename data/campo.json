@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-22T22:20:16.527Z",
+ "atualizadoEm": "2026-10-23T00:20:16.217Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 13,
+  "emExecucao": 14,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 13
+  "total": 14
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-22",
-   "abertos": 9,
+   "abertos": 10,
    "fechados": 9
   }
  ],
  "itens": [
+  {
+   "numero": "WO0073768",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "22511 - FS CURITIBA - AV FLORIANO PEIXOTO 5952",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "22/10/2026 21:09:28",
+   "fechamento": "",
+   "principal": "BK050104 - BROILER; NIECO; MPB94; 434-37911",
+   "secundario": "BRO - NÃO ACENDE",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK050104 - BROILER; NIECO; MPB94; 434-37911 | BRO - NÃO ACENDE",
+   "tarefas": [
+    "WOT0074373"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0073685",
    "marca": "BKB",
