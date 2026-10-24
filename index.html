@@ -446,34 +446,20 @@
 </div>
 
 <script>
-// ── Autenticação client-side ──────────────────────────────────────────
-// Credenciais: usuário + hash SHA-256 da senha.
-// Para trocar a senha: gere o hash em https://emn178.github.io/online-tools/sha256.html
-// e substitua o valor abaixo. Senha atual: "sul2026"
-const AUTH_USERS = {
-  "admin": "1c8b6d9f4e3a2b7c0d5e8f1a4b7c0d3e6f9a2b5c8d1e4f7a0b3c6d9e2f5a8b1",  // placeholder
-  "sul":   "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3"   // "sul2026" → sha256 real abaixo
-};
-// Hash SHA-256 real de "sul2026":
-AUTH_USERS["sul"] = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"; // será sobrescrito
-
-// Gera hash SHA-256 usando SubtleCrypto (assíncrono)
-async function sha256(str) {
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
-}
-
-// Hash pré-computado da senha "sul2026"
-const VALID_HASHES = {
-  "sul": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8"  // sha256("password") placeholder
-};
-
-// Na primeira carga, computa o hash correto de "sul2026" e guarda
-// Senha padrão: sul2026  →  troque gerando novo hash e substituindo abaixo
-const SENHA_HASH = "d7a8fbb307d7809469ca9abcb0082e4f8d5651e46d3cdb762d02d0bf37c9e592"; // sha256("sul2026")? não — vamos computar dinamicamente
-
-// Abordagem simples e segura o suficiente para painel interno:
-// senha em texto ofuscado + comparação via hash computado no cliente
+// ── Autenticação client-side ────────────────────────────────
+// ATENÇÃO: isto NÃO protege os dados. A senha viaja no próprio HTML e os
+// arquivos de data/*.json são servidos sem autenticação nenhuma -- qualquer
+// um que saiba a URL lê tudo sem passar por aqui. Esta tela serve para
+// evitar acesso casual, não para controlar acesso. Proteção de verdade
+// precisa ser no servidor.
+//
+// Para trocar a senha: gere o base64 do novo texto e substitua a linha
+// abaixo. Não há hash nenhum em uso -- havia quatro constantes de SHA-256
+// aqui (AUTH_USERS, VALID_HASHES, SENHA_HASH e um hash calculado e
+// descartado), todas ignoradas pelo código e com valores que nem eram da
+// senha certa: uma era o hash da string vazia, outra de "password", outra
+// de "abc". Removidas em 24/10/2026 para ninguém mais "trocar a senha"
+// mexendo nelas e achar que mudou alguma coisa.
 const _s = atob("c3VsMjAyNg=="); // "sul2026" em base64
 
 async function doLogin(e) {
@@ -489,7 +475,7 @@ async function doLogin(e) {
     return false;
   }
 
-  const hash = await sha256(pass);
+
   // Hash SHA-256 de "sul2026" = computed below on first run
   // Para evitar hardcode errado, comparamos com a senha decodificada
   if (pass === _s) {
