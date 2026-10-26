@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-10-26T01:00:27.417Z",
+ "atualizadoEm": "2026-10-26T11:00:36.464Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 12,
+  "emExecucao": 8,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 12
+  "total": 8
  },
  "serie": [
-  {
-   "data": "2026-10-23",
-   "abertos": 17,
-   "fechados": 16
-  },
   {
    "data": "2026-10-24",
    "abertos": 6,
@@ -23,9 +18,37 @@
    "data": "2026-10-25",
    "abertos": 7,
    "fechados": 3
+  },
+  {
+   "data": "2026-10-26",
+   "abertos": 1,
+   "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0075176",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "27589 - PARK EUROPEU BLUMENAU",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "26/10/2026 07:42:17",
+   "fechamento": "",
+   "principal": "BK080288 - BROILER",
+   "secundario": "BRO - VAZAMENTO DE GÁS",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK080288 - BROILER | BRO - VAZAMENTO DE GÁS",
+   "tarefas": [
+    "WOT0075795"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0075151",
    "marca": "BKB",
@@ -181,121 +204,6 @@
    "descricao": "BK078296 - PHU; PRINCE CASTLE; DHB-BK17DBR; HK 0213732 | PHU - PRINCÍPIO DE INCÊNDIO",
    "tarefas": [
     "WOT0075439"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0074526",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "23726 - PASSO FUNDO SHOP",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "23/10/2026 19:53:22",
-   "fechamento": "",
-   "principal": "Area Externa",
-   "secundario": "AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
-   "sigla": "AEX",
-   "tecnico": "",
-   "descricao": "Area Externa | AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
-   "tarefas": [
-    "WOT0075140"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0074487",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "20215 - CARREFOUR PASSO D'AREIA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "23/10/2026 18:09:37",
-   "fechamento": "",
-   "principal": "FRITADEIRA",
-   "secundario": "FRI - NÃO LIGA",
-   "sigla": "FRI",
-   "tecnico": "",
-   "descricao": "FRITADEIRA | FRI - NÃO LIGA",
-   "tarefas": [
-    "WOT0075101"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0074468",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "20048 - OUTLET NOVO HAMBURGO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "23/10/2026 17:36:05",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - COZINHA - REFLUXO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
-   "tarefas": [
-    "WOT0075081"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0074379",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "25677 - FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "23/10/2026 13:55:16",
-   "fechamento": "",
-   "principal": "BK078893 - AR CONDICIONADO",
-   "secundario": "ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
-   "sigla": "ARC",
-   "tecnico": "",
-   "descricao": "BK078893 - AR CONDICIONADO | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
-   "tarefas": [
-    "WOT0074987"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0073921",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "23/10/2026 11:14:48",
-   "fechamento": "",
-   "principal": "BK035191 - AR CONDICIONADO",
-   "secundario": "ARC - LOJA SEM AR CONDICIONADO",
-   "sigla": "ARC",
-   "tecnico": "",
-   "descricao": "BK035191 - AR CONDICIONADO | ARC - LOJA SEM AR CONDICIONADO",
-   "tarefas": [
-    "WOT0074528"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
