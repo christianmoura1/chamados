@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-25T23:00:24.753Z",
+ "atualizadoEm": "2026-10-26T01:00:27.417Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 11,
+  "emExecucao": 12,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 11
+  "total": 12
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-25",
-   "abertos": 6,
+   "abertos": 7,
    "fechados": 3
   }
  ],
  "itens": [
+  {
+   "numero": "WO0075151",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "30086 FS PONTA GROSSA R BALDUINO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "25/10/2026 21:47:07",
+   "fechamento": "",
+   "principal": "BK075159 - BROILER",
+   "secundario": "BRO - VAZAMENTO DE GÁS",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK075159 - BROILER | BRO - VAZAMENTO DE GÁS",
+   "tarefas": [
+    "WOT0075770"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0075133",
    "marca": "BKB",
