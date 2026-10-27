@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-10-26T17:00:34.414Z",
+ "atualizadoEm": "2026-10-27T10:20:15.031Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 8,
+  "emExecucao": 4,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 2,
-  "total": 8
+  "aguardandoToken": 0,
+  "total": 4
  },
  "serie": [
-  {
-   "data": "2026-10-24",
-   "abertos": 6,
-   "fechados": 13
-  },
   {
    "data": "2026-10-25",
    "abertos": 7,
@@ -21,28 +16,33 @@
   },
   {
    "data": "2026-10-26",
-   "abertos": 6,
-   "fechados": 6
+   "abertos": 7,
+   "fechados": 11
+  },
+  {
+   "data": "2026-10-27",
+   "abertos": 0,
+   "fechados": 0
   }
  ],
  "itens": [
   {
-   "numero": "WO0075366",
+   "numero": "WO0075575",
    "marca": "BKB",
    "regional": "SUL",
-   "setor": "CURITIBA NORTE",
-   "loja": "26806 - JOCKEY PLAZA SHOP",
+   "setor": "CAPITAL SUL RS",
+   "loja": "26160 - FS CANOAS - AV GETULIO VARGAS 3800",
    "status": "Pronto para Expedição",
    "fase": "Iniciado",
-   "abertura": "26/10/2026 12:41:05",
+   "abertura": "26/10/2026 19:12:54",
    "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - COZINHA - REFLUXO",
-   "sigla": "AIN",
+   "principal": "BK070972 - CAMARA DE CONGELADOS; SÃO RAFAEL",
+   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMG",
    "tecnico": "",
-   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
+   "descricao": "BK070972 - CAMARA DE CONGELADOS; SÃO RAFAEL | CMG - NÃO ATINGE TEMPERATURA",
    "tarefas": [
-    "WOT0075986"
+    "WOT0076201"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
@@ -69,52 +69,6 @@
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0075260",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "16687 - SHOP PALLADIUM PONTA GROSSA",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "26/10/2026 10:23:43",
-   "fechamento": "",
-   "principal": "BK072114 - BROILER",
-   "secundario": "BRO - NÃO MANTÉM A CHAMA",
-   "sigla": "BRO",
-   "tecnico": "",
-   "descricao": "BK072114 - BROILER | BRO - NÃO MANTÉM A CHAMA",
-   "tarefas": [
-    "WOT0075879"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "26/10/2026 13:11:39",
-   "contato": "Tentativa de contato: 26/10/2026 10:24:51;\n",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0075192",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA NORTE",
-   "loja": "21791 - SHOP CIDADE CURITIBA",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "26/10/2026 08:47:09",
-   "fechamento": "",
-   "principal": "BK036190 - COIFA LAVADORA; MELTING",
-   "secundario": "COI - COIFA COM VAZAMENTO",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK036190 - COIFA LAVADORA; MELTING | COI - COIFA COM VAZAMENTO",
-   "tarefas": [
-    "WOT0075811"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "26/10/2026 12:03:03",
    "contato": "",
    "grupo": "execucao"
   },
@@ -162,52 +116,6 @@
    "aguardandoToken": 0,
    "fechadoSemToken": "",
    "contato": "Tentativa de contato: 25/10/2026 12:48:27;\n",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0075017",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA NORTE",
-   "loja": "29084 FS PINHAIS PEDRO JACOMEL 13",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "25/10/2026 12:39:31",
-   "fechamento": "",
-   "principal": "BK229979 - CÂMARA DE RESFRIADOS",
-   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
-   "sigla": "CMR",
-   "tecnico": "",
-   "descricao": "BK229979 - CÂMARA DE RESFRIADOS | CMR - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0075635"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0074822",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "24/10/2026 17:23:44",
-   "fechamento": "",
-   "principal": "BK078296 - PHU; PRINCE CASTLE; DHB-BK17DBR; HK 0213732",
-   "secundario": "PHU - PRINCÍPIO DE INCÊNDIO",
-   "sigla": "PHU",
-   "tecnico": "",
-   "descricao": "BK078296 - PHU; PRINCE CASTLE; DHB-BK17DBR; HK 0213732 | PHU - PRINCÍPIO DE INCÊNDIO",
-   "tarefas": [
-    "WOT0075439"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
    "grupo": "execucao"
   }
  ]
