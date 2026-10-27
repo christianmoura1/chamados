@@ -147,6 +147,10 @@ footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--border
 .modal-close { appearance: none; border: none; background: var(--cinza-bg); color: var(--text-2); width: 30px; height: 30px; border-radius: 999px; font-size: 17px; line-height: 1; cursor: pointer; }
 .modal-close:hover { color: var(--text); }
 .modal-sub { padding: 12px 22px 0; font-size: 12px; color: var(--text-3); flex: none; }
+.modal-busca { padding: 10px 22px 0; flex: none; }
+.modal-busca input { width: 100%; box-sizing: border-box; padding: 9px 12px; font: inherit; font-size: 13px; color: var(--text); background: var(--cinza-bg); border: 1.5px solid var(--border); border-radius: var(--r); outline: none; transition: border-color .12s, background .12s; }
+.modal-busca input:focus { border-color: var(--cobalto); background: var(--surface); }
+.modal-busca input::placeholder { color: var(--text-3); }
 .modal-body { overflow: auto; padding: 14px 22px 20px; }
 .detail-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
 .detail-table th { text-align: left; font-size: 10px; letter-spacing: .05em; text-transform: uppercase; color: var(--text-3); padding: 8px 10px; position: sticky; top: 0; background: var(--surface); }
@@ -250,6 +254,10 @@ footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--border
       <button class="modal-close" id="modalClose" aria-label="Fechar" type="button">&times;</button>
     </div>
     <div class="modal-sub" id="modalSub"></div>
+    <div class="modal-busca">
+      <input type="search" id="modalBusca" autocomplete="off" spellcheck="false"
+             placeholder="Filtrar por loja ou c&oacute;digo...">
+    </div>
     <div class="modal-body">
       <table class="detail-table">
         <thead><tr><th>Loja</th><th>Referência</th><th>Dias em Atraso</th></tr></thead>
@@ -550,22 +558,55 @@ function renderizarChamadosRisco() {
   document.getElementById('tabelaAVencer').innerHTML = tabelaChamadosRisco(aVencer, refDate);
 }
 
+// A categoria aberta no momento. Fica fora da funcao para o filtro poder
+// redesenhar o corpo da tabela sem ir buscar os dados de novo.
+let MODAL_CAT = null;
+let MODAL_LOJAS = [];
+
+// Compara sem acento e sem caixa: "sao" acha "S\u00c3O", "cascavel" acha
+// "CASCAVEL". O nome ja vem com o codigo na frente ("23989 - SHOP JL
+// CASCAVEL"), entao digitar so o numero tambem funciona.
+function semAcento(v) {
+  return String(v || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+}
+
+function desenharModalLinhas() {
+  const c = MODAL_CAT;
+  if (!c) return;
+  const termo = semAcento(document.getElementById('modalBusca').value.trim());
+  const vis = termo ? MODAL_LOJAS.filter(l => semAcento(l.nome).includes(termo)) : MODAL_LOJAS;
+  document.getElementById('modalTbody').innerHTML = vis.length
+    ? vis.map(l => `<tr><td>${escapeHtml(l.nome)}</td><td>${escapeHtml(refAtraso(l) || '\u2014')}</td><td class="num">${l.diasAtraso != null ? l.diasAtraso + 'd' : '\u2014'}</td></tr>`).join('')
+    : `<tr><td colspan="3" class="esos-empty">${termo ? 'Nenhuma loja com esse nome.' : 'Nenhuma loja vencida nessa categoria.'}</td></tr>`;
+  // A linha de cima acompanha o filtro: sem ela o "25 de 71" continuaria
+  // ali enquanto a tabela mostra uma loja so, e os dois numeros brigariam.
+  document.getElementById('modalSub').textContent = termo
+    ? `${vis.length} de ${MODAL_LOJAS.length} lojas vencidas`
+    : `${c.vencido} de ${c.total} lojas com item vencido (${c.pctVencido}%)`;
+}
+
 function abrirModalCategoria(chave) {
   const c = DADOS_ATUAIS?.categorias.find(x => x.chave === chave);
   if (!c) return;
+  MODAL_CAT = c;
+  MODAL_LOJAS = c.lojasVencidas || [];
   document.getElementById('modalTitle').textContent = c.nome;
-  document.getElementById('modalSub').textContent = `${c.vencido} de ${c.total} lojas com item vencido (${c.pctVencido}%)`;
-  document.getElementById('modalTbody').innerHTML = c.lojasVencidas.length
-    ? c.lojasVencidas.map(l => `<tr><td>${escapeHtml(l.nome)}</td><td>${escapeHtml(refAtraso(l) || '—')}</td><td class="num">${l.diasAtraso != null ? l.diasAtraso + 'd' : '—'}</td></tr>`).join('')
-    : `<tr><td colspan="3" class="esos-empty">Nenhuma loja vencida nessa categoria.</td></tr>`;
+  const busca = document.getElementById('modalBusca');
+  busca.value = '';   // cada abertura comeca limpa
+  desenharModalLinhas();
   document.getElementById('modalOverlay').hidden = false;
   document.body.style.overflow = 'hidden';
+  busca.focus();
 }
 function fecharModal() {
   document.getElementById('modalOverlay').hidden = true;
   document.body.style.overflow = '';
 }
 document.getElementById('modalClose').addEventListener('click', fecharModal);
+document.getElementById('modalBusca').addEventListener('input', desenharModalLinhas);
+// Clique dentro da busca nao pode fechar o modal: o overlay fecha ao
+// receber clique, e sem isto o Esc nativo do campo de busca borbulharia.
+document.getElementById('modalBusca').addEventListener('keydown', (ev) => { if (ev.key === 'Escape') ev.stopPropagation(); });
 document.getElementById('modalOverlay').addEventListener('click', (ev) => { if (ev.target.id === 'modalOverlay') fecharModal(); });
 document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape' && !document.getElementById('modalOverlay').hidden) fecharModal(); });
 
