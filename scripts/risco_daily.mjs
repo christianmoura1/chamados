@@ -45,6 +45,7 @@ log('inicio do pipeline de risco');
   const ctx = browser.contexts()[0];
   let page = null;
   for (const p of ctx.pages()) if (p.url().includes(ABA)) page = p;
+  const abriuNova = !page;
   // Em 18/09/2026 a aba do risco sumiu do Chrome e o pipeline morreu aqui: so'
   // restava a aba da Disponibilidade Book (250d750e...), que e' do MESMO
   // relatorio mas de outra pagina e pertence ao pipeline do Backlog. Em vez de
@@ -55,13 +56,30 @@ log('inicio do pipeline de risco');
     await page.goto(URL_RISCO, { waitUntil: 'domcontentloaded', timeout: 120000 });
     await new Promise((r) => setTimeout(r, 8000));
   }
-  log('recarregando a aba do Power BI');
-  await page.reload({ waitUntil: 'domcontentloaded', timeout: 120000 });
+  if (abriuNova) {
+    // 27/10/2026 -- uma aba recem-aberta ja veio do servidor e ainda esta no
+    // meio do SSO. Recarregar aqui REINICIA esse redirecionamento, e era isso
+    // que jogava o pipeline de volta para a tela de login.
+    log('aba recem-aberta -- nao recarrego, espero ela assentar sozinha');
+  } else {
+    log('recarregando a aba do Power BI');
+    await page.reload({ waitUntil: 'domcontentloaded', timeout: 120000 });
+  }
   let pronto = false;
   for (let i = 0; i < 100; i++) {
     await new Promise((r) => setTimeout(r, 3000));
     if (/login\.microsoftonline|oauth2/.test(page.url())) {
-      fatal('a aba caiu na tela de login da Microsoft -- relogar no Power BI pelo RDP');
+      // 27/10/2026 -- este if matava o pipeline 3 SEGUNDOS depois do reload, e
+      // o SSO da Microsoft nao resolve nesse prazo: a aba passa por
+      // login.microsoftonline e so volta para o Power BI cerca de um minuto
+      // depois, sozinha. Hoje as 06:00:30 ele gritou "relogar pelo RDP" e a
+      // MESMA aba estava logada e mostrando o relatorio quando fui conferir --
+      // a sessao nunca tinha caido. O alarme falso ainda custava caro: o
+      // pipeline morria deixando a aba para tras, e a varredura do Backlog
+      // fecha abas paradas no login, levando junto a aba do risco.
+      // Agora espera o redirecionamento assentar (2 min) antes de desistir.
+      if (i < 40) continue;
+      fatal('a aba ficou presa no login da Microsoft por 2 min -- relogar no Power BI pelo RDP');
     }
     pronto = await page.evaluate(() => {
       const t = document.body.innerText || '';
