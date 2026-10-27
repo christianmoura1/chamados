@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-27T12:20:16.544Z",
+ "atualizadoEm": "2026-10-27T13:40:15.649Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 5,
+  "emExecucao": 6,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 1,
-  "total": 5
+  "aguardandoToken": 0,
+  "total": 6
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-10-27",
-   "abertos": 1,
-   "fechados": 0
+   "abertos": 3,
+   "fechados": 1
   }
  ],
  "itens": [
+  {
+   "numero": "WO0075732",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "30086 FS PONTA GROSSA R BALDUINO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "27/10/2026 10:39:56",
+   "fechamento": "",
+   "principal": "BK245268 - CAIXA DE GORDURA",
+   "secundario": "REF - REFLUXO",
+   "sigla": "GOR",
+   "tecnico": "",
+   "descricao": "BK245268 - CAIXA DE GORDURA | REF - REFLUXO",
+   "tarefas": [
+    "WOT0076357"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0075708",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "23725 - SHOP PRACA NOVA SANTA MARIA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "27/10/2026 10:00:21",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
+   "tarefas": [
+    "WOT0076333"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0075679",
    "marca": "BKB",
@@ -69,29 +115,6 @@
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0075284",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "20621 - SHOP PELOTAS",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "26/10/2026 10:53:55",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - COZINHA - REFLUXO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
-   "tarefas": [
-    "WOT0075903"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "27/10/2026 08:34:17",
    "contato": "",
    "grupo": "execucao"
   },
