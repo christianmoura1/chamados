@@ -1,5 +1,5 @@
 {
- "atualizadoEm": "2026-10-27T19:40:16.802Z",
+ "atualizadoEm": "2026-10-27T22:40:16.746Z",
  "janelaDias": 3,
  "resumo": {
   "emExecucao": 8,
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-27",
-   "abertos": 5,
-   "fechados": 1
+   "abertos": 6,
+   "fechados": 2
   }
  ],
  "itens": [
+  {
+   "numero": "WO0076037",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "20049 - SHOP PRACA RIO GRANDE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "27/10/2026 19:13:23",
+   "fechamento": "",
+   "principal": "CÂMARA DE RESFRIADOS",
+   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMR",
+   "tecnico": "",
+   "descricao": "CÂMARA DE RESFRIADOS | CMR - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0076661"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0075954",
    "marca": "BKB",
@@ -112,29 +135,6 @@
    "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
    "tarefas": [
     "WOT0076333"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0075679",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL SUL RS",
-   "loja": "26160 - FS CANOAS - AV GETULIO VARGAS 3800",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "27/10/2026 09:00:43",
-   "fechamento": "",
-   "principal": "BK070957 - FRITADEIRA; PITCO; SSHLV14; G18HB037592",
-   "secundario": "FRI - VAZAMENTO DE OLEO",
-   "sigla": "FRI",
-   "tecnico": "",
-   "descricao": "BK070957 - FRITADEIRA; PITCO; SSHLV14; G18HB037592 | FRI - VAZAMENTO DE OLEO",
-   "tarefas": [
-    "WOT0076305"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
