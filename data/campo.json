@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-27T15:20:15.855Z",
+ "atualizadoEm": "2026-10-27T19:40:16.802Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 6,
+  "emExecucao": 8,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 6
+  "total": 8
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-10-27",
-   "abertos": 3,
+   "abertos": 5,
    "fechados": 1
   }
  ],
  "itens": [
+  {
+   "numero": "WO0075954",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "16852 - SHOP SAO JOSE DOS PINHAIS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "27/10/2026 16:24:15",
+   "fechamento": "",
+   "principal": "BK066867 - CÂMARA DE CONGELADOS",
+   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMG",
+   "tecnico": "",
+   "descricao": "BK066867 - CÂMARA DE CONGELADOS | CMG - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0076577"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0075952",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "25677 - FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "27/10/2026 16:16:58",
+   "fechamento": "",
+   "principal": "BK068719 - COIFA LAVADORA; MELTING",
+   "secundario": "COI - COIFA COM DRENO ENTUPIDO",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK068719 - COIFA LAVADORA; MELTING | COI - COIFA COM DRENO ENTUPIDO",
+   "tarefas": [
+    "WOT0076575"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0075732",
    "marca": "BKB",
