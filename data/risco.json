@@ -1,8 +1,8 @@
 {
- "atualizadoEm": "27/10/2026 9:12:16",
- "geradoEm": "2026-10-27T14:26:29.811Z",
+ "atualizadoEm": "28/10/2026 5:05:58",
+ "geradoEm": "2026-10-28T09:02:14.252Z",
  "totalLojasAvaliadas": 71,
- "scoreMedio": 8.89,
+ "scoreMedio": 8.79,
  "categorias": [
   {
    "chave": "sci",
@@ -54,6 +54,14 @@
      "itemRef": null
     },
     {
+     "nome": "25677 - FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
+     "score": 15,
+     "diasAtraso": 12,
+     "dataRef": "14/10/2026",
+     "rotuloRef": "venceu",
+     "itemRef": null
+    },
+    {
      "nome": "26837 - FS CASCAVEL - AV BRASIL 1580",
      "score": 15,
      "diasAtraso": 32,
@@ -66,14 +74,6 @@
      "score": 15,
      "diasAtraso": 42,
      "dataRef": "14/09/2026",
-     "rotuloRef": "venceu",
-     "itemRef": null
-    },
-    {
-     "nome": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
-     "score": 14,
-     "diasAtraso": 80,
-     "dataRef": "07/08/2026",
      "rotuloRef": "venceu",
      "itemRef": null
     },
@@ -158,6 +158,14 @@
      "itemRef": null
     },
     {
+     "nome": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
+     "score": 10,
+     "diasAtraso": 80,
+     "dataRef": "07/08/2026",
+     "rotuloRef": "venceu",
+     "itemRef": null
+    },
+    {
      "nome": "23721 - PARK SHOP CANOAS",
      "score": 10,
      "diasAtraso": 31,
@@ -178,14 +186,6 @@
      "score": 10,
      "diasAtraso": 30,
      "dataRef": "26/09/2026",
-     "rotuloRef": "venceu",
-     "itemRef": null
-    },
-    {
-     "nome": "25677 - FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
-     "score": 10,
-     "diasAtraso": 12,
-     "dataRef": "14/10/2026",
      "rotuloRef": "venceu",
      "itemRef": null
     },
@@ -226,40 +226,24 @@
   {
    "chave": "rotaSeguranca",
    "nome": "Rota Segurança",
-   "vencido": 4,
-   "emDia": 67,
+   "vencido": 2,
+   "emDia": 69,
    "total": 71,
-   "pctVencido": 6,
+   "pctVencido": 3,
    "lojasVencidas": [
     {
-     "nome": "23584 - ILR FLORIANÓPOLIS - R. JERÔNIMO COELHO, 215",
-     "score": 15,
-     "diasAtraso": 24,
-     "dataRef": "10/03/2026",
-     "rotuloRef": "últ. visita",
-     "itemRef": null
-    },
-    {
-     "nome": "21535 - ANGELONI AGUA VERDE",
+     "nome": "23699 - COLOMBO PARK SHOP",
      "score": 10,
      "diasAtraso": 20,
-     "dataRef": "10/07/2026",
+     "dataRef": "10/08/2026",
      "rotuloRef": "últ. visita",
      "itemRef": null
     },
     {
      "nome": "24766 - SHOP TOTAL POA",
      "score": 10,
-     "diasAtraso": 21,
+     "diasAtraso": 22,
      "dataRef": "10/06/2026",
-     "rotuloRef": "últ. visita",
-     "itemRef": null
-    },
-    {
-     "nome": "25447 - FS POA - AV CAVALHADA",
-     "score": 10,
-     "diasAtraso": 20,
-     "dataRef": "10/07/2026",
      "rotuloRef": "últ. visita",
      "itemRef": null
     }
@@ -268,32 +252,25 @@
   {
    "chave": "rotaPadroes",
    "nome": "Rota Padrões",
-   "vencido": 1,
-   "emDia": 70,
+   "vencido": 0,
+   "emDia": 71,
    "total": 71,
-   "pctVencido": 1,
-   "lojasVencidas": [
-    {
-     "nome": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
-     "score": 14,
-     "diasAtraso": 50,
-     "dataRef": "09/07/2026",
-     "rotuloRef": "últ. visita",
-     "itemRef": null
-    }
-   ]
+   "pctVencido": 0,
+   "lojasVencidas": []
   }
  ],
  "abertoPorItemBruto": [
   "Coifa",
   "Quadro Elétrico",
-  "Central de fumaça",
   "Exaustor",
+  "Central de fumaça",
   "11",
   "5",
+  "3",
   "2",
-  "2",
-  "Atrasado"
+  "1",
+  "Atrasado",
+  "No Prazo"
  ],
  "chamadosRisco": {
   "vencidos": [
@@ -311,7 +288,7 @@
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
     "assunto": "COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
-    "diasAtraso": 40
+    "diasAtraso": 41
    },
    {
     "numero": "WO0055121",
@@ -327,7 +304,7 @@
     "dtEncerramento": "",
     "tecnico": "RUAN CARLOS DA SILVA",
     "assunto": "AIN - QUADRO ELÉTRICO - QUADRO ELÉTRICO COM FIOS EXPOSTOS",
-    "diasAtraso": 35
+    "diasAtraso": 36
    },
    {
     "numero": "WO0056110",
@@ -343,7 +320,7 @@
     "dtEncerramento": "",
     "tecnico": "CARLOS MAGNO DA SILVA LIRA",
     "assunto": "AUSÊNCIA DE PROTEÇÃO DA CORREIA",
-    "diasAtraso": 33
+    "diasAtraso": 34
    },
    {
     "numero": "WO0058737",
@@ -359,7 +336,7 @@
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
     "assunto": "AUSÊNCIA DE PROTEÇÃO DA CORREIA",
-    "diasAtraso": 28
+    "diasAtraso": 29
    },
    {
     "numero": "WO0058870",
@@ -375,7 +352,7 @@
     "dtEncerramento": "",
     "tecnico": "CARLOS MAGNO DA SILVA LIRA",
     "assunto": "COI - COIFA EM CONTIGÊNCIA",
-    "diasAtraso": 28
+    "diasAtraso": 29
    },
    {
     "numero": "WO0059152",
@@ -391,7 +368,7 @@
     "dtEncerramento": "",
     "tecnico": "THIAGO DOS SANTOS COELHO",
     "assunto": "COI - COIFA NÃO FUNCIONA",
-    "diasAtraso": 27
+    "diasAtraso": 28
    },
    {
     "numero": "WO0063760",
@@ -407,7 +384,7 @@
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
     "assunto": "COI - ESTRUTURA DA COIFA COM DEFEITO",
-    "diasAtraso": 25
+    "diasAtraso": 26
    },
    {
     "numero": "WO0063867",
@@ -423,7 +400,7 @@
     "dtEncerramento": "",
     "tecnico": "CARLOS MAGNO DA SILVA LIRA",
     "assunto": "COI - COIFA EM CONTIGÊNCIA",
-    "diasAtraso": 25
+    "diasAtraso": 26
    },
    {
     "numero": "WO0065253",
@@ -439,7 +416,7 @@
     "dtEncerramento": "",
     "tecnico": "MARCEL VINICIOS ROCHA AGRADEM",
     "assunto": "COI - COIFA EM CONTIGÊNCIA",
-    "diasAtraso": 21
+    "diasAtraso": 22
    },
    {
     "numero": "WO0067319",
@@ -455,7 +432,7 @@
     "dtEncerramento": "",
     "tecnico": "THIAGO DOS SANTOS COELHO",
     "assunto": "COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
-    "diasAtraso": 17
+    "diasAtraso": 18
    },
    {
     "numero": "WO0068126",
@@ -471,7 +448,7 @@
     "dtEncerramento": "",
     "tecnico": "CARLOS MAGNO DA SILVA LIRA",
     "assunto": "COI - ESTRUTURA DA COIFA COM DEFEITO",
-    "diasAtraso": 15
+    "diasAtraso": 16
    },
    {
     "numero": "WO0069102",
@@ -487,7 +464,7 @@
     "dtEncerramento": "",
     "tecnico": "CARLOS MAGNO DA SILVA LIRA",
     "assunto": "AIN - QUADRO ELÉTRICO - QUADRO ELÉTRICO COM FIOS EXPOSTOS",
-    "diasAtraso": 13
+    "diasAtraso": 14
    },
    {
     "numero": "WO0070729",
@@ -503,7 +480,7 @@
     "dtEncerramento": "",
     "tecnico": "MARCEL VINICIOS ROCHA AGRADEM",
     "assunto": "SCI - ALARME DISPARADO",
-    "diasAtraso": 10
+    "diasAtraso": 11
    },
    {
     "numero": "WO0071121",
@@ -519,7 +496,7 @@
     "dtEncerramento": "",
     "tecnico": "CARLOS MAGNO DA SILVA LIRA",
     "assunto": "COI - COIFA EM CONTIGÊNCIA",
-    "diasAtraso": 8
+    "diasAtraso": 9
    },
    {
     "numero": "WO0071131",
@@ -535,7 +512,7 @@
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
     "assunto": "COI - COIFA EM CONTIGÊNCIA",
-    "diasAtraso": 8
+    "diasAtraso": 9
    },
    {
     "numero": "WO0071165",
@@ -551,7 +528,7 @@
     "dtEncerramento": "",
     "tecnico": "CARLOS MAGNO DA SILVA LIRA",
     "assunto": "COI - COIFA EM CONTIGÊNCIA",
-    "diasAtraso": 8
+    "diasAtraso": 9
    },
    {
     "numero": "WO0072619",
@@ -567,7 +544,7 @@
     "dtEncerramento": "",
     "tecnico": "CARLOS MAGNO DA SILVA LIRA",
     "assunto": "AIN - QUADRO ELÉTRICO - FALTA DE ACRÍLICO DE PROTEÇÃO",
-    "diasAtraso": 7
+    "diasAtraso": 8
    },
    {
     "numero": "WO0073278",
@@ -583,7 +560,7 @@
     "dtEncerramento": "",
     "tecnico": "CARLOS MAGNO DA SILVA LIRA",
     "assunto": "AIN - QUADRO ELÉTRICO - QUADRO ELÉTRICO COM FIOS EXPOSTOS",
-    "diasAtraso": 6
+    "diasAtraso": 7
    },
    {
     "numero": "WO0073297",
@@ -599,7 +576,7 @@
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
     "assunto": "AIN - QUADRO ELÉTRICO - QUADRO ELÉTRICO COM FIOS EXPOSTOS",
-    "diasAtraso": 6
+    "diasAtraso": 7
    },
    {
     "numero": "WO0075018",
@@ -615,10 +592,43 @@
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
     "assunto": "SCI - SENSOR DE FUMAÇA INOPERANTE",
-    "diasAtraso": 2
+    "diasAtraso": 3
+   },
+   {
+    "numero": "WO0075758",
+    "statusRisco": "Atrasado",
+    "item": "Exaustor",
+    "assuntoPrincipal": "EXAUSTOR",
+    "assuntoSecundario": "EXA - AUSÊNCIA DE PROTEÇÃO DA CORREIA",
+    "regional": "SUL",
+    "setor": "VALE DOS SINOS",
+    "loja": "25677 - FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "10/27/2026",
+    "dtEncerramento": "",
+    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
+    "assunto": "EXA - AUSÊNCIA DE PROTEÇÃO DA CORREIA",
+    "diasAtraso": 1
    }
   ],
-  "aVencer": []
+  "aVencer": [
+   {
+    "numero": "WO0075952",
+    "statusRisco": "No Prazo",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - COIFA COM DRENO ENTUPIDO",
+    "regional": "SUL",
+    "setor": "VALE DOS SINOS",
+    "loja": "25677 - FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "10/27/2026",
+    "dtEncerramento": "",
+    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
+    "assunto": "COI - COIFA COM DRENO ENTUPIDO",
+    "diasAtraso": 1
+   }
+  ]
  },
  "ultimosFechados": [
   {
