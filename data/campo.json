@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-29T12:40:13.742Z",
+ "atualizadoEm": "2026-10-29T14:00:15.362Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 15,
+  "emExecucao": 18,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 2,
-  "total": 15
+  "total": 18
  },
  "serie": [
   {
@@ -21,11 +21,80 @@
   },
   {
    "data": "2026-10-29",
-   "abertos": 1,
-   "fechados": 3
+   "abertos": 4,
+   "fechados": 4
   }
  ],
  "itens": [
+  {
+   "numero": "WO0076701",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "16988 - SHOP ESTACAO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "29/10/2026 10:31:11",
+   "fechamento": "",
+   "principal": "BK071580 - COIFA LAVADORA; MELTING",
+   "secundario": "COI - COIFA EM CONTIGÊNCIA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK071580 - COIFA LAVADORA; MELTING | COI - COIFA EM CONTIGÊNCIA",
+   "tarefas": [
+    "WOT0077330"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0076689",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "27590 - PORTO BELO OUTLET",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "29/10/2026 10:04:57",
+   "fechamento": "",
+   "principal": "BK080252 - CARRINHO PARA BROILER",
+   "secundario": "CDB - RODA DO CARRINHO DANIFICADO/OXIDADA",
+   "sigla": "CDB",
+   "tecnico": "",
+   "descricao": "BK080252 - CARRINHO PARA BROILER | CDB - RODA DO CARRINHO DANIFICADO/OXIDADA",
+   "tarefas": [
+    "WOT0077318"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0076683",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "15893 - SHOP IGUATEMI PORTO ALEGRE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "29/10/2026 09:43:11",
+   "fechamento": "",
+   "principal": "BK063523 - MAQUINA DE SORVETE; TAYLOR; C716-33; M80",
+   "secundario": "MDS - PRINCÍPIO DE INCÊNDIO",
+   "sigla": "MDS",
+   "tecnico": "",
+   "descricao": "BK063523 - MAQUINA DE SORVETE; TAYLOR; C716-33; M80 | MDS - PRINCÍPIO DE INCÊNDIO",
+   "tarefas": [
+    "WOT0077312"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0076673",
    "marca": "BKB",
