@@ -343,16 +343,20 @@ const saida = {
     }),
   })),
   abertoPorItemBruto: v2.abertoPorItemBruto,
+  // dtAbertura e dd/mm/aaaa: p[0] e DIA e p[1] e MES. Ate 29/10/2026 estes
+  // dois blocos passavam p[0] como mes, e o erro era silencioso -- 02/10
+  // virava 10/fev e dava 261 dias (positivo e plausivel); 17/09 virava
+  // 09/05/2027 e dava -192, colocando dia negativo no "Risco Vencido".
   chamadosRisco: {
   vencidos: ch.vencidos.map(c => ({
     ...c,
     assunto: c.assuntoSecundario || c.assuntoPrincipal || c.item || '',
-    diasAtraso: c.dtAbertura ? (() => { const p = c.dtAbertura.split('/'); if (p.length !== 3) return null; const d = new Date(Number(p[2]), Number(p[0]) - 1, Number(p[1])); return isNaN(d.getTime()) ? null : Math.floor((Date.now() - d.getTime()) / 86400000); })() : null,
+    diasAtraso: c.dtAbertura ? (() => { const p = c.dtAbertura.split('/'); if (p.length !== 3) return null; const d = new Date(Number(p[2]), Number(p[1]) - 1, Number(p[0])); return isNaN(d.getTime()) ? null : Math.floor((Date.now() - d.getTime()) / 86400000); })() : null,
   })),
   aVencer: ch.aVencer.map(c => ({
     ...c,
     assunto: c.assuntoSecundario || c.assuntoPrincipal || c.item || '',
-    diasAtraso: c.dtAbertura ? (() => { const p = c.dtAbertura.split('/'); if (p.length !== 3) return null; const d = new Date(Number(p[2]), Number(p[0]) - 1, Number(p[1])); return isNaN(d.getTime()) ? null : Math.floor((Date.now() - d.getTime()) / 86400000); })() : null,
+    diasAtraso: c.dtAbertura ? (() => { const p = c.dtAbertura.split('/'); if (p.length !== 3) return null; const d = new Date(Number(p[2]), Number(p[1]) - 1, Number(p[0])); return isNaN(d.getTime()) ? null : Math.floor((Date.now() - d.getTime()) / 86400000); })() : null,
   })),
 },
 };
