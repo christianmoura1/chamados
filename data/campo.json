@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-29T14:00:15.362Z",
+ "atualizadoEm": "2026-10-29T16:40:15.008Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 18,
+  "emExecucao": 19,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 2,
-  "total": 18
+  "aguardandoToken": 1,
+  "total": 19
  },
  "serie": [
   {
@@ -21,11 +21,103 @@
   },
   {
    "data": "2026-10-29",
-   "abertos": 4,
-   "fechados": 4
+   "abertos": 8,
+   "fechados": 7
   }
  ],
  "itens": [
+  {
+   "numero": "WO0076800",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "29/10/2026 13:31:32",
+   "fechamento": "",
+   "principal": "BK066373 - PHU; PRINCE CASTLE; DHB-BK17DBR; HK 0214",
+   "secundario": "PHU - LOJA SEM NENHUMA PHU FUNCIONANDO",
+   "sigla": "PHU",
+   "tecnico": "",
+   "descricao": "BK066373 - PHU; PRINCE CASTLE; DHB-BK17DBR; HK 0214 | PHU - LOJA SEM NENHUMA PHU FUNCIONANDO",
+   "tarefas": [
+    "WOT0077431"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0076799",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "29/10/2026 13:30:01",
+   "fechamento": "",
+   "principal": "BK078296 - PHU; PRINCE CASTLE; DHB-BK17DBR; HK 0213732",
+   "secundario": "PHU - LOJA SEM NENHUMA PHU FUNCIONANDO",
+   "sigla": "PHU",
+   "tecnico": "",
+   "descricao": "BK078296 - PHU; PRINCE CASTLE; DHB-BK17DBR; HK 0213732 | PHU - LOJA SEM NENHUMA PHU FUNCIONANDO",
+   "tarefas": [
+    "WOT0077430"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0076789",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "26160 - FS CANOAS - AV GETULIO VARGAS 3800",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "29/10/2026 13:04:42",
+   "fechamento": "",
+   "principal": "BK070957 - FRITADEIRA; PITCO; SSHLV14; G18HB037592",
+   "secundario": "FRI - SUPERAQUECENDO",
+   "sigla": "FRI",
+   "tecnico": "",
+   "descricao": "BK070957 - FRITADEIRA; PITCO; SSHLV14; G18HB037592 | FRI - SUPERAQUECENDO",
+   "tarefas": [
+    "WOT0077420"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0076748",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "19618 - SHOP GRAVATAI",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "29/10/2026 11:51:58",
+   "fechamento": "",
+   "principal": "BK021421 - CÂMARA DE RESFRIADOS",
+   "secundario": "CMR - NÃO LIGA",
+   "sigla": "CMR",
+   "tecnico": "",
+   "descricao": "BK021421 - CÂMARA DE RESFRIADOS | CMR - NÃO LIGA",
+   "tarefas": [
+    "WOT0077377"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0076701",
    "marca": "BKB",
@@ -43,29 +135,6 @@
    "descricao": "BK071580 - COIFA LAVADORA; MELTING | COI - COIFA EM CONTIGÊNCIA",
    "tarefas": [
     "WOT0077330"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0076689",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "27590 - PORTO BELO OUTLET",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "29/10/2026 10:04:57",
-   "fechamento": "",
-   "principal": "BK080252 - CARRINHO PARA BROILER",
-   "secundario": "CDB - RODA DO CARRINHO DANIFICADO/OXIDADA",
-   "sigla": "CDB",
-   "tecnico": "",
-   "descricao": "BK080252 - CARRINHO PARA BROILER | CDB - RODA DO CARRINHO DANIFICADO/OXIDADA",
-   "tarefas": [
-    "WOT0077318"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
@@ -230,52 +299,6 @@
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0076269",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "16687 - SHOP PALLADIUM PONTA GROSSA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "28/10/2026 11:58:35",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - QUADRO ELÉTRICO - NÃO LIGA ELETRICAMENTE",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - NÃO LIGA ELETRICAMENTE",
-   "tarefas": [
-    "WOT0076893"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0076268",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "16687 - SHOP PALLADIUM PONTA GROSSA",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "28/10/2026 11:55:53",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - COZINHA - REFLUXO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
-   "tarefas": [
-    "WOT0076892"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "29/10/2026 09:24:05",
    "contato": "",
    "grupo": "execucao"
   },
