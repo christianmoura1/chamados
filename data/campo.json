@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-29T16:40:15.008Z",
+ "atualizadoEm": "2026-10-29T20:40:16.199Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 19,
+  "emExecucao": 21,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 19
+  "total": 21
  },
  "serie": [
   {
@@ -21,11 +21,80 @@
   },
   {
    "data": "2026-10-29",
-   "abertos": 8,
-   "fechados": 7
+   "abertos": 11,
+   "fechados": 9
   }
  ],
  "itens": [
+  {
+   "numero": "WO0076959",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "16687 - SHOP PALLADIUM PONTA GROSSA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "29/10/2026 17:30:23",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - COZINHA - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
+   "tarefas": [
+    "WOT0077595"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0076951",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "15893 - SHOP IGUATEMI PORTO ALEGRE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "29/10/2026 17:03:43",
+   "fechamento": "",
+   "principal": "BK086249 - SISTEMA DE INCENDIO LOJA SHOP IGUATEMI P",
+   "secundario": "SCI - ACESSÓRIOS/PEÇAS DANIFICADAS",
+   "sigla": "SCI",
+   "tecnico": "",
+   "descricao": "BK086249 - SISTEMA DE INCENDIO LOJA SHOP IGUATEMI P | SCI - ACESSÓRIOS/PEÇAS DANIFICADAS",
+   "tarefas": [
+    "WOT0077588"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0076950",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "20049 - SHOP PRACA RIO GRANDE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "29/10/2026 17:03:39",
+   "fechamento": "",
+   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
+   "secundario": "SCI - SPRINKLER COM VAZAMENTO",
+   "sigla": "SCI",
+   "tecnico": "",
+   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - SPRINKLER COM VAZAMENTO",
+   "tarefas": [
+    "WOT0077587"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0076800",
    "marca": "BKB",
@@ -181,29 +250,6 @@
    "descricao": "BK076140 - FRITADEIRA | FRI - SOMENTE 1 CUBA FUNCIONANDO",
    "tarefas": [
     "WOT0077301"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0076585",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL NORTE RS",
-   "loja": "15893 - SHOP IGUATEMI PORTO ALEGRE",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "28/10/2026 23:34:50",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - CABINE PRIMÁRIA - PRINCÍPIO DE INCÊNDIO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - CABINE PRIMÁRIA - PRINCÍPIO DE INCÊNDIO",
-   "tarefas": [
-    "WOT0077213"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
