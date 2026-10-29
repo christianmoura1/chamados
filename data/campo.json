@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-29T10:40:12.821Z",
+ "atualizadoEm": "2026-10-29T12:40:13.742Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 16,
+  "emExecucao": 15,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 0,
-  "total": 16
+  "aguardandoToken": 2,
+  "total": 15
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-29",
-   "abertos": 0,
-   "fechados": 0
+   "abertos": 1,
+   "fechados": 3
   }
  ],
  "itens": [
+  {
+   "numero": "WO0076673",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "21787 - CARREFOUR PARTENON",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "29/10/2026 09:16:02",
+   "fechamento": "",
+   "principal": "BK076140 - FRITADEIRA",
+   "secundario": "FRI - SOMENTE 1 CUBA FUNCIONANDO",
+   "sigla": "FRI",
+   "tecnico": "",
+   "descricao": "BK076140 - FRITADEIRA | FRI - SOMENTE 1 CUBA FUNCIONANDO",
+   "tarefas": [
+    "WOT0077301"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0076585",
    "marca": "BKB",
@@ -93,29 +116,6 @@
    "aguardandoToken": 0,
    "fechadoSemToken": "",
    "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0076397",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "OESTE PR",
-   "loja": "23989 - SHOP JL CASCAVEL",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "28/10/2026 15:32:08",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - COZINHA - REFLUXO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
-   "tarefas": [
-    "WOT0077024"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "Tentativa de contato: 28/10/2026 15:32:39;\n",
    "grupo": "execucao"
   },
   {
@@ -193,8 +193,8 @@
    "regional": "SUL",
    "setor": "GRANDE CURITIBA",
    "loja": "16687 - SHOP PALLADIUM PONTA GROSSA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
+   "status": "Trabalho em andamento",
+   "fase": "Requisição Completa - Aguardando Token",
    "abertura": "28/10/2026 11:55:53",
    "fechamento": "",
    "principal": "Area Interna",
@@ -205,8 +205,8 @@
    "tarefas": [
     "WOT0076892"
    ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
+   "aguardandoToken": 1,
+   "fechadoSemToken": "29/10/2026 09:24:05",
    "contato": "",
    "grupo": "execucao"
   },
@@ -285,8 +285,8 @@
    "regional": "SUL",
    "setor": "CAPITAL CENTRO RS",
    "loja": "18408 - SHOP BELLA CITTA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
+   "status": "Trabalho em andamento",
+   "fase": "Requisição Completa - Aguardando Token",
    "abertura": "28/10/2026 08:08:53",
    "fechamento": "",
    "principal": "Area Interna",
@@ -297,8 +297,8 @@
    "tarefas": [
     "WOT0076760"
    ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
+   "aguardandoToken": 1,
+   "fechadoSemToken": "29/10/2026 08:34:38",
    "contato": "Tentativa de contato: 28/10/2026 08:11:26;\n",
    "grupo": "execucao"
   },
@@ -346,29 +346,6 @@
    "aguardandoToken": 0,
    "fechadoSemToken": "",
    "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0075732",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "30086 FS PONTA GROSSA R BALDUINO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "27/10/2026 10:39:56",
-   "fechamento": "",
-   "principal": "BK245268 - CAIXA DE GORDURA",
-   "secundario": "REF - REFLUXO",
-   "sigla": "GOR",
-   "tecnico": "",
-   "descricao": "BK245268 - CAIXA DE GORDURA | REF - REFLUXO",
-   "tarefas": [
-    "WOT0076357"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "Tentativa de contato: 27/10/2026 12:17:53;\n",
    "grupo": "execucao"
   },
   {
