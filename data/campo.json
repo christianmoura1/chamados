@@ -1,31 +1,307 @@
 {
- "atualizadoEm": "2026-10-27T22:40:16.746Z",
+ "atualizadoEm": "2026-10-29T10:40:12.821Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 8,
+  "emExecucao": 16,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 8
+  "total": 16
  },
  "serie": [
-  {
-   "data": "2026-10-25",
-   "abertos": 7,
-   "fechados": 3
-  },
-  {
-   "data": "2026-10-26",
-   "abertos": 7,
-   "fechados": 11
-  },
   {
    "data": "2026-10-27",
    "abertos": 6,
    "fechados": 2
+  },
+  {
+   "data": "2026-10-28",
+   "abertos": 16,
+   "fechados": 8
+  },
+  {
+   "data": "2026-10-29",
+   "abertos": 0,
+   "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0076585",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "15893 - SHOP IGUATEMI PORTO ALEGRE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "28/10/2026 23:34:50",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - CABINE PRIMÁRIA - PRINCÍPIO DE INCÊNDIO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - CABINE PRIMÁRIA - PRINCÍPIO DE INCÊNDIO",
+   "tarefas": [
+    "WOT0077213"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0076526",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "28/10/2026 19:46:47",
+   "fechamento": "",
+   "principal": "AR CONDICIONADO",
+   "secundario": "ARC - LOJA SEM AR CONDICIONADO",
+   "sigla": "ARC",
+   "tecnico": "",
+   "descricao": "AR CONDICIONADO | ARC - LOJA SEM AR CONDICIONADO",
+   "tarefas": [
+    "WOT0077152"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0076411",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "OESTE PR",
+   "loja": "22536 - Shopping Palladium Foz do Iguaçu ",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "28/10/2026 15:43:28",
+   "fechamento": "",
+   "principal": "FRITADEIRA",
+   "secundario": "FRI - NÃO LIGA",
+   "sigla": "FRI",
+   "tecnico": "",
+   "descricao": "FRITADEIRA | FRI - NÃO LIGA",
+   "tarefas": [
+    "WOT0077038"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0076397",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "OESTE PR",
+   "loja": "23989 - SHOP JL CASCAVEL",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "28/10/2026 15:32:08",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - COZINHA - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
+   "tarefas": [
+    "WOT0077024"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "Tentativa de contato: 28/10/2026 15:32:39;\n",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0076396",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "23721 - PARK SHOP CANOAS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "28/10/2026 15:30:45",
+   "fechamento": "",
+   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
+   "secundario": "SCI - CENTRAL DE FUMAÇA",
+   "sigla": "SCI",
+   "tecnico": "",
+   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - CENTRAL DE FUMAÇA",
+   "tarefas": [
+    "WOT0077023"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0076362",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "19868 - SHOP DO VALE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "28/10/2026 14:26:51",
+   "fechamento": "",
+   "principal": "BK021425 - COIFA LAVADORA; MELTING",
+   "secundario": "COI - COIFA COM VAZAMENTO",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK021425 - COIFA LAVADORA; MELTING | COI - COIFA COM VAZAMENTO",
+   "tarefas": [
+    "WOT0076989"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0076269",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "16687 - SHOP PALLADIUM PONTA GROSSA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "28/10/2026 11:58:35",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - QUADRO ELÉTRICO - NÃO LIGA ELETRICAMENTE",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - NÃO LIGA ELETRICAMENTE",
+   "tarefas": [
+    "WOT0076893"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0076268",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "16687 - SHOP PALLADIUM PONTA GROSSA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "28/10/2026 11:55:53",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - COZINHA - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
+   "tarefas": [
+    "WOT0076892"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0076225",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "25447 - FS POA - AV DA CAVALHADA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "28/10/2026 10:49:29",
+   "fechamento": "",
+   "principal": "BK077586 - FRITADEIRA",
+   "secundario": "FRI - NÃO LIGA",
+   "sigla": "FRI",
+   "tecnico": "",
+   "descricao": "BK077586 - FRITADEIRA | FRI - NÃO LIGA",
+   "tarefas": [
+    "WOT0076849"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0076200",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "20215 - CARREFOUR PASSO D'AREIA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "28/10/2026 10:13:12",
+   "fechamento": "",
+   "principal": "TOSTADEIRA 220V 3290W 66A71GRC",
+   "secundario": "TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
+   "sigla": "TST",
+   "tecnico": "",
+   "descricao": "TOSTADEIRA 220V 3290W 66A71GRC | TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
+   "tarefas": [
+    "WOT0076824"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0076154",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "20215 - CARREFOUR PASSO D'AREIA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "28/10/2026 09:04:37",
+   "fechamento": "",
+   "principal": "COIFA",
+   "secundario": "COI - COIFA NÃO FUNCIONA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "COIFA | COI - COIFA NÃO FUNCIONA",
+   "tarefas": [
+    "WOT0076778"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0076136",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "18408 - SHOP BELLA CITTA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "28/10/2026 08:08:53",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - GÁS - VAZAMENTO DE GÁS",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - GÁS - VAZAMENTO DE GÁS",
+   "tarefas": [
+    "WOT0076760"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "Tentativa de contato: 28/10/2026 08:11:26;\n",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0076037",
    "marca": "BKB",
@@ -43,29 +319,6 @@
    "descricao": "CÂMARA DE RESFRIADOS | CMR - NÃO ATINGE TEMPERATURA",
    "tarefas": [
     "WOT0076661"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0075954",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "16852 - SHOP SAO JOSE DOS PINHAIS",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "27/10/2026 16:24:15",
-   "fechamento": "",
-   "principal": "BK066867 - CÂMARA DE CONGELADOS",
-   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
-   "sigla": "CMG",
-   "tecnico": "",
-   "descricao": "BK066867 - CÂMARA DE CONGELADOS | CMG - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0076577"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
@@ -139,75 +392,6 @@
    "aguardandoToken": 0,
    "fechadoSemToken": "",
    "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0075575",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL SUL RS",
-   "loja": "26160 - FS CANOAS - AV GETULIO VARGAS 3800",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "26/10/2026 19:12:54",
-   "fechamento": "",
-   "principal": "BK070972 - CAMARA DE CONGELADOS; SÃO RAFAEL",
-   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
-   "sigla": "CMG",
-   "tecnico": "",
-   "descricao": "BK070972 - CAMARA DE CONGELADOS; SÃO RAFAEL | CMG - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0076201"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0075133",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "25/10/2026 19:49:09",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
-   "tarefas": [
-    "WOT0075752"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0075018",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL NORTE RS",
-   "loja": "23725 - SHOP PRACA NOVA SANTA MARIA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "25/10/2026 12:45:28",
-   "fechamento": "",
-   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
-   "secundario": "SCI - SENSOR DE FUMAÇA INOPERANTE",
-   "sigla": "SCI",
-   "tecnico": "",
-   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - SENSOR DE FUMAÇA INOPERANTE",
-   "tarefas": [
-    "WOT0075636"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "Tentativa de contato: 25/10/2026 12:48:27;\n",
    "grupo": "execucao"
   }
  ]
