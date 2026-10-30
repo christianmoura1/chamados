@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-10-30T01:20:17.022Z",
+ "atualizadoEm": "2026-10-30T20:40:22.352Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 21,
+  "emExecucao": 23,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 1,
-  "total": 21
+  "aguardandoToken": 3,
+  "total": 23
  },
  "serie": [
-  {
-   "data": "2026-10-27",
-   "abertos": 6,
-   "fechados": 2
-  },
   {
    "data": "2026-10-28",
    "abertos": 16,
@@ -23,9 +18,221 @@
    "data": "2026-10-29",
    "abertos": 11,
    "fechados": 15
+  },
+  {
+   "data": "2026-10-30",
+   "abertos": 13,
+   "fechados": 10
   }
  ],
  "itens": [
+  {
+   "numero": "WO0077366",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "27589 - PARK EUROPEU BLUMENAU",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "30/10/2026 17:26:19",
+   "fechamento": "",
+   "principal": "EXAUSTOR",
+   "secundario": "EXA - NÃO PUXA FUMAÇA",
+   "sigla": "EXA",
+   "tecnico": "",
+   "descricao": "EXAUSTOR | EXA - NÃO PUXA FUMAÇA",
+   "tarefas": [
+    "WOT0078013"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0077278",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "16852 - SHOP SAO JOSE DOS PINHAIS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "30/10/2026 14:06:40",
+   "fechamento": "",
+   "principal": "BK066857 - EXAUSTOR; BERLINERLUFT; GTS 500-1",
+   "secundario": "EXA - NÃO PUXA FUMAÇA",
+   "sigla": "EXA",
+   "tecnico": "",
+   "descricao": "BK066857 - EXAUSTOR; BERLINERLUFT; GTS 500-1 | EXA - NÃO PUXA FUMAÇA",
+   "tarefas": [
+    "WOT0077923"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0077269",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "OESTE PR",
+   "loja": "22536 - Shopping Palladium Foz do Iguaçu ",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "30/10/2026 13:52:34",
+   "fechamento": "",
+   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
+   "secundario": "SCI - CO² DISPARADO",
+   "sigla": "SCI",
+   "tecnico": "",
+   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - CO² DISPARADO",
+   "tarefas": [
+    "WOT0077913"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0077237",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "24741 - FS PELOTAS - AV FERREIRA VIANA",
+   "status": "Trabalho em andamento",
+   "fase": "Requisição Completa - Aguardando Token",
+   "abertura": "30/10/2026 12:49:28",
+   "fechamento": "",
+   "principal": "AR CONDICIONADO",
+   "secundario": "ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "sigla": "ARC",
+   "tecnico": "",
+   "descricao": "AR CONDICIONADO | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "tarefas": [
+    "WOT0077881"
+   ],
+   "aguardandoToken": 1,
+   "fechadoSemToken": "30/10/2026 15:45:22",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0077234",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "20621 - SHOP PELOTAS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "30/10/2026 12:45:41",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - COZINHA - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
+   "tarefas": [
+    "WOT0077877"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0077152",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "30/10/2026 10:22:11",
+   "fechamento": "",
+   "principal": "BK038151 - COIFA",
+   "secundario": "COI - COIFA EM CONTIGÊNCIA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK038151 - COIFA | COI - COIFA EM CONTIGÊNCIA",
+   "tarefas": [
+    "WOT0077795"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0077137",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "OESTE PR",
+   "loja": "23989 - SHOP JL CASCAVEL",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "30/10/2026 10:03:02",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - COZINHA - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
+   "tarefas": [
+    "WOT0077780"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0077083",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "16852 - SHOP SAO JOSE DOS PINHAIS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "30/10/2026 08:57:32",
+   "fechamento": "",
+   "principal": "BK080429 - COIFA WASH PULL HTVK 2800 X 1200 +Q.E",
+   "secundario": "COI - COIFA NÃO FUNCIONA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK080429 - COIFA WASH PULL HTVK 2800 X 1200 +Q.E | COI - COIFA NÃO FUNCIONA",
+   "tarefas": [
+    "WOT0077724"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0077041",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "30086 FS PONTA GROSSA R BALDUINO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "30/10/2026 05:17:07",
+   "fechamento": "",
+   "principal": "BK245289 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
+   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMR",
+   "tecnico": "",
+   "descricao": "BK245289 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0077682"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0076959",
    "marca": "BKB",
@@ -73,75 +280,6 @@
    "grupo": "execucao"
   },
   {
-   "numero": "WO0076950",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "20049 - SHOP PRACA RIO GRANDE",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "29/10/2026 17:03:39",
-   "fechamento": "",
-   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
-   "secundario": "SCI - SPRINKLER COM VAZAMENTO",
-   "sigla": "SCI",
-   "tecnico": "",
-   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - SPRINKLER COM VAZAMENTO",
-   "tarefas": [
-    "WOT0077587"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0076800",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "29/10/2026 13:31:32",
-   "fechamento": "",
-   "principal": "BK066373 - PHU; PRINCE CASTLE; DHB-BK17DBR; HK 0214",
-   "secundario": "PHU - LOJA SEM NENHUMA PHU FUNCIONANDO",
-   "sigla": "PHU",
-   "tecnico": "",
-   "descricao": "BK066373 - PHU; PRINCE CASTLE; DHB-BK17DBR; HK 0214 | PHU - LOJA SEM NENHUMA PHU FUNCIONANDO",
-   "tarefas": [
-    "WOT0077431"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0076799",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "22703 - FS CACHOEIRINHA - AV FLORES DA CUNHA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "29/10/2026 13:30:01",
-   "fechamento": "",
-   "principal": "BK078296 - PHU; PRINCE CASTLE; DHB-BK17DBR; HK 0213732",
-   "secundario": "PHU - LOJA SEM NENHUMA PHU FUNCIONANDO",
-   "sigla": "PHU",
-   "tecnico": "",
-   "descricao": "BK078296 - PHU; PRINCE CASTLE; DHB-BK17DBR; HK 0213732 | PHU - LOJA SEM NENHUMA PHU FUNCIONANDO",
-   "tarefas": [
-    "WOT0077430"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
    "numero": "WO0076789",
    "marca": "BKB",
    "regional": "SUL",
@@ -158,29 +296,6 @@
    "descricao": "BK070957 - FRITADEIRA; PITCO; SSHLV14; G18HB037592 | FRI - SUPERAQUECENDO",
    "tarefas": [
     "WOT0077420"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0076748",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL SUL RS",
-   "loja": "19618 - SHOP GRAVATAI",
-   "status": "Trabalho em andamento",
-   "fase": "Iniciado",
-   "abertura": "29/10/2026 11:51:58",
-   "fechamento": "",
-   "principal": "BK021421 - CÂMARA DE RESFRIADOS",
-   "secundario": "CMR - NÃO LIGA",
-   "sigla": "CMR",
-   "tecnico": "",
-   "descricao": "BK021421 - CÂMARA DE RESFRIADOS | CMR - NÃO LIGA",
-   "tarefas": [
-    "WOT0077377"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
@@ -354,8 +469,8 @@
    "regional": "SUL",
    "setor": "CAPITAL NORTE RS",
    "loja": "25447 - FS POA - AV DA CAVALHADA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
+   "status": "Trabalho em andamento",
+   "fase": "Requisição Completa - Aguardando Token",
    "abertura": "28/10/2026 10:49:29",
    "fechamento": "",
    "principal": "BK077586 - FRITADEIRA",
@@ -366,8 +481,8 @@
    "tarefas": [
     "WOT0076849"
    ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
+   "aguardandoToken": 1,
+   "fechadoSemToken": "30/10/2026 15:45:12",
    "contato": "",
    "grupo": "execucao"
   },
@@ -400,7 +515,7 @@
    "regional": "SUL",
    "setor": "SUDOESTE RS",
    "loja": "20215 - CARREFOUR PASSO D'AREIA",
-   "status": "Pronto para Expedição",
+   "status": "Atribuído",
    "fase": "Iniciado",
    "abertura": "28/10/2026 09:04:37",
    "fechamento": "",
@@ -437,76 +552,7 @@
    ],
    "aguardandoToken": 1,
    "fechadoSemToken": "29/10/2026 08:34:38",
-   "contato": "Tentativa de contato: 28/10/2026 08:11:26;\n",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0076037",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "20049 - SHOP PRACA RIO GRANDE",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "27/10/2026 19:13:23",
-   "fechamento": "",
-   "principal": "CÂMARA DE RESFRIADOS",
-   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
-   "sigla": "CMR",
-   "tecnico": "",
-   "descricao": "CÂMARA DE RESFRIADOS | CMR - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0076661"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0075952",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "25677 - FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "27/10/2026 16:16:58",
-   "fechamento": "",
-   "principal": "BK068719 - COIFA LAVADORA; MELTING",
-   "secundario": "COI - COIFA COM DRENO ENTUPIDO",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK068719 - COIFA LAVADORA; MELTING | COI - COIFA COM DRENO ENTUPIDO",
-   "tarefas": [
-    "WOT0076575"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0075708",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL NORTE RS",
-   "loja": "23725 - SHOP PRACA NOVA SANTA MARIA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "27/10/2026 10:00:21",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
-   "tarefas": [
-    "WOT0076333"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
+   "contato": "Tentativa de contato: 28/10/2026 08:11:26;\nTentativa de contato: 30/10/2026 08:39:17;\n",
    "grupo": "execucao"
   }
  ]
