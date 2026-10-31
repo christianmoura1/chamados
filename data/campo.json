@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-31T16:00:26.397Z",
+ "atualizadoEm": "2026-10-31T18:40:24.323Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 13,
+  "emExecucao": 15,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 2,
-  "total": 13
+  "total": 15
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-10-31",
-   "abertos": 7,
-   "fechados": 12
+   "abertos": 9,
+   "fechados": 14
   }
  ],
  "itens": [
+  {
+   "numero": "WO0077825",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "31/10/2026 15:34:23",
+   "fechamento": "",
+   "principal": "BK035150 - CÂMARA DE RESFRIADOS",
+   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMR",
+   "tecnico": "",
+   "descricao": "BK035150 - CÂMARA DE RESFRIADOS | CMR - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0078475"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0077791",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "31/10/2026 14:55:39",
+   "fechamento": "",
+   "principal": "BK063624 - EXAUSTOR",
+   "secundario": "EXA - NÃO PUXA FUMAÇA",
+   "sigla": "EXA",
+   "tecnico": "",
+   "descricao": "BK063624 - EXAUSTOR | EXA - NÃO PUXA FUMAÇA",
+   "tarefas": [
+    "WOT0078441"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0077691",
    "marca": "BKB",
