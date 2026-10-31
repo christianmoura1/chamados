@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-10-31T01:20:23.111Z",
+ "atualizadoEm": "2026-10-31T10:00:26.629Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 22,
+  "emExecucao": 14,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 5,
-  "total": 22
+  "aguardandoToken": 2,
+  "total": 14
  },
  "serie": [
-  {
-   "data": "2026-10-28",
-   "abertos": 16,
-   "fechados": 8
-  },
   {
    "data": "2026-10-29",
    "abertos": 11,
@@ -23,6 +18,11 @@
    "data": "2026-10-30",
    "abertos": 15,
    "fechados": 16
+  },
+  {
+   "data": "2026-10-31",
+   "abertos": 0,
+   "fechados": 1
   }
  ],
  "itens": [
@@ -115,29 +115,6 @@
    ],
    "aguardandoToken": 1,
    "fechadoSemToken": "30/10/2026 19:43:19",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0077269",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "OESTE PR",
-   "loja": "22536 - Shopping Palladium Foz do Iguaçu ",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "30/10/2026 13:52:34",
-   "fechamento": "",
-   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
-   "secundario": "SCI - CO² DISPARADO",
-   "sigla": "SCI",
-   "tecnico": "",
-   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - CO² DISPARADO",
-   "tarefas": [
-    "WOT0077913"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "30/10/2026 22:02:53",
    "contato": "",
    "grupo": "execucao"
   },
@@ -369,167 +346,6 @@
    "aguardandoToken": 0,
    "fechadoSemToken": "",
    "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0076526",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "28/10/2026 19:46:47",
-   "fechamento": "",
-   "principal": "AR CONDICIONADO",
-   "secundario": "ARC - LOJA SEM AR CONDICIONADO",
-   "sigla": "ARC",
-   "tecnico": "",
-   "descricao": "AR CONDICIONADO | ARC - LOJA SEM AR CONDICIONADO",
-   "tarefas": [
-    "WOT0077152"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0076396",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL SUL RS",
-   "loja": "23721 - PARK SHOP CANOAS",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "28/10/2026 15:30:45",
-   "fechamento": "",
-   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
-   "secundario": "SCI - CENTRAL DE FUMAÇA",
-   "sigla": "SCI",
-   "tecnico": "",
-   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - CENTRAL DE FUMAÇA",
-   "tarefas": [
-    "WOT0077023"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0076362",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "19868 - SHOP DO VALE",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "28/10/2026 14:26:51",
-   "fechamento": "",
-   "principal": "BK021425 - COIFA LAVADORA; MELTING",
-   "secundario": "COI - COIFA COM VAZAMENTO",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK021425 - COIFA LAVADORA; MELTING | COI - COIFA COM VAZAMENTO",
-   "tarefas": [
-    "WOT0076989"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0076225",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL NORTE RS",
-   "loja": "25447 - FS POA - AV DA CAVALHADA",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "28/10/2026 10:49:29",
-   "fechamento": "",
-   "principal": "BK077586 - FRITADEIRA",
-   "secundario": "FRI - NÃO LIGA",
-   "sigla": "FRI",
-   "tecnico": "",
-   "descricao": "BK077586 - FRITADEIRA | FRI - NÃO LIGA",
-   "tarefas": [
-    "WOT0076849"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "30/10/2026 15:45:12",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0076200",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "20215 - CARREFOUR PASSO D'AREIA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "28/10/2026 10:13:12",
-   "fechamento": "",
-   "principal": "TOSTADEIRA 220V 3290W 66A71GRC",
-   "secundario": "TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
-   "sigla": "TST",
-   "tecnico": "",
-   "descricao": "TOSTADEIRA 220V 3290W 66A71GRC | TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
-   "tarefas": [
-    "WOT0076824"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0076154",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "20215 - CARREFOUR PASSO D'AREIA",
-   "status": "Atribuído",
-   "fase": "Iniciado",
-   "abertura": "28/10/2026 09:04:37",
-   "fechamento": "",
-   "principal": "COIFA",
-   "secundario": "COI - COIFA NÃO FUNCIONA",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "COIFA | COI - COIFA NÃO FUNCIONA",
-   "tarefas": [
-    "WOT0076778"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0076136",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "18408 - SHOP BELLA CITTA",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "28/10/2026 08:08:53",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - GÁS - VAZAMENTO DE GÁS",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - GÁS - VAZAMENTO DE GÁS",
-   "tarefas": [
-    "WOT0076760"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "29/10/2026 08:34:38",
-   "contato": "Tentativa de contato: 28/10/2026 08:11:26;\nTentativa de contato: 30/10/2026 08:39:17;\n",
    "grupo": "execucao"
   }
  ]
