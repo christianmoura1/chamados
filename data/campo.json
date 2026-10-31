@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-31T10:00:26.629Z",
+ "atualizadoEm": "2026-10-31T13:00:32.416Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 14,
+  "emExecucao": 16,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 2,
-  "total": 14
+  "aguardandoToken": 1,
+  "total": 16
  },
  "serie": [
   {
@@ -21,11 +21,80 @@
   },
   {
    "data": "2026-10-31",
-   "abertos": 0,
-   "fechados": 1
+   "abertos": 3,
+   "fechados": 2
   }
  ],
  "itens": [
+  {
+   "numero": "WO0077625",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "31/10/2026 09:56:00",
+   "fechamento": "",
+   "principal": "BK063624 - EXAUSTOR",
+   "secundario": "EXA - NÃO LIGA",
+   "sigla": "EXA",
+   "tecnico": "",
+   "descricao": "BK063624 - EXAUSTOR | EXA - NÃO LIGA",
+   "tarefas": [
+    "WOT0078272"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0077621",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "21659 - BOURBON SHOP PORTO ALEGRE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "31/10/2026 09:45:06",
+   "fechamento": "",
+   "principal": "FRITADEIRA",
+   "secundario": "FRI - NÃO LIGA",
+   "sigla": "FRI",
+   "tecnico": "",
+   "descricao": "FRITADEIRA | FRI - NÃO LIGA",
+   "tarefas": [
+    "WOT0078268"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0077590",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "19868 - SHOP DO VALE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "31/10/2026 08:43:06",
+   "fechamento": "",
+   "principal": "BK021456 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
+   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMR",
+   "tecnico": "",
+   "descricao": "BK021456 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0078237"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0077529",
    "marca": "BKB",
@@ -92,29 +161,6 @@
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0077278",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "16852 - SHOP SAO JOSE DOS PINHAIS",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "30/10/2026 14:06:40",
-   "fechamento": "",
-   "principal": "BK066857 - EXAUSTOR; BERLINERLUFT; GTS 500-1",
-   "secundario": "EXA - NÃO PUXA FUMAÇA",
-   "sigla": "EXA",
-   "tecnico": "",
-   "descricao": "BK066857 - EXAUSTOR; BERLINERLUFT; GTS 500-1 | EXA - NÃO PUXA FUMAÇA",
-   "tarefas": [
-    "WOT0077923"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "30/10/2026 19:43:19",
    "contato": "",
    "grupo": "execucao"
   },
