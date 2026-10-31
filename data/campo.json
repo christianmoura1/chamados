@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-31T13:00:32.416Z",
+ "atualizadoEm": "2026-10-31T15:00:39.381Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 16,
+  "emExecucao": 15,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 1,
-  "total": 16
+  "aguardandoToken": 2,
+  "total": 15
  },
  "serie": [
   {
@@ -21,28 +21,28 @@
   },
   {
    "data": "2026-10-31",
-   "abertos": 3,
-   "fechados": 2
+   "abertos": 7,
+   "fechados": 9
   }
  ],
  "itens": [
   {
-   "numero": "WO0077625",
+   "numero": "WO0077691",
    "marca": "BKB",
    "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "27590 - PORTO BELO OUTLET",
    "status": "Pronto para Expedição",
    "fase": "Iniciado",
-   "abertura": "31/10/2026 09:56:00",
+   "abertura": "31/10/2026 11:41:31",
    "fechamento": "",
-   "principal": "BK063624 - EXAUSTOR",
-   "secundario": "EXA - NÃO LIGA",
-   "sigla": "EXA",
+   "principal": "BK080252 - CARRINHO PARA BROILER",
+   "secundario": "CDB - CARRINHO TORTO / BALANÇANDO",
+   "sigla": "CDB",
    "tecnico": "",
-   "descricao": "BK063624 - EXAUSTOR | EXA - NÃO LIGA",
+   "descricao": "BK080252 - CARRINHO PARA BROILER | CDB - CARRINHO TORTO / BALANÇANDO",
    "tarefas": [
-    "WOT0078272"
+    "WOT0078338"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
@@ -50,22 +50,45 @@
    "grupo": "execucao"
   },
   {
-   "numero": "WO0077621",
+   "numero": "WO0077679",
    "marca": "BKB",
    "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "21659 - BOURBON SHOP PORTO ALEGRE",
+   "setor": "OESTE PR",
+   "loja": "25277 - SHOP GUARAPUAVA",
    "status": "Pronto para Expedição",
    "fase": "Iniciado",
-   "abertura": "31/10/2026 09:45:06",
+   "abertura": "31/10/2026 11:21:29",
    "fechamento": "",
-   "principal": "FRITADEIRA",
-   "secundario": "FRI - NÃO LIGA",
-   "sigla": "FRI",
+   "principal": "Area Interna",
+   "secundario": "AIN - COZINHA - REFLUXO",
+   "sigla": "AIN",
    "tecnico": "",
-   "descricao": "FRITADEIRA | FRI - NÃO LIGA",
+   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
    "tarefas": [
-    "WOT0078268"
+    "WOT0078326"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0077678",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "31/10/2026 11:18:30",
+   "fechamento": "",
+   "principal": "BK038151 - COIFA",
+   "secundario": "COI - COIFA NÃO FUNCIONA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK038151 - COIFA | COI - COIFA NÃO FUNCIONA",
+   "tarefas": [
+    "WOT0078325"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
@@ -211,29 +234,6 @@
    "grupo": "execucao"
   },
   {
-   "numero": "WO0077152",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "30/10/2026 10:22:11",
-   "fechamento": "",
-   "principal": "BK038151 - COIFA",
-   "secundario": "COI - COIFA EM CONTIGÊNCIA",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK038151 - COIFA | COI - COIFA EM CONTIGÊNCIA",
-   "tarefas": [
-    "WOT0077795"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
    "numero": "WO0077137",
    "marca": "BKB",
    "regional": "SUL",
@@ -250,29 +250,6 @@
    "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
    "tarefas": [
     "WOT0077780"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0077083",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "16852 - SHOP SAO JOSE DOS PINHAIS",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "30/10/2026 08:57:32",
-   "fechamento": "",
-   "principal": "BK080429 - COIFA WASH PULL HTVK 2800 X 1200 +Q.E",
-   "secundario": "COI - COIFA NÃO FUNCIONA",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK080429 - COIFA WASH PULL HTVK 2800 X 1200 +Q.E | COI - COIFA NÃO FUNCIONA",
-   "tarefas": [
-    "WOT0077724"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
@@ -308,8 +285,8 @@
    "regional": "SUL",
    "setor": "GRANDE CURITIBA",
    "loja": "16687 - SHOP PALLADIUM PONTA GROSSA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
+   "status": "Trabalho em andamento",
+   "fase": "Requisição Completa - Aguardando Token",
    "abertura": "29/10/2026 17:30:23",
    "fechamento": "",
    "principal": "Area Interna",
@@ -320,8 +297,8 @@
    "tarefas": [
     "WOT0077595"
    ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
+   "aguardandoToken": 1,
+   "fechadoSemToken": "31/10/2026 11:56:24",
    "contato": "",
    "grupo": "execucao"
   },
