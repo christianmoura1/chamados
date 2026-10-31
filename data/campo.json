@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-31T18:40:24.323Z",
+ "atualizadoEm": "2026-10-31T20:40:24.657Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 15,
+  "emExecucao": 11,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 2,
-  "total": 15
+  "total": 11
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-31",
-   "abertos": 9,
-   "fechados": 14
+   "abertos": 11,
+   "fechados": 20
   }
  ],
  "itens": [
+  {
+   "numero": "WO0077854",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "23725 - SHOP PRACA NOVA SANTA MARIA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "31/10/2026 16:51:27",
+   "fechamento": "",
+   "principal": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D",
+   "secundario": "SCI - FALTA DO SENSOR DE FUMAÇA",
+   "sigla": "SCI",
+   "tecnico": "",
+   "descricao": "SISTEMA DE INCENDIO LOJA SHOP SÃO JOSE D | SCI - FALTA DO SENSOR DE FUMAÇA",
+   "tarefas": [
+    "WOT0078504"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0077825",
    "marca": "BKB",
@@ -43,29 +66,6 @@
    "descricao": "BK035150 - CÂMARA DE RESFRIADOS | CMR - NÃO ATINGE TEMPERATURA",
    "tarefas": [
     "WOT0078475"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0077791",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "31/10/2026 14:55:39",
-   "fechamento": "",
-   "principal": "BK063624 - EXAUSTOR",
-   "secundario": "EXA - NÃO PUXA FUMAÇA",
-   "sigla": "EXA",
-   "tecnico": "",
-   "descricao": "BK063624 - EXAUSTOR | EXA - NÃO PUXA FUMAÇA",
-   "tarefas": [
-    "WOT0078441"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
@@ -92,29 +92,6 @@
    ],
    "aguardandoToken": 1,
    "fechadoSemToken": "31/10/2026 12:46:17",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0077679",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "OESTE PR",
-   "loja": "25277 - SHOP GUARAPUAVA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "31/10/2026 11:21:29",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - COZINHA - REFLUXO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
-   "tarefas": [
-    "WOT0078326"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
    "contato": "",
    "grupo": "execucao"
   },
@@ -158,75 +135,6 @@
    "descricao": "BK021456 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
    "tarefas": [
     "WOT0078237"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0077529",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "27589 - PARK EUROPEU BLUMENAU",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "30/10/2026 21:36:21",
-   "fechamento": "",
-   "principal": "BK080289 - CARRINHO PARA BROILER",
-   "secundario": "CDB - RODA DO CARRINHO DANIFICADO/OXIDADA",
-   "sigla": "CDB",
-   "tecnico": "",
-   "descricao": "BK080289 - CARRINHO PARA BROILER | CDB - RODA DO CARRINHO DANIFICADO/OXIDADA",
-   "tarefas": [
-    "WOT0078176"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0077505",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL SUL RS",
-   "loja": "16619 - SHOP PRAIA DE BELAS",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "30/10/2026 19:23:17",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - COZINHA - REFLUXO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
-   "tarefas": [
-    "WOT0078152"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0077366",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "27589 - PARK EUROPEU BLUMENAU",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "30/10/2026 17:26:19",
-   "fechamento": "",
-   "principal": "EXAUSTOR",
-   "secundario": "EXA - NÃO PUXA FUMAÇA",
-   "sigla": "EXA",
-   "tecnico": "",
-   "descricao": "EXAUSTOR | EXA - NÃO PUXA FUMAÇA",
-   "tarefas": [
-    "WOT0078013"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
