@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-30T23:00:32.561Z",
+ "atualizadoEm": "2026-10-31T00:40:21.850Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 24,
+  "emExecucao": 22,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 6,
-  "total": 24
+  "aguardandoToken": 4,
+  "total": 22
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-10-30",
-   "abertos": 14,
-   "fechados": 12
+   "abertos": 15,
+   "fechados": 16
   }
  ],
  "itens": [
+  {
+   "numero": "WO0077529",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "27589 - PARK EUROPEU BLUMENAU",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "30/10/2026 21:36:21",
+   "fechamento": "",
+   "principal": "BK080289 - CARRINHO PARA BROILER",
+   "secundario": "CDB - RODA DO CARRINHO DANIFICADO/OXIDADA",
+   "sigla": "CDB",
+   "tecnico": "",
+   "descricao": "BK080289 - CARRINHO PARA BROILER | CDB - RODA DO CARRINHO DANIFICADO/OXIDADA",
+   "tarefas": [
+    "WOT0078176"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0077505",
    "marca": "BKB",
@@ -326,52 +349,6 @@
    "grupo": "execucao"
   },
   {
-   "numero": "WO0076701",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "16988 - SHOP ESTACAO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "29/10/2026 10:31:11",
-   "fechamento": "",
-   "principal": "BK071580 - COIFA LAVADORA; MELTING",
-   "secundario": "COI - COIFA EM CONTIGÊNCIA",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK071580 - COIFA LAVADORA; MELTING | COI - COIFA EM CONTIGÊNCIA",
-   "tarefas": [
-    "WOT0077330"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0076683",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL NORTE RS",
-   "loja": "15893 - SHOP IGUATEMI PORTO ALEGRE",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "29/10/2026 09:43:11",
-   "fechamento": "",
-   "principal": "BK063523 - MAQUINA DE SORVETE; TAYLOR; C716-33; M80",
-   "secundario": "MDS - PRINCÍPIO DE INCÊNDIO",
-   "sigla": "MDS",
-   "tecnico": "",
-   "descricao": "BK063523 - MAQUINA DE SORVETE; TAYLOR; C716-33; M80 | MDS - PRINCÍPIO DE INCÊNDIO",
-   "tarefas": [
-    "WOT0077312"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "30/10/2026 19:59:26",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
    "numero": "WO0076673",
    "marca": "BKB",
    "regional": "SUL",
@@ -414,29 +391,6 @@
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0076411",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "OESTE PR",
-   "loja": "22536 - Shopping Palladium Foz do Iguaçu ",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "28/10/2026 15:43:28",
-   "fechamento": "",
-   "principal": "FRITADEIRA",
-   "secundario": "FRI - NÃO LIGA",
-   "sigla": "FRI",
-   "tecnico": "",
-   "descricao": "FRITADEIRA | FRI - NÃO LIGA",
-   "tarefas": [
-    "WOT0077038"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "30/10/2026 19:39:56",
    "contato": "",
    "grupo": "execucao"
   },
