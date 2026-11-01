@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-10-31T20:40:24.657Z",
+ "atualizadoEm": "2026-11-01T02:00:27.915Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 11,
+  "emExecucao": 13,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 2,
-  "total": 11
+  "total": 13
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-10-31",
-   "abertos": 11,
+   "abertos": 13,
    "fechados": 20
   }
  ],
  "itens": [
+  {
+   "numero": "WO0077932",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "29084 FS PINHAIS PEDRO JACOMEL 13",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "31/10/2026 22:59:38",
+   "fechamento": "",
+   "principal": "BK229799 - COIFA",
+   "secundario": "COI - COIFA NÃO FUNCIONA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK229799 - COIFA | COI - COIFA NÃO FUNCIONA",
+   "tarefas": [
+    "WOT0078582"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0077898",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "20621 - SHOP PELOTAS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "31/10/2026 20:27:30",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - SALÃO - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - SALÃO - REFLUXO",
+   "tarefas": [
+    "WOT0078548"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0077854",
    "marca": "BKB",
@@ -161,7 +207,7 @@
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
-   "contato": "",
+   "contato": "Tentativa de contato: 31/10/2026 20:25:58;\n",
    "grupo": "execucao"
   },
   {
