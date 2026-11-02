@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-11-02T10:00:17.012Z",
+ "atualizadoEm": "2026-11-02T14:00:18.128Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 7,
+  "emExecucao": 9,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 7
+  "total": 9
  },
  "serie": [
   {
@@ -21,11 +21,80 @@
   },
   {
    "data": "2026-11-02",
-   "abertos": 0,
-   "fechados": 0
+   "abertos": 3,
+   "fechados": 2
   }
  ],
  "itens": [
+  {
+   "numero": "WO0078309",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "02/11/2026 10:43:32",
+   "fechamento": "",
+   "principal": "BK038151 - COIFA",
+   "secundario": "COI - COIFA EM CONTIGÊNCIA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK038151 - COIFA | COI - COIFA EM CONTIGÊNCIA",
+   "tarefas": [
+    "WOT0078966"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0078293",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "OESTE PR",
+   "loja": "23989 - SHOP JL CASCAVEL",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "02/11/2026 10:07:58",
+   "fechamento": "",
+   "principal": "BK085510 - AR CONDICIONADO",
+   "secundario": "ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "sigla": "ARC",
+   "tecnico": "",
+   "descricao": "BK085510 - AR CONDICIONADO | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "tarefas": [
+    "WOT0078949"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0078290",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "20215 - CARREFOUR PASSO D'AREIA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "02/11/2026 10:03:04",
+   "fechamento": "",
+   "principal": "BK078303 - AR CONDICIONADO",
+   "secundario": "ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "sigla": "ARC",
+   "tecnico": "",
+   "descricao": "BK078303 - AR CONDICIONADO | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "tarefas": [
+    "WOT0078946"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0078145",
    "marca": "BKB",
@@ -89,29 +158,6 @@
    "descricao": "MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - PRINCÍPIO DE INCÊNDIO",
    "tarefas": [
     "WOT0078697"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0077898",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "20621 - SHOP PELOTAS",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "31/10/2026 20:27:30",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - SALÃO - REFLUXO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - SALÃO - REFLUXO",
-   "tarefas": [
-    "WOT0078548"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
