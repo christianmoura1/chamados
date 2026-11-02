@@ -1,8 +1,8 @@
 {
- "atualizadoEm": "11/01/2026 05:07:09",
- "geradoEm": "2026-11-01T09:03:20.428Z",
+ "atualizadoEm": "11/01/2026 20:07:01",
+ "geradoEm": "2026-11-02T01:10:27.148Z",
  "totalLojasAvaliadas": 71,
- "scoreMedio": 8.42,
+ "scoreMedio": 8.27,
  "categorias": [
   {
    "chave": "sci",
@@ -30,24 +30,8 @@
      "itemRef": null
     },
     {
-     "nome": "23721 - PARK SHOP CANOAS",
-     "score": 15,
-     "diasAtraso": 36,
-     "dataRef": "25/09/2026",
-     "rotuloRef": "venceu",
-     "itemRef": null
-    },
-    {
      "nome": "25677 - FS NOVO HAMBURGO - RUA JOAQUIM NABUCO 382",
      "score": 15,
-     "diasAtraso": 17,
-     "dataRef": "14/10/2026",
-     "rotuloRef": "venceu",
-     "itemRef": null
-    },
-    {
-     "nome": "17792 - BOURBON SHOP NOVO HAMBURGO",
-     "score": 11,
      "diasAtraso": 17,
      "dataRef": "14/10/2026",
      "rotuloRef": "venceu",
@@ -66,6 +50,14 @@
      "score": 10,
      "diasAtraso": 69,
      "dataRef": "23/08/2026",
+     "rotuloRef": "venceu",
+     "itemRef": null
+    },
+    {
+     "nome": "17792 - BOURBON SHOP NOVO HAMBURGO",
+     "score": 10,
+     "diasAtraso": 17,
+     "dataRef": "14/10/2026",
      "rotuloRef": "venceu",
      "itemRef": null
     },
@@ -146,6 +138,14 @@
      "score": 10,
      "diasAtraso": 85,
      "dataRef": "07/08/2026",
+     "rotuloRef": "venceu",
+     "itemRef": null
+    },
+    {
+     "nome": "23721 - PARK SHOP CANOAS",
+     "score": 10,
+     "diasAtraso": 36,
+     "dataRef": "25/09/2026",
      "rotuloRef": "venceu",
      "itemRef": null
     },
@@ -245,18 +245,16 @@
  ],
  "abertoPorItemBruto": [
   "Coifa",
-  "Central de fumaça",
   "Quadro Elétrico",
-  "Carrinho do Broiler",
+  "Central de fumaça",
   "Exaustor",
   "Sistema de Incêndio",
   "7",
   "3",
-  "3",
+  "2",
   "1",
   "1",
-  "1",
-  "4",
+  "2",
   "Atrasado",
   "No Prazo"
  ],
@@ -455,22 +453,6 @@
     "diasAtraso": 5
    },
    {
-    "numero": "WO0076396",
-    "statusRisco": "Atrasado",
-    "item": "Central de fumaça",
-    "assuntoPrincipal": "SISTEMA DE INCÊNDIO",
-    "assuntoSecundario": "SCI - CENTRAL DE FUMAÇA",
-    "regional": "SUL",
-    "setor": "CAPITAL SUL RS",
-    "loja": "23721 - PARK SHOP CANOAS",
-    "status": "Pronto Para Envio",
-    "dtAbertura": "28/10/2026",
-    "dtEncerramento": "",
-    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
-    "assunto": "SCI - CENTRAL DE FUMAÇA",
-    "diasAtraso": 4
-   },
-   {
     "numero": "WO0076951",
     "statusRisco": "Atrasado",
     "item": "Sistema de Incêndio",
@@ -485,22 +467,6 @@
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
     "assunto": "SCI - ACESSÓRIOS/PEÇAS DANIFICADAS",
     "diasAtraso": 3
-   },
-   {
-    "numero": "WO0077691",
-    "statusRisco": "Atrasado",
-    "item": "Carrinho do Broiler",
-    "assuntoPrincipal": "CARRINHO DE BROILER",
-    "assuntoSecundario": "CDB - CARRINHO TORTO / BALANÇANDO",
-    "regional": "SUL",
-    "setor": "CURITIBA OESTE/SC",
-    "loja": "27590 - PORTO BELO OUTLET",
-    "status": "Em Andamento",
-    "dtAbertura": "31/10/2026",
-    "dtEncerramento": "",
-    "tecnico": "Gustavo de Godoy Matheus",
-    "assunto": "CDB - CARRINHO TORTO / BALANÇANDO",
-    "diasAtraso": 1
    },
    {
     "numero": "WO0077854",
@@ -551,39 +517,99 @@
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
     "assunto": "COI - COIFA COM VAZAMENTO",
     "diasAtraso": 4
-   },
-   {
-    "numero": "WO0077678",
-    "statusRisco": "No Prazo",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA NÃO FUNCIONA",
-    "regional": "SUL",
-    "setor": "VALE DOS SINOS",
-    "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
-    "status": "Pronto Para Envio",
-    "dtAbertura": "31/10/2026",
-    "dtEncerramento": "",
-    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
-    "assunto": "COI - COIFA NÃO FUNCIONA",
-    "diasAtraso": 1
-   },
-   {
-    "numero": "WO0077932",
-    "statusRisco": "No Prazo",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA NÃO FUNCIONA",
-    "regional": "SUL",
-    "setor": "CURITIBA NORTE",
-    "loja": "29084 - FS PINHAIS - R DEP JOAO LEOPOLDO JACOMEL 13185",
-    "status": "Pronto Para Envio",
-    "dtAbertura": "31/10/2026",
-    "dtEncerramento": "",
-    "tecnico": "CARLOS MAGNO DA SILVA LIRA",
-    "assunto": "COI - COIFA NÃO FUNCIONA",
-    "diasAtraso": 1
    }
   ]
- }
+ },
+ "ultimosFechados": [
+  {
+   "numero": "WO0077691",
+   "fechadoEm": "01/11/2026 15:46:39",
+   "dias": 1,
+   "prioridade": "SOS",
+   "problema": "CDB - CARRINHO TORTO / BALANÇANDO",
+   "loja": "27590 - PORTO BELO OUTLET",
+   "fechadoPor": "Gustavo de Godoy Matheus"
+  },
+  {
+   "numero": "WO0077678",
+   "fechadoEm": "01/11/2026 12:58:13",
+   "dias": 1,
+   "prioridade": "SOS",
+   "problema": "COI - COIFA NÃO FUNCIONA",
+   "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
+   "fechadoPor": "Thiago Dos Santos Coelho"
+  },
+  {
+   "numero": "WO0076396",
+   "fechadoEm": "01/11/2026 12:03:47",
+   "dias": 3,
+   "prioridade": "SOS",
+   "problema": "SCI - CENTRAL DE FUMAÇA",
+   "loja": "23721 - PARK SHOP CANOAS",
+   "fechadoPor": "Thiago Dos Santos Coelho"
+  },
+  {
+   "numero": "WO0077932",
+   "fechadoEm": "01/11/2026 10:04:58",
+   "dias": 0,
+   "prioridade": "SOS",
+   "problema": "COI - COIFA NÃO FUNCIONA",
+   "loja": "29084 FS PINHAIS PEDRO JACOMEL 13",
+   "fechadoPor": "Gustavo de Godoy Matheus"
+  },
+  {
+   "numero": "WO0076154",
+   "fechadoEm": "31/10/2026 15:14:44",
+   "dias": 3,
+   "prioridade": "SOS",
+   "problema": "COI - COIFA NÃO FUNCIONA",
+   "loja": "20215 - CARREFOUR PASSO D'AREIA",
+   "fechadoPor": "Thiago Dos Santos Coelho"
+  },
+  {
+   "numero": "WO0077083",
+   "fechadoEm": "31/10/2026 11:11:46",
+   "dias": 1,
+   "prioridade": "SOS",
+   "problema": "COI - COIFA NÃO FUNCIONA",
+   "loja": "16852 - SHOP SAO JOSE DOS PINHAIS",
+   "fechadoPor": "Gustavo de Godoy Matheus"
+  },
+  {
+   "numero": "WO0077152",
+   "fechadoEm": "31/10/2026 11:09:18",
+   "dias": 1,
+   "prioridade": "SOS",
+   "problema": "COI - COIFA EM CONTIGÊNCIA",
+   "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
+   "fechadoPor": "Thiago Dos Santos Coelho"
+  },
+  {
+   "numero": "WO0076701",
+   "fechadoEm": "30/10/2026 20:24:29",
+   "dias": 1,
+   "prioridade": "SOS",
+   "problema": "COI - COIFA EM CONTIGÊNCIA",
+   "loja": "16988 - SHOP ESTACAO",
+   "fechadoPor": "Maykon Silva Dos Santos"
+  },
+  {
+   "numero": "WO0073297",
+   "fechadoEm": "30/10/2026 18:53:45",
+   "dias": 8,
+   "prioridade": "Alta",
+   "problema": "AIN - QUADRO ELÉTRICO - QUADRO ELÉTRICO COM FIOS EXPOSTOS",
+   "loja": "23725 - SHOP PRACA NOVA SANTA MARIA",
+   "fechadoPor": "Marcel Vinicios Rocha Agradem"
+  },
+  {
+   "numero": "WO0075018",
+   "fechadoEm": "30/10/2026 18:50:25",
+   "dias": 5,
+   "prioridade": "SOS",
+   "problema": "SCI - SENSOR DE FUMAÇA INOPERANTE",
+   "loja": "23725 - SHOP PRACA NOVA SANTA MARIA",
+   "fechadoPor": "Marcel Vinicios Rocha Agradem"
+  }
+ ]
 }
