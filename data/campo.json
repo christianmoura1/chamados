@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-11-02T14:00:18.128Z",
+ "atualizadoEm": "2026-11-02T17:00:22.373Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 9,
+  "emExecucao": 11,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 9
+  "total": 11
  },
  "serie": [
   {
@@ -21,11 +21,80 @@
   },
   {
    "data": "2026-11-02",
-   "abertos": 3,
-   "fechados": 2
+   "abertos": 6,
+   "fechados": 3
   }
  ],
  "itens": [
+  {
+   "numero": "WO0078401",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "20215 - CARREFOUR PASSO D'AREIA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "02/11/2026 12:55:07",
+   "fechamento": "",
+   "principal": "TOSTADEIRA 220V 3290W 66A71GRC",
+   "secundario": "TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
+   "sigla": "TST",
+   "tecnico": "",
+   "descricao": "TOSTADEIRA 220V 3290W 66A71GRC | TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
+   "tarefas": [
+    "WOT0079058"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0078368",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "17223 - CANOAS SHOP",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "02/11/2026 12:08:06",
+   "fechamento": "",
+   "principal": "BK066348 - PHU; DUKE; FWM3-34MB1-230; 09134502",
+   "secundario": "PHU - LOJA SEM NENHUMA PHU FUNCIONANDO",
+   "sigla": "PHU",
+   "tecnico": "",
+   "descricao": "BK066348 - PHU; DUKE; FWM3-34MB1-230; 09134502 | PHU - LOJA SEM NENHUMA PHU FUNCIONANDO",
+   "tarefas": [
+    "WOT0079025"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0078365",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL SUL RS",
+   "loja": "17223 - CANOAS SHOP",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "02/11/2026 12:06:41",
+   "fechamento": "",
+   "principal": "BK066351 - PHU; PRINCE CASTLE; DHB-BK17DBR; BL 0024",
+   "secundario": "PHU - LOJA SEM NENHUMA PHU FUNCIONANDO",
+   "sigla": "PHU",
+   "tecnico": "",
+   "descricao": "BK066351 - PHU; PRINCE CASTLE; DHB-BK17DBR; BL 0024 | PHU - LOJA SEM NENHUMA PHU FUNCIONANDO",
+   "tarefas": [
+    "WOT0079022"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0078309",
    "marca": "BKB",
@@ -135,29 +204,6 @@
    "descricao": "BK076763 - AR CONDICIONADO | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
    "tarefas": [
     "WOT0078757"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0078043",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "20215 - CARREFOUR PASSO D'AREIA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "01/11/2026 12:05:05",
-   "fechamento": "",
-   "principal": "MAQUINA SORVETE, CARPIGIANI, CN825716181",
-   "secundario": "MDS - PRINCÍPIO DE INCÊNDIO",
-   "sigla": "MDS",
-   "tecnico": "",
-   "descricao": "MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - PRINCÍPIO DE INCÊNDIO",
-   "tarefas": [
-    "WOT0078697"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
