@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-11-01T02:00:27.915Z",
+ "atualizadoEm": "2026-11-01T23:20:12.597Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 13,
+  "emExecucao": 10,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 2,
-  "total": 13
+  "aguardandoToken": 0,
+  "total": 10
  },
  "serie": [
-  {
-   "data": "2026-10-29",
-   "abertos": 11,
-   "fechados": 15
-  },
   {
    "data": "2026-10-30",
    "abertos": 15,
@@ -21,28 +16,79 @@
   },
   {
    "data": "2026-10-31",
-   "abertos": 13,
+   "abertos": 14,
    "fechados": 20
+  },
+  {
+   "data": "2026-11-01",
+   "abertos": 12,
+   "fechados": 18
   }
  ],
  "itens": [
   {
-   "numero": "WO0077932",
+   "numero": "WO0078145",
    "marca": "BKB",
    "regional": "SUL",
-   "setor": "CURITIBA NORTE",
-   "loja": "29084 FS PINHAIS PEDRO JACOMEL 13",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "21659 - BOURBON SHOP PORTO ALEGRE",
    "status": "Pronto para Expedição",
    "fase": "Iniciado",
-   "abertura": "31/10/2026 22:59:38",
+   "abertura": "01/11/2026 16:06:19",
    "fechamento": "",
-   "principal": "BK229799 - COIFA",
-   "secundario": "COI - COIFA NÃO FUNCIONA",
-   "sigla": "COI",
+   "principal": "BK078329 - AR CONDICIONADO",
+   "secundario": "ARC - LOJA SEM AR CONDICIONADO",
+   "sigla": "ARC",
    "tecnico": "",
-   "descricao": "BK229799 - COIFA | COI - COIFA NÃO FUNCIONA",
+   "descricao": "BK078329 - AR CONDICIONADO | ARC - LOJA SEM AR CONDICIONADO",
    "tarefas": [
-    "WOT0078582"
+    "WOT0078799"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0078103",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "24766 - SHOP TOTAL POA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "01/11/2026 14:12:42",
+   "fechamento": "",
+   "principal": "BK076763 - AR CONDICIONADO",
+   "secundario": "ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "sigla": "ARC",
+   "tecnico": "",
+   "descricao": "BK076763 - AR CONDICIONADO | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "tarefas": [
+    "WOT0078757"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0078043",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "20215 - CARREFOUR PASSO D'AREIA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "01/11/2026 12:05:05",
+   "fechamento": "",
+   "principal": "MAQUINA SORVETE, CARPIGIANI, CN825716181",
+   "secundario": "MDS - PRINCÍPIO DE INCÊNDIO",
+   "sigla": "MDS",
+   "tecnico": "",
+   "descricao": "MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - PRINCÍPIO DE INCÊNDIO",
+   "tarefas": [
+    "WOT0078697"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
@@ -112,52 +158,6 @@
    "descricao": "BK035150 - CÂMARA DE RESFRIADOS | CMR - NÃO ATINGE TEMPERATURA",
    "tarefas": [
     "WOT0078475"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0077691",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "27590 - PORTO BELO OUTLET",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "31/10/2026 11:41:31",
-   "fechamento": "",
-   "principal": "BK080252 - CARRINHO PARA BROILER",
-   "secundario": "CDB - CARRINHO TORTO / BALANÇANDO",
-   "sigla": "CDB",
-   "tecnico": "",
-   "descricao": "BK080252 - CARRINHO PARA BROILER | CDB - CARRINHO TORTO / BALANÇANDO",
-   "tarefas": [
-    "WOT0078338"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "31/10/2026 12:46:17",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0077678",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "31/10/2026 11:18:30",
-   "fechamento": "",
-   "principal": "BK038151 - COIFA",
-   "secundario": "COI - COIFA NÃO FUNCIONA",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK038151 - COIFA | COI - COIFA NÃO FUNCIONA",
-   "tarefas": [
-    "WOT0078325"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
@@ -250,75 +250,6 @@
    "descricao": "BK245289 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
    "tarefas": [
     "WOT0077682"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0076959",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "16687 - SHOP PALLADIUM PONTA GROSSA",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "29/10/2026 17:30:23",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - COZINHA - REFLUXO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
-   "tarefas": [
-    "WOT0077595"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "31/10/2026 11:56:24",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0076951",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL NORTE RS",
-   "loja": "15893 - SHOP IGUATEMI PORTO ALEGRE",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "29/10/2026 17:03:43",
-   "fechamento": "",
-   "principal": "BK086249 - SISTEMA DE INCENDIO LOJA SHOP IGUATEMI P",
-   "secundario": "SCI - ACESSÓRIOS/PEÇAS DANIFICADAS",
-   "sigla": "SCI",
-   "tecnico": "",
-   "descricao": "BK086249 - SISTEMA DE INCENDIO LOJA SHOP IGUATEMI P | SCI - ACESSÓRIOS/PEÇAS DANIFICADAS",
-   "tarefas": [
-    "WOT0077588"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0076673",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "21787 - CARREFOUR PARTENON",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "29/10/2026 09:16:02",
-   "fechamento": "",
-   "principal": "BK076140 - FRITADEIRA",
-   "secundario": "FRI - SOMENTE 1 CUBA FUNCIONANDO",
-   "sigla": "FRI",
-   "tecnico": "",
-   "descricao": "BK076140 - FRITADEIRA | FRI - SOMENTE 1 CUBA FUNCIONANDO",
-   "tarefas": [
-    "WOT0077301"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
