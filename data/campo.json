@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-11-03T11:20:22.385Z",
+ "atualizadoEm": "2026-11-03T13:00:34.355Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 8,
+  "emExecucao": 10,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 8
+  "total": 10
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-11-03",
-   "abertos": 0,
+   "abertos": 2,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0078676",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "21535 - ANGELONI AGUA VERDE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "03/11/2026 09:46:06",
+   "fechamento": "",
+   "principal": "BK085950 - AR CONDICIONADO",
+   "secundario": "ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "sigla": "ARC",
+   "tecnico": "",
+   "descricao": "BK085950 - AR CONDICIONADO | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "tarefas": [
+    "WOT0079335"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0078662",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "20047 - FS CURITIBA - LINHA VERDE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "03/11/2026 09:29:11",
+   "fechamento": "",
+   "principal": "BK086014 - FRITADEIRA; FRYMASTER; 11814EC; 1403PU00",
+   "secundario": "FRI - NÃO LIGA",
+   "sigla": "FRI",
+   "tecnico": "",
+   "descricao": "BK086014 - FRITADEIRA; FRYMASTER; 11814EC; 1403PU00 | FRI - NÃO LIGA",
+   "tarefas": [
+    "WOT0079322"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0078569",
    "marca": "BKB",
