@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-11-03T19:00:36.755Z",
+ "atualizadoEm": "2026-11-03T20:40:25.487Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 13,
+  "emExecucao": 15,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 13
+  "total": 15
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-11-03",
-   "abertos": 7,
-   "fechados": 4
+   "abertos": 10,
+   "fechados": 5
   }
  ],
  "itens": [
+  {
+   "numero": "WO0079013",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "30086 FS PONTA GROSSA R BALDUINO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "03/11/2026 16:39:28",
+   "fechamento": "",
+   "principal": "BK245287 - CÂMARA DE CONGELADOS",
+   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMG",
+   "tecnico": "",
+   "descricao": "BK245287 - CÂMARA DE CONGELADOS | CMG - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0079671"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0078996",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "23699 - COLOMBO PARK SHOP",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "03/11/2026 16:11:26",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - VESTIÁRIO - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - VESTIÁRIO - REFLUXO",
+   "tarefas": [
+    "WOT0079654"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0078825",
    "marca": "BKB",
