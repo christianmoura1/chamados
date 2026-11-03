@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-11-03T20:40:25.487Z",
+ "atualizadoEm": "2026-11-03T23:00:46.864Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 15,
+  "emExecucao": 16,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 15
+  "total": 16
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-11-03",
-   "abertos": 10,
-   "fechados": 5
+   "abertos": 11,
+   "fechados": 8
   }
  ],
  "itens": [
+  {
+   "numero": "WO0079106",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "23736 - FS CURITIBA - R MARTIN AFONSO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "03/11/2026 19:52:05",
+   "fechamento": "",
+   "principal": "AR CONDICIONADO",
+   "secundario": "ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "sigla": "ARC",
+   "tecnico": "",
+   "descricao": "AR CONDICIONADO | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
+   "tarefas": [
+    "WOT0079764"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0079013",
    "marca": "BKB",
