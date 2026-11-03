@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-11-03T15:00:34.925Z",
+ "atualizadoEm": "2026-11-03T17:00:34.890Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 13,
+  "emExecucao": 14,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 13
+  "total": 14
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-11-03",
-   "abertos": 5,
-   "fechados": 0
+   "abertos": 7,
+   "fechados": 1
   }
  ],
  "itens": [
+  {
+   "numero": "WO0078825",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "20215 - CARREFOUR PASSO D'AREIA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "03/11/2026 12:39:44",
+   "fechamento": "",
+   "principal": "TOSTADEIRA 220V 3290W 66A71GRC",
+   "secundario": "TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
+   "sigla": "TST",
+   "tecnico": "",
+   "descricao": "TOSTADEIRA 220V 3290W 66A71GRC | TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
+   "tarefas": [
+    "WOT0079484"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0078816",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "03/11/2026 12:20:32",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "AEX - REFLUXO",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | AEX - REFLUXO",
+   "tarefas": [
+    "WOT0079475"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0078781",
    "marca": "BKB",
@@ -181,29 +227,6 @@
    "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
    "tarefas": [
     "WOT0079197"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0078516",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA NORTE",
-   "loja": "26806 - JOCKEY PLAZA SHOP",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "02/11/2026 16:21:43",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - COZINHA - REFLUXO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
-   "tarefas": [
-    "WOT0079176"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
