@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-11-03T13:00:34.355Z",
+ "atualizadoEm": "2026-11-03T15:00:34.925Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 10,
+  "emExecucao": 13,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 10
+  "total": 13
  },
  "serie": [
   {
@@ -21,11 +21,80 @@
   },
   {
    "data": "2026-11-03",
-   "abertos": 2,
+   "abertos": 5,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0078781",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "24766 - SHOP TOTAL POA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "03/11/2026 11:41:15",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - COZINHA - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
+   "tarefas": [
+    "WOT0079440"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0078758",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "25676 - FS CURITIBA - RUA DOMINGOS STRAPASSON",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "03/11/2026 11:06:01",
+   "fechamento": "",
+   "principal": "BK071683 - CONDENSADOR DE AR; CARRIER; 38EXC10386S",
+   "secundario": "ARC - LOJA SEM AR CONDICIONADO",
+   "sigla": "ARC",
+   "tecnico": "",
+   "descricao": "BK071683 - CONDENSADOR DE AR; CARRIER; 38EXC10386S | ARC - LOJA SEM AR CONDICIONADO",
+   "tarefas": [
+    "WOT0079416"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0078705",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "19665 - SHOP SAN PELEGRINO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "03/11/2026 10:17:58",
+   "fechamento": "",
+   "principal": "BK021233 - CARRINHO DO BROILER",
+   "secundario": "CDB - CARRINHO TORTO / BALANÇANDO",
+   "sigla": "CDB",
+   "tecnico": "",
+   "descricao": "BK021233 - CARRINHO DO BROILER | CDB - CARRINHO TORTO / BALANÇANDO",
+   "tarefas": [
+    "WOT0079364"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0078676",
    "marca": "BKB",
