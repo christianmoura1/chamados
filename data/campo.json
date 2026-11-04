@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-11-04T18:40:41.354Z",
+ "atualizadoEm": "2026-11-04T20:40:45.770Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 23,
+  "emExecucao": 24,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 23
+  "total": 24
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-11-04",
-   "abertos": 9,
-   "fechados": 0
+   "abertos": 10,
+   "fechados": 1
   }
  ],
  "itens": [
+  {
+   "numero": "WO0079518",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "23725 - SHOP PRACA NOVA SANTA MARIA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "04/11/2026 17:27:02",
+   "fechamento": "",
+   "principal": "BK055603 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
+   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMR",
+   "tecnico": "",
+   "descricao": "BK055603 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0080185"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0079465",
    "marca": "BKB",
