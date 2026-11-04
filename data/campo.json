@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-11-04T17:40:36.562Z",
+ "atualizadoEm": "2026-11-04T18:40:41.354Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 22,
+  "emExecucao": 23,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 22
+  "total": 23
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-11-04",
-   "abertos": 8,
+   "abertos": 9,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0079465",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "20215 - CARREFOUR PASSO D'AREIA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "04/11/2026 15:40:02",
+   "fechamento": "",
+   "principal": "BK066428 - CÂMARA DE CONGELADOS",
+   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMG",
+   "tecnico": "",
+   "descricao": "BK066428 - CÂMARA DE CONGELADOS | CMG - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0080132"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0079423",
    "marca": "BKB",
