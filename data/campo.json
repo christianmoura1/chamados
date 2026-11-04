@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-11-03T23:00:46.864Z",
+ "atualizadoEm": "2026-11-04T10:00:32.807Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 16,
+  "emExecucao": 14,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 0,
-  "total": 16
+  "total": 14
  },
  "serie": [
-  {
-   "data": "2026-11-01",
-   "abertos": 12,
-   "fechados": 18
-  },
   {
    "data": "2026-11-02",
    "abertos": 10,
@@ -23,6 +18,11 @@
    "data": "2026-11-03",
    "abertos": 11,
    "fechados": 8
+  },
+  {
+   "data": "2026-11-04",
+   "abertos": 0,
+   "fechados": 0
   }
  ],
  "itens": [
@@ -342,52 +342,6 @@
    "descricao": "BK078303 - AR CONDICIONADO | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
    "tarefas": [
     "WOT0078946"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0078145",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "21659 - BOURBON SHOP PORTO ALEGRE",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "01/11/2026 16:06:19",
-   "fechamento": "",
-   "principal": "BK078329 - AR CONDICIONADO",
-   "secundario": "ARC - LOJA SEM AR CONDICIONADO",
-   "sigla": "ARC",
-   "tecnico": "",
-   "descricao": "BK078329 - AR CONDICIONADO | ARC - LOJA SEM AR CONDICIONADO",
-   "tarefas": [
-    "WOT0078799"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0078103",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "24766 - SHOP TOTAL POA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "01/11/2026 14:12:42",
-   "fechamento": "",
-   "principal": "BK076763 - AR CONDICIONADO",
-   "secundario": "ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
-   "sigla": "ARC",
-   "tecnico": "",
-   "descricao": "BK076763 - AR CONDICIONADO | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
-   "tarefas": [
-    "WOT0078757"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
