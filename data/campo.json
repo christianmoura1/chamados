@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-11-04T10:00:32.807Z",
+ "atualizadoEm": "2026-11-04T17:40:36.562Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 14,
+  "emExecucao": 22,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 0,
-  "total": 14
+  "aguardandoToken": 1,
+  "total": 22
  },
  "serie": [
   {
@@ -21,11 +21,195 @@
   },
   {
    "data": "2026-11-04",
-   "abertos": 0,
+   "abertos": 8,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0079423",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "16852 - SHOP SAO JOSE DOS PINHAIS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "04/11/2026 14:22:39",
+   "fechamento": "",
+   "principal": "BK066857 - EXAUSTOR; BERLINERLUFT; GTS 500-1",
+   "secundario": "EXA - NÃO PUXA FUMAÇA",
+   "sigla": "EXA",
+   "tecnico": "",
+   "descricao": "BK066857 - EXAUSTOR; BERLINERLUFT; GTS 500-1 | EXA - NÃO PUXA FUMAÇA",
+   "tarefas": [
+    "WOT0080090"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0079379",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "21535 - ANGELONI AGUA VERDE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "04/11/2026 13:55:24",
+   "fechamento": "",
+   "principal": "BK065994 - CAMARA DE CONGELADOS; SÃO RAFAEL",
+   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMG",
+   "tecnico": "",
+   "descricao": "BK065994 - CAMARA DE CONGELADOS; SÃO RAFAEL | CMG - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0080046"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0079335",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "04/11/2026 12:50:52",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - SALÃO - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - SALÃO - REFLUXO",
+   "tarefas": [
+    "WOT0080000"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0079309",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "19664 - SHOP LAJEADO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "04/11/2026 12:03:29",
+   "fechamento": "",
+   "principal": "Broiler",
+   "secundario": "BRO - SUPERAQUECENDO",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "Broiler | BRO - SUPERAQUECENDO",
+   "tarefas": [
+    "WOT0079972"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0079263",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "21659 - BOURBON SHOP PORTO ALEGRE",
+   "status": "Trabalho em andamento",
+   "fase": "Requisição Completa - Aguardando Token",
+   "abertura": "04/11/2026 10:57:21",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
+   "tarefas": [
+    "WOT0079926"
+   ],
+   "aguardandoToken": 1,
+   "fechadoSemToken": "04/11/2026 11:05:29",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0079243",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "30086 FS PONTA GROSSA R BALDUINO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "04/11/2026 10:33:37",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - BANHEIRO - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - BANHEIRO - REFLUXO",
+   "tarefas": [
+    "WOT0079906"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0079230",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "21535 - ANGELONI AGUA VERDE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "04/11/2026 10:10:52",
+   "fechamento": "",
+   "principal": "BK058143 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
+   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMR",
+   "tecnico": "",
+   "descricao": "BK058143 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0079891"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0079163",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "18443 - SHOP CENTER LAR",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "04/11/2026 08:22:04",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
+   "tarefas": [
+    "WOT0079822"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0079106",
    "marca": "BKB",
