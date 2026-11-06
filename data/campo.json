@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-11-06T20:40:15.806Z",
+ "atualizadoEm": "2026-11-06T21:20:15.547Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 20,
+  "emExecucao": 22,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 5,
-  "total": 20
+  "total": 22
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-11-06",
-   "abertos": 5,
+   "abertos": 7,
    "fechados": 3
   }
  ],
  "itens": [
+  {
+   "numero": "WO0086544",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "OESTE PR",
+   "loja": "26830 - FS FOZ DO IGUACU - AV JORGE S",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "06/11/2026 18:14:26",
+   "fechamento": "",
+   "principal": "BK098578 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
+   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMR",
+   "tecnico": "",
+   "descricao": "BK098578 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0087215"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0086541",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "23699 - COLOMBO PARK SHOP",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "06/11/2026 18:01:26",
+   "fechamento": "",
+   "principal": "BK065986 - CÂMARA DE CONGELADOS",
+   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMG",
+   "tecnico": "",
+   "descricao": "BK065986 - CÂMARA DE CONGELADOS | CMG - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0087212"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0086497",
    "marca": "BKB",
