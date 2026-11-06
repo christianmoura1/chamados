@@ -1,5 +1,5 @@
 {
- "atualizadoEm": "2026-11-06T15:20:15.636Z",
+ "atualizadoEm": "2026-11-06T18:40:16.362Z",
  "janelaDias": 3,
  "resumo": {
   "emExecucao": 19,
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-11-06",
-   "abertos": 3,
-   "fechados": 2
+   "abertos": 4,
+   "fechados": 3
   }
  ],
  "itens": [
+  {
+   "numero": "WO0086486",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "18625 - BOURBON SHOP WALLIG",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "06/11/2026 15:34:03",
+   "fechamento": "",
+   "principal": "BK034204 - COIFA",
+   "secundario": "COI - COIFA NÃO FUNCIONA",
+   "sigla": "COI",
+   "tecnico": "",
+   "descricao": "BK034204 - COIFA | COI - COIFA NÃO FUNCIONA",
+   "tarefas": [
+    "WOT0087157"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0083682",
    "marca": "BKB",
@@ -43,29 +66,6 @@
    "descricao": "GÁS | GAS - VAZAMENTO DE GÁS",
    "tarefas": [
     "WOT0084355"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0083179",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "27589 - PARK EUROPEU BLUMENAU",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "06/11/2026 11:06:45",
-   "fechamento": "",
-   "principal": "BROILER",
-   "secundario": "BRO - NÃO ATINGE TEMPERATURA",
-   "sigla": "BRO",
-   "tecnico": "",
-   "descricao": "BROILER | BRO - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0083852"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
