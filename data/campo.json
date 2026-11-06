@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-11-06T12:20:14.064Z",
+ "atualizadoEm": "2026-11-06T14:40:15.055Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 19,
+  "emExecucao": 21,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 2,
-  "total": 19
+  "total": 21
  },
  "serie": [
   {
@@ -21,11 +21,57 @@
   },
   {
    "data": "2026-11-06",
-   "abertos": 1,
+   "abertos": 3,
    "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0083682",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "06/11/2026 11:38:03",
+   "fechamento": "",
+   "principal": "GÁS",
+   "secundario": "GAS - VAZAMENTO DE GÁS",
+   "sigla": "GAS",
+   "tecnico": "",
+   "descricao": "GÁS | GAS - VAZAMENTO DE GÁS",
+   "tarefas": [
+    "WOT0084355"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0083179",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "27589 - PARK EUROPEU BLUMENAU",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "06/11/2026 11:06:45",
+   "fechamento": "",
+   "principal": "BROILER",
+   "secundario": "BRO - NÃO ATINGE TEMPERATURA",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BROILER | BRO - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0083852"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0081621",
    "marca": "BKB",
