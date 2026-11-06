@@ -1,31 +1,192 @@
 {
- "atualizadoEm": "2026-11-04T21:20:53.031Z",
+ "atualizadoEm": "2026-11-06T08:56:32.233Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 25,
+  "emExecucao": 18,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 1,
-  "total": 25
+  "aguardandoToken": 2,
+  "total": 18
  },
  "serie": [
-  {
-   "data": "2026-11-02",
-   "abertos": 10,
-   "fechados": 8
-  },
-  {
-   "data": "2026-11-03",
-   "abertos": 11,
-   "fechados": 8
-  },
   {
    "data": "2026-11-04",
    "abertos": 11,
    "fechados": 1
+  },
+  {
+   "data": "2026-11-05",
+   "abertos": 7,
+   "fechados": 0
+  },
+  {
+   "data": "2026-11-06",
+   "abertos": 0,
+   "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0081306",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "16988 - SHOP ESTACAO",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "05/11/2026 19:41:11",
+   "fechamento": "",
+   "principal": "BK072146 - BROILER; NIECO; JF94G",
+   "secundario": "BRO - NÃO ACENDE",
+   "sigla": "BRO",
+   "tecnico": "",
+   "descricao": "BK072146 - BROILER; NIECO; JF94G | BRO - NÃO ACENDE",
+   "tarefas": [
+    "WOT0081978"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0081203",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "21475 - SHOP JARDIM DAS AMERICAS",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "05/11/2026 19:27:41",
+   "fechamento": "",
+   "principal": "BK035272 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
+   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMR",
+   "tecnico": "",
+   "descricao": "BK035272 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0081875"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0079865",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "GRANDE CURITIBA",
+   "loja": "24362 - FS SJP - AV DAS TORRES",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "05/11/2026 12:50:51",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - COZINHA - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
+   "tarefas": [
+    "WOT0080534"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0079803",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "22507 - ILR PORTO ALEGRE - R ANDRADAS 1664",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "05/11/2026 11:27:03",
+   "fechamento": "",
+   "principal": "BK063555 - CÂMARA DE CONGELADOS",
+   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMG",
+   "tecnico": "",
+   "descricao": "BK063555 - CÂMARA DE CONGELADOS | CMG - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0080472"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0079773",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "21791 - SHOP CIDADE CURITIBA",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "05/11/2026 10:42:40",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - SALÃO - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - SALÃO - REFLUXO",
+   "tarefas": [
+    "WOT0080442"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0079654",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA NORTE",
+   "loja": "22511 - FS CURITIBA - AV FLORIANO PEIXOTO 5952",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "05/11/2026 06:36:38",
+   "fechamento": "",
+   "principal": "BK066021 - CÂMARA DE CONGELADOS",
+   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
+   "sigla": "CMG",
+   "tecnico": "",
+   "descricao": "BK066021 - CÂMARA DE CONGELADOS | CMG - NÃO ATINGE TEMPERATURA",
+   "tarefas": [
+    "WOT0080322"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0079641",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "VALE DOS SINOS",
+   "loja": "26819 - FS CAXIAS DO SUL - R JOAO NICHELE 2227",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "05/11/2026 00:57:15",
+   "fechamento": "",
+   "principal": "BK087698 - FRITADEIRA",
+   "secundario": "FRI - VAZAMENTO DE OLEO",
+   "sigla": "FRI",
+   "tecnico": "",
+   "descricao": "BK087698 - FRITADEIRA | FRI - VAZAMENTO DE OLEO",
+   "tarefas": [
+    "WOT0080309"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0079543",
    "marca": "BKB",
@@ -216,8 +377,8 @@
    "regional": "SUL",
    "setor": "GRANDE CURITIBA",
    "loja": "30086 FS PONTA GROSSA R BALDUINO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
+   "status": "Trabalho em andamento",
+   "fase": "Requisição Completa - Aguardando Token",
    "abertura": "04/11/2026 10:33:37",
    "fechamento": "",
    "principal": "Area Interna",
@@ -228,8 +389,8 @@
    "tarefas": [
     "WOT0079906"
    ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
+   "aguardandoToken": 1,
+   "fechadoSemToken": "05/11/2026 10:53:48",
    "contato": "",
    "grupo": "execucao"
   },
@@ -273,328 +434,6 @@
    "descricao": "Area Interna | AIN - QUADRO ELÉTRICO - DISJUNTOR DESARMANDO",
    "tarefas": [
     "WOT0079822"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0079106",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "23736 - FS CURITIBA - R MARTIN AFONSO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "03/11/2026 19:52:05",
-   "fechamento": "",
-   "principal": "AR CONDICIONADO",
-   "secundario": "ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
-   "sigla": "ARC",
-   "tecnico": "",
-   "descricao": "AR CONDICIONADO | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
-   "tarefas": [
-    "WOT0079764"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0079013",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "30086 FS PONTA GROSSA R BALDUINO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "03/11/2026 16:39:28",
-   "fechamento": "",
-   "principal": "BK245287 - CÂMARA DE CONGELADOS",
-   "secundario": "CMG - NÃO ATINGE TEMPERATURA",
-   "sigla": "CMG",
-   "tecnico": "",
-   "descricao": "BK245287 - CÂMARA DE CONGELADOS | CMG - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0079671"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0078996",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA NORTE",
-   "loja": "23699 - COLOMBO PARK SHOP",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "03/11/2026 16:11:26",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - VESTIÁRIO - REFLUXO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - VESTIÁRIO - REFLUXO",
-   "tarefas": [
-    "WOT0079654"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0078825",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "20215 - CARREFOUR PASSO D'AREIA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "03/11/2026 12:39:44",
-   "fechamento": "",
-   "principal": "TOSTADEIRA 220V 3290W 66A71GRC",
-   "secundario": "TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
-   "sigla": "TST",
-   "tecnico": "",
-   "descricao": "TOSTADEIRA 220V 3290W 66A71GRC | TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
-   "tarefas": [
-    "WOT0079484"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0078816",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "03/11/2026 12:20:32",
-   "fechamento": "",
-   "principal": "Area Externa",
-   "secundario": "AEX - REFLUXO",
-   "sigla": "AEX",
-   "tecnico": "",
-   "descricao": "Area Externa | AEX - REFLUXO",
-   "tarefas": [
-    "WOT0079475"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0078781",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "24766 - SHOP TOTAL POA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "03/11/2026 11:41:15",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - COZINHA - REFLUXO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
-   "tarefas": [
-    "WOT0079440"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0078758",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA NORTE",
-   "loja": "25676 - FS CURITIBA - RUA DOMINGOS STRAPASSON",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "03/11/2026 11:06:01",
-   "fechamento": "",
-   "principal": "BK071683 - CONDENSADOR DE AR; CARRIER; 38EXC10386S",
-   "secundario": "ARC - LOJA SEM AR CONDICIONADO",
-   "sigla": "ARC",
-   "tecnico": "",
-   "descricao": "BK071683 - CONDENSADOR DE AR; CARRIER; 38EXC10386S | ARC - LOJA SEM AR CONDICIONADO",
-   "tarefas": [
-    "WOT0079416"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0078705",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "19665 - SHOP SAN PELEGRINO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "03/11/2026 10:17:58",
-   "fechamento": "",
-   "principal": "BK021233 - CARRINHO DO BROILER",
-   "secundario": "CDB - CARRINHO TORTO / BALANÇANDO",
-   "sigla": "CDB",
-   "tecnico": "",
-   "descricao": "BK021233 - CARRINHO DO BROILER | CDB - CARRINHO TORTO / BALANÇANDO",
-   "tarefas": [
-    "WOT0079364"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0078676",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA NORTE",
-   "loja": "21535 - ANGELONI AGUA VERDE",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "03/11/2026 09:46:06",
-   "fechamento": "",
-   "principal": "BK085950 - AR CONDICIONADO",
-   "secundario": "ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
-   "sigla": "ARC",
-   "tecnico": "",
-   "descricao": "BK085950 - AR CONDICIONADO | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
-   "tarefas": [
-    "WOT0079335"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0078569",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL CENTRO RS",
-   "loja": "18408 - SHOP BELLA CITTA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "02/11/2026 18:35:12",
-   "fechamento": "",
-   "principal": "BK066964 - FANCOIL (EVAPORADORA); CARRIER; 39EB15P6",
-   "secundario": "ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
-   "sigla": "ARC",
-   "tecnico": "",
-   "descricao": "BK066964 - FANCOIL (EVAPORADORA); CARRIER; 39EB15P6 | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
-   "tarefas": [
-    "WOT0079229"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0078537",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "18443 - SHOP CENTER LAR",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "02/11/2026 17:06:17",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - COZINHA - REFLUXO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
-   "tarefas": [
-    "WOT0079197"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0078309",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "02/11/2026 10:43:32",
-   "fechamento": "",
-   "principal": "BK038151 - COIFA",
-   "secundario": "COI - COIFA EM CONTIGÊNCIA",
-   "sigla": "COI",
-   "tecnico": "",
-   "descricao": "BK038151 - COIFA | COI - COIFA EM CONTIGÊNCIA",
-   "tarefas": [
-    "WOT0078966"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0078293",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "OESTE PR",
-   "loja": "23989 - SHOP JL CASCAVEL",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "02/11/2026 10:07:58",
-   "fechamento": "",
-   "principal": "BK085510 - AR CONDICIONADO",
-   "secundario": "ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
-   "sigla": "ARC",
-   "tecnico": "",
-   "descricao": "BK085510 - AR CONDICIONADO | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
-   "tarefas": [
-    "WOT0078949"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0078290",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "SUDOESTE RS",
-   "loja": "20215 - CARREFOUR PASSO D'AREIA",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "02/11/2026 10:03:04",
-   "fechamento": "",
-   "principal": "BK078303 - AR CONDICIONADO",
-   "secundario": "ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
-   "sigla": "ARC",
-   "tecnico": "",
-   "descricao": "BK078303 - AR CONDICIONADO | ARC - TEMPERATURA AMBIENTE ACIMA DE 29ºC",
-   "tarefas": [
-    "WOT0078946"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
