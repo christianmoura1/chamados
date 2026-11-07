@@ -232,7 +232,7 @@ try {
       btnDentro: r.left >= panel.left - 1 && r.right <= panel.right + 1 && r.top >= panel.top - 1 && r.bottom <= panel.bottom + 1,
       closeDentro: close.right <= panel.right + 1 && close.top >= panel.top - 1,
       altBtn: r.height,
-      filtros: ['modalFiltroLoja','modalFiltroProblema','modalFiltroResp','modalFiltroDataDe','modalFiltroDataAte','modalFiltroLimpar'].every((id) => !!document.getElementById(id)),
+      filtros: ['modalFiltroLoja','modalFiltroProblema','modalFiltroPrioridade','modalFiltroResp','modalFiltroDataDe','modalFiltroDataAte','modalFiltroLimpar'].every((id) => !!document.getElementById(id)),
       umBotao: document.querySelectorAll('#modalCopiar').length,
       href0: document.querySelector('#modalTbody a')?.getAttribute('href') || '',
     };
@@ -321,35 +321,214 @@ try {
 
   const combo = await evalPage(`() => {
     document.getElementById('modalFiltroLimpar').click();
-    const amostra = MODAL_ITENS.find((c) => c.loja && c.tecnico && c.abertura);
+    const amostra = MODAL_ITENS.find((c) => c.loja && c.tecnico && c.abertura && c.prioridade && candidatosSupervisor(c).length === 1);
     document.getElementById('modalFiltroLoja').value = amostra.loja;
     document.getElementById('modalFiltroLoja').dispatchEvent(new Event('input', { bubbles: true }));
-    document.getElementById('modalFiltroResp').value = amostra.tecnico;
+    document.getElementById('modalFiltroPrioridade').value = amostra.prioridade;
+    document.getElementById('modalFiltroPrioridade').dispatchEvent(new Event('change', { bubbles: true }));
+    document.getElementById('modalFiltroResp').value = supervisorDeChamado(amostra);
     document.getElementById('modalFiltroResp').dispatchEvent(new Event('change', { bubbles: true }));
     document.getElementById('modalFiltroDataDe').value = amostra.abertura;
     document.getElementById('modalFiltroDataDe').dispatchEvent(new Event('change', { bubbles: true }));
     document.getElementById('modalFiltroDataAte').value = amostra.abertura;
     document.getElementById('modalFiltroDataAte').dispatchEvent(new Event('change', { bubbles: true }));
+    const sup = supervisorDeChamado(amostra);
     return {
       loja: amostra.loja,
       tecnico: amostra.tecnico,
+      prioridade: amostra.prioridade,
+      supervisor: sup,
+      numero: amostra.numero,
       n: MODAL_FILTRADOS.length,
-      ok: MODAL_FILTRADOS.every((c) => c.loja === amostra.loja && c.tecnico === amostra.tecnico && c.abertura === amostra.abertura),
+      ok: MODAL_FILTRADOS.every((c) => c.loja === amostra.loja && c.prioridade === amostra.prioridade && chamadoPassaSupervisor(c, sup) && c.abertura === amostra.abertura),
+      tecnicoNaTabela: [...document.querySelectorAll('#modalTbody tr')].every((tr) => {
+        const num = tr.querySelector('a')?.textContent;
+        const c = MODAL_FILTRADOS.find((x) => x.numero === num);
+        const celulas = [...tr.querySelectorAll('td')];
+        return c && celulas[celulas.length - 1].textContent === (c.tecnico || '—');
+      }),
     };
   }`);
-  ok(combo.n > 0 && combo.ok, 'filtros de loja, responsavel e abertura juntos (' + combo.n + ')');
+  ok(combo.n > 0 && combo.ok, 'loja, prioridade, supervisor e abertura juntos (' + combo.n + ')');
+  ok(combo.tecnicoNaTabela, 'coluna Tecnico continua sendo o tecnico, nao o supervisor');
+  ok(combo.tecnico !== combo.supervisor, 'amostra separa tecnico e supervisor');
   await evalPage(`() => window.__instalarClipboard('ok')`);
   await evalPage(`() => copiarModalParaWhatsApp()`, true);
   texto = await evalPage(`() => window.__copied`);
-  ok(texto.includes('loja ' + combo.loja) && texto.includes('responsável ' + combo.tecnico), 'filtros descritos no texto');
+  ok(texto.includes('loja ' + combo.loja) && texto.includes('prioridade ' + combo.prioridade) && texto.includes('responsável ' + combo.supervisor), 'filtros descritos no texto');
   ok((texto.match(/^• /gm) || []).length === combo.n, 'quantidade copiada igual ao filtro combinado');
-  ok(texto.includes('Responsável: ' + combo.tecnico), 'responsavel por chamado');
+  ok(texto.includes('Responsável: ' + combo.supervisor), 'exportacao usa o supervisor');
+  ok(texto.includes('Técnico: ' + combo.tecnico.split('\n')[0]), 'exportacao lista o tecnico a parte');
+  ok(!texto.includes('Responsável: ' + combo.tecnico.split('\n')[0]), 'exportacao nao chama o tecnico de responsavel');
+  await shot('backlog-modal-prioridade-supervisor.png');
+
+  const mapa = await evalPage(`() => {
+    const listas = new Map();
+    for (const s of (DADOS_ATUAIS.supervisores || [])) {
+      for (const c of (s.chamadosDetalhe || [])) {
+        if (!c || !c.numero) continue;
+        if (!listas.has(c.numero)) listas.set(c.numero, new Set());
+        listas.get(c.numero).add(s.nome);
+      }
+    }
+    const card = [...document.querySelectorAll('.ecard')].find((e) => e.querySelector('.etitle')?.textContent === 'Máquina de Sorvete');
+    card.click();
+    const optsResp = [...document.getElementById('modalFiltroResp').options].map((o) => o.value);
+    const optsPri = [...document.getElementById('modalFiltroPrioridade').options].map((o) => o.value);
+    const nomesSup = new Set((DADOS_ATUAIS.supervisores || []).map((s) => s.nome));
+    const tecnicos = new Set(MODAL_ITENS.map((c) => c.tecnico).filter(Boolean));
+    const respEhTecnico = optsResp.filter((v) => v && tecnicos.has(v) && !nomesSup.has(v));
+    const ordem = ['SOS', 'Alta', 'Normal', 'Baixa'];
+    const espPri = [...new Set(MODAL_ITENS.map((c) => c.prioridade).filter(Boolean))].sort((a, b) => {
+      const ia = ordem.indexOf(a), ib = ordem.indexOf(b);
+      return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib) || String(a).localeCompare(String(b), 'pt-BR');
+    });
+    const erros = [];
+    for (const c of MODAL_ITENS) {
+      const nomes = [];
+      for (const s of (DADOS_ATUAIS.supervisores || [])) {
+        if ((s.chamadosDetalhe || []).some((x) => x.numero === c.numero) && !nomes.includes(s.nome)) nomes.push(s.nome);
+      }
+      const esp = nomes.length === 0 ? '(sem supervisor)' : nomes.length === 1 ? nomes[0] : ('Supervisor em conflito: ' + nomes.join(' / '));
+      if (supervisorDeChamado(c) !== esp) erros.push(c.numero + '=' + supervisorDeChamado(c));
+    }
+    const ambiguos = [...listas.entries()].filter(([, nomes]) => nomes.size > 1).map(([n]) => n);
+    const sem = MODAL_ITENS.filter((c) => candidatosSupervisor(c).length === 0).map((c) => c.numero);
+    const dup = MODAL_ITENS.find((c) => chamadosDuplicados.has(c.numero) && c.prioridade);
+    let dupOk = null;
+    if (dup) {
+      document.getElementById('modalFiltroPrioridade').value = dup.prioridade;
+      document.getElementById('modalFiltroPrioridade').dispatchEvent(new Event('change', { bubbles: true }));
+      const naPri = MODAL_FILTRADOS.some((c) => c.numero === dup.numero) && MODAL_FILTRADOS.every((c) => c.prioridade === dup.prioridade);
+      const outra = espPri.find((p) => p !== dup.prioridade);
+      document.getElementById('modalFiltroPrioridade').value = outra;
+      document.getElementById('modalFiltroPrioridade').dispatchEvent(new Event('change', { bubbles: true }));
+      const fora = !MODAL_FILTRADOS.some((c) => c.numero === dup.numero);
+      dupOk = { numero: dup.numero, prioridade: dup.prioridade, outra, naPri, fora };
+      document.getElementById('modalFiltroLimpar').click();
+    }
+    return {
+      label: document.querySelector('label[for="modalFiltroResp"]').textContent,
+      thead: document.getElementById('modalThead').textContent,
+      optsResp, optsPri, respEhTecnico, espPri,
+      nErros: erros.length,
+      erros: erros.slice(0, 3),
+      ambiguos, sem,
+      dupOk,
+      priIgual: optsPri.join('|') === ['', ...espPri].join('|'),
+    };
+  }`);
+  ok(mapa.label.includes('supervisor'), 'rotulo deixa claro que responsavel e o supervisor');
+  ok(mapa.thead.includes('Técnico') && !mapa.thead.includes('Responsável'), 'coluna continua Tecnico');
+  ok(mapa.priIgual && !mapa.optsPri.includes('Duplicado'), 'prioridades reais, sem o selo Duplicado: ' + mapa.optsPri.join(','));
+  ok(mapa.respEhTecnico.length === 0, 'opcoes de responsavel nao sao tecnicos');
+  ok(mapa.nErros === 0, 'rotulo unico, conflito com os dois nomes, ou (sem supervisor): ' + (mapa.erros || []).join(','));
+  ok(mapa.ambiguos.length > 0 && mapa.sem.every((n) => !mapa.ambiguos.includes(n)), 'conflito nao e misturado com chamado sem carteira');
+  ok(mapa.dupOk && mapa.dupOk.naPri && mapa.dupOk.fora, 'Duplicado filtra pela prioridade real (' + (mapa.dupOk && mapa.dupOk.prioridade) + ')');
+
+  const limpo = await evalPage(`() => {
+    document.getElementById('modalFiltroPrioridade').value = 'SOS';
+    document.getElementById('modalFiltroPrioridade').dispatchEvent(new Event('change', { bubbles: true }));
+    document.getElementById('modalFiltroResp').value = document.getElementById('modalFiltroResp').options[1].value;
+    document.getElementById('modalFiltroResp').dispatchEvent(new Event('change', { bubbles: true }));
+    const antes = MODAL_FILTRADOS.length;
+    document.getElementById('modalFiltroLimpar').click();
+    return {
+      antes,
+      pri: document.getElementById('modalFiltroPrioridade').value,
+      resp: document.getElementById('modalFiltroResp').value,
+      loja: document.getElementById('modalFiltroLoja').value,
+      problema: document.getElementById('modalFiltroProblema').value,
+      de: document.getElementById('modalFiltroDataDe').value,
+      ate: document.getElementById('modalFiltroDataAte').value,
+      n: MODAL_FILTRADOS.length,
+      total: MODAL_ITENS.length,
+    };
+  }`);
+  ok(limpo.antes < limpo.total && limpo.pri === '' && limpo.resp === '' && limpo.loja === '' && limpo.problema === '' && limpo.de === '' && limpo.ate === '' && limpo.n === limpo.total, 'Limpar zera prioridade, supervisor e os outros filtros');
+
+  const reaberto = await evalPage(`() => {
+    document.getElementById('modalFiltroPrioridade').value = 'SOS';
+    document.getElementById('modalFiltroResp').value = '(sem supervisor)';
+    const card = [...document.querySelectorAll('.ecard')].find((e) => e.querySelector('.etitle')?.textContent === 'Fritadeira');
+    card.click();
+    return {
+      titulo: document.getElementById('modalTitle').textContent,
+      pri: document.getElementById('modalFiltroPrioridade').value,
+      resp: document.getElementById('modalFiltroResp').value,
+      n: MODAL_FILTRADOS.length,
+      total: MODAL_ITENS.length,
+    };
+  }`);
+  ok(reaberto.titulo === 'Fritadeira' && reaberto.pri === '' && reaberto.resp === '' && reaberto.n === reaberto.total, 'reabrir outro card limpa prioridade e supervisor');
+
+  const prescopo = await evalPage(`() => {
+    const listas = new Map();
+    for (const s of (DADOS_ATUAIS.supervisores || [])) {
+      for (const c of (s.chamadosDetalhe || [])) {
+        if (!listas.has(c.numero)) listas.set(c.numero, new Set());
+        listas.get(c.numero).add(s.nome);
+      }
+    }
+    const nome = 'CARLOS MAGNO';
+    const card = [...document.querySelectorAll('.gcard')].find((e) => e.querySelector('.gname')?.textContent === nome);
+    card.click();
+    const ambiguos = MODAL_ITENS.filter((c) => (listas.get(c.numero) || new Set()).size > 1).map((c) => c.numero);
+    const opts = [...document.getElementById('modalFiltroResp').options].map((o) => o.value).filter(Boolean);
+    document.getElementById('modalFiltroResp').value = nome;
+    document.getElementById('modalFiltroResp').dispatchEvent(new Event('change', { bubbles: true }));
+    const noNome = ambiguos.every((n) => MODAL_FILTRADOS.some((c) => c.numero === n));
+    const temUnico = MODAL_FILTRADOS.some((c) => candidatosSupervisor(c).length === 1);
+    document.getElementById('modalFiltroResp').value = 'GUSTAVO';
+    document.getElementById('modalFiltroResp').dispatchEvent(new Event('change', { bubbles: true }));
+    const noOutro = ambiguos.every((n) => MODAL_FILTRADOS.some((c) => c.numero === n));
+    const soAssociadoAoOutro = MODAL_FILTRADOS.every((c) => candidatosSupervisor(c).includes('GUSTAVO'));
+    document.getElementById('modalFiltroResp').value = 'Supervisor em conflito';
+    document.getElementById('modalFiltroResp').dispatchEvent(new Event('change', { bubbles: true }));
+    const soConflito = MODAL_FILTRADOS.length === ambiguos.length && ambiguos.every((n) => MODAL_FILTRADOS.some((c) => c.numero === n));
+    const rotulo = ambiguos.length ? supervisorDeChamado(MODAL_FILTRADOS.find((c) => c.numero === ambiguos[0])) : '';
+    window.__instalarClipboard('ok');
+    return { opts, ambiguos, noNome, temUnico, noOutro, soAssociadoAoOutro, soConflito, rotulo, thead: document.getElementById('modalThead').textContent };
+  }`);
+  ok(prescopo.thead.includes('Equipamento') && prescopo.thead.includes('Técnico'), 'modal do supervisor mantem equipamento e tecnico');
+  ok(prescopo.opts.includes('CARLOS MAGNO') && prescopo.opts.includes('GUSTAVO') && prescopo.opts.includes('Supervisor em conflito') && !prescopo.opts.includes('RAFAEL') && !prescopo.opts.includes('MARCEL') && !prescopo.opts.includes('(sem supervisor)'), 'card em conflito oferece os dois nomes e a opcao de conflito, sem fingir ausencia');
+  ok(prescopo.ambiguos.length > 0 && prescopo.noNome && prescopo.temUnico && prescopo.noOutro && prescopo.soAssociadoAoOutro && prescopo.soConflito, 'filtrar por qualquer dos dois inclui o chamado; a opcao de conflito isola so eles');
+  ok(prescopo.rotulo === 'Supervisor em conflito: GUSTAVO / CARLOS MAGNO', 'rotulo guarda os dois nomes: ' + prescopo.rotulo);
+  await evalPage(`() => window.__instalarClipboard('ok')`);
+  await evalPage(`() => copiarModalParaWhatsApp()`, true);
+  texto = await evalPage(`() => window.__copied`);
+  const linhasResp = texto.split('\n').filter((l) => l.startsWith('Responsável:'));
+  ok(linhasResp.length === prescopo.ambiguos.length && linhasResp.every((l) => l === 'Responsável: Supervisor em conflito: GUSTAVO / CARLOS MAGNO'), 'WhatsApp do conflito cita os dois nomes e nao escolhe um');
+  ok(!texto.includes('Responsável: (sem supervisor)') && !texto.includes('Responsável: GUSTAVO\n') && !texto.includes('Responsável: CARLOS MAGNO'), 'exportacao do conflito nao usa ausencia nem nome unico');
+  await shot('backlog-modal-supervisor-conflito.png');
+
+  const semCarteira = await evalPage(`() => {
+    const card = [...document.querySelectorAll('.ecard')].find((e) => e.querySelector('.etitle')?.textContent === 'Máquina de Sorvete');
+    card.click();
+    document.getElementById('modalFiltroResp').value = '(sem supervisor)';
+    document.getElementById('modalFiltroResp').dispatchEvent(new Event('change', { bubbles: true }));
+    const nums = MODAL_FILTRADOS.map((c) => c.numero);
+    return {
+      n: nums.length,
+      todosSem: MODAL_FILTRADOS.every((c) => candidatosSupervisor(c).length === 0),
+      temLagos: nums.includes('WOT0055127'),
+      temConflito: nums.includes('WOT0079316'),
+    };
+  }`);
+  ok(semCarteira.n > 0 && semCarteira.todosSem && semCarteira.temLagos && !semCarteira.temConflito, '(sem supervisor) fica so com chamado sem carteira');
+  await evalPage(`() => window.__instalarClipboard('ok')`);
+  await evalPage(`() => copiarModalParaWhatsApp()`, true);
+  texto = await evalPage(`() => window.__copied`);
+  ok(texto.includes('Responsável: (sem supervisor)') && !texto.includes('Supervisor em conflito'), 'WhatsApp do sem carteira nao fala em conflito');
 
   await evalPage(`() => {
-    document.getElementById('modalFiltroLimpar').click();
+    const card = [...document.querySelectorAll('.ecard')].find((e) => e.querySelector('.etitle')?.textContent === 'Máquina de Sorvete');
+    card.click();
     const el = document.getElementById('modalFiltroProblema');
     el.value = 'zzznadaencontrada';
     el.dispatchEvent(new Event('input', { bubbles: true }));
+    document.getElementById('modalFiltroPrioridade').value = 'SOS';
+    document.getElementById('modalFiltroPrioridade').dispatchEvent(new Event('change', { bubbles: true }));
   }`);
   info = await evalPage(`() => {
     const btn = document.getElementById('modalCopiar');
@@ -428,7 +607,9 @@ try {
   ok(texto.includes('PRINCÍPIO DE INCÊNDIO') && texto.includes('segunda linha HTML') && texto.includes('\n'), 'preserva unicode e quebra de linha');
   ok(texto.includes('LOJA & ÁGUA'), 'entidade vira texto');
   ok(texto.includes('Atribuído') && texto.includes('SOS') && texto.includes('0d'), 'status, prioridade e dias');
-  ok(texto.includes("José d'Ávila") && texto.includes('segundo turno'), 'responsavel com acento e quebra');
+  ok(texto.includes('Responsável: (sem supervisor)'), 'chamado fora da carteira nao ganha supervisor inventado');
+  ok(texto.includes("Técnico: José d'Ávila") && texto.includes('segundo turno'), 'tecnico com acento e quebra, separado do supervisor');
+  ok(!texto.includes("Responsável: José d'Ávila"), 'o tecnico nao aparece como responsavel');
   ok(texto.includes('https://soma.zamp.com.br/wm_task.do?sysparm_query=number=WOT9&ok=1'), 'usa a URL que ja veio no chamado');
   ok(!texto.includes('sysparm_query=number=&') && texto.includes('SEM LINK') && texto.includes('só unicode ç ã õ'), 'sem numero nao inventa URL');
   ok(!temHtml(texto) && !texto.includes('&amp;') && !texto.includes('<b>') && !texto.includes('<br'), 'nenhum HTML no texto injetado');
@@ -513,6 +694,8 @@ try {
     const panel = document.querySelector('.modal-panel').getBoundingClientRect();
     const loja = document.getElementById('modalFiltroLoja').getBoundingClientRect();
     const prob = document.getElementById('modalFiltroProblema').getBoundingClientRect();
+    const pri = document.getElementById('modalFiltroPrioridade').getBoundingClientRect();
+    const resp = document.getElementById('modalFiltroResp').getBoundingClientRect();
     return {
       alt: br.height,
       largura: br.width,
@@ -520,14 +703,18 @@ try {
       abaixoDoTitulo: br.top >= tr.bottom - 2,
       fecharNoTopo: cr.top <= tr.bottom && cr.right <= panel.right + 1 && cr.left > tr.left,
       dentro: br.left >= panel.left - 1 && br.right <= panel.right + 1,
-      filtrosEmpilhados: prob.top >= loja.bottom - 2,
+      filtrosEmpilhados: prob.top >= loja.bottom - 2 && pri.top >= prob.bottom - 2 && resp.top >= pri.bottom - 2,
+      priLargo: pri.width > panel.width * 0.8,
+      respLargo: resp.width > panel.width * 0.8,
       rotulo: btn.textContent.trim(),
+      labelResp: document.querySelector('label[for="modalFiltroResp"]').textContent,
     };
   }`);
   ok(mobile.alt >= 40, 'alvo de toque no celular (' + Math.round(mobile.alt) + 'px)');
   ok(mobile.largura > mobile.painel * 0.8 && mobile.dentro, 'botao ocupa a largura do modal no celular');
   ok(mobile.abaixoDoTitulo && mobile.fecharNoTopo, 'no celular o botao desce e o fechar fica no topo');
-  ok(mobile.filtrosEmpilhados, 'filtros continuam empilhados no celular');
+  ok(mobile.filtrosEmpilhados && mobile.priLargo && mobile.respLargo, 'prioridade e supervisor empilham em largura total no celular');
+  ok(mobile.labelResp.includes('supervisor'), 'rotulo do supervisor continua visivel no celular');
   ok(mobile.rotulo === 'Copiar para WhatsApp', 'rotulo legivel no celular');
   await shot('backlog-modal-sorvete-mobile.png');
 

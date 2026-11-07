@@ -237,7 +237,7 @@
   .modal-overlay[hidden] { display: none; }
   .modal-panel {
     background: var(--surface); border-radius: var(--r-xl); box-shadow: var(--shadow);
-    width: min(760px, 100%); max-height: min(640px, 88vh); display: flex; flex-direction: column; overflow: hidden;
+    width: min(960px, 100%); max-height: min(640px, 88vh); display: flex; flex-direction: column; overflow: hidden;
   }
   .modal-head {
     display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: 10px;
@@ -272,6 +272,8 @@
   .modal-sub { padding: 12px 22px 0; font-size: 12px; color: var(--text-3); flex: none; }
   .modal-filtros { display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-end; padding: 12px 22px 0; flex: none; }
   .modal-filtros .filter-field { min-width: 130px; }
+  .modal-filtros .filter-field-datas { min-width: 228px; flex: 1.3 1 228px; }
+  .modal-filtros .filter-field-curto { min-width: 124px; flex: 0.8 1 124px; }
   .modal-filtro-contagem { padding: 8px 22px 0; font-size: 11.5px; color: var(--text-3); flex: none; }
   .modal-body { overflow: auto; padding: 14px 22px 20px; }
   .detail-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
@@ -598,9 +600,13 @@ function logout() {
         <label for="modalFiltroProblema">Problema</label>
         <input type="text" id="modalFiltroProblema" placeholder="Buscar palavra..." autocomplete="off">
       </div>
+      <div class="filter-field filter-field-curto">
+        <label for="modalFiltroPrioridade">Prioridade</label>
+        <select id="modalFiltroPrioridade"><option value="">Todas</option></select>
+      </div>
       <div class="filter-field">
-        <label for="modalFiltroResp">Responsável</label>
-        <select id="modalFiltroResp"><option value="">Todos</option></select>
+        <label for="modalFiltroResp">Responsável (supervisor)</label>
+        <select id="modalFiltroResp" title="Supervisor da carteira da loja. Não é o técnico atribuído no chamado."><option value="">Todos</option></select>
       </div>
       <div class="filter-field filter-field-datas">
         <label>Abertura</label>
@@ -794,6 +800,75 @@ let MODAL_TITULO = '';
 let MODAL_SUBTITULO = '';
 let modalCopiaTimer = null;
 const ROTULO_COPIAR_WHATSAPP = 'Copiar para WhatsApp';
+const SEM_SUPERVISOR = '(sem supervisor)';
+const ROTULO_CONFLITO = 'Supervisor em conflito';
+const ORDEM_PRIORIDADE_MODAL = ['SOS', 'Alta', 'Normal', 'Baixa'];
+let SUPERVISOR_CANDIDATOS = new Map();
+
+// Supervisor = quem tem o numero em supervisores[].chamadosDetalhe.
+// Tecnico nao entra. Um numero em duas carteiras guarda os dois nomes,
+// na ordem da lista de supervisores. Zero carteiras continua sem supervisor.
+function atualizarMapaSupervisores(dados) {
+  const listas = new Map();
+  for (const s of (dados?.supervisores || [])) {
+    const nome = typeof s?.nome === 'string' ? s.nome.trim() : '';
+    if (!nome) continue;
+    for (const c of (s.chamadosDetalhe || [])) {
+      if (!c?.numero) continue;
+      if (!listas.has(c.numero)) listas.set(c.numero, []);
+      const arr = listas.get(c.numero);
+      if (!arr.includes(nome)) arr.push(nome);
+    }
+  }
+  SUPERVISOR_CANDIDATOS = listas;
+}
+
+function candidatosSupervisor(c) {
+  const numero = c && c.numero;
+  if (!numero) return [];
+  return SUPERVISOR_CANDIDATOS.get(numero) || [];
+}
+
+function supervisorDeChamado(c) {
+  const nomes = candidatosSupervisor(c);
+  if (nomes.length === 0) return SEM_SUPERVISOR;
+  if (nomes.length === 1) return nomes[0];
+  return ROTULO_CONFLITO + ': ' + nomes.join(' / ');
+}
+
+function chamadoPassaSupervisor(c, filtro) {
+  if (!filtro) return true;
+  const nomes = candidatosSupervisor(c);
+  if (filtro === ROTULO_CONFLITO) return nomes.length > 1;
+  if (filtro === SEM_SUPERVISOR) return nomes.length === 0;
+  return nomes.includes(filtro);
+}
+
+function opcoesSupervisorModal(itens) {
+  const nomes = new Set();
+  let temConflito = false;
+  let temSem = false;
+  for (const c of itens) {
+    const lista = candidatosSupervisor(c);
+    if (lista.length === 0) temSem = true;
+    else {
+      if (lista.length > 1) temConflito = true;
+      lista.forEach(n => nomes.add(n));
+    }
+  }
+  const opcoes = [...nomes].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+  if (temConflito) opcoes.push(ROTULO_CONFLITO);
+  if (temSem) opcoes.push(SEM_SUPERVISOR);
+  return opcoes;
+}
+
+function ordenarPrioridadesModal(valores) {
+  return [...valores].sort((a, b) => {
+    const ia = ORDEM_PRIORIDADE_MODAL.indexOf(a);
+    const ib = ORDEM_PRIORIDADE_MODAL.indexOf(b);
+    return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib) || String(a).localeCompare(String(b), 'pt-BR');
+  });
+}
 
 function semAcentoModal(s) {
   return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
@@ -850,12 +925,14 @@ function dataBRModal(iso) {
 function resumoFiltrosModal() {
   const loja = document.getElementById('modalFiltroLoja').value.trim();
   const problema = document.getElementById('modalFiltroProblema').value.trim();
+  const prioridade = document.getElementById('modalFiltroPrioridade').value;
   const resp = document.getElementById('modalFiltroResp').value;
   const de = document.getElementById('modalFiltroDataDe').value;
   const ate = document.getElementById('modalFiltroDataAte').value;
   const p = [];
   if (loja) p.push('loja ' + loja);
   if (problema) p.push('problema "' + problema + '"');
+  if (prioridade) p.push('prioridade ' + prioridade);
   if (resp) p.push('responsável ' + resp);
   if (de && ate) p.push('abertura de ' + dataBRModal(de) + ' a ' + dataBRModal(ate));
   else if (de) p.push('abertura a partir de ' + dataBRModal(de));
@@ -949,6 +1026,7 @@ function textoWhatsAppModal() {
     const estado = textoPlanoModal(c.estado);
     const prioridade = textoPlanoModal(c.prioridade);
     const tecnico = textoPlanoModal(c.tecnico);
+    const supervisor = textoPlanoModal(supervisorDeChamado(c)) || SEM_SUPERVISOR;
     const dias = diasTextoModal(c.dias);
     const extras = [];
     if (chamadosComPeca.has(c.numero)) extras.push('Peças');
@@ -961,7 +1039,8 @@ function textoWhatsAppModal() {
     }
     L.push('Problema: ' + problema);
     if (statusParts.length) L.push(statusParts.join(' · '));
-    if (tecnico) L.push('Responsável: ' + tecnico);
+    L.push('Responsável: ' + supervisor);
+    if (tecnico) L.push('Técnico: ' + tecnico);
     const url = urlDoChamado(c);
     if (url) L.push(url);
     L.push('');
@@ -1016,6 +1095,7 @@ async function copiarModalParaWhatsApp() {
 function renderizarModalTabela() {
   const flBusca = semAcentoModal(document.getElementById('modalFiltroLoja').value.trim());
   const fpBusca = semAcentoModal(document.getElementById('modalFiltroProblema').value.trim());
+  const fpri = document.getElementById('modalFiltroPrioridade').value;
   const fr = document.getElementById('modalFiltroResp').value;
   const dataDe = document.getElementById('modalFiltroDataDe').value;
   const dataAte = document.getElementById('modalFiltroDataAte').value;
@@ -1023,7 +1103,8 @@ function renderizarModalTabela() {
   const filtrados = ordenaChamados(MODAL_ITENS.filter(c =>
     (!flBusca || semAcentoModal(c.loja).includes(flBusca))
     && (!fpBusca || semAcentoModal(c.problema).includes(fpBusca))
-    && (!fr || c.tecnico === fr)
+    && (!fpri || c.prioridade === fpri)
+    && chamadoPassaSupervisor(c, fr)
     && (!dataDe || (c.abertura && c.abertura >= dataDe))
     && (!dataAte || (c.abertura && c.abertura <= dataAte))
   ));
@@ -1048,6 +1129,7 @@ function renderizarModalTabela() {
 }
 
 function abrirModalGenerico(titulo, subtitulo, itens, { mostrarEquipamento } = {}) {
+  atualizarMapaSupervisores(DADOS_ATUAIS);
   MODAL_TITULO = titulo || '';
   MODAL_SUBTITULO = subtitulo || '';
   document.getElementById('modalTitle').textContent = titulo;
@@ -1061,12 +1143,15 @@ function abrirModalGenerico(titulo, subtitulo, itens, { mostrarEquipamento } = {
 
   const inLoja = document.getElementById('modalFiltroLoja');
   const inProblema = document.getElementById('modalFiltroProblema');
+  const selPri = document.getElementById('modalFiltroPrioridade');
   const selResp = document.getElementById('modalFiltroResp');
   inLoja.value = ''; inProblema.value = '';
   document.getElementById('modalFiltroDataDe').value = '';
   document.getElementById('modalFiltroDataAte').value = '';
   document.getElementById('modalFiltroLojaLista').hidden = true;
-  const responsaveis = [...new Set(itens.map(c => c.tecnico).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+  const prioridades = ordenarPrioridadesModal([...new Set(itens.map(c => c.prioridade).filter(Boolean))]);
+  selPri.innerHTML = '<option value="">Todas</option>' + prioridades.map(p => `<option value="${escapeHtml(p)}">${escapeHtml(p)}</option>`).join('');
+  const responsaveis = opcoesSupervisorModal(itens);
   selResp.innerHTML = '<option value="">Todos</option>' + responsaveis.map(r => `<option value="${escapeHtml(r)}">${escapeHtml(r)}</option>`).join('');
 
   renderizarModalTabela();
@@ -1078,6 +1163,7 @@ function abrirModalGenerico(titulo, subtitulo, itens, { mostrarEquipamento } = {
   const inLoja = document.getElementById('modalFiltroLoja');
   const listaLoja = document.getElementById('modalFiltroLojaLista');
   const inProblema = document.getElementById('modalFiltroProblema');
+  const selPri = document.getElementById('modalFiltroPrioridade');
   const selResp = document.getElementById('modalFiltroResp');
   const inDataDe = document.getElementById('modalFiltroDataDe');
   const inDataAte = document.getElementById('modalFiltroDataAte');
@@ -1106,10 +1192,11 @@ function abrirModalGenerico(titulo, subtitulo, itens, { mostrarEquipamento } = {
   });
 
   inProblema.addEventListener('input', renderizarModalTabela);
+  selPri.addEventListener('change', renderizarModalTabela);
   selResp.addEventListener('change', renderizarModalTabela);
   [inDataDe, inDataAte].forEach(el => el.addEventListener('change', renderizarModalTabela));
   document.getElementById('modalFiltroLimpar').addEventListener('click', () => {
-    inLoja.value = ''; inProblema.value = ''; selResp.value = '';
+    inLoja.value = ''; inProblema.value = ''; selPri.value = ''; selResp.value = '';
     inDataDe.value = ''; inDataAte.value = '';
     listaLoja.hidden = true;
     renderizarModalTabela();
@@ -1306,6 +1393,7 @@ async function iniciar() {
   }
 
   DADOS_ATUAIS = D;
+  atualizarMapaSupervisores(D);
   const dt = new Date(D.atualizadoEm);
   document.getElementById('stamp').textContent = 'Atualizado ' + dt.toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
 
