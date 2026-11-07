@@ -239,13 +239,36 @@
     background: var(--surface); border-radius: var(--r-xl); box-shadow: var(--shadow);
     width: min(760px, 100%); max-height: min(640px, 88vh); display: flex; flex-direction: column; overflow: hidden;
   }
-  .modal-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; border-bottom: 1.5px solid var(--border); flex: none; }
-  .modal-head h3 { font-weight: 700; font-size: 16.5px; margin: 0; }
+  .modal-head {
+    display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: 10px;
+    padding: 18px 22px; border-bottom: 1.5px solid var(--border); flex: none; position: relative;
+  }
+  .modal-head h3 { font-weight: 700; font-size: 16.5px; margin: 0; min-width: 0; overflow-wrap: anywhere; }
+  .modal-copy { align-self: center; justify-content: center; min-height: 32px; display: inline-flex; align-items: center; white-space: nowrap; }
+  .modal-copy:focus-visible { outline: 2px solid var(--cobalto); outline-offset: 2px; }
+  .modal-copy.erro { color: var(--laranja); border-color: var(--laranja); }
   .modal-close {
     appearance: none; border: none; background: var(--cinza-bg); color: var(--text-2); width: 30px; height: 30px;
     border-radius: 999px; font-size: 17px; line-height: 1; cursor: pointer;
   }
   .modal-close:hover { color: var(--text); }
+  .modal-close:focus-visible { outline: 2px solid var(--cobalto); outline-offset: 2px; }
+  .modal-copia-fallback {
+    margin: 10px 22px 0; padding: 10px 12px; border: 1.5px solid var(--laranja);
+    background: var(--laranja-bg); border-radius: var(--r); flex: none;
+  }
+  .modal-copia-fallback[hidden] { display: none; }
+  .modal-copia-fallback p { margin: 0 0 8px; font-size: 12.5px; color: var(--text); line-height: 1.4; }
+  .modal-copia-fallback textarea {
+    width: 100%; min-height: 120px; max-height: 220px; box-sizing: border-box;
+    font-family: 'Inter', ui-monospace, monospace; font-size: 12.5px; line-height: 1.45;
+    color: var(--text); background: var(--surface); border: 1.5px solid var(--border);
+    border-radius: 8px; padding: 8px 10px; resize: vertical;
+  }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  }
   .modal-sub { padding: 12px 22px 0; font-size: 12px; color: var(--text-3); flex: none; }
   .modal-filtros { display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-end; padding: 12px 22px 0; flex: none; }
   .modal-filtros .filter-field { min-width: 130px; }
@@ -303,6 +326,7 @@
   .filter-copy:hover { opacity: .72; }
   .filter-copy.ok { color: var(--verde); border-color: var(--verde); }
   .filter-copy:disabled { opacity: .4; cursor: default; }
+  button.modal-copy { align-self: center; }
   .filter-count { font-size: 12px; color: var(--text-2); margin-bottom: 10px; }
   .filter-table-wrap { max-height: 520px; overflow: auto; border-radius: 12px; }
   .filter-empty { padding: 30px 0; text-align: center; color: var(--text-3); font-size: 12.5px; }
@@ -366,8 +390,15 @@
     section { margin-top: 20px; }
     .modal-overlay { padding: 0; align-items: flex-end; }
     .modal-panel { width: 100%; max-height: 92vh; border-radius: var(--r-xl) var(--r-xl) 0 0; }
-    .modal-head { padding: 14px 16px; }
-    .modal-head h3 { font-size: 14px; }
+    .modal-head {
+      padding: 14px 16px; gap: 8px;
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-areas: "titulo fechar" "copiar copiar";
+    }
+    .modal-head h3 { font-size: 14px; grid-area: titulo; }
+    .modal-close { grid-area: fechar; }
+    .modal-copy { grid-area: copiar; width: 100%; min-height: 44px; padding: 10px 12px; white-space: normal; }
+    .modal-copia-fallback { margin: 8px 16px 0; }
     .modal-filtros { padding: 10px 16px 0; flex-direction: column; gap: 8px; }
     .modal-filtros .filter-field { min-width: 0; width: 100%; }
     .modal-body { padding: 10px 16px 16px; }
@@ -550,8 +581,12 @@ function logout() {
   <div class="modal-panel">
     <div class="modal-head">
       <h3 id="modalTitle"></h3>
+      <button class="filter-copy modal-copy" id="modalCopiar" type="button" disabled
+        aria-describedby="modalCopiaStatus"
+        title="Copia a lista filtrada em texto para colar no WhatsApp">Copiar para WhatsApp</button>
       <button class="modal-close" id="modalClose" aria-label="Fechar" type="button">&times;</button>
     </div>
+    <span id="modalCopiaStatus" class="sr-only" role="status" aria-live="polite"></span>
     <div class="modal-sub" id="modalSub"></div>
     <div class="modal-filtros">
       <div class="filter-field filter-combo">
@@ -578,6 +613,10 @@ function logout() {
       <button class="filter-clear" id="modalFiltroLimpar" type="button">Limpar</button>
     </div>
     <div class="modal-filtro-contagem" id="modalFiltroContagem"></div>
+    <div class="modal-copia-fallback" id="modalCopiaFallback" hidden>
+      <p id="modalCopiaFallbackMsg">Não consegui copiar automaticamente. Selecione o texto abaixo e copie manualmente (Ctrl+C ou toque longo).</p>
+      <textarea id="modalCopiaFallbackTexto" readonly spellcheck="false" aria-labelledby="modalCopiaFallbackMsg"></textarea>
+    </div>
     <div class="modal-body">
       <table class="detail-table">
         <thead id="modalThead"><tr><th>Número</th><th>Loja</th><th>Estado</th><th>Prioridade</th><th>Dias</th><th>Técnico</th></tr></thead>
@@ -749,10 +788,229 @@ function aplicarVisaoSalva() {
 }
 
 let MODAL_ITENS = [];
+let MODAL_FILTRADOS = [];
 let MODAL_MOSTRA_EQUIP = false;
+let MODAL_TITULO = '';
+let MODAL_SUBTITULO = '';
+let modalCopiaTimer = null;
+const ROTULO_COPIAR_WHATSAPP = 'Copiar para WhatsApp';
 
 function semAcentoModal(s) {
   return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+}
+
+function decodificarEntidadesModal(s) {
+  return s.replace(/&nbsp;/gi, ' ')
+    .replace(/&amp;/gi, '&')
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;|&apos;/gi, "'")
+    .replace(/&#(\d+);/g, (_, n) => {
+      const cp = Number(n);
+      return cp >= 0 && cp <= 0x10FFFF ? String.fromCodePoint(cp) : '';
+    })
+    .replace(/&#x([0-9a-f]+);/gi, (_, h) => {
+      const cp = parseInt(h, 16);
+      return cp >= 0 && cp <= 0x10FFFF ? String.fromCodePoint(cp) : '';
+    });
+}
+
+function tirarMarcacaoModal(s) {
+  return s.replace(/<\s*br\s*\/?\s*>/gi, '\n')
+    .replace(/<\s*\/\s*(p|div|li|tr|h[1-6])\s*>/gi, '\n')
+    .replace(/<\s*li[^>]*>/gi, '')
+    .replace(/<\/?[a-zA-Z][^>]*>/g, '');
+}
+
+// Texto puro para colar no WhatsApp: tira marcação e preserva acentos e quebras.
+function textoPlanoModal(valor) {
+  let s = String(valor ?? '').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+  s = tirarMarcacaoModal(decodificarEntidadesModal(s));
+  s = tirarMarcacaoModal(decodificarEntidadesModal(s));
+  return s.replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+}
+
+function urlDoChamado(c) {
+  if (!c || typeof c !== 'object') return '';
+  const direto = [c.url, c.link, c.href].find(v => typeof v === 'string' && v.trim());
+  if (direto) {
+    const u = direto.trim();
+    if (/^https?:\/\//i.test(u) && !/[<>\s]/.test(u)) return u;
+  }
+  const numero = textoPlanoModal(c.numero);
+  if (!numero) return '';
+  return 'https://soma.zamp.com.br/wm_task.do?sysparm_query=number=' + encodeURIComponent(numero);
+}
+
+function dataBRModal(iso) {
+  return iso ? String(iso).split('-').reverse().join('/') : '';
+}
+
+function resumoFiltrosModal() {
+  const loja = document.getElementById('modalFiltroLoja').value.trim();
+  const problema = document.getElementById('modalFiltroProblema').value.trim();
+  const resp = document.getElementById('modalFiltroResp').value;
+  const de = document.getElementById('modalFiltroDataDe').value;
+  const ate = document.getElementById('modalFiltroDataAte').value;
+  const p = [];
+  if (loja) p.push('loja ' + loja);
+  if (problema) p.push('problema "' + problema + '"');
+  if (resp) p.push('responsável ' + resp);
+  if (de && ate) p.push('abertura de ' + dataBRModal(de) + ' a ' + dataBRModal(ate));
+  else if (de) p.push('abertura a partir de ' + dataBRModal(de));
+  else if (ate) p.push('abertura até ' + dataBRModal(ate));
+  return p;
+}
+
+function esconderCopiaManual() {
+  const box = document.getElementById('modalCopiaFallback');
+  const ta = document.getElementById('modalCopiaFallbackTexto');
+  if (box) box.hidden = true;
+  if (ta) ta.value = '';
+}
+
+function atualizarBotaoCopiaModal() {
+  const btn = document.getElementById('modalCopiar');
+  const status = document.getElementById('modalCopiaStatus');
+  if (!btn) return;
+  clearTimeout(modalCopiaTimer);
+  modalCopiaTimer = null;
+  const n = MODAL_FILTRADOS.length;
+  const vazio = n === 0;
+  btn.disabled = vazio;
+  btn.textContent = ROTULO_COPIAR_WHATSAPP;
+  btn.classList.remove('ok', 'erro');
+  const dica = vazio
+    ? 'Nenhum chamado para copiar com esses filtros'
+    : 'Copia os ' + n + ' chamados filtrados, em texto, para colar no WhatsApp';
+  btn.title = dica;
+  btn.setAttribute('aria-label', vazio
+    ? 'Copiar para WhatsApp, nenhum chamado filtrado'
+    : 'Copiar para WhatsApp, ' + n + ' chamados filtrados');
+  if (status) status.textContent = '';
+}
+
+function definirStatusCopia(msg, { erro = false, ok = false, persistir = false } = {}) {
+  const btn = document.getElementById('modalCopiar');
+  const status = document.getElementById('modalCopiaStatus');
+  clearTimeout(modalCopiaTimer);
+  modalCopiaTimer = null;
+  if (btn) {
+    btn.textContent = msg;
+    btn.classList.toggle('ok', ok);
+    btn.classList.toggle('erro', erro && !ok);
+  }
+  if (status) status.textContent = msg;
+  if (!persistir) {
+    modalCopiaTimer = setTimeout(() => {
+      modalCopiaTimer = null;
+      atualizarBotaoCopiaModal();
+    }, 2400);
+  }
+}
+
+function mostrarCopiaManual(texto) {
+  const box = document.getElementById('modalCopiaFallback');
+  const ta = document.getElementById('modalCopiaFallbackTexto');
+  if (!box || !ta) return;
+  box.hidden = false;
+  ta.value = texto;
+  ta.focus();
+  try { ta.setSelectionRange(0, texto.length); } catch (e) {}
+  ta.scrollTop = 0;
+}
+
+function diasTextoModal(dias) {
+  if (dias === 0) return '0d';
+  if (dias === null || dias === undefined || dias === '') return '';
+  const limpo = textoPlanoModal(dias);
+  if (!limpo) return '';
+  return /d\s*$/i.test(limpo) ? limpo : limpo + 'd';
+}
+
+function textoWhatsAppModal() {
+  const itens = MODAL_FILTRADOS;
+  const total = MODAL_ITENS.length;
+  const L = [];
+  L.push('*' + (textoPlanoModal(MODAL_TITULO) || 'Backlog') + '*');
+  const sub = textoPlanoModal(MODAL_SUBTITULO);
+  if (sub) L.push(sub);
+  const quando = new Date().toLocaleDateString('pt-BR');
+  L.push('_' + quando + ' · ' + itens.length + ' de ' + total + ' chamados_');
+  const filtros = resumoFiltrosModal();
+  if (filtros.length) L.push('_Filtros: ' + filtros.join(' · ') + '_');
+  L.push('');
+
+  itens.forEach((c) => {
+    const numero = textoPlanoModal(c.numero) || 'sem número';
+    const loja = textoPlanoModal(c.loja) || 'sem loja';
+    const problema = textoPlanoModal(c.problema) || '—';
+    const estado = textoPlanoModal(c.estado);
+    const prioridade = textoPlanoModal(c.prioridade);
+    const tecnico = textoPlanoModal(c.tecnico);
+    const dias = diasTextoModal(c.dias);
+    const extras = [];
+    if (chamadosComPeca.has(c.numero)) extras.push('Peças');
+    if (chamadosDuplicados.has(c.numero)) extras.push('Duplicado');
+    const statusParts = [estado, prioridade, ...extras, dias].filter(Boolean);
+    L.push('• *' + numero + '* · ' + loja);
+    if (MODAL_MOSTRA_EQUIP) {
+      const eq = textoPlanoModal(c.equipamento);
+      if (eq) L.push('Equipamento: ' + eq);
+    }
+    L.push('Problema: ' + problema);
+    if (statusParts.length) L.push(statusParts.join(' · '));
+    if (tecnico) L.push('Responsável: ' + tecnico);
+    const url = urlDoChamado(c);
+    if (url) L.push(url);
+    L.push('');
+  });
+  return L.join('\n').replace(/\n{3,}/g, '\n\n').trim() + '\n';
+}
+
+async function copiarTextoPlano(texto) {
+  const clip = navigator.clipboard;
+  if (clip && typeof clip.writeText === 'function') {
+    try {
+      await clip.writeText(texto);
+      return true;
+    } catch (e) {}
+  }
+  let ta = null;
+  try {
+    ta = document.createElement('textarea');
+    ta.value = texto;
+    ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try { ta.setSelectionRange(0, texto.length); } catch (e) {}
+    return document.execCommand('copy') === true;
+  } catch (e) {
+    return false;
+  } finally {
+    if (ta && ta.parentNode) ta.parentNode.removeChild(ta);
+  }
+}
+
+async function copiarModalParaWhatsApp() {
+  if (!MODAL_FILTRADOS.length) {
+    esconderCopiaManual();
+    definirStatusCopia('Nada para copiar', { erro: true });
+    return false;
+  }
+  const texto = textoWhatsAppModal();
+  const ok = await copiarTextoPlano(texto);
+  if (ok) {
+    esconderCopiaManual();
+    definirStatusCopia('Copiado!', { ok: true });
+    return true;
+  }
+  mostrarCopiaManual(texto);
+  definirStatusCopia('Não consegui copiar', { erro: true, persistir: true });
+  return false;
 }
 
 function renderizarModalTabela() {
@@ -770,11 +1028,12 @@ function renderizarModalTabela() {
     && (!dataAte || (c.abertura && c.abertura <= dataAte))
   ));
 
+  MODAL_FILTRADOS = filtrados;
   document.getElementById('modalFiltroContagem').textContent = `${filtrados.length} de ${MODAL_ITENS.length} chamados`;
   const colspan = MODAL_MOSTRA_EQUIP ? 8 : 7;
   document.getElementById('modalTbody').innerHTML = filtrados.length
     ? filtrados.map(c => `<tr>
-        <td class="mono"><a href="https://soma.zamp.com.br/wm_task.do?sysparm_query=number=${encodeURIComponent(c.numero)}" target="_blank" rel="noopener" style="color:#1e3bff;font-weight:600;">${escapeHtml(c.numero)}</a></td>
+        <td class="mono"><a href="${escapeHtml(urlDoChamado(c))}" target="_blank" rel="noopener" style="color:#1e3bff;font-weight:600;">${escapeHtml(c.numero)}</a></td>
         ${MODAL_MOSTRA_EQUIP ? `<td>${escapeHtml(c.equipamento)}</td>` : ''}
         <td>${escapeHtml(c.loja)}</td>
         <td>${escapeHtml(c.problema) || '—'}</td>
@@ -784,9 +1043,13 @@ function renderizarModalTabela() {
         <td>${escapeHtml(c.tecnico) || '—'}</td>
       </tr>`).join('')
     : `<tr><td colspan="${colspan}" class="esos-empty">Nenhum chamado com esses filtros.</td></tr>`;
+  esconderCopiaManual();
+  atualizarBotaoCopiaModal();
 }
 
 function abrirModalGenerico(titulo, subtitulo, itens, { mostrarEquipamento } = {}) {
+  MODAL_TITULO = titulo || '';
+  MODAL_SUBTITULO = subtitulo || '';
   document.getElementById('modalTitle').textContent = titulo;
   document.getElementById('modalSub').textContent = subtitulo;
   const colEquip = mostrarEquipamento ? '<th>Equipamento</th>' : '';
@@ -883,6 +1146,11 @@ function fecharModal() {
 }
 
 document.getElementById('modalClose').addEventListener('click', fecharModal);
+document.getElementById('modalCopiar').addEventListener('click', (ev) => {
+  ev.preventDefault();
+  ev.stopPropagation();
+  copiarModalParaWhatsApp();
+});
 document.getElementById('modalOverlay').addEventListener('click', (ev) => {
   if (ev.target.id === 'modalOverlay') fecharModal();
 });
