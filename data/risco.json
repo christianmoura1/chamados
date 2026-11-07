@@ -1,6 +1,6 @@
 {
- "atualizadoEm": "11/07/2026 05:08:06",
- "geradoEm": "2026-11-07T09:01:54.276Z",
+ "atualizadoEm": "11/07/2026 16:08:39",
+ "geradoEm": "2026-11-07T20:24:46.648Z",
  "totalLojasAvaliadas": 71,
  "scoreMedio": 9.11,
  "categorias": [
@@ -387,7 +387,7 @@
   "1",
   "1",
   "1",
-  "3",
+  "2",
   "Atrasado",
   "No Prazo"
  ],
@@ -650,23 +650,99 @@
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
     "assunto": "COI - ESTRUTURA DA COIFA COM DEFEITO",
     "diasAtraso": 3
-   },
-   {
-    "numero": "WO0086486",
-    "statusRisco": "No Prazo",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA NÃO FUNCIONA",
-    "regional": "SUL",
-    "setor": "CAPITAL NORTE RS",
-    "loja": "18625 - BOURBON SHOP WALLIG",
-    "status": "Pronto Para Envio",
-    "dtAbertura": "06/11/2026",
-    "dtEncerramento": "",
-    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
-    "assunto": "COI - COIFA NÃO FUNCIONA",
-    "diasAtraso": 1
    }
   ]
- }
+ },
+ "ultimosFechados": [
+  {
+   "numero": "WO0086486",
+   "fechadoEm": "07/11/2026 11:55:37",
+   "dias": 0,
+   "prioridade": "SOS",
+   "problema": "COI - COIFA NÃO FUNCIONA",
+   "loja": "18625 - BOURBON SHOP WALLIG",
+   "fechadoPor": "Gustavo de Godoy Matheus"
+  },
+  {
+   "numero": "WO0067319",
+   "fechadoEm": "04/11/2026 17:00:30",
+   "dias": 25,
+   "prioridade": "SOS",
+   "problema": "COI - COIFA LAVADORA NÃO FAZ LAVAGEM",
+   "loja": "24741 - FS PELOTAS - AV FERREIRA VIANA",
+   "fechadoPor": "Thiago da Silva Gonzalez"
+  },
+  {
+   "numero": "WO0077854",
+   "fechadoEm": "03/11/2026 19:34:11",
+   "dias": 3,
+   "prioridade": "SOS",
+   "problema": "SCI - FALTA DO SENSOR DE FUMAÇA",
+   "loja": "23725 - SHOP PRACA NOVA SANTA MARIA",
+   "fechadoPor": "Marcel Vinicios Rocha Agradem"
+  },
+  {
+   "numero": "WO0076362",
+   "fechadoEm": "03/11/2026 19:27:24",
+   "dias": 6,
+   "prioridade": "SOS",
+   "problema": "COI - COIFA COM VAZAMENTO",
+   "loja": "19868 - SHOP DO VALE",
+   "fechadoPor": "Lucas Dorneles Correa da Costa"
+  },
+  {
+   "numero": "WO0072619",
+   "fechadoEm": "03/11/2026 15:45:10",
+   "dias": 13,
+   "prioridade": "SOS",
+   "problema": "AIN - QUADRO ELÉTRICO - FALTA DE ACRÍLICO DE PROTEÇÃO",
+   "loja": "23584 - ILR FLORIPA - R JERONIMO COELHO 215",
+   "fechadoPor": "Solano Silva do Amaral"
+  },
+  {
+   "numero": "WO0077691",
+   "fechadoEm": "01/11/2026 15:46:39",
+   "dias": 1,
+   "prioridade": "SOS",
+   "problema": "CDB - CARRINHO TORTO / BALANÇANDO",
+   "loja": "27590 - PORTO BELO OUTLET",
+   "fechadoPor": "Gustavo de Godoy Matheus"
+  },
+  {
+   "numero": "WO0077678",
+   "fechadoEm": "01/11/2026 12:58:13",
+   "dias": 1,
+   "prioridade": "SOS",
+   "problema": "COI - COIFA NÃO FUNCIONA",
+   "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
+   "fechadoPor": "Thiago Dos Santos Coelho"
+  },
+  {
+   "numero": "WO0076396",
+   "fechadoEm": "01/11/2026 12:03:47",
+   "dias": 3,
+   "prioridade": "SOS",
+   "problema": "SCI - CENTRAL DE FUMAÇA",
+   "loja": "23721 - PARK SHOP CANOAS",
+   "fechadoPor": "Thiago Dos Santos Coelho"
+  },
+  {
+   "numero": "WO0077932",
+   "fechadoEm": "01/11/2026 10:04:58",
+   "dias": 0,
+   "prioridade": "SOS",
+   "problema": "COI - COIFA NÃO FUNCIONA",
+   "loja": "29084 FS PINHAIS PEDRO JACOMEL 13",
+   "fechadoPor": "Gustavo de Godoy Matheus"
+  },
+  {
+   "numero": "WO0076154",
+   "fechadoEm": "31/10/2026 15:14:44",
+   "dias": 3,
+   "prioridade": "SOS",
+   "problema": "COI - COIFA NÃO FUNCIONA",
+   "loja": "20215 - CARREFOUR PASSO D'AREIA",
+   "fechadoPor": "Thiago Dos Santos Coelho"
+  }
+ ]
 }
