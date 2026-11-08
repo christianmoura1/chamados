@@ -295,12 +295,15 @@ document.getElementById('conteudo').innerHTML = h;
 
 function ehEvolucao() { return String(abaAtual).indexOf('Evolu') === 0; }
 
+// Excel no formato da planilha modelo do Christian (08/11/2026): 4 abas --
+// Evolucao, Resumo por regional, Chamados abertos A-C, Lojas 100% paradas.
+// Gerado na VPS pelo relatorio_mds_xlsx.cjs na rodada das 23:59.
 function baixar() {
-if (!ehEvolucao()) return baixarCSV();
 var dia = D.ultimoDiaFechado || '';
+var m = String(dia).match(/^(\d{4})-(\d{2})-(\d{2})/);
 var a = document.createElement('a');
 a.href = 'data/relatorio_sorvete.xlsx' + (dia ? '?v=' + encodeURIComponent(dia) : '');
-a.download = 'Evolucao_Sorvete_' + (dia || 'hoje') + '.xlsx';
+a.download = 'Maquina_Sorvete_' + (m ? m[3] + '-' + m[2] + '-' + m[1] : 'hoje') + '.xlsx';
 document.body.appendChild(a); a.click(); document.body.removeChild(a);
 }
 
@@ -482,9 +485,8 @@ h += '<div class="filter-field" style="flex:0 1 260px;min-width:220px"><label>Ab
 h += '<div class="filter-field" style="flex:1;min-width:200px"><label for="q">Buscar</label>'
 + '<input type="text" id="q" placeholder="chamado, problema, técnico…" autocomplete="off"></div>'
 + '<button class="filter-clear" id="limpar" type="button">Limpar</button>'
-+ '<button class="btn-baixar" id="baixar" type="button" title="'
-+ (ehEvolucao() ? 'Baixa o relatório em Excel' : 'Baixa esta aba como CSV, já filtrada') + '">'
-+ (ehEvolucao() ? '⬇ Baixar Excel' : '⬇ Baixar CSV') + '</button></div>'
++ (ehEvolucao() ? '' : '<button class="btn-baixar" id="baixarCsv" type="button" title="Baixa esta aba como CSV, já filtrada">⬇ Baixar CSV</button>')
++ '<button class="btn-baixar" id="baixar" type="button" title="Baixa o relatório Máquina de Sorvete em Excel (Evolução, Resumo por regional, Chamados A-C, Lojas 100% paradas)">⬇ Baixar Excel</button></div>'
 + '<div class="filter-count" id="cont"></div>'
 + '<div class="table-wrap"><table id="tabela"></table></div>';
 document.getElementById('conteudo').innerHTML = h;
@@ -521,6 +523,8 @@ var fp = document.getElementById('fPri'); if (fp) fp.addEventListener('change', 
 var fpr = document.getElementById('fProvRes'); if (fpr) fpr.addEventListener('change', renderTabela);
 var bx = document.getElementById('baixar');
 if (bx) bx.addEventListener('click', baixar);
+var bxc = document.getElementById('baixarCsv');
+if (bxc) bxc.addEventListener('click', baixarCSV);
 document.getElementById('limpar').addEventListener('click', function () {
 if (q) q.value = ''; if (fr) fr.value = '';
 if (fs) fs.value = ''; if (fp) fp.value = '';
