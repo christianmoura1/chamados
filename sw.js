@@ -1,4 +1,4 @@
-const CACHE_NAME = 'backlog-zamp-v6';
+const CACHE_NAME = 'backlog-zamp-v5';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -7,11 +7,6 @@ const urlsToCache = [
   '/preventivas.html',
   '/perda.html',
   '/sorvete.html',
-  '/tecnicos.html',
-  '/gestao.html',
-  '/pecas.html',
-  '/css/sul-ui.css?v=20261107',
-  '/js/sul-ui.js?v=20261107',
   '/manifest.json'
 ];
 

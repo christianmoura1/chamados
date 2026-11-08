@@ -174,9 +174,6 @@ footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--border
 @media (max-width: 900px) { :root { --sidebar-w: 0px; } aside { display: none; } }
 @media (max-width: 600px) { main { padding: 14px; } }
 </style>
-<link rel="stylesheet" href="css/sul-ui.css?v=20261107">
-<script src="js/sul-ui.js?v=20261107"></script>
-
 </head>
 <body>
 <header>
@@ -199,7 +196,7 @@ footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--border
     
 <a href="gestao.html"><span class="s-dot" style="color:var(--cobalto)"></span> Chamados Abertos</a>
 <a href="pecas.html"><span class="s-dot" style="color:var(--cinza)"></span> Peças / Materiais</a>
-    <div class="side-foot">Leitura diária por volta das 7h30 (Brasília)</div>
+    <div class="side-foot">Atualização automática diária</div>
   </aside>
   <main>
     <div class="kpis" id="kpis"></div>
@@ -210,13 +207,13 @@ footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--border
     </section>
 
     <section>
-      <div class="sec-head"><h2>Buscar chamados</h2><span class="sec-note">Filtre por equipamento, loja, problema, data, técnico ou supervisor da loja</span></div>
+      <div class="sec-head"><h2>Buscar chamados</h2><span class="sec-note">Filtre por equipamento, loja, problema, data ou responsável</span></div>
       <div class="filter-bar">
         <div class="filter-field"><label for="filtroEquipamento">Equipamento</label><select id="filtroEquipamento"><option value="">Todos</option></select></div>
         <div class="filter-field filter-combo"><label for="filtroLoja">Loja</label><input type="text" id="filtroLoja" placeholder="Todas" autocomplete="off"><div class="filter-combo-lista" id="filtroLojaLista" hidden></div></div>
         <div class="filter-field"><label for="filtroProblema">Problema</label><input type="text" id="filtroProblema" placeholder="Buscar palavra…" autocomplete="off"></div>
         <div class="filter-field"><label for="filtroPrioridade">Prioridade</label><select id="filtroPrioridade"><option value="">Todas</option></select></div>
-        <div class="filter-field"><label for="filtroSupervisor">Supervisor da loja <span class="filtro-papel">(supervisor da carteira, não o técnico do chamado)</span></label><select id="filtroSupervisor"><option value="">Todos</option></select></div>
+        <div class="filter-field"><label for="filtroSupervisor">Supervisor</label><select id="filtroSupervisor"><option value="">Todos</option></select></div>
         <div class="filter-field"><label for="filtroMateriais">Materiais</label><select id="filtroMateriais"><option value="">Todos</option><option value="sim">Com materiais</option><option value="nao">Sem materiais</option></select></div>
       </div>
       <div class="filter-bar">
@@ -228,9 +225,9 @@ footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--border
       <div class="table-wrap">
         <table>
           <thead><tr>
-            <th>Número</th><th>Loja</th><th>Equipamento</th><th>Problema</th><th>Estado</th><th>Prioridade</th><th class="col-num">Dias</th><th>Técnico</th><th>Supervisor da loja</th><th class="col-num">Perda (R$)</th>
+            <th>Número</th><th>Loja</th><th>Equipamento</th><th>Problema</th><th>Estado</th><th>Prioridade</th><th class="col-num">Dias</th><th>Supervisor</th><th class="col-num">Perda (R$)</th>
           </tr></thead>
-          <tbody id="tbody"><tr><td colspan="10" class="msg-carregando">Buscando a perda de receita…</td></tr></tbody>
+          <tbody id="tbody"><tr><td colspan="9" class="msg-carregando">carregando chamados…</td></tr></tbody>
         </table>
       </div>
     </section>
@@ -258,7 +255,7 @@ footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--border
     <div class="modal-filtro-contagem" id="modalFiltroContagem"></div>
     <div class="modal-body">
       <table class="detail-table">
-        <thead id="modalThead"><tr><th>Número</th><th>Loja</th><th>Equipamento</th><th>Problema</th><th>Estado</th><th>Prioridade</th><th>Dias</th><th>Técnico</th><th>Supervisor da loja</th><th>Perda</th></tr></thead>
+        <thead id="modalThead"><tr><th>Número</th><th>Loja</th><th>Equipamento</th><th>Problema</th><th>Estado</th><th>Prioridade</th><th>Dias</th><th>Perda</th></tr></thead>
         <tbody id="modalTbody"></tbody>
       </table>
     </div>
@@ -368,9 +365,9 @@ function renderizarModalTabela() {
   document.getElementById('modalFiltroContagem').textContent = filtrados.length + ' de ' + MODAL_ITENS.length + ' chamados';
   document.getElementById('modalTbody').innerHTML = filtrados.length
     ? filtrados.map(function(c){
-        return '<tr><td class="mono"><a class="chamado-link" href="https://soma.zamp.com.br/wm_order_list.do?sysparm_query=number%3D'+encodeURIComponent(c.chamado||'')+'" target="_blank" rel="noopener">'+escapeHtml(c.chamado)+'</a></td><td>'+escapeHtml(c.loja)+'</td><td>'+escapeHtml(c.equipamento||'—')+'</td><td>'+escapeHtml(c.problema||'—')+'</td><td>'+escapeHtml(c.estado||'')+'</td><td><span class="tag '+tagClsPrioridade(c.prioridade)+'">'+escapeHtml(c.prioridade||'')+'</span>'+(c.temPecas?'<span class="tag tag-pecas">Peças</span>':'')+'</td><td class="num">'+(c.dias!=null?c.dias+'d':'')+'</td><td>'+escapeHtml(c.tecnico||'—')+'</td><td>'+escapeHtml(c.supervisor||'—')+'</td><td class="num">'+(c.perda!=null?'<strong>'+fmtR(c.perda)+'</strong>':'—')+'</td></tr>';
+        return '<tr><td class="mono"><a class="chamado-link" href="https://soma.zamp.com.br/wm_order_list.do?sysparm_query=number%3D'+encodeURIComponent(c.chamado||'')+'" target="_blank" rel="noopener">'+escapeHtml(c.chamado)+'</a></td><td>'+escapeHtml(c.loja)+'</td><td>'+escapeHtml(c.equipamento||'—')+'</td><td>'+escapeHtml(c.problema||'—')+'</td><td>'+escapeHtml(c.estado||'')+'</td><td><span class="tag '+tagClsPrioridade(c.prioridade)+'">'+escapeHtml(c.prioridade||'')+'</span>'+(c.temPecas?'<span class="tag tag-pecas">Peças</span>':'')+'</td><td class="num">'+(c.dias!=null?c.dias+'d':'')+'</td><td class="num">'+(c.perda!=null?'<strong>'+fmtR(c.perda)+'</strong>':'—')+'</td></tr>';
       }).join('')
-    : '<tr><td colspan="10" class="esos-empty">Nenhum chamado com esses filtros.</td></tr>';
+    : '<tr><td colspan="8" class="esos-empty">Nenhum chamado com esses filtros.</td></tr>';
 }
 function abrirModalSupervisor(nome, itens, stats) {
   document.getElementById('modalTitle').textContent = nome;
@@ -469,32 +466,24 @@ function renderFarol(arr) {
 function atualizarKPIs(arr) {
   var lojasSet = new Set(), perdaTotal = 0, sos = 0, alta = 0, comMat = 0;
   arr.forEach(function(x){ if(x.loja) lojasSet.add(x.loja); perdaTotal += (x.perda||0); if(/cr[ií]tica/i.test(x.prioridade)) sos++; if(/alta/i.test(x.prioridade)) alta++; if(x.temPecas) comMat++; });
-  var nota = function(rot, val, cls, sub) {
-    return '<div class="kpi '+cls+'"><span class="label">'+rot+'</span><span class="val">'+val+'</span><span class="kpi-nota">'+sub+'</span></div>';
-  };
   document.getElementById('kpis').innerHTML =
-    '<p class="escopo-painel">Universo: chamados abertos da regional Sul. SOS e Alta seguem a prioridade do SOMA. A perda em R$ só aparece quando o Power BI mediu o chamado; o restante fica sem valor. O arquivo não traz horário de geração — o carimbo não usa o relógio desta tela.</p>'
-    + nota('Chamados abertos', fmtN(arr.length), 'k-violet', 'regional Sul, nesta leitura')
-    + '<div class="kpi k-violet"><span class="label">Lojas c/ Chamado Aberto</span><span class="val">'+fmtN(lojasSet.size)+'</span><span class="kpi-nota">lojas distintas da lista</span></div>'
-    + nota('Chamados SOS', fmtN(sos), 'k-sos', 'prioridade crítica')
-    + nota('Chamados Alta', fmtN(alta), 'k-alta', 'prioridade alta')
-    + nota('Chamados c/ Materiais', fmtN(comMat), 'k-violet', 'com peça pedida')
-    + nota('Perda medida (R$)', fmtR(perdaTotal), 'k-alta', 'só onde o BI mediu');
+    '<div class="kpi k-violet"><span class="label">Total de Chamados</span><span class="val">'+fmtN(arr.length)+'</span></div>'
+    + '<div class="kpi k-violet"><span class="label">Lojas c/ Chamado Aberto</span><span class="val">'+fmtN(lojasSet.size)+'</span></div>'
+    + '<div class="kpi k-sos"><span class="label">Chamados SOS</span><span class="val">'+fmtN(sos)+'</span></div>'
+    + '<div class="kpi k-alta"><span class="label">Chamados Alta</span><span class="val">'+fmtN(alta)+'</span></div>'
+    + '<div class="kpi k-violet"><span class="label">Chamados c/ Materiais</span><span class="val">'+fmtN(comMat)+'</span></div>'
+    + '<div class="kpi k-alta"><span class="label">Perda Medida (R$)</span><span class="val">'+fmtR(perdaTotal)+'</span></div>';
 }
 
 var LOJAS_TODAS = []; // lista global para o autocomplete
 function popularFiltros() {
   var equips={}, lojas={}, pris={}, sups={};
   dados.forEach(function(x){ if(x.equipamento) equips[x.equipamento]=1; if(x.loja) lojas[x.loja]=1; if(x.prioridade) pris[x.prioridade]=1; if(x.supervisor) sups[x.supervisor]=1; });
-  var selEq=document.getElementById('filtroEquipamento');
-  var selPr=document.getElementById('filtroPrioridade');
-  var selSu=document.getElementById('filtroSupervisor');
-  [selEq, selPr, selSu].forEach(function(sel){ while (sel.options.length > 1) sel.remove(1); });
-  Object.keys(equips).sort().forEach(function(e){ var o=document.createElement('option'); o.value=e; o.textContent=e; selEq.appendChild(o); });
+  var selEq=document.getElementById('filtroEquipamento'); Object.keys(equips).sort().forEach(function(e){ var o=document.createElement('option'); o.value=e; o.textContent=e; selEq.appendChild(o); });
   // Loja agora eh input com autocomplete (nao mais select)
   LOJAS_TODAS = Object.keys(lojas).sort();
-  Object.keys(pris).sort().forEach(function(p){ var o=document.createElement('option'); o.value=p; o.textContent=p; selPr.appendChild(o); });
-  Object.keys(sups).sort().forEach(function(s){ var o=document.createElement('option'); o.value=s; o.textContent=s; selSu.appendChild(o); });
+  var selPr=document.getElementById('filtroPrioridade'); Object.keys(pris).sort().forEach(function(p){ var o=document.createElement('option'); o.value=p; o.textContent=p; selPr.appendChild(o); });
+  var selSu=document.getElementById('filtroSupervisor'); Object.keys(sups).sort().forEach(function(s){ var o=document.createElement('option'); o.value=s; o.textContent=s; selSu.appendChild(o); });
   // Inicializa o autocomplete de loja
   iniciarAutocompleteLoja();
 }
@@ -502,8 +491,7 @@ function semAcento(s){ return (s||'').toLowerCase().normalize('NFD').replace(/[�
 function iniciarAutocompleteLoja() {
   var input = document.getElementById('filtroLoja');
   var lista = document.getElementById('filtroLojaLista');
-  if (!input || !lista || input.dataset.sulPronto) return;
-  input.dataset.sulPronto = '1';
+  if (!input || !lista) return;
   function mostrarLista() {
     var busca = semAcento(input.value.trim());
     var opcoes = (busca ? LOJAS_TODAS.filter(function(l){ return semAcento(l).includes(busca); }) : LOJAS_TODAS).slice(0, 40);
@@ -559,13 +547,13 @@ function aplicarFiltros() {
 
 function renderTabela(arr) {
   var tbody = document.getElementById('tbody');
-  if (!arr.length) { tbody.innerHTML = '<tr><td colspan="10" class="msg-carregando">Nenhum chamado encontrado.</td></tr>'; return; }
+  if (!arr.length) { tbody.innerHTML = '<tr><td colspan="9" class="msg-carregando">Nenhum chamado encontrado.</td></tr>'; return; }
   tbody.innerHTML = arr.map(function(x){
     var estLower=(x.estado||'').toLowerCase();
     var estadoTag = estLower.indexOf('expedi')!==-1 ? '<span class="tag tag-alta">'+escapeHtml(x.estado)+'</span>' : (estLower.indexOf('andamento')!==-1 ? '<span class="tag tag-sos">'+escapeHtml(x.estado)+'</span>' : '<span class="tag tag-normal">'+escapeHtml(x.estado||'')+'</span>');
     var priTag = '<span class="tag '+tagClsPrioridade(x.prioridade)+'">'+escapeHtml(x.prioridade||'')+'</span>' + (x.temPecas?'<span class="tag tag-pecas">Peças</span>':'');
     var diasTxt = (x.dias==null)?'':(x.dias>30?'<strong style="color:var(--rosa)">'+x.dias+'</strong>':String(x.dias));
-    return '<tr><td><a class="chamado-link" href="https://soma.zamp.com.br/wm_order_list.do?sysparm_query=number%3D'+encodeURIComponent(x.chamado||'')+'" target="_blank" rel="noopener">'+escapeHtml(x.chamado||'')+'</a></td><td class="loja-cell" title="'+escapeHtml((x.bkn?x.bkn+' · ':'')+(x.setor||''))+'">'+escapeHtml(x.loja||'')+'</td><td style="font-size:13px;">'+escapeHtml(x.equipamento||'')+'</td><td style="font-size:13px;color:var(--text-2);" title="'+escapeHtml(x.problema||'')+'">'+escapeHtml(x.problema||'')+'</td><td>'+estadoTag+'</td><td>'+priTag+'</td><td class="col-num">'+diasTxt+'</td><td>'+escapeHtml(x.tecnico||'—')+'</td><td>'+escapeHtml(x.supervisor||'—')+'</td><td class="col-num">'+(x.perda!=null?'<strong>'+fmtR(x.perda)+'</strong>':'<span style="color:var(--text-2)">—</span>')+'</td></tr>';
+    return '<tr><td><a class="chamado-link" href="https://soma.zamp.com.br/wm_order_list.do?sysparm_query=number%3D'+encodeURIComponent(x.chamado||'')+'" target="_blank" rel="noopener">'+escapeHtml(x.chamado||'')+'</a></td><td class="loja-cell" title="'+escapeHtml((x.bkn?x.bkn+' · ':'')+(x.setor||''))+'">'+escapeHtml(x.loja||'')+'</td><td style="font-size:11.5px;">'+escapeHtml(x.equipamento||'')+'</td><td style="font-size:11.5px;color:var(--text-3);" title="'+escapeHtml(x.problema||'')+'">'+escapeHtml(x.problema||'')+'</td><td>'+estadoTag+'</td><td>'+priTag+'</td><td class="col-num">'+diasTxt+'</td><td style="font-size:11px;">'+escapeHtml(x.supervisor||'—')+'</td><td class="col-num">'+(x.perda!=null?'<strong>'+fmtR(x.perda)+'</strong>':'<span style="color:var(--text-3)">—</span>')+'</td></tr>';
   }).join('');
 }
 
@@ -619,32 +607,18 @@ if ('serviceWorker' in navigator && !sessionStorage.getItem('sw_v5_ok')) {
   navigator.serviceWorker.getRegistration().then(function(reg) { if (reg) reg.update(); });
 }
 
-function carregarPerda() {
-  document.getElementById('tbody').innerHTML = '<tr><td colspan="10" class="msg-carregando">Buscando a perda de receita…</td></tr>';
-  SulUI.lerComCache('perda', function() {
-    return fetch('data/chamados-abertos-perda.json?_=' + Date.now(), { cache: 'no-store' }).then(function(r) {
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      return r.json().then(function(arr) { return { lista: arr || [], geradoEm: r.headers.get('Last-Modified') }; });
-    });
-  }).then(function(res) {
-    if (!res.dados) {
-      document.getElementById('kpis').innerHTML = SulUI.htmlFalha({ painel: 'a perda de receita', erro: res.erro, retry: 'carregarPerda' });
-      document.getElementById('tbody').innerHTML = '';
-      SulUI.carimbar(document.getElementById('stamp'), null, { cadencia: 'diaria', hora: '07:30' });
-      return;
-    }
-    dados = res.dados.lista || [];
-    var quando = res.dados.geradoEm || null;
-    var carimbo = SulUI.carimbar(document.getElementById('stamp'), quando, { cadencia: 'diaria', hora: '07:30' });
-    document.getElementById('footer-stamp').textContent = carimbo ? carimbo.texto : '';
-    document.querySelectorAll('.banner-antigo').forEach(function(n) { n.remove(); });
-    if (res.antigo) document.getElementById('kpis').insertAdjacentHTML('beforebegin', SulUI.htmlBannerAntigo({ quando: quando || res.lidoEm, lidoEm: res.lidoEm, retry: 'carregarPerda' }));
+fetch('data/chamados-abertos-perda.json?_=' + Date.now(), { cache: 'no-store' })
+  .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+  .then(function(arr){
+    dados = arr || [];
+    var agora = new Date();
+    var stamp = agora.toLocaleDateString('pt-BR') + ' ' + agora.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+    document.getElementById('stamp').textContent = stamp;
+    document.getElementById('footer-stamp').textContent = stamp;
     popularFiltros();
     aplicarFiltros();
-  });
-}
-SulUI.registrarRetry('carregarPerda', carregarPerda);
-carregarPerda();
+  })
+  .catch(function(e){ document.getElementById('tbody').innerHTML = '<tr><td colspan="9" class="msg-erro">Erro ao carregar dados: '+escapeHtml(e.message)+'</td></tr>'; });
 </script>
 </body>
 </html>

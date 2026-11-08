@@ -301,9 +301,6 @@
   .filter-table-wrap { max-height: 520px; overflow: auto; border-radius: 12px; }
   .filter-empty { padding: 30px 0; text-align: center; color: var(--faint); font-size: 12.5px; }
 </style>
-<link rel="stylesheet" href="css/sul-ui.css?v=20261107">
-<script src="js/sul-ui.js?v=20261107"></script>
-
 </style>
 
 <body>
@@ -329,7 +326,7 @@
       <div class="navlabel">Fonte</div>
       <div class="navitem"><span class="dot"></span>ServiceNow · SOMA</div>
     </div>
-    <div class="side-foot">A cada 2 h, por volta de :02, até 22h (Brasília)</div>
+    <div class="side-foot">Atualização automática diária</div>
   </aside>
   <button class="side-reopen" id="sideReopen" type="button" aria-label="Abrir menu">›</button>
 
@@ -341,7 +338,7 @@
       </div>
       <div class="stamp-pill" id="stamp">carregando…</div>
     </div>
-    <div id="conteudo"><div class="msg-carregando" role="status">Buscando o farol de técnicos…</div></div>
+    <div id="conteudo"><div class="msg-carregando">carregando data/dados.json…</div></div>
   </main>
 </div>
 
@@ -363,7 +360,7 @@
         <input type="text" id="modalFiltroProblema" placeholder="Buscar palavra..." autocomplete="off">
       </div>
       <div class="filter-field">
-        <label for="modalFiltroResp">Técnico do chamado <span class="filtro-papel">quem está atribuído no chamado, não o supervisor da loja</span></label>
+        <label for="modalFiltroResp">Responsável</label>
         <select id="modalFiltroResp"><option value="">Todos</option></select>
       </div>
       <div class="filter-field filter-field-datas">
@@ -638,32 +635,9 @@ function cardTecnico(t) {
   </div>`;
 }
 
-function tabelaTecnicos(lista) {
-  const linhas = [...lista].sort((a, b) => b.chamados - a.chamados);
-  const corpo = linhas.map(t => `<tr data-nome="${escapeHtml(t.nome)}" tabindex="0" role="button" aria-label="Ver detalhe de ${escapeHtml(t.nome)}">
-      <th scope="row" data-v="${escapeHtml(t.nome)}">${escapeHtml(t.nome)}</th>
-      <td class="num${t.sos ? ' num-sos' : ''}" data-v="${t.sos}">${t.sos}</td>
-      <td class="num${t.alta ? ' num-alta' : ''}" data-v="${t.alta}">${t.alta}</td>
-      <td class="num" data-v="${t.tempoMedioDias}">${t.tempoMedioDias}d</td>
-      <td class="num" data-v="${t.lojasAtendidas}">${t.lojasAtendidas}</td>
-      <td class="num" data-v="${t.chamados}">${t.chamados}</td>
-    </tr>`).join('');
-  return `<div class="cmp-wrap"><table class="cmp-table" id="cmpTec">
-      <caption>Mesma leitura dos velocímetros. O título da coluna ordena; a linha abre o detalhe.</caption>
-      <thead><tr>
-        <th scope="col"><button type="button" data-sort="0" data-tipo="texto">Técnico</button></th>
-        <th scope="col"><button type="button" data-sort="1" data-tipo="num">SOS</button></th>
-        <th scope="col"><button type="button" data-sort="2" data-tipo="num">Alta</button></th>
-        <th scope="col"><button type="button" data-sort="3" data-tipo="num">Idade média</button></th>
-        <th scope="col"><button type="button" data-sort="4" data-tipo="num">Lojas</button></th>
-        <th scope="col" aria-sort="descending"><button type="button" data-sort="5" data-tipo="num">Chamados</button></th>
-      </tr></thead>
-      <tbody>${corpo}</tbody>
-    </table></div>`;
-}
-
-function renderizarTecnicos(D, leituraAntiga, lidoEm) {
-  SulUI.carimbar(document.getElementById('stamp'), D.atualizadoEm, { cadencia: '2h' });
+function renderizarTecnicos(D) {
+  const dt = new Date(D.atualizadoEm);
+  document.getElementById('stamp').textContent = 'Atualizado ' + dt.toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
 
   // fila do supervisor (ehSupervisor=true) fica de fora desta pagina --
   // pedido do Christian, 12/09/2026: "esses sao supervisores, tiram eles
@@ -673,38 +647,26 @@ function renderizarTecnicos(D, leituraAntiga, lidoEm) {
   const todos = [...(D.tecnicos || [])].sort((a, b) => b.chamados - a.chamados);
   const tecnicosCampo = todos.filter(t => !t.ehSupervisor);
 
-  const el = document.getElementById('conteudo');
-  el.innerHTML = `
-    <p class="escopo-painel">Universo: chamados abertos atribuídos a técnicos de campo da regional Sul (${tecnicosCampo.length} pessoas). Supervisor de loja não entra neste farol — a carteira dele está no Backlog.</p>
+  document.getElementById('conteudo').innerHTML = `
     <section>
       <div class="sec-head"><h2>Farol por técnico</h2><span class="sec-note">Quantidade de chamados em aberto atribuídos a cada técnico de campo · ${tecnicosCampo.length} técnicos</span></div>
       <div class="gauge-grid">${tecnicosCampo.map(cardTecnico).join('')}</div>
     </section>
-    <section>
-      <div class="sec-head"><h2>Comparar técnicos</h2><span class="sec-note">SOS, Alta, idade média e chamados · os velocímetros continuam acima</span></div>
-      ${tabelaTecnicos(tecnicosCampo)}
-    </section>
   `;
-  if (leituraAntiga) el.insertAdjacentHTML('afterbegin', SulUI.htmlBannerAntigo({ quando: D.atualizadoEm, lidoEm: lidoEm, retry: 'iniciar' }));
-  const cmp = document.getElementById('cmpTec');
-  if (cmp) SulUI.ligarTabela(cmp, (tr) => abrirModalTecnico(tr.dataset.nome));
 }
 
 async function iniciar() {
-  const el = document.getElementById('conteudo');
-  SulUI.mostrarCarregando(el, 'o farol de técnicos');
-  const res = await SulUI.lerComCache('dados', async () => {
+  let D;
+  try {
     const r = await fetch('data/dados.json', { cache: 'no-store' });
     if (!r.ok) throw new Error('HTTP ' + r.status);
-    return r.json();
-  });
-  if (!res.dados) {
-    el.innerHTML = SulUI.htmlFalha({ painel: 'o farol de técnicos', erro: res.erro, retry: 'iniciar' });
-    SulUI.carimbar(document.getElementById('stamp'), null, { cadencia: '2h' });
+    D = await r.json();
+  } catch (e) {
+    document.getElementById('conteudo').innerHTML = `<div class="msg-erro">Não consegui carregar os dados (${e.message}).</div>`;
     return;
   }
-  DADOS_ATUAIS = res.dados;
-  renderizarTecnicos(res.dados, res.antigo, res.lidoEm);
+  DADOS_ATUAIS = D;
+  renderizarTecnicos(D);
 }
 iniciar();
 
