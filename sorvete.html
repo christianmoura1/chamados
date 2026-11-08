@@ -163,6 +163,9 @@ td.wrap { max-width:360px; overflow:hidden; text-overflow:ellipsis; white-space:
 @media (max-width: 900px) { :root { --sidebar-w: 0px; } aside { display: none; } }
 @media (max-width: 600px) { main { padding: 14px; } }
 </style>
+<link rel="stylesheet" href="css/sul-ui.css?v=20261107">
+<script src="js/sul-ui.js?v=20261107"></script>
+
 </head>
 <body>
 <header>
@@ -187,13 +190,13 @@ td.wrap { max-width:360px; overflow:hidden; text-overflow:ellipsis; white-space:
 <a href="pecas.html"><span class="s-dot" style="color:var(--cinza)"></span> Peças / Materiais</a>
 <div class="s-header" style="margin-top:12px">Fonte</div>
 <div class="navitem-static"><span class="s-dot"></span> Power BI + SOMA</div>
-<div class="side-foot">Brasil · 11 regionais</div>
+<div class="side-foot">11 regionais · horário da extração no carimbo</div>
 </aside>
 <main>
 <div class="kpis" id="kpis"></div>
 <section>
 <div class="abas" id="abas"></div>
-<div id="conteudo"><div class="msg">carregando…</div></div>
+<div id="conteudo"><div class="msg-carregando" role="status">Buscando a máquina de sorvete…</div></div>
 </section>
 <footer>
 <span>Fonte: Power BI (disponibilidade e venda) + SOMA (chamados) · base de tratativas MDS</span>
@@ -240,8 +243,11 @@ if (!c[2]) return;
 var v = c[2].valor;
 var txt = (c[0] === 'k-ok' && typeof v === 'number') ? Math.round(v) + '%' : fmtN(v);
 h += '<div class="kpi ' + c[0] + '"><span class="label">' + esc(c[1]) + '</span>'
-+ '<span class="val">' + esc(txt) + '</span></div>';
++ '<span class="val">' + esc(txt) + '</span>';
+if (c[2] && c[2].rotulo) h += '<span class="kpi-nota">' + esc(c[2].rotulo) + '</span>';
+h += '</div>';
 });
+h = '<p class="escopo-painel">Universo: máquinas de sorvete das 11 regionais. Disponibilidade é a do Power BI no dia da extração; chamados vêm do SOMA. O carimbo é o horário da extração, em Brasília.</p>' + h;
 document.getElementById('kpis').innerHTML = h;
 }
 
@@ -259,13 +265,14 @@ h += '<button class="aba' + ativo + '" data-aba="' + esc(n) + '">' + esc(n)
 });
 var el = document.getElementById('abas');
 el.innerHTML = h;
-el.addEventListener('click', function (e) {
+if (!el.dataset.sulAbas) el.addEventListener('click', function (e) {
 var b = e.target.closest('.aba'); if (!b) return;
 [].forEach.call(el.querySelectorAll('.aba'), function (x) { x.classList.remove('on'); });
 b.classList.add('on');
 abaAtual = b.getAttribute('data-aba');
 render();
 });
+el.dataset.sulAbas = '1';
 abaAtual = temPainel ? '__painel' : (nomes[0] || '__painel');
 }
 
@@ -536,19 +543,29 @@ var fda = document.getElementById('fDataAte'); if (fda) fda.addEventListener('ch
 renderTabela();
 }
 
-fetch('data/sorvete.json')
-.then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-.then(function (j) {
-D = j;
-var d = j.geradoEm ? new Date(j.geradoEm) : new Date();
-var carimbo = d.toLocaleDateString('pt-BR') + ' ' + d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-document.getElementById('stamp').textContent = carimbo;
-document.getElementById('footer-stamp').textContent = carimbo;
-kpis(); montaAbas(); render();
-})
-.catch(function (e) {
-document.getElementById('conteudo').innerHTML = '<div class="msg-erro">Erro ao carregar dados: ' + esc(e.message) + '</div>';
+function carregar() {
+document.getElementById('conteudo').innerHTML = '<div class="msg-carregando" role="status">Buscando a máquina de sorvete…</div>';
+SulUI.lerComCache('sorvete', function () {
+return fetch('data/sorvete.json', { cache: 'no-store' }).then(function (r) {
+if (!r.ok) throw new Error('HTTP ' + r.status);
+return r.json();
 });
+}).then(function (res) {
+if (!res.dados) {
+document.getElementById('conteudo').innerHTML = SulUI.htmlFalha({ painel: 'a máquina de sorvete', erro: res.erro, retry: 'sorvete' });
+SulUI.carimbar(document.getElementById('stamp'), null);
+return;
+}
+D = res.dados;
+var info = SulUI.carimbar(document.getElementById('stamp'), D.geradoEm);
+document.getElementById('footer-stamp').textContent = info ? info.texto : '';
+document.querySelectorAll('.banner-antigo').forEach(function (n) { n.remove(); });
+if (res.antigo) document.getElementById('kpis').insertAdjacentHTML('beforebegin', SulUI.htmlBannerAntigo({ quando: D.geradoEm, lidoEm: res.lidoEm, retry: 'sorvete' }));
+kpis(); montaAbas(); render();
+});
+}
+SulUI.registrarRetry('sorvete', carregar);
+carregar();
 })();
 </script>
 </body>

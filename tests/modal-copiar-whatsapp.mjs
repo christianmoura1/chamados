@@ -240,7 +240,8 @@ try {
   ok(info.texto === 'Copiar para WhatsApp', 'rotulo visivel no modal de equipamento');
   ok(!info.disabled, 'botao habilitado com chamados');
   ok(info.type === 'button', 'type=button, nao envia formulario');
-  ok(info.n === 85 && info.total === 85 && info.linhas === 85, 'sorvete abre 85 chamados (' + info.contagem + ')');
+  ok(info.n === info.total && info.linhas === info.total && info.total > 0, 'sorvete abre todos os chamados (' + info.contagem + ')');
+  const totalSorvete = info.total;
   ok(info.btnDentro && info.closeDentro, 'botao e fechar cabem no painel');
   ok(info.altBtn >= 30, 'altura util do botao no desktop (' + Math.round(info.altBtn) + ')');
   ok(info.filtros, 'filtros de loja, problema, responsavel e abertura continuam no modal');
@@ -273,8 +274,8 @@ try {
   let texto = await evalPage(`() => window.__copied`);
   ok(copiou === true, 'clipboard sucesso devolve true');
   ok(typeof texto === 'string' && texto.startsWith('*Máquina de Sorvete*'), 'titulo do modal no texto');
-  ok(texto.includes('85 de 85 chamados'), 'contagem completa no texto');
-  ok((texto.match(/^• /gm) || []).length === 85, 'copia os 85 filtrados, nao so a rolagem');
+  ok(texto.includes(totalSorvete + ' de ' + totalSorvete + ' chamados'), 'contagem completa no texto');
+  ok((texto.match(/^• /gm) || []).length === totalSorvete, 'copia os ' + totalSorvete + ' filtrados, nao so a rolagem');
   ok(texto.includes(fora.primeiro) && texto.includes(fora.ultimo), 'inclui o primeiro e o ultimo chamado');
   ok(texto.includes('https://soma.zamp.com.br/wm_task.do?sysparm_query=number=' + encodeURIComponent(fora.primeiro)), 'URL do chamado a partir do numero');
   ok(texto.includes('Problema:') && texto.includes('Responsável:'), 'problema e responsavel presentes');
@@ -290,7 +291,7 @@ try {
   await shot('backlog-modal-copiado.png');
 
   await evalPage(`() => { window.__copied = null; document.getElementById('modalCopiar').click(); }`);
-  await esperar(`() => window.__copied && window.__copied.includes('85 de 85 chamados') && document.getElementById('modalCopiar').textContent === 'Copiado!'`);
+  await esperar(`() => window.__copied && window.__copied.includes(${JSON.stringify(totalSorvete + ' de ' + totalSorvete + ' chamados')}) && document.getElementById('modalCopiar').textContent === 'Copiado!'`);
   ok(true, 'clique no botao tambem copia');
 
   await evalPage(`() => {
@@ -305,15 +306,15 @@ try {
     problemas: MODAL_FILTRADOS.map((c) => c.problema),
     fora: MODAL_ITENS.filter((c) => !semAcentoModal(c.problema).includes('incendio')).map((c) => c.numero).slice(0, 5),
   })`);
-  ok(info.n > 0 && info.n < 85, 'filtro incendio reduz a lista (' + info.n + ')');
-  ok(info.contagem.startsWith(info.n + ' de 85'), 'contagem visivel bate com o filtro');
+  ok(info.n > 0 && info.n < totalSorvete, 'filtro incendio reduz a lista (' + info.n + ')');
+  ok(info.contagem.startsWith(info.n + ' de ' + totalSorvete), 'contagem visivel bate com o filtro');
   ok(info.problemas.every((p) => p.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().includes('incendio')), 'todos os filtrados tem incendio');
   await evalPage(`() => window.__instalarClipboard('ok')`);
   await evalPage(`() => copiarModalParaWhatsApp()`, true);
   texto = await evalPage(`() => window.__copied`);
   ok(texto.includes('INCÊNDIO'), 'preserva o unicode INCÊNDIO');
   ok(texto.includes('_Filtros: problema "incendio"_'), 'resume o filtro ativo');
-  ok(texto.includes(info.n + ' de 85 chamados'), 'contagem copiada e a filtrada');
+  ok(texto.includes(info.n + ' de ' + totalSorvete + ' chamados'), 'contagem copiada e a filtrada');
   ok((texto.match(/^• /gm) || []).length === info.n, 'copia so o conjunto filtrado');
   ok(info.fora.every((n) => !texto.includes(n)), 'nao copia chamados fora do filtro');
   ok(!temHtml(texto), 'filtro nao introduz HTML');
@@ -564,7 +565,7 @@ try {
   ok(copiou === false, 'falha de clipboard devolve false');
   ok(estado.t === 'Não consegui copiar' && estado.classeOk === false && estado.classeErro === true, 'erro honesto, sem Copiado!');
   ok(estado.hidden === false && estado.focado === true, 'fallback manual visivel e focado');
-  ok(estado.valor.includes('*Máquina de Sorvete*') && (estado.valor.match(/^• /gm) || []).length === 85, 'textarea tem a lista inteira para copia manual');
+  ok(estado.valor.includes('*Máquina de Sorvete*') && (estado.valor.match(/^• /gm) || []).length === totalSorvete, 'textarea tem a lista inteira para copia manual');
   ok(!temHtml(estado.valor), 'fallback tambem e texto puro');
   ok(estado.status === 'Não consegui copiar', 'regiao aria anuncia a falha');
   await shot('backlog-modal-fallback.png');
@@ -577,7 +578,7 @@ try {
     hidden: document.getElementById('modalCopiaFallback').hidden,
   })`);
   ok(copiou === true && estado.t === 'Copiado!' && estado.hidden === true, 'execCommand ainda conclui a copia');
-  ok(typeof texto === 'string' && texto.includes('85 de 85 chamados') && !temHtml(texto), 'execCommand copiou texto puro');
+  ok(typeof texto === 'string' && texto.includes(totalSorvete + ' de ' + totalSorvete + ' chamados') && !temHtml(texto), 'execCommand copiou texto puro');
 
   await evalPage(`() => {
     abrirModalGenerico('Máquina <b>não</b>', 'subtítulo <i>com</i> acento', [{

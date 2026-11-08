@@ -1,0 +1,436 @@
+/* Tokens e ajustes compartilhados dos painéis da Manutenção Sul.
+   Carregado depois do <style> de cada página para vencer regras duplicadas
+   de mesmo peso. Mantém o painel claro, o azul primário e as cores de SOS/Alta. */
+
+html:root {
+  --text-3: #4b5563;
+  --laranja: #c2410c;
+  --rosa: #be123c;
+  --verde: #047857;
+  --cinza: #4b5563;
+  --alta: #c2410c;
+  --sos: #be123c;
+  --ok: #047857;
+  --muted: #4b5563;
+  --faint: #4b5563;
+  --alta-soft: rgba(194, 65, 12, 0.14);
+  --sos-soft: rgba(190, 18, 60, 0.12);
+  --laranja-bg: #fff4ee;
+  --verde-bg: #e7f6ef;
+}
+
+html:root[data-theme="dark"] {
+  --text: #f8fafc;
+  --text-2: #e2e8f0;
+  --text-3: #cbd5e1;
+  --laranja: #fdba74;
+  --rosa: #fda4af;
+  --verde: #6ee7b7;
+  --cinza: #cbd5e1;
+  --alta: #fdba74;
+  --sos: #fda4af;
+  --ok: #6ee7b7;
+  --muted: #e2e8f0;
+  --faint: #cbd5e1;
+  --ink: #f8fafc;
+  --alta-soft: rgba(253, 186, 116, 0.16);
+  --sos-soft: rgba(253, 164, 175, 0.16);
+}
+
+@media (prefers-color-scheme: dark) {
+  html:root:not([data-theme="light"]) {
+    --text: #f8fafc;
+    --text-2: #e2e8f0;
+    --text-3: #cbd5e1;
+    --laranja: #fdba74;
+    --rosa: #fda4af;
+    --verde: #6ee7b7;
+    --cinza: #cbd5e1;
+    --alta: #fdba74;
+    --sos: #fda4af;
+    --ok: #6ee7b7;
+    --muted: #e2e8f0;
+    --faint: #cbd5e1;
+    --ink: #f8fafc;
+    --alta-soft: rgba(253, 186, 116, 0.16);
+    --sos-soft: rgba(253, 164, 175, 0.16);
+  }
+}
+
+/* Rótulos operacionais: no mínimo 12px. A densidade fica no grid, não no tipo. */
+.kpi .label,
+.kpi-nota,
+.kpi .hint,
+.statcard .cap,
+aside .s-header,
+.navlabel,
+.side-foot,
+.header-title span,
+.brand .sub,
+.carimbo,
+.stamp-pill,
+.sec-note,
+.section-title,
+.filter-field label,
+.detail-table th,
+thead th,
+table.campo th,
+.estat .l,
+.gstats .estat .l,
+.donut-wrap .pctl,
+.ecard .eopen,
+.esos-label,
+.gsetor,
+.gdetalhe,
+.glabel,
+.vis-tab,
+.mtag,
+.tag,
+.hstat-lbl,
+.dstats .estat .l,
+.chart-legend .li,
+.mes-kpi .l,
+.mes-kpi .h,
+.ader-legenda,
+.dsub,
+.glab,
+.view-btn,
+.filtro-conta,
+.filter-conta,
+.modal-sub,
+.modal-filtro-contagem,
+.modal-equip,
+.modal-total-label,
+.chamado-equip,
+.peca-incl,
+.modal-peca-incl,
+.hist-stamp,
+.chart-note,
+.hstat-delta,
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.01em;
+}
+
+.kpi .label,
+.filter-field label,
+aside .s-header,
+.navlabel,
+.detail-table th,
+thead th,
+table.campo th,
+.estat .l,
+.gstats .estat .l,
+.esos-label,
+.vis-tab,
+.mes-kpi .l {
+  letter-spacing: 0.04em;
+}
+
+.kpi-nota,
+.kpi .hint,
+.sec-note,
+.modal-sub,
+.escopo-painel,
+.filtro-papel {
+  color: var(--text-2, var(--muted));
+}
+
+.escopo-painel {
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 0 0 16px;
+  max-width: 78ch;
+}
+
+.kpis > .escopo-painel {
+  grid-column: 1 / -1;
+}
+
+.filtro-papel {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1.35;
+}
+
+.carimbo,
+.stamp-pill {
+  font-size: 12px;
+  line-height: 1.35;
+  white-space: normal;
+  text-align: center;
+  max-width: min(320px, 48vw);
+}
+
+.carimbo.carimbo-atrasado {
+  background: #9a3412;
+  color: #fff;
+}
+
+.stamp-pill.carimbo-atrasado {
+  color: #9a3412;
+  border-color: #c2410c;
+  font-weight: 650;
+}
+
+html:root[data-theme="dark"] .stamp-pill.carimbo-atrasado,
+html:root[data-theme="dark"] .carimbo.carimbo-atrasado {
+  background: #fdba74;
+  color: #431407;
+  border-color: #fdba74;
+}
+
+/* Diálogo acima do header (100) e da sidebar móvel (200). O login fica em 99999. */
+.modal-overlay {
+  z-index: 500 !important;
+}
+
+.modal-panel:focus,
+.modal-box:focus {
+  outline: none;
+}
+
+.modal-panel:focus-visible,
+.modal-box:focus-visible {
+  outline: 2px solid var(--cobalto, var(--violet, #1e3bff));
+  outline-offset: -2px;
+}
+
+.filter-combo-item.ativo,
+.filter-combo-item[aria-selected="true"] {
+  background: var(--cinza-bg, var(--surface2));
+  outline: 2px solid var(--cobalto, var(--violet, #1e3bff));
+  outline-offset: -2px;
+}
+
+.msg-carregando,
+.msg-erro,
+.loading,
+.empty {
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.msg-erro p,
+.banner-antigo p {
+  margin: 0 0 8px;
+}
+
+.msg-erro-detalhe {
+  color: var(--text-2, var(--muted));
+  font-size: 13px;
+}
+
+.btn-retry,
+.sul-mais-filtros {
+  font: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--cobalto, var(--violet, #1e3bff));
+  background: var(--surface, #fff);
+  border: 1.5px solid var(--cobalto, var(--violet, #1e3bff));
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+.btn-retry:hover,
+.sul-mais-filtros:hover {
+  background: var(--cinza-bg, var(--surface2, #f3f4f6));
+}
+
+.btn-retry:focus-visible,
+.sul-mais-filtros:focus-visible,
+.cmp-table button:focus-visible {
+  outline: 2px solid var(--cobalto, var(--violet, #1e3bff));
+  outline-offset: 2px;
+}
+
+.banner-antigo {
+  background: #fff7ed;
+  border: 1.5px solid #c2410c;
+  color: #431407;
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+html:root[data-theme="dark"] .banner-antigo {
+  background: #431407;
+  border-color: #fdba74;
+  color: #ffedd5;
+}
+
+html:root[data-theme="dark"] .statcard .cap {
+  color: #1c1917;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:root:not([data-theme="light"]) .banner-antigo {
+    background: #431407;
+    border-color: #fdba74;
+    color: #ffedd5;
+  }
+  html:root:not([data-theme="light"]) .statcard .cap {
+    color: #1c1917;
+  }
+}
+
+/* Sidebar escura da página de técnicos: o roxo médio não lia no fundo #1E1B3A. */
+.side .navlabel,
+.side .brand .sub,
+.side .side-foot {
+  color: #e4dffb;
+  font-size: 12px;
+}
+
+.side .navitem {
+  color: #f4f1ff;
+}
+
+.cmp-wrap {
+  max-height: 440px;
+  overflow: auto;
+  border: 1.5px solid var(--border, var(--line, #e5e7eb));
+  border-radius: 16px;
+  background: var(--surface, #fff);
+}
+
+.cmp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.cmp-table caption {
+  caption-side: top;
+  text-align: left;
+  padding: 12px 14px 8px;
+  font-size: 13px;
+  color: var(--text-2, var(--muted));
+  line-height: 1.4;
+}
+
+.cmp-table th,
+.cmp-table td {
+  padding: 8px 12px;
+  text-align: left;
+  border-top: 1px solid var(--border, var(--line, #e5e7eb));
+  white-space: nowrap;
+}
+
+.cmp-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--surface, #fff);
+  border-top: 0;
+}
+
+.cmp-table button {
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-2, var(--muted));
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.cmp-table tbody tr {
+  cursor: pointer;
+}
+
+.cmp-table tbody tr:hover td,
+.cmp-table tbody tr:hover th {
+  background: var(--cinza-bg, var(--surface2, #f3f4f6));
+}
+
+.cmp-table tbody tr:focus-visible {
+  outline: 2px solid var(--cobalto, var(--violet, #1e3bff));
+  outline-offset: -2px;
+}
+
+.cmp-table .num-sos { color: var(--rosa, var(--sos)); font-weight: 700; }
+.cmp-table .num-alta { color: var(--laranja, var(--alta)); font-weight: 700; }
+
+@media (max-width: 720px) {
+  .header-title span,
+  .carimbo,
+  .stamp-pill,
+  .kpi .label,
+  .kpi-nota,
+  .gstats .estat .l,
+  .estat .l,
+  .sec-note,
+  .chart-legend .li,
+  .hbar-row .lbl {
+    font-size: 12px;
+  }
+
+  .carimbo,
+  .stamp-pill {
+    max-width: 46vw;
+  }
+
+  .modal-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .modal-panel,
+  .modal-box {
+    width: 100%;
+    height: 92vh;
+    max-height: 92vh;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .modal-body {
+    flex: 1 1 auto;
+    min-height: 160px;
+  }
+
+  .modal-filtros,
+  .filter-bar,
+  .modal-filtros .filter-field,
+  .modal-filtros .filter-field-datas,
+  .modal-filtros .filter-field-curto,
+  .filter-bar .filter-field,
+  .filter-bar .filter-field-datas,
+  .filter-bar .filter-field-curto {
+    flex: 0 0 auto !important;
+    flex-basis: auto !important;
+    min-width: 0 !important;
+    width: 100%;
+    max-height: none;
+  }
+
+  .modal-filtros {
+    flex: 0 0 auto !important;
+    max-height: 32vh;
+    overflow: auto;
+  }
+
+  .sul-filtro-extra {
+    display: none !important;
+  }
+
+  .sul-filtros-abertos .sul-filtro-extra {
+    display: flex !important;
+  }
+
+  .sul-mais-filtros {
+    width: 100%;
+    margin-top: 4px;
+  }
+}
