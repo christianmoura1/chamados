@@ -224,6 +224,9 @@ margin-top: 14px; padding: 12px 14px; background: var(--cinza-bg); border-radius
 @media (max-width: 900px) { :root { --sidebar-w: 0px; } aside { display: none; } }
 @media (max-width: 600px) { main { padding: 14px; } }
 </style>
+<link rel="stylesheet" href="css/sul-ui.css?v=20261107">
+<script src="js/sul-ui.js?v=20261107"></script>
+
 </head>
 <body>
 <header>
@@ -248,10 +251,10 @@ margin-top: 14px; padding: 12px 14px; background: var(--cinza-bg); border-radius
 <a class="active" href="pecas.html"><span class="s-dot" style="color:var(--cinza)"></span> Peças / Materiais</a>
 <div class="s-header" style="margin-top:12px">Fonte</div>
 <div class="navitem-static"><span class="s-dot"></span> ServiceNow · SOMA</div>
-<div class="side-foot">Atualização automática diária</div>
+<div class="side-foot">A cada 2 h, por volta de :02, até 22h (Brasília)</div>
 </aside>
 <main>
-<div id="conteudo"><div class="msg-carregando">carregando data/dados.json…</div></div>
+<div id="conteudo"><div class="msg-carregando" role="status">Buscando peças e materiais…</div></div>
 </main>
 </div>
 <div class="modal-overlay" id="modalOverlay">
@@ -443,7 +446,8 @@ ${bannerEntrega}
 <div class="chamado-problema">${escapeHtml(c.problema) || '—'}</div>
 <div class="chamado-meta">
 <span class="num">${c.dias}d</span>
-<span class="tecnico">${escapeHtml(c.tecnico) || '—'}</span>
+<span class="tecnico">Técnico: ${escapeHtml(c.tecnico) || '—'}</span>
+<span>Supervisor da loja: ${escapeHtml(c.supervisor) || '—'}</span>
 </div>
 <div class="peca-lista">${pecasHtml}</div>
 </div>`;
@@ -463,11 +467,12 @@ ${pi === 0 ? `<td rowspan="${(c.pecas||[]).length}">${escapeHtml(c.equipamento)}
 ${pi === 0 ? `<td rowspan="${(c.pecas||[]).length}"><span class="tag ${tagClsPrioridade(c.prioridade)}">${escapeHtml(c.prioridade)}</span></td>` : ''}
 ${pi === 0 ? `<td rowspan="${(c.pecas||[]).length}" class="num">${c.dias}d</td>` : ''}
 ${pi === 0 ? `<td rowspan="${(c.pecas||[]).length}">${escapeHtml(c.tecnico) || '—'}</td>` : ''}
+${pi === 0 ? `<td rowspan="${(c.pecas||[]).length}">${escapeHtml(c.supervisor) || '—'}</td>` : ''}
 </tr>`;
 });
 });
 alvo.innerHTML = `<div class="filter-table-wrap"><table class="detail-table">
-<thead><tr><th>Chamado</th><th>Loja</th><th>Equipamento</th><th>Incl.</th><th>Material</th><th class="num">Qtd</th><th class="num">Total</th><th>Prioridade</th><th class="num">Dias</th><th>Técnico</th></tr></thead>
+<thead><tr><th>Chamado</th><th>Loja</th><th>Equipamento</th><th>Incl.</th><th>Material</th><th class="num">Qtd</th><th class="num">Total</th><th>Prioridade</th><th class="num">Dias</th><th>Técnico</th><th>Supervisor da loja</th></tr></thead>
 <tbody>${linhas}</tbody></table></div>`;
 }
 }
@@ -478,17 +483,20 @@ renderizar();
 }
 async function iniciar() {
 const el = document.getElementById('conteudo');
-let D;
-try {
+SulUI.mostrarCarregando(el, 'as peças e materiais');
+const res = await SulUI.lerComCache('dados', async () => {
 const r = await fetch('data/dados.json', { cache: 'no-store' });
 if (!r.ok) throw new Error('HTTP ' + r.status);
-D = await r.json();
-} catch (e) {
-el.innerHTML = `<div class="msg-erro">Não consegui carregar os dados (${e.message}).</div>`;
+return r.json();
+});
+if (!res.dados) {
+el.innerHTML = SulUI.htmlFalha({ painel: 'as peças e materiais', erro: res.erro, retry: 'iniciar' });
+SulUI.carimbar(document.getElementById('stamp'), null, { cadencia: '2h' });
 return;
 }
-const dt = new Date(D.atualizadoEm);
-document.getElementById('stamp').textContent = 'Atualizado ' + dt.toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
+const D = res.dados;
+const leituraAntiga = res.antigo;
+SulUI.carimbar(document.getElementById('stamp'), D.atualizadoEm, { cadencia: '2h' });
 // Monta a lista de chamados com peca a partir dos equipamentos -- o
 // dados.json nao tem um campo "chamadosComPecas" pronto; as pecas vivem
 // em equipamentos[].chamadosDetalhe[].pecas. Ler D.chamadosComPecas
@@ -520,11 +528,12 @@ const totalChamadosEquip = D.equipamentos.reduce((s, e) => s + e.chamados, 0) + 
 const pctComPeca = totalChamadosEquip > 0 ? Math.round(totalChamadosComPeca / totalChamadosEquip * 100) : 0;
 const equipsComPeca = [...new Set(TODOS_CHAMADOS_COM_PECAS.map(c => c.equipamento))].length;
 const kpisHtml = [
-{ label: 'Chamados com Peça', val: brl0(totalChamadosComPeca), cls: 'k-violet' },
-{ label: 'Itens de Material', val: brl0(totalItensPeca), cls: 'k-pink' },
-{ label: 'Equipamentos Afetados', val: brl0(equipsComPeca) + ' de ' + D.equipamentos.length, cls: 'k-blue' },
-{ label: '% Chamados c/ Peça', val: pctComPeca + '%', cls: 'k-violet' },
-].map(k => `<div class="kpi ${k.cls}"><span class="label">${k.label}</span><div class="val num">${k.val}</div></div>`).join('');
+{ label: 'Chamados com Peça', val: brl0(totalChamadosComPeca), cls: 'k-violet', nota: 'abertos com material pedido' },
+{ label: 'Itens de Material', val: brl0(totalItensPeca), cls: 'k-pink', nota: 'linhas de peça nestes chamados' },
+{ label: 'Equipamentos Afetados', val: brl0(equipsComPeca) + ' de ' + D.equipamentos.length, cls: 'k-blue', nota: 'categorias monitoradas' },
+{ label: '% Chamados c/ Peça', val: pctComPeca + '%', cls: 'k-violet', nota: 'sobre os chamados do backlog' },
+].map(k => `<div class="kpi ${k.cls}"><span class="label">${k.label}</span><div class="val num">${k.val}</div>`
+  + (k.nota ? `<span class="kpi-nota">${k.nota}</span>` : '') + `</div>`).join('');
 const equipamentos = [...new Set(TODOS_CHAMADOS_COM_PECAS.map(c => c.equipamento))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
 const prioridades = [...new Set(TODOS_CHAMADOS_COM_PECAS.map(c => c.prioridade).filter(Boolean))]
 .sort((a, b) => {
@@ -533,6 +542,7 @@ const ia = ordem.indexOf(a), ib = ordem.indexOf(b);
 return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib) || a.localeCompare(b, 'pt-BR');
 });
 el.innerHTML = `
+<p class="escopo-painel">Universo: chamados abertos da regional Sul que já têm peça ou material pedido no SOMA, nos equipamentos monitorados e na área interna. Chamado sem pedido não entra nesta conta.</p>
 <div class="kpis">${kpisHtml}</div>
 <section>
 <div class="sec-head">
@@ -569,7 +579,7 @@ el.innerHTML = `
 <select id="filtroPrioridade"><option value="">Todas</option></select>
 </div>
 <div class="filter-field" style="flex:0 1 160px;min-width:130px;">
-<label for="filtroSupervisor">Supervisor</label>
+<label for="filtroSupervisor">Supervisor da loja <span class="filtro-papel">(supervisor da carteira, não o técnico do chamado)</span></label>
 <select id="filtroSupervisor"><option value="">Todos</option></select>
 </div>
 <div class="filter-field" style="flex:0 1 180px;min-width:150px;">
@@ -596,6 +606,7 @@ el.innerHTML = `
 <span class="mono">${brl0(totalChamadosComPeca)} chamados · ${brl0(totalItensPeca)} itens</span>
 </footer>
 `;
+if (leituraAntiga) el.insertAdjacentHTML('afterbegin', SulUI.htmlBannerAntigo({ quando: D.atualizadoEm, lidoEm: res.lidoEm, retry: 'iniciar' }));
 const selEquip = document.getElementById('filtroEquipamento');
 equipamentos.forEach(v => {
 const opt = document.createElement('option');
@@ -725,7 +736,8 @@ document.getElementById('modalConteudo').innerHTML = `
 <div class="modal-problema">${escapeHtml(c.problema) || '—'}</div>
 <div class="modal-meta">
 <span class="num">${c.dias} dias aberto</span>
-<span class="tecnico">${escapeHtml(c.tecnico) || 'sem técnico'}</span>
+<span class="tecnico">Técnico: ${escapeHtml(c.tecnico) || 'sem técnico'}</span>
+<span>Supervisor da loja: ${escapeHtml(c.supervisor) || '—'}</span>
 <span>abertura ${escapeHtml(c.abertura) || '—'}</span>
 </div>
 </div>

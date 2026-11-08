@@ -147,6 +147,9 @@ td.t-velho { color: var(--rosa); font-weight: 700; }
 @media (max-width: 900px) { :root { --sidebar-w: 0px; } aside { display: none; } }
 @media (max-width: 600px) { main { padding: 14px; } }
 </style>
+<link rel="stylesheet" href="css/sul-ui.css?v=20261107">
+<script src="js/sul-ui.js?v=20261107"></script>
+
 </head>
 <body>
 <header>
@@ -171,10 +174,10 @@ td.t-velho { color: var(--rosa); font-weight: 700; }
 <a href="pecas.html"><span class="s-dot" style="color:var(--cinza)"></span> Peças / Materiais</a>
 <div class="s-header" style="margin-top:12px">Fonte</div>
 <div class="navitem-static"><span class="s-dot"></span> ServiceNow · SOMA</div>
-<div class="side-foot">Atualização diária · fonte SOMA</div>
+<div class="side-foot">A cada 20 min, das 7h às 23h (Brasília)</div>
 </aside>
 <main>
-<div id="conteudo"><div class="msg-carregando">carregando data/campo.json…</div></div>
+<div id="conteudo"><div class="msg-carregando" role="status">Buscando o acompanhamento de campo…</div></div>
 </main>
 </div>
 <script>
@@ -220,6 +223,7 @@ function pillStatus(status, grupo) {
 }
 
 let DADOS = null;
+let CAMPO_ANTIGO = null;
 const FILTROS = { loja: '', problema: '' };
 
 function cards(r) {
@@ -230,7 +234,7 @@ function cards(r) {
     ['sc-canc',  'Cancelados',            r.cancelados],
     ['sc-imp',   'Chamados com Impacto',  r.comImpacto == null ? '—' : r.comImpacto],
   ];
-  return `<div class="statcards">${c.map(([k, rot, v]) =>
+  return `<p class="escopo-painel">Universo: chamados críticos (prioridade 1) da regional Sul, work center CSUL, nos últimos ${DADOS ? DADOS.janelaDias : ''} dias. Impacto continua sem fonte no SOMA e o card fica em "—".</p><div class="statcards">${c.map(([k, rot, v]) =>
     `<div class="statcard ${k}"><span class="cap">${rot}</span><span class="val">${v}</span></div>`).join('')}</div>`;
 }
 
@@ -247,7 +251,7 @@ function lineChartSVG(pontos, series) {
   const grid = [0, 0.25, 0.5, 0.75, 1].map(f => {
     const yy = padT + innerH * (1 - f);
     return `<line x1="${padL}" y1="${yy.toFixed(1)}" x2="${W - padR}" y2="${yy.toFixed(1)}" style="stroke:var(--grid)" stroke-width="1"/>
-      <text x="${padL - 6}" y="${(yy + 3).toFixed(1)}" font-size="9" text-anchor="end" style="fill:var(--text-3)" font-family="Inter, monospace">${Math.round(maxV * f)}</text>`;
+      <text x="${padL - 6}" y="${(yy + 3).toFixed(1)}" font-size="12" text-anchor="end" style="fill:var(--text-3)" font-family="Inter, monospace">${Math.round(maxV * f)}</text>`;
   }).join('');
 
   const finais = series.map(s => ({ s, v: pontos[n - 1][s.key] })).sort((a, b) => b.v - a.v);
@@ -279,7 +283,7 @@ function lineChartSVG(pontos, series) {
     const d = new Date(p.quando || (p.data + 'T00:00:00'));
     const dataLbl = d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
     const horaLbl = d.toLocaleTimeString('pt-BR', { hour: '2-digit' });
-    return `<text x="${x(i).toFixed(1)}" y="${H - 8}" font-size="9" text-anchor="middle" style="fill:var(--text-3)" font-family="Inter, monospace">${dataLbl} ${horaLbl}</text>`;
+    return `<text x="${x(i).toFixed(1)}" y="${H - 8}" font-size="12" text-anchor="middle" style="fill:var(--text-3)" font-family="Inter, monospace">${dataLbl} ${horaLbl}</text>`;
   }).join('');
 
   return `<div class="chart-svg-wrap"><svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="width:100%;height:auto;display:block;">${grid}${seriesSvg}${labels}</svg><div class="chart-tooltip" id="chartTooltip" hidden></div></div>`;
@@ -413,6 +417,7 @@ function render() {
       <span>Fonte: ServiceNow · SOMA (wm_order, prioridade 1 - Crítica, work center CSUL)</span>
       <span class="mono">${abertos.length} chamados críticos em aberto</span>
     </footer>`;
+  if (CAMPO_ANTIGO) document.getElementById('conteudo').insertAdjacentHTML('afterbegin', SulUI.htmlBannerAntigo(CAMPO_ANTIGO));
 }
 
 document.addEventListener('change', (ev) => {
@@ -427,7 +432,7 @@ const FONTE_VIVA = 'https://154-64-32-227.sslip.io/v1/campo';
 
 async function buscarDados() {
   try {
-    const r = await fetch(FONTE_VIVA + '?cb=' + Date.now(), { cache: 'no-store' });
+    const r = await fetch(FONTE_VIVA + '?cb=' + Date.now(), { cache: 'no-store', signal: AbortSignal.timeout(8000) });
     if (r.ok) {
       const j = await r.json();
       if (j && Array.isArray(j.itens)) return { dados: j, origem: 'vm' };
@@ -439,18 +444,24 @@ async function buscarDados() {
 }
 
 async function iniciar() {
-  try {
+  const el = document.getElementById('conteudo');
+  SulUI.mostrarCarregando(el, 'o acompanhamento de campo');
+  const res = await SulUI.lerComCache('campo', async () => {
     const { dados, origem } = await buscarDados();
-    DADOS = dados;
-    const ref = new Date(DADOS.verificadoEm || DADOS.atualizadoEm);
-    const rot = origem === 'vm' && DADOS.verificadoEm ? 'Verificado ' : 'Atualizado ';
-    document.getElementById('stamp').textContent = rot + ref.toLocaleString('pt-BR');
-    render();
-  } catch (e) {
-    document.getElementById('conteudo').innerHTML =
-      `<div class="msg-erro">Não consegui carregar data/campo.json — ${esc(e.message)}</div>`;
-    document.getElementById('stamp').textContent = 'erro';
+    return { dados, origem };
+  });
+  if (!res.dados) {
+    el.innerHTML = SulUI.htmlFalha({ painel: 'o acompanhamento de campo', erro: res.erro, retry: 'iniciar' });
+    SulUI.carimbar(document.getElementById('stamp'), null, { cadencia: '20min' });
+    return;
   }
+  const pacote = res.dados;
+  DADOS = pacote.dados;
+  const quando = DADOS.verificadoEm || DADOS.atualizadoEm;
+  const rotulo = pacote.origem === 'vm' && DADOS.verificadoEm ? 'Verificado' : 'Atualizado';
+  SulUI.carimbar(document.getElementById('stamp'), quando, { cadencia: '20min', rotulo });
+  CAMPO_ANTIGO = res.antigo ? { quando: quando, lidoEm: res.lidoEm, retry: 'iniciar' } : null;
+  render();
 }
 iniciar();
 

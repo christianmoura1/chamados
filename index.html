@@ -451,6 +451,9 @@
     .menu-btn { display: flex !important; } 
   }
 </style>
+<link rel="stylesheet" href="css/sul-ui.css?v=20261107">
+<script src="js/sul-ui.js?v=20261107"></script>
+
 </head>
 <body>
 <!-- TELA DE LOGIN -->
@@ -571,11 +574,11 @@ function logout() {
     <a href="pecas.html"><span class="s-dot" style="color:var(--cinza)"></span> Peças / Materiais</a>
     <div class="s-header" style="margin-top:12px">Fonte</div>
     <div class="navitem-static"><span class="s-dot"></span> ServiceNow · SOMA</div>
-    <div class="side-foot">Atualização automática diária</div>
+    <div class="side-foot">A cada 2 h, por volta de :02, até 22h (Brasília)</div>
   </aside>
 
   <main>
-    <div id="conteudo"><div class="msg-carregando">carregando data/dados.json…</div></div>
+    <div id="conteudo"><div class="msg-carregando" role="status">Buscando o backlog…</div></div>
   </main>
 </div>
 
@@ -605,7 +608,7 @@ function logout() {
         <select id="modalFiltroPrioridade"><option value="">Todas</option></select>
       </div>
       <div class="filter-field">
-        <label for="modalFiltroResp">Responsável (supervisor)</label>
+        <label for="modalFiltroResp">Supervisor da loja <span class="filtro-papel">(supervisor da carteira, não o técnico do chamado)</span></label>
         <select id="modalFiltroResp" title="Supervisor da carteira da loja. Não é o técnico atribuído no chamado."><option value="">Todos</option></select>
       </div>
       <div class="filter-field filter-field-datas">
@@ -625,7 +628,7 @@ function logout() {
     </div>
     <div class="modal-body">
       <table class="detail-table">
-        <thead id="modalThead"><tr><th>Número</th><th>Loja</th><th>Estado</th><th>Prioridade</th><th>Dias</th><th>Técnico</th></tr></thead>
+        <thead id="modalThead"><tr><th>Número</th><th>Loja</th><th>Estado</th><th>Prioridade</th><th>Dias</th><th>Supervisor da loja</th><th>Técnico</th></tr></thead>
         <tbody id="modalTbody"></tbody>
       </table>
     </div>
@@ -1111,7 +1114,7 @@ function renderizarModalTabela() {
 
   MODAL_FILTRADOS = filtrados;
   document.getElementById('modalFiltroContagem').textContent = `${filtrados.length} de ${MODAL_ITENS.length} chamados`;
-  const colspan = MODAL_MOSTRA_EQUIP ? 8 : 7;
+  const colspan = MODAL_MOSTRA_EQUIP ? 9 : 8;
   document.getElementById('modalTbody').innerHTML = filtrados.length
     ? filtrados.map(c => `<tr>
         <td class="mono"><a href="${escapeHtml(urlDoChamado(c))}" target="_blank" rel="noopener" style="color:#1e3bff;font-weight:600;">${escapeHtml(c.numero)}</a></td>
@@ -1121,6 +1124,7 @@ function renderizarModalTabela() {
         <td>${escapeHtml(c.estado)}</td>
         <td><span class="tag ${tagClsPrioridade(c.prioridade)}">${escapeHtml(c.prioridade)}</span>${tagPecas(c.numero)}${tagDuplicado(c.numero)}</td>
         <td class="num">${c.dias}d</td>
+        <td>${escapeHtml(supervisorDeChamado(c))}</td>
         <td>${escapeHtml(c.tecnico) || '—'}</td>
       </tr>`).join('')
     : `<tr><td colspan="${colspan}" class="esos-empty">Nenhum chamado com esses filtros.</td></tr>`;
@@ -1136,7 +1140,7 @@ function abrirModalGenerico(titulo, subtitulo, itens, { mostrarEquipamento } = {
   document.getElementById('modalSub').textContent = subtitulo;
   const colEquip = mostrarEquipamento ? '<th>Equipamento</th>' : '';
   document.getElementById('modalThead').innerHTML =
-    `<tr><th>Número</th>${colEquip}<th>Loja</th><th>Problema</th><th>Estado</th><th>Prioridade</th><th>Dias</th><th>Técnico</th></tr>`;
+    `<tr><th>Número</th>${colEquip}<th>Loja</th><th>Problema</th><th>Estado</th><th>Prioridade</th><th>Dias</th><th>Supervisor da loja</th><th>Técnico</th></tr>`;
 
   MODAL_ITENS = itens;
   MODAL_MOSTRA_EQUIP = !!mostrarEquipamento;
@@ -1256,7 +1260,7 @@ function lineChartSVG(pontos, series) {
   const grid = [0, 0.25, 0.5, 0.75, 1].map(f => {
     const yy = padT + innerH * (1 - f);
     return `<line x1="${padL}" y1="${yy.toFixed(1)}" x2="${W - padR}" y2="${yy.toFixed(1)}" style="stroke:var(--grid)" stroke-width="1"/>
-      <text x="${padL - 6}" y="${(yy + 3).toFixed(1)}" font-size="9" text-anchor="end" style="fill:var(--text-3)" font-family="Inter, monospace">${Math.round(maxV * f)}</text>`;
+      <text x="${padL - 6}" y="${(yy + 3).toFixed(1)}" font-size="12" text-anchor="end" style="fill:var(--text-3)" font-family="Inter, monospace">${Math.round(maxV * f)}</text>`;
   }).join('');
 
   const finais = series.map(s => ({ s, v: pontos[n - 1][s.key] })).sort((a, b) => b.v - a.v);
@@ -1288,7 +1292,7 @@ function lineChartSVG(pontos, series) {
     const d = new Date(p.quando || (p.data + 'T00:00:00'));
     const dataLbl = d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
     const horaLbl = d.toLocaleTimeString('pt-BR', { hour: '2-digit' });
-    return `<text x="${x(i).toFixed(1)}" y="${H - 8}" font-size="9" text-anchor="middle" style="fill:var(--text-3)" font-family="Inter, monospace">${dataLbl} ${horaLbl}</text>`;
+    return `<text x="${x(i).toFixed(1)}" y="${H - 8}" font-size="12" text-anchor="middle" style="fill:var(--text-3)" font-family="Inter, monospace">${dataLbl} ${horaLbl}</text>`;
   }).join('');
 
   return `<div class="chart-svg-wrap"><svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="width:100%;height:auto;display:block;">${grid}${seriesSvg}${labels}</svg><div class="chart-tooltip" id="chartTooltip" hidden></div></div>`;
@@ -1382,20 +1386,23 @@ async function carregarHistorico() {
 
 async function iniciar() {
   const el = document.getElementById('conteudo');
-  let D;
-  try {
+  SulUI.mostrarCarregando(el, 'o backlog');
+  const res = await SulUI.lerComCache('dados', async () => {
     const r = await fetch('data/dados.json', { cache: 'no-store' });
     if (!r.ok) throw new Error('HTTP ' + r.status);
-    D = await r.json();
-  } catch (e) {
-    el.innerHTML = `<div class="msg-erro">Não consegui carregar os dados (${e.message}).</div>`;
+    return r.json();
+  });
+  if (!res.dados) {
+    el.innerHTML = SulUI.htmlFalha({ painel: 'o backlog', erro: res.erro, retry: 'iniciar' });
+    SulUI.carimbar(document.getElementById('stamp'), null, { cadencia: '2h' });
     return;
   }
+  const D = res.dados;
+  const leituraAntiga = res.antigo;
 
   DADOS_ATUAIS = D;
   atualizarMapaSupervisores(D);
-  const dt = new Date(D.atualizadoEm);
-  document.getElementById('stamp').textContent = 'Atualizado ' + dt.toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
+  SulUI.carimbar(document.getElementById('stamp'), D.atualizadoEm, { cadencia: '2h' });
 
   // Preenche o Set global chamadosComPeca ANTES de montar os KPIs -- o
   // card "Chamados c/ Materiais" lê chamadosComPeca.size, e se o Set ainda
@@ -1456,14 +1463,40 @@ async function iniciar() {
   }
 
   const kpisHtml = [
-    { label: 'Total de Chamados', val: brl0(totalChamadosEquip), cls: 'k-violet' },
-    { label: 'Lojas c/ Chamado Aberto', val: brl0(D.totalLojas), cls: 'k-violet' },
-    { label: 'Chamados SOS', val: brl0(totalSOS), cls: 'k-sos' },
-    { label: 'Chamados Alta', val: brl0(totalAlta), cls: 'k-alta' },
-    { label: 'Chamados c/ Materiais', val: brl0(chamadosComPeca.size), cls: 'k-violet' },
+    { label: 'Chamados abertos', val: brl0(totalChamadosEquip), cls: 'k-violet', nota: 'equipamentos monitorados · Sul' },
+    { label: 'Lojas c/ Chamado Aberto', val: brl0(D.totalLojas), cls: 'k-violet', nota: 'com chamado nestes equipamentos' },
+    { label: 'Chamados SOS', val: brl0(totalSOS), cls: 'k-sos', nota: 'prioridade crítica neste universo' },
+    { label: 'Chamados Alta', val: brl0(totalAlta), cls: 'k-alta', nota: 'prioridade alta neste universo' },
+    { label: 'Chamados c/ Materiais', val: brl0(chamadosComPeca.size), cls: 'k-violet', nota: 'com peça pedida' },
     indispKpi(),
   ].map(k => `<div class="kpi ${k.cls}"><span class="label">${k.label}</span><div class="val num">${k.val}</div>`
     + (k.nota ? `<span class="kpi-nota">${k.nota}</span>` : '') + `</div>`).join('');
+
+  function tabelaComparar(equipamentos) {
+    const linhas = [...equipamentos].sort((a, b) => (b.pctIndisponibilidade || 0) - (a.pctIndisponibilidade || 0));
+    const corpo = linhas.map(e => `<tr data-chave="${escapeHtml(e.chave)}" tabindex="0" role="button" aria-label="Ver detalhe de ${escapeHtml(e.nome)}">
+      <th scope="row" data-v="${escapeHtml(e.nome)}">${escapeHtml(e.nome)}</th>
+      <td class="num${e.sos ? ' num-sos' : ''}" data-v="${e.sos}">${e.sos}</td>
+      <td class="num${e.alta ? ' num-alta' : ''}" data-v="${e.alta}">${e.alta}</td>
+      <td class="num" data-v="${e.tempoMedioDias}">${e.tempoMedioDias}d</td>
+      <td class="num" data-v="${e.pctIndisponibilidade}">${e.pctIndisponibilidade}%</td>
+      <td class="num" data-v="${e.pdvsEmFalha}">${e.pdvsEmFalha}</td>
+      <td class="num" data-v="${e.chamados}">${e.chamados}</td>
+    </tr>`).join('');
+    return `<div class="cmp-wrap"><table class="cmp-table" id="cmpEquip">
+      <caption>Mesma leitura dos cards. O título da coluna ordena; a linha abre o detalhe.</caption>
+      <thead><tr>
+        <th scope="col"><button type="button" data-sort="0" data-tipo="texto">Equipamento</button></th>
+        <th scope="col"><button type="button" data-sort="1" data-tipo="num">SOS</button></th>
+        <th scope="col"><button type="button" data-sort="2" data-tipo="num">Alta</button></th>
+        <th scope="col"><button type="button" data-sort="3" data-tipo="num">Idade média</button></th>
+        <th scope="col" aria-sort="descending"><button type="button" data-sort="4" data-tipo="num">Indisponibilidade</button></th>
+        <th scope="col"><button type="button" data-sort="5" data-tipo="num">Lojas</button></th>
+        <th scope="col"><button type="button" data-sort="6" data-tipo="num">Chamados</button></th>
+      </tr></thead>
+      <tbody>${corpo}</tbody>
+    </table></div>`;
+  }
 
   const equipOrdenados = [...D.equipamentos].sort((a, b) => b.pctIndisponibilidade - a.pctIndisponibilidade);
   const equipCards = equipOrdenados.map((e) => {
@@ -1525,6 +1558,7 @@ async function iniciar() {
   }).join('');
 
   el.innerHTML = `
+    <p class="escopo-painel">Universo: chamados abertos nos equipamentos monitorados da regional Sul — <strong class="num">${brl0(totalChamadosEquip)}</strong> neste painel. A leitura do SOMA tem ${brl0(D.totalAbertos)} abertos e ${brl0(D.totalRegistros)} registros; o total do card não é o arquivo inteiro. A indisponibilidade vem do Power BI (Disponibilidade Book · Sul) e o card do topo diz se o número é do mês, da semana ou do dia.</p>
     <div class="kpis">${kpisHtml}</div>
 
     <section>
@@ -1533,12 +1567,17 @@ async function iniciar() {
     </section>
 
     <section>
+      <div class="sec-head"><h2>Comparar equipamentos</h2><span class="sec-note">SOS, Alta, idade média e indisponibilidade · os cards continuam acima</span></div>
+      ${tabelaComparar(D.equipamentos)}
+    </section>
+
+    <section>
       <div class="sec-head"><h2>Farol por supervisor</h2><span class="sec-note">Quantidade de chamados nas lojas de cada supervisor</span></div>
       <div class="gauge-grid">${gaugeCards}</div>
     </section>
 
     <section>
-      <div class="sec-head"><h2>Buscar chamados</h2><span class="sec-note">Filtre por equipamento, loja, problema, data ou responsável</span></div>
+      <div class="sec-head"><h2>Buscar chamados</h2><span class="sec-note">Filtre por equipamento, loja, problema, data, técnico ou supervisor da loja</span></div>
       <div class="card">
         <div class="filter-bar">
           <div class="filter-field">
@@ -1559,7 +1598,7 @@ async function iniciar() {
             <select id="filtroPrioridade"><option value="">Todas</option></select>
           </div>
           <div class="filter-field">
-            <label for="filtroSupervisor">Supervisor</label>
+            <label for="filtroSupervisor">Supervisor da loja <span class="filtro-papel">(supervisor da carteira, não o técnico do chamado)</span></label>
             <select id="filtroSupervisor" title="Filtra pela carteira de lojas do supervisor, não por quem está atribuído no chamado"><option value="">Todos</option></select>
           </div>
           <div class="filter-field filter-field-curto">
@@ -1580,7 +1619,7 @@ async function iniciar() {
         <div class="filter-count" id="filtroContagem"></div>
         <div class="filter-table-wrap">
           <table class="detail-table">
-            <thead><tr><th>Número</th><th>Equipamento</th><th>Loja</th><th>Problema</th><th>Estado</th><th>Prioridade</th><th>Dias</th><th>Responsável</th></tr></thead>
+            <thead><tr><th>Número</th><th>Equipamento</th><th>Loja</th><th>Problema</th><th>Estado</th><th>Prioridade</th><th>Dias</th><th>Técnico</th><th>Supervisor da loja</th></tr></thead>
             <tbody id="filtroTbody"></tbody>
           </table>
         </div>
@@ -1597,7 +1636,7 @@ async function iniciar() {
 
     <section>
       <div class="sec-head"><h2>Evolução da tratativa de chamados</h2><span class="sec-note">A cada execução (2h) · Visão Sul</span></div>
-      <div class="card" id="chartCard"><div class="chart-note">carregando histórico…</div></div>
+      <div class="card" id="chartCard"><div class="chart-note">Buscando o histórico das execuções…</div></div>
     </section>
 
     <section>
@@ -1611,6 +1650,9 @@ async function iniciar() {
     </footer>
   `;
 
+  if (leituraAntiga) el.insertAdjacentHTML('afterbegin', SulUI.htmlBannerAntigo({ quando: D.atualizadoEm, lidoEm: res.lidoEm, retry: 'iniciar' }));
+  const cmp = document.getElementById('cmpEquip');
+  if (cmp) SulUI.ligarTabela(cmp, (tr) => abrirModal(tr.dataset.chave));
   aplicarVisaoSalva();
   montarBuscaChamados(D);
   carregarHistorico();
@@ -1729,8 +1771,9 @@ function montarBuscaChamados(D) {
           <td><span class="tag ${tagClsPrioridade(c.prioridade)}">${escapeHtml(c.prioridade)}</span>${tagPecas(c.numero)}${tagDuplicado(c.numero)}</td>
           <td class="num">${c.dias}d</td>
           <td>${escapeHtml(c.tecnico) || '—'}</td>
+          <td>${escapeHtml(supervisorDe(c))}</td>
         </tr>`).join('')
-      : `<tr><td colspan="8"><div class="filter-empty">Nenhum chamado com esses filtros.</div></td></tr>`;
+      : `<tr><td colspan="9"><div class="filter-empty">Nenhum chamado com esses filtros.</div></td></tr>`;
   }
 
   function mostrarListaLoja() {
@@ -1796,7 +1839,8 @@ function montarBuscaChamados(D) {
       L.push('• *' + c.dias + 'd* · ' + c.numero
         + ' · ' + (c.loja || 'sem loja')
         + ' · ' + (limpaProblema(c.problema) || '—')
-        + ' · ' + (c.tecnico || 'sem responsável'));
+        + ' · técnico ' + (c.tecnico || 'sem técnico')
+        + ' · supervisor da loja ' + supervisorDe(c));
     }
 
     const porResp = {};
@@ -1807,7 +1851,7 @@ function montarBuscaChamados(D) {
     const ranking = Object.entries(porResp).sort((a, b) => b[1] - a[1]);
     if (ranking.length > 1) {
       L.push('');
-      L.push('*Por responsável:* ' + ranking.map(([n, q]) => n + ' ' + q).join(' · '));
+      L.push('*Por técnico:* ' + ranking.map(([n, q]) => n + ' ' + q).join(' · '));
     }
     return L.join('\n');
   }
