@@ -1,13 +1,13 @@
 {
- "atualizadoEm": "2026-11-08T04:15:25.361Z",
- "totalChamados": 1918,
+ "atualizadoEm": "2026-11-08T08:15:24.031Z",
+ "totalChamados": 1920,
  "resumo": {
   "porFamilia": {
    "Elétrica": 94,
    "Refrigeração": 233,
    "Cocção": 263,
-   "Gás": 6,
-   "Sobremesa": 86,
+   "Gás": 7,
+   "Sobremesa": 87,
    "Incêndio": 14,
    "Climatização": 40,
    "Outros": 634,
@@ -19,14 +19,14 @@
   "porPrioridade": {
    "4 - Baixa": 1322,
    "3 - Moderada": 382,
-   "2 - Alta": 150,
-   "1 - Crítica": 64
+   "2 - Alta": 151,
+   "1 - Crítica": 65
   },
   "porSupervisor": {
    "GUSTAVO": 439,
    "MARCEL": 625,
-   "RAFAEL": 389,
-   "CARLOS MAGNO": 448,
+   "RAFAEL": 390,
+   "CARLOS MAGNO": 449,
    "SEM SUPERVISOR": 17
   }
  },
@@ -15342,6 +15342,50 @@
    "descricao": "FRITADEIRA GAS LP AI 32LBS 17KW/H | FRI - VAZAMENTO DE OLEO",
    "categoria": "FRITADEIRA GAS LP AI 32LBS 17KW/H",
    "subcategory": "FRI - VAZAMENTO DE OLEO"
+  },
+  {
+   "chamado": "WO0087121",
+   "regional": "SUL",
+   "loja": "FS CURITIBA - AV SILVA JARDIM",
+   "bkn": "26839",
+   "setor": "CURITIBA OESTE/SC",
+   "supervisor": "CARLOS MAGNO",
+   "equipamento": "MAQUINA SORVETE, CARPIGIANI, CN825716181",
+   "problema": "NÃO LIGA",
+   "familia": "Sobremesa",
+   "critica": 1,
+   "prioridade": "2 - Alta",
+   "estado": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "08/11/2026 05:06:24",
+   "data": "2026-11-08",
+   "dias": 0,
+   "tecnico": "",
+   "descricao": "BK099879 - MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - NÃO LIGA",
+   "categoria": "BK099879 - MAQUINA SORVETE, CARPIGIANI, CN825716181",
+   "subcategory": "MDS - NÃO LIGA"
+  },
+  {
+   "chamado": "WO0087119",
+   "regional": "SUL",
+   "loja": "FS CANOAS - AV DR SEZEFREDO A",
+   "bkn": "31345",
+   "setor": "CAPITAL CENTRO RS",
+   "supervisor": "RAFAEL",
+   "equipamento": "Area Interna",
+   "problema": "GÁS - VAZAMENTO DE GÁS",
+   "familia": "Gás",
+   "critica": 1,
+   "prioridade": "1 - Crítica",
+   "estado": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "08/11/2026 02:22:47",
+   "data": "2026-11-08",
+   "dias": 0,
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - GÁS - VAZAMENTO DE GÁS",
+   "categoria": "Area Interna",
+   "subcategory": "AIN - GÁS - VAZAMENTO DE GÁS"
   },
   {
    "chamado": "WO0014306",
