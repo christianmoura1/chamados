@@ -1,19 +1,14 @@
 {
- "atualizadoEm": "2026-11-07T23:20:21.085Z",
+ "atualizadoEm": "2026-11-08T10:00:26.244Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 17,
+  "emExecucao": 15,
   "executados": 0,
   "cancelados": 0,
-  "aguardandoToken": 3,
-  "total": 17
+  "aguardandoToken": 1,
+  "total": 15
  },
  "serie": [
-  {
-   "data": "2026-11-05",
-   "abertos": 7,
-   "fechados": 0
-  },
   {
    "data": "2026-11-06",
    "abertos": 8,
@@ -23,9 +18,37 @@
    "data": "2026-11-07",
    "abertos": 15,
    "fechados": 12
+  },
+  {
+   "data": "2026-11-08",
+   "abertos": 1,
+   "fechados": 0
   }
  ],
  "itens": [
+  {
+   "numero": "WO0087119",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "31345 FS CANOAS - AV DR SEZEFREDO A",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "08/11/2026 02:22:47",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - GÁS - VAZAMENTO DE GÁS",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - GÁS - VAZAMENTO DE GÁS",
+   "tarefas": [
+    "WOT0087795"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0087084",
    "marca": "BKB",
@@ -161,7 +184,7 @@
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
-   "contato": "",
+   "contato": "Tentativa de contato: 07/11/2026 23:19:13;\n",
    "grupo": "execucao"
   },
   {
@@ -345,75 +368,6 @@
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0081203",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "GRANDE CURITIBA",
-   "loja": "21475 - SHOP JARDIM DAS AMERICAS",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "05/11/2026 19:27:41",
-   "fechamento": "",
-   "principal": "BK035272 - CAMARA DE RESFRIADOS; SÃO RAFAEL",
-   "secundario": "CMR - NÃO ATINGE TEMPERATURA",
-   "sigla": "CMR",
-   "tecnico": "",
-   "descricao": "BK035272 - CAMARA DE RESFRIADOS; SÃO RAFAEL | CMR - NÃO ATINGE TEMPERATURA",
-   "tarefas": [
-    "WOT0081875"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0079773",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA NORTE",
-   "loja": "21791 - SHOP CIDADE CURITIBA",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "05/11/2026 10:42:40",
-   "fechamento": "",
-   "principal": "Area Interna",
-   "secundario": "AIN - SALÃO - REFLUXO",
-   "sigla": "AIN",
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - SALÃO - REFLUXO",
-   "tarefas": [
-    "WOT0080442"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "06/11/2026 17:23:52",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0079641",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "VALE DOS SINOS",
-   "loja": "26819 - FS CAXIAS DO SUL - R JOAO NICHELE 2227",
-   "status": "Trabalho em andamento",
-   "fase": "Requisição Completa - Aguardando Token",
-   "abertura": "05/11/2026 00:57:15",
-   "fechamento": "",
-   "principal": "BK087698 - FRITADEIRA",
-   "secundario": "FRI - VAZAMENTO DE OLEO",
-   "sigla": "FRI",
-   "tecnico": "",
-   "descricao": "BK087698 - FRITADEIRA | FRI - VAZAMENTO DE OLEO",
-   "tarefas": [
-    "WOT0080309"
-   ],
-   "aguardandoToken": 1,
-   "fechadoSemToken": "07/11/2026 17:17:57",
    "contato": "",
    "grupo": "execucao"
   }
