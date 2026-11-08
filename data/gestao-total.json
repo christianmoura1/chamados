@@ -1,17 +1,17 @@
 {
- "atualizadoEm": "2026-11-07T22:15:22.924Z",
- "totalChamados": 1917,
+ "atualizadoEm": "2026-11-08T00:15:23.252Z",
+ "totalChamados": 1918,
  "resumo": {
   "porFamilia": {
    "Elétrica": 94,
    "Refrigeração": 233,
-   "Cocção": 261,
+   "Cocção": 263,
    "Gás": 6,
    "Sobremesa": 86,
    "Incêndio": 14,
    "Climatização": 40,
    "Outros": 634,
-   "Hidráulica": 243,
+   "Hidráulica": 242,
    "Mobiliário": 9,
    "Civil": 246,
    "Exaustão": 51
@@ -19,15 +19,15 @@
   "porPrioridade": {
    "4 - Baixa": 1322,
    "3 - Moderada": 381,
-   "2 - Alta": 150,
+   "2 - Alta": 151,
    "1 - Crítica": 64
   },
   "porSupervisor": {
    "GUSTAVO": 440,
-   "MARCEL": 623,
+   "MARCEL": 625,
    "RAFAEL": 389,
    "CARLOS MAGNO": 447,
-   "SEM SUPERVISOR": 18
+   "SEM SUPERVISOR": 17
   }
  },
  "chamados": [
@@ -13067,7 +13067,7 @@
    "familia": "Sobremesa",
    "critica": 1,
    "prioridade": "2 - Alta",
-   "estado": "Pronto para Expedição",
+   "estado": "Trabalho em andamento",
    "fase": "Iniciado",
    "abertura": "02/11/2026 13:29:54",
    "data": "2026-11-02",
@@ -14990,6 +14990,50 @@
    "descricao": "BROILER | BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
    "categoria": "BROILER",
    "subcategory": "BRO - ACESSÓRIOS DANIFICADOS E/OU EM FALTA"
+  },
+  {
+   "chamado": "WO0087084",
+   "regional": "SUL",
+   "loja": "SHOP ROYAL PLAZA SANTA MARIA",
+   "bkn": "21586",
+   "setor": "CAPITAL NORTE RS",
+   "supervisor": "MARCEL",
+   "equipamento": "TOSTADORA VERTICAL",
+   "problema": "LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
+   "familia": "Cocção",
+   "critica": 1,
+   "prioridade": "1 - Crítica",
+   "estado": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "07/11/2026 20:04:44",
+   "data": "2026-11-07",
+   "dias": 1,
+   "tecnico": "",
+   "descricao": "BK063633 - TOSTADORA VERTICAL; AJ ANTUNES; VCT-2000 | TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO",
+   "categoria": "BK063633 - TOSTADORA VERTICAL; AJ ANTUNES; VCT-2000",
+   "subcategory": "TST - LOJA SEM NENHUMA TOSTADEIRA FUNCIONANDO"
+  },
+  {
+   "chamado": "WO0087079",
+   "regional": "SUL",
+   "loja": "SHOP IGUATEMI PORTO ALEGRE",
+   "bkn": "15893",
+   "setor": "CAPITAL NORTE RS",
+   "supervisor": "MARCEL",
+   "equipamento": "MICROONDAS",
+   "problema": "NÃO LIGA",
+   "familia": "Cocção",
+   "critica": 1,
+   "prioridade": "2 - Alta",
+   "estado": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "07/11/2026 19:47:48",
+   "data": "2026-11-07",
+   "dias": 1,
+   "tecnico": "",
+   "descricao": "BK034756 - MICROONDAS; MENUMASTER; OC24BKB; 1301103 | MCR - NÃO LIGA",
+   "categoria": "BK034756 - MICROONDAS; MENUMASTER; OC24BKB; 1301103",
+   "subcategory": "MCR - NÃO LIGA"
   },
   {
    "chamado": "WO0087054",
@@ -42028,28 +42072,6 @@
    "descricao": "Area Interna | AIN - PIA DE LAVAGEM MOP - ACESSÓRIOS DANIFICADOS E/OU EM FALTA",
    "categoria": "Area Interna",
    "subcategory": "AIN - PIA DE LAVAGEM MOP - ACESSÓRIOS DANIFICADOS E/OU EM FALTA"
-  },
-  {
-   "chamado": "WO0086888",
-   "regional": "SUL",
-   "loja": "FS COLOMBO - ESTRADA DA RIBEIRA 3700",
-   "bkn": "33697",
-   "setor": "",
-   "supervisor": "",
-   "equipamento": "10295094 - AREA INTERNA",
-   "problema": "BANHEIRO - REFLUXO",
-   "familia": "Hidráulica",
-   "critica": 0,
-   "prioridade": "1 - Crítica",
-   "estado": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "07/11/2026 14:13:30",
-   "data": "2026-11-07",
-   "dias": 1,
-   "tecnico": "",
-   "descricao": "10295094 - AREA INTERNA | AIN - BANHEIRO - REFLUXO",
-   "categoria": "10295094 - AREA INTERNA",
-   "subcategory": "AIN - BANHEIRO - REFLUXO"
   },
   {
    "chamado": "WO0086886",
