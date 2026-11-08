@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-11-08T15:01:04.156Z",
+ "atualizadoEm": "2026-11-08T16:40:26.592Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 14,
+  "emExecucao": 16,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 14
+  "total": 16
  },
  "serie": [
   {
@@ -21,28 +21,74 @@
   },
   {
    "data": "2026-11-08",
-   "abertos": 2,
-   "fechados": 3
+   "abertos": 5,
+   "fechados": 5
   }
  ],
  "itens": [
   {
-   "numero": "WO0087155",
+   "numero": "WO0087217",
    "marca": "BKB",
    "regional": "SUL",
-   "setor": "CURITIBA NORTE",
-   "loja": "21535 - ANGELONI AGUA VERDE",
+   "setor": "CAPITAL CENTRO RS",
+   "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
    "status": "Pronto para Expedição",
    "fase": "Iniciado",
-   "abertura": "08/11/2026 10:01:35",
+   "abertura": "08/11/2026 12:35:53",
    "fechamento": "",
-   "principal": "FRITADEIRA",
-   "secundario": "FRI - NÃO LIGA",
-   "sigla": "FRI",
+   "principal": "BK035104 - COIFA LAVADORA; MELTING",
+   "secundario": "COI - COIFA NÃO FUNCIONA",
+   "sigla": "COI",
    "tecnico": "",
-   "descricao": "FRITADEIRA | FRI - NÃO LIGA",
+   "descricao": "BK035104 - COIFA LAVADORA; MELTING | COI - COIFA NÃO FUNCIONA",
    "tarefas": [
-    "WOT0087831"
+    "WOT0087892"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0087209",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "20049 - SHOP PRACA RIO GRANDE",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "08/11/2026 12:17:30",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - COZINHA - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
+   "tarefas": [
+    "WOT0087884"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "Tentativa de contato: 08/11/2026 12:19:21;\n",
+   "grupo": "execucao"
+  },
+  {
+   "numero": "WO0087207",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "21787 - CARREFOUR PARTENON",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "08/11/2026 12:10:46",
+   "fechamento": "",
+   "principal": "TOSTADEIRA 220V 3290W 66A71GRC",
+   "secundario": "TST - PRINCÍPIO DE INCÊNDIO",
+   "sigla": "TST",
+   "tecnico": "",
+   "descricao": "TOSTADEIRA 220V 3290W 66A71GRC | TST - PRINCÍPIO DE INCÊNDIO",
+   "tarefas": [
+    "WOT0087882"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
