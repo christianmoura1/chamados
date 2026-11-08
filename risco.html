@@ -216,9 +216,6 @@ footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--border
 @media (max-width: 900px) { :root { --sidebar-w: 0px; } aside { display: none; } }
 @media (max-width: 600px) { main { padding: 14px; } }
 </style>
-<link rel="stylesheet" href="css/sul-ui.css?v=20261107">
-<script src="js/sul-ui.js?v=20261107"></script>
-
 </head>
 <body>
 <header>
@@ -243,10 +240,10 @@ footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--border
 <a href="pecas.html"><span class="s-dot" style="color:var(--cinza)"></span> Peças / Materiais</a>
     <div class="s-header" style="margin-top:12px">Fonte</div>
     <div class="navitem-static"><span class="s-dot"></span> ServiceNow · SOMA</div>
-    <div class="side-foot">Leitura diária por volta das 6h (Brasília)</div>
+    <div class="side-foot">Atualização diária · fonte Power BI</div>
   </aside>
   <main>
-    <div id="conteudo"><div class="msg-carregando" role="status">Buscando a gestão de risco…</div></div>
+    <div id="conteudo"><div class="msg-carregando">carregando data/risco.json…</div></div>
   </main>
 </div>
 
@@ -344,7 +341,7 @@ let ATRIBUICOES = {};
 
 async function carregarAtribuicoes() {
   try {
-    const r = await fetch('https://154-64-32-227.sslip.io/v1/risco-atribuicoes', { cache: 'no-store', signal: AbortSignal.timeout(8000) });
+    const r = await fetch('https://154-64-32-227.sslip.io/v1/risco-atribuicoes', { cache: 'no-store' });
     if (!r.ok) return;
     ATRIBUICOES = await r.json();
   } catch (e) { /* silencioso */ }
@@ -615,55 +612,32 @@ document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape' && !docum
 
 async function iniciar() {
   const el = document.getElementById('conteudo');
-  SulUI.mostrarCarregando(el, 'a gestão de risco');
-  const res = await SulUI.lerComCache('risco', async () => {
-    const rDados = await fetch('data/risco.json', { cache: 'no-store' });
+  let D;
+  try {
+    const [rDados] = await Promise.all([
+      fetch('data/risco.json', { cache: 'no-store' }),
+      carregarAtribuicoes(),
+    ]);
     if (!rDados.ok) throw new Error('HTTP ' + rDados.status);
-    return rDados.json();
-  });
-  await carregarAtribuicoes();
-  if (!res.dados) {
-    el.innerHTML = SulUI.htmlFalha({ painel: 'a gestão de risco', erro: res.erro, retry: 'iniciar' });
-    SulUI.carimbar(document.getElementById('stamp'), null, { cadencia: 'diaria', hora: '06:00' });
+    D = await rDados.json();
+  } catch (e) {
+    el.innerHTML = `<div class="msg-erro">Não consegui carregar os dados (${e.message}).</div>`;
     return;
   }
-  const D = res.dados;
-  const leituraAntiga = res.antigo;
 
   DADOS_ATUAIS = D;
-  SulUI.carimbar(document.getElementById('stamp'), D.geradoEm || D.atualizadoEm, { cadencia: 'diaria', hora: '06:00' });
+  document.getElementById('stamp').textContent = 'Atualizado ' + escapeHtml(D.atualizadoEm || '—');
   const refDate = parseDataBR(D.atualizadoEm) || new Date();
 
   const totalVencido = D.categorias.reduce((s, c) => s + c.vencido, 0);
   const piorCategoria = [...D.categorias].sort((a, b) => b.pctVencido - a.pctVencido)[0];
 
   const kpisHtml = [
-    { label: 'Score Médio', val: D.scoreMedio != null ? D.scoreMedio.toLocaleString('pt-BR') : '—', cls: 'k-violet', nota: 'matriz de risco · Sul' },
-    { label: 'Itens Vencidos', val: brl0(totalVencido), cls: 'k-sos', nota: 'lojas com item vencido' },
-    { label: 'Categoria Mais Crítica', val: piorCategoria ? `${piorCategoria.nome} · ${piorCategoria.pctVencido}%` : '—', cls: 'k-alta', nota: 'maior % vencido' },
-    { label: 'Chamados Vencidos', val: brl0((D.chamadosRisco?.vencidos || []).length), cls: 'k-sos', nota: 'coifa, broiler, exaustor, gás, quadro' },
-  ].map(k => `<div class="kpi ${k.cls}"><span class="label">${k.label}</span><div class="val num">${k.val}</div>`
-    + (k.nota ? `<span class="kpi-nota">${k.nota}</span>` : '') + `</div>`).join('');
-
-  function tabelaCategorias(categorias) {
-    const linhas = [...categorias].sort((a, b) => b.pctVencido - a.pctVencido);
-    const corpo = linhas.map(c => `<tr data-chave="${escapeHtml(c.chave)}" tabindex="0" role="button" aria-label="Ver lojas vencidas em ${escapeHtml(c.nome)}">
-      <th scope="row" data-v="${escapeHtml(c.nome)}">${escapeHtml(c.nome)}</th>
-      <td class="num num-sos" data-v="${c.vencido}">${c.vencido}</td>
-      <td class="num" data-v="${c.emDia}">${c.emDia}</td>
-      <td class="num" data-v="${c.pctVencido}">${c.pctVencido}%</td>
-    </tr>`).join('');
-    return `<div class="cmp-wrap"><table class="cmp-table" id="cmpRisco">
-      <caption>Mesma leitura dos cards. O título da coluna ordena; a linha abre as lojas vencidas.</caption>
-      <thead><tr>
-        <th scope="col"><button type="button" data-sort="0" data-tipo="texto">Categoria</button></th>
-        <th scope="col"><button type="button" data-sort="1" data-tipo="num">Vencidas</button></th>
-        <th scope="col"><button type="button" data-sort="2" data-tipo="num">Em dia</button></th>
-        <th scope="col" aria-sort="descending"><button type="button" data-sort="3" data-tipo="num">% vencido</button></th>
-      </tr></thead>
-      <tbody>${corpo}</tbody>
-    </table></div>`;
-  }
+    { label: 'Score Médio', val: D.scoreMedio != null ? D.scoreMedio.toLocaleString('pt-BR') : '—', cls: 'k-violet' },
+    { label: 'Itens Vencidos', val: brl0(totalVencido), cls: 'k-sos' },
+    { label: 'Categoria Mais Crítica', val: piorCategoria ? `${piorCategoria.nome} · ${piorCategoria.pctVencido}%` : '—', cls: 'k-alta' },
+    { label: 'Chamados Vencidos', val: brl0((D.chamadosRisco?.vencidos || []).length), cls: 'k-sos' },
+  ].map(k => `<div class="kpi ${k.cls}"><span class="label">${k.label}</span><div class="val num">${k.val}</div></div>`).join('');
 
   const catOrdenadas = [...D.categorias].sort((a, b) => b.pctVencido - a.pctVencido);
   const catCards = catOrdenadas.map((c) => {
@@ -701,17 +675,11 @@ async function iniciar() {
     </div>`).join('');
 
   el.innerHTML = `
-    <p class="escopo-painel">Universo: matriz de risco do Power BI na regional Sul (${brl0(D.totalLojasAvaliadas || 0)} lojas avaliadas). O percentual de cada card é o vencido da categoria, não a indisponibilidade de equipamento do Backlog. Chamados vencidos são só coifa, broiler, exaustor, sensor de gás e quadro elétrico.</p>
     <div class="kpis">${kpisHtml}</div>
 
     <section>
       <div class="sec-head"><h2>Itens em risco por categoria</h2><span class="sec-note">Matriz de Risco · fonte: Power BI (Gestão de Risco · Sul)</span></div>
       <div class="equip-grid">${catCards}</div>
-    </section>
-
-    <section>
-      <div class="sec-head"><h2>Comparar categorias</h2><span class="sec-note">vencidas, em dia e percentual · os cards continuam acima</span></div>
-      ${tabelaCategorias(D.categorias)}
     </section>
 
     <section>
@@ -743,9 +711,6 @@ async function iniciar() {
       <span class="mono">${brl0(D.totalLojasAvaliadas)} lojas avaliadas</span>
     </footer>
   `;
-  if (leituraAntiga) el.insertAdjacentHTML('afterbegin', SulUI.htmlBannerAntigo({ quando: D.geradoEm || D.atualizadoEm, lidoEm: res.lidoEm, retry: 'iniciar' }));
-  const cmp = document.getElementById('cmpRisco');
-  if (cmp) SulUI.ligarTabela(cmp, (tr) => abrirModalCategoria(tr.dataset.chave));
 }
 iniciar();
 

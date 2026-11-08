@@ -180,9 +180,6 @@
     .menu-btn { display: flex !important; }
   }
 </style>
-<link rel="stylesheet" href="css/sul-ui.css?v=20261107">
-<script src="js/sul-ui.js?v=20261107"></script>
-
 </head>
 <body>
 <header>
@@ -208,11 +205,11 @@
     <a href="pecas.html"><span class="s-dot" style="color:var(--cinza)"></span> Peças / Materiais</a>
     <div class="s-header" style="margin-top:12px">Fonte</div>
     <div class="navitem-static"><span class="s-dot"></span> ServiceNow · SOMA</div>
-    <div class="side-foot">Leitura diária · atraso se passar do dia seguinte às 3h (Brasília)</div>
+    <div class="side-foot">Atualização automática diária às 03:00</div>
   </aside>
 
   <main>
-    <div class="kpis" id="kpis"><div class="loading">Buscando os chamados abertos…</div></div>
+    <div class="kpis" id="kpis"><div class="loading">carregando dados...</div></div>
     <div class="filter-bar">
       <div class="filter-field">
         <label for="searchInput">Buscar</label>
@@ -232,7 +229,7 @@
         <select id="filterFamilia"><option value="">Todas</option></select>
       </div>
       <div class="filter-field">
-        <label for="filterSupervisor">Supervisor da loja <span class="filtro-papel">(supervisor da carteira, não o técnico do chamado)</span></label>
+        <label for="filterSupervisor">Supervisor</label>
         <select id="filterSupervisor"><option value="">Todos</option></select>
       </div>
       <div class="filter-field">
@@ -249,7 +246,7 @@
           <th>Prioridade</th><th>Estado</th><th>Fase</th><th class="num">Dias</th>
           <th>Técnico</th><th>Supervisor</th><th>Família</th>
         </tr></thead>
-        <tbody id="tbody"><tr><td colspan="11" class="loading">Buscando os chamados abertos…</td></tr></tbody>
+        <tbody id="tbody"><tr><td colspan="11" class="loading">carregando...</td></tr></tbody>
       </table>
     </div>
   </main>
@@ -306,24 +303,15 @@ function renderKPIs() {
   const diasMedio = ch.length ? Math.round(ch.reduce((a,c) => a + (c.dias||0), 0) / ch.length) : 0;
   const atrasados = ch.filter(c => (c.dias||0) > 30).length;
 
-  const host = document.getElementById('kpis');
-  let escopo = document.getElementById('escopoGestao');
-  if (!escopo) {
-    escopo = document.createElement('p');
-    escopo.id = 'escopoGestao';
-    escopo.className = 'escopo-painel';
-    host.before(escopo);
-  }
-  escopo.textContent = 'Universo: todos os chamados abertos da regional Sul nesta leitura (' + total + '), não só os equipamentos do Backlog. Crítico, alta, preventiva, sem técnico e +30 dias são recortes desta mesma lista.';
-  host.innerHTML = `
-    <div class="kpi k-violet"><div class="label">Total Abertos</div><div class="val">${total}</div><span class="kpi-nota">chamados abertos da Sul</span></div>
-    <div class="kpi k-sos"><div class="label">Críticos</div><div class="val">${criticos}</div><span class="kpi-nota">prioridade crítica</span></div>
-    <div class="kpi k-alta"><div class="label">Alta</div><div class="val">${alta}</div><span class="kpi-nota">prioridade alta</span></div>
-    <div class="kpi"><div class="label">Preventivas</div><div class="val">${preventivas}</div><span class="kpi-nota">categoria preventiva</span></div>
-    <div class="kpi k-alta"><div class="label">Sem Técnico</div><div class="val">${semTecnico}</div><span class="kpi-nota">sem técnico atribuído</span></div>
-    <div class="kpi k-sos"><div class="label">+30 dias</div><div class="val">${atrasados}</div><span class="kpi-nota">abertos há mais de 30 dias</span></div>
+  document.getElementById('kpis').innerHTML = `
+    <div class="kpi k-violet"><div class="label">Total Abertos</div><div class="val">${total}</div></div>
+    <div class="kpi k-sos"><div class="label">Críticos</div><div class="val">${criticos}</div></div>
+    <div class="kpi k-alta"><div class="label">Alta</div><div class="val">${alta}</div></div>
+    <div class="kpi"><div class="label">Preventivas</div><div class="val">${preventivas}</div></div>
+    <div class="kpi k-alta"><div class="label">Sem Técnico</div><div class="val">${semTecnico}</div></div>
+    <div class="kpi k-sos"><div class="label">+30 dias</div><div class="val">${atrasados}</div></div>
   `;
-  SulUI.carimbar(document.getElementById('stamp'), dados.atualizadoEm, { cadencia: 'diaria', hora: '03:00' });
+  document.getElementById('stamp').textContent = 'Atualizado em ' + (dados.atualizadoEm ? new Date(dados.atualizadoEm).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : '?');
 }
 
 function populateFilters() {
@@ -341,8 +329,6 @@ function populateFilters() {
   const selS = document.getElementById('filterSupervisor');
   const selE = document.getElementById('filterEstado');
 
-  datalistL.innerHTML = '';
-  [selP, selF, selS, selE].forEach(sel => { while (sel.options.length > 1) sel.remove(1); });
   lojas.forEach(l => { const o = document.createElement('option'); o.value = l; datalistL.appendChild(o); });
   pris.forEach(p => { const o = document.createElement('option'); o.value = p; o.textContent = p; selP.appendChild(o); });
   fams.forEach(f => { const o = document.createElement('option'); o.value = f; o.textContent = f; selF.appendChild(o); });
@@ -398,23 +384,16 @@ function renderTable() {
 }
 
 async function loadDados() {
-  const res = await SulUI.lerComCache('gestao', async () => {
+  try {
     const r = await fetch('data/gestao-total.json', { cache: 'no-store' });
     if (!r.ok) throw new Error('HTTP ' + r.status);
-    return r.json();
-  });
-  if (!res.dados) {
-    document.getElementById('kpis').innerHTML = SulUI.htmlFalha({ painel: 'os chamados abertos', erro: res.erro, retry: 'loadDados' });
-    document.getElementById('tbody').innerHTML = '';
-    SulUI.carimbar(document.getElementById('stamp'), null, { cadencia: 'diaria', hora: '03:00' });
-    return;
+    dados = await r.json();
+    renderKPIs();
+    populateFilters();
+    applyFilters();
+  } catch(e) {
+    document.getElementById('tbody').innerHTML = '<tr><td colspan="11" class="empty">Erro ao carregar dados: ' + escapeHtml(e.message) + '</td></tr>';
   }
-  dados = res.dados;
-  document.querySelectorAll('.banner-antigo').forEach(n => n.remove());
-  renderKPIs();
-  if (res.antigo) document.getElementById('kpis').insertAdjacentHTML('beforebegin', SulUI.htmlBannerAntigo({ quando: dados.atualizadoEm, lidoEm: res.lidoEm, retry: 'loadDados' }));
-  populateFilters();
-  applyFilters();
 }
 
 document.getElementById('searchInput').addEventListener('input', applyFilters);

@@ -203,9 +203,6 @@ footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--border
 @media (max-width: 900px) { :root { --sidebar-w: 0px; } aside { display: none; } }
 @media (max-width: 600px) { main { padding: 14px; } }
 </style>
-<link rel="stylesheet" href="css/sul-ui.css?v=20261107">
-<script src="js/sul-ui.js?v=20261107"></script>
-
 </head>
 <body>
 <header>
@@ -230,10 +227,10 @@ footer { margin-top: 44px; padding-top: 16px; border-top: 1px solid var(--border
 <a href="pecas.html"><span class="s-dot" style="color:var(--cinza)"></span> Peças / Materiais</a>
 <div class="s-header" style="margin-top:12px">Fonte</div>
 <div class="navitem-static"><span class="s-dot"></span> ServiceNow · SOMA</div>
-<div class="side-foot">Leitura diária por volta das 7h45 (Brasília)</div>
+<div class="side-foot">Atualização diária · fonte SOMA (wm_task)</div>
 </aside>
 <main>
-<div id="conteudo"><div class="msg-carregando" role="status">Buscando as preventivas…</div></div>
+<div id="conteudo"><div class="msg-carregando">carregando data/preventivas.json…</div></div>
 </main>
 </div>
 <script>
@@ -247,7 +244,6 @@ var saved = localStorage.getItem('preventivas-theme');
 if (saved) document.documentElement.setAttribute('data-theme', saved);
 })();
 let DADOS = null;
-let PREV_ANTIGO = null;
 const VISTA = { aba: 'tecnico', farol: 'tecnico', mes: null };
 const FILTROS = { loja: '', tecnico: '', setor: '', estado: '', equipamento: '', soAtrasadas: false };
 let LOJAS_LISTA = [];
@@ -654,8 +650,6 @@ ${filtrados.length > 60
 function render() {
 if (!DADOS) return;
 document.getElementById('conteudo').innerHTML =
-(PREV_ANTIGO ? SulUI.htmlBannerAntigo(PREV_ANTIGO) : '') +
-'<p class="escopo-painel">Universo: preventivas da regional Sul na janela de ' + DADOS.janelaDias + ' dias. Abertas, atrasadas e concluídas são recortes desse período, não o histórico inteiro do SOMA.</p>' +
 kpis(DADOS.totais) + blocoMeses() + blocoFarol() + grafico(DADOS.porDia) + tabelaVisao() + tabelaDetalhe();
 }
 document.addEventListener('click', (ev) => {
@@ -726,25 +720,19 @@ ev.target.value = ev.target.dataset.sel || '';
 ev.target.blur();
 }
 });
-async function iniciar() {
-const el = document.getElementById('conteudo');
-SulUI.mostrarCarregando(el, 'as preventivas');
-const res = await SulUI.lerComCache('preventivas', async () => {
+(async function iniciar() {
+try {
 const r = await fetch('data/preventivas.json', { cache: 'no-store' });
 if (!r.ok) throw new Error('HTTP ' + r.status);
-return r.json();
-});
-if (!res.dados) {
-el.innerHTML = SulUI.htmlFalha({ painel: 'as preventivas', erro: res.erro, retry: 'iniciar' });
-SulUI.carimbar(document.getElementById('stamp'), null, { cadencia: 'diaria', hora: '07:45' });
+DADOS = await r.json();
+} catch (e) {
+document.getElementById('conteudo').innerHTML =
+`<div class="msg-erro">Não consegui carregar os dados (${escapeHtml(e.message)}).</div>`;
 return;
 }
-DADOS = res.dados;
-SulUI.carimbar(document.getElementById('stamp'), DADOS.geradoEm || DADOS.atualizadoEm, { cadencia: 'diaria', hora: '07:45' });
-PREV_ANTIGO = res.antigo ? { quando: DADOS.geradoEm || DADOS.atualizadoEm, lidoEm: res.lidoEm, retry: 'iniciar' } : null;
+document.getElementById('stamp').textContent = 'Atualizado ' + (DADOS.atualizadoEm || '—');
 render();
-}
-iniciar();
+})();
 </script>
 </body>
 </html>
