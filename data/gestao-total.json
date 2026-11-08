@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-11-08T12:15:39.783Z",
+ "atualizadoEm": "2026-11-08T14:15:31.683Z",
  "totalChamados": 1921,
  "resumo": {
   "porFamilia": {
    "Elétrica": 94,
    "Refrigeração": 233,
-   "Cocção": 264,
-   "Gás": 7,
+   "Cocção": 265,
+   "Gás": 6,
    "Sobremesa": 87,
    "Incêndio": 14,
    "Climatização": 40,
@@ -23,9 +23,9 @@
    "1 - Crítica": 65
   },
   "porSupervisor": {
-   "GUSTAVO": 439,
+   "GUSTAVO": 440,
    "MARCEL": 625,
-   "RAFAEL": 390,
+   "RAFAEL": 389,
    "CARLOS MAGNO": 450,
    "SEM SUPERVISOR": 17
   }
@@ -14299,7 +14299,7 @@
    "familia": "Elétrica",
    "critica": 1,
    "prioridade": "1 - Crítica",
-   "estado": "Pronto para Expedição",
+   "estado": "Trabalho em andamento",
    "fase": "Iniciado",
    "abertura": "04/11/2026 08:22:04",
    "data": "2026-11-04",
@@ -15157,7 +15157,7 @@
    "familia": "Sobremesa",
    "critica": 1,
    "prioridade": "1 - Crítica",
-   "estado": "Pronto para Expedição",
+   "estado": "Trabalho em andamento",
    "fase": "Iniciado",
    "abertura": "07/11/2026 15:19:02",
    "data": "2026-11-07",
@@ -15344,6 +15344,28 @@
    "subcategory": "FRI - VAZAMENTO DE OLEO"
   },
   {
+   "chamado": "WO0087155",
+   "regional": "SUL",
+   "loja": "ANGELONI AGUA VERDE",
+   "bkn": "21535",
+   "setor": "CURITIBA NORTE",
+   "supervisor": "GUSTAVO",
+   "equipamento": "FRITADEIRA",
+   "problema": "NÃO LIGA",
+   "familia": "Cocção",
+   "critica": 1,
+   "prioridade": "1 - Crítica",
+   "estado": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "08/11/2026 10:01:35",
+   "data": "2026-11-08",
+   "dias": 0,
+   "tecnico": "",
+   "descricao": "FRITADEIRA | FRI - NÃO LIGA",
+   "categoria": "FRITADEIRA",
+   "subcategory": "FRI - NÃO LIGA"
+  },
+  {
    "chamado": "WO0087135",
    "regional": "SUL",
    "loja": "FS PONTA GROSSA R BALDUINO",
@@ -15386,28 +15408,6 @@
    "descricao": "BK099879 - MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - NÃO LIGA",
    "categoria": "BK099879 - MAQUINA SORVETE, CARPIGIANI, CN825716181",
    "subcategory": "MDS - NÃO LIGA"
-  },
-  {
-   "chamado": "WO0087119",
-   "regional": "SUL",
-   "loja": "FS CANOAS - AV DR SEZEFREDO A",
-   "bkn": "31345",
-   "setor": "CAPITAL CENTRO RS",
-   "supervisor": "RAFAEL",
-   "equipamento": "Area Interna",
-   "problema": "GÁS - VAZAMENTO DE GÁS",
-   "familia": "Gás",
-   "critica": 1,
-   "prioridade": "1 - Crítica",
-   "estado": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "08/11/2026 02:22:47",
-   "data": "2026-11-08",
-   "dias": 0,
-   "tecnico": "",
-   "descricao": "Area Interna | AIN - GÁS - VAZAMENTO DE GÁS",
-   "categoria": "Area Interna",
-   "subcategory": "AIN - GÁS - VAZAMENTO DE GÁS"
   },
   {
    "chamado": "WO0014306",
