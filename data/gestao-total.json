@@ -1,11 +1,11 @@
 {
- "atualizadoEm": "2026-11-09T00:15:38.174Z",
- "totalChamados": 1916,
+ "atualizadoEm": "2026-11-09T04:15:42.117Z",
+ "totalChamados": 1919,
  "resumo": {
   "porFamilia": {
    "Elétrica": 93,
-   "Refrigeração": 231,
-   "Cocção": 262,
+   "Refrigeração": 232,
+   "Cocção": 264,
    "Gás": 6,
    "Sobremesa": 85,
    "Incêndio": 15,
@@ -18,15 +18,15 @@
   },
   "porPrioridade": {
    "4 - Baixa": 1321,
-   "3 - Moderada": 382,
+   "3 - Moderada": 383,
    "2 - Alta": 153,
-   "1 - Crítica": 60
+   "1 - Crítica": 62
   },
   "porSupervisor": {
    "GUSTAVO": 436,
    "MARCEL": 624,
-   "RAFAEL": 390,
-   "CARLOS MAGNO": 449,
+   "RAFAEL": 391,
+   "CARLOS MAGNO": 451,
    "SEM SUPERVISOR": 17
   }
  },
@@ -15058,6 +15058,28 @@
    "subcategory": "FRI - VAZAMENTO DE OLEO"
   },
   {
+   "chamado": "WO0087382",
+   "regional": "SUL",
+   "loja": "FS CANOAS - AV GETULIO VARGAS 3800",
+   "bkn": "26160",
+   "setor": "CAPITAL SUL RS",
+   "supervisor": "RAFAEL",
+   "equipamento": "CAMARA DE CONGELADOS",
+   "problema": "FORMAÇÃO DE GELO",
+   "familia": "Refrigeração",
+   "critica": 1,
+   "prioridade": "3 - Moderada",
+   "estado": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "08/11/2026 21:59:20",
+   "data": "2026-11-08",
+   "dias": 1,
+   "tecnico": "",
+   "descricao": "BK070972 - CAMARA DE CONGELADOS; SÃO RAFAEL | CMG - FORMAÇÃO DE GELO",
+   "categoria": "BK070972 - CAMARA DE CONGELADOS; SÃO RAFAEL",
+   "subcategory": "CMG - FORMAÇÃO DE GELO"
+  },
+  {
    "chamado": "WO0087348",
    "regional": "SUL",
    "loja": "PARK EUROPEU BLUMENAU",
@@ -15254,6 +15276,50 @@
    "descricao": "BK099879 - MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - NÃO LIGA",
    "categoria": "BK099879 - MAQUINA SORVETE, CARPIGIANI, CN825716181",
    "subcategory": "MDS - NÃO LIGA"
+  },
+  {
+   "chamado": "WO0087395",
+   "regional": "SUL",
+   "loja": "FS CURITIBA - FRANCISCO FRISHMANN 3151",
+   "bkn": "26828",
+   "setor": "GRANDE CURITIBA",
+   "supervisor": "CARLOS MAGNO",
+   "equipamento": "BROILER",
+   "problema": "VAZAMENTO DE GÁS",
+   "familia": "Cocção",
+   "critica": 1,
+   "prioridade": "1 - Crítica",
+   "estado": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "09/11/2026 00:45:09",
+   "data": "2026-11-09",
+   "dias": 0,
+   "tecnico": "",
+   "descricao": "BROILER | BRO - VAZAMENTO DE GÁS",
+   "categoria": "BROILER",
+   "subcategory": "BRO - VAZAMENTO DE GÁS"
+  },
+  {
+   "chamado": "WO0087393",
+   "regional": "SUL",
+   "loja": "FS CURITIBA - FRANCISCO FRISHMANN 3151",
+   "bkn": "26828",
+   "setor": "GRANDE CURITIBA",
+   "supervisor": "CARLOS MAGNO",
+   "equipamento": "FRITADEIRA",
+   "problema": "NENHUMA DAS CUBAS ATINGE TEMPERATURA",
+   "familia": "Cocção",
+   "critica": 1,
+   "prioridade": "1 - Crítica",
+   "estado": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "09/11/2026 00:20:24",
+   "data": "2026-11-09",
+   "dias": 0,
+   "tecnico": "",
+   "descricao": "BK088221 - FRITADEIRA | FRI - NENHUMA DAS CUBAS ATINGE TEMPERATURA",
+   "categoria": "BK088221 - FRITADEIRA",
+   "subcategory": "FRI - NENHUMA DAS CUBAS ATINGE TEMPERATURA"
   },
   {
    "chamado": "WO0014306",
