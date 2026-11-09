@@ -1,5 +1,5 @@
 {
- "atualizadoEm": "2026-11-09T10:00:44.270Z",
+ "atualizadoEm": "2026-11-09T12:00:56.403Z",
  "janelaDias": 3,
  "resumo": {
   "emExecucao": 14,
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-11-09",
-   "abertos": 2,
-   "fechados": 0
+   "abertos": 3,
+   "fechados": 1
   }
  ],
  "itens": [
+  {
+   "numero": "WO0087427",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "SUDOESTE RS",
+   "loja": "21787 - CARREFOUR PARTENON",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "09/11/2026 08:19:14",
+   "fechamento": "",
+   "principal": "Area Interna",
+   "secundario": "AIN - COZINHA - REFLUXO",
+   "sigla": "AIN",
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
+   "tarefas": [
+    "WOT0088101"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0087395",
    "marca": "BKB",
@@ -296,29 +319,6 @@
    "descricao": "FRITADEIRA | FRI - NÃO LIGA",
    "tarefas": [
     "WOT0087550"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0086839",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA NORTE",
-   "loja": "22511 - FS CURITIBA - AV FLORIANO PEIXOTO 5952",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "07/11/2026 13:20:45",
-   "fechamento": "",
-   "principal": "Area Externa",
-   "secundario": "AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
-   "sigla": "AEX",
-   "tecnico": "",
-   "descricao": "Area Externa | AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
-   "tarefas": [
-    "WOT0087513"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",

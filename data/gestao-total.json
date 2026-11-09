@@ -1,17 +1,17 @@
 {
- "atualizadoEm": "2026-11-09T10:15:51.392Z",
- "totalChamados": 1920,
+ "atualizadoEm": "2026-11-09T12:16:01.317Z",
+ "totalChamados": 1921,
  "resumo": {
   "porFamilia": {
-   "Elétrica": 93,
+   "Elétrica": 92,
    "Refrigeração": 232,
-   "Cocção": 264,
+   "Cocção": 265,
    "Gás": 6,
    "Sobremesa": 85,
    "Incêndio": 15,
    "Climatização": 41,
    "Outros": 634,
-   "Hidráulica": 241,
+   "Hidráulica": 242,
    "Mobiliário": 9,
    "Civil": 247,
    "Exaustão": 53
@@ -19,12 +19,12 @@
   "porPrioridade": {
    "4 - Baixa": 1322,
    "3 - Moderada": 383,
-   "2 - Alta": 153,
+   "2 - Alta": 154,
    "1 - Crítica": 62
   },
   "porSupervisor": {
    "GUSTAVO": 436,
-   "MARCEL": 624,
+   "MARCEL": 625,
    "RAFAEL": 391,
    "CARLOS MAGNO": 452,
    "SEM SUPERVISOR": 17
@@ -14926,28 +14926,6 @@
    "subcategory": "FRI - NÃO LIGA"
   },
   {
-   "chamado": "WO0086839",
-   "regional": "SUL",
-   "loja": "FS CURITIBA - AV FLORIANO PEIXOTO 5952",
-   "bkn": "22511",
-   "setor": "CURITIBA NORTE",
-   "supervisor": "GUSTAVO",
-   "equipamento": "Area Externa",
-   "problema": "FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
-   "familia": "Elétrica",
-   "critica": 1,
-   "prioridade": "1 - Crítica",
-   "estado": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "07/11/2026 13:20:45",
-   "data": "2026-11-07",
-   "dias": 2,
-   "tecnico": "",
-   "descricao": "Area Externa | AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA",
-   "categoria": "Area Externa",
-   "subcategory": "AEX - FALTA DE ENERGIA - FALTA DE ENERGIA NA LOJA"
-  },
-  {
    "chamado": "WO0086799",
    "regional": "SUL",
    "loja": "SHOP DO VALE",
@@ -15276,6 +15254,28 @@
    "descricao": "BK099879 - MAQUINA SORVETE, CARPIGIANI, CN825716181 | MDS - NÃO LIGA",
    "categoria": "BK099879 - MAQUINA SORVETE, CARPIGIANI, CN825716181",
    "subcategory": "MDS - NÃO LIGA"
+  },
+  {
+   "chamado": "WO0087449",
+   "regional": "SUL",
+   "loja": "COLOMBO PARK SHOP",
+   "bkn": "23699",
+   "setor": "CURITIBA NORTE",
+   "supervisor": "GUSTAVO",
+   "equipamento": "PHU",
+   "problema": "NÃO LIGA",
+   "familia": "Cocção",
+   "critica": 1,
+   "prioridade": "2 - Alta",
+   "estado": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "09/11/2026 09:00:20",
+   "data": "2026-11-09",
+   "dias": 0,
+   "tecnico": "",
+   "descricao": "PHU; DUKE; FWM3-34MB1-230; 94ABJB0018 | PHU - NÃO LIGA",
+   "categoria": "PHU; DUKE; FWM3-34MB1-230; 94ABJB0018",
+   "subcategory": "PHU - NÃO LIGA"
   },
   {
    "chamado": "WO0087395",
@@ -42248,6 +42248,28 @@
    "descricao": "Area Interna | AIN - BANHEIRO - IRREGULARIDADES NA ESTRUTURA / DANOS",
    "categoria": "Area Interna",
    "subcategory": "AIN - BANHEIRO - IRREGULARIDADES NA ESTRUTURA / DANOS"
+  },
+  {
+   "chamado": "WO0087427",
+   "regional": "SUL",
+   "loja": "CARREFOUR PARTENON",
+   "bkn": "21787",
+   "setor": "SUDOESTE RS",
+   "supervisor": "MARCEL",
+   "equipamento": "Area Interna",
+   "problema": "COZINHA - REFLUXO",
+   "familia": "Hidráulica",
+   "critica": 0,
+   "prioridade": "1 - Crítica",
+   "estado": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "09/11/2026 08:19:14",
+   "data": "2026-11-09",
+   "dias": 0,
+   "tecnico": "",
+   "descricao": "Area Interna | AIN - COZINHA - REFLUXO",
+   "categoria": "Area Interna",
+   "subcategory": "AIN - COZINHA - REFLUXO"
   },
   {
    "chamado": "WO0087401",
