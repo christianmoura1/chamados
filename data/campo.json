@@ -1,5 +1,5 @@
 {
- "atualizadoEm": "2026-11-09T12:00:56.403Z",
+ "atualizadoEm": "2026-11-09T13:20:44.213Z",
  "janelaDias": 3,
  "resumo": {
   "emExecucao": 14,
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-11-09",
-   "abertos": 3,
-   "fechados": 1
+   "abertos": 4,
+   "fechados": 2
   }
  ],
  "itens": [
+  {
+   "numero": "WO0087484",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CURITIBA OESTE/SC",
+   "loja": "29095 FS CURITIBA - CARLOS KLEMTZ",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "09/11/2026 09:48:49",
+   "fechamento": "",
+   "principal": "Area Externa",
+   "secundario": "AEX - FALTA DE ÁGUA - CONTA NÃO FOI PAGA",
+   "sigla": "AEX",
+   "tecnico": "",
+   "descricao": "Area Externa | AEX - FALTA DE ÁGUA - CONTA NÃO FOI PAGA",
+   "tarefas": [
+    "WOT0088158"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0087427",
    "marca": "BKB",
@@ -250,29 +273,6 @@
    "descricao": "BK066039 - CÂMARA DE CONGELADOS | CMG - NÃO ATINGE TEMPERATURA",
    "tarefas": [
     "WOT0087666"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0086981",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CURITIBA OESTE/SC",
-   "loja": "27590 - PORTO BELO OUTLET",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "07/11/2026 16:41:49",
-   "fechamento": "",
-   "principal": "BROILER",
-   "secundario": "BRO - NÃO ACENDE",
-   "sigla": "BRO",
-   "tecnico": "",
-   "descricao": "BROILER | BRO - NÃO ACENDE",
-   "tarefas": [
-    "WOT0087657"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
