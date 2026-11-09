@@ -1,8 +1,8 @@
 {
- "atualizadoEm": "11/08/2026 05:08:13",
- "geradoEm": "2026-11-08T09:02:43.292Z",
+ "atualizadoEm": "11/09/2026 05:07:11",
+ "geradoEm": "2026-11-09T09:05:53.175Z",
  "totalLojasAvaliadas": 71,
- "scoreMedio": 8.83,
+ "scoreMedio": 8.34,
  "categorias": [
   {
    "chave": "sci",
@@ -23,9 +23,17 @@
    "lojasVencidas": [
     {
      "nome": "15893 - SHOP IGUATEMI PORTO ALEGRE",
-     "score": 23,
+     "score": 15,
      "diasAtraso": 9,
      "dataRef": "28/10/2026",
+     "rotuloRef": "venceu",
+     "itemRef": null
+    },
+    {
+     "nome": "17792 - BOURBON SHOP NOVO HAMBURGO",
+     "score": 15,
+     "diasAtraso": 23,
+     "dataRef": "14/10/2026",
      "rotuloRef": "venceu",
      "itemRef": null
     },
@@ -50,30 +58,6 @@
      "score": 15,
      "diasAtraso": 33,
      "dataRef": "04/10/2026",
-     "rotuloRef": "venceu",
-     "itemRef": null
-    },
-    {
-     "nome": "25277 - SHOP GUARAPUAVA",
-     "score": 14,
-     "diasAtraso": 6,
-     "dataRef": "31/10/2026",
-     "rotuloRef": "venceu",
-     "itemRef": null
-    },
-    {
-     "nome": "26830 - FS FOZ DO IGUACU AV JORGE SCHIMMELPFENG 50",
-     "score": 14,
-     "diasAtraso": 18,
-     "dataRef": "19/10/2026",
-     "rotuloRef": "venceu",
-     "itemRef": null
-    },
-    {
-     "nome": "17792 - BOURBON SHOP NOVO HAMBURGO",
-     "score": 11,
-     "diasAtraso": 23,
-     "dataRef": "14/10/2026",
      "rotuloRef": "venceu",
      "itemRef": null
     },
@@ -182,6 +166,14 @@
      "itemRef": null
     },
     {
+     "nome": "25277 - SHOP GUARAPUAVA",
+     "score": 10,
+     "diasAtraso": 6,
+     "dataRef": "31/10/2026",
+     "rotuloRef": "venceu",
+     "itemRef": null
+    },
+    {
      "nome": "26160 - FS CANOAS - AV GETULIO VARGAS 3800",
      "score": 10,
      "diasAtraso": 47,
@@ -206,6 +198,14 @@
      "itemRef": null
     },
     {
+     "nome": "26830 - FS FOZ DO IGUACU AV JORGE SCHIMMELPFENG 50",
+     "score": 10,
+     "diasAtraso": 18,
+     "dataRef": "19/10/2026",
+     "rotuloRef": "venceu",
+     "itemRef": null
+    },
+    {
      "nome": "27588 - ATLANTICO SHOP",
      "score": 10,
      "diasAtraso": 1,
@@ -226,123 +226,33 @@
   {
    "chave": "rotaSeguranca",
    "nome": "Rota Segurança",
-   "vencido": 6,
-   "emDia": 65,
+   "vencido": 0,
+   "emDia": 71,
    "total": 71,
-   "pctVencido": 8,
-   "lojasVencidas": [
-    {
-     "nome": "15893 - SHOP IGUATEMI PORTO ALEGRE",
-     "score": 23,
-     "diasAtraso": 22,
-     "dataRef": "17/10/2026",
-     "rotuloRef": "últ. visita",
-     "itemRef": null
-    },
-    {
-     "nome": "25277 - SHOP GUARAPUAVA",
-     "score": 14,
-     "diasAtraso": 20,
-     "dataRef": "19/10/2026",
-     "rotuloRef": "últ. visita",
-     "itemRef": null
-    },
-    {
-     "nome": "26830 - FS FOZ DO IGUACU AV JORGE SCHIMMELPFENG 50",
-     "score": 14,
-     "diasAtraso": 21,
-     "dataRef": "18/10/2026",
-     "rotuloRef": "últ. visita",
-     "itemRef": null
-    },
-    {
-     "nome": "22507 - ILR PORTO ALEGRE - R ANDRADAS 1664",
-     "score": 10,
-     "diasAtraso": 28,
-     "dataRef": "11/10/2026",
-     "rotuloRef": "últ. visita",
-     "itemRef": null
-    },
-    {
-     "nome": "22536 - SHOP PALLADIUM FOZ DO IGUACU",
-     "score": 10,
-     "diasAtraso": 21,
-     "dataRef": "18/10/2026",
-     "rotuloRef": "últ. visita",
-     "itemRef": null
-    },
-    {
-     "nome": "25455 - FS POA - AV DR NILO PECANHA 1715",
-     "score": 10,
-     "diasAtraso": 22,
-     "dataRef": "17/10/2026",
-     "rotuloRef": "últ. visita",
-     "itemRef": null
-    }
-   ]
+   "pctVencido": 0,
+   "lojasVencidas": []
   },
   {
    "chave": "rotaPadroes",
    "nome": "Rota Padrões",
-   "vencido": 5,
-   "emDia": 66,
+   "vencido": 0,
+   "emDia": 71,
    "total": 71,
-   "pctVencido": 7,
-   "lojasVencidas": [
-    {
-     "nome": "15893 - SHOP IGUATEMI PORTO ALEGRE",
-     "score": 23,
-     "diasAtraso": 50,
-     "dataRef": "19/09/2026",
-     "rotuloRef": "últ. visita",
-     "itemRef": null
-    },
-    {
-     "nome": "16687 - SHOP PALLADIUM PONTA GROSSA",
-     "score": 15,
-     "diasAtraso": 51,
-     "dataRef": "18/09/2026",
-     "rotuloRef": "últ. visita",
-     "itemRef": null
-    },
-    {
-     "nome": "21475 - SHOP JARDIM DAS AMERICAS",
-     "score": 15,
-     "diasAtraso": 52,
-     "dataRef": "17/09/2026",
-     "rotuloRef": "últ. visita",
-     "itemRef": null
-    },
-    {
-     "nome": "30086 - FS PONTA GROSSA - BALD TAQUES 1530",
-     "score": 10,
-     "diasAtraso": 51,
-     "dataRef": "18/09/2026",
-     "rotuloRef": "últ. visita",
-     "itemRef": null
-    },
-    {
-     "nome": "33312 - FC PONTA GROSSA - SHOPPING PLAZA CAMPOS GERAIS",
-     "score": 10,
-     "diasAtraso": 51,
-     "dataRef": "18/09/2026",
-     "rotuloRef": "últ. visita",
-     "itemRef": null
-    }
-   ]
+   "pctVencido": 0,
+   "lojasVencidas": []
   }
  ],
  "abertoPorItemBruto": [
   "Coifa",
+  "Exaustor",
   "Quadro Elétrico",
   "Carrinho doBroiler",
   "Central de fumaça",
   "Damper",
-  "Exaustor",
   "Sistema deIncêndio",
-  "7",
+  "8",
   "2",
-  "1",
+  "2",
   "1",
   "1",
   "1",
@@ -367,7 +277,7 @@
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
     "assunto": "COI - ESTRUTURA DA COIFA COM DEFEITO",
-    "diasAtraso": 37
+    "diasAtraso": 38
    },
    {
     "numero": "WO0065253",
@@ -383,7 +293,7 @@
     "dtEncerramento": "",
     "tecnico": "MARCEL VINICIOS ROCHA AGRADEM",
     "assunto": "COI - COIFA EM CONTIGÊNCIA",
-    "diasAtraso": 33
+    "diasAtraso": 34
    },
    {
     "numero": "WO0068126",
@@ -399,7 +309,7 @@
     "dtEncerramento": "",
     "tecnico": "CARLOS MAGNO DA SILVA LIRA",
     "assunto": "COI - ESTRUTURA DA COIFA COM DEFEITO",
-    "diasAtraso": 27
+    "diasAtraso": 28
    },
    {
     "numero": "WO0069102",
@@ -415,7 +325,7 @@
     "dtEncerramento": "",
     "tecnico": "CARLOS MAGNO DA SILVA LIRA",
     "assunto": "AIN - QUADRO ELÉTRICO - QUADRO ELÉTRICO COM FIOS EXPOSTOS",
-    "diasAtraso": 25
+    "diasAtraso": 26
    },
    {
     "numero": "WO0070729",
@@ -431,7 +341,7 @@
     "dtEncerramento": "",
     "tecnico": "MARCEL VINICIOS ROCHA AGRADEM",
     "assunto": "SCI - ALARME DISPARADO",
-    "diasAtraso": 22
+    "diasAtraso": 23
    },
    {
     "numero": "WO0071121",
@@ -447,7 +357,7 @@
     "dtEncerramento": "",
     "tecnico": "CARLOS MAGNO DA SILVA LIRA",
     "assunto": "COI - COIFA EM CONTIGÊNCIA",
-    "diasAtraso": 20
+    "diasAtraso": 21
    },
    {
     "numero": "WO0071131",
@@ -463,7 +373,7 @@
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
     "assunto": "COI - COIFA EM CONTIGÊNCIA",
-    "diasAtraso": 20
+    "diasAtraso": 21
    },
    {
     "numero": "WO0071165",
@@ -479,7 +389,7 @@
     "dtEncerramento": "",
     "tecnico": "CARLOS MAGNO DA SILVA LIRA",
     "assunto": "COI - COIFA EM CONTIGÊNCIA",
-    "diasAtraso": 20
+    "diasAtraso": 21
    },
    {
     "numero": "WO0073278",
@@ -495,7 +405,7 @@
     "dtEncerramento": "",
     "tecnico": "CARLOS MAGNO DA SILVA LIRA",
     "assunto": "AIN - QUADRO ELÉTRICO - QUADRO ELÉTRICO COM FIOS EXPOSTOS",
-    "diasAtraso": 18
+    "diasAtraso": 19
    },
    {
     "numero": "WO0075758",
@@ -511,7 +421,7 @@
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
     "assunto": "EXA - AUSÊNCIA DE PROTEÇÃO DA CORREIA",
-    "diasAtraso": 12
+    "diasAtraso": 13
    },
    {
     "numero": "WO0075952",
@@ -527,7 +437,7 @@
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
     "assunto": "COI - COIFA COM DRENO ENTUPIDO",
-    "diasAtraso": 12
+    "diasAtraso": 13
    },
    {
     "numero": "WO0076951",
@@ -543,7 +453,23 @@
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
     "assunto": "SCI - ACESSÓRIOS/PEÇAS DANIFICADAS",
-    "diasAtraso": 10
+    "diasAtraso": 11
+   },
+   {
+    "numero": "WO0078309",
+    "statusRisco": "Atrasado",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - COIFA EM CONTIGÊNCIA",
+    "regional": "SUL",
+    "setor": "VALE DOS SINOS",
+    "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "02/11/2026",
+    "dtEncerramento": "",
+    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
+    "assunto": "COI - COIFA EM CONTIGÊNCIA",
+    "diasAtraso": 7
    },
    {
     "numero": "WO0078705",
@@ -559,7 +485,7 @@
     "dtEncerramento": "",
     "tecnico": "THIAGO DA SILVA GONZALEZ",
     "assunto": "CDB - CARRINHO TORTO / BALANÇANDO",
-    "diasAtraso": 5
+    "diasAtraso": 6
    },
    {
     "numero": "WO0079354",
@@ -575,26 +501,26 @@
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
     "assunto": "EXA - DAMPER NÃO ACIONA CORRETAMENTE",
-    "diasAtraso": 4
+    "diasAtraso": 5
+   },
+   {
+    "numero": "WO0087218",
+    "statusRisco": "Atrasado",
+    "item": "Exaustor",
+    "assuntoPrincipal": "EXAUSTOR",
+    "assuntoSecundario": "EXA - AUSÊNCIA DE PROTEÇÃO DA CORREIA",
+    "regional": "SUL",
+    "setor": "CAPITAL CENTRO RS",
+    "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "08/11/2026",
+    "dtEncerramento": "",
+    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
+    "assunto": "EXA - AUSÊNCIA DE PROTEÇÃO DA CORREIA",
+    "diasAtraso": 1
    }
   ],
   "aVencer": [
-   {
-    "numero": "WO0078309",
-    "statusRisco": "No Prazo",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA EM CONTIGÊNCIA",
-    "regional": "SUL",
-    "setor": "VALE DOS SINOS",
-    "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
-    "status": "Pronto Para Envio",
-    "dtAbertura": "02/11/2026",
-    "dtEncerramento": "",
-    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
-    "assunto": "COI - COIFA EM CONTIGÊNCIA",
-    "diasAtraso": 6
-   },
    {
     "numero": "WO0079479",
     "statusRisco": "No Prazo",
@@ -609,7 +535,23 @@
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
     "assunto": "COI - ESTRUTURA DA COIFA COM DEFEITO",
-    "diasAtraso": 4
+    "diasAtraso": 5
+   },
+   {
+    "numero": "WO0087217",
+    "statusRisco": "No Prazo",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - COIFA NÃO FUNCIONA",
+    "regional": "SUL",
+    "setor": "CAPITAL CENTRO RS",
+    "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "08/11/2026",
+    "dtEncerramento": "",
+    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
+    "assunto": "COI - COIFA NÃO FUNCIONA",
+    "diasAtraso": 1
    }
   ]
  },
