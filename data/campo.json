@@ -1,12 +1,12 @@
 {
- "atualizadoEm": "2026-11-09T13:20:44.213Z",
+ "atualizadoEm": "2026-11-09T16:40:51.082Z",
  "janelaDias": 3,
  "resumo": {
-  "emExecucao": 14,
+  "emExecucao": 13,
   "executados": 0,
   "cancelados": 0,
   "aguardandoToken": 1,
-  "total": 14
+  "total": 13
  },
  "serie": [
   {
@@ -21,11 +21,34 @@
   },
   {
    "data": "2026-11-09",
-   "abertos": 4,
-   "fechados": 2
+   "abertos": 5,
+   "fechados": 4
   }
  ],
  "itens": [
+  {
+   "numero": "WO0088477",
+   "marca": "BKB",
+   "regional": "SUL",
+   "setor": "CAPITAL NORTE RS",
+   "loja": "18625 - BOURBON SHOP WALLIG",
+   "status": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "09/11/2026 13:40:32",
+   "fechamento": "",
+   "principal": "BK034862 - MICROONDAS; MENUMASTER; OC24BKB; 1109101",
+   "secundario": "MCR - LOJA SEM NENHUM MICROONDAS FUNCIONANDO",
+   "sigla": "MCR",
+   "tecnico": "",
+   "descricao": "BK034862 - MICROONDAS; MENUMASTER; OC24BKB; 1109101 | MCR - LOJA SEM NENHUM MICROONDAS FUNCIONANDO",
+   "tarefas": [
+    "WOT0089155"
+   ],
+   "aguardandoToken": 0,
+   "fechadoSemToken": "",
+   "contato": "",
+   "grupo": "execucao"
+  },
   {
    "numero": "WO0087484",
    "marca": "BKB",
@@ -273,52 +296,6 @@
    "descricao": "BK066039 - CÂMARA DE CONGELADOS | CMG - NÃO ATINGE TEMPERATURA",
    "tarefas": [
     "WOT0087666"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0086881",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL SUL RS",
-   "loja": "19618 - SHOP GRAVATAI",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "07/11/2026 14:05:41",
-   "fechamento": "",
-   "principal": "BROILER",
-   "secundario": "BRO - QUEBRANDO CARNE",
-   "sigla": "BRO",
-   "tecnico": "",
-   "descricao": "BROILER | BRO - QUEBRANDO CARNE",
-   "tarefas": [
-    "WOT0087555"
-   ],
-   "aguardandoToken": 0,
-   "fechadoSemToken": "",
-   "contato": "Tentativa de contato: 07/11/2026 23:19:13;\n",
-   "grupo": "execucao"
-  },
-  {
-   "numero": "WO0086876",
-   "marca": "BKB",
-   "regional": "SUL",
-   "setor": "CAPITAL SUL RS",
-   "loja": "19618 - SHOP GRAVATAI",
-   "status": "Pronto para Expedição",
-   "fase": "Iniciado",
-   "abertura": "07/11/2026 14:00:32",
-   "fechamento": "",
-   "principal": "FRITADEIRA",
-   "secundario": "FRI - NÃO LIGA",
-   "sigla": "FRI",
-   "tecnico": "",
-   "descricao": "FRITADEIRA | FRI - NÃO LIGA",
-   "tarefas": [
-    "WOT0087550"
    ],
    "aguardandoToken": 0,
    "fechadoSemToken": "",
