@@ -1343,23 +1343,30 @@ function ehEquipamentoMonitorado(problema) {
     || /TOSTADEIRA|TOSTADORA|\bTST\b/i.test(t);
 }
 
+const EQUIPAMENTOS_LINHA = ['Máquina de Sorvete', 'Fritadeira', 'Micro-ondas', 'Broiler', 'PHU', 'Tostadeira'];
+
+function ehChamadoEquipamentoLinha(c) {
+  if (!c) return false;
+  if (c.equipamento) return EQUIPAMENTOS_LINHA.indexOf(c.equipamento) >= 0;
+  return ehEquipamentoMonitorado(c.problema);
+}
+
 function ordenarPorInstante(lista, campo) {
   return [...(lista || [])].sort((a, b) => instanteBR(b[campo]).localeCompare(instanteBR(a[campo])) || String(b.numero).localeCompare(String(a.numero)));
 }
 
 function listarFechadosNoDia(D, ymd) {
-  if (D && Object.prototype.hasOwnProperty.call(D, 'fechadosHoje')) {
-    return ordenarPorInstante(D.fechadosHoje, 'fechadoEm').filter((f) => f && f.numero && ymdDeDataBR(f.fechadoEm) === ymd);
-  }
-  return ordenarPorInstante((D && D.ultimosFechados) || [], 'fechadoEm')
-    .filter((f) => f && f.numero && ymdDeDataBR(f.fechadoEm) === ymd);
+  const bruto = (D && Object.prototype.hasOwnProperty.call(D, 'fechadosHoje'))
+    ? ordenarPorInstante(D.fechadosHoje, 'fechadoEm')
+    : ordenarPorInstante((D && D.ultimosFechados) || [], 'fechadoEm');
+  return bruto.filter((f) => f && f.numero && ymdDeDataBR(f.fechadoEm) === ymd && ehChamadoEquipamentoLinha(f));
 }
 
 function listarAbertosNoDia(D, ymd) {
   if (D && Object.prototype.hasOwnProperty.call(D, 'abertosHojeLista')) {
     const chave = (c) => instanteBR(c.abertoEm) || String(c.abertura || '').replace(/-/g, '') + '000000';
     return [...(D.abertosHojeLista || [])]
-      .filter((c) => c && c.numero && (c.abertura || ymdDeDataBR(c.abertoEm)) === ymd)
+      .filter((c) => c && c.numero && (c.abertura || ymdDeDataBR(c.abertoEm)) === ymd && ehChamadoEquipamentoLinha(c))
       .sort((a, b) => chave(b).localeCompare(chave(a)) || String(b.numero).localeCompare(String(a.numero)));
   }
   const vistos = new Set();
@@ -1378,7 +1385,7 @@ function listarAbertosNoDia(D, ymd) {
   for (const c of (D && D.ultimosFechados) || []) push(c);
   const chave = (c) => instanteBR(c.abertoEm) || String(c.abertura || '').replace(/-/g, '') + '000000';
   out.sort((a, b) => chave(b).localeCompare(chave(a)) || String(b.numero).localeCompare(String(a.numero)));
-  return out;
+  return out.filter(ehChamadoEquipamentoLinha);
 }
 
 function contarAbertosHojeAltaSos(D, ymd) {
@@ -1717,7 +1724,7 @@ async function iniciar() {
     </section>
 
     <section>
-      <div class="sec-head"><h2>Chamados do dia</h2><span class="sec-note">todas as prioridades · fuso de São Paulo</span></div>
+      <div class="sec-head"><h2>Chamados do dia</h2><span class="sec-note">equipamentos de linha · todas as prioridades · São Paulo</span></div>
       <div class="card" id="diaCard">
         <div class="dia-head">
           <div class="dia-tabs" role="tablist">
@@ -1783,7 +1790,7 @@ function htmlItemDia(f, aba) {
 function textoDiaWhatsApp(aba, itens, ymd) {
   const titulo = aba === 'fechados' ? 'Fechados no dia' : 'Abertos no dia';
   const data = ymd ? ymd.split('-').reverse().join('/') : '';
-  const L = ['*' + titulo + (data ? ' — ' + data : '') + '*', itens.length + ' chamado(s) · todas as prioridades', ''];
+  const L = ['*' + titulo + (data ? ' — ' + data : '') + '*', itens.length + ' chamado(s) · equipamentos de linha · todas as prioridades', ''];
   for (const c of itens) {
     L.push('• *' + (c.numero || 'sem número') + '* · ' + (c.loja || 'sem loja'));
     if (c.problema) L.push(textoPlanoModal(c.problema));

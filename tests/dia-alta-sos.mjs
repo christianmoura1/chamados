@@ -162,9 +162,9 @@ try {
   ok(fix.tz === '2026-11-11', 'virada do dia em Sao Paulo, nao em UTC');
   ok(fix.ymdBR === '2026-11-11', 'data do SOMA permanece o dia civil escrito');
   ok(fix.nFechados > 10 && fix.primeiro === 'F1' && !fix.temOntem, 'fechados do dia passam de 10 e ignoram ontem (' + fix.nFechados + ')');
-  ok(fix.temNormal, 'aba de fechados guarda prioridade Normal');
+  ok(fix.temNormal && !fix.abertos.includes('F4'), 'aba de fechados guarda Normal da linha e deixa area interna de fora');
   ok(fix.abK === 3 && fix.feCrit.includes('A1') === false && ['A1','S1','F2'].every((n) => fix.abertos.includes(n)) && !fix.feCrit.includes('F3') && !fix.feCrit.includes('F4') && !fix.feCrit.includes('F5') && fix.feCrit.includes('F1') && fix.feCrit.includes('F2') && fix.feK === fix.feCrit.length, 'KPI Alta+SOS: abertos ' + fix.abK + ', fechados ' + fix.feCrit.join(','));
-  ok(fix.abertos.includes('A1') && fix.abertos.includes('N1') && fix.abertos.includes('S1') && fix.abertos.includes('AI1') && fix.abertos.includes('F2') && fix.abertos.includes('F4') && !fix.abertos.includes('ONTEM'), 'abertos do dia traz todas as prioridades, inclusive os que ja fecharam');
+  ok(fix.abertos.includes('A1') && fix.abertos.includes('N1') && fix.abertos.includes('S1') && fix.abertos.includes('F2') && !fix.abertos.includes('AI1') && !fix.abertos.includes('F4') && !fix.abertos.includes('ONTEM'), 'abertos do dia: so linha, todas as prioridades, inclusive os que ja fecharam');
   ok(fix.normalForaKpi, 'Duplicado nao e prioridade; so SOS e Alta entram no KPI');
   ok(fix.deltaVazio.includes('Alta e SOS') && !fix.deltaVazio.includes('+'), 'sem base nao inventa delta');
   ok(fix.deltaZero.includes('desde 07:02') && fix.deltaMais.includes('+3') && fix.deltaMais.includes('07:02'), 'com base, o delta usa os dois lados filtrados');
@@ -172,18 +172,21 @@ try {
   const pref = await evalPage(`() => {
     const ymd = '2026-11-11';
     const muitos = [];
-    for (let i = 0; i < 12; i++) muitos.push({ numero: 'H' + i, fechadoEm: '11/11/2026 12:00:0' + (i % 10), prioridade: 'Normal', problema: 'x', loja: 'L', fechadoPor: 'Z', dias: 0 });
-    const n = listarFechadosNoDia({ fechadosHoje: muitos, ultimosFechados: muitos.slice(0, 2) }, ymd).length;
+    for (let i = 0; i < 12; i++) muitos.push({ numero: 'H' + i, fechadoEm: '11/11/2026 12:00:0' + (i % 10), prioridade: 'Normal', problema: 'FRITADEIRA x', equipamento: 'Fritadeira', loja: 'L', fechadoPor: 'Z', dias: 0 });
+    muitos.push({ numero: 'QUADRO', fechadoEm: '11/11/2026 20:00:00', prioridade: 'Alta', problema: 'QUADRO ELÉTRICO', equipamento: '', loja: 'L', fechadoPor: 'Z', dias: 0 });
+    const numsF = listarFechadosNoDia({ fechadosHoje: muitos, ultimosFechados: muitos.slice(0, 2) }, ymd).map((c) => c.numero);
     const nums = listarAbertosNoDia({
       abertosHojeLista: [
-        { numero: 'B1', abertura: ymd, prioridade: 'Normal', problema: 'Area Interna' },
+        { numero: 'B1', abertura: ymd, prioridade: 'Normal', problema: 'QUADRO ELÉTRICO', equipamento: '' },
+        { numero: 'B3', abertura: ymd, prioridade: 'Normal', equipamento: 'Tostadeira', problema: 'TOSTADEIRA' },
+        { numero: 'B4', abertura: ymd, prioridade: 'SOS', problema: 'EXAUSTOR | parou' },
         { numero: 'B2', abertura: '2026-11-10', prioridade: 'SOS', equipamento: 'Fritadeira', problema: 'FRITADEIRA' },
       ],
       equipamentos: [{ nome: 'Fritadeira', chamadosDetalhe: [{ numero: 'IGNORA', abertura: ymd, prioridade: 'SOS', problema: 'FRITADEIRA' }] }],
     }, ymd).map((c) => c.numero);
-    return { n, nums };
+    return { n: numsF.length, temQuadro: numsF.includes('QUADRO'), nums };
   }`);
-  ok(pref.n === 12 && pref.nums.length === 1 && pref.nums[0] === 'B1', 'a aba usa a lista completa do dia e nao o corte de 10 nem a lista antiga');
+  ok(pref.n === 12 && !pref.temQuadro && pref.nums.length === 1 && pref.nums[0] === 'B3', 'abas usam a lista do dia, sem corte de 10 e so com equipamento de linha');
 
   const tela = await evalPage(`() => {
     const ymd = ymdHojeSP();
