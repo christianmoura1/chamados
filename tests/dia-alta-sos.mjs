@@ -246,8 +246,11 @@ try {
   }`);
   await evalPage(`() => document.getElementById('diaCopiar').click()`);
   await sleep(200);
-  const copia = await evalPage(`() => window.__copied || ''`);
-  ok(copia.includes('Abertos no dia') && (copia.match(/^• /gm) || []).length === aba.n, 'WhatsApp da aba aberta copia todos os itens do dia');
+  const copia = await evalPage(`() => ({ t: window.__copied || '', btn: document.getElementById('diaCopiar').textContent, off: document.getElementById('diaCopiar').disabled, n: (DIA_ITENS.abertos || []).length })`);
+  ok(aba.n === 0
+    ? (copia.off === true && copia.t === '')
+    : (copia.t.includes('Abertos no dia') && (copia.t.match(/^• /gm) || []).length === aba.n && !copia.t.includes('Já fechado')),
+    'WhatsApp da aba aberta copia so quem ainda esta aberto (' + aba.n + ')');
 
   await cdp('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 2, mobile: true });
   await evalPage(`() => document.getElementById('diaCard').scrollIntoView({ block: 'start' })`);

@@ -98,6 +98,9 @@
   @media (max-width: 1320px) { .kpis { grid-template-columns: repeat(3,1fr); } }
   @media (max-width: 640px) { .kpis { grid-template-columns: repeat(2,1fr); } }
   .kpi { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r-lg); padding: 16px 18px; box-shadow: var(--shadow); }
+  .kpi-abre { cursor: pointer; transition: transform .12s ease, box-shadow .12s ease; }
+  .kpi-abre:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,.08), 0 18px 34px rgba(0,0,0,.10); }
+  .kpi-abre:focus-visible { outline: 2px solid var(--cobalto); outline-offset: 2px; }
   .kpi .label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; color: var(--text-3); display: block; margin-bottom: 7px; }
   .kpi .val { font-size: clamp(22px,2.6vw,30px); font-weight: 900; letter-spacing: -1px; }
   .kpi.k-sos .val { color: var(--rosa); }
@@ -1216,6 +1219,42 @@ function abrirModalGenerico(titulo, subtitulo, itens, { mostrarEquipamento } = {
   });
 })();
 
+function chamadosDosEquipamentos(D) {
+  return (D?.equipamentos || []).flatMap((e) => (e.chamadosDetalhe || []).map((c) => ({ ...c, equipamento: c.equipamento || e.nome })));
+}
+
+function abrirKpi(id) {
+  const D = DADOS_ATUAIS;
+  if (!D) return;
+  const todos = chamadosDosEquipamentos(D);
+  if (id === 'total') {
+    abrirModalGenerico('Total de Chamados', `${todos.length} chamado(s) em aberto · equipamentos de linha`, todos, { mostrarEquipamento: true });
+    return;
+  }
+  if (id === 'sos') {
+    const itens = todos.filter((c) => c.prioridade === 'SOS');
+    abrirModalGenerico('Chamados SOS', `${itens.length} chamado(s) SOS`, itens, { mostrarEquipamento: true });
+    return;
+  }
+  if (id === 'alta') {
+    const itens = todos.filter((c) => c.prioridade === 'Alta');
+    abrirModalGenerico('Chamados Alta', `${itens.length} chamado(s) Alta`, itens, { mostrarEquipamento: true });
+    return;
+  }
+  if (id === 'materiais') {
+    const itens = todos.filter((c) => chamadosComPeca.has(c.numero));
+    abrirModalGenerico('Chamados c/ Materiais', `${itens.length} chamado(s) com peça`, itens, { mostrarEquipamento: true });
+    return;
+  }
+  if (id === 'lojas') {
+    const lojas = new Set(todos.map((c) => (c.loja || '').trim()).filter(Boolean));
+    const extra = lojas.size === D.totalLojas
+      ? ''
+      : ` · o card conta ${D.totalLojas} locais distintos no extrato do SOMA`;
+    abrirModalGenerico('Lojas c/ Chamado Aberto', `${lojas.size} lojas com chamado aberto de equipamento${extra}`, todos, { mostrarEquipamento: true });
+  }
+}
+
 function abrirModal(chave) {
   const e = DADOS_ATUAIS?.equipamentos.find(x => x.chave === chave);
   if (!e) return;
@@ -1590,14 +1629,17 @@ async function iniciar() {
   }
 
   const kpisHtml = [
-    { label: 'Total de Chamados', val: brl0(totalChamadosEquip), cls: 'k-violet' },
-    { label: 'Lojas c/ Chamado Aberto', val: brl0(D.totalLojas), cls: 'k-violet' },
-    { label: 'Chamados SOS', val: brl0(totalSOS), cls: 'k-sos' },
-    { label: 'Chamados Alta', val: brl0(totalAlta), cls: 'k-alta' },
-    { label: 'Chamados c/ Materiais', val: brl0(chamadosComPeca.size), cls: 'k-violet' },
+    { id: 'total', label: 'Total de Chamados', val: brl0(totalChamadosEquip), cls: 'k-violet' },
+    { id: 'lojas', label: 'Lojas c/ Chamado Aberto', val: brl0(D.totalLojas), cls: 'k-violet' },
+    { id: 'sos', label: 'Chamados SOS', val: brl0(totalSOS), cls: 'k-sos' },
+    { id: 'alta', label: 'Chamados Alta', val: brl0(totalAlta), cls: 'k-alta' },
+    { id: 'materiais', label: 'Chamados c/ Materiais', val: brl0(chamadosComPeca.size), cls: 'k-violet' },
     indispKpi(),
-  ].map(k => `<div class="kpi ${k.cls}"><span class="label">${k.label}</span><div class="val num">${k.val}</div>`
-    + (k.nota ? `<span class="kpi-nota">${k.nota}</span>` : '') + `</div>`).join('');
+  ].map(k => {
+    const abre = k.id ? ` kpi-abre" role="button" tabindex="0" data-kpi="${k.id}" onclick="abrirKpi('${k.id}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();abrirKpi('${k.id}');}"` : '"';
+    return `<div class="kpi ${k.cls}${abre}><span class="label">${k.label}</span><div class="val num">${k.val}</div>`
+      + (k.nota ? `<span class="kpi-nota">${k.nota}</span>` : '') + `</div>`;
+  }).join('');
 
   const equipOrdenados = [...D.equipamentos].sort((a, b) => b.pctIndisponibilidade - a.pctIndisponibilidade);
   const equipCards = equipOrdenados.map((e) => {
