@@ -1,11 +1,11 @@
 {
- "atualizadoEm": "2026-11-12T04:15:19.986Z",
- "totalChamados": 2374,
+ "atualizadoEm": "2026-11-12T08:15:20.991Z",
+ "totalChamados": 2376,
  "resumo": {
   "porFamilia": {
    "Elétrica": 95,
    "Refrigeração": 239,
-   "Cocção": 251,
+   "Cocção": 252,
    "Gás": 6,
    "Sobremesa": 78,
    "Incêndio": 17,
@@ -14,19 +14,19 @@
    "Hidráulica": 243,
    "Mobiliário": 12,
    "Civil": 254,
-   "Exaustão": 57
+   "Exaustão": 58
   },
   "porPrioridade": {
    "4 - Baixa": 1784,
    "3 - Moderada": 380,
-   "2 - Alta": 140,
-   "1 - Crítica": 70
+   "2 - Alta": 141,
+   "1 - Crítica": 71
   },
   "porSupervisor": {
-   "GUSTAVO": 541,
+   "GUSTAVO": 542,
    "MARCEL": 787,
    "RAFAEL": 474,
-   "CARLOS MAGNO": 554,
+   "CARLOS MAGNO": 555,
    "SEM SUPERVISOR": 18
   }
  },
@@ -15078,6 +15078,28 @@
    "descricao": "CÂMARA DE CONGELADOS | CMG - VAZAMENTO",
    "categoria": "CÂMARA DE CONGELADOS",
    "subcategory": "CMG - VAZAMENTO"
+  },
+  {
+   "chamado": "WO0093768",
+   "regional": "SUL",
+   "loja": "FS CURITIBA - FRANCISCO FRISHMANN 3151",
+   "bkn": "26828",
+   "setor": "GRANDE CURITIBA",
+   "supervisor": "CARLOS MAGNO",
+   "equipamento": "MICROONDAS",
+   "problema": "NÃO AQUECE",
+   "familia": "Cocção",
+   "critica": 1,
+   "prioridade": "2 - Alta",
+   "estado": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "12/11/2026 05:12:13",
+   "data": "2026-11-12",
+   "dias": 0,
+   "tecnico": "",
+   "descricao": "BK088212 - MICROONDAS | MCR - NÃO AQUECE",
+   "categoria": "BK088212 - MICROONDAS",
+   "subcategory": "MCR - NÃO AQUECE"
   },
   {
    "chamado": "WO0093751",
@@ -35177,7 +35199,7 @@
    "familia": "Outros",
    "critica": 0,
    "prioridade": "4 - Baixa",
-   "estado": "Agendado",
+   "estado": "Atribuído",
    "fase": "Iniciado",
    "abertura": "06/11/2026 12:57:33",
    "data": "2026-11-06",
@@ -39819,7 +39841,7 @@
    "familia": "Outros",
    "critica": 0,
    "prioridade": "4 - Baixa",
-   "estado": "Agendado",
+   "estado": "Atribuído",
    "fase": "Iniciado",
    "abertura": "06/11/2026 09:58:15",
    "data": "2026-11-06",
@@ -47222,12 +47244,12 @@
    "subcategory": "Preventiva"
   },
   {
-   "chamado": "WO0090892",
+   "chamado": "WO0090891",
    "regional": "SUL",
-   "loja": "SHOP IGUATEMI PORTO ALEGRE",
-   "bkn": "15893",
-   "setor": "CAPITAL NORTE RS",
-   "supervisor": "MARCEL",
+   "loja": "SHOP JARDIM DAS AMERICAS",
+   "bkn": "21475",
+   "setor": "GRANDE CURITIBA",
+   "supervisor": "CARLOS MAGNO",
    "equipamento": "Preventiva",
    "problema": "Preventiva",
    "familia": "Outros",
@@ -47244,12 +47266,12 @@
    "subcategory": "Preventiva"
   },
   {
-   "chamado": "WO0090891",
+   "chamado": "WO0090892",
    "regional": "SUL",
-   "loja": "SHOP JARDIM DAS AMERICAS",
-   "bkn": "21475",
-   "setor": "GRANDE CURITIBA",
-   "supervisor": "CARLOS MAGNO",
+   "loja": "SHOP IGUATEMI PORTO ALEGRE",
+   "bkn": "15893",
+   "setor": "CAPITAL NORTE RS",
+   "supervisor": "MARCEL",
    "equipamento": "Preventiva",
    "problema": "Preventiva",
    "familia": "Outros",
@@ -52258,6 +52280,28 @@
    "descricao": "BOILER | BOI - FALTA DE ÁGUA QUENTE",
    "categoria": "BOILER",
    "subcategory": "BOI - FALTA DE ÁGUA QUENTE"
+  },
+  {
+   "chamado": "WO0093755",
+   "regional": "SUL",
+   "loja": "FS CURITIBA - LINHA VERDE",
+   "bkn": "20047",
+   "setor": "CURITIBA NORTE",
+   "supervisor": "GUSTAVO",
+   "equipamento": "COIFA",
+   "problema": "COIFA NÃO FUNCIONA",
+   "familia": "Exaustão",
+   "critica": 0,
+   "prioridade": "1 - Crítica",
+   "estado": "Pronto para Expedição",
+   "fase": "Iniciado",
+   "abertura": "12/11/2026 02:45:28",
+   "data": "2026-11-12",
+   "dias": 0,
+   "tecnico": "",
+   "descricao": "BK034373 - COIFA | COI - COIFA NÃO FUNCIONA",
+   "categoria": "BK034373 - COIFA",
+   "subcategory": "COI - COIFA NÃO FUNCIONA"
   }
  ]
 }
