@@ -119,7 +119,8 @@ try {
       equipamentos: [{ nome: 'Fritadeira', chamadosDetalhe: [
         { numero: 'A1', abertura: ymd, prioridade: 'Alta', loja: 'LOJA A', problema: 'FRITADEIRA parada', dias: 0, tecnico: 'Ana' },
         { numero: 'N1', abertura: ymd, prioridade: 'Normal', loja: 'LOJA N', problema: 'FRITADEIRA ruido', dias: 0, tecnico: 'Bruno', duplicado: true },
-        { numero: 'S1', abertura: ymd, prioridade: 'SOS', loja: 'LOJA S', problema: 'FRITADEIRA quente', dias: 0, tecnico: 'Caio' },
+        { numero: 'S1', abertura: ymd, prioridade: 'SOS', loja: 'LOJA S', problema: 'FRITADEIRA quente', dias: 0, tecnico: 'Caio', estado: 'Atribuído' },
+        { numero: 'ENC', abertura: ymd, prioridade: 'Alta', loja: 'LOJA E', problema: 'PHU parado', dias: 0, tecnico: 'Eva', estado: 'Encerrado concluído' },
         { numero: 'ONTEM', abertura: '2026-11-10', prioridade: 'SOS', loja: 'X', problema: 'FRITADEIRA', dias: 1, tecnico: 'D' },
       ]}],
       areaInterna: [
@@ -142,6 +143,7 @@ try {
     const feK = contarFechadosHojeAltaSos(D, ymd);
     const numsF = fechados.map((c) => c.numero);
     const numsA = abertos.map((c) => c.numero);
+    const numsTodos = listarAbertosNoDiaTodos(D, ymd).map((c) => c.numero);
     const feCrit = fechados.filter((c) => ehAltaOuSos(c.prioridade) && ehEquipamentoMonitorado(c.problema)).map((c) => c.numero);
     return {
       tz: ymdHojeSP(new Date('2026-11-12T02:30:00Z')),
@@ -152,23 +154,27 @@ try {
       temNormal: fechados.some((c) => c.prioridade === 'Normal'),
       abK, feK, feCrit,
       abertos: numsA,
+      abertosTodos: numsTodos,
+      temF2: numsF.includes('F2'),
       normalForaKpi: !ehAltaOuSos('Normal') && ehAltaOuSos('Alta') && ehAltaOuSos('SOS') && !ehAltaOuSos('Duplicado'),
       deltaVazio: deltaDesde(0, null, '07:02'),
       deltaZero: deltaDesde(2, 2, '07:02'),
       deltaMais: deltaDesde(4, 1, '07:02'),
       txt: textoDiaWhatsApp('fechados', fechados, ymd),
+      txtA: textoDiaWhatsApp('abertos', abertos, ymd),
     };
   }`);
   ok(fix.tz === '2026-11-11', 'virada do dia em Sao Paulo, nao em UTC');
   ok(fix.ymdBR === '2026-11-11', 'data do SOMA permanece o dia civil escrito');
   ok(fix.nFechados > 10 && fix.primeiro === 'F1' && !fix.temOntem, 'fechados do dia passam de 10 e ignoram ontem (' + fix.nFechados + ')');
   ok(fix.temNormal && !fix.abertos.includes('F4'), 'aba de fechados guarda Normal da linha e deixa area interna de fora');
-  ok(fix.abK === 3 && fix.feCrit.includes('A1') === false && ['A1','S1','F2'].every((n) => fix.abertos.includes(n)) && !fix.feCrit.includes('F3') && !fix.feCrit.includes('F4') && !fix.feCrit.includes('F5') && fix.feCrit.includes('F1') && fix.feCrit.includes('F2') && fix.feK === fix.feCrit.length, 'KPI Alta+SOS: abertos ' + fix.abK + ', fechados ' + fix.feCrit.join(','));
-  ok(fix.abertos.includes('A1') && fix.abertos.includes('N1') && fix.abertos.includes('S1') && fix.abertos.includes('F2') && !fix.abertos.includes('AI1') && !fix.abertos.includes('F4') && !fix.abertos.includes('ONTEM'), 'abertos do dia: so linha, todas as prioridades, inclusive os que ja fecharam');
+  ok(fix.abK === 4 && fix.abertosTodos.includes('F2') && fix.abertosTodos.includes('ENC') && !fix.feCrit.includes('F3') && !fix.feCrit.includes('F4') && !fix.feCrit.includes('F5') && fix.feCrit.includes('F1') && fix.feCrit.includes('F2') && fix.feK === fix.feCrit.length, 'KPI Alta+SOS: abertos ' + fix.abK + ', fechados ' + fix.feCrit.join(','));
+  ok(fix.abertos.includes('A1') && fix.abertos.includes('N1') && fix.abertos.includes('S1') && !fix.abertos.includes('F2') && !fix.abertos.includes('ENC') && !fix.abertos.includes('AI1') && !fix.abertos.includes('F4') && !fix.abertos.includes('ONTEM') && fix.temF2, 'abertos do dia so quem ainda esta aberto; o que ja fechou fica na aba de fechados');
   ok(fix.normalForaKpi, 'Duplicado nao e prioridade; so SOS e Alta entram no KPI');
   ok(fix.deltaVazio.includes('Alta e SOS') && !fix.deltaVazio.includes('+'), 'sem base nao inventa delta');
   ok(fix.deltaZero.includes('desde 07:02') && fix.deltaMais.includes('+3') && fix.deltaMais.includes('07:02'), 'com base, o delta usa os dois lados filtrados');
-  ok((fix.txt.match(/^• /gm) || []).length === fix.nFechados && fix.txt.includes('Normal') && fix.txt.includes('F3'), 'WhatsApp do dia copia a lista inteira, com Normal');
+  ok((fix.txt.match(/^• /gm) || []).length === fix.nFechados && fix.txt.includes('Normal') && fix.txt.includes('F3') && fix.txt.includes('F2'), 'WhatsApp de fechados copia o dia, inclusive quem abriu e fechou hoje');
+  ok(!fix.txtA.includes('F2') && !fix.txtA.includes('Já fechado') && fix.txtA.includes('N1'), 'WhatsApp de abertos nao leva quem ja fechou');
   const pref = await evalPage(`() => {
     const ymd = '2026-11-11';
     const muitos = [];
@@ -178,7 +184,8 @@ try {
     const nums = listarAbertosNoDia({
       abertosHojeLista: [
         { numero: 'B1', abertura: ymd, prioridade: 'Normal', problema: 'QUADRO ELÉTRICO', equipamento: '' },
-        { numero: 'B3', abertura: ymd, prioridade: 'Normal', equipamento: 'Tostadeira', problema: 'TOSTADEIRA' },
+        { numero: 'B3', abertura: ymd, prioridade: 'Normal', equipamento: 'Tostadeira', problema: 'TOSTADEIRA', estado: 'Atribuído' },
+        { numero: 'B5', abertura: ymd, prioridade: 'Alta', equipamento: 'Broiler', problema: 'BROILER', estado: 'Encerrado concluído', fechadoPor: 'Otto', fechadoEm: '11/11/2026 18:00:00' },
         { numero: 'B4', abertura: ymd, prioridade: 'SOS', problema: 'EXAUSTOR | parou' },
         { numero: 'B2', abertura: '2026-11-10', prioridade: 'SOS', equipamento: 'Fritadeira', problema: 'FRITADEIRA' },
       ],

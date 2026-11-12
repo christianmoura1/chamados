@@ -1351,6 +1351,16 @@ function ehChamadoEquipamentoLinha(c) {
   return ehEquipamentoMonitorado(c.problema);
 }
 
+// Mesmos estados abertos do pipeline (run_daily ABERTOS). Fechado no dia
+// tem fechadoEm/fechadoPor ou um estado fora dessa lista.
+const ESTADOS_ABERTOS = ['Atribuído', 'Expedição pendente', 'Trabalho em andamento', 'Aceito'];
+
+function aindaAberto(c) {
+  if (!c || c.fechadoEm || c.fechadoPor) return false;
+  if (c.estado && ESTADOS_ABERTOS.indexOf(c.estado) < 0) return false;
+  return true;
+}
+
 function ordenarPorInstante(lista, campo) {
   return [...(lista || [])].sort((a, b) => instanteBR(b[campo]).localeCompare(instanteBR(a[campo])) || String(b.numero).localeCompare(String(a.numero)));
 }
@@ -1362,12 +1372,11 @@ function listarFechadosNoDia(D, ymd) {
   return bruto.filter((f) => f && f.numero && ymdDeDataBR(f.fechadoEm) === ymd && ehChamadoEquipamentoLinha(f));
 }
 
-function listarAbertosNoDia(D, ymd) {
+function listarAbertosNoDiaTodos(D, ymd) {
+  const chave = (c) => instanteBR(c.abertoEm) || String(c.abertura || '').replace(/-/g, '') + '000000';
+  const ordenar = (lista) => [...lista].sort((a, b) => chave(b).localeCompare(chave(a)) || String(b.numero).localeCompare(String(a.numero)));
   if (D && Object.prototype.hasOwnProperty.call(D, 'abertosHojeLista')) {
-    const chave = (c) => instanteBR(c.abertoEm) || String(c.abertura || '').replace(/-/g, '') + '000000';
-    return [...(D.abertosHojeLista || [])]
-      .filter((c) => c && c.numero && (c.abertura || ymdDeDataBR(c.abertoEm)) === ymd && ehChamadoEquipamentoLinha(c))
-      .sort((a, b) => chave(b).localeCompare(chave(a)) || String(b.numero).localeCompare(String(a.numero)));
+    return ordenar((D.abertosHojeLista || []).filter((c) => c && c.numero && (c.abertura || ymdDeDataBR(c.abertoEm)) === ymd && ehChamadoEquipamentoLinha(c)));
   }
   const vistos = new Set();
   const out = [];
@@ -1383,13 +1392,15 @@ function listarAbertosNoDia(D, ymd) {
   }
   for (const c of (D && D.areaInterna) || []) push(c);
   for (const c of (D && D.ultimosFechados) || []) push(c);
-  const chave = (c) => instanteBR(c.abertoEm) || String(c.abertura || '').replace(/-/g, '') + '000000';
-  out.sort((a, b) => chave(b).localeCompare(chave(a)) || String(b.numero).localeCompare(String(a.numero)));
-  return out.filter(ehChamadoEquipamentoLinha);
+  return ordenar(out.filter(ehChamadoEquipamentoLinha));
+}
+
+function listarAbertosNoDia(D, ymd) {
+  return listarAbertosNoDiaTodos(D, ymd).filter(aindaAberto);
 }
 
 function contarAbertosHojeAltaSos(D, ymd) {
-  return listarAbertosNoDia(D, ymd).filter((c) => ehAltaOuSos(c.prioridade) && (c.equipamento || ehEquipamentoMonitorado(c.problema))).length;
+  return listarAbertosNoDiaTodos(D, ymd).filter((c) => ehAltaOuSos(c.prioridade)).length;
 }
 
 function contarFechadosHojeAltaSos(D, ymd) {
