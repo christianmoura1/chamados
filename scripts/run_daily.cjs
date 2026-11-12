@@ -12,6 +12,7 @@ const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
 const { supervisorDe } = require(path.join(__dirname, 'campo_supervisor.cjs'));
+const diaLista = require(path.join(__dirname, 'listas_do_dia.cjs'));
 
 const ROOT = 'C:/projetos/chamados';
 const GIT = 'C:/Program Files/Git/cmd/git.exe';
@@ -609,11 +610,11 @@ function processar(csvTexto, disponibilidadeBI) {
 
   const totalLojas = new Set(dados.map(l => (l[iLocal] || '').trim()).filter(Boolean)).size;
   const agora = new Date();
-  // 'YYYY-MM-DD' local (a VM roda em America/Sao_Paulo) -- usado pra contar
-  // quantos chamados abriram HOJE de verdade (data de abertura == hoje),
-  // nao o total acumulado. Pedido do Christian, 10/09/2026: o grafico de
-  // evolucao tem que mostrar abertos/fechados DO DIA, nao o estoque total.
-  const hojeYmd = `${agora.getFullYear()}-${String(agora.getMonth() + 1).padStart(2, '0')}-${String(agora.getDate()).padStart(2, '0')}`;
+  // Dia civil de Sao Paulo, nao o fuso da maquina. O grafico de evolucao
+  // mostra abertos/fechados DO DIA, nao o estoque total (Christian, 10/09/2026).
+  const hojeYmd = diaLista.ymdSaoPaulo(agora);
+  const abertosHojeLista = [];
+  const abertosVistos = new Set();
 
   const porCategoria = {};
   for (const cat of CATEGORIAS) {
@@ -634,13 +635,28 @@ function processar(csvTexto, disponibilidadeBI) {
     // como "aberto hoje". Nao entra nos cards/detalhe, que continuam
     // mostrando so' o que esta ATIVO.
     const chaveQualquer = classificar(l[iDesc]);
+    const dtAbertura = parseDataBR(l[iAberto]);
+    const ymdAbertura = dtAbertura ? diaLista.ymdDeDataBR(l[iAberto]) : '';
     if (chaveQualquer) {
       if (!aberto) porCategoria[chaveQualquer].fechados++;
-      const dtAbertura = parseDataBR(l[iAberto]);
-      if (dtAbertura) {
-        const ymd = `${dtAbertura.getFullYear()}-${String(dtAbertura.getMonth() + 1).padStart(2, '0')}-${String(dtAbertura.getDate()).padStart(2, '0')}`;
-        if (ymd === hojeYmd) porCategoria[chaveQualquer].abertosHoje++;
-      }
+      if (ymdAbertura === hojeYmd) porCategoria[chaveQualquer].abertosHoje++;
+    }
+    const numeroLinha = String(l[iNum] || '').trim();
+    if (ymdAbertura === hojeYmd && numeroLinha && !abertosVistos.has(numeroLinha)) {
+      abertosVistos.add(numeroLinha);
+      const priorLinha = l[iPrior] || '';
+      abertosHojeLista.push({
+        numero: numeroLinha,
+        loja: (l[iLocal] || '').trim(),
+        estado: l[iEstado] || '',
+        prioridade: diaLista.prioridadeSOMA(priorLinha),
+        dias: dtAbertura ? Math.max(0, Math.round((agora - dtAbertura) / 86400000)) : 0,
+        tecnico: l[iTec] || '',
+        problema: (l[iDesc] || '').trim(),
+        abertura: ymdAbertura,
+        abertoEm: String(l[iAberto] || '').trim(),
+        equipamento: chaveQualquer ? porCategoria[chaveQualquer].nome : '',
+      });
     }
     if (!aberto) continue;
 
@@ -725,6 +741,7 @@ function processar(csvTexto, disponibilidadeBI) {
     areaInterna,
     supervisores: calcularSupervisores(equipamentos),
     tecnicos: calcularTecnicos(equipamentos),
+    abertosHojeLista: abertosHojeLista.sort((a, b) => diaLista.instanteBR(b.abertoEm).localeCompare(diaLista.instanteBR(a.abertoEm)) || String(b.numero).localeCompare(String(a.numero))),
   };
 }
 
@@ -870,56 +887,18 @@ function diasEntre(de, ate) {
   return Math.max(0, Math.floor((b - a) / 86400000));
 }
 
-function ultimosFechados(csvTexto, quantos = 10) {
+function listaFechadosCompleta(csvTexto) {
   if (!csvTexto) return [];
   try {
-    const linhas = parseCSV(csvTexto);
-    if (linhas.length < 2) return [];
-    const cab = linhas[0].map((x) => String(x || '').trim());
-    const iNum = cab.indexOf('number');
-    const iFech = cab.indexOf('closed_at');
-    const iLoja = cab.indexOf('opened_for.name');
-    const iPor = cab.indexOf('closed_by');
-    const iAb = cab.indexOf('opened_at');
-    const iPrior = cab.indexOf('priority');
-    const iProb = cab.indexOf('short_description');
-    const iSetor = cab.indexOf('opened_for.u_bk_sector');
-    if (iNum < 0 || iFech < 0) return [];
-    const fora = [];
-    for (let i = 1; i < linhas.length; i++) {
-      const l = linhas[i];
-      const numero = String(l[iNum] || '').trim();
-      const fechadoEm = String(l[iFech] || '').trim();
-      if (!numero || !fechadoEm) continue;
-      const loja = iLoja >= 0 ? String(l[iLoja] || '').trim() : '';
-      const setor = iSetor >= 0 ? String(l[iSetor] || '').trim() : '';
-      // fechadoPor = quem deu baixa no SOMA (pedido do Christian, 09/10).
-      // Mantenho supervisor ao lado: e' a carteira da loja, serve de contexto
-      // e ja' e' usado em outros lugares do painel.
-      const fechadoPor = iPor >= 0 ? String(l[iPor] || '').trim() : '';
-      const abertoEm = iAb >= 0 ? String(l[iAb] || '').trim() : '';
-      const problema = iProb >= 0 ? String(l[iProb] || '').trim() : '';
-      // mesma regra do resto do pipeline (ver 'critica'/'alta' em processar)
-      const prior = iPrior >= 0 ? String(l[iPrior] || '') : '';
-      const prioridade = /cr[ií]tica/i.test(prior) ? 'SOS'
-        : (/^2\s*-\s*alta/i.test(prior) ? 'Alta' : 'Normal');
-      // dias que o chamado ficou aberto, da abertura ao fechamento
-      const dias = diasEntre(abertoEm, fechadoEm);
-      fora.push({ numero, fechadoEm, abertoEm, dias, prioridade, problema, loja,
-        fechadoPor, supervisor: supervisorDe(loja, setor) || '' });
-    }
-    // o SOMA ja manda ORDERBYDESCclosed_at, mas nao confio na ordem do CSV:
-    // ordeno pela data (dd/mm/aaaa hh:mm:ss) para o topo ser o mais recente
-    const ts = (x) => {
-      const m = String(x).match(/^(\d{2})\/(\d{2})\/(\d{4})\s+(\d{2}):(\d{2}):(\d{2})/);
-      return m ? m[3] + m[2] + m[1] + m[4] + m[5] + m[6] : '0';
-    };
-    fora.sort((a, b) => ts(b.fechadoEm).localeCompare(ts(a.fechadoEm)));
-    return fora.slice(0, quantos);
+    return diaLista.parseFechadosCsv(csvTexto, supervisorDe);
   } catch (e) {
-    logErro('nao montei a lista de ultimos fechados -- publico sem ela', { erro: String(e.message).slice(0, 200) });
+    logErro('nao montei a lista de fechados -- publico sem ela', { erro: String(e.message).slice(0, 200) });
     return [];
   }
+}
+
+function ultimosFechados(csvTexto, quantos = 10) {
+  return listaFechadosCompleta(csvTexto).slice(0, quantos);
 }
 
 function atualizarHistorico(dadosProcessados) {
@@ -981,6 +960,10 @@ function atualizarHistorico(dadosProcessados) {
     // metricas DO DIA (nao estoque total) -- pedido do Christian, 10/09/2026
     totalAbertosHoje,
     totalFechadosHoje,
+    // Contas Alta+SOS do dia, mesma regra do card do painel. Pontos antigos
+    // nao sao reescritos: o delta so passa a existir na execucao seguinte.
+    totalAbertosHojeAltaSos: diaLista.contarAltaSosEquipamento(dadosProcessados.abertosHojeLista),
+    totalFechadosHojeAltaSos: diaLista.contarAltaSosEquipamento(dadosProcessados.fechadosHoje),
     porCategoria,
   };
 
@@ -1329,7 +1312,24 @@ return { totalPedidos, pedidosProcessados, pecasComRastreio };
 
     const dadosProcessados = processar(csv, disponibilidadeBI);
     dadosProcessados.disponibilidadeBIAtualizadaEm = carimboBI;
-    dadosProcessados.ultimosFechados = ultimosFechados(fechadosCsv);
+    const todosFechados = listaFechadosCompleta(fechadosCsv);
+    dadosProcessados.ultimosFechados = todosFechados.slice(0, 10);
+    const ymdPublicado = String(dadosProcessados.atualizadoEm || '').slice(0, 10);
+    dadosProcessados.fechadosHoje = diaLista.doDia(todosFechados, ymdPublicado, 'fechadoEm');
+    const fechadoPorNumero = new Map(todosFechados.map((f) => [f.numero, f]));
+    for (const a of (dadosProcessados.abertosHojeLista || [])) {
+      const f = fechadoPorNumero.get(a.numero);
+      if (!f) continue;
+      a.fechadoEm = f.fechadoEm;
+      a.fechadoPor = f.fechadoPor;
+      if (f.dias != null) a.dias = f.dias;
+    }
+    logInfo('listas do dia', {
+      fechadosNoCsv: todosFechados.length,
+      fechadosHoje: dadosProcessados.fechadosHoje.length,
+      abertosHoje: (dadosProcessados.abertosHojeLista || []).length,
+      ultimosFechados: dadosProcessados.ultimosFechados.length,
+    });
 
     // PRESERVACAO: le o dados.json anterior para recuperar pecas/rastreio
     // caso as etapas abaixo falhem (CDP timeout, SOMA deslogado, etc.).

@@ -346,6 +346,15 @@
   .fechado-meta { margin-left: auto; display: flex; align-items: center; gap: 16px; flex: none; }
   .fechado-dias { font-size: 12.5px; color: var(--text-2); font-variant-numeric: tabular-nums; white-space: nowrap; min-width: 46px; text-align: right; }
   .fechado-hora { padding-left: 0; font-size: 12.5px; font-weight: 600; opacity: .85; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .dia-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+  .dia-tabs { display: flex; gap: 4px; flex-wrap: wrap; background: var(--cinza-bg); border-radius: 10px; padding: 3px; }
+  .dia-tab { appearance: none; border: 0; background: transparent; color: var(--text-2); font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 600; border-radius: 8px; padding: 8px 12px; cursor: pointer; min-height: 36px; }
+  .dia-tab:hover { color: var(--text); }
+  .dia-tab:focus-visible { outline: 2px solid var(--cobalto); outline-offset: 2px; }
+  .dia-tab.ativo { background: var(--surface); color: var(--text); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+  .dia-n { font-variant-numeric: tabular-nums; color: var(--text-3); margin-left: 4px; }
+  .dia-tab.ativo .dia-n { color: var(--text-2); }
+  .dia-lista { max-height: 520px; overflow: auto; -webkit-overflow-scrolling: touch; }
 
   /* ---------- responsive: tablet ---------- */
   @media (max-width: 1024px) {
@@ -417,6 +426,10 @@
     .gnum { font-size: 22px; }
     footer { flex-direction: column; gap: 6px; font-size: 11px; }
     .fechado-item { flex-direction: column; gap: 4px; }
+    .dia-head { align-items: stretch; }
+    .dia-tabs { width: 100%; }
+    .dia-tab { flex: 1; min-height: 44px; }
+    .dia-head .filter-copy { width: 100%; text-align: center; }
     .fechado-meta { margin-left: 0; justify-content: flex-start; gap: 10px; }
     .hist-stats { grid-template-columns: 1fr 1fr; gap: 8px; }
     .hstat { padding: 10px 12px; }
@@ -1294,6 +1307,99 @@ function lineChartSVG(pontos, series) {
   return `<div class="chart-svg-wrap"><svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="width:100%;height:auto;display:block;">${grid}${seriesSvg}${labels}</svg><div class="chart-tooltip" id="chartTooltip" hidden></div></div>`;
 }
 
+function ymdHojeSP(agora = new Date()) {
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'America/Sao_Paulo', year: 'numeric', month: '2-digit', day: '2-digit',
+  }).format(agora);
+}
+
+function ymdDeDataBR(s) {
+  const m = String(s || '').match(/^(\d{2})\/(\d{2})\/(\d{4})/);
+  return m ? m[3] + '-' + m[2] + '-' + m[1] : '';
+}
+
+function instanteBR(s) {
+  const m = String(s || '').match(/^(\d{2})\/(\d{2})\/(\d{4})(?:\s+(\d{2}):(\d{2})(?::(\d{2}))?)?/);
+  if (!m) return '';
+  return m[3] + m[2] + m[1] + (m[4] || '00') + (m[5] || '00') + (m[6] || '00');
+}
+
+function horaDoQuando(quando) {
+  const m = String(quando || '').match(/T(\d{2}):(\d{2})/);
+  return m ? m[1] + ':' + m[2] : '';
+}
+
+function ehAltaOuSos(p) {
+  return p === 'SOS' || p === 'Alta';
+}
+
+function ehEquipamentoMonitorado(problema) {
+  const t = String(problema || '');
+  return /SORVETE/i.test(t)
+    || /FRITADEIRA/i.test(t)
+    || /MICRO\s*-?\s*ONDAS|MICROONDAS|\bMCR\b/i.test(t)
+    || /\bPHU\b/i.test(t)
+    || /BROILER|\bBRO\b/i.test(t)
+    || /TOSTADEIRA|TOSTADORA|\bTST\b/i.test(t);
+}
+
+function ordenarPorInstante(lista, campo) {
+  return [...(lista || [])].sort((a, b) => instanteBR(b[campo]).localeCompare(instanteBR(a[campo])) || String(b.numero).localeCompare(String(a.numero)));
+}
+
+function listarFechadosNoDia(D, ymd) {
+  if (D && Object.prototype.hasOwnProperty.call(D, 'fechadosHoje')) {
+    return ordenarPorInstante(D.fechadosHoje, 'fechadoEm').filter((f) => f && f.numero && ymdDeDataBR(f.fechadoEm) === ymd);
+  }
+  return ordenarPorInstante((D && D.ultimosFechados) || [], 'fechadoEm')
+    .filter((f) => f && f.numero && ymdDeDataBR(f.fechadoEm) === ymd);
+}
+
+function listarAbertosNoDia(D, ymd) {
+  if (D && Object.prototype.hasOwnProperty.call(D, 'abertosHojeLista')) {
+    const chave = (c) => instanteBR(c.abertoEm) || String(c.abertura || '').replace(/-/g, '') + '000000';
+    return [...(D.abertosHojeLista || [])]
+      .filter((c) => c && c.numero && (c.abertura || ymdDeDataBR(c.abertoEm)) === ymd)
+      .sort((a, b) => chave(b).localeCompare(chave(a)) || String(b.numero).localeCompare(String(a.numero)));
+  }
+  const vistos = new Set();
+  const out = [];
+  const push = (c) => {
+    if (!c || !c.numero || vistos.has(c.numero)) return;
+    const abertura = c.abertura || ymdDeDataBR(c.abertoEm);
+    if (abertura !== ymd) return;
+    vistos.add(c.numero);
+    out.push(c);
+  };
+  for (const e of (D && D.equipamentos) || []) {
+    for (const c of e.chamadosDetalhe || []) push({ ...c, equipamento: c.equipamento || e.nome });
+  }
+  for (const c of (D && D.areaInterna) || []) push(c);
+  for (const c of (D && D.ultimosFechados) || []) push(c);
+  const chave = (c) => instanteBR(c.abertoEm) || String(c.abertura || '').replace(/-/g, '') + '000000';
+  out.sort((a, b) => chave(b).localeCompare(chave(a)) || String(b.numero).localeCompare(String(a.numero)));
+  return out;
+}
+
+function contarAbertosHojeAltaSos(D, ymd) {
+  return listarAbertosNoDia(D, ymd).filter((c) => ehAltaOuSos(c.prioridade) && (c.equipamento || ehEquipamentoMonitorado(c.problema))).length;
+}
+
+function contarFechadosHojeAltaSos(D, ymd) {
+  return listarFechadosNoDia(D, ymd).filter((c) => ehAltaOuSos(c.prioridade) && ehEquipamentoMonitorado(c.problema)).length;
+}
+
+function deltaDesde(atual, base, hora) {
+  if (base == null || base === '') {
+    return '<span class="hstat-delta">Alta e SOS</span>';
+  }
+  const delta = atual - base;
+  const sinal = delta > 0 ? '+' + delta : delta < 0 ? String(delta) : '=';
+  const seta = delta > 0 ? '▲' : delta < 0 ? '▼' : '';
+  const desde = hora ? ' desde ' + hora : '';
+  return `<span class="hstat-delta">${seta ? seta + ' ' : ''}${sinal}${desde}</span>`;
+}
+
 async function carregarHistorico() {
   const alvo = document.getElementById('chartCard');
   if (!alvo) return;
@@ -1329,10 +1435,20 @@ async function carregarHistorico() {
   const horaUltimo = new Date(ultimo.quando || ultimo.data).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
   const horaAnterior = anterior ? new Date(anterior.quando || anterior.data).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) : null;
 
+  const ymdHoje = ymdHojeSP();
+  const valorFiltrado = {
+    totalAbertosHoje: contarAbertosHojeAltaSos(DADOS_ATUAIS, ymdHoje),
+    totalFechadosHoje: contarFechadosHojeAltaSos(DADOS_ATUAIS, ymdHoje),
+  };
   const statsHtml = series.map(s => {
-    const valor = ultimo[s.key];
+    const filtrado = Object.prototype.hasOwnProperty.call(valorFiltrado, s.key);
+    const valor = filtrado ? valorFiltrado[s.key] : ultimo[s.key];
     let deltaHtml;
-    if (!anterior) {
+    if (filtrado) {
+      const campo = s.key === 'totalAbertosHoje' ? 'totalAbertosHojeAltaSos' : 'totalFechadosHojeAltaSos';
+      const base = anterior && typeof anterior[campo] === 'number' ? anterior[campo] : null;
+      deltaHtml = deltaDesde(valor, base, horaDoQuando(anterior && (anterior.quando || anterior.data)));
+    } else if (!anterior) {
       deltaHtml = `<span class="hstat-delta">primeira execução registrada</span>`;
     } else {
       const delta = valor - anterior[s.key];
@@ -1340,7 +1456,7 @@ async function carregarHistorico() {
       const seta = delta > 0 ? '▲' : delta < 0 ? '▼' : '';
       deltaHtml = `<span class="hstat-delta">${seta} ${sinal} desde ${horaAnterior}</span>`;
     }
-    return `<div class="hstat">
+    return `<div class="hstat" data-kpi="${s.key}">
       <span class="hstat-lbl"><span class="hstat-dot" style="background:${s.color}"></span>${s.label}</span>
       <span class="hstat-val" style="color:${s.color}">${valor}</span>
       ${deltaHtml}
@@ -1601,8 +1717,17 @@ async function iniciar() {
     </section>
 
     <section>
-      <div class="sec-head"><h2>Últimos chamados fechados</h2><span class="sec-note">os 10 mais recentes · quem deu baixa no SOMA</span></div>
-      <div class="card">${montarFechados(D.ultimosFechados)}</div>
+      <div class="sec-head"><h2>Chamados do dia</h2><span class="sec-note">todas as prioridades · fuso de São Paulo</span></div>
+      <div class="card" id="diaCard">
+        <div class="dia-head">
+          <div class="dia-tabs" role="tablist">
+            <button type="button" class="dia-tab ativo" id="tabFechadosDia" role="tab" aria-selected="true" aria-controls="diaLista">Fechados no dia <span class="dia-n" id="nFechadosDia">0</span></button>
+            <button type="button" class="dia-tab" id="tabAbertosDia" role="tab" aria-selected="false" aria-controls="diaLista">Abertos no dia <span class="dia-n" id="nAbertosDia">0</span></button>
+          </div>
+          <button class="filter-copy" id="diaCopiar" type="button">Copiar para WhatsApp</button>
+        </div>
+        <div class="dia-lista" id="diaLista" role="tabpanel"></div>
+      </div>
     </section>
 
     <footer>
@@ -1613,42 +1738,116 @@ async function iniciar() {
 
   aplicarVisaoSalva();
   montarBuscaChamados(D);
+  montarDia(D);
   carregarHistorico();
 }
 
-function montarFechados(lista) {
-  const itens = (lista || []).filter((f) => f && f.numero);
-  if (!itens.length) return '<div class="chart-note">sem fechamentos recentes.</div>';
-  const hora = (x) => {
-    const m = String(x || '').match(/^(\d{2})\/(\d{2})\/\d{4}\s+(\d{2}):(\d{2})/);
-    return m ? m[1] + '/' + m[2] + ' ' + m[3] + ':' + m[4] : String(x || '');
+let DIA_ABA = 'fechados';
+let DIA_ITENS = { fechados: [], abertos: [] };
+let diaCopiaTimer = null;
+
+function horaCurtaBR(s) {
+  const m = String(s || '').match(/^(\d{2})\/(\d{2})\/\d{4}\s+(\d{2}):(\d{2})/);
+  return m ? m[1] + '/' + m[2] + ' ' + m[3] + ':' + m[4] : '';
+}
+
+function htmlItemDia(f, aba) {
+  const quem = aba === 'fechados'
+    ? (f.fechadoPor ? escapeHtml(f.fechadoPor) : 'sem registro de quem fechou')
+    : (f.fechadoPor
+        ? escapeHtml(f.fechadoPor)
+        : (f.tecnico ? escapeHtml(f.tecnico) : 'sem técnico informado'));
+  const verbo = aba === 'fechados'
+    ? 'último chamado fechado por '
+    : (f.fechadoPor ? 'aberto hoje e já fechado por ' : 'aberto hoje · ');
+  const q = aba === 'fechados' ? horaCurtaBR(f.fechadoEm) : (horaCurtaBR(f.abertoEm) || (f.abertura ? f.abertura.split('-').reverse().join('/') : ''));
+  return '<div class="fechado-item">'
+    + (aba === 'fechados' ? '<span class="fechado-confete" aria-hidden="true">\u{1F389}</span>' : '<span class="fechado-confete" aria-hidden="true">\u{1F4CB}</span>')
+    + '<span class="fechado-txt"><strong>' + escapeHtml(f.numero) + '</strong>'
+    + ' — ' + verbo + '<span class="fechado-sup">' + quem + '</span>'
+    + ((f.loja || f.problema)
+        ? '<span class="fechado-prob">'
+          + (f.loja ? '<span class="fechado-loja">' + escapeHtml(f.loja) + '</span>' : '')
+          + (f.loja && f.problema ? ' · ' : '')
+          + (f.problema ? escapeHtml(f.problema) : '')
+          + '</span>'
+        : '')
+    + '</span>'
+    + '<span class="fechado-meta">'
+    + (f.prioridade ? '<span class="tag ' + tagClsPrioridade(f.prioridade) + '">' + escapeHtml(f.prioridade) + '</span>' : '')
+    + '<span class="fechado-dias">' + (f.dias == null || f.dias === '' ? '' : f.dias + 'd') + '</span>'
+    + (q ? '<span class="fechado-hora">' + escapeHtml(q) + '</span>' : '')
+    + '</span></div>';
+}
+
+function textoDiaWhatsApp(aba, itens, ymd) {
+  const titulo = aba === 'fechados' ? 'Fechados no dia' : 'Abertos no dia';
+  const data = ymd ? ymd.split('-').reverse().join('/') : '';
+  const L = ['*' + titulo + (data ? ' — ' + data : '') + '*', itens.length + ' chamado(s) · todas as prioridades', ''];
+  for (const c of itens) {
+    L.push('• *' + (c.numero || 'sem número') + '* · ' + (c.loja || 'sem loja'));
+    if (c.problema) L.push(textoPlanoModal(c.problema));
+    const bits = [c.prioridade, (c.dias == null || c.dias === '') ? '' : c.dias + 'd'].filter(Boolean);
+    if (bits.length) L.push(bits.join(' · '));
+    if (aba === 'fechados') L.push('Fechado por: ' + (c.fechadoPor || 'sem registro'));
+    else if (c.fechadoPor) L.push('Já fechado por: ' + c.fechadoPor);
+    else if (c.tecnico) L.push('Técnico: ' + textoPlanoModal(c.tecnico));
+    const url = urlDoChamado(c);
+    if (url) L.push(url);
+    L.push('');
+  }
+  return L.join('\n').trim() + '\n';
+}
+
+function renderDiaLista() {
+  const itens = DIA_ITENS[DIA_ABA] || [];
+  const painel = document.getElementById('diaLista');
+  const btn = document.getElementById('diaCopiar');
+  if (!painel) return;
+  painel.innerHTML = itens.length
+    ? '<div class="fechados-lista">' + itens.map((f) => htmlItemDia(f, DIA_ABA)).join('') + '</div>'
+    : '<div class="chart-note">' + (DIA_ABA === 'fechados' ? 'Nenhum chamado fechado hoje.' : 'Nenhum chamado aberto hoje.') + '</div>';
+  if (btn) {
+    btn.disabled = itens.length === 0;
+    btn.textContent = 'Copiar para WhatsApp';
+    btn.classList.remove('ok', 'erro');
+  }
+}
+
+function selecionarAbaDia(aba) {
+  DIA_ABA = aba === 'abertos' ? 'abertos' : 'fechados';
+  document.getElementById('tabFechadosDia').classList.toggle('ativo', DIA_ABA === 'fechados');
+  document.getElementById('tabAbertosDia').classList.toggle('ativo', DIA_ABA === 'abertos');
+  document.getElementById('tabFechadosDia').setAttribute('aria-selected', DIA_ABA === 'fechados' ? 'true' : 'false');
+  document.getElementById('tabAbertosDia').setAttribute('aria-selected', DIA_ABA === 'abertos' ? 'true' : 'false');
+  renderDiaLista();
+}
+
+function montarDia(D) {
+  const ymd = ymdHojeSP();
+  DIA_ITENS = {
+    fechados: listarFechadosNoDia(D, ymd),
+    abertos: listarAbertosNoDia(D, ymd),
   };
-  return '<div class="fechados-lista">' + itens.map((f) => {
-    const quem = f.fechadoPor
-      ? escapeHtml(f.fechadoPor)
-      : 'sem registro de quem fechou';
-    const q = hora(f.fechadoEm);
-    return '<div class="fechado-item">'
-      + '<span class="fechado-confete" aria-hidden="true">\u{1F389}</span>'
-      + '<span class="fechado-txt"><strong>' + escapeHtml(f.numero) + '</strong>'
-      + ' — último chamado fechado por <span class="fechado-sup">' + quem + '</span>'
-      + ((f.loja || f.problema)
-          ? '<span class="fechado-prob">'
-            + (f.loja ? '<span class="fechado-loja">' + escapeHtml(f.loja) + '</span>' : '')
-            + (f.loja && f.problema ? ' · ' : '')
-            + (f.problema ? escapeHtml(f.problema) : '')
-            + '</span>'
-          : '')
-      + '</span>'
-      + '<span class="fechado-meta">'
-      + (f.prioridade ? '<span class="tag ' + tagClsPrioridade(f.prioridade) + '">'
-          + escapeHtml(f.prioridade) + '</span>' : '')
-      + '<span class="fechado-dias" title="dias em aberto até o fechamento">'
-          + (f.dias == null ? '' : f.dias + 'd') + '</span>'
-      + (q ? '<span class="fechado-hora" title="fechado em">' + escapeHtml(q) + '</span>' : '')
-      + '</span>'
-      + '</div>';
-  }).join('') + '</div>';
+  document.getElementById('nFechadosDia').textContent = String(DIA_ITENS.fechados.length);
+  document.getElementById('nAbertosDia').textContent = String(DIA_ITENS.abertos.length);
+  document.getElementById('tabFechadosDia').addEventListener('click', () => selecionarAbaDia('fechados'));
+  document.getElementById('tabAbertosDia').addEventListener('click', () => selecionarAbaDia('abertos'));
+  document.getElementById('diaCopiar').addEventListener('click', async () => {
+    const btn = document.getElementById('diaCopiar');
+    const itens = DIA_ITENS[DIA_ABA] || [];
+    if (!itens.length) return;
+    const ok = await copiarTextoPlano(textoDiaWhatsApp(DIA_ABA, itens, ymd));
+    btn.textContent = ok ? 'Copiado!' : 'Não consegui copiar';
+    btn.classList.toggle('ok', ok);
+    btn.classList.toggle('erro', !ok);
+    clearTimeout(diaCopiaTimer);
+    diaCopiaTimer = setTimeout(() => {
+      btn.textContent = 'Copiar para WhatsApp';
+      btn.classList.remove('ok', 'erro');
+    }, 2400);
+  });
+  selecionarAbaDia('fechados');
 }
 
 function montarBuscaChamados(D) {
