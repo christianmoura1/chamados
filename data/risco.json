@@ -1,8 +1,8 @@
 {
- "atualizadoEm": "11/14/2026 05:07:20",
- "geradoEm": "2026-11-14T09:03:00.766Z",
+ "atualizadoEm": "11/15/2026 05:09:31",
+ "geradoEm": "2026-11-15T09:02:59.344Z",
  "totalLojasAvaliadas": 72,
- "scoreMedio": 8,
+ "scoreMedio": 7.58,
  "categorias": [
   {
    "chave": "sci",
@@ -23,7 +23,7 @@
    "lojasVencidas": [
     {
      "nome": "15893 - SHOP IGUATEMI PORTO ALEGRE",
-     "score": 15,
+     "score": 10,
      "diasAtraso": 16,
      "dataRef": "28/10/2026",
      "rotuloRef": "venceu",
@@ -114,65 +114,24 @@
   {
    "chave": "rotaSeguranca",
    "nome": "Rota Segurança",
-   "vencido": 4,
-   "emDia": 68,
+   "vencido": 0,
+   "emDia": 72,
    "total": 72,
-   "pctVencido": 6,
-   "lojasVencidas": [
-    {
-     "nome": "19665 - SHOP SAN PELEGRINO",
-     "score": 15,
-     "diasAtraso": 23,
-     "dataRef": "22/10/2026",
-     "rotuloRef": "últ. visita",
-     "itemRef": null
-    },
-    {
-     "nome": "32645 - FC CAXIAS DO SUL - VILLAGIO CAXIAS",
-     "score": 15,
-     "diasAtraso": 24,
-     "dataRef": "21/10/2026",
-     "rotuloRef": "últ. visita",
-     "itemRef": null
-    },
-    {
-     "nome": "19402 - BARRA SHOP SUL",
-     "score": 14,
-     "diasAtraso": 285,
-     "dataRef": "02/02/2026",
-     "rotuloRef": "últ. visita",
-     "itemRef": null
-    },
-    {
-     "nome": "26819 - FS CAXIAS DO SUL - R JOAO NICHELE 2227",
-     "score": 10,
-     "diasAtraso": 24,
-     "dataRef": "21/10/2026",
-     "rotuloRef": "últ. visita",
-     "itemRef": null
-    }
-   ]
+   "pctVencido": 0,
+   "lojasVencidas": []
   },
   {
    "chave": "rotaPadroes",
    "nome": "Rota Padrões",
-   "vencido": 2,
-   "emDia": 70,
+   "vencido": 1,
+   "emDia": 71,
    "total": 72,
-   "pctVencido": 3,
+   "pctVencido": 1,
    "lojasVencidas": [
-    {
-     "nome": "19402 - BARRA SHOP SUL",
-     "score": 14,
-     "diasAtraso": 311,
-     "dataRef": "07/01/2026",
-     "rotuloRef": "últ. visita",
-     "itemRef": null
-    },
     {
      "nome": "20410 - WALMART BIG TORRES",
      "score": 10,
-     "diasAtraso": 50,
+     "diasAtraso": 51,
      "dataRef": "25/09/2026",
      "rotuloRef": "últ. visita",
      "itemRef": null
@@ -185,17 +144,13 @@
   "Central de fumaça",
   "Exaustor",
   "Quadro Elétrico",
-  "Carrinho doBroiler",
-  "Damper",
-  "Sistema deIncêndio",
+  "Carrinho do Broiler",
   "9",
   "3",
   "2",
   "2",
   "1",
-  "1",
-  "1",
-  "4",
+  "2",
   "Atrasado",
   "No Prazo"
  ],
@@ -215,7 +170,7 @@
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
     "assunto": "COI - ESTRUTURA DA COIFA COM DEFEITO",
-    "diasAtraso": 43
+    "diasAtraso": 44
    },
    {
     "numero": "WO0065253",
@@ -231,7 +186,7 @@
     "dtEncerramento": "",
     "tecnico": "MARCEL VINICIOS ROCHA AGRADEM",
     "assunto": "COI - COIFA EM CONTIGÊNCIA",
-    "diasAtraso": 39
+    "diasAtraso": 40
    },
    {
     "numero": "WO0068126",
@@ -247,7 +202,7 @@
     "dtEncerramento": "",
     "tecnico": "CARLOS MAGNO DA SILVA LIRA",
     "assunto": "COI - ESTRUTURA DA COIFA COM DEFEITO",
-    "diasAtraso": 33
+    "diasAtraso": 34
    },
    {
     "numero": "WO0069102",
@@ -263,7 +218,7 @@
     "dtEncerramento": "",
     "tecnico": "Gustavo de Godoy Matheus",
     "assunto": "AIN - QUADRO ELÉTRICO - QUADRO ELÉTRICO COM FIOS EXPOSTOS",
-    "diasAtraso": 31
+    "diasAtraso": 32
    },
    {
     "numero": "WO0070729",
@@ -279,7 +234,7 @@
     "dtEncerramento": "",
     "tecnico": "MARCEL VINICIOS ROCHA AGRADEM",
     "assunto": "SCI - ALARME DISPARADO",
-    "diasAtraso": 28
+    "diasAtraso": 29
    },
    {
     "numero": "WO0071121",
@@ -295,23 +250,7 @@
     "dtEncerramento": "",
     "tecnico": "Gustavo de Godoy Matheus",
     "assunto": "COI - COIFA EM CONTIGÊNCIA",
-    "diasAtraso": 26
-   },
-   {
-    "numero": "WO0071131",
-    "statusRisco": "Atrasado",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA EM CONTIGÊNCIA",
-    "regional": "SUL",
-    "setor": "CAPITAL NORTE RS",
-    "loja": "15893 - SHOP IGUATEMI PORTO ALEGRE",
-    "status": "Pronto Para Envio",
-    "dtAbertura": "19/10/2026",
-    "dtEncerramento": "",
-    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
-    "assunto": "COI - COIFA EM CONTIGÊNCIA",
-    "diasAtraso": 26
+    "diasAtraso": 27
    },
    {
     "numero": "WO0071165",
@@ -327,7 +266,7 @@
     "dtEncerramento": "",
     "tecnico": "CARLOS MAGNO DA SILVA LIRA",
     "assunto": "COI - COIFA EM CONTIGÊNCIA",
-    "diasAtraso": 26
+    "diasAtraso": 27
    },
    {
     "numero": "WO0073278",
@@ -343,7 +282,7 @@
     "dtEncerramento": "",
     "tecnico": "CARLOS MAGNO DA SILVA LIRA",
     "assunto": "AIN - QUADRO ELÉTRICO - QUADRO ELÉTRICO COM FIOS EXPOSTOS",
-    "diasAtraso": 24
+    "diasAtraso": 25
    },
    {
     "numero": "WO0075758",
@@ -359,7 +298,7 @@
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
     "assunto": "EXA - AUSÊNCIA DE PROTEÇÃO DA CORREIA",
-    "diasAtraso": 18
+    "diasAtraso": 19
    },
    {
     "numero": "WO0075952",
@@ -375,23 +314,7 @@
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
     "assunto": "COI - COIFA COM DRENO ENTUPIDO",
-    "diasAtraso": 18
-   },
-   {
-    "numero": "WO0076951",
-    "statusRisco": "Atrasado",
-    "item": "Sistema de Incêndio",
-    "assuntoPrincipal": "SISTEMA DE INCÊNDIO",
-    "assuntoSecundario": "SCI - ACESSÓRIOS/PEÇAS DANIFICADAS",
-    "regional": "SUL",
-    "setor": "CAPITAL NORTE RS",
-    "loja": "15893 - SHOP IGUATEMI PORTO ALEGRE",
-    "status": "Pronto Para Envio",
-    "dtAbertura": "29/10/2026",
-    "dtEncerramento": "",
-    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
-    "assunto": "SCI - ACESSÓRIOS/PEÇAS DANIFICADAS",
-    "diasAtraso": 16
+    "diasAtraso": 19
    },
    {
     "numero": "WO0078309",
@@ -407,7 +330,7 @@
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
     "assunto": "COI - COIFA EM CONTIGÊNCIA",
-    "diasAtraso": 12
+    "diasAtraso": 13
    },
    {
     "numero": "WO0078705",
@@ -423,23 +346,7 @@
     "dtEncerramento": "",
     "tecnico": "THIAGO DA SILVA GONZALEZ",
     "assunto": "CDB - CARRINHO TORTO / BALANÇANDO",
-    "diasAtraso": 11
-   },
-   {
-    "numero": "WO0079354",
-    "statusRisco": "Atrasado",
-    "item": "Damper",
-    "assuntoPrincipal": "EXAUSTOR",
-    "assuntoSecundario": "EXA - DAMPER NÃO ACIONA CORRETAMENTE",
-    "regional": "SUL",
-    "setor": "CAPITAL CENTRO RS",
-    "loja": "31345 - FS CANOAS - AV DR SEZ AZAMBUJA VIEIRA",
-    "status": "Em Andamento",
-    "dtAbertura": "04/11/2026",
-    "dtEncerramento": "",
-    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
-    "assunto": "EXA - DAMPER NÃO ACIONA CORRETAMENTE",
-    "diasAtraso": 10
+    "diasAtraso": 12
    },
    {
     "numero": "WO0079479",
@@ -455,7 +362,23 @@
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
     "assunto": "COI - ESTRUTURA DA COIFA COM DEFEITO",
-    "diasAtraso": 10
+    "diasAtraso": 11
+   },
+   {
+    "numero": "WO0087217",
+    "statusRisco": "Atrasado",
+    "item": "Coifa",
+    "assuntoPrincipal": "COIFA",
+    "assuntoSecundario": "COI - COIFA NÃO FUNCIONA",
+    "regional": "SUL",
+    "setor": "CAPITAL CENTRO RS",
+    "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
+    "status": "Pronto Para Envio",
+    "dtAbertura": "08/11/2026",
+    "dtEncerramento": "",
+    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
+    "assunto": "COI - COIFA NÃO FUNCIONA",
+    "diasAtraso": 7
    },
    {
     "numero": "WO0087218",
@@ -471,7 +394,7 @@
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
     "assunto": "EXA - AUSÊNCIA DE PROTEÇÃO DA CORREIA",
-    "diasAtraso": 6
+    "diasAtraso": 7
    },
    {
     "numero": "WO0090775",
@@ -487,7 +410,7 @@
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
     "assunto": "SCI - SENSOR DE FUMAÇA INOPERANTE",
-    "diasAtraso": 4
+    "diasAtraso": 5
    },
    {
     "numero": "WO0093214",
@@ -503,26 +426,10 @@
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
     "assunto": "SCI - FALTA DO SENSOR DE FUMAÇA",
-    "diasAtraso": 4
+    "diasAtraso": 5
    }
   ],
   "aVencer": [
-   {
-    "numero": "WO0087217",
-    "statusRisco": "No Prazo",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA NÃO FUNCIONA",
-    "regional": "SUL",
-    "setor": "CAPITAL CENTRO RS",
-    "loja": "21472 - FS PORTO ALEGRE - AV IPIRANGA 1600",
-    "status": "Pronto Para Envio",
-    "dtAbertura": "08/11/2026",
-    "dtEncerramento": "",
-    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
-    "assunto": "COI - COIFA NÃO FUNCIONA",
-    "diasAtraso": 6
-   },
    {
     "numero": "WO0088514",
     "statusRisco": "No Prazo",
@@ -537,7 +444,7 @@
     "dtEncerramento": "",
     "tecnico": "MARCEL VINICIOS ROCHA AGRADEM",
     "assunto": "COI - PRESENÇA DE INCRUSTRAÇÕES DE GORDURA NA COIFA OU NA CALHA",
-    "diasAtraso": 5
+    "diasAtraso": 6
    },
    {
     "numero": "WO0093209",
@@ -553,27 +460,47 @@
     "dtEncerramento": "",
     "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
     "assunto": "COI - PRESENÇA DE INCRUSTRAÇÕES DE GORDURA NA COIFA OU NA CALHA",
-    "diasAtraso": 4
-   },
-   {
-    "numero": "WO0093364",
-    "statusRisco": "No Prazo",
-    "item": "Coifa",
-    "assuntoPrincipal": "COIFA",
-    "assuntoSecundario": "COI - COIFA COM VAZAMENTO",
-    "regional": "SUL",
-    "setor": "VALE DOS SINOS",
-    "loja": "32645 - FC CAXIAS DO SUL - VILLAGIO CAXIAS",
-    "status": "Pronto Para Envio",
-    "dtAbertura": "11/11/2026",
-    "dtEncerramento": "",
-    "tecnico": "RAFAEL WAGNER BARBOSA DE JESUS",
-    "assunto": "COI - COIFA COM VAZAMENTO",
-    "diasAtraso": 3
+    "diasAtraso": 5
    }
   ]
  },
  "ultimosFechados": [
+  {
+   "numero": "WO0093364",
+   "fechadoEm": "14/11/2026 18:50:50",
+   "dias": 3,
+   "prioridade": "SOS",
+   "problema": "COI - COIFA COM VAZAMENTO",
+   "loja": "32645 FC CAXIAS DO SUL - VILLAGIO",
+   "fechadoPor": "Lucas Dorneles Correa da Costa"
+  },
+  {
+   "numero": "WO0076951",
+   "fechadoEm": "14/11/2026 17:30:45",
+   "dias": 16,
+   "prioridade": "SOS",
+   "problema": "SCI - ACESSÓRIOS/PEÇAS DANIFICADAS",
+   "loja": "15893 - SHOP IGUATEMI PORTO ALEGRE",
+   "fechadoPor": "Lucas Dorneles Correa da Costa"
+  },
+  {
+   "numero": "WO0071131",
+   "fechadoEm": "14/11/2026 17:25:06",
+   "dias": 26,
+   "prioridade": "SOS",
+   "problema": "COI - COIFA EM CONTIGÊNCIA",
+   "loja": "15893 - SHOP IGUATEMI PORTO ALEGRE",
+   "fechadoPor": "Lucas Dorneles Correa da Costa"
+  },
+  {
+   "numero": "WO0079354",
+   "fechadoEm": "14/11/2026 15:18:56",
+   "dias": 10,
+   "prioridade": "Alta",
+   "problema": "EXA - DAMPER NÃO ACIONA CORRETAMENTE",
+   "loja": "31345 FS CANOAS - AV DR SEZEFREDO A",
+   "fechadoPor": "Lucas Dorneles Correa da Costa"
+  },
   {
    "numero": "WO0093856",
    "fechadoEm": "12/11/2026 12:52:15",
@@ -627,42 +554,6 @@
    "problema": "SCI - FALTA DO SENSOR DE FUMAÇA",
    "loja": "23725 - SHOP PRACA NOVA SANTA MARIA",
    "fechadoPor": "Marcel Vinicios Rocha Agradem"
-  },
-  {
-   "numero": "WO0076362",
-   "fechadoEm": "03/11/2026 19:27:24",
-   "dias": 6,
-   "prioridade": "SOS",
-   "problema": "COI - COIFA COM VAZAMENTO",
-   "loja": "19868 - SHOP DO VALE",
-   "fechadoPor": "Lucas Dorneles Correa da Costa"
-  },
-  {
-   "numero": "WO0072619",
-   "fechadoEm": "03/11/2026 15:45:10",
-   "dias": 13,
-   "prioridade": "SOS",
-   "problema": "AIN - QUADRO ELÉTRICO - FALTA DE ACRÍLICO DE PROTEÇÃO",
-   "loja": "23584 - ILR FLORIPA - R JERONIMO COELHO 215",
-   "fechadoPor": "Solano Silva do Amaral"
-  },
-  {
-   "numero": "WO0077691",
-   "fechadoEm": "01/11/2026 15:46:39",
-   "dias": 1,
-   "prioridade": "SOS",
-   "problema": "CDB - CARRINHO TORTO / BALANÇANDO",
-   "loja": "27590 - PORTO BELO OUTLET",
-   "fechadoPor": "Gustavo de Godoy Matheus"
-  },
-  {
-   "numero": "WO0077678",
-   "fechadoEm": "01/11/2026 12:58:13",
-   "dias": 1,
-   "prioridade": "SOS",
-   "problema": "COI - COIFA NÃO FUNCIONA",
-   "loja": "17792 - BOURBON SHOP NOVO HAMBURGO",
-   "fechadoPor": "Thiago Dos Santos Coelho"
   }
  ]
 }
